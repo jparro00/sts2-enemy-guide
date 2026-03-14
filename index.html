@@ -328,6 +328,51 @@
     letter-spacing: 2px;
   }
 
+  /* ── Search Bar ── */
+  .search-bar {
+    margin-top: 12px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search-bar input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #2a2a3a;
+    background: #14141f;
+    color: #e0ddd4;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar input:focus {
+    border-color: #c8b06a;
+  }
+  .search-bar input::placeholder {
+    color: #555;
+  }
+  .search-results {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px 24px;
+  }
+  .search-results .search-zone-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    padding: 16px 0 8px;
+    border-bottom: 1px solid #1a1a2a;
+    margin-bottom: 12px;
+  }
+  .search-results .search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
   /* ── Loading state ── */
   .loading {
     text-align: center;
@@ -348,7 +393,12 @@
 <header>
   <h1>Slay the Spire 2 — Enemy Reference</h1>
   <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
+  </div>
 </header>
+
+<div id="search-results" class="search-results" style="display:none;"></div>
 
 <div class="act-bar">
   <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
@@ -664,13 +714,22 @@ function renderEnemySection(name) {
   `;
 }
 
-function openEncounter(encounterName) {
+function openEncounter(encounterName, act, cat) {
+  const searchAct = act || currentAct;
+  const searchCat = cat || currentCat;
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').textContent = encounterName;
 
-  const encs = encounters[currentAct]?.[currentCat] || [];
-  const enc = encs.find(e => e.name === encounterName);
+  // Search all categories if act/cat provided, otherwise use current
+  let enc = null;
+  if (act && cat) {
+    const encs = encounters[act]?.[cat] || [];
+    enc = encs.find(e => e.name === encounterName);
+  } else {
+    const encs = encounters[currentAct]?.[currentCat] || [];
+    enc = encs.find(e => e.name === encounterName);
+  }
 
   if (enc && enc.enemies && enc.enemies.length > 0) {
     const sections = enc.enemies
@@ -691,7 +750,86 @@ function closeDetail() {
   document.getElementById('backdrop').classList.remove('open');
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeDetail();
+    const input = document.getElementById('search-input');
+    if (input.value) { input.value = ''; onSearch(''); }
+  }
+});
+
+// ══════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════
+
+const browseElements = ['act-bar', 'category-tabs', 'section-label', 'enemy-grid'].map(id =>
+  document.querySelector(`.${id}`) || document.getElementById(id)
+);
+
+function onSearch(query) {
+  const results = document.getElementById('search-results');
+  const q = query.trim().toLowerCase();
+
+  if (!q) {
+    results.style.display = 'none';
+    browseElements.forEach(el => { if (el) el.style.display = ''; });
+    return;
+  }
+
+  // Hide browse UI, show search results
+  browseElements.forEach(el => { if (el) el.style.display = 'none'; });
+  results.style.display = 'block';
+
+  // Search all encounters across all acts/categories
+  const matches = [];
+  const zoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory'];
+
+  for (const zone of zoneOrder) {
+    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+      const encs = encounters[zone]?.[cat] || [];
+      for (const enc of encs) {
+        const nameMatch = enc.name.toLowerCase().includes(q);
+        const enemyMatch = enc.enemies.some(e => e.toLowerCase().includes(q));
+        if (nameMatch || enemyMatch) {
+          matches.push({ enc, zone, cat });
+        }
+      }
+    }
+  }
+
+  if (matches.length === 0) {
+    results.innerHTML = '<div style="text-align:center; padding:40px; color:#666;">No matches found.</div>';
+    return;
+  }
+
+  // Group by zone
+  const grouped = {};
+  for (const m of matches) {
+    const key = m.zone;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(m);
+  }
+
+  let html = '';
+  for (const zone of zoneOrder) {
+    if (!grouped[zone]) continue;
+    html += `<div class="search-zone-label">${actNames[zone]}</div>`;
+    html += '<div class="search-grid">';
+    for (const { enc, cat } of grouped[zone]) {
+      html += `
+        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.name.replace(/'/g, "\\'")}', '${zone}', '${cat}')">
+          <div class="enemy-thumb">
+            ${getEncounterImageHtml(enc)}
+            ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}
+          </div>
+          <div class="enemy-name">${enc.name}</div>
+        </div>`;
+    }
+    html += '</div>';
+  }
+
+  results.innerHTML = html;
+}
 
 // ── Load and go ──
 loadData();
