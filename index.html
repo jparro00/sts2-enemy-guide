@@ -152,6 +152,25 @@
     object-fit: cover;
     border-radius: 8px;
   }
+  .enemy-thumb.multi-img {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px;
+  }
+  .enemy-thumb.multi-img img {
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .enemy-thumb.multi-img.count-2 img { width: 48%; height: 48%; }
+  .enemy-thumb.multi-img.count-3 img { width: 45%; height: 45%; }
+  .enemy-thumb.multi-img.count-4 img { width: 46%; height: 46%; }
+  .enemy-thumb.multi-img.count-5 img { width: 30%; height: 30%; }
+  .enemy-thumb.multi-img.count-6 img { width: 30%; height: 30%; }
   .enemy-card[data-cat="easy"] .enemy-thumb { background: linear-gradient(135deg, #1a2e1a, #0f1a0f); }
   .enemy-card[data-cat="hard"] .enemy-thumb { background: linear-gradient(135deg, #2e2a1a, #1a150d); }
   .enemy-card[data-cat="elite"] .enemy-thumb { background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }
@@ -167,13 +186,18 @@
   }
   .enemy-card .multi-badge {
     position: absolute;
-    bottom: 36px;
-    left: 6px;
-    font-size: 0.6rem;
-    background: rgba(200,176,106,0.2);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.65);
     color: #c8b06a;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 4px 0;
+    z-index: 2;
   }
 
   /* ── Detail Panel ── */
@@ -462,12 +486,12 @@
     <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Underdocks</div></div>
   </div>
   <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
-    <img src="data/media/ui/map_top_hive.png" alt="The Hive">
-    <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">The Hive</div></div>
+    <img src="data/media/ui/map_top_hive.png" alt="Hive">
+    <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">Hive</div></div>
   </div>
   <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
-    <img src="data/media/ui/map_top_glory.png" alt="The Glory">
-    <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">The Glory</div></div>
+    <img src="data/media/ui/map_top_glory.png" alt="Glory">
+    <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">Glory</div></div>
   </div>
 </div>
 
@@ -638,18 +662,28 @@ async function loadData() {
 // ══════════════════════════════════════════
 
 // Try media/encounters/ first, then media/enemies/, then emoji fallback
-function getEncounterImageHtml(enc) {
+function getEncounterImageHtml(enc, cat) {
+  // If encounter has multiple enemies, show individual enemy images (skip for elites/bosses)
+  if (enc.enemies && enc.enemies.length > 1 && cat !== 'elite' && cat !== 'boss') {
+    const count = enc.enemies.length;
+    const imgs = enc.enemies.map(name => {
+      const src = `data/media/enemies/${name}.png`;
+      return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
+    }).join('');
+    return { multi: true, count, html: imgs };
+  }
+
   if (enc.image) {
     // Image filename specified in CSV — try encounters folder first, enemies fallback
     const encSrc = `data/media/encounters/${enc.image}`;
     const enemySrc = `data/media/enemies/${enc.image}`;
-    return `<img src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">`;
+    return { multi: false, html: `<img src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">` };
   }
 
   // No image specified — try encounter name as filename
   const encSrc = `data/media/encounters/${enc.name}.png`;
   const enemySrc = `data/media/enemies/${enc.name}.png`;
-  return `<img src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">`;
+  return { multi: false, html: `<img src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">` };
 }
 
 // ══════════════════════════════════════════
@@ -690,8 +724,8 @@ function renderIntents(intentStr) {
 const actNames = {
   overgrowth: "Act 1: Overgrowth",
   underdocks: "Act 1: Underdocks",
-  hive: "Act 2: The Hive",
-  glory: "Act 3: The Glory",
+  hive: "Act 2: Hive",
+  glory: "Act 3: Glory",
 };
 const catNames = { easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
 
@@ -718,15 +752,25 @@ function render() {
   label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
 
   const encs = encounters[currentAct]?.[currentCat] || [];
-  grid.innerHTML = encs.map(e => `
+  grid.innerHTML = encs.map(e => {
+    const img = getEncounterImageHtml(e, currentCat);
+    const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
+    return `
     <div class="enemy-card" data-cat="${currentCat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}')">
-      <div class="enemy-thumb">
-        ${getEncounterImageHtml(e)}
+      <div class="${thumbClass}">
+        ${img.html}
         ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
       </div>
       <div class="enemy-name">${e.name}</div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
+}
+
+function formatMultiBadge(multi) {
+  // Convert "3 enemies" → "×3", "3-4 enemies" → "3-4"
+  const m = multi.match(/^(\d+(?:-\d+)?)/);
+  if (m) return m[1].includes('-') ? m[1] : `×${m[1]}`;
+  return multi;
 }
 
 function renderEnemySection(name) {
@@ -880,10 +924,12 @@ function onSearch(query) {
     html += `<div class="search-zone-label">${actNames[zone]}</div>`;
     html += '<div class="search-grid">';
     for (const { enc, cat } of grouped[zone]) {
+      const img = getEncounterImageHtml(enc, cat);
+      const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
       html += `
         <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.name.replace(/'/g, "\\'")}', '${zone}', '${cat}')">
-          <div class="enemy-thumb">
-            ${getEncounterImageHtml(enc)}
+          <div class="${thumbClass}">
+            ${img.html}
             ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}
           </div>
           <div class="enemy-name">${enc.name}</div>

@@ -28,7 +28,7 @@ Fat Gremlin,13 - 17 (14 - 18),Always uses Flee.,Starts stunned when summoned aft
 Sneaky Gremlin,10 - 14 (11 - 15),Always uses Tackle.,Starts stunned when summoned after killing Gremlin Merc.
 Haunted Ship,63 (67),"Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",
 Hunter Killer,121 (126),Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.,"Tender: Whenever you play a card, lose 1 strength and 1 dexterity this turn."
-Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).","Starts with Slippery 1 Slippery X: The next time this enemy loses HP, it loses 1 HP instead."
+Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).","Starts with Slippery 1 Slippery X (The next time this enemy loses HP, it loses 1 HP instead)."
 Leaf Slime (Small),11 - 15 (12 - 16),Starts randomly with Tackle or Goop. Then alternates between them.,
 Leaf Slime (Medium),32 - 35 (33 - 36),Starts with Sticky Shot then alternates Clump Shot -> Sticky Shot.,
 Living Fog,80 (82),Starts with Advanced Gas. Then alternates between Bloat -> Super Gas Blast.,Smoggy: You can only play 1 skill per turn.
