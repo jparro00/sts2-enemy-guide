@@ -41,6 +41,8 @@
     height: 120px;
     border-radius: 12px;
     cursor: pointer;
+    position: relative;
+    z-index: 60;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -71,6 +73,8 @@
   .cat-tab {
     padding: 10px 28px;
     cursor: pointer;
+    z-index: 60;
+    position: relative;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -102,6 +106,7 @@
     border: 2px solid #1e1e2e;
     transition: all 0.2s;
     position: relative;
+    z-index: 60;
   }
   .enemy-card:hover {
     border-color: #444;
@@ -254,27 +259,23 @@
   }
   .intent-icon {
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 18px;
-    font-size: 11px;
+    width: 22px;
+    height: 22px;
     cursor: default;
     user-select: none;
   }
-  .intent-attack { background: #8b2020; color: #ff6b6b; }
-  .intent-multi_attack { background: #8b2020; color: #ff6b6b; }
-  .intent-block { background: #1a3a5a; color: #6ab0e6; }
-  .intent-buff { background: #1a2a4a; color: #6ab0ff; }
-  .intent-debuff { background: #4a1a1a; color: #ff5555; }
-  .intent-add_statuses { background: #2a1a3a; color: #b06ae6; }
-  .intent-affliction { background: #3a1a2a; color: #e66a9a; }
-  .intent-summon { background: #2a1a3a; color: #b06ae6; }
-  .intent-sleeping { background: #2a2a1a; color: #e6d46a; }
-  .intent-deathblow { background: #5a1a1a; color: #ff4444; }
-  .intent-escape { background: #1a2a1a; color: #88aa88; }
-  .intent-unknown { background: #2a2a2a; color: #888; }
+  .intent-icon img {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+  }
+  .intent-multi_attack {
+    width: auto;
+  }
+  .intent-multi_attack img {
+    width: 18px;
+    height: 18px;
+  }
 
   /* ── Enemy separator in detail panel ── */
   .enemy-section {
@@ -314,8 +315,8 @@
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 99;
+    background: rgba(0,0,0,0.3);
+    z-index: 50;
   }
   .backdrop.open { display: block; }
 
@@ -334,7 +335,30 @@
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 60;
   }
+  .search-clear {
+    display: none;
+    position: absolute;
+    right: -48px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #6a2020;
+    border: none;
+    border-radius: 6px;
+    color: #ff8888;
+    font-size: 1.3rem;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 0;
+  }
+  .search-clear:hover { background: #8b2020; color: #ffaaaa; }
+  .search-clear.visible { display: block; }
   .search-bar input {
     width: 100%;
     padding: 10px 16px;
@@ -395,6 +419,7 @@
   <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
+    <button class="search-clear" id="search-clear" onclick="clearSearch()">&times;</button>
   </div>
 </header>
 
@@ -604,27 +629,30 @@ function getEncounterImageHtml(enc) {
 // INTENT ICON MAP
 // ══════════════════════════════════════════
 
-const intentIcons = {
-  "attack": "&#9876;",
-  "multi_attack": "&#9876;&#9876;",
-  "block": "&#128737;",
-  "buff": "&#11014;",
-  "debuff": "&#11015;",
-  "add_statuses": "&#128220;",
-  "affliction": "&#128148;",
-  "summon": "&#128128;",
-  "sleeping": "&#128164;",
-  "deathblow": "&#9760;",
-  "escape": "&#128168;",
-  "unknown": "&#63;"
-};
+const intentKeys = [
+  "attack", "multi_attack", "block", "buff", "debuff",
+  "add_statuses", "affliction", "summon", "sleeping",
+  "deathblow", "escape", "heal", "stun", "unknown"
+];
+
+function intentImg(key) {
+  const src = `data/media/intents/${key}.png`;
+  return `<img src="${src}" alt="${key}" title="${key}">`;
+}
 
 function renderIntents(intentStr) {
   if (!intentStr) return '';
   return intentStr.split(',').map(i => {
     const key = i.trim();
-    const icon = intentIcons[key] || '?';
-    return `<span class="intent-icon intent-${key}" title="${key}">${icon}</span>`;
+    let inner;
+    if (key === 'multi_attack') {
+      inner = intentImg('attack') + intentImg('attack');
+    } else if (intentKeys.includes(key)) {
+      inner = intentImg(key);
+    } else {
+      inner = intentImg('unknown');
+    }
+    return `<span class="intent-icon intent-${key}" title="${key}">${inner}</span>`;
   }).join('');
 }
 
@@ -766,9 +794,18 @@ const browseElements = ['act-bar', 'category-tabs', 'section-label', 'enemy-grid
   document.querySelector(`.${id}`) || document.getElementById(id)
 );
 
+function clearSearch() {
+  const input = document.getElementById('search-input');
+  input.value = '';
+  onSearch('');
+  input.focus();
+}
+
 function onSearch(query) {
   const results = document.getElementById('search-results');
+  const clearBtn = document.getElementById('search-clear');
   const q = query.trim().toLowerCase();
+  clearBtn.classList.toggle('visible', q.length > 0);
 
   if (!q) {
     results.style.display = 'none';

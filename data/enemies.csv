@@ -82,7 +82,7 @@ Spectral Knight,93 (97),Starts with Hex and then Soul Slash. Then chooses random
 Magi Knight,82 (89),Cycles through Power Shield -> Dampen -> Spear -> Prep -> Magic Bomb.,"Dampen: While Magi Knight is alive, all your upgraded cards are downgraded."
 Mecha Knight,300 (320),Starts with Charge. Then cycles through Flamethrower -> Windup -> Heavy Cleave.,Starts with Artifact 3
 Phantasmal Gardener,28 - 32 (29 -33),"1st one starts with Flail, 2nd with Bite, 3rd with Lash, and 4th with Enlarge. Then cycle through Bite -> Lash -> Flail -> Enlarge.",Starts with Skittish 6 (7) Skittish X: First time hit each turn gain X block.
-Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,Starts with Infested 4 Infested X: Summons X Wrigglers after dying (they start stunned).
+Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,Starts with Infested 4 Infested 4: Summons 4 Wrigglers after dying (they start stunned).
 Skulking Colony,79 (84),Cycles through Smash -> Zoom -> Inertia -> Super Crab.,Starts with Hardened Shell 20 Hardened Shell X: Cannot lose more than X HP per turn.
 Soul Nexus,234 (254),"Starts with Soul Burn. Then picks randomly between Soul Burn, Maelstrom, and Drain Life (all allowed options equally likely). Cannot use the same move twice in a row.",
 Terror Eel,140 (150),Cycles between Crash -> Thrash until it gets stunned by reaching 75 HP. Then uses Terror before cycling Crash -> Thrash again.,Starts with Shriek 75 Shriek X: Becomes Stunned after reaching X HP or below.

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sts2-ui",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:/Users/jparr/Documents/claude/sts2"],
+      "port": 8080
+    }
+  ]
+}
