@@ -37,30 +37,54 @@
     flex-wrap: wrap;
   }
   .act-card {
-    width: 200px;
-    height: 120px;
     border-radius: 12px;
     cursor: pointer;
     position: relative;
     z-index: 60;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 14px;
-    position: relative;
     overflow: hidden;
     border: 2px solid transparent;
     transition: all 0.2s;
   }
   .act-card:hover { transform: translateY(-3px); filter: brightness(1.15); }
   .act-card.selected { border-color: #c8b06a; box-shadow: 0 0 20px rgba(200,176,106,0.25); }
-  .act-card .act-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; }
-  .act-card .act-name { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
-
-  .act-overgrowth { background: linear-gradient(135deg, #1a3a1a 0%, #0d1f0d 60%, #2a5a2a 100%); border-color: #2a5a2a; }
-  .act-underdocks { background: linear-gradient(135deg, #1a2a3a 0%, #0d1520 60%, #1a3a5a 100%); border-color: #1a3a5a; }
-  .act-hive { background: linear-gradient(135deg, #3a2a1a 0%, #201510 60%, #5a3a1a 100%); border-color: #5a3a1a; }
-  .act-glory { background: linear-gradient(135deg, #2a1a3a 0%, #150d20 60%, #3a1a5a 100%); border-color: #3a1a5a; }
+  .act-card img {
+    display: block;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .act-card .act-text {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(60,60,70,0.55);
+    padding: 8px 0;
+  }
+  .act-card .act-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    color: #8ab4d6;
+  }
+  .act-card .act-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #e8c84a;
+    margin-top: -1px;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .act-overgrowth { border-color: #2a5a2a; }
+  .act-underdocks { border-color: #1a3a5a; }
+  .act-hive { border-color: #5a3a1a; }
+  .act-glory { border-color: #3a1a5a; }
 
   /* ── Category Tabs ── */
   .category-tabs {
@@ -409,7 +433,7 @@
   }
 
   @media (max-width: 600px) {
-    .act-card { width: 160px; height: 90px; }
+    .act-card img { width: 150px; }
     .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
     .detail-overlay { width: 100vw; }
   }
@@ -430,20 +454,20 @@
 
 <div class="act-bar">
   <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
-    <div class="act-label">Act 1</div>
-    <div class="act-name">&#127807; Overgrowth</div>
+    <img src="data/media/ui/map_top_overgrowth.png" alt="Overgrowth">
+    <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Overgrowth</div></div>
   </div>
   <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
-    <div class="act-label">Act 1</div>
-    <div class="act-name">&#127754; Underdocks</div>
+    <img src="data/media/ui/map_top_underdocks.png" alt="Underdocks">
+    <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Underdocks</div></div>
   </div>
   <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
-    <div class="act-label">Act 2</div>
-    <div class="act-name">&#128027; The Hive</div>
+    <img src="data/media/ui/map_top_hive.png" alt="The Hive">
+    <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">The Hive</div></div>
   </div>
   <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
-    <div class="act-label">Act 3</div>
-    <div class="act-name">&#128081; The Glory</div>
+    <img src="data/media/ui/map_top_glory.png" alt="The Glory">
+    <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">The Glory</div></div>
   </div>
 </div>
 
