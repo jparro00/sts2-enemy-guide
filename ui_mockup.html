@@ -1,0 +1,3419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STS2 Enemy Reference</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a12;
+    color: #e0ddd4;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 24px 16px 8px;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: #c8b06a;
+    text-transform: uppercase;
+  }
+  header p { font-size: 0.8rem; color: #666; margin-top: 4px; }
+
+  /* ── Act Selector ── */
+  .act-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 16px 12px;
+    flex-wrap: wrap;
+  }
+  .act-card {
+    width: 200px;
+    height: 120px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .act-card:hover { transform: translateY(-3px); filter: brightness(1.15); }
+  .act-card.selected { border-color: #c8b06a; box-shadow: 0 0 20px rgba(200,176,106,0.25); }
+  .act-card .act-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; }
+  .act-card .act-name { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
+
+  .act-overgrowth { background: linear-gradient(135deg, #1a3a1a 0%, #0d1f0d 60%, #2a5a2a 100%); border-color: #2a5a2a; }
+  .act-underdocks { background: linear-gradient(135deg, #1a2a3a 0%, #0d1520 60%, #1a3a5a 100%); border-color: #1a3a5a; }
+  .act-hive { background: linear-gradient(135deg, #3a2a1a 0%, #201510 60%, #5a3a1a 100%); border-color: #5a3a1a; }
+  .act-glory { background: linear-gradient(135deg, #2a1a3a 0%, #150d20 60%, #3a1a5a 100%); border-color: #3a1a5a; }
+
+  /* ── Category Tabs ── */
+  .category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 8px 16px;
+    border-bottom: 1px solid #1a1a2a;
+  }
+  .cat-tab {
+    padding: 10px 28px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .cat-tab:hover { color: #aaa; }
+  .cat-tab.active { color: #c8b06a; border-bottom-color: #c8b06a; }
+  .cat-tab[data-cat="easy"].active { color: #6abf69; border-bottom-color: #6abf69; }
+  .cat-tab[data-cat="hard"].active { color: #d4a843; border-bottom-color: #d4a843; }
+  .cat-tab[data-cat="elite"].active { color: #d46a6a; border-bottom-color: #d46a6a; }
+  .cat-tab[data-cat="boss"].active { color: #b06ad4; border-bottom-color: #b06ad4; }
+
+  /* ── Enemy Grid ── */
+  .enemy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 24px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .enemy-card {
+    background: #14141f;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #1e1e2e;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .enemy-card:hover {
+    border-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+  .enemy-thumb {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+  }
+  .enemy-card[data-cat="easy"] .enemy-thumb { background: linear-gradient(135deg, #1a2e1a, #0f1a0f); }
+  .enemy-card[data-cat="hard"] .enemy-thumb { background: linear-gradient(135deg, #2e2a1a, #1a150d); }
+  .enemy-card[data-cat="elite"] .enemy-thumb { background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }
+  .enemy-card[data-cat="boss"] .enemy-thumb { background: linear-gradient(135deg, #251a2e, #150d1a); }
+  .enemy-name {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .enemy-card .multi-badge {
+    position: absolute;
+    bottom: 36px;
+    left: 6px;
+    font-size: 0.6rem;
+    background: rgba(200,176,106,0.2);
+    color: #c8b06a;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* ── Detail Panel ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 520px;
+    max-width: 92vw;
+    background: #12121c;
+    border-left: 1px solid #2a2a3a;
+    z-index: 100;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+    animation: slideIn 0.2s ease-out;
+  }
+  .detail-overlay.open { display: block; }
+  @keyframes slideIn {
+    from { transform: translateX(40px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #1e1e2e;
+    position: sticky;
+    top: 0;
+    background: #12121c;
+    z-index: 1;
+  }
+  .detail-header h2 { font-size: 1.2rem; color: #c8b06a; }
+  .detail-close {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+  .detail-close:hover { color: #fff; }
+  .detail-body { padding: 20px 24px; }
+  .detail-body .hp-bar {
+    display: inline-block;
+    background: #2a1a1a;
+    border: 1px solid #5a2a2a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    color: #e66;
+    margin-bottom: 16px;
+  }
+  .detail-body h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 16px 0 8px;
+  }
+  .detail-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .detail-body th {
+    text-align: left;
+    padding: 6px 10px;
+    background: #1a1a28;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .detail-body td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a1a28;
+    vertical-align: top;
+  }
+  .detail-body tr:hover td { background: #161620; }
+  .detail-body .pattern-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #aaa;
+    background: #16161f;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #c8b06a;
+  }
+  .detail-body .notes {
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+    margin-top: 12px;
+    padding: 10px;
+    background: #14141c;
+    border-radius: 6px;
+  }
+
+  /* ── Intent Icons ── */
+  .intent-icons {
+    display: inline-flex;
+    gap: 3px;
+    vertical-align: middle;
+  }
+  .intent-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 11px;
+  }
+  .intent-attack { background: #8b2020; color: #ff6b6b; }
+  .intent-multi_attack { background: #8b2020; color: #ff6b6b; }
+  .intent-block { background: #1a3a5a; color: #6ab0e6; }
+  .intent-buff { background: #3a3a1a; color: #e6d46a; }
+  .intent-debuff { background: #2a1a3a; color: #b06ae6; }
+  .intent-add_statuses { background: #1a3a2a; color: #6ae6a0; }
+  .intent-affliction { background: #3a1a2a; color: #e66a9a; }
+  .intent-summon { background: #2a2a1a; color: #c8b06a; }
+  .intent-sleeping { background: #1a1a2a; color: #8888aa; }
+  .intent-deathblow { background: #5a1a1a; color: #ff4444; }
+  .intent-escape { background: #1a2a1a; color: #88aa88; }
+  .intent-unknown { background: #2a2a2a; color: #888; }
+
+  /* ── Enemy separator in detail panel ── */
+  .enemy-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #2a2a3a;
+  }
+  .enemy-section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  .enemy-section-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #c8b06a;
+    margin-bottom: 8px;
+  }
+
+  /* ── Backdrop ── */
+  .backdrop {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+  .backdrop.open { display: block; }
+
+  .section-label {
+    text-align: center;
+    padding: 16px;
+    color: #555;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .act-card { width: 160px; height: 90px; }
+    .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
+    .detail-overlay { width: 100vw; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Slay the Spire 2 — Enemy Reference</h1>
+  <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
+</header>
+
+<div class="act-bar">
+  <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
+    <div class="act-label">Act 1</div>
+    <div class="act-name">&#127807; Overgrowth</div>
+  </div>
+  <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
+    <div class="act-label">Act 1</div>
+    <div class="act-name">&#127754; Underdocks</div>
+  </div>
+  <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
+    <div class="act-label">Act 2</div>
+    <div class="act-name">&#128027; The Hive</div>
+  </div>
+  <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
+    <div class="act-label">Act 3</div>
+    <div class="act-name">&#128081; The Glory</div>
+  </div>
+</div>
+
+<div class="category-tabs">
+  <div class="cat-tab active" data-cat="easy" onclick="selectCat('easy')">Easy</div>
+  <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
+  <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
+  <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
+</div>
+
+<div class="section-label" id="section-label">Act 1: Overgrowth — Easy Encounters</div>
+<div class="enemy-grid" id="enemy-grid"></div>
+
+<div class="backdrop" id="backdrop" onclick="closeDetail()"></div>
+<div class="detail-overlay" id="detail-panel">
+  <div class="detail-header">
+    <h2 id="detail-name">Enemy Name</h2>
+    <button class="detail-close" onclick="closeDetail()">&#10005;</button>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA (auto-generated from CSVs)
+// ══════════════════════════════════════════
+
+const enemyDatabase = {
+  "Axebot": {
+    "hp": "40 - 44 (42 - 46)",
+    "pattern": "Chooses randomly from One-Two, Sharpen, and Hammer Uppercut (allowed options equally likely). Cannot Sharpen twice in a row. Cannot use One-Two or Hammer Uppercut more than twice in a row. Summoned Axebots (from Stock) immediately start with Boot Up, then resume choosing random moves.",
+    "notes": "Starts with Stock 2. Stock X: When killed, a new Axebot is summoned in its place (with Stock X - 1).",
+    "moves": [
+      {
+        "name": "Boot Up",
+        "effects": "Block 10; Gain 1 Strength",
+        "intent": "block, buff"
+      },
+      {
+        "name": "One-Two",
+        "effects": "Damage 5x2 (6x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Sharpen",
+        "effects": "Gain 4 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Hammer Uppercut",
+        "effects": "Damage 8 (10); Apply 1 Weak; Apply 1 Frail",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Bowlbug (Egg)": {
+    "hp": "21 - 22 (23 - 24)",
+    "pattern": "Always uses Bite.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Bite",
+        "effects": "Damage 7 (8); Block 7 (8)",
+        "intent": "attack, block"
+      }
+    ]
+  },
+  "Bowlbug (Nectar)": {
+    "hp": "35 - 38 (36 - 39)",
+    "pattern": "Starts with Thrash -> Buff. Then uses Thrash every turn.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Thrash",
+        "effects": "Damage 3",
+        "intent": "attack"
+      },
+      {
+        "name": "Buff",
+        "effects": "Gain 15 (16) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Bowlbug (Rock)": {
+    "hp": "45 - 48 (46 - 49)",
+    "pattern": "Uses Headbutt every turn. If fully blocked, becomes stunned for a turn before resuming Headbutt.",
+    "notes": "Starts with Imbalanced Imbalanced: Becomes stunned if its attack is fully blocked.",
+    "moves": [
+      {
+        "name": "Headbutt",
+        "effects": "Damage 15 (16)",
+        "intent": "attack"
+      },
+      {
+        "name": "Stunned",
+        "effects": "Passes turn",
+        "intent": "sleeping"
+      }
+    ]
+  },
+  "Bowlbug (Silk)": {
+    "hp": "40 - 43 (41 - 44)",
+    "pattern": "Alternates between Toxic Spit and Thrash.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Toxic Spit",
+        "effects": "Apply 1 Weak",
+        "intent": "debuff"
+      },
+      {
+        "name": "Thrash",
+        "effects": "Damage 4x2 (5x2)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Calcified Cultist": {
+    "hp": "38 - 41 (39 - 42)",
+    "pattern": "Starts with Incantation. Then uses Dark Strike every turn after.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Incantation",
+        "effects": "Gain Ritual 2",
+        "intent": "buff"
+      },
+      {
+        "name": "Dark Strike",
+        "effects": "Damage 9 (11)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Chomper": {
+    "hp": "60 - 64 (63 - 67)",
+    "pattern": "First Chomper starts with Clamp, second with Screech. Then continue cycling through Clamp -> Screech.",
+    "notes": "Starts with Artifact 2",
+    "moves": [
+      {
+        "name": "Clamp",
+        "effects": "Damage 8x2 (9x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Screech",
+        "effects": "Add 3 Dazed to Discard",
+        "intent": "add_statuses"
+      }
+    ]
+  },
+  "Corpse Slug": {
+    "hp": "25 - 27 (27 - 29)",
+    "pattern": "First Corpse Slug picks its first move randomly. Each subsequent Corpse Slug starts with the next move in the cycle. Cycle through Whip Slap  -> Glomp -> Gloop",
+    "notes": "Starts with Ravenous 4 (5) Ravenous X: When an enemy dies, become stunned and gain X Strength.",
+    "moves": [
+      {
+        "name": "Whip Slap",
+        "effects": "Damage 3x2",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Glomp",
+        "effects": "Damage 8 (9)",
+        "intent": "attack"
+      },
+      {
+        "name": "Gloop",
+        "effects": "Apply 2 Frail",
+        "intent": "debuff"
+      }
+    ]
+  },
+  "Cubex Construct": {
+    "hp": "65 (70)",
+    "pattern": "Cycles through Charge Up -> Repeater Blast - > Repeater Blast -> Expel Blast -> Submerge.",
+    "notes": "Starts with 13 Block and Artifact 1.",
+    "moves": [
+      {
+        "name": "Charge Up",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Repeater Blast",
+        "effects": "Damage 7 (8); Gain 2 Strength",
+        "intent": "attack, buff"
+      },
+      {
+        "name": "Expel Blast",
+        "effects": "Damage 5x2 (6x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Submerge",
+        "effects": "Block 15",
+        "intent": "block"
+      }
+    ]
+  },
+  "Damp Cultist": {
+    "hp": "51 - 53 (52 - 54)",
+    "pattern": "Starts with Incantation. Then uses Dark Strike every turn after.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Incantation",
+        "effects": "Ritual 5 (6)",
+        "intent": "unknown"
+      },
+      {
+        "name": "Dark Strike",
+        "effects": "Damage 1 (3)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Devoted Sculptor": {
+    "hp": "162 (172)",
+    "pattern": "Starts with Forbidden Incantation, then uses Savage every turn.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Forbidden Incantation",
+        "effects": "Gain 9 Ritual.",
+        "intent": "buff"
+      },
+      {
+        "name": "Savage",
+        "effects": "Damage 12 (15)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Exoskeleton": {
+    "hp": "24 - 28 (25 - 29)",
+    "pattern": "First Exoskeleton starts with Skitter, second starts with Mandible, third starts with Enrage (and fourth starts randomly with Skitter or Mandible, if present). After Skitter always uses Mandible. After Mandible always uses Enrage. After Enrage chooses randomly between Skitter and Mandible.",
+    "notes": "Starts with Hard to Kill 9 Hard to Kill X: Reduce all damage taken and HP loss to X.",
+    "moves": [
+      {
+        "name": "Skitter",
+        "effects": "Damage 1x3 (1x4)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Mandible",
+        "effects": "Damage 8 (9)",
+        "intent": "attack"
+      },
+      {
+        "name": "Enrage",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Fabricator": {
+    "hp": "150 (155)",
+    "pattern": "When # allies (not counting self) is 2 or fewer, picks randomly between Fabricate and Fabricating Strike (equally likely). When # allies (not counting self) is 3 or more, always uses Disintegrate.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Fabricate",
+        "effects": "Summons 1 Defensive Bot; Summons 1 Aggro Bot",
+        "intent": "summon"
+      },
+      {
+        "name": "Fabricating Strike",
+        "effects": "Damage 18 (21); Summon 1 Aggro Bot",
+        "intent": "attack, summon"
+      },
+      {
+        "name": "Disintegrate",
+        "effects": "Damage 11 (13)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Guardbot": {
+    "hp": "21 - 25 (22 - 26)",
+    "pattern": "Always uses Guard",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Guard",
+        "effects": "Block 15 on Fabricator",
+        "intent": "block"
+      }
+    ]
+  },
+  "Noisebot": {
+    "hp": "23 - 28 (24 - 29)",
+    "pattern": "Always uses Noise",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Noise",
+        "effects": "Add 1 Dazed to Discard; Add 1 Dazed to Draw",
+        "intent": "add_statuses"
+      }
+    ]
+  },
+  "Stabbot": {
+    "hp": "23 - 28 (24 - 29)",
+    "pattern": "Always uses Stab",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Stab",
+        "effects": "Damage 11 (12); Apply 1 Frail",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Zapbot": {
+    "hp": "23 - 28 (24 - 29)",
+    "pattern": "Always uses Zap",
+    "notes": "Starts with High Voltage 2. High Voltage X: At the end of Zapbot's turn, it gains X strength.",
+    "moves": [
+      {
+        "name": "Zap",
+        "effects": "Damage 14 (15)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Flyconid": {
+    "hp": "47 - 49 (51 - 53)",
+    "pattern": "Starts randomly with Frail Spores or Smash (equal probability). Then picks move randomly (equal probability for allowed moves). Cannot use any move twice in a row. Vulnerable Spores has a 3 turn cooldown after use, and Frail Spores has a 2 turn cooldown after use. Exception: If at any point it uses Vuln Spores -> Frail Spores -> Smash, then it will have no allowed moves and default to Vulnerable Spores.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Frail Spores",
+        "effects": "Damage 8 (9); Apply 2 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Smash",
+        "effects": "Damage 11 (12)",
+        "intent": "attack"
+      },
+      {
+        "name": "Vulnerable Spores",
+        "effects": "Apply 2 Vulnerable",
+        "intent": "debuff"
+      }
+    ]
+  },
+  "Fogmog": {
+    "hp": "74 (78)",
+    "pattern": "Starts with Illusion -> Swipe. When using Swipe after a non-Swipe move, follows up with 40% chance to Swipe and 60% chance to Headbutt. After using Swipe for second time in a row, always follows with Headbutt. After Headbutt, always uses Swipe.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Illusion",
+        "effects": "Summon 1 Eye with Teeth",
+        "intent": "summon"
+      },
+      {
+        "name": "Swipe",
+        "effects": "Damage 8 (9); Gain 1 Strength",
+        "intent": "attack, buff"
+      },
+      {
+        "name": "Headbutt",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Eye with Teeth": {
+    "hp": "6",
+    "pattern": "Always uses Distract.",
+    "notes": "Starts with Illusion Illusion: When this dies, revives next turn at full HP",
+    "moves": [
+      {
+        "name": "Distract",
+        "effects": "3 Dazed to Discard",
+        "intent": "unknown"
+      }
+    ]
+  },
+  "Fossil Stalker": {
+    "hp": "51 - 53 (54 - 56)",
+    "pattern": "Starts with Latch. Then chooses randomly between allowed options of Tackle, Latch, and Lash (allowed options equally likely). Moves cannot be used more than twice in a row.",
+    "notes": "Starts with Suck 3 Suck X: Whenever Fossil Stalker deals unblocked attack damage, it gains X strength.",
+    "moves": [
+      {
+        "name": "Latch",
+        "effects": "Damage 12 (14)",
+        "intent": "attack"
+      },
+      {
+        "name": "Tackle",
+        "effects": "Damage 9 (11); Apply 1 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Lash",
+        "effects": "Damage 3x2 (4x2)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Frog Knight": {
+    "hp": "191 (199)",
+    "pattern": "Cycles through Tongue Lash -> Strike Down Evil -> For the Queen. After For the Queen, if below half HP and Beetle Charge has not been used, then uses Beetle Charge before starting the cycle over.",
+    "notes": "Starts with Plating 15 (19)",
+    "moves": [
+      {
+        "name": "Tongue Lash",
+        "effects": "Damage 13 (14); Apply 2 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Strike Down Evil",
+        "effects": "Damage 21 (23)",
+        "intent": "attack"
+      },
+      {
+        "name": "For the Queen",
+        "effects": "Gain 5 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Beetle Charge",
+        "effects": "Damage 35 (40)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Fuzzy Wurm Crawler": {
+    "hp": "55 - 57 (58 - 59)",
+    "pattern": "Starts with Acid Goop. Then cycles through Inhale -> Acid Goop -> Acid Goop.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Acid Goop",
+        "effects": "Damage 4 (6)",
+        "intent": "attack"
+      },
+      {
+        "name": "Inhale",
+        "effects": "Gain 7 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Globe Head": {
+    "hp": "148 (158)",
+    "pattern": "Cycles through Shocking Slap -> Thunder Strike -> Galvanic Burst.",
+    "notes": "Starts with Galvanic 6. Galvanic X: You take X damage when a Power is played.",
+    "moves": [
+      {
+        "name": "Shocking Slap",
+        "effects": "Damage 13 (14); Apply 2 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Thunder Strike",
+        "effects": "Damage 6x3 (7x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Galvanic Burst",
+        "effects": "Damage 16 (17); Gain 2 Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Gremlin Merc": {
+    "hp": "47 - 49 (51 - 53)",
+    "pattern": "Cycles through Gimme -> Double Smash -> Hehe.",
+    "notes": "Starts with Surprise and Thievery 20 Surprise: When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned) Thievery X: Steals X gold when attacking (stolen gold is held by Fat Gremlin once summoned)",
+    "moves": [
+      {
+        "name": "Gimme",
+        "effects": "Damage 7x2 (8x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Double Smash",
+        "effects": "Damage 6x2 (7x2); Apply 2 Weak",
+        "intent": "multi_attack, debuff"
+      },
+      {
+        "name": "Hehe",
+        "effects": "Damage 8 (9); Gain 2 Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Fat Gremlin": {
+    "hp": "13 - 17 (14 - 18)",
+    "pattern": "Always uses Flee.",
+    "notes": "Starts stunned when summoned after killing Gremlin Merc. Keeps stolen gold if successfully Flees.",
+    "moves": [
+      {
+        "name": "Flee",
+        "effects": "Escape from combat",
+        "intent": "escape"
+      }
+    ]
+  },
+  "Sneaky Gremlin": {
+    "hp": "10 - 14 (11 - 15)",
+    "pattern": "Always uses Tackle.",
+    "notes": "Starts stunned when summoned after killing Gremlin Merc.",
+    "moves": [
+      {
+        "name": "Tackle",
+        "effects": "Damage 9 (10)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Haunted Ship": {
+    "hp": "63 (67)",
+    "pattern": "Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Ramming Speed",
+        "effects": "Damage 10 (11); Add 2 Wounds to Discard",
+        "intent": "attack, add_statuses"
+      },
+      {
+        "name": "Haunt",
+        "effects": "Apply 2 Weak; Apply 2 Frail; Apply 2 Vulnerable",
+        "intent": "debuff"
+      },
+      {
+        "name": "Swipe",
+        "effects": "Damage 13 (14)",
+        "intent": "attack"
+      },
+      {
+        "name": "Stomp",
+        "effects": "Damage 4x3 (5x3)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Hunter Killer": {
+    "hp": "121 (126)",
+    "pattern": "Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.",
+    "notes": "Tender: Whenever you play a card, lose 1 strength and 1 dexterity this turn.",
+    "moves": [
+      {
+        "name": "Tenderizing Goop",
+        "effects": "Apply Tender",
+        "intent": "debuff"
+      },
+      {
+        "name": "Bite",
+        "effects": "Damage 17 (19)",
+        "intent": "attack"
+      },
+      {
+        "name": "Puncture",
+        "effects": "Damage 7x3 (8x3)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Inklet": {
+    "hp": "11 - 17 (12 - 18)",
+    "pattern": "Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).",
+    "notes": "Starts with Slippery 1 Slippery X: The next time this enemy loses HP, it loses 1 HP instead.",
+    "moves": [
+      {
+        "name": "Jab",
+        "effects": "Damage 3 (4)",
+        "intent": "attack"
+      },
+      {
+        "name": "Whirlwind",
+        "effects": "Damage 2x3 (3x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Piercing Gaze",
+        "effects": "Damage 10 (11)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Leaf Slime (Small)": {
+    "hp": "11 - 15 (12 - 16)",
+    "pattern": "Starts randomly with Tackle or Goop. Then alternates between them.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Tackle",
+        "effects": "Damage 3 (4)",
+        "intent": "attack"
+      },
+      {
+        "name": "Goop",
+        "effects": "Add 1 Slimed to Discard",
+        "intent": "add_statuses"
+      }
+    ]
+  },
+  "Leaf Slime (Medium)": {
+    "hp": "32 - 35 (33 - 36)",
+    "pattern": "Starts with Sticky Shot then alternates Clump Shot -> Sticky Shot.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Sticky Shot",
+        "effects": "Add 2 Slimed to Discard",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "Clump Shot",
+        "effects": "Damage 8 (9)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Living Fog": {
+    "hp": "80 (82)",
+    "pattern": "Starts with Advanced Gas. Then alternates between Bloat -> Super Gas Blast.",
+    "notes": "Smoggy: You can only play 1 skill per turn.",
+    "moves": [
+      {
+        "name": "Advanced Gas",
+        "effects": "Damage 8 (9); Apply Smoggy",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Bloat",
+        "effects": "Summon N Gas Bombs; (N = # times Bloat has been used + 1, capped to 5)",
+        "intent": "summon"
+      },
+      {
+        "name": "Super Gas Blast",
+        "effects": "Damage 8 (9)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Gas Bomb": {
+    "hp": "10 (12)",
+    "pattern": "Uses Explode and dies.",
+    "notes": "Gas Bomb is a minion.",
+    "moves": [
+      {
+        "name": "Explode",
+        "effects": "Damage 8 (9); Dies",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Living Shield": {
+    "hp": "55 (65)",
+    "pattern": "Uses Shield Slam every turn if Turret Operator is alive. Then uses Smash every turn once Turret Operator is dead.",
+    "notes": "Starts with Rampart 25 Rampart X: Gives Turret Operator X block at the start of the player's turn.",
+    "moves": [
+      {
+        "name": "Shield Slam",
+        "effects": "Damage 6",
+        "intent": "attack"
+      },
+      {
+        "name": "Smash",
+        "effects": "Damage 16 (18); Gain 3 Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Louse Progenitor": {
+    "hp": "134 - 136 (138 - 141)",
+    "pattern": "Cycles through Web Cannon -> Curl and Grow -> Pounce.",
+    "notes": "Starts with Curl Up Curl Up: Gain 14 (18) block upon first being hit.",
+    "moves": [
+      {
+        "name": "Web Cannon",
+        "effects": "Damage 9 (10); Apply 2 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Curl and Grow",
+        "effects": "Block 14 (18); Gain 5 Strength",
+        "intent": "block, buff"
+      },
+      {
+        "name": "Pounce",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Mawler": {
+    "hp": "72 (76)",
+    "pattern": "Starts with Claw. Then chooses randomly between Rip & Tear, Roar, and Claw (all allowed options equally likely). Roar can only be used once. Claw and Rip & Tear cannot be used twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Claw",
+        "effects": "Damage 4x2 (5x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Roar",
+        "effects": "Apply 3 Vulnerable",
+        "intent": "debuff"
+      },
+      {
+        "name": "Rip & Tear",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Myte": {
+    "hp": "61 - 67 (64 - 69)",
+    "pattern": "First Myte starts with Toxic, second Myte starts with Suck. Then continue cycling through Toxic -> Bite -> Suck.",
+    "notes": "Toxic (status): At the end of your turn, take 5 damage if this is in your hand. 1 cost, exhausts.",
+    "moves": [
+      {
+        "name": "Toxic",
+        "effects": "Add 2 Toxic to Hand",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "Bite",
+        "effects": "Damage 13 (15)",
+        "intent": "attack"
+      },
+      {
+        "name": "Suck",
+        "effects": "Damage 4 (6); Gain 2 (3) Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Nibbit": {
+    "hp": "42 - 46 (44 - 48)",
+    "pattern": "In the single Nibbit encounter, it cycles through Butt -> Slice -> Hiss. In the two Nibbits encounter, the front starts with Slice and the back starts with Hiss. They then continue the cycle Butt -> Slice -> Hiss.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Butt",
+        "effects": "Damage 12 (13)",
+        "intent": "attack"
+      },
+      {
+        "name": "Slice",
+        "effects": "Damage 6; Block 5",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Hiss",
+        "effects": "Strength 2",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Ovicopter": {
+    "hp": "124 - 130 (126 - 132)",
+    "pattern": "Starts with Lay Eggs -> Smash -> Tenderizer. If 3 allies are alive after Tenderizer, uses Nutritional Paste -> Smash -> Tenderizer. If less than 3 allies are alive after Tenderizer, uses Lay Eggs -> Smash -> Tenderizer.",
+    "notes": "Lay Eggs will summon until there are 3 allies alive (no allies alive -> summons 3, 1 allies alive -> summons 2, etc)",
+    "moves": [
+      {
+        "name": "Lay Eggs",
+        "effects": "Summon up to 3 Tough Eggs",
+        "intent": "summon"
+      },
+      {
+        "name": "Smash",
+        "effects": "Damage 16 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Tenderizer",
+        "effects": "Damage 7 (8); Apply 2 Vulnerable",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Nutritional Paste",
+        "effects": "Gain 3 (4) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Tough Egg": {
+    "hp": "14 - 18 (15 - 19)",
+    "pattern": "Always uses Hatch.",
+    "notes": "Starts with Hatch 1. Hatch X: Hatches after X turns.",
+    "moves": [
+      {
+        "name": "Hatch",
+        "effects": "Hatches into Hatchling.",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Hatchling": {
+    "hp": "19 - 22 (20 - 23)",
+    "pattern": "Always uses Nibble.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Nibble",
+        "effects": "Damage 4 (5)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Owl Magistrate": {
+    "hp": "234 (243)",
+    "pattern": "Cycles through Magistrate Scrutiny -> Peck Assault -> Judicial Flight -> Verdict.",
+    "notes": "Soar: Receives 50% less attack damage until it lands.",
+    "moves": [
+      {
+        "name": "Magistrate Scrutiny",
+        "effects": "Damage 16 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Peck Assault",
+        "effects": "Damage 4x6",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Judicial Flight",
+        "effects": "Gain Soar",
+        "intent": "buff"
+      },
+      {
+        "name": "Verdict",
+        "effects": "Damage 33 (36); Apply 4 Vulnerable; Lose Soar",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Punch Construct": {
+    "hp": "55 (60)",
+    "pattern": "Regular encounter: Cycles through Ready -> Strong Punch -> Fast Punch. Punch-Off event: First Punch Construct starts the cycle with Strong Punch (second starts with Ready like usual).",
+    "notes": "Starts with Artifact 1.",
+    "moves": [
+      {
+        "name": "Ready",
+        "effects": "Block 10",
+        "intent": "block"
+      },
+      {
+        "name": "Strong Punch",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      },
+      {
+        "name": "Fast Punch",
+        "effects": "Damage 5x2 (6x2); Apply 1 Weak",
+        "intent": "multi_attack, debuff"
+      }
+    ]
+  },
+  "Ruby Raider (Assassin)": {
+    "hp": "18 - 23 (19 - 24)",
+    "pattern": "Always uses Killshot.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Killshot",
+        "effects": "Damage 11 (12)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Ruby Raider (Axe)": {
+    "hp": "20 - 22 (21 - 23)",
+    "pattern": "Cycles through Swing -> Swing -> Big Swing.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Swing",
+        "effects": "Damage 5 (6); Block 5 (6)",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Big Swing",
+        "effects": "Damage 12 (13)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Ruby Raider (Brute)": {
+    "hp": "30 - 33 (31 - 34)",
+    "pattern": "Alternates between Beat -> Roar.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Beat",
+        "effects": "Damage 7 (8)",
+        "intent": "attack"
+      },
+      {
+        "name": "Roar",
+        "effects": "Gain 3 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Ruby Raider (Crossbow)": {
+    "hp": "18 - 21 (19 - 22)",
+    "pattern": "Alternates between Reload -> Fire.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Fire",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      },
+      {
+        "name": "Reload",
+        "effects": "Block 3",
+        "intent": "block"
+      }
+    ]
+  },
+  "Ruby Raider (Tracker)": {
+    "hp": "21 - 25 (22 - 26)",
+    "pattern": "Starts with Track, then uses Hounds every turn.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Track",
+        "effects": "Apply 2 Frail",
+        "intent": "debuff"
+      },
+      {
+        "name": "Hounds",
+        "effects": "Damage 1x8 (1x9)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Scroll of Biting": {
+    "hp": "31 - 38 (32 - 39)",
+    "pattern": "First scroll picks its first move randomly. Scrolls 2 and 3 starts with the next moves in the cycle Chomp -> Chew -> More Teeth. Scroll 4 (if present) starts with More Teeth. Then follows pattern Chomp -> More Teeth -> Chew, but after Chew picks randomly between Chomp and More Teeth and resumes pattern.",
+    "notes": "Starts with Paper Cuts 2 Paper Cuts X: Whenever you take unblocked attack damage from this enemy, lose X Max HP.",
+    "moves": [
+      {
+        "name": "Chomp",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      },
+      {
+        "name": "Chew",
+        "effects": "Damage 5x2 (6x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "More Teeth",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Seapunk": {
+    "hp": "44 - 46 (47 - 49)",
+    "pattern": "Cycles through Sea Kick -> Spinning Kick -> Bubble Burp.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Sea Kick",
+        "effects": "Damage 11 (12)",
+        "intent": "attack"
+      },
+      {
+        "name": "Spinning Kick",
+        "effects": "Damage 2x4",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Bubble Burp",
+        "effects": "Block 7 (8); Gain 1 (2) Strength",
+        "intent": "block, buff"
+      }
+    ]
+  },
+  "Sewer Clam": {
+    "hp": "56 (58)",
+    "pattern": "Alternates between Pressurize -> Jet.",
+    "notes": "Starts with Plating 8 (9).",
+    "moves": [
+      {
+        "name": "Pressurize",
+        "effects": "Strength 4",
+        "intent": "buff"
+      },
+      {
+        "name": "Jet",
+        "effects": "Damage 10 (11)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Shrinker Beetle": {
+    "hp": "38 - 40 (40 - 42)",
+    "pattern": "Starts with Shrinker. Then alternates Chomp -> Stomp.",
+    "notes": "Shrink: Deal 30% reduced damage.",
+    "moves": [
+      {
+        "name": "Shrinker",
+        "effects": "Apply Shrink",
+        "intent": "debuff"
+      },
+      {
+        "name": "Chomp",
+        "effects": "Damage 7 (8)",
+        "intent": "attack"
+      },
+      {
+        "name": "Stomp",
+        "effects": "Damage 13 (14)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Slimed Berserker": {
+    "hp": "266 (276)",
+    "pattern": "Cycles through Vomit Ichor -> Furious Pummeling -> Leeching Hug -> Smother.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Vomit Ichor",
+        "effects": "Add 10 Slimed to discard",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "Leeching Hug",
+        "effects": "Apply 3 Weak; Gain 3 Strength",
+        "intent": "buff, debuff"
+      },
+      {
+        "name": "Smother",
+        "effects": "Damage 30 (33)",
+        "intent": "attack"
+      },
+      {
+        "name": "Furious Pummeling",
+        "effects": "Damage 4x4 (5x4)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Slithering Strangler": {
+    "hp": "53 - 55 (54 - 56)",
+    "pattern": "Alternates between Constrict -> Thwack/Lash (chooses between Thwack and Lash at random, equally likely)",
+    "notes": "Constrict X: While the Slithering Strangler is alive, take X damage at the end of your turn.",
+    "moves": [
+      {
+        "name": "Constrict",
+        "effects": "Apply 3 Constrict",
+        "intent": "affliction"
+      },
+      {
+        "name": "Thwack",
+        "effects": "Damage 7 (8); Block 5",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Lash",
+        "effects": "Damage 12 (13)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Sludge Spinner": {
+    "hp": "37 - 39 (41 - 42)",
+    "pattern": "Starts with Oil Spray. Then chooses randomly between all allowed moves each turn. Cannot use any move twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Oil Spray",
+        "effects": "Damage 8 (9); Weak 1",
+        "intent": "attack"
+      },
+      {
+        "name": "Slam",
+        "effects": "Damage 11 (12)",
+        "intent": "attack"
+      },
+      {
+        "name": "Rage",
+        "effects": "Damage 6 (7); Strength 3",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Slumbering Beetle": {
+    "hp": "86 (89)",
+    "pattern": "Sleeps until it awakens. Then uses Roll Out every turn.",
+    "notes": "Starts with Plating 15 (18) and Slumber 3 Slumber X: Counter decreases after taking a turn or losing HP. Awakens at the end of its turn if counter has reached 0.",
+    "moves": [
+      {
+        "name": "Sleep",
+        "effects": "Passes Turn",
+        "intent": "sleeping"
+      },
+      {
+        "name": "Roll Out",
+        "effects": "Damage 16 (18); Gain 2 Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Snapping Jaxfruit": {
+    "hp": "31 - 33 (34 - 36)",
+    "pattern": "Always uses Energy Orb.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Energy Orb",
+        "effects": "Damage 3 (4); Gain 2 Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Spiny Toad": {
+    "hp": "116 - 119 (121 - 124)",
+    "pattern": "Cycles through Protruding Spikes -> Spike Explosion -> Tongue Lash.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Protruding Spikes",
+        "effects": "Gain 5 Thorns",
+        "intent": "buff"
+      },
+      {
+        "name": "Spike Explosion",
+        "effects": "Damage 23 (25); Lose 5 Thorns",
+        "intent": "attack"
+      },
+      {
+        "name": "Tongue Lash",
+        "effects": "Damage 17 (19)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "The Lost": {
+    "hp": "93 (99)",
+    "pattern": "Alternates between Debilitating Smog -> Eye Lasers",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Debilitating Smog",
+        "effects": "Apply -2 Strength; Gain 2 Strength",
+        "intent": "buff, debuff"
+      },
+      {
+        "name": "Eye Lasers",
+        "effects": "Damage 4x2 (5x2)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "The Forgotten": {
+    "hp": "106 (111)",
+    "pattern": "Alternates between Miasma -> Dread.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Miasma",
+        "effects": "Apply -2 Dexterity; Block 8; Gain 2 Dexterity",
+        "intent": "block, buff, debuff"
+      },
+      {
+        "name": "Dread",
+        "effects": "Damage 15 (17)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "The Obscura": {
+    "hp": "123 (129)",
+    "pattern": "Starts with Illusion. Then chooses randomly between Piercing Gaze, Wail, and Hardening Strike (allowed options equally likely). Cannot use any move twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Illusion",
+        "effects": "Summon 1 Parafright",
+        "intent": "summon"
+      },
+      {
+        "name": "Piercing Gaze",
+        "effects": "Damage 10 (11)",
+        "intent": "attack"
+      },
+      {
+        "name": "Wail",
+        "effects": "Allies gain 3 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Hardening Strike",
+        "effects": "Damage 6 (7); Block 6 (7)",
+        "intent": "attack, block"
+      }
+    ]
+  },
+  "Parafright": {
+    "hp": "21",
+    "pattern": "Always uses Slam.",
+    "notes": "Starts with Illusion. Illusion: When this dies, revives next turn at full HP (retains Strength after reviving)",
+    "moves": [
+      {
+        "name": "Slam",
+        "effects": "Damage 16 (17)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Thieving Hopper": {
+    "hp": "79 (84)",
+    "pattern": "Always uses Thievery -> Flutter -> Hat Trick -> Nab -> Escape. If stunned before turn 5, resumes with the next intent in the pattern. If stunned on turn 5, tries to Escape again.",
+    "notes": "Starts with Escape Artist Escape Artist: Tries to escape the combat after 5 turns. Swipe: Upon killing this enemy, the stolen card is returned. Flutter X: Receives 50% less attack damage. Deal attack damage X times to remove Flutter and stun it.",
+    "moves": [
+      {
+        "name": "Thievery",
+        "effects": "Damage 17 (19); Steal 1 card and gain Swipe; (Stolen card is taken from draw or discard pile. Chooses a random card with priorities: 1. non-imbued uncommon card, 2. non-imbued common, rare, or event card, 3. non-imbued basic or quest card, 4. imbued or ancient card, 5. curse or anything else); (Warning: Game softlocks if Thieving Hopper cannot find a valid target to steal)",
+        "intent": "attack"
+      },
+      {
+        "name": "Nab",
+        "effects": "Damage 14 (16)",
+        "intent": "attack"
+      },
+      {
+        "name": "Hat Trick",
+        "effects": "Damage 21 (23)",
+        "intent": "attack"
+      },
+      {
+        "name": "Flutter",
+        "effects": "Gain Flutter 5",
+        "intent": "buff"
+      },
+      {
+        "name": "Escape",
+        "effects": "Escape from the combat",
+        "intent": "escape"
+      }
+    ]
+  },
+  "Toadpole": {
+    "hp": "21 - 25 (22 - 26)",
+    "pattern": "Front Toadpole starts with Spiken. Non-front Toadpole(s) start with Whirl. Then continue following cycle Spike Spit -> Whirl -> Spiken (then repeat).",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Spike Spit",
+        "effects": "Lose 2 Thorns; Damage 3x3 (4x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Whirl",
+        "effects": "Damage 7 (8)",
+        "intent": "attack"
+      },
+      {
+        "name": "Spiken",
+        "effects": "Gain 2 Thorns",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Tunneler": {
+    "hp": "87 (92)",
+    "pattern": "Starts with Bite -> Burrow. While Burrowed, always uses Below. After being stunned, loses Burrowed and uses Bite -> Burrow.",
+    "notes": "Burrowed: Block is not removed at the start of Tunneler's turn. Becomes stunned if all block is removed.",
+    "moves": [
+      {
+        "name": "Bite",
+        "effects": "Damage 13 (15)",
+        "intent": "attack"
+      },
+      {
+        "name": "Burrow",
+        "effects": "Gain Burrowed; Block 32 (37)",
+        "intent": "block, buff"
+      },
+      {
+        "name": "Below",
+        "effects": "Damage 23 (26)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Turret Operator": {
+    "hp": "41 (51)",
+    "pattern": "Cycles through Unload -> Unload -> Reload.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Unload",
+        "effects": "Damage 3x5 (4x5)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Reload",
+        "effects": "Gain 1 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Twig Slime (S)": {
+    "hp": "7 - 11 (8 - 12)",
+    "pattern": "Uses Tackle every turn.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Tackle",
+        "effects": "Damage 4 (5)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Twig Slime (M)": {
+    "hp": "26 - 28 (27 - 29)",
+    "pattern": "Starts with Sticky Shot -> Clump Shot. Then chooses randomly each turn between Sticky Shot and Clump Shot (allowed options equally likely). Cannot use Sticky Shot twice in a row, and cannot use Clump shot more than twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Clump Shot",
+        "effects": "Damage 11 (12)",
+        "intent": "attack"
+      },
+      {
+        "name": "Sticky Shot",
+        "effects": "Add 1 Slimed to Discard",
+        "intent": "add_statuses"
+      }
+    ]
+  },
+  "Two-Tailed Rat": {
+    "hp": "17 - 21 (18 - 22)",
+    "pattern": "First Rat starts randomly with Scratch, Disesase Bite, or Screech. 2nd Rat has next move after it in the cycle Scratch -> Disease Bite -> Screech, and 3rd Rat has the next after that. A rat cannot Call for Backup until it has taken 2 turns. Each rat can only Call for Backup once. Only 1 rat can Call for Backup in any particular turn. Call for Backup can only be used 3 times total across all rats. If Call for Backup is not allowed for a rat, it picks randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). If Call for Backup is allowed for a rat, then it has a 75% chance to Call for Backup, and remaining 25% to pick randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). Screech has a 3 turn cooldown. Scratch and Disease Bite cannot be used twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Scratch",
+        "effects": "Damage 8 (9)",
+        "intent": "attack"
+      },
+      {
+        "name": "Disease Bite",
+        "effects": "Damage 6 (7)",
+        "intent": "attack"
+      },
+      {
+        "name": "Screech",
+        "effects": "Apply 1 Frail",
+        "intent": "debuff"
+      },
+      {
+        "name": "Call for Backup",
+        "effects": "Summon Two-Tailed Rat; (with random intent)",
+        "intent": "summon"
+      }
+    ]
+  },
+  "Vine Shambler": {
+    "hp": "61 (64)",
+    "pattern": "Cycles through Swipe -> Grasping Vines -> Chomp.",
+    "notes": "Tangled X: Attacks cost 1 additional energy for X turns.",
+    "moves": [
+      {
+        "name": "Grasping Vines",
+        "effects": "Damage 8 (9); Apply 1 Tangled",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Swipe",
+        "effects": "Damage 6x2 (7x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Chomp",
+        "effects": "Damage 16 (18)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Wriggler": {
+    "hp": "17 - 21 (18 - 22)",
+    "pattern": "If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Nasty Bite",
+        "effects": "Damage 6 (7)",
+        "intent": "attack"
+      },
+      {
+        "name": "Wriggle",
+        "effects": "Add 1 Infection to Discard; Gain 2 Strength",
+        "intent": "buff, add_statuses"
+      }
+    ]
+  },
+  "Bygone Effigy": {
+    "hp": "127 (132)",
+    "pattern": "Starts with Sleep -> Wake -> Slash. Then uses Slash every turn after.",
+    "notes": "Starts with Slow Slow: Attacks deal 10% extra damage for every card played this turn.",
+    "moves": [
+      {
+        "name": "Sleep",
+        "effects": "Pass Turn",
+        "intent": "sleeping"
+      },
+      {
+        "name": "Wake",
+        "effects": "Gain 10 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Slash",
+        "effects": "Damage 15 (17)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Byrdonis": {
+    "hp": "91 - 94 (99)",
+    "pattern": "Alternates between Swoop -> Peck.",
+    "notes": "Starts with Territorial 1 Territorial X: At the end of its turn, gains X strength.",
+    "moves": [
+      {
+        "name": "Peck",
+        "effects": "Damage 3x3 (4x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Swoop",
+        "effects": "Damage 16 (18)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Decimillipede": {
+    "hp": "42 - 48 (48 - 56)",
+    "pattern": "First segment starts with a random move, second segment starts with the next move in the cycle Writhe -> Bulk -> Constrict, and third segment starts with the next move after that.",
+    "notes": "Starts with Reattach.",
+    "moves": [
+      {
+        "name": "Writhe",
+        "effects": "Damage 5x2 (6x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Bulk",
+        "effects": "Damage 6 (7); Gain 2 Strength",
+        "intent": "attack, buff"
+      },
+      {
+        "name": "Constrict",
+        "effects": "Damage 8 (9); Apply 1 Weak",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "(3 segments)": {
+    "hp": "(always even #, segments have different max HP)",
+    "pattern": "Cycles through Writhe -> Constrict -> Bulk. When killed, spends one turn dead and then one turn reviving with 25 HP. After reviving, continues the regular attack cycle from a random starting move.",
+    "notes": "Reattach: If other segments are still alive, revives after 2 turns with 25 HP.",
+    "moves": []
+  },
+  "Entomancer": {
+    "hp": "145 (155)",
+    "pattern": "Cycles through Bees -> Spear -> Pheromone Spit. After reaching 3 stacks of Personal Hive, switches to gaining 2 strength when using Pheromone Spit.",
+    "notes": "Starts with Personal Hive 1 Personal Hive X: Add X Dazed to the draw pile whenever hit by an attack.",
+    "moves": [
+      {
+        "name": "Pheromone Spit",
+        "effects": "If less than 3 Personal Hive: Gain 1 Personal Hive and 1 Strength; If at 3 Personal Hive: Gain 2 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Bees",
+        "effects": "Damage 3x7 (3x8)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Spear",
+        "effects": "Damage 18 (20)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Infested Prism": {
+    "hp": "200 (215)",
+    "pattern": "Cycles through Jab -> Radiate -> Whirlwind -> Pulsate",
+    "notes": "Starts with Vital Spark 1 Vital Spark X: The first time Infected Prism takes attack damage each turn, the attacked gains X energy.",
+    "moves": [
+      {
+        "name": "Jab",
+        "effects": "Damage 22 (24)",
+        "intent": "attack"
+      },
+      {
+        "name": "Radiate",
+        "effects": "Damage 16 (18); Block 16 (18)",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Whirlwind",
+        "effects": "Damage 9x3 (10x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Pulsate",
+        "effects": "Block 20 (22); Gain 4 (5) Strength",
+        "intent": "block, buff"
+      }
+    ]
+  },
+  "Flail Knight": {
+    "hp": "101 (108)",
+    "pattern": "Starts with Ram. Then chooses randomly between War Chant, Flail, and Ram (allowed options equally likely). Flail and Ram cannot be used more than twice in a row. War Chant cannot be used twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "War Chant",
+        "effects": "Gain 3 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Flail",
+        "effects": "Damage 9x2 (10x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Ram",
+        "effects": "Damage 15 (17)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Spectral Knight": {
+    "hp": "93 (97)",
+    "pattern": "Starts with Hex and then Soul Slash. Then chooses randomly between Soul Slash and Soul Flame (allowed options equally likely). Soul Slash cannot be used more than twice in a row. Soul Flame cannot be used twice in a row.",
+    "notes": "Hex: While Spectral Knight is alive, all your cards are ethereal.",
+    "moves": [
+      {
+        "name": "Hex",
+        "effects": "Apply Hex",
+        "intent": "debuff"
+      },
+      {
+        "name": "Soul Slash",
+        "effects": "Damage 15 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Soul Flame",
+        "effects": "Damage 3x3 (4x3)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Magi Knight": {
+    "hp": "82 (89)",
+    "pattern": "Cycles through Power Shield -> Dampen -> Spear -> Prep -> Magic Bomb.",
+    "notes": "Dampen: While Magi Knight is alive, all your upgraded cards are downgraded.",
+    "moves": [
+      {
+        "name": "Power Shield",
+        "effects": "Damage 6 (7); Block 5 (9)",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Dampen",
+        "effects": "Apply Dampen",
+        "intent": "debuff"
+      },
+      {
+        "name": "Prep",
+        "effects": "Block 5 (9)",
+        "intent": "block"
+      },
+      {
+        "name": "Magic Bomb",
+        "effects": "Damage 35 (40)",
+        "intent": "attack"
+      },
+      {
+        "name": "Spear",
+        "effects": "Damage 10 (11)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Mecha Knight": {
+    "hp": "300 (320)",
+    "pattern": "Starts with Charge. Then cycles through Flamethrower -> Windup -> Heavy Cleave.",
+    "notes": "Starts with Artifact 3",
+    "moves": [
+      {
+        "name": "Charge",
+        "effects": "Damage 25 (30)",
+        "intent": "attack"
+      },
+      {
+        "name": "Flamethrower",
+        "effects": "Add 4 Burns to Hand",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "Windup",
+        "effects": "Block 15; Strength 5",
+        "intent": "block, buff"
+      },
+      {
+        "name": "Heavy Cleave",
+        "effects": "Damage 35 (40)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Phantasmal Gardener": {
+    "hp": "28 - 32 (29 -33)",
+    "pattern": "1st one starts with Flail, 2nd with Bite, 3rd with Lash, and 4th with Enlarge. Then cycle through Bite -> Lash -> Flail -> Enlarge.",
+    "notes": "Starts with Skittish 6 (7) Skittish X: First time hit each turn gain X block.",
+    "moves": [
+      {
+        "name": "Bite",
+        "effects": "Damage 5",
+        "intent": "attack"
+      },
+      {
+        "name": "Lash",
+        "effects": "Damage 7",
+        "intent": "attack"
+      },
+      {
+        "name": "Flail",
+        "effects": "Damage 1x3",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Enlarge",
+        "effects": "Strength 2 (3)",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Phrog Parasite": {
+    "hp": "61 - 64 (66 - 68)",
+    "pattern": "Alternates between Infect -> Lash.",
+    "notes": "Starts with Infested 4 Infested X: Summons X Wrigglers after dying (they start stunned).",
+    "moves": [
+      {
+        "name": "Infect",
+        "effects": "Add 3 Infection to Discard",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "Lash",
+        "effects": "Damage 4x4 (5x4)",
+        "intent": "multi_attack"
+      }
+    ]
+  },
+  "Skulking Colony": {
+    "hp": "79 (84)",
+    "pattern": "Cycles through Smash -> Zoom -> Inertia -> Super Crab.",
+    "notes": "Starts with Hardened Shell 20 Hardened Shell X: Cannot lose more than X HP per turn.",
+    "moves": [
+      {
+        "name": "Inertia",
+        "effects": "Block 10 (13); Gain 3 Strength",
+        "intent": "block, buff"
+      },
+      {
+        "name": "Zoom",
+        "effects": "Damage 16 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Super Crab",
+        "effects": "Damage 6x2 (7x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Smash",
+        "effects": "Damage 9 (11); Add 4 Dazed to Discard",
+        "intent": "attack, add_statuses"
+      }
+    ]
+  },
+  "Soul Nexus": {
+    "hp": "234 (254)",
+    "pattern": "Starts with Soul Burn. Then picks randomly between Soul Burn, Maelstrom, and Drain Life (all allowed options equally likely). Cannot use the same move twice in a row.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Soul Burn",
+        "effects": "Damage 29 (31)",
+        "intent": "attack"
+      },
+      {
+        "name": "Maelstrom",
+        "effects": "Damage 6x4 (7x4)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Drain Life",
+        "effects": "Damage 18 (19); Apply 2 Vulnerable; Apply 2 Weak",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Terror Eel": {
+    "hp": "140 (150)",
+    "pattern": "Cycles between Crash -> Thrash until it gets stunned by reaching 75 HP. Then uses Terror before cycling Crash -> Thrash again.",
+    "notes": "Starts with Shriek 75 Shriek X: Becomes Stunned after reaching X HP or below.",
+    "moves": [
+      {
+        "name": "Crash",
+        "effects": "Damage 17 (19)",
+        "intent": "attack"
+      },
+      {
+        "name": "Thrash",
+        "effects": "Damage 3x3 (4x3); Vigor 7",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Terror",
+        "effects": "Apply 99 Vulnerable",
+        "intent": "debuff"
+      }
+    ]
+  },
+  "Ceremonial Beast": {
+    "hp": "252 (262)",
+    "pattern": "Starts with Stamp. Then uses Plow every turn until it is stunned. After being stunned, cycles through Beast Cry -> Stomp -> Crush.",
+    "notes": "Plow X: The first time Ceremonial Beast's HP reaches X or below, it becomes stunned and loses all strength. Ringing: You can only play 1 card this turn.",
+    "moves": [
+      {
+        "name": "Stamp",
+        "effects": "Gains Plow 150 (160)",
+        "intent": "buff"
+      },
+      {
+        "name": "Plow",
+        "effects": "Damage 18 (20); Gains 2 Strength",
+        "intent": "attack"
+      },
+      {
+        "name": "Beast Cry",
+        "effects": "Apply Ringing",
+        "intent": "debuff"
+      },
+      {
+        "name": "Stomp",
+        "effects": "Damage 15 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Crush",
+        "effects": "Damage 17 (19); Gains 3 (4) Strength",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Door": {
+    "hp": "155 (165)",
+    "pattern": "Cycles through Dramatic Open -> Door Slam -> Enforce.\n\nOn death, becomes Doormaker.",
+    "notes": "Starts with 3*N (4*N) strength Has 20*N (25*N) extra max HP. N = Number of times Door has been summoned (starts at N=0).",
+    "moves": [
+      {
+        "name": "Dramatic Open",
+        "effects": "Damage 25 (28)",
+        "intent": "attack"
+      },
+      {
+        "name": "Door Slam",
+        "effects": "Damage 15x2",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Enforce",
+        "effects": "Damage 20; Gain 3 (4) Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Crusher": {
+    "hp": "199 (209)",
+    "pattern": "Cycles through Thrash -> Enlarging Strike -> Bug Sting -> Adapt -> Guarded Strike.",
+    "notes": "Starts with Back Attack and Crab Rage 5. Back Attack: Deals 50% more damage if attacking you from behind. Crab Rage X: When an ally dies, gains 5 strength and 99 block.",
+    "moves": [
+      {
+        "name": "Thrash",
+        "effects": "Damage 12 (14)",
+        "intent": "attack"
+      },
+      {
+        "name": "Enlarging Strike",
+        "effects": "Damage 4",
+        "intent": "attack"
+      },
+      {
+        "name": "Bug Sting",
+        "effects": "Damage 6x2 (7x2); Apply 2 Weak; Apply 2 Frail",
+        "intent": "multi_attack, debuff"
+      },
+      {
+        "name": "Adapt",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      },
+      {
+        "name": "Guarded Strike",
+        "effects": "Damage 12 (14); Block 18",
+        "intent": "attack, block"
+      }
+    ]
+  },
+  "Rocket": {
+    "hp": "189 (199)",
+    "pattern": "Cycles through Targeting Reticle -> Precision Beam -> Charge Up -> Laser -> Recharge.",
+    "notes": "Starts with Back Attack and Crab Rage 5.",
+    "moves": [
+      {
+        "name": "Targeting Reticle",
+        "effects": "Damage 3 (4)",
+        "intent": "attack"
+      },
+      {
+        "name": "Precision Beam",
+        "effects": "Damage 18 (20)",
+        "intent": "attack"
+      },
+      {
+        "name": "Charge Up",
+        "effects": "Strength 2",
+        "intent": "buff"
+      },
+      {
+        "name": "Laser",
+        "effects": "Damage 31 (35)",
+        "intent": "attack"
+      },
+      {
+        "name": "Recharge",
+        "effects": "Pass turn",
+        "intent": "sleeping"
+      }
+    ]
+  },
+  "Knowledge Demon": {
+    "hp": "379 (399)",
+    "pattern": "Cycles through Curse of Knowledge -> Slap -> Knowledge Overwhelming -> Ponder until Curse of Knowledge has been used 3 times. Then cycles through Slap -> Knowledge Overwhelming -> Ponder.",
+    "notes": "Disintegration X: Take X damage at the end of your turn. (Stacks additively if selected multiple times) Mind Rot: Draw 1 fewer card at the start of your turn Sloth: You cannot play more than 3 cards per turn Waste Away: Gain 1 less energy at the start of your turn * Heal is multiplied by player count",
+    "moves": [
+      {
+        "name": "Curse of Knowledge",
+        "effects": "Player must choose one of two debuffs:; 1st choice: Disentegration 6 or Mind Rot; 2nd choice: Disentegration 7 or Sloth; 3rd Choice: Disentegration 8 or Waste Away",
+        "intent": "unknown"
+      },
+      {
+        "name": "Slap",
+        "effects": "Damage 17 (18)",
+        "intent": "attack"
+      },
+      {
+        "name": "Knowledge Overwhelming",
+        "effects": "Damage 8x3 (9x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Ponder",
+        "effects": "Damage 11 (13); Heal 30*; Gain 2 (3) Strength",
+        "intent": "attack, buff"
+      }
+    ]
+  },
+  "Lagavulin Matriarch": {
+    "hp": "222 (233)",
+    "pattern": "Cycles through Slash -> Disembowel -> Slash 2 -> Soul Siphon.",
+    "notes": "Starts with 12 Plating, and sleeps for 3 turns or until losing HP. On wakeup, all Plating is removed.",
+    "moves": [
+      {
+        "name": "Slash",
+        "effects": "Damage 19 (21)",
+        "intent": "attack"
+      },
+      {
+        "name": "Disembowel",
+        "effects": "Damage 9x2 (10x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Slash 2",
+        "effects": "Damage 12 (14); Block 12 (14)",
+        "intent": "attack, block"
+      },
+      {
+        "name": "Soul Siphon",
+        "effects": "Apply -2 Strength; Apply -2 Dexterity; Gain 2 Strength",
+        "intent": "buff, debuff"
+      }
+    ]
+  },
+  "Queen": {
+    "hp": "400 (419)",
+    "pattern": "Begins with Puppet Strings -> You Are Mine!\n\nAfterwards, while Amalgam is alive, always does Burn Bright For Me. If Amalgam dies and intent is Burn Bright For Me, intent is immediately replaced with Enrage.\n\nAfter Amalgam dies, cycles Off With Your Head -> Execution -> Enrage.",
+    "notes": "Starts with a Torch Head Amalgam in play. If Amalgam dies, and intent is Burn Bright For Me, Enrage instead.",
+    "moves": [
+      {
+        "name": "Puppet Strings",
+        "effects": "Apply Chains of Binding 3",
+        "intent": "unknown"
+      },
+      {
+        "name": "You Are Mine!",
+        "effects": "Apply 99 Frail; Apply 99 Weak; Apply 99 Vulnerable",
+        "intent": "debuff"
+      },
+      {
+        "name": "Burn Bright For Me",
+        "effects": "Give allies 1 Strength; Block 20",
+        "intent": "block"
+      },
+      {
+        "name": "Off With Your Head",
+        "effects": "Damage 3x5 (4x5)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Execution",
+        "effects": "Damage 15 (18)",
+        "intent": "attack"
+      },
+      {
+        "name": "Enrage",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Torch Head Amalgam": {
+    "hp": "199 (211)",
+    "pattern": "Begins with Tackle -> Tackle.\n\nAfterwards, cycles Soul Beam -> Weak Tackle -> Weak Tackle.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Tackle",
+        "effects": "Damage 18 (19)",
+        "intent": "attack"
+      },
+      {
+        "name": "Soul Beam",
+        "effects": "Damage 8x3",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Weak Tackle",
+        "effects": "Damage 14 (15)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Soul Fysh": {
+    "hp": "211 (221)",
+    "pattern": "Cycles through Beckon -> De-Gas -> Gaze -> Fade -> Scream.",
+    "notes": "Beckon: 1 cost status, lose 6 HP if it is in hand at the end of turn. * One of the 2 Intangible from Fade ticks down immediately.",
+    "moves": [
+      {
+        "name": "Beckon",
+        "effects": "Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard",
+        "intent": "add_statuses"
+      },
+      {
+        "name": "De-Gas",
+        "effects": "Damage 16 (17)",
+        "intent": "attack"
+      },
+      {
+        "name": "Gaze",
+        "effects": "Damage 7 (8); Shuffle 1 Beckon into discard",
+        "intent": "attack, add_statuses"
+      },
+      {
+        "name": "Fade",
+        "effects": "Gain 2* Intangible",
+        "intent": "unknown"
+      },
+      {
+        "name": "Scream",
+        "effects": "Damage 11 (12); Apply 3 Vulnerable",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Test Subject Stage 1": {
+    "hp": "100 (111)",
+    "pattern": "Cycles through Bite -> Skull Bash.\n\nWhen killed, revive next turn in stage 2.",
+    "notes": "Starts with Enrage 3. Enrage X: Whenever you play a skill, gain X Strength.",
+    "moves": [
+      {
+        "name": "Bite",
+        "effects": "Damage 20 (22)",
+        "intent": "attack"
+      },
+      {
+        "name": "Skull Bash",
+        "effects": "Damage 14 (16); Apply 1 Vulnerable",
+        "intent": "attack, debuff"
+      }
+    ]
+  },
+  "Test Subject Stage 2": {
+    "hp": "200 (212)",
+    "pattern": "Cycles through Multi-Claw -> Pounce.\n\nWhen killed, revive next turn in stage 3.",
+    "notes": "Starts with Painful Stabs 1. Painful Stabs X: Shuffle X Wounds into discard when inflicting unblocked damage.",
+    "moves": [
+      {
+        "name": "Multi-Claw",
+        "effects": "Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used)",
+        "intent": "attack"
+      },
+      {
+        "name": "Pounce",
+        "effects": "Damage 30 (32)",
+        "intent": "attack"
+      }
+    ]
+  },
+  "Test Subject Stage 3": {
+    "hp": "300 (313)",
+    "pattern": "Cycles through Lacerate -> Big Pounce -> Burning Growl.",
+    "notes": "Starts with Nemesis, which will immediately give 1 Intangible. Nemesis: At the end of every other turn, gain 1 Intangible.",
+    "moves": [
+      {
+        "name": "Lacerate",
+        "effects": "Damage 10x3 (11x3)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Big Pounce",
+        "effects": "Damage 45",
+        "intent": "attack"
+      },
+      {
+        "name": "Burning Growl",
+        "effects": "Shuffle 3 (5) Burns into discard; Gain 2 (3) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "The Insatiable": {
+    "hp": "321 (341)",
+    "pattern": "Starts with Liquify Ground.\n\nAfterwards, cycles through Thrash -> Lunging Bite -> Salivate -> Thrash.",
+    "notes": "Sandpit X: In X turns, instantly die. Frantic Escape: 1 cost status, increase card cost and Sandpit by 1.",
+    "moves": [
+      {
+        "name": "Liquify Ground",
+        "effects": "Gain Sandpit 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard",
+        "intent": "escape"
+      },
+      {
+        "name": "Thrash",
+        "effects": "Damage 8x2 (9x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Lunging Bite",
+        "effects": "Damage 28 (31)",
+        "intent": "attack"
+      },
+      {
+        "name": "Salivate",
+        "effects": "Gain 2 (3) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Kin Priest": {
+    "hp": "190 (199)",
+    "pattern": "Cycles through Orb of Frailty -> Orb of Weakness -> Beam -> Ritual.",
+    "notes": "",
+    "moves": [
+      {
+        "name": "Orb of Frailty",
+        "effects": "Damage 8 (9); Apply 1 Frail",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Orb of Weakness",
+        "effects": "Damage 8 (9); Apply 1 Weak",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Beam",
+        "effects": "Damage 3x3",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Ritual",
+        "effects": "Gain 2 (3) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Kin Follower": {
+    "hp": "58 - 59 (62 - 63)",
+    "pattern": "Cycles through Quick Slash -> Boomerang -> Power Dance.",
+    "notes": "Kin Follower is a minion.",
+    "moves": [
+      {
+        "name": "Quick Slash",
+        "effects": "Damage 5",
+        "intent": "attack"
+      },
+      {
+        "name": "Boomerang",
+        "effects": "Damage 2x2",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Power Dance",
+        "effects": "Gain 2 (3) Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "(Minion)": {
+    "hp": "",
+    "pattern": "",
+    "notes": "",
+    "moves": []
+  },
+  "Vantom": {
+    "hp": "173 (183)",
+    "pattern": "Cycles through Ink Blot -> Inky Lance -> Dismember -> Prepare.",
+    "notes": "Starts with Slippery 9 Slippery X: The next X times this loses HP, only lose 1.",
+    "moves": [
+      {
+        "name": "Ink Blot",
+        "effects": "Damage 7 (8)",
+        "intent": "attack"
+      },
+      {
+        "name": "Inky Lance",
+        "effects": "Damage 6x2 (7x2)",
+        "intent": "multi_attack"
+      },
+      {
+        "name": "Dismember",
+        "effects": "Damage 27 (30); Add 3 Wounds into discard",
+        "intent": "attack, add_statuses"
+      },
+      {
+        "name": "Prepare",
+        "effects": "Gain 2 Strength",
+        "intent": "buff"
+      }
+    ]
+  },
+  "Waterfall Giant": {
+    "hp": "250 (260)",
+    "pattern": "Cycles through Pressurize -> Stomp -> Ram -> Siphon -> Pressure Gun -> Pressure Up.",
+    "notes": "Steam Eruption X: After dying, wait 1 turn, then attack for X damage. * Heal is multiplied by player count",
+    "moves": [
+      {
+        "name": "Pressurize",
+        "effects": "Gain 15 (20) Steam Eruption",
+        "intent": "unknown"
+      },
+      {
+        "name": "Stomp",
+        "effects": "Damage 15 (16); Apply 1 Weak; Gain 3 Steam Eruption",
+        "intent": "attack, debuff"
+      },
+      {
+        "name": "Ram",
+        "effects": "Damage 10 (11); Gain 3 Steam Eruption",
+        "intent": "attack"
+      },
+      {
+        "name": "Siphon",
+        "effects": "Heal 15*; Gain 3 Steam Eruption",
+        "intent": "buff"
+      },
+      {
+        "name": "Pressure Gun",
+        "effects": "Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 Steam Eruption",
+        "intent": "attack"
+      },
+      {
+        "name": "Pressure Up",
+        "effects": "Damage 13 (14); Gain 3 Steam Eruption",
+        "intent": "attack"
+      }
+    ]
+  }
+};
+
+const encounters = {
+  "overgrowth": {
+    "easy": [
+      {
+        "name": "Fuzzy Wurm Crawler",
+        "enemies": [
+          "Fuzzy Wurm Crawler"
+        ],
+        "multi": "",
+        "emoji": "🐛"
+      },
+      {
+        "name": "Nibbits",
+        "enemies": [
+          "Nibbit"
+        ],
+        "multi": "",
+        "emoji": "🐀"
+      },
+      {
+        "name": "Shrinker Beetle",
+        "enemies": [
+          "Shrinker Beetle"
+        ],
+        "multi": "",
+        "emoji": "🪲"
+      },
+      {
+        "name": "Slimes",
+        "enemies": [
+          "Leaf Slime (Small)",
+          "Leaf Slime (Medium)",
+          "Twig Slime (S)",
+          "Leaf Slime (Medium)"
+        ],
+        "multi": "4 enemies",
+        "emoji": "🟢"
+      }
+    ],
+    "hard": [
+      {
+        "name": "Cubex Construct",
+        "enemies": [
+          "Cubex Construct"
+        ],
+        "multi": "",
+        "emoji": "🔷"
+      },
+      {
+        "name": "Flyconid",
+        "enemies": [
+          "Leaf Slime (Medium)",
+          "Flyconid",
+          "Leaf Slime (Medium)"
+        ],
+        "multi": "3 enemies",
+        "emoji": "🍄"
+      },
+      {
+        "name": "Fogmog",
+        "enemies": [
+          "Fogmog"
+        ],
+        "multi": "",
+        "emoji": "🌫️"
+      },
+      {
+        "name": "Inklets",
+        "enemies": [
+          "Inklet",
+          "Inklet",
+          "Inklet"
+        ],
+        "multi": "3 enemies",
+        "emoji": "🖤"
+      },
+      {
+        "name": "Mawler",
+        "enemies": [
+          "Mawler"
+        ],
+        "multi": "",
+        "emoji": "👹"
+      },
+      {
+        "name": "Nibbits",
+        "enemies": [
+          "Nibbit",
+          "Nibbit"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🐀"
+      },
+      {
+        "name": "Overgrowth Crawlers",
+        "enemies": [
+          "Shrinker Beetle",
+          "Fuzzy Wurm Crawler"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🐛"
+      },
+      {
+        "name": "Ruby Raiders",
+        "enemies": [
+          "Ruby Raider (Assassin)",
+          "Ruby Raider (Axe)",
+          "Ruby Raider (Brute)",
+          "Ruby Raider (Crossbow)",
+          "Ruby Raider (Tracker)"
+        ],
+        "multi": "5 enemies",
+        "emoji": "💎"
+      },
+      {
+        "name": "Slimes",
+        "enemies": [
+          "Twig Slime (M)",
+          "Leaf Slime (Medium)",
+          "Leaf Slime (Small)",
+          "Twig Slime (S)"
+        ],
+        "multi": "4 enemies",
+        "emoji": "🟢"
+      },
+      {
+        "name": "Slithering Strangler",
+        "enemies": [
+          "Snapping Jaxfruit",
+          "Leaf Slime (Medium)",
+          "Leaf Slime (Small)",
+          "Slithering Strangler",
+          "Leaf Slime (Medium)",
+          "Leaf Slime (Small)"
+        ],
+        "multi": "6 enemies",
+        "emoji": "🐍"
+      },
+      {
+        "name": "Snapping Jaxfruit",
+        "enemies": [
+          "Snapping Jaxfruit",
+          "Flyconid"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🌺"
+      },
+      {
+        "name": "Vine Shambler",
+        "enemies": [
+          "Vine Shambler"
+        ],
+        "multi": "",
+        "emoji": "🌿"
+      }
+    ],
+    "elite": [
+      {
+        "name": "Bygone Effigy",
+        "enemies": [
+          "Bygone Effigy"
+        ],
+        "multi": "",
+        "emoji": "🗿"
+      },
+      {
+        "name": "Byrdonis",
+        "enemies": [
+          "Byrdonis"
+        ],
+        "multi": "",
+        "emoji": "🦅"
+      },
+      {
+        "name": "Phrog Parasite",
+        "enemies": [
+          "Phrog Parasite"
+        ],
+        "multi": "",
+        "emoji": "🐸"
+      }
+    ],
+    "boss": [
+      {
+        "name": "Ceremonial Beast",
+        "enemies": [
+          "Ceremonial Beast"
+        ],
+        "multi": "",
+        "emoji": "🦬"
+      },
+      {
+        "name": "The Kin",
+        "enemies": [
+          "Kin Follower",
+          "Kin Follower",
+          "Kin Priest"
+        ],
+        "multi": "3 enemies",
+        "emoji": "👥"
+      },
+      {
+        "name": "Vantom",
+        "enemies": [
+          "Vantom"
+        ],
+        "multi": "",
+        "emoji": "👻"
+      }
+    ]
+  },
+  "underdocks": {
+    "easy": [
+      {
+        "name": "Corpse Slugs",
+        "enemies": [
+          "Corpse Slug"
+        ],
+        "multi": "",
+        "emoji": "🐌"
+      },
+      {
+        "name": "Seapunk",
+        "enemies": [],
+        "multi": "",
+        "emoji": "🦑"
+      },
+      {
+        "name": "Sludge Spinner",
+        "enemies": [
+          "Sludge Spinner"
+        ],
+        "multi": "",
+        "emoji": "🕷️"
+      },
+      {
+        "name": "Toadpoles",
+        "enemies": [
+          "Toadpole"
+        ],
+        "multi": "",
+        "emoji": "🐸"
+      }
+    ],
+    "hard": [
+      {
+        "name": "Corpse Slugs",
+        "enemies": [
+          "Corpse Slug"
+        ],
+        "multi": "",
+        "emoji": "🐌"
+      },
+      {
+        "name": "Cultists",
+        "enemies": [
+          "Calcified Cultist",
+          "Damp Cultist"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🔮"
+      },
+      {
+        "name": "Living Fog",
+        "enemies": [
+          "Living Fog"
+        ],
+        "multi": "",
+        "emoji": "🌫️"
+      },
+      {
+        "name": "Fossil Stalker",
+        "enemies": [
+          "Fossil Stalker"
+        ],
+        "multi": "",
+        "emoji": "🦴"
+      },
+      {
+        "name": "Gremlin Merc",
+        "enemies": [
+          "Gremlin Merc"
+        ],
+        "multi": "",
+        "emoji": "👺"
+      },
+      {
+        "name": "Haunted Ship",
+        "enemies": [
+          "Haunted Ship"
+        ],
+        "multi": "",
+        "emoji": "🚢"
+      },
+      {
+        "name": "Punch Construct",
+        "enemies": [
+          "Punch Construct"
+        ],
+        "multi": "",
+        "emoji": "🤖"
+      },
+      {
+        "name": "Sewer Clam",
+        "enemies": [
+          "Sewer Clam"
+        ],
+        "multi": "",
+        "emoji": "🐚"
+      },
+      {
+        "name": "Toadpoles",
+        "enemies": [
+          "Calcified Cultist",
+          "Toadpole"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🐸"
+      },
+      {
+        "name": "Two-Tailed Rats",
+        "enemies": [
+          "Two-Tailed Rat"
+        ],
+        "multi": "",
+        "emoji": "🐀"
+      }
+    ],
+    "elite": [
+      {
+        "name": "Skulking Colony",
+        "enemies": [
+          "Skulking Colony"
+        ],
+        "multi": "",
+        "emoji": "🕳️"
+      },
+      {
+        "name": "Phantasmal Gardeners",
+        "enemies": [
+          "Phantasmal Gardener"
+        ],
+        "multi": "",
+        "emoji": "👻"
+      },
+      {
+        "name": "Terror Eel",
+        "enemies": [
+          "Terror Eel"
+        ],
+        "multi": "",
+        "emoji": "🐍"
+      }
+    ],
+    "boss": [
+      {
+        "name": "Lagavulin Matriarch",
+        "enemies": [
+          "Lagavulin Matriarch"
+        ],
+        "multi": "",
+        "emoji": "🛡️"
+      },
+      {
+        "name": "Soul Fysh",
+        "enemies": [
+          "Soul Fysh"
+        ],
+        "multi": "",
+        "emoji": "🐟"
+      },
+      {
+        "name": "Waterfall Giant",
+        "enemies": [
+          "Waterfall Giant"
+        ],
+        "multi": "",
+        "emoji": "🗿"
+      }
+    ]
+  },
+  "hive": {
+    "easy": [
+      {
+        "name": "Bowlbugs",
+        "enemies": [
+          "Bowlbug (Rock)",
+          "Bowlbug (Egg)",
+          "Bowlbug (Nectar)"
+        ],
+        "multi": "3 enemies",
+        "emoji": "🐜"
+      },
+      {
+        "name": "Exoskeletons",
+        "enemies": [
+          "Exoskeleton",
+          "Exoskeleton"
+        ],
+        "multi": "2 enemies",
+        "emoji": "💀"
+      },
+      {
+        "name": "Thieving Hopper",
+        "enemies": [
+          "Thieving Hopper"
+        ],
+        "multi": "",
+        "emoji": "🦗"
+      },
+      {
+        "name": "Tunneler",
+        "enemies": [
+          "Tunneler"
+        ],
+        "multi": "",
+        "emoji": "🪱"
+      }
+    ],
+    "hard": [
+      {
+        "name": "Bowlbugs",
+        "enemies": [
+          "Bowlbug (Egg)",
+          "Bowlbug (Nectar)",
+          "Bowlbug (Rock)",
+          "Bowlbug (Silk)"
+        ],
+        "multi": "4 enemies",
+        "emoji": "🐜"
+      },
+      {
+        "name": "Chompers",
+        "enemies": [
+          "Chomper"
+        ],
+        "multi": "",
+        "emoji": "🦷"
+      },
+      {
+        "name": "Exoskeletons",
+        "enemies": [
+          "Exoskeleton",
+          "Exoskeleton"
+        ],
+        "multi": "2 enemies",
+        "emoji": "💀"
+      },
+      {
+        "name": "Hunter Killer",
+        "enemies": [
+          "Hunter Killer"
+        ],
+        "multi": "",
+        "emoji": "🔺"
+      },
+      {
+        "name": "Louse Progenitor",
+        "enemies": [
+          "Louse Progenitor"
+        ],
+        "multi": "",
+        "emoji": "🐛"
+      },
+      {
+        "name": "Mytes",
+        "enemies": [
+          "Myte"
+        ],
+        "multi": "",
+        "emoji": "🕷️"
+      },
+      {
+        "name": "Ovicopter",
+        "enemies": [
+          "Ovicopter"
+        ],
+        "multi": "",
+        "emoji": "🪰"
+      },
+      {
+        "name": "Slumbering Beetle",
+        "enemies": [
+          "Slumbering Beetle",
+          "Bowlbug (Rock)",
+          "Bowlbug (Silk)"
+        ],
+        "multi": "3 enemies",
+        "emoji": "🪲"
+      },
+      {
+        "name": "Spiny Toad",
+        "enemies": [
+          "Spiny Toad"
+        ],
+        "multi": "",
+        "emoji": "🐸"
+      },
+      {
+        "name": "The Obscura",
+        "enemies": [
+          "The Obscura"
+        ],
+        "multi": "",
+        "emoji": "👁️"
+      },
+      {
+        "name": "Tunneler",
+        "enemies": [
+          "Tunneler",
+          "Bowlbug (Rock)",
+          "Bowlbug (Silk)"
+        ],
+        "multi": "3 enemies",
+        "emoji": "🪱"
+      }
+    ],
+    "elite": [
+      {
+        "name": "Decimillipede",
+        "enemies": [
+          "Decimillipede"
+        ],
+        "multi": "",
+        "emoji": "🐛"
+      },
+      {
+        "name": "Entomancer",
+        "enemies": [
+          "Entomancer"
+        ],
+        "multi": "",
+        "emoji": "🧙"
+      },
+      {
+        "name": "Infested Prisms",
+        "enemies": [
+          "Infested Prism"
+        ],
+        "multi": "",
+        "emoji": "💎"
+      }
+    ],
+    "boss": [
+      {
+        "name": "Kaiser Crab",
+        "enemies": [
+          "Crusher",
+          "Rocket"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🦀"
+      },
+      {
+        "name": "Knowledge Demon",
+        "enemies": [
+          "Knowledge Demon"
+        ],
+        "multi": "",
+        "emoji": "😈"
+      },
+      {
+        "name": "The Insatiable",
+        "enemies": [
+          "The Insatiable"
+        ],
+        "multi": "",
+        "emoji": "🕳️"
+      }
+    ]
+  },
+  "glory": {
+    "easy": [
+      {
+        "name": "Devoted Sculptor",
+        "enemies": [
+          "Devoted Sculptor"
+        ],
+        "multi": "",
+        "emoji": "⚒️"
+      },
+      {
+        "name": "Scrolls of Biting",
+        "enemies": [
+          "Scroll of Biting"
+        ],
+        "multi": "",
+        "emoji": "📜"
+      },
+      {
+        "name": "Turret Operator",
+        "enemies": [
+          "Living Shield",
+          "Turret Operator"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🛡️"
+      }
+    ],
+    "hard": [
+      {
+        "name": "Axebots",
+        "enemies": [
+          "Axebot"
+        ],
+        "multi": "",
+        "emoji": "🪓"
+      },
+      {
+        "name": "Construct Menagerie",
+        "enemies": [
+          "Punch Construct",
+          "Cubex Construct"
+        ],
+        "multi": "2 enemies",
+        "emoji": "🤖"
+      },
+      {
+        "name": "Fabricator",
+        "enemies": [
+          "Fabricator"
+        ],
+        "multi": "",
+        "emoji": "⚙️"
+      },
+      {
+        "name": "Frog Knight",
+        "enemies": [
+          "Frog Knight"
+        ],
+        "multi": "",
+        "emoji": "🐸"
+      },
+      {
+        "name": "Globe Head",
+        "enemies": [
+          "Globe Head"
+        ],
+        "multi": "",
+        "emoji": "🌐"
+      },
+      {
+        "name": "Owl Magistrate",
+        "enemies": [
+          "Owl Magistrate"
+        ],
+        "multi": "",
+        "emoji": "🦉"
+      },
+      {
+        "name": "Scrolls of Biting",
+        "enemies": [
+          "Scroll of Biting"
+        ],
+        "multi": "",
+        "emoji": "📜"
+      },
+      {
+        "name": "Slimed Berserker",
+        "enemies": [
+          "Slimed Berserker"
+        ],
+        "multi": "",
+        "emoji": "🟢"
+      },
+      {
+        "name": "The Lost and Forgotten",
+        "enemies": [
+          "The Lost",
+          "The Forgotten"
+        ],
+        "multi": "2 enemies",
+        "emoji": "💀"
+      }
+    ],
+    "elite": [
+      {
+        "name": "Knights",
+        "enemies": [
+          "Flail Knight",
+          "Spectral Knight",
+          "Magi Knight"
+        ],
+        "multi": "3 enemies",
+        "emoji": "⚔️"
+      },
+      {
+        "name": "Mecha Knight",
+        "enemies": [
+          "Mecha Knight"
+        ],
+        "multi": "",
+        "emoji": "🤖"
+      },
+      {
+        "name": "Soul Nexus",
+        "enemies": [
+          "Soul Nexus"
+        ],
+        "multi": "",
+        "emoji": "💜"
+      }
+    ],
+    "boss": [
+      {
+        "name": "Doormaker",
+        "enemies": [
+          "Door"
+        ],
+        "multi": "",
+        "emoji": "🚪"
+      },
+      {
+        "name": "Queen",
+        "enemies": [
+          "Queen",
+          "Torch Head Amalgam"
+        ],
+        "multi": "2 enemies",
+        "emoji": "👑"
+      },
+      {
+        "name": "Test Subject",
+        "enemies": [
+          "Test Subject Stage 1"
+        ],
+        "multi": "",
+        "emoji": "🧪"
+      }
+    ]
+  }
+};
+
+// ══════════════════════════════════════════
+// INTENT ICON MAP
+// ══════════════════════════════════════════
+
+const intentIcons = {
+  "attack": "&#9876;",
+  "multi_attack": "&#9876;&#9876;",
+  "block": "&#128737;",
+  "buff": "&#11014;",
+  "debuff": "&#9760;",
+  "add_statuses": "&#128220;",
+  "affliction": "&#128148;",
+  "summon": "&#10010;",
+  "sleeping": "&#128164;",
+  "deathblow": "&#128128;",
+  "escape": "&#128168;",
+  "unknown": "&#63;"
+};
+
+function renderIntents(intentStr) {
+  if (!intentStr) return '';
+  return intentStr.split(',').map(i => {
+    const key = i.trim();
+    const icon = intentIcons[key] || '?';
+    return `<span class="intent-icon intent-${key}" title="${key}">${icon}</span>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// UI LOGIC
+// ══════════════════════════════════════════
+
+const actNames = {
+  overgrowth: "Act 1: Overgrowth",
+  underdocks: "Act 1: Underdocks",
+  hive: "Act 2: The Hive",
+  glory: "Act 3: The Glory",
+};
+const catNames = { easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
+
+let currentAct = "overgrowth";
+let currentCat = "easy";
+
+function selectAct(act) {
+  currentAct = act;
+  document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
+  document.querySelector(`.act-card[data-act="${act}"]`).classList.add('selected');
+  render();
+}
+
+function selectCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.cat-tab[data-cat="${cat}"]`).classList.add('active');
+  render();
+}
+
+function render() {
+  const grid = document.getElementById('enemy-grid');
+  const label = document.getElementById('section-label');
+  label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
+
+  const encs = encounters[currentAct]?.[currentCat] || [];
+  grid.innerHTML = encs.map(e => `
+    <div class="enemy-card" data-cat="${currentCat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}')">
+      <div class="enemy-thumb">
+        ${e.emoji}
+        ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
+      </div>
+      <div class="enemy-name">${e.name}</div>
+    </div>
+  `).join('');
+}
+
+function renderEnemySection(name) {
+  const data = enemyDatabase[name];
+  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}</div><p style="color:#666;">No data available.</p></div>`;
+
+  const movesHtml = data.moves.map(m => `
+    <tr>
+      <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
+      <td><strong>${m.name}</strong></td>
+      <td>${m.effects.replace(/;/g, '<br>')}</td>
+    </tr>
+  `).join('');
+
+  const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
+
+  return `
+    <div class="enemy-section">
+      <div class="enemy-section-name">${name}</div>
+      <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+
+      <h3>Attack Pattern</h3>
+      <div class="pattern-text">${data.pattern}</div>
+
+      <h3>Moves</h3>
+      <table>
+        <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
+        ${movesHtml}
+      </table>
+
+      ${notesHtml}
+    </div>
+  `;
+}
+
+function openEncounter(encounterName) {
+  const panel = document.getElementById('detail-panel');
+  const backdrop = document.getElementById('backdrop');
+  document.getElementById('detail-name').textContent = encounterName;
+
+  // Find the encounter to get its enemy list
+  const encs = encounters[currentAct]?.[currentCat] || [];
+  const enc = encs.find(e => e.name === encounterName);
+
+  if (enc && enc.enemies && enc.enemies.length > 0) {
+    // Multi-enemy encounter: show each enemy's section
+    const sections = enc.enemies
+      .filter((name, idx, arr) => arr.indexOf(name) === idx)  // dedupe
+      .map(name => renderEnemySection(name))
+      .join('');
+    document.getElementById('detail-body').innerHTML = sections;
+  } else {
+    // Single enemy or fallback: try direct lookup
+    document.getElementById('detail-body').innerHTML = renderEnemySection(encounterName);
+  }
+
+  panel.classList.add('open');
+  backdrop.classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('open');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+render();
+</script>
+</body>
+</html>

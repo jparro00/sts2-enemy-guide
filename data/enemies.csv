@@ -1,0 +1,120 @@
+Name,HP,Pattern,Notes
+Axebot,40 - 44 (42 - 46),"Chooses randomly from One-Two, Sharpen, and Hammer Uppercut (allowed options equally likely). Cannot Sharpen twice in a row. Cannot use One-Two or Hammer Uppercut more than twice in a row. Summoned Axebots (from Stock) immediately start with Boot Up, then resume choosing random moves.","Starts with Stock 2. Stock X: When killed, a new Axebot is summoned in its place (with Stock X - 1)."
+Bowlbug (Egg),21 - 22 (23 - 24),Always uses Bite.,
+Bowlbug (Nectar),35 - 38 (36 - 39),Starts with Thrash -> Buff. Then uses Thrash every turn.,
+Bowlbug (Rock),45 - 48 (46 - 49),"Uses Headbutt every turn. If fully blocked, becomes stunned for a turn before resuming Headbutt.",Starts with Imbalanced Imbalanced: Becomes stunned if its attack is fully blocked.
+Bowlbug (Silk),40 - 43 (41 - 44),Alternates between Toxic Spit and Thrash.,
+Calcified Cultist,38 - 41 (39 - 42),Starts with Incantation. Then uses Dark Strike every turn after.,
+Chomper,60 - 64 (63 - 67),"First Chomper starts with Clamp, second with Screech. Then continue cycling through Clamp -> Screech.",Starts with Artifact 2
+Corpse Slug,25 - 27 (27 - 29),First Corpse Slug picks its first move randomly. Each subsequent Corpse Slug starts with the next move in the cycle. Cycle through Whip Slap  -> Glomp -> Gloop,"Starts with Ravenous 4 (5) Ravenous X: When an enemy dies, become stunned and gain X Strength."
+Cubex Construct,65 (70),Cycles through Charge Up -> Repeater Blast - > Repeater Blast -> Expel Blast -> Submerge.,Starts with 13 Block and Artifact 1.
+Damp Cultist,51 - 53 (52 - 54),Starts with Incantation. Then uses Dark Strike every turn after.,
+Devoted Sculptor,162 (172),"Starts with Forbidden Incantation, then uses Savage every turn.",
+Exoskeleton,24 - 28 (25 - 29),"First Exoskeleton starts with Skitter, second starts with Mandible, third starts with Enrage (and fourth starts randomly with Skitter or Mandible, if present). After Skitter always uses Mandible. After Mandible always uses Enrage. After Enrage chooses randomly between Skitter and Mandible.",Starts with Hard to Kill 9 Hard to Kill X: Reduce all damage taken and HP loss to X.
+Fabricator,150 (155),"When # allies (not counting self) is 2 or fewer, picks randomly between Fabricate and Fabricating Strike (equally likely). When # allies (not counting self) is 3 or more, always uses Disintegrate.",
+Guardbot,21 - 25 (22 - 26),Always uses Guard,
+Noisebot,23 - 28 (24 - 29),Always uses Noise,
+Stabbot,23 - 28 (24 - 29),Always uses Stab,
+Zapbot,23 - 28 (24 - 29),Always uses Zap,"Starts with High Voltage 2. High Voltage X: At the end of Zapbot's turn, it gains X strength."
+Flyconid,47 - 49 (51 - 53),"Starts randomly with Frail Spores or Smash (equal probability). Then picks move randomly (equal probability for allowed moves). Cannot use any move twice in a row. Vulnerable Spores has a 3 turn cooldown after use, and Frail Spores has a 2 turn cooldown after use. Exception: If at any point it uses Vuln Spores -> Frail Spores -> Smash, then it will have no allowed moves and default to Vulnerable Spores.",
+Fogmog,74 (78),"Starts with Illusion -> Swipe. When using Swipe after a non-Swipe move, follows up with 40% chance to Swipe and 60% chance to Headbutt. After using Swipe for second time in a row, always follows with Headbutt. After Headbutt, always uses Swipe.",
+Eye with Teeth,6,Always uses Distract.,"Starts with Illusion Illusion: When this dies, revives next turn at full HP"
+Fossil Stalker,51 - 53 (54 - 56),"Starts with Latch. Then chooses randomly between allowed options of Tackle, Latch, and Lash (allowed options equally likely). Moves cannot be used more than twice in a row.","Starts with Suck 3 Suck X: Whenever Fossil Stalker deals unblocked attack damage, it gains X strength."
+Frog Knight,191 (199),"Cycles through Tongue Lash -> Strike Down Evil -> For the Queen. After For the Queen, if below half HP and Beetle Charge has not been used, then uses Beetle Charge before starting the cycle over.",Starts with Plating 15 (19)
+Fuzzy Wurm Crawler,55 - 57 (58 - 59),Starts with Acid Goop. Then cycles through Inhale -> Acid Goop -> Acid Goop.,
+Globe Head,148 (158),Cycles through Shocking Slap -> Thunder Strike -> Galvanic Burst.,Starts with Galvanic 6. Galvanic X: You take X damage when a Power is played.
+Gremlin Merc,47 - 49 (51 - 53),Cycles through Gimme -> Double Smash -> Hehe.,"Starts with Surprise and Thievery 20 Surprise: When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned) Thievery X: Steals X gold when attacking (stolen gold is held by Fat Gremlin once summoned)"
+Fat Gremlin,13 - 17 (14 - 18),Always uses Flee.,Starts stunned when summoned after killing Gremlin Merc. Keeps stolen gold if successfully Flees.
+Sneaky Gremlin,10 - 14 (11 - 15),Always uses Tackle.,Starts stunned when summoned after killing Gremlin Merc.
+Haunted Ship,63 (67),"Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",
+Hunter Killer,121 (126),Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.,"Tender: Whenever you play a card, lose 1 strength and 1 dexterity this turn."
+Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).","Starts with Slippery 1 Slippery X: The next time this enemy loses HP, it loses 1 HP instead."
+Leaf Slime (Small),11 - 15 (12 - 16),Starts randomly with Tackle or Goop. Then alternates between them.,
+Leaf Slime (Medium),32 - 35 (33 - 36),Starts with Sticky Shot then alternates Clump Shot -> Sticky Shot.,
+Living Fog,80 (82),Starts with Advanced Gas. Then alternates between Bloat -> Super Gas Blast.,Smoggy: You can only play 1 skill per turn.
+Gas Bomb,10 (12),Uses Explode and dies.,Gas Bomb is a minion.
+Living Shield,55 (65),Uses Shield Slam every turn if Turret Operator is alive. Then uses Smash every turn once Turret Operator is dead.,Starts with Rampart 25 Rampart X: Gives Turret Operator X block at the start of the player's turn.
+Louse Progenitor,134 - 136 (138 - 141),Cycles through Web Cannon -> Curl and Grow -> Pounce.,Starts with Curl Up Curl Up: Gain 14 (18) block upon first being hit.
+Mawler,72 (76),"Starts with Claw. Then chooses randomly between Rip & Tear, Roar, and Claw (all allowed options equally likely). Roar can only be used once. Claw and Rip & Tear cannot be used twice in a row.",
+Myte,61 - 67 (64 - 69),"First Myte starts with Toxic, second Myte starts with Suck. Then continue cycling through Toxic -> Bite -> Suck.","Toxic (status): At the end of your turn, take 5 damage if this is in your hand. 1 cost, exhausts."
+Nibbit,42 - 46 (44 - 48),"In the single Nibbit encounter, it cycles through Butt -> Slice -> Hiss. In the two Nibbits encounter, the front starts with Slice and the back starts with Hiss. They then continue the cycle Butt -> Slice -> Hiss.",
+Ovicopter,124 - 130 (126 - 132),"Starts with Lay Eggs -> Smash -> Tenderizer. If 3 allies are alive after Tenderizer, uses Nutritional Paste -> Smash -> Tenderizer. If less than 3 allies are alive after Tenderizer, uses Lay Eggs -> Smash -> Tenderizer.","Lay Eggs will summon until there are 3 allies alive (no allies alive -> summons 3, 1 allies alive -> summons 2, etc)"
+Tough Egg,14 - 18 (15 - 19),Always uses Hatch.,Starts with Hatch 1. Hatch X: Hatches after X turns.
+Hatchling,19 - 22 (20 - 23),Always uses Nibble.,
+Owl Magistrate,234 (243),Cycles through Magistrate Scrutiny -> Peck Assault -> Judicial Flight -> Verdict.,Soar: Receives 50% less attack damage until it lands.
+Punch Construct,55 (60),Regular encounter: Cycles through Ready -> Strong Punch -> Fast Punch. Punch-Off event: First Punch Construct starts the cycle with Strong Punch (second starts with Ready like usual).,Starts with Artifact 1.
+Ruby Raider (Assassin),18 - 23 (19 - 24),Always uses Killshot.,
+Ruby Raider (Axe),20 - 22 (21 - 23),Cycles through Swing -> Swing -> Big Swing.,
+Ruby Raider (Brute),30 - 33 (31 - 34),Alternates between Beat -> Roar.,
+Ruby Raider (Crossbow),18 - 21 (19 - 22),Alternates between Reload -> Fire.,
+Ruby Raider (Tracker),21 - 25 (22 - 26),"Starts with Track, then uses Hounds every turn.",
+Scroll of Biting,31 - 38 (32 - 39),"First scroll picks its first move randomly. Scrolls 2 and 3 starts with the next moves in the cycle Chomp -> Chew -> More Teeth. Scroll 4 (if present) starts with More Teeth. Then follows pattern Chomp -> More Teeth -> Chew, but after Chew picks randomly between Chomp and More Teeth and resumes pattern.","Starts with Paper Cuts 2 Paper Cuts X: Whenever you take unblocked attack damage from this enemy, lose X Max HP."
+Seapunk,44 - 46 (47 - 49),Cycles through Sea Kick -> Spinning Kick -> Bubble Burp.,
+Sewer Clam,56 (58),Alternates between Pressurize -> Jet.,Starts with Plating 8 (9).
+Shrinker Beetle,38 - 40 (40 - 42),Starts with Shrinker. Then alternates Chomp -> Stomp.,Shrink: Deal 30% reduced damage.
+Slimed Berserker,266 (276),Cycles through Vomit Ichor -> Furious Pummeling -> Leeching Hug -> Smother.,
+Slithering Strangler,53 - 55 (54 - 56),"Alternates between Constrict -> Thwack/Lash (chooses between Thwack and Lash at random, equally likely)","Constrict X: While the Slithering Strangler is alive, take X damage at the end of your turn."
+Sludge Spinner,37 - 39 (41 - 42),Starts with Oil Spray. Then chooses randomly between all allowed moves each turn. Cannot use any move twice in a row.,
+Slumbering Beetle,86 (89),Sleeps until it awakens. Then uses Roll Out every turn.,Starts with Plating 15 (18) and Slumber 3 Slumber X: Counter decreases after taking a turn or losing HP. Awakens at the end of its turn if counter has reached 0.
+Snapping Jaxfruit,31 - 33 (34 - 36),Always uses Energy Orb.,
+Spiny Toad,116 - 119 (121 - 124),Cycles through Protruding Spikes -> Spike Explosion -> Tongue Lash.,
+The Lost,93 (99),Alternates between Debilitating Smog -> Eye Lasers,
+The Forgotten,106 (111),Alternates between Miasma -> Dread.,
+The Obscura,123 (129),"Starts with Illusion. Then chooses randomly between Piercing Gaze, Wail, and Hardening Strike (allowed options equally likely). Cannot use any move twice in a row.",
+Parafright,21,Always uses Slam.,"Starts with Illusion. Illusion: When this dies, revives next turn at full HP (retains Strength after reviving)"
+Thieving Hopper,79 (84),"Always uses Thievery -> Flutter -> Hat Trick -> Nab -> Escape. If stunned before turn 5, resumes with the next intent in the pattern. If stunned on turn 5, tries to Escape again.","Starts with Escape Artist Escape Artist: Tries to escape the combat after 5 turns. Swipe: Upon killing this enemy, the stolen card is returned. Flutter X: Receives 50% less attack damage. Deal attack damage X times to remove Flutter and stun it."
+Toadpole,21 - 25 (22 - 26),Front Toadpole starts with Spiken. Non-front Toadpole(s) start with Whirl. Then continue following cycle Spike Spit -> Whirl -> Spiken (then repeat).,
+Tunneler,87 (92),"Starts with Bite -> Burrow. While Burrowed, always uses Below. After being stunned, loses Burrowed and uses Bite -> Burrow.",Burrowed: Block is not removed at the start of Tunneler's turn. Becomes stunned if all block is removed.
+Turret Operator,41 (51),Cycles through Unload -> Unload -> Reload.,
+Twig Slime (S),7 - 11 (8 - 12),Uses Tackle every turn.,
+Twig Slime (M),26 - 28 (27 - 29),"Starts with Sticky Shot -> Clump Shot. Then chooses randomly each turn between Sticky Shot and Clump Shot (allowed options equally likely). Cannot use Sticky Shot twice in a row, and cannot use Clump shot more than twice in a row.",
+Two-Tailed Rat,17 - 21 (18 - 22),"First Rat starts randomly with Scratch, Disesase Bite, or Screech. 2nd Rat has next move after it in the cycle Scratch -> Disease Bite -> Screech, and 3rd Rat has the next after that. A rat cannot Call for Backup until it has taken 2 turns. Each rat can only Call for Backup once. Only 1 rat can Call for Backup in any particular turn. Call for Backup can only be used 3 times total across all rats. If Call for Backup is not allowed for a rat, it picks randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). If Call for Backup is allowed for a rat, then it has a 75% chance to Call for Backup, and remaining 25% to pick randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). Screech has a 3 turn cooldown. Scratch and Disease Bite cannot be used twice in a row.",
+Vine Shambler,61 (64),Cycles through Swipe -> Grasping Vines -> Chomp.,Tangled X: Attacks cost 1 additional energy for X turns.
+Wriggler,17 - 21 (18 - 22),"If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",
+Bygone Effigy,127 (132),Starts with Sleep -> Wake -> Slash. Then uses Slash every turn after.,Starts with Slow Slow: Attacks deal 10% extra damage for every card played this turn.
+Byrdonis,91 - 94 (99),Alternates between Swoop -> Peck.,"Starts with Territorial 1 Territorial X: At the end of its turn, gains X strength."
+Decimillipede,42 - 48 (48 - 56),"First segment starts with a random move, second segment starts with the next move in the cycle Writhe -> Bulk -> Constrict, and third segment starts with the next move after that.",Starts with Reattach.
+(3 segments),"(always even #, segments have different max HP)","Cycles through Writhe -> Constrict -> Bulk. When killed, spends one turn dead and then one turn reviving with 25 HP. After reviving, continues the regular attack cycle from a random starting move.","Reattach: If other segments are still alive, revives after 2 turns with 25 HP."
+Entomancer,145 (155),"Cycles through Bees -> Spear -> Pheromone Spit. After reaching 3 stacks of Personal Hive, switches to gaining 2 strength when using Pheromone Spit.",Starts with Personal Hive 1 Personal Hive X: Add X Dazed to the draw pile whenever hit by an attack.
+Infested Prism,200 (215),Cycles through Jab -> Radiate -> Whirlwind -> Pulsate,"Starts with Vital Spark 1 Vital Spark X: The first time Infected Prism takes attack damage each turn, the attacked gains X energy."
+Flail Knight,101 (108),"Starts with Ram. Then chooses randomly between War Chant, Flail, and Ram (allowed options equally likely). Flail and Ram cannot be used more than twice in a row. War Chant cannot be used twice in a row.",
+Spectral Knight,93 (97),Starts with Hex and then Soul Slash. Then chooses randomly between Soul Slash and Soul Flame (allowed options equally likely). Soul Slash cannot be used more than twice in a row. Soul Flame cannot be used twice in a row.,"Hex: While Spectral Knight is alive, all your cards are ethereal."
+Magi Knight,82 (89),Cycles through Power Shield -> Dampen -> Spear -> Prep -> Magic Bomb.,"Dampen: While Magi Knight is alive, all your upgraded cards are downgraded."
+Mecha Knight,300 (320),Starts with Charge. Then cycles through Flamethrower -> Windup -> Heavy Cleave.,Starts with Artifact 3
+Phantasmal Gardener,28 - 32 (29 -33),"1st one starts with Flail, 2nd with Bite, 3rd with Lash, and 4th with Enlarge. Then cycle through Bite -> Lash -> Flail -> Enlarge.",Starts with Skittish 6 (7) Skittish X: First time hit each turn gain X block.
+Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,Starts with Infested 4 Infested X: Summons X Wrigglers after dying (they start stunned).
+Skulking Colony,79 (84),Cycles through Smash -> Zoom -> Inertia -> Super Crab.,Starts with Hardened Shell 20 Hardened Shell X: Cannot lose more than X HP per turn.
+Soul Nexus,234 (254),"Starts with Soul Burn. Then picks randomly between Soul Burn, Maelstrom, and Drain Life (all allowed options equally likely). Cannot use the same move twice in a row.",
+Terror Eel,140 (150),Cycles between Crash -> Thrash until it gets stunned by reaching 75 HP. Then uses Terror before cycling Crash -> Thrash again.,Starts with Shriek 75 Shriek X: Becomes Stunned after reaching X HP or below.
+Ceremonial Beast,252 (262),"Starts with Stamp. Then uses Plow every turn until it is stunned. After being stunned, cycles through Beast Cry -> Stomp -> Crush.","Plow X: The first time Ceremonial Beast's HP reaches X or below, it becomes stunned and loses all strength. Ringing: You can only play 1 card this turn."
+Door,155 (165),"Cycles through Dramatic Open -> Door Slam -> Enforce.
+
+On death, becomes Doormaker.",Starts with 3*N (4*N) strength Has 20*N (25*N) extra max HP. N = Number of times Door has been summoned (starts at N=0).
+Crusher,199 (209),Cycles through Thrash -> Enlarging Strike -> Bug Sting -> Adapt -> Guarded Strike.,"Starts with Back Attack and Crab Rage 5. Back Attack: Deals 50% more damage if attacking you from behind. Crab Rage X: When an ally dies, gains 5 strength and 99 block."
+Rocket,189 (199),Cycles through Targeting Reticle -> Precision Beam -> Charge Up -> Laser -> Recharge.,Starts with Back Attack and Crab Rage 5.
+Knowledge Demon,379 (399),Cycles through Curse of Knowledge -> Slap -> Knowledge Overwhelming -> Ponder until Curse of Knowledge has been used 3 times. Then cycles through Slap -> Knowledge Overwhelming -> Ponder.,Disintegration X: Take X damage at the end of your turn. (Stacks additively if selected multiple times) Mind Rot: Draw 1 fewer card at the start of your turn Sloth: You cannot play more than 3 cards per turn Waste Away: Gain 1 less energy at the start of your turn * Heal is multiplied by player count
+Lagavulin Matriarch,222 (233),Cycles through Slash -> Disembowel -> Slash 2 -> Soul Siphon.,"Starts with 12 Plating, and sleeps for 3 turns or until losing HP. On wakeup, all Plating is removed."
+Queen,400 (419),"Begins with Puppet Strings -> You Are Mine!
+
+Afterwards, while Amalgam is alive, always does Burn Bright For Me. If Amalgam dies and intent is Burn Bright For Me, intent is immediately replaced with Enrage.
+
+After Amalgam dies, cycles Off With Your Head -> Execution -> Enrage.","Starts with a Torch Head Amalgam in play. If Amalgam dies, and intent is Burn Bright For Me, Enrage instead."
+Torch Head Amalgam,199 (211),"Begins with Tackle -> Tackle.
+
+Afterwards, cycles Soul Beam -> Weak Tackle -> Weak Tackle.",
+Soul Fysh,211 (221),Cycles through Beckon -> De-Gas -> Gaze -> Fade -> Scream.,"Beckon: 1 cost status, lose 6 HP if it is in hand at the end of turn. * One of the 2 Intangible from Fade ticks down immediately."
+Test Subject Stage 1,100 (111),"Cycles through Bite -> Skull Bash.
+
+When killed, revive next turn in stage 2.","Starts with Enrage 3. Enrage X: Whenever you play a skill, gain X Strength."
+Test Subject Stage 2,200 (212),"Cycles through Multi-Claw -> Pounce.
+
+When killed, revive next turn in stage 3.",Starts with Painful Stabs 1. Painful Stabs X: Shuffle X Wounds into discard when inflicting unblocked damage.
+Test Subject Stage 3,300 (313),Cycles through Lacerate -> Big Pounce -> Burning Growl.,"Starts with Nemesis, which will immediately give 1 Intangible. Nemesis: At the end of every other turn, gain 1 Intangible."
+The Insatiable,321 (341),"Starts with Liquify Ground.
+
+Afterwards, cycles through Thrash -> Lunging Bite -> Salivate -> Thrash.","Sandpit X: In X turns, instantly die. Frantic Escape: 1 cost status, increase card cost and Sandpit by 1."
+Kin Priest,190 (199),Cycles through Orb of Frailty -> Orb of Weakness -> Beam -> Ritual.,
+Kin Follower,58 - 59 (62 - 63),Cycles through Quick Slash -> Boomerang -> Power Dance.,Kin Follower is a minion.
+(Minion),,,
+Vantom,173 (183),Cycles through Ink Blot -> Inky Lance -> Dismember -> Prepare.,"Starts with Slippery 9 Slippery X: The next X times this loses HP, only lose 1."
+Waterfall Giant,250 (260),Cycles through Pressurize -> Stomp -> Ram -> Siphon -> Pressure Gun -> Pressure Up.,"Steam Eruption X: After dying, wait 1 turn, then attack for X damage. * Heal is multiplied by player count"

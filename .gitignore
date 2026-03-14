@@ -1,0 +1,5 @@
+csv/
+*.xlsx
+data/moves - backup.csv
+__pycache__/
+*.pyc

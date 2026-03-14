@@ -1,0 +1,584 @@
+"""
+Reads data/enemies.csv, data/moves.csv, data/encounters.csv
+and generates a self-contained HTML file with all data baked in.
+"""
+import csv
+import json
+import os
+
+BASE = r"C:\Users\jparr\Documents\claude\sts2"
+DATA = os.path.join(BASE, "data")
+
+# ── Load CSVs ──
+def load_csv(name):
+    with open(os.path.join(DATA, name), 'r', encoding='utf-8') as f:
+        return list(csv.DictReader(f))
+
+enemies_raw = load_csv("enemies.csv")
+moves_raw = load_csv("moves.csv")
+encounters_raw = load_csv("encounters.csv")
+
+# ── Build enemy database (enemies + moves joined) ──
+enemy_db = {}
+for e in enemies_raw:
+    name = e["Name"]
+    enemy_db[name] = {
+        "hp": e["HP"],
+        "pattern": e["Pattern"],
+        "notes": e["Notes"],
+        "moves": []
+    }
+
+for m in moves_raw:
+    enemy_name = m["Enemy"]
+    if enemy_name in enemy_db:
+        enemy_db[enemy_name]["moves"].append({
+            "name": m["Move"],
+            "effects": m["Effects"],
+            "intent": m["Intent"]
+        })
+
+# ── Build encounters structure ──
+# { "overgrowth": { "easy": [...], "hard": [...], ... }, ... }
+zone_map = {"Overgrowth": "overgrowth", "Underdocks": "underdocks", "Hive": "hive", "Glory": "glory"}
+enc_struct = {}
+for enc in encounters_raw:
+    zone_key = zone_map.get(enc["Zone"], enc["Zone"].lower())
+    cat = enc["Category"]
+    if zone_key not in enc_struct:
+        enc_struct[zone_key] = {}
+    if cat not in enc_struct[zone_key]:
+        enc_struct[zone_key][cat] = []
+
+    # Parse enemy list
+    enemy_list = [e.strip() for e in enc["Enemies"].split(";") if e.strip()]
+
+    enc_struct[zone_key][cat].append({
+        "name": enc["Encounter"],
+        "enemies": enemy_list,
+        "multi": enc["Multi"],
+        "emoji": enc["Emoji"]
+    })
+
+# ── Serialize to JS ──
+enemy_db_js = json.dumps(enemy_db, ensure_ascii=False, indent=2)
+enc_js = json.dumps(enc_struct, ensure_ascii=False, indent=2)
+
+# ── Generate HTML ──
+html = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STS2 Enemy Reference</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+
+  body {{
+    background: #0a0a12;
+    color: #e0ddd4;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }}
+
+  /* ── Header ── */
+  header {{
+    text-align: center;
+    padding: 24px 16px 8px;
+    border-bottom: 1px solid #2a2a3a;
+  }}
+  header h1 {{
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: #c8b06a;
+    text-transform: uppercase;
+  }}
+  header p {{ font-size: 0.8rem; color: #666; margin-top: 4px; }}
+
+  /* ── Act Selector ── */
+  .act-bar {{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 16px 12px;
+    flex-wrap: wrap;
+  }}
+  .act-card {{
+    width: 200px;
+    height: 120px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }}
+  .act-card:hover {{ transform: translateY(-3px); filter: brightness(1.15); }}
+  .act-card.selected {{ border-color: #c8b06a; box-shadow: 0 0 20px rgba(200,176,106,0.25); }}
+  .act-card .act-label {{ font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; }}
+  .act-card .act-name {{ font-size: 1.1rem; font-weight: 700; margin-top: 2px; }}
+
+  .act-overgrowth {{ background: linear-gradient(135deg, #1a3a1a 0%, #0d1f0d 60%, #2a5a2a 100%); border-color: #2a5a2a; }}
+  .act-underdocks {{ background: linear-gradient(135deg, #1a2a3a 0%, #0d1520 60%, #1a3a5a 100%); border-color: #1a3a5a; }}
+  .act-hive {{ background: linear-gradient(135deg, #3a2a1a 0%, #201510 60%, #5a3a1a 100%); border-color: #5a3a1a; }}
+  .act-glory {{ background: linear-gradient(135deg, #2a1a3a 0%, #150d20 60%, #3a1a5a 100%); border-color: #3a1a5a; }}
+
+  /* ── Category Tabs ── */
+  .category-tabs {{
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 8px 16px;
+    border-bottom: 1px solid #1a1a2a;
+  }}
+  .cat-tab {{
+    padding: 10px 28px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }}
+  .cat-tab:hover {{ color: #aaa; }}
+  .cat-tab.active {{ color: #c8b06a; border-bottom-color: #c8b06a; }}
+  .cat-tab[data-cat="easy"].active {{ color: #6abf69; border-bottom-color: #6abf69; }}
+  .cat-tab[data-cat="hard"].active {{ color: #d4a843; border-bottom-color: #d4a843; }}
+  .cat-tab[data-cat="elite"].active {{ color: #d46a6a; border-bottom-color: #d46a6a; }}
+  .cat-tab[data-cat="boss"].active {{ color: #b06ad4; border-bottom-color: #b06ad4; }}
+
+  /* ── Enemy Grid ── */
+  .enemy-grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 24px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }}
+  .enemy-card {{
+    background: #14141f;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #1e1e2e;
+    transition: all 0.2s;
+    position: relative;
+  }}
+  .enemy-card:hover {{
+    border-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }}
+  .enemy-thumb {{
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+  }}
+  .enemy-card[data-cat="easy"] .enemy-thumb {{ background: linear-gradient(135deg, #1a2e1a, #0f1a0f); }}
+  .enemy-card[data-cat="hard"] .enemy-thumb {{ background: linear-gradient(135deg, #2e2a1a, #1a150d); }}
+  .enemy-card[data-cat="elite"] .enemy-thumb {{ background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }}
+  .enemy-card[data-cat="boss"] .enemy-thumb {{ background: linear-gradient(135deg, #251a2e, #150d1a); }}
+  .enemy-name {{
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }}
+  .enemy-card .multi-badge {{
+    position: absolute;
+    bottom: 36px;
+    left: 6px;
+    font-size: 0.6rem;
+    background: rgba(200,176,106,0.2);
+    color: #c8b06a;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }}
+
+  /* ── Detail Panel ── */
+  .detail-overlay {{
+    display: none;
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 520px;
+    max-width: 92vw;
+    background: #12121c;
+    border-left: 1px solid #2a2a3a;
+    z-index: 100;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+    animation: slideIn 0.2s ease-out;
+  }}
+  .detail-overlay.open {{ display: block; }}
+  @keyframes slideIn {{
+    from {{ transform: translateX(40px); opacity: 0; }}
+    to {{ transform: translateX(0); opacity: 1; }}
+  }}
+  .detail-header {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #1e1e2e;
+    position: sticky;
+    top: 0;
+    background: #12121c;
+    z-index: 1;
+  }}
+  .detail-header h2 {{ font-size: 1.2rem; color: #c8b06a; }}
+  .detail-close {{
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+  }}
+  .detail-close:hover {{ color: #fff; }}
+  .detail-body {{ padding: 20px 24px; }}
+  .detail-body .hp-bar {{
+    display: inline-block;
+    background: #2a1a1a;
+    border: 1px solid #5a2a2a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    color: #e66;
+    margin-bottom: 16px;
+  }}
+  .detail-body h3 {{
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 16px 0 8px;
+  }}
+  .detail-body table {{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }}
+  .detail-body th {{
+    text-align: left;
+    padding: 6px 10px;
+    background: #1a1a28;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }}
+  .detail-body td {{
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a1a28;
+    vertical-align: top;
+  }}
+  .detail-body tr:hover td {{ background: #161620; }}
+  .detail-body .pattern-text {{
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #aaa;
+    background: #16161f;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #c8b06a;
+  }}
+  .detail-body .notes {{
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+    margin-top: 12px;
+    padding: 10px;
+    background: #14141c;
+    border-radius: 6px;
+  }}
+
+  /* ── Intent Icons ── */
+  .intent-icons {{
+    display: inline-flex;
+    gap: 3px;
+    vertical-align: middle;
+  }}
+  .intent-icon {{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 11px;
+  }}
+  .intent-attack {{ background: #8b2020; color: #ff6b6b; }}
+  .intent-multi_attack {{ background: #8b2020; color: #ff6b6b; }}
+  .intent-block {{ background: #1a3a5a; color: #6ab0e6; }}
+  .intent-buff {{ background: #3a3a1a; color: #e6d46a; }}
+  .intent-debuff {{ background: #2a1a3a; color: #b06ae6; }}
+  .intent-add_statuses {{ background: #1a3a2a; color: #6ae6a0; }}
+  .intent-affliction {{ background: #3a1a2a; color: #e66a9a; }}
+  .intent-summon {{ background: #2a2a1a; color: #c8b06a; }}
+  .intent-sleeping {{ background: #1a1a2a; color: #8888aa; }}
+  .intent-deathblow {{ background: #5a1a1a; color: #ff4444; }}
+  .intent-escape {{ background: #1a2a1a; color: #88aa88; }}
+  .intent-unknown {{ background: #2a2a2a; color: #888; }}
+
+  /* ── Enemy separator in detail panel ── */
+  .enemy-section {{
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #2a2a3a;
+  }}
+  .enemy-section:first-child {{
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }}
+  .enemy-section-name {{
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #c8b06a;
+    margin-bottom: 8px;
+  }}
+
+  /* ── Backdrop ── */
+  .backdrop {{
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }}
+  .backdrop.open {{ display: block; }}
+
+  .section-label {{
+    text-align: center;
+    padding: 16px;
+    color: #555;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }}
+
+  @media (max-width: 600px) {{
+    .act-card {{ width: 160px; height: 90px; }}
+    .enemy-grid {{ grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }}
+    .detail-overlay {{ width: 100vw; }}
+  }}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Slay the Spire 2 — Enemy Reference</h1>
+  <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
+</header>
+
+<div class="act-bar">
+  <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
+    <div class="act-label">Act 1</div>
+    <div class="act-name">&#127807; Overgrowth</div>
+  </div>
+  <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
+    <div class="act-label">Act 1</div>
+    <div class="act-name">&#127754; Underdocks</div>
+  </div>
+  <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
+    <div class="act-label">Act 2</div>
+    <div class="act-name">&#128027; The Hive</div>
+  </div>
+  <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
+    <div class="act-label">Act 3</div>
+    <div class="act-name">&#128081; The Glory</div>
+  </div>
+</div>
+
+<div class="category-tabs">
+  <div class="cat-tab active" data-cat="easy" onclick="selectCat('easy')">Easy</div>
+  <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
+  <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
+  <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
+</div>
+
+<div class="section-label" id="section-label">Act 1: Overgrowth — Easy Encounters</div>
+<div class="enemy-grid" id="enemy-grid"></div>
+
+<div class="backdrop" id="backdrop" onclick="closeDetail()"></div>
+<div class="detail-overlay" id="detail-panel">
+  <div class="detail-header">
+    <h2 id="detail-name">Enemy Name</h2>
+    <button class="detail-close" onclick="closeDetail()">&#10005;</button>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA (auto-generated from CSVs)
+// ══════════════════════════════════════════
+
+const enemyDatabase = {enemy_db_js};
+
+const encounters = {enc_js};
+
+// ══════════════════════════════════════════
+// INTENT ICON MAP
+// ══════════════════════════════════════════
+
+const intentIcons = {{
+  "attack": "&#9876;",
+  "multi_attack": "&#9876;&#9876;",
+  "block": "&#128737;",
+  "buff": "&#11014;",
+  "debuff": "&#9760;",
+  "add_statuses": "&#128220;",
+  "affliction": "&#128148;",
+  "summon": "&#10010;",
+  "sleeping": "&#128164;",
+  "deathblow": "&#128128;",
+  "escape": "&#128168;",
+  "unknown": "&#63;"
+}};
+
+function renderIntents(intentStr) {{
+  if (!intentStr) return '';
+  return intentStr.split(',').map(i => {{
+    const key = i.trim();
+    const icon = intentIcons[key] || '?';
+    return `<span class="intent-icon intent-${{key}}" title="${{key}}">${{icon}}</span>`;
+  }}).join('');
+}}
+
+// ══════════════════════════════════════════
+// UI LOGIC
+// ══════════════════════════════════════════
+
+const actNames = {{
+  overgrowth: "Act 1: Overgrowth",
+  underdocks: "Act 1: Underdocks",
+  hive: "Act 2: The Hive",
+  glory: "Act 3: The Glory",
+}};
+const catNames = {{ easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" }};
+
+let currentAct = "overgrowth";
+let currentCat = "easy";
+
+function selectAct(act) {{
+  currentAct = act;
+  document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
+  document.querySelector(`.act-card[data-act="${{act}}"]`).classList.add('selected');
+  render();
+}}
+
+function selectCat(cat) {{
+  currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.cat-tab[data-cat="${{cat}}"]`).classList.add('active');
+  render();
+}}
+
+function render() {{
+  const grid = document.getElementById('enemy-grid');
+  const label = document.getElementById('section-label');
+  label.textContent = `${{actNames[currentAct]}} — ${{catNames[currentCat]}}`;
+
+  const encs = encounters[currentAct]?.[currentCat] || [];
+  grid.innerHTML = encs.map(e => `
+    <div class="enemy-card" data-cat="${{currentCat}}" onclick="openEncounter('${{e.name.replace(/'/g, "\\\\'")}}')">
+      <div class="enemy-thumb">
+        ${{e.emoji}}
+        ${{e.multi ? `<span class="multi-badge">${{e.multi}}</span>` : ''}}
+      </div>
+      <div class="enemy-name">${{e.name}}</div>
+    </div>
+  `).join('');
+}}
+
+function renderEnemySection(name) {{
+  const data = enemyDatabase[name];
+  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${{name}}</div><p style="color:#666;">No data available.</p></div>`;
+
+  const movesHtml = data.moves.map(m => `
+    <tr>
+      <td><span class="intent-icons">${{renderIntents(m.intent)}}</span></td>
+      <td><strong>${{m.name}}</strong></td>
+      <td>${{m.effects.replace(/;/g, '<br>')}}</td>
+    </tr>
+  `).join('');
+
+  const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${{data.notes}}</div>` : '';
+
+  return `
+    <div class="enemy-section">
+      <div class="enemy-section-name">${{name}}</div>
+      <div class="hp-bar">&#10084;&#65039; HP: ${{data.hp}}</div>
+
+      <h3>Attack Pattern</h3>
+      <div class="pattern-text">${{data.pattern}}</div>
+
+      <h3>Moves</h3>
+      <table>
+        <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
+        ${{movesHtml}}
+      </table>
+
+      ${{notesHtml}}
+    </div>
+  `;
+}}
+
+function openEncounter(encounterName) {{
+  const panel = document.getElementById('detail-panel');
+  const backdrop = document.getElementById('backdrop');
+  document.getElementById('detail-name').textContent = encounterName;
+
+  // Find the encounter to get its enemy list
+  const encs = encounters[currentAct]?.[currentCat] || [];
+  const enc = encs.find(e => e.name === encounterName);
+
+  if (enc && enc.enemies && enc.enemies.length > 0) {{
+    // Multi-enemy encounter: show each enemy's section
+    const sections = enc.enemies
+      .filter((name, idx, arr) => arr.indexOf(name) === idx)  // dedupe
+      .map(name => renderEnemySection(name))
+      .join('');
+    document.getElementById('detail-body').innerHTML = sections;
+  }} else {{
+    // Single enemy or fallback: try direct lookup
+    document.getElementById('detail-body').innerHTML = renderEnemySection(encounterName);
+  }}
+
+  panel.classList.add('open');
+  backdrop.classList.add('open');
+}}
+
+function closeDetail() {{
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('open');
+}}
+
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') closeDetail(); }});
+render();
+</script>
+</body>
+</html>
+'''
+
+out_path = os.path.join(BASE, "ui_mockup.html")
+with open(out_path, 'w', encoding='utf-8') as f:
+    f.write(html)
+
+print(f"Generated {out_path}")
+print(f"  {len(enemy_db)} enemies, encounters across {len(enc_struct)} zones")
