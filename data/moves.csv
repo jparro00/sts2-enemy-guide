@@ -284,7 +284,7 @@ Vantom,Dismember,Damage 27 (30); Add 3 Wounds into discard,"attack, add_statuses
 Vantom,Prepare,Gain 2 Strength,buff
 Waterfall Giant,Pressurize,Gain 15 (20) Steam Eruption,unknown
 Waterfall Giant,Stomp,Damage 15 (16); Apply 1 Weak; Gain 3 Steam Eruption,"attack, debuff"
-Waterfall Giant,Ram,Damage 10 (11); Gain 3 Steam Eruption,attack
+Waterfall Giant,Ram,Damage 10 (11); Gain 3 Steam Eruption,"attack, buff"
 Waterfall Giant,Siphon,Heal 15*; Gain 3 Steam Eruption,buff
 Waterfall Giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 Steam Eruption,attack
 Waterfall Giant,Pressure Up,Damage 13 (14); Gain 3 Steam Eruption,attack

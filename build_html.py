@@ -5,6 +5,7 @@ and generates a self-contained HTML file with all data baked in.
 import csv
 import json
 import os
+import base64
 
 BASE = r"C:\Users\jparr\Documents\claude\sts2"
 DATA = os.path.join(BASE, "data")
@@ -53,11 +54,21 @@ for enc in encounters_raw:
     # Parse enemy list
     enemy_list = [e.strip() for e in enc["Enemies"].split(";") if e.strip()]
 
+    # Embed image as base64 if present
+    img_b64 = ""
+    img_file = enc.get("Image", "").strip()
+    if img_file:
+        img_path = os.path.join(DATA, img_file)
+        if os.path.exists(img_path):
+            with open(img_path, "rb") as imgf:
+                img_b64 = base64.b64encode(imgf.read()).decode("ascii")
+
     enc_struct[zone_key][cat].append({
         "name": enc["Encounter"],
         "enemies": enemy_list,
         "multi": enc["Multi"],
-        "emoji": enc["Emoji"]
+        "emoji": enc["Emoji"],
+        "image": img_b64
     })
 
 # ── Serialize to JS ──
@@ -498,7 +509,7 @@ function render() {{
   grid.innerHTML = encs.map(e => `
     <div class="enemy-card" data-cat="${{currentCat}}" onclick="openEncounter('${{e.name.replace(/'/g, "\\\\'")}}')">
       <div class="enemy-thumb">
-        ${{e.emoji}}
+        ${{e.image ? `<img src="data:image/png;base64,${{e.image}}" alt="${{e.name}}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">` : e.emoji}}
         ${{e.multi ? `<span class="multi-badge">${{e.multi}}</span>` : ''}}
       </div>
       <div class="enemy-name">${{e.name}}</div>
