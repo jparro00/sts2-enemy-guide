@@ -2,7 +2,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Image
 1,Overgrowth,easy,Fuzzy Wurm Crawler,Fuzzy Wurm Crawler,,🐛,Fuzzy Wurm Crawler.png
 1,Overgrowth,easy,Nibbits,Nibbit,,🐀,
 1,Overgrowth,easy,Shrinker Beetle,Shrinker Beetle,,🪲,
-1,Overgrowth,easy,Slimes,Leaf Slime (Small); Leaf Slime (Medium); Twig Slime (S); Leaf Slime (Medium),4 enemies,🟢,
+1,Overgrowth,easy,Slimes,Leaf Slime (Small); Leaf Slime (Medium); Twig Slime (Small); Leaf Slime (Medium),4 enemies,🟢,
 1,Overgrowth,hard,Cubex Construct,Cubex Construct,,🔷,
 1,Overgrowth,hard,Flyconid,Leaf Slime (Medium); Flyconid; Leaf Slime (Medium),3 enemies,🍄,
 1,Overgrowth,hard,Fogmog,Fogmog,,🌫️,
@@ -11,7 +11,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Image
 1,Overgrowth,hard,Nibbits,Nibbit; Nibbit,2 enemies,🐀,
 1,Overgrowth,hard,Overgrowth Crawlers,Shrinker Beetle; Fuzzy Wurm Crawler,2 enemies,🐛,
 1,Overgrowth,hard,Ruby Raiders,Ruby Raider (Assassin); Ruby Raider (Axe); Ruby Raider (Brute); Ruby Raider (Crossbow); Ruby Raider (Tracker),5 enemies,💎,
-1,Overgrowth,hard,Slimes,Twig Slime (M); Leaf Slime (Medium); Leaf Slime (Small); Twig Slime (S),4 enemies,🟢,
+1,Overgrowth,hard,Slimes,Twig Slime (Medium); Leaf Slime (Medium); Leaf Slime (Small); Twig Slime (Small),4 enemies,🟢,
 1,Overgrowth,hard,Slithering Strangler,Snapping Jaxfruit; Leaf Slime (Medium); Leaf Slime (Small); Slithering Strangler; Leaf Slime (Medium); Leaf Slime (Small),6 enemies,🐍,
 1,Overgrowth,hard,Snapping Jaxfruit,Snapping Jaxfruit; Flyconid,2 enemies,🌺,
 1,Overgrowth,hard,Vine Shambler,Vine Shambler,,🌿,

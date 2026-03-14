@@ -162,9 +162,9 @@ Tunneler,Burrow,Gain Burrowed; Block 32 (37),"block, buff"
 Tunneler,Below,Damage 23 (26),attack
 Turret Operator,Unload,Damage 3x5 (4x5),multi_attack
 Turret Operator,Reload,Gain 1 Strength,buff
-Twig Slime (S),Tackle,Damage 4 (5),attack
-Twig Slime (M),Clump Shot,Damage 11 (12),attack
-Twig Slime (M),Sticky Shot,Add 1 Slimed to Discard,add_statuses
+Twig Slime (Small),Tackle,Damage 4 (5),attack
+Twig Slime (Medium),Clump Shot,Damage 11 (12),attack
+Twig Slime (Medium),Sticky Shot,Add 1 Slimed to Discard,add_statuses
 Two-Tailed Rat,Scratch,Damage 8 (9),attack
 Two-Tailed Rat,Disease Bite,Damage 6 (7),attack
 Two-Tailed Rat,Screech,Apply 1 Frail,debuff

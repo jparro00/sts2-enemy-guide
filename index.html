@@ -250,6 +250,7 @@
     display: inline-flex;
     gap: 3px;
     vertical-align: middle;
+    cursor: default;
   }
   .intent-icon {
     display: inline-block;
@@ -259,16 +260,18 @@
     text-align: center;
     line-height: 18px;
     font-size: 11px;
+    cursor: default;
+    user-select: none;
   }
   .intent-attack { background: #8b2020; color: #ff6b6b; }
   .intent-multi_attack { background: #8b2020; color: #ff6b6b; }
   .intent-block { background: #1a3a5a; color: #6ab0e6; }
-  .intent-buff { background: #3a3a1a; color: #e6d46a; }
-  .intent-debuff { background: #2a1a3a; color: #b06ae6; }
-  .intent-add_statuses { background: #1a3a2a; color: #6ae6a0; }
+  .intent-buff { background: #1a2a4a; color: #6ab0ff; }
+  .intent-debuff { background: #4a1a1a; color: #ff5555; }
+  .intent-add_statuses { background: #2a1a3a; color: #b06ae6; }
   .intent-affliction { background: #3a1a2a; color: #e66a9a; }
-  .intent-summon { background: #2a2a1a; color: #c8b06a; }
-  .intent-sleeping { background: #1a1a2a; color: #8888aa; }
+  .intent-summon { background: #2a1a3a; color: #b06ae6; }
+  .intent-sleeping { background: #2a2a1a; color: #e6d46a; }
   .intent-deathblow { background: #5a1a1a; color: #ff4444; }
   .intent-escape { background: #1a2a1a; color: #88aa88; }
   .intent-unknown { background: #2a2a2a; color: #888; }
@@ -283,6 +286,21 @@
     margin-top: 0;
     padding-top: 0;
     border-top: none;
+  }
+  .enemy-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .enemy-section-info { flex: 1; }
+  .enemy-section-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #2a2a3a;
+    flex-shrink: 0;
   }
   .enemy-section-name {
     font-size: 0.95rem;
@@ -376,10 +394,40 @@
 // ══════════════════════════════════════════
 
 function parseCSV(text) {
-  const lines = text.split('\n').filter(l => l.trim());
-  if (lines.length === 0) return [];
+  // Split into logical lines, respecting quoted fields that span multiple lines
+  function splitLogicalLines(text) {
+    const lines = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQuotes) {
+        if (ch === '"' && text[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = false;
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') {
+          inQuotes = true;
+          current += ch;
+        } else if (ch === '\n' || ch === '\r') {
+          if (ch === '\r' && text[i + 1] === '\n') i++;
+          if (current.trim()) lines.push(current);
+          current = '';
+          continue;
+        } else {
+          current += ch;
+        }
+      }
+    }
+    if (current.trim()) lines.push(current);
+    return lines;
+  }
 
-  // Parse a single CSV line respecting quoted fields
   function parseLine(line) {
     const fields = [];
     let current = '';
@@ -410,6 +458,9 @@ function parseCSV(text) {
     return fields;
   }
 
+  const lines = splitLogicalLines(text);
+  if (lines.length === 0) return [];
+
   const headers = parseLine(lines[0]);
   return lines.slice(1).map(line => {
     const values = parseLine(line);
@@ -427,10 +478,11 @@ let enemyDatabase = {};
 let encounters = {};
 
 async function loadData() {
+  const bust = '?v=' + Date.now();
   const [enemiesText, movesText, encountersText] = await Promise.all([
-    fetch('data/enemies.csv').then(r => r.text()),
-    fetch('data/moves.csv').then(r => r.text()),
-    fetch('data/encounters.csv').then(r => r.text()),
+    fetch('data/enemies.csv' + bust).then(r => r.text()),
+    fetch('data/moves.csv' + bust).then(r => r.text()),
+    fetch('data/encounters.csv' + bust).then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -507,12 +559,12 @@ const intentIcons = {
   "multi_attack": "&#9876;&#9876;",
   "block": "&#128737;",
   "buff": "&#11014;",
-  "debuff": "&#9760;",
+  "debuff": "&#11015;",
   "add_statuses": "&#128220;",
   "affliction": "&#128148;",
-  "summon": "&#10010;",
+  "summon": "&#128128;",
   "sleeping": "&#128164;",
-  "deathblow": "&#128128;",
+  "deathblow": "&#9760;",
   "escape": "&#128168;",
   "unknown": "&#63;"
 };
@@ -586,10 +638,17 @@ function renderEnemySection(name) {
 
   const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
 
+  const imgSrc = `data/media/enemies/${name}.png`;
+
   return `
     <div class="enemy-section">
-      <div class="enemy-section-name">${name}</div>
-      <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+      <div class="enemy-section-header">
+        <div class="enemy-section-info">
+          <div class="enemy-section-name">${name}</div>
+          <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+        </div>
+        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
+      </div>
 
       <h3>Attack Pattern</h3>
       <div class="pattern-text">${data.pattern}</div>
