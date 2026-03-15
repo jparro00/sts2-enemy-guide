@@ -451,6 +451,26 @@
     margin-bottom: 8px;
   }
 
+  /* ── Category Group Headers ── */
+  .cat-group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    padding: 16px 0 8px;
+    border-bottom: 1px solid #1a1a2a;
+    margin-bottom: 12px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .cat-group-label.cat-easy { color: #6abf69; border-bottom-color: #2a4a2a; }
+  .cat-group-label.cat-hard { color: #d4a843; border-bottom-color: #4a3a1a; }
+  .cat-group-label.cat-elite { color: #d46a6a; border-bottom-color: #4a1a1a; }
+  .cat-group-label.cat-boss { color: #b06ad4; border-bottom-color: #3a1a4a; }
+
   /* ── Loading state ── */
   .loading {
     text-align: center;
@@ -470,7 +490,7 @@
 
 <header>
   <h1>Slay the Spire 2 — Enemy Reference</h1>
-  <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
+  <p>Click an act &rarr; tap an encounter for details</p>
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
     <button class="search-clear" id="search-clear" onclick="clearSearch()">&times;</button>
@@ -499,13 +519,14 @@
 </div>
 
 <div class="category-tabs">
-  <div class="cat-tab active" data-cat="easy" onclick="selectCat('easy')">Easy</div>
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
+  <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
   <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
   <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
   <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
 </div>
 
-<div class="section-label" id="section-label">Act 1: Overgrowth — Easy Encounters</div>
+<div class="section-label" id="section-label">Act 1: Overgrowth — All Encounters</div>
 <div class="enemy-grid" id="enemy-grid"><div class="loading">Loading data...</div></div>
 
 <div class="backdrop" id="backdrop" onclick="closeDetail()"></div>
@@ -742,15 +763,18 @@ const actNames = {
   hive: "Act 2: Hive",
   glory: "Act 3: Glory",
 };
-const catNames = { easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
+const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
 
 let currentAct = "overgrowth";
-let currentCat = "easy";
+let currentCat = "all";
 
 function selectAct(act) {
   currentAct = act;
+  currentCat = "all";
   document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
   document.querySelector(`.act-card[data-act="${act}"]`).classList.add('selected');
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.cat-tab[data-cat="all"]').classList.add('active');
   render();
 }
 
@@ -761,17 +785,12 @@ function selectCat(cat) {
   render();
 }
 
-function render() {
-  const grid = document.getElementById('enemy-grid');
-  const label = document.getElementById('section-label');
-  label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
-
-  const encs = encounters[currentAct]?.[currentCat] || [];
-  grid.innerHTML = encs.map(e => {
-    const img = getEncounterImageHtml(e, currentCat);
+function renderCards(encs, cat) {
+  return encs.map(e => {
+    const img = getEncounterImageHtml(e, cat);
     const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
     return `
-    <div class="enemy-card" data-cat="${currentCat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}')">
+    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}', '${currentAct}', '${cat}')">
       <div class="${thumbClass}">
         ${img.html}
         ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
@@ -779,6 +798,32 @@ function render() {
       <div class="enemy-name">${e.name}</div>
     </div>`;
   }).join('');
+}
+
+function render() {
+  const grid = document.getElementById('enemy-grid');
+  const label = document.getElementById('section-label');
+  label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
+
+  if (currentCat === 'all') {
+    // Show all categories grouped with headers
+    let html = '';
+    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+      const encs = encounters[currentAct]?.[cat] || [];
+      if (encs.length === 0) continue;
+      html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;
+      html += `<div class="enemy-grid">${renderCards(encs, cat)}</div>`;
+    }
+    grid.innerHTML = '';
+    grid.className = '';
+    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+  } else {
+    const encs = encounters[currentAct]?.[currentCat] || [];
+    // Restore grid class if it was removed by "all" view
+    const container = document.getElementById('enemy-grid');
+    container.className = 'enemy-grid';
+    container.innerHTML = renderCards(encs, currentCat);
+  }
 }
 
 function formatMultiBadge(multi) {
@@ -876,9 +921,14 @@ document.addEventListener('keydown', e => {
 // SEARCH
 // ══════════════════════════════════════════
 
-const browseElements = ['act-bar', 'category-tabs', 'section-label', 'enemy-grid'].map(id =>
-  document.querySelector(`.${id}`) || document.getElementById(id)
-);
+function getBrowseElements() {
+  return [
+    document.querySelector('.act-bar'),
+    document.querySelector('.category-tabs'),
+    document.getElementById('section-label'),
+    document.getElementById('enemy-grid'),
+  ];
+}
 
 function clearSearch() {
   const input = document.getElementById('search-input');
@@ -895,12 +945,12 @@ function onSearch(query) {
 
   if (!q) {
     results.style.display = 'none';
-    browseElements.forEach(el => { if (el) el.style.display = ''; });
+    getBrowseElements().forEach(el => { if (el) el.style.display = ''; });
     return;
   }
 
   // Hide browse UI, show search results
-  browseElements.forEach(el => { if (el) el.style.display = 'none'; });
+  getBrowseElements().forEach(el => { if (el) el.style.display = 'none'; });
   results.style.display = 'block';
 
   // Search all encounters across all acts/categories
