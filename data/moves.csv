@@ -251,7 +251,7 @@ Lagavulin Matriarch,Slash 2,Damage 12 (14); Block 12 (14),"attack, block"
 Lagavulin Matriarch,Soul Siphon,Apply -2 Strength; Apply -2 Dexterity; Gain 2 Strength,"buff, debuff"
 Queen,Puppet Strings,Apply Chains of Binding 3,affliction
 Queen,You Are Mine!,Apply 99 Frail; Apply 99 Weak; Apply 99 Vulnerable,debuff
-Queen,Burn Bright For Me,Give allies 1 Strength; Block 20,block
+Queen,Burn Bright For Me,Give allies 1 Strength; Block 20,"buff, block"
 Queen,Off With Your Head,Damage 3x5 (4x5),multi_attack
 Queen,Execution,Damage 15 (18),attack
 Queen,Enrage,Gain 2 Strength,buff
@@ -265,7 +265,7 @@ Soul Fysh,Fade,Gain 2* Intangible,buff
 Soul Fysh,Scream,Damage 11 (12); Apply 3 Vulnerable,"attack, debuff"
 Test Subject Stage 1,Bite,Damage 20 (22),attack
 Test Subject Stage 1,Skull Bash,Damage 14 (16); Apply 1 Vulnerable,"attack, debuff"
-Test Subject Stage 2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used),attack
+Test Subject Stage 2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used),multi_attack
 Test Subject Stage 2,Pounce,Damage 30 (32),attack
 Test Subject Stage 3,Lacerate,Damage 10x3 (11x3),multi_attack
 Test Subject Stage 3,Big Pounce,Damage 45,attack
