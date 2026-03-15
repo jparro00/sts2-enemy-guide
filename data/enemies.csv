@@ -90,6 +90,7 @@ Ceremonial Beast,252 (262),"Starts with Stamp. Then uses Plow every turn until i
 Door,155 (165),"Cycles through Dramatic Open -> Door Slam -> Enforce.
 
 On death, becomes Doormaker.",Starts with 3*N (4*N) strength Has 20*N (25*N) extra max HP. N = Number of times Door has been summoned (starts at N=0).
+Doormaker,489 (512), "Starts stunned on the turn it's phased, then does Beam -> Get Back In.", "Starts the fight as Door."
 Crusher,199 (209),Cycles through Thrash -> Enlarging Strike -> Bug Sting -> Adapt -> Guarded Strike.,"Starts with Back Attack and Crab Rage 5. Back Attack: Deals 50% more damage if attacking you from behind. Crab Rage X: When an ally dies, gains 5 strength and 99 block."
 Rocket,189 (199),Cycles through Targeting Reticle -> Precision Beam -> Charge Up -> Laser -> Recharge.,Starts with Back Attack and Crab Rage 5.
 Knowledge Demon,379 (399),Cycles through Curse of Knowledge -> Slap -> Knowledge Overwhelming -> Ponder until Curse of Knowledge has been used 3 times. Then cycles through Slap -> Knowledge Overwhelming -> Ponder.,Disintegration X: Take X damage at the end of your turn. (Stacks additively if selected multiple times) Mind Rot: Draw 1 fewer card at the start of your turn Sloth: You cannot play more than 3 cards per turn Waste Away: Gain 1 less energy at the start of your turn * Heal is multiplied by player count

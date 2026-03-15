@@ -21,7 +21,7 @@ Cubex Construct,Charge Up,Gain 2 Strength,buff
 Cubex Construct,Repeater Blast,Damage 7 (8); Gain 2 Strength,"attack, buff"
 Cubex Construct,Expel Blast,Damage 5x2 (6x2),multi_attack
 Cubex Construct,Submerge,Block 15,block
-Damp Cultist,Incantation,Ritual 5 (6),unknown
+Damp Cultist,Incantation,Ritual 5 (6),buff
 Damp Cultist,Dark Strike,Damage 1 (3),attack
 Devoted Sculptor,Forbidden Incantation,Gain 9 Ritual.,buff
 Devoted Sculptor,Savage,Damage 12 (15),attack
@@ -149,7 +149,7 @@ The Obscura,Piercing Gaze,Damage 10 (11),attack
 The Obscura,Wail,Allies gain 3 Strength,buff
 The Obscura,Hardening Strike,Damage 6 (7); Block 6 (7),"attack, block"
 Parafright,Slam,Damage 16 (17),attack
-Thieving Hopper,Thievery,"Damage 17 (19); Steal 1 card and gain Swipe; (Stolen card is taken from draw or discard pile. Chooses a random card with priorities: 1. non-imbued uncommon card, 2. non-imbued common, rare, or event card, 3. non-imbued basic or quest card, 4. imbued or ancient card, 5. curse or anything else); (Warning: Game softlocks if Thieving Hopper cannot find a valid target to steal)",attack
+Thieving Hopper,Thievery,"Damage 17 (19); Steal 1 card and gain Swipe; (Stolen card is taken from draw or discard pile. Chooses a random card with priorities: 1. non-imbued uncommon card, 2. non-imbued common, rare, or event card, 3. non-imbued basic or quest card, 4. imbued or ancient card, 5. curse or anything else); (Warning: Game softlocks if Thieving Hopper cannot find a valid target to steal)","attack, affliction"
 Thieving Hopper,Nab,Damage 14 (16),attack
 Thieving Hopper,Hat Trick,Damage 21 (23),attack
 Thieving Hopper,Flutter,Gain Flutter 5,buff
@@ -225,6 +225,9 @@ Ceremonial Beast,Plow,Damage 18 (20); Gains 2 Strength,attack
 Ceremonial Beast,Beast Cry,Apply Ringing,debuff
 Ceremonial Beast,Stomp,Damage 15 (17),attack
 Ceremonial Beast,Crush,Damage 17 (19); Gains 3 (4) Strength,attack
+Doormaker, Stunned, Stunned for 1 turn, stun
+Doormaker, Beam, Damage 31 (34),attack
+Doormaker, Get Back In, Damage 40 (45); Gains 4 Strength; Becomes Door,"attack,buff,escape"
 Door,Dramatic Open,Damage 25 (28),attack
 Door,Door Slam,Damage 15x2,multi_attack
 Door,Enforce,Damage 20; Gain 3 (4) Strength,"attack, buff"
@@ -246,7 +249,7 @@ Lagavulin Matriarch,Slash,Damage 19 (21),attack
 Lagavulin Matriarch,Disembowel,Damage 9x2 (10x2),multi_attack
 Lagavulin Matriarch,Slash 2,Damage 12 (14); Block 12 (14),"attack, block"
 Lagavulin Matriarch,Soul Siphon,Apply -2 Strength; Apply -2 Dexterity; Gain 2 Strength,"buff, debuff"
-Queen,Puppet Strings,Apply Chains of Binding 3,unknown
+Queen,Puppet Strings,Apply Chains of Binding 3,affliction
 Queen,You Are Mine!,Apply 99 Frail; Apply 99 Weak; Apply 99 Vulnerable,debuff
 Queen,Burn Bright For Me,Give allies 1 Strength; Block 20,block
 Queen,Off With Your Head,Damage 3x5 (4x5),multi_attack
@@ -258,7 +261,7 @@ Torch Head Amalgam,Weak Tackle,Damage 14 (15),attack
 Soul Fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,add_statuses
 Soul Fysh,De-Gas,Damage 16 (17),attack
 Soul Fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,"attack, add_statuses"
-Soul Fysh,Fade,Gain 2* Intangible,unknown
+Soul Fysh,Fade,Gain 2* Intangible,buff
 Soul Fysh,Scream,Damage 11 (12); Apply 3 Vulnerable,"attack, debuff"
 Test Subject Stage 1,Bite,Damage 20 (22),attack
 Test Subject Stage 1,Skull Bash,Damage 14 (16); Apply 1 Vulnerable,"attack, debuff"
@@ -282,7 +285,7 @@ Vantom,Ink Blot,Damage 7 (8),attack
 Vantom,Inky Lance,Damage 6x2 (7x2),multi_attack
 Vantom,Dismember,Damage 27 (30); Add 3 Wounds into discard,"attack, add_statuses"
 Vantom,Prepare,Gain 2 Strength,buff
-Waterfall Giant,Pressurize,Gain 15 (20) Steam Eruption,unknown
+Waterfall Giant,Pressurize,Gain 15 (20) Steam Eruption,buff
 Waterfall Giant,Stomp,Damage 15 (16); Apply 1 Weak; Gain 3 Steam Eruption,"attack, debuff"
 Waterfall Giant,Ram,Damage 10 (11); Gain 3 Steam Eruption,"attack, buff"
 Waterfall Giant,Siphon,Heal 15*; Gain 3 Steam Eruption,"heal, buff"

@@ -479,6 +479,43 @@
     font-size: 1rem;
   }
 
+  /* ── Footer / Credits ── */
+  .site-footer {
+    text-align: center;
+    padding: 32px 16px 24px;
+    margin-top: 40px;
+    border-top: 1px solid #1a1a2a;
+    color: #555;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  .site-footer a {
+    color: #8a7a4a;
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: #c8b06a;
+    text-decoration: underline;
+  }
+  .site-footer .credit-names {
+    color: #777;
+  }
+
+  /* ── Feedback link ── */
+  .feedback-link {
+    text-align: center;
+    margin-top: 6px;
+  }
+  .feedback-link a {
+    color: #666;
+    font-size: 0.72rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .feedback-link a:hover {
+    color: #c8b06a;
+  }
+
   @media (max-width: 600px) {
     .act-card img { width: 150px; }
     .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
@@ -494,6 +531,9 @@
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
     <button class="search-clear" id="search-clear" onclick="clearSearch()">&times;</button>
+  </div>
+  <div class="feedback-link">
+    See an issue with the data or have a suggestion? <a href="https://github.com/jparro00/sts2-enemy-guide/issues/new?title=Feedback&body=Type%20your%20feedback%20here" target="_blank">Submit feedback here</a>
   </div>
 </header>
 
@@ -552,13 +592,12 @@ function parseCSV(text) {
     for (let i = 0; i < text.length; i++) {
       const ch = text[i];
       if (inQuotes) {
+        current += ch;
         if (ch === '"' && text[i + 1] === '"') {
-          current += '"';
+          current += text[i + 1];
           i++;
         } else if (ch === '"') {
           inQuotes = false;
-        } else {
-          current += ch;
         }
       } else {
         if (ch === '"') {
@@ -687,6 +726,8 @@ async function loadData() {
 
 // Cache-busting version for images
 const imgV = Date.now();
+
+const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new?title=Feedback&body=Type%20your%20feedback%20here" target="_blank">Submit feedback or report an issue</a></div>`;
 
 // Encounters where the image should align to top instead of center
 const topAlignEncounters = new Set(['Kaiser Crab']);
@@ -895,9 +936,9 @@ function openEncounter(encounterName, act, cat) {
       .filter((name, idx, arr) => arr.indexOf(name) === idx)
       .map(name => renderEnemySection(name))
       .join('');
-    document.getElementById('detail-body').innerHTML = sections;
+    document.getElementById('detail-body').innerHTML = sections + panelFeedbackLink;
   } else {
-    document.getElementById('detail-body').innerHTML = renderEnemySection(encounterName);
+    document.getElementById('detail-body').innerHTML = renderEnemySection(encounterName) + panelFeedbackLink;
   }
 
   panel.classList.add('open');
@@ -1009,5 +1050,12 @@ function onSearch(query) {
 // ── Load and go ──
 loadData();
 </script>
+
+<footer class="site-footer">
+  The data on this site was sourced from the <a href="https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/" target="_blank">STS2 Community Reference Sheet</a>,
+  maintained by <span class="credit-names">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> who continue to keep it updated &mdash; huge thanks for their work making this possible.<br>
+  Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for v0.98.3.
+</footer>
+
 </body>
 </html>
