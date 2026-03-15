@@ -37,28 +37,54 @@
     flex-wrap: wrap;
   }
   .act-card {
-    width: 200px;
-    height: 120px;
     border-radius: 12px;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 14px;
     position: relative;
+    z-index: 60;
     overflow: hidden;
     border: 2px solid transparent;
     transition: all 0.2s;
   }
   .act-card:hover { transform: translateY(-3px); filter: brightness(1.15); }
   .act-card.selected { border-color: #c8b06a; box-shadow: 0 0 20px rgba(200,176,106,0.25); }
-  .act-card .act-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; }
-  .act-card .act-name { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
-
-  .act-overgrowth { background: linear-gradient(135deg, #1a3a1a 0%, #0d1f0d 60%, #2a5a2a 100%); border-color: #2a5a2a; }
-  .act-underdocks { background: linear-gradient(135deg, #1a2a3a 0%, #0d1520 60%, #1a3a5a 100%); border-color: #1a3a5a; }
-  .act-hive { background: linear-gradient(135deg, #3a2a1a 0%, #201510 60%, #5a3a1a 100%); border-color: #5a3a1a; }
-  .act-glory { background: linear-gradient(135deg, #2a1a3a 0%, #150d20 60%, #3a1a5a 100%); border-color: #3a1a5a; }
+  .act-card img {
+    display: block;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .act-card .act-text {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(60,60,70,0.55);
+    padding: 8px 0;
+  }
+  .act-card .act-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    color: #8ab4d6;
+  }
+  .act-card .act-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #e8c84a;
+    margin-top: -1px;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .act-overgrowth { border-color: #2a5a2a; }
+  .act-underdocks { border-color: #1a3a5a; }
+  .act-hive { border-color: #5a3a1a; }
+  .act-glory { border-color: #3a1a5a; }
 
   /* ── Category Tabs ── */
   .category-tabs {
@@ -71,6 +97,8 @@
   .cat-tab {
     padding: 10px 28px;
     cursor: pointer;
+    z-index: 60;
+    position: relative;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -102,6 +130,7 @@
     border: 2px solid #1e1e2e;
     transition: all 0.2s;
     position: relative;
+    z-index: 60;
   }
   .enemy-card:hover {
     border-color: #444;
@@ -123,6 +152,28 @@
     object-fit: cover;
     border-radius: 8px;
   }
+  .enemy-thumb img.img-top {
+    object-position: top;
+  }
+  .enemy-thumb.multi-img {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px;
+  }
+  .enemy-thumb.multi-img img {
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .enemy-thumb.multi-img.count-2 img { width: 48%; height: 48%; }
+  .enemy-thumb.multi-img.count-3 img { width: 45%; height: 45%; }
+  .enemy-thumb.multi-img.count-4 img { width: 46%; height: 46%; }
+  .enemy-thumb.multi-img.count-5 img { width: 30%; height: 30%; }
+  .enemy-thumb.multi-img.count-6 img { width: 30%; height: 30%; }
   .enemy-card[data-cat="easy"] .enemy-thumb { background: linear-gradient(135deg, #1a2e1a, #0f1a0f); }
   .enemy-card[data-cat="hard"] .enemy-thumb { background: linear-gradient(135deg, #2e2a1a, #1a150d); }
   .enemy-card[data-cat="elite"] .enemy-thumb { background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }
@@ -138,13 +189,18 @@
   }
   .enemy-card .multi-badge {
     position: absolute;
-    bottom: 36px;
-    left: 6px;
-    font-size: 0.6rem;
-    background: rgba(200,176,106,0.2);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.65);
     color: #c8b06a;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 4px 0;
+    z-index: 2;
   }
 
   /* ── Detail Panel ── */
@@ -177,7 +233,7 @@
     background: #12121c;
     z-index: 1;
   }
-  .detail-header h2 { font-size: 1.2rem; color: #c8b06a; }
+  .detail-header h2 { font-size: 1.5rem; color: #c8b06a; }
   .detail-close {
     background: none;
     border: none;
@@ -194,12 +250,12 @@
     border: 1px solid #5a2a2a;
     border-radius: 6px;
     padding: 4px 12px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: #e66;
     margin-bottom: 16px;
   }
   .detail-body h3 {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #888;
@@ -208,26 +264,26 @@
   .detail-body table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.82rem;
+    font-size: 0.95rem;
   }
   .detail-body th {
     text-align: left;
-    padding: 6px 10px;
+    padding: 8px 12px;
     background: #1a1a28;
     color: #999;
     font-weight: 600;
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .detail-body td {
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-bottom: 1px solid #1a1a28;
     vertical-align: top;
   }
   .detail-body tr:hover td { background: #161620; }
   .detail-body .pattern-text {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: #aaa;
     background: #16161f;
@@ -236,7 +292,7 @@
     border-left: 3px solid #c8b06a;
   }
   .detail-body .notes {
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     color: #888;
     font-style: italic;
     margin-top: 12px;
@@ -250,28 +306,30 @@
     display: inline-flex;
     gap: 3px;
     vertical-align: middle;
+    cursor: default;
   }
   .intent-icon {
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 18px;
-    font-size: 11px;
+    width: 32px;
+    height: 32px;
+    cursor: default;
+    user-select: none;
   }
-  .intent-attack { background: #8b2020; color: #ff6b6b; }
-  .intent-multi_attack { background: #8b2020; color: #ff6b6b; }
-  .intent-block { background: #1a3a5a; color: #6ab0e6; }
-  .intent-buff { background: #3a3a1a; color: #e6d46a; }
-  .intent-debuff { background: #2a1a3a; color: #b06ae6; }
-  .intent-add_statuses { background: #1a3a2a; color: #6ae6a0; }
-  .intent-affliction { background: #3a1a2a; color: #e66a9a; }
-  .intent-summon { background: #2a2a1a; color: #c8b06a; }
-  .intent-sleeping { background: #1a1a2a; color: #8888aa; }
-  .intent-deathblow { background: #5a1a1a; color: #ff4444; }
-  .intent-escape { background: #1a2a1a; color: #88aa88; }
-  .intent-unknown { background: #2a2a2a; color: #888; }
+  .intent-icon img {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+  }
+  .intent-multi_attack {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    gap: 2px;
+  }
+  .intent-multi_attack img {
+    width: 26px;
+    height: 26px;
+  }
 
   /* ── Enemy separator in detail panel ── */
   .enemy-section {
@@ -283,6 +341,21 @@
     margin-top: 0;
     padding-top: 0;
     border-top: none;
+  }
+  .enemy-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .enemy-section-info { flex: 1; }
+  .enemy-section-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #2a2a3a;
+    flex-shrink: 0;
   }
   .enemy-section-name {
     font-size: 0.95rem;
@@ -296,8 +369,8 @@
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 99;
+    background: rgba(0,0,0,0.3);
+    z-index: 50;
   }
   .backdrop.open { display: block; }
 
@@ -310,6 +383,94 @@
     letter-spacing: 2px;
   }
 
+  /* ── Search Bar ── */
+  .search-bar {
+    margin-top: 12px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 60;
+  }
+  .search-clear {
+    display: none;
+    position: absolute;
+    right: -48px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #6a2020;
+    border: none;
+    border-radius: 6px;
+    color: #ff8888;
+    font-size: 1.3rem;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 0;
+  }
+  .search-clear:hover { background: #8b2020; color: #ffaaaa; }
+  .search-clear.visible { display: block; }
+  .search-bar input {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #2a2a3a;
+    background: #14141f;
+    color: #e0ddd4;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar input:focus {
+    border-color: #c8b06a;
+  }
+  .search-bar input::placeholder {
+    color: #555;
+  }
+  .search-results {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px 24px;
+  }
+  .search-results .search-zone-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    padding: 16px 0 8px;
+    border-bottom: 1px solid #1a1a2a;
+    margin-bottom: 12px;
+  }
+  .search-results .search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  /* ── Category Group Headers ── */
+  .cat-group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    padding: 16px 0 8px;
+    border-bottom: 1px solid #1a1a2a;
+    margin-bottom: 12px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .cat-group-label.cat-easy { color: #6abf69; border-bottom-color: #2a4a2a; }
+  .cat-group-label.cat-hard { color: #d4a843; border-bottom-color: #4a3a1a; }
+  .cat-group-label.cat-elite { color: #d46a6a; border-bottom-color: #4a1a1a; }
+  .cat-group-label.cat-boss { color: #b06ad4; border-bottom-color: #3a1a4a; }
+
   /* ── Loading state ── */
   .loading {
     text-align: center;
@@ -319,7 +480,7 @@
   }
 
   @media (max-width: 600px) {
-    .act-card { width: 160px; height: 90px; }
+    .act-card img { width: 150px; }
     .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
     .detail-overlay { width: 100vw; }
   }
@@ -329,36 +490,43 @@
 
 <header>
   <h1>Slay the Spire 2 — Enemy Reference</h1>
-  <p>Click an act &rarr; pick a fight type &rarr; tap an enemy</p>
+  <p>Click an act &rarr; tap an encounter for details</p>
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
+    <button class="search-clear" id="search-clear" onclick="clearSearch()">&times;</button>
+  </div>
 </header>
+
+<div id="search-results" class="search-results" style="display:none;"></div>
 
 <div class="act-bar">
   <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
-    <div class="act-label">Act 1</div>
-    <div class="act-name">&#127807; Overgrowth</div>
+    <img src="data/media/ui/map_top_overgrowth.png" alt="Overgrowth">
+    <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Overgrowth</div></div>
   </div>
   <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
-    <div class="act-label">Act 1</div>
-    <div class="act-name">&#127754; Underdocks</div>
+    <img src="data/media/ui/map_top_underdocks.png" alt="Underdocks">
+    <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Underdocks</div></div>
   </div>
   <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
-    <div class="act-label">Act 2</div>
-    <div class="act-name">&#128027; The Hive</div>
+    <img src="data/media/ui/map_top_hive.png" alt="Hive">
+    <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">Hive</div></div>
   </div>
   <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
-    <div class="act-label">Act 3</div>
-    <div class="act-name">&#128081; The Glory</div>
+    <img src="data/media/ui/map_top_glory.png" alt="Glory">
+    <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">Glory</div></div>
   </div>
 </div>
 
 <div class="category-tabs">
-  <div class="cat-tab active" data-cat="easy" onclick="selectCat('easy')">Easy</div>
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
+  <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
   <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
   <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
   <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
 </div>
 
-<div class="section-label" id="section-label">Act 1: Overgrowth — Easy Encounters</div>
+<div class="section-label" id="section-label">Act 1: Overgrowth — All Encounters</div>
 <div class="enemy-grid" id="enemy-grid"><div class="loading">Loading data...</div></div>
 
 <div class="backdrop" id="backdrop" onclick="closeDetail()"></div>
@@ -376,10 +544,40 @@
 // ══════════════════════════════════════════
 
 function parseCSV(text) {
-  const lines = text.split('\n').filter(l => l.trim());
-  if (lines.length === 0) return [];
+  // Split into logical lines, respecting quoted fields that span multiple lines
+  function splitLogicalLines(text) {
+    const lines = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i];
+      if (inQuotes) {
+        if (ch === '"' && text[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = false;
+        } else {
+          current += ch;
+        }
+      } else {
+        if (ch === '"') {
+          inQuotes = true;
+          current += ch;
+        } else if (ch === '\n' || ch === '\r') {
+          if (ch === '\r' && text[i + 1] === '\n') i++;
+          if (current.trim()) lines.push(current);
+          current = '';
+          continue;
+        } else {
+          current += ch;
+        }
+      }
+    }
+    if (current.trim()) lines.push(current);
+    return lines;
+  }
 
-  // Parse a single CSV line respecting quoted fields
   function parseLine(line) {
     const fields = [];
     let current = '';
@@ -410,6 +608,9 @@ function parseCSV(text) {
     return fields;
   }
 
+  const lines = splitLogicalLines(text);
+  if (lines.length === 0) return [];
+
   const headers = parseLine(lines[0]);
   return lines.slice(1).map(line => {
     const values = parseLine(line);
@@ -427,10 +628,11 @@ let enemyDatabase = {};
 let encounters = {};
 
 async function loadData() {
+  const bust = '?v=' + Date.now();
   const [enemiesText, movesText, encountersText] = await Promise.all([
-    fetch('data/enemies.csv').then(r => r.text()),
-    fetch('data/moves.csv').then(r => r.text()),
-    fetch('data/encounters.csv').then(r => r.text()),
+    fetch('data/enemies.csv' + bust).then(r => r.text()),
+    fetch('data/moves.csv' + bust).then(r => r.text()),
+    fetch('data/encounters.csv' + bust).then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -483,46 +685,71 @@ async function loadData() {
 // IMAGE RESOLUTION
 // ══════════════════════════════════════════
 
+// Cache-busting version for images
+const imgV = Date.now();
+
+// Encounters where the image should align to top instead of center
+const topAlignEncounters = new Set(['Kaiser Crab']);
+
+// Elites/bosses that should still render as multi-enemy images
+const forceMultiEncounters = new Set(['Phantasmal Gardeners', 'Knights']);
+
 // Try media/encounters/ first, then media/enemies/, then emoji fallback
-function getEncounterImageHtml(enc) {
+function getEncounterImageHtml(enc, cat) {
+  // If encounter has multiple enemies, show individual enemy images (skip for elites/bosses unless forced)
+  const isMultiEligible = cat !== 'elite' && cat !== 'boss' || forceMultiEncounters.has(enc.name);
+  if (enc.enemies && enc.enemies.length > 1 && isMultiEligible) {
+    const count = enc.enemies.length;
+    const imgs = enc.enemies.map(name => {
+      const src = `data/media/enemies/${name}.png?v=${imgV}`;
+      return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
+    }).join('');
+    return { multi: true, count, html: imgs };
+  }
+
+  const topClass = topAlignEncounters.has(enc.name) ? ' img-top' : '';
+
   if (enc.image) {
     // Image filename specified in CSV — try encounters folder first, enemies fallback
-    const encSrc = `data/media/encounters/${enc.image}`;
-    const enemySrc = `data/media/enemies/${enc.image}`;
-    return `<img src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">`;
+    const encSrc = `data/media/encounters/${enc.image}?v=${imgV}`;
+    const enemySrc = `data/media/enemies/${enc.image}?v=${imgV}`;
+    return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">` };
   }
 
   // No image specified — try encounter name as filename
-  const encSrc = `data/media/encounters/${enc.name}.png`;
-  const enemySrc = `data/media/enemies/${enc.name}.png`;
-  return `<img src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">`;
+  const encSrc = `data/media/encounters/${enc.name}.png?v=${imgV}`;
+  const enemySrc = `data/media/enemies/${enc.name}.png?v=${imgV}`;
+  return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">` };
 }
 
 // ══════════════════════════════════════════
 // INTENT ICON MAP
 // ══════════════════════════════════════════
 
-const intentIcons = {
-  "attack": "&#9876;",
-  "multi_attack": "&#9876;&#9876;",
-  "block": "&#128737;",
-  "buff": "&#11014;",
-  "debuff": "&#9760;",
-  "add_statuses": "&#128220;",
-  "affliction": "&#128148;",
-  "summon": "&#10010;",
-  "sleeping": "&#128164;",
-  "deathblow": "&#128128;",
-  "escape": "&#128168;",
-  "unknown": "&#63;"
-};
+const intentKeys = [
+  "attack", "multi_attack", "block", "buff", "debuff",
+  "add_statuses", "affliction", "summon", "sleeping",
+  "deathblow", "escape", "heal", "stun", "unknown"
+];
+
+function intentImg(key) {
+  const src = `data/media/intents/${key}.png?v=${imgV}`;
+  return `<img src="${src}" alt="${key}" title="${key}">`;
+}
 
 function renderIntents(intentStr) {
   if (!intentStr) return '';
   return intentStr.split(',').map(i => {
     const key = i.trim();
-    const icon = intentIcons[key] || '?';
-    return `<span class="intent-icon intent-${key}" title="${key}">${icon}</span>`;
+    let inner;
+    if (key === 'multi_attack') {
+      inner = intentImg('attack') + intentImg('attack');
+    } else if (intentKeys.includes(key)) {
+      inner = intentImg(key);
+    } else {
+      inner = intentImg('unknown');
+    }
+    return `<span class="intent-icon intent-${key}" title="${key}">${inner}</span>`;
   }).join('');
 }
 
@@ -533,18 +760,21 @@ function renderIntents(intentStr) {
 const actNames = {
   overgrowth: "Act 1: Overgrowth",
   underdocks: "Act 1: Underdocks",
-  hive: "Act 2: The Hive",
-  glory: "Act 3: The Glory",
+  hive: "Act 2: Hive",
+  glory: "Act 3: Glory",
 };
-const catNames = { easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
+const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
 
 let currentAct = "overgrowth";
-let currentCat = "easy";
+let currentCat = "all";
 
 function selectAct(act) {
   currentAct = act;
+  currentCat = "all";
   document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
   document.querySelector(`.act-card[data-act="${act}"]`).classList.add('selected');
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.cat-tab[data-cat="all"]').classList.add('active');
   render();
 }
 
@@ -555,21 +785,52 @@ function selectCat(cat) {
   render();
 }
 
+function renderCards(encs, cat) {
+  return encs.map(e => {
+    const img = getEncounterImageHtml(e, cat);
+    const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
+    return `
+    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}', '${currentAct}', '${cat}')">
+      <div class="${thumbClass}">
+        ${img.html}
+        ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
+      </div>
+      <div class="enemy-name">${e.name}</div>
+    </div>`;
+  }).join('');
+}
+
 function render() {
   const grid = document.getElementById('enemy-grid');
   const label = document.getElementById('section-label');
   label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
 
-  const encs = encounters[currentAct]?.[currentCat] || [];
-  grid.innerHTML = encs.map(e => `
-    <div class="enemy-card" data-cat="${currentCat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}')">
-      <div class="enemy-thumb">
-        ${getEncounterImageHtml(e)}
-        ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
-      </div>
-      <div class="enemy-name">${e.name}</div>
-    </div>
-  `).join('');
+  if (currentCat === 'all') {
+    // Show all categories grouped with headers
+    let html = '';
+    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+      const encs = encounters[currentAct]?.[cat] || [];
+      if (encs.length === 0) continue;
+      html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;
+      html += `<div class="enemy-grid">${renderCards(encs, cat)}</div>`;
+    }
+    grid.innerHTML = '';
+    grid.className = '';
+    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+  } else {
+    const encs = encounters[currentAct]?.[currentCat] || [];
+    // Restore grid class if it was removed by "all" view
+    const container = document.getElementById('enemy-grid');
+    container.className = 'enemy-grid';
+    container.innerHTML = renderCards(encs, currentCat);
+  }
+}
+
+function formatMultiBadge(multi) {
+  // Convert "3 enemies" → "×3", "3-4 enemies" → "3-4"
+  const m = multi.match(/^(\d+(?:-\d+)?)/);
+  if (m) return m[1].includes('-') ? m[1] : `×${m[1]}`;
+  return multi;
 }
 
 function renderEnemySection(name) {
@@ -586,10 +847,17 @@ function renderEnemySection(name) {
 
   const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
 
+  const imgSrc = `data/media/enemies/${name}.png?v=${imgV}`;
+
   return `
     <div class="enemy-section">
-      <div class="enemy-section-name">${name}</div>
-      <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+      <div class="enemy-section-header">
+        <div class="enemy-section-info">
+          <div class="enemy-section-name">${name}</div>
+          <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+        </div>
+        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
+      </div>
 
       <h3>Attack Pattern</h3>
       <div class="pattern-text">${data.pattern}</div>
@@ -605,13 +873,22 @@ function renderEnemySection(name) {
   `;
 }
 
-function openEncounter(encounterName) {
+function openEncounter(encounterName, act, cat) {
+  const searchAct = act || currentAct;
+  const searchCat = cat || currentCat;
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').textContent = encounterName;
 
-  const encs = encounters[currentAct]?.[currentCat] || [];
-  const enc = encs.find(e => e.name === encounterName);
+  // Search all categories if act/cat provided, otherwise use current
+  let enc = null;
+  if (act && cat) {
+    const encs = encounters[act]?.[cat] || [];
+    enc = encs.find(e => e.name === encounterName);
+  } else {
+    const encs = encounters[currentAct]?.[currentCat] || [];
+    enc = encs.find(e => e.name === encounterName);
+  }
 
   if (enc && enc.enemies && enc.enemies.length > 0) {
     const sections = enc.enemies
@@ -632,7 +909,102 @@ function closeDetail() {
   document.getElementById('backdrop').classList.remove('open');
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeDetail();
+    const input = document.getElementById('search-input');
+    if (input.value) { input.value = ''; onSearch(''); }
+  }
+});
+
+// ══════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════
+
+function getBrowseElements() {
+  return [
+    document.querySelector('.act-bar'),
+    document.querySelector('.category-tabs'),
+    document.getElementById('section-label'),
+    document.getElementById('enemy-grid'),
+  ];
+}
+
+function clearSearch() {
+  const input = document.getElementById('search-input');
+  input.value = '';
+  onSearch('');
+  input.focus();
+}
+
+function onSearch(query) {
+  const results = document.getElementById('search-results');
+  const clearBtn = document.getElementById('search-clear');
+  const q = query.trim().toLowerCase();
+  clearBtn.classList.toggle('visible', q.length > 0);
+
+  if (!q) {
+    results.style.display = 'none';
+    getBrowseElements().forEach(el => { if (el) el.style.display = ''; });
+    return;
+  }
+
+  // Hide browse UI, show search results
+  getBrowseElements().forEach(el => { if (el) el.style.display = 'none'; });
+  results.style.display = 'block';
+
+  // Search all encounters across all acts/categories
+  const matches = [];
+  const zoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory'];
+
+  for (const zone of zoneOrder) {
+    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+      const encs = encounters[zone]?.[cat] || [];
+      for (const enc of encs) {
+        const nameMatch = enc.name.toLowerCase().includes(q);
+        const enemyMatch = enc.enemies.some(e => e.toLowerCase().includes(q));
+        if (nameMatch || enemyMatch) {
+          matches.push({ enc, zone, cat });
+        }
+      }
+    }
+  }
+
+  if (matches.length === 0) {
+    results.innerHTML = '<div style="text-align:center; padding:40px; color:#666;">No matches found.</div>';
+    return;
+  }
+
+  // Group by zone
+  const grouped = {};
+  for (const m of matches) {
+    const key = m.zone;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(m);
+  }
+
+  let html = '';
+  for (const zone of zoneOrder) {
+    if (!grouped[zone]) continue;
+    html += `<div class="search-zone-label">${actNames[zone]}</div>`;
+    html += '<div class="search-grid">';
+    for (const { enc, cat } of grouped[zone]) {
+      const img = getEncounterImageHtml(enc, cat);
+      const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
+      html += `
+        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.name.replace(/'/g, "\\'")}', '${zone}', '${cat}')">
+          <div class="${thumbClass}">
+            ${img.html}
+            ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}
+          </div>
+          <div class="enemy-name">${enc.name}</div>
+        </div>`;
+    }
+    html += '</div>';
+  }
+
+  results.innerHTML = html;
+}
 
 // ── Load and go ──
 loadData();

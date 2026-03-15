@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(python -c \":*)",
+      "Bash(pip install:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(cd * && python *)",
+      "Bash(cd * && python3 *)",
+      "Read(**)",
+      "mcp__Claude_Preview__preview_start",
+      "WebSearch",
+      "WebFetch(domain:slaythespire.wiki.gg)",
+      "WebFetch(domain:slay-the-spire.fandom.com)",
+      "Bash(grep \",unknown$\" C:/Users/jparr/Documents/claude/sts2/data/moves.csv)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 66284 //F)",
+      "Bash(taskkill //PID 35608 //F)",
+      "Bash(mv intent_attack_3.png attack.png)",
+      "Bash(mv intent_defend.png block.png)",
+      "Bash(mv intent_buff.png buff.png)",
+      "Bash(mv intent_debuff_opt2.png debuff.png)",
+      "Bash(mv intent_status.png add_statuses.png)",
+      "Bash(mv intent_card_debuff_opt2.png affliction.png)",
+      "Bash(mv intent_summon.png summon.png)",
+      "Bash(mv intent_sleep.png sleeping.png)",
+      "Bash(mv intent_death_blow.png deathblow.png)",
+      "Bash(mv intent_escape_opt4.png escape.png)",
+      "Bash(mv intent_unknown.png unknown.png)",
+      "Bash(mv intent_heal.png heal.png)",
+      "Bash(mv intent_stun.png stun.png)",
+      "Bash(git add:*)"
+    ]
+  }
+}

@@ -28,7 +28,7 @@ Fat Gremlin,13 - 17 (14 - 18),Always uses Flee.,Starts stunned when summoned aft
 Sneaky Gremlin,10 - 14 (11 - 15),Always uses Tackle.,Starts stunned when summoned after killing Gremlin Merc.
 Haunted Ship,63 (67),"Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",
 Hunter Killer,121 (126),Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.,"Tender: Whenever you play a card, lose 1 strength and 1 dexterity this turn."
-Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).","Starts with Slippery 1 Slippery X: The next time this enemy loses HP, it loses 1 HP instead."
+Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).","Starts with Slippery 1 Slippery X (The next time this enemy loses HP, it loses 1 HP instead)."
 Leaf Slime (Small),11 - 15 (12 - 16),Starts randomly with Tackle or Goop. Then alternates between them.,
 Leaf Slime (Medium),32 - 35 (33 - 36),Starts with Sticky Shot then alternates Clump Shot -> Sticky Shot.,
 Living Fog,80 (82),Starts with Advanced Gas. Then alternates between Bloat -> Super Gas Blast.,Smoggy: You can only play 1 skill per turn.
@@ -66,8 +66,8 @@ Thieving Hopper,79 (84),"Always uses Thievery -> Flutter -> Hat Trick -> Nab -> 
 Toadpole,21 - 25 (22 - 26),Front Toadpole starts with Spiken. Non-front Toadpole(s) start with Whirl. Then continue following cycle Spike Spit -> Whirl -> Spiken (then repeat).,
 Tunneler,87 (92),"Starts with Bite -> Burrow. While Burrowed, always uses Below. After being stunned, loses Burrowed and uses Bite -> Burrow.",Burrowed: Block is not removed at the start of Tunneler's turn. Becomes stunned if all block is removed.
 Turret Operator,41 (51),Cycles through Unload -> Unload -> Reload.,
-Twig Slime (S),7 - 11 (8 - 12),Uses Tackle every turn.,
-Twig Slime (M),26 - 28 (27 - 29),"Starts with Sticky Shot -> Clump Shot. Then chooses randomly each turn between Sticky Shot and Clump Shot (allowed options equally likely). Cannot use Sticky Shot twice in a row, and cannot use Clump shot more than twice in a row.",
+Twig Slime (Small),7 - 11 (8 - 12),Uses Tackle every turn.,
+Twig Slime (Medium),26 - 28 (27 - 29),"Starts with Sticky Shot -> Clump Shot. Then chooses randomly each turn between Sticky Shot and Clump Shot (allowed options equally likely). Cannot use Sticky Shot twice in a row, and cannot use Clump shot more than twice in a row.",
 Two-Tailed Rat,17 - 21 (18 - 22),"First Rat starts randomly with Scratch, Disesase Bite, or Screech. 2nd Rat has next move after it in the cycle Scratch -> Disease Bite -> Screech, and 3rd Rat has the next after that. A rat cannot Call for Backup until it has taken 2 turns. Each rat can only Call for Backup once. Only 1 rat can Call for Backup in any particular turn. Call for Backup can only be used 3 times total across all rats. If Call for Backup is not allowed for a rat, it picks randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). If Call for Backup is allowed for a rat, then it has a 75% chance to Call for Backup, and remaining 25% to pick randomly between Scratch, Disease Bite, and Screech (equal weight among allowed options). Screech has a 3 turn cooldown. Scratch and Disease Bite cannot be used twice in a row.",
 Vine Shambler,61 (64),Cycles through Swipe -> Grasping Vines -> Chomp.,Tangled X: Attacks cost 1 additional energy for X turns.
 Wriggler,17 - 21 (18 - 22),"If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",
@@ -82,7 +82,7 @@ Spectral Knight,93 (97),Starts with Hex and then Soul Slash. Then chooses random
 Magi Knight,82 (89),Cycles through Power Shield -> Dampen -> Spear -> Prep -> Magic Bomb.,"Dampen: While Magi Knight is alive, all your upgraded cards are downgraded."
 Mecha Knight,300 (320),Starts with Charge. Then cycles through Flamethrower -> Windup -> Heavy Cleave.,Starts with Artifact 3
 Phantasmal Gardener,28 - 32 (29 -33),"1st one starts with Flail, 2nd with Bite, 3rd with Lash, and 4th with Enlarge. Then cycle through Bite -> Lash -> Flail -> Enlarge.",Starts with Skittish 6 (7) Skittish X: First time hit each turn gain X block.
-Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,Starts with Infested 4 Infested X: Summons X Wrigglers after dying (they start stunned).
+Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,Starts with Infested 4 Infested 4: Summons 4 Wrigglers after dying (they start stunned).
 Skulking Colony,79 (84),Cycles through Smash -> Zoom -> Inertia -> Super Crab.,Starts with Hardened Shell 20 Hardened Shell X: Cannot lose more than X HP per turn.
 Soul Nexus,234 (254),"Starts with Soul Burn. Then picks randomly between Soul Burn, Maelstrom, and Drain Life (all allowed options equally likely). Cannot use the same move twice in a row.",
 Terror Eel,140 (150),Cycles between Crash -> Thrash until it gets stunned by reaching 75 HP. Then uses Terror before cycling Crash -> Thrash again.,Starts with Shriek 75 Shriek X: Becomes Stunned after reaching X HP or below.
