@@ -750,17 +750,15 @@ function getEncounterImageHtml(enc, cat) {
 
   const topClass = topAlignEncounters.has(enc.name) ? ' img-top' : '';
 
-  if (enc.image) {
-    // Image filename specified in CSV — try encounters folder first, enemies fallback
-    const encSrc = `data/media/encounters/${enc.image}`;
-    const enemySrc = `data/media/enemies/${enc.image}`;
-    return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">` };
+  // If encounter has enemies, load first enemy directly from enemies folder (avoids 404 flash)
+  if (enc.enemies && enc.enemies.length >= 1) {
+    const enemySrc = `data/media/enemies/${enc.enemies[0]}.png`;
+    return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
-  // No image specified — try encounter name as filename
-  const encSrc = `data/media/encounters/${enc.name}.png`;
+  // No enemies list — try enemies folder by encounter name, then emoji fallback
   const enemySrc = `data/media/enemies/${enc.name}.png`;
-  return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">` };
+  return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 // ══════════════════════════════════════════
