@@ -188,7 +188,7 @@ Entomancer,Spear,Damage 18 (20),attack
 Infested Prism,Jab,Damage 22 (24),attack
 Infested Prism,Radiate,Damage 16 (18); Block 16 (18),"attack, block"
 Infested Prism,Whirlwind,Damage 9x3 (10x3),multi_attack
-Infested Prism,Pulsate,Block 20 (22); Gain 4 (5) Strength,"block, buff"
+Infested Prism,Pulsate,Block 20 (22); Gain 4 (5) Strength,"buff, block"
 Flail Knight,War Chant,Gain 3 Strength,buff
 Flail Knight,Flail,Damage 9x2 (10x2),multi_attack
 Flail Knight,Ram,Damage 15 (17),attack
@@ -270,7 +270,7 @@ Test Subject Stage 2,Pounce,Damage 30 (32),attack
 Test Subject Stage 3,Lacerate,Damage 10x3 (11x3),multi_attack
 Test Subject Stage 3,Big Pounce,Damage 45,attack
 Test Subject Stage 3,Burning Growl,Shuffle 3 (5) Burns into discard; Gain 2 (3) Strength,buff
-The Insatiable,Liquify Ground,Gain Sandpit 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,escape
+The Insatiable,Liquify Ground,Gain Sandpit 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,"buff, add_statuses"
 The Insatiable,Thrash,Damage 8x2 (9x2),multi_attack
 The Insatiable,Lunging Bite,Damage 28 (31),attack
 The Insatiable,Salivate,Gain 2 (3) Strength,buff
