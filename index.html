@@ -152,6 +152,9 @@
     object-fit: cover;
     border-radius: 8px;
   }
+  .enemy-thumb img.img-top {
+    object-position: top;
+  }
   .enemy-thumb.multi-img {
     display: flex;
     flex-wrap: wrap;
@@ -661,29 +664,41 @@ async function loadData() {
 // IMAGE RESOLUTION
 // ══════════════════════════════════════════
 
+// Cache-busting version for images
+const imgV = Date.now();
+
+// Encounters where the image should align to top instead of center
+const topAlignEncounters = new Set(['Kaiser Crab']);
+
+// Elites/bosses that should still render as multi-enemy images
+const forceMultiEncounters = new Set(['Phantasmal Gardeners', 'Knights']);
+
 // Try media/encounters/ first, then media/enemies/, then emoji fallback
 function getEncounterImageHtml(enc, cat) {
-  // If encounter has multiple enemies, show individual enemy images (skip for elites/bosses)
-  if (enc.enemies && enc.enemies.length > 1 && cat !== 'elite' && cat !== 'boss') {
+  // If encounter has multiple enemies, show individual enemy images (skip for elites/bosses unless forced)
+  const isMultiEligible = cat !== 'elite' && cat !== 'boss' || forceMultiEncounters.has(enc.name);
+  if (enc.enemies && enc.enemies.length > 1 && isMultiEligible) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
-      const src = `data/media/enemies/${name}.png`;
+      const src = `data/media/enemies/${name}.png?v=${imgV}`;
       return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
 
+  const topClass = topAlignEncounters.has(enc.name) ? ' img-top' : '';
+
   if (enc.image) {
     // Image filename specified in CSV — try encounters folder first, enemies fallback
-    const encSrc = `data/media/encounters/${enc.image}`;
-    const enemySrc = `data/media/enemies/${enc.image}`;
-    return { multi: false, html: `<img src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">` };
+    const encSrc = `data/media/encounters/${enc.image}?v=${imgV}`;
+    const enemySrc = `data/media/enemies/${enc.image}?v=${imgV}`;
+    return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="this.onerror=null; this.src='${enemySrc}';" onload="" data-fallback="${enemySrc}">` };
   }
 
   // No image specified — try encounter name as filename
-  const encSrc = `data/media/encounters/${enc.name}.png`;
-  const enemySrc = `data/media/enemies/${enc.name}.png`;
-  return { multi: false, html: `<img src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">` };
+  const encSrc = `data/media/encounters/${enc.name}.png?v=${imgV}`;
+  const enemySrc = `data/media/enemies/${enc.name}.png?v=${imgV}`;
+  return { multi: false, html: `<img class="${topClass}" src="${encSrc}" alt="${enc.name}" onerror="if(this.dataset.tried){this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')}else{this.dataset.tried='1';this.src='${enemySrc}'}" data-tried="">` };
 }
 
 // ══════════════════════════════════════════
@@ -697,7 +712,7 @@ const intentKeys = [
 ];
 
 function intentImg(key) {
-  const src = `data/media/intents/${key}.png`;
+  const src = `data/media/intents/${key}.png?v=${imgV}`;
   return `<img src="${src}" alt="${key}" title="${key}">`;
 }
 
@@ -787,7 +802,7 @@ function renderEnemySection(name) {
 
   const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
 
-  const imgSrc = `data/media/enemies/${name}.png`;
+  const imgSrc = `data/media/enemies/${name}.png?v=${imgV}`;
 
   return `
     <div class="enemy-section">
