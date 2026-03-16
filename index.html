@@ -822,14 +822,17 @@ async function loadData() {
 
 const powersRef = {}; // Populated from data/powers.csv at load time
 
-function renderStartsWith(text) {
-  if (!text) return '';
-  const html = text.replace(/\{(\w+)\}/g, (match, key) => {
+function renderPowerRefs(text) {
+  return text.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
     return `<img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>`;
   });
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${html}</div>`;
+}
+
+function renderStartsWith(text) {
+  if (!text) return '';
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(text)}</div>`;
 }
 
 function renderPowers(powers) {
@@ -1009,7 +1012,7 @@ function renderEnemySection(name) {
     <tr>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${m.name}</strong></td>
-      <td>${m.effects.replace(/;/g, '<br>')}</td>
+      <td>${renderPowerRefs(m.effects.replace(/;/g, '<br>'))}</td>
     </tr>
   `).join('');
 

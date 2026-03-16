@@ -2,6 +2,8 @@ Key,Name,Image,Description
 artifact,Artifact,artifact_power.png,Negates the next X debuffs applied.
 block,Block,block.png,
 strength,Strength,strength_power.png,
+vulnerable,Vulnerable,vulnerable_power.png,Take 50% more damage from attacks.
+weak,Weak,weak_power.png,Deal 25% less attack damage.
 asleep,Asleep,asleep_power.png,Sleeps for 3 turns or until losing HP.
 back_attack_left,Back Attack,back_attack_left_power.png,Deals 50% more damage if attacking you from behind.
 burrowed,Burrowed,burrowed_power.png,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.
