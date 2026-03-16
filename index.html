@@ -976,7 +976,7 @@ function getEncounterImageHtml(enc, cat) {
   // If altImage is set, use that as a single image
   if (enc.altImage) {
     const src = resolveAltImage(enc.altImage);
-    return { multi: false, html: `<img src="${src}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // If encounter has multiple enemies, show individual enemy images
@@ -984,7 +984,7 @@ function getEncounterImageHtml(enc, cat) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
       const src = `media/enemies/${name}.png`;
-      return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
+      return `<img src="${src}" alt="${name}" loading="lazy" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
@@ -992,12 +992,12 @@ function getEncounterImageHtml(enc, cat) {
   // Single enemy — load from enemies folder
   if (enc.enemies && enc.enemies.length >= 1) {
     const enemySrc = `media/enemies/${enc.enemies[0]}.png`;
-    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
   const enemySrc = `media/enemies/${enc.name}.png`;
-  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 // ══════════════════════════════════════════
@@ -1111,7 +1111,7 @@ function renderEventCards(events) {
   return events.map(ev => {
     const imgSrc = ev.image ? `media/events/${ev.image}` : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">`
+      ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">`
       : '';
     return `
     <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
@@ -1236,7 +1236,7 @@ function renderEnemySection(name) {
           <div class="enemy-section-name">${name}</div>
           <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
         </div>
-        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
+        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" loading="lazy" onerror="this.style.display='none'">
       </div>
 
       <h3>Attack Pattern</h3>
@@ -1322,7 +1322,7 @@ function openEvent(eventKey) {
   ` : '';
 
   const notesHtml = ev.notes ? `<div class="notes">&#9888;&#65039; ${ev.notes}</div>` : '';
-  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
+  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
 
   document.getElementById('detail-body').innerHTML = `
@@ -1468,7 +1468,7 @@ function onSearch(query) {
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';
-        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
         html += `
           <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
             <div class="enemy-thumb">${imgHtml}</div>
