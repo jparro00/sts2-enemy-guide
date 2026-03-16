@@ -322,6 +322,64 @@
     border-radius: 6px;
   }
 
+  /* ── Powers Section ── */
+  .starts-with-section {
+    margin: 12px 0;
+    font-size: 1.05em;
+    line-height: 1.6;
+  }
+  .starts-with-section strong {
+    color: #aaa;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+  }
+  .power-icon-inline {
+    height: 22px;
+    width: 22px;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  .starts-with-power {
+    color: #f0c040;
+    font-weight: bold;
+  }
+
+  .powers-section {
+    margin-top: 16px;
+  }
+  .powers-section h3 {
+    margin-bottom: 8px;
+  }
+  .power-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    background: #14141c;
+    border-radius: 6px;
+    margin-bottom: 6px;
+  }
+  .power-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .power-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .power-name {
+    color: #c8b06a;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .power-desc {
+    color: #999;
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
   /* ── Intent Icons ── */
   .intent-icons {
     display: inline-flex;
@@ -692,15 +750,26 @@ let enemyDatabase = {};
 let encounters = {};
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText] = await Promise.all([
     fetch('data/enemies.csv').then(r => r.text()),
     fetch('data/moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
+    fetch('data/powers.csv').then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
   const movesRaw = parseCSV(movesText);
   const encountersRaw = parseCSV(encountersText);
+  const powersRaw = parseCSV(powersText);
+
+  // Build powers reference from CSV
+  for (const p of powersRaw) {
+    powersRef[p.Key] = {
+      name: p.Name,
+      image: p.Image,
+      desc: p.Description
+    };
+  }
 
   // Build enemy database
   for (const e of enemiesRaw) {
@@ -708,6 +777,8 @@ async function loadData() {
       hp: e.HP,
       pattern: e.Pattern,
       notes: e.Notes,
+      startsWith: e.StartsWith || '',
+      powers: e.Powers ? e.Powers.split(';').map(p => p.trim()).filter(Boolean) : [],
       moves: []
     };
   }
@@ -743,6 +814,39 @@ async function loadData() {
   }
 
   render();
+}
+
+// ══════════════════════════════════════════
+// POWERS REFERENCE
+// ══════════════════════════════════════════
+
+const powersRef = {}; // Populated from data/powers.csv at load time
+
+function renderStartsWith(text) {
+  if (!text) return '';
+  const html = text.replace(/\{(\w+)\}/g, (match, key) => {
+    const ref = powersRef[key];
+    if (!ref) return match;
+    return `<img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>`;
+  });
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${html}</div>`;
+}
+
+function renderPowers(powers) {
+  if (!powers || powers.length === 0) return '';
+  const rows = powers.map(p => {
+    const ref = powersRef[p];
+    if (!ref) return '';
+    const iconSrc = `media/powers/${ref.image}`;
+    return `<div class="power-row">
+      <img class="power-icon" src="${iconSrc}" alt="${ref.name}" onerror="this.style.display='none'">
+      <div class="power-info">
+        <span class="power-name">${ref.name}</span>
+        <span class="power-desc">${ref.desc}</span>
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="powers-section"><h3>Powers</h3>${rows}</div>`;
 }
 
 // ══════════════════════════════════════════
@@ -926,6 +1030,8 @@ function renderEnemySection(name) {
       <h3>Attack Pattern</h3>
       <div class="pattern-text">${data.pattern}</div>
 
+      ${renderStartsWith(data.startsWith)}
+
       <h3>Moves</h3>
       <table>
         <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
@@ -933,6 +1039,7 @@ function renderEnemySection(name) {
       </table>
 
       ${notesHtml}
+      ${renderPowers(data.powers)}
     </div>
   `;
 }
