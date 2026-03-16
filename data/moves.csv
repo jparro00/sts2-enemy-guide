@@ -149,7 +149,7 @@ The Obscura,Piercing Gaze,Damage 10 (11),attack
 The Obscura,Wail,Allies gain 3 {strength},buff
 The Obscura,Hardening Strike,Damage 6 (7); {block} 6 (7),"attack, block"
 Parafright,Slam,Damage 16 (17),attack
-Thieving Hopper,Thievery,"Damage 17 (19); Steal 1 card and gain {swipe}; (Stolen card is taken from draw or discard pile. Chooses a random card with priorities: 1. non-imbued uncommon card, 2. non-imbued common, rare, or event card, 3. non-imbued basic or quest card, 4. imbued or ancient card, 5. curse or anything else); (Warning: Game softlocks if Thieving Hopper cannot find a valid target to steal)","attack, affliction"
+Thieving Hopper,Thievery,"Damage 17 (19); Steal 1 card and gain {swipe}","attack, affliction"
 Thieving Hopper,Nab,Damage 14 (16),attack
 Thieving Hopper,Hat Trick,Damage 21 (23),attack
 Thieving Hopper,Flutter,Gain {flutter} 5,buff

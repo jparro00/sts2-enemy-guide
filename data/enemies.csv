@@ -62,7 +62,7 @@ The Lost,93 (99),Alternates between Debilitating Smog -> Eye Lasers,,,,
 The Forgotten,106 (111),Alternates between Miasma -> Dread.,,,,
 The Obscura,123 (129),"Starts with Illusion. Then chooses randomly between Piercing Gaze, Wail, and Hardening Strike (allowed options equally likely). Cannot use any move twice in a row.",,illusion,,
 Parafright,21,Always uses Slam.,Retains Strength after reviving,illusion,{illusion}
-Thieving Hopper,79 (84),"Always uses Thievery -> Flutter -> Hat Trick -> Nab -> Escape. If stunned before turn 5, resumes with the next intent in the pattern. If stunned on turn 5, tries to Escape again.",,escape_artist; flutter; swipe,{escape_artist}
+Thieving Hopper,79 (84),"Always uses Thievery -> Flutter -> Hat Trick -> Nab -> Escape. If stunned before turn 5, resumes with the next intent in the pattern. If stunned on turn 5, tries to Escape again.","Stolen card is taken from draw or discard pile. Chooses a random card with priorities: 1. non-imbued uncommon card, 2. non-imbued common, rare, or event card, 3. non-imbued basic or quest card, 4. imbued or ancient card, 5. curse or anything else. (Warning: as of v_0.98.3 the game softlocks if Thieving Hopper cannot find a valid target to steal)",escape_artist; flutter; swipe,{escape_artist} 5
 Toadpole,21 - 25 (22 - 26),Front Toadpole starts with Spiken. Non-front Toadpole(s) start with Whirl. Then continue following cycle Spike Spit -> Whirl -> Spiken (then repeat).,,,,
 Tunneler,87 (92),"Starts with Bite -> Burrow. While Burrowed, always uses Below. After being stunned, loses Burrowed and uses Bite -> Burrow.",,burrowed,,
 Turret Operator,41 (51),Cycles through Unload -> Unload -> Reload.,,,,

@@ -13,7 +13,7 @@ curl_up,Curl Up,curl_up_power.png,Gain Block upon first being hit.
 dampen,Dampen,dampen_power.png,"While alive, all your upgraded cards are downgraded."
 disintegration,Disintegration,disintegration_power.png,Take X damage at the end of your turn.
 enrage,Enrage,enrage_power.png,"Whenever you play a Skill, gain X Strength."
-escape_artist,Escape Artist,escape_artist_power.png,Tries to escape the combat after 5 turns.
+escape_artist,Escape Artist,escape_artist_power.png,Tries to escape the combat after X turns.
 flutter,Flutter,flutter_power.png,Receives 50% less attack damage. Deal attack damage X times to remove and stun it.
 galvanic,Galvanic,galvanic_power.png,You take X damage when a Power is played.
 hard_to_kill,Hard to Kill,hard_to_kill_power.png,Reduce all damage taken and HP loss to X.
