@@ -545,19 +545,19 @@
 
 <div class="act-bar">
   <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
-    <img src="data/media/ui/map_top_overgrowth.png" alt="Overgrowth">
+    <img src="media/ui/map_top_overgrowth.png" alt="Overgrowth">
     <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Overgrowth</div></div>
   </div>
   <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
-    <img src="data/media/ui/map_top_underdocks.png" alt="Underdocks">
+    <img src="media/ui/map_top_underdocks.png" alt="Underdocks">
     <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Underdocks</div></div>
   </div>
   <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
-    <img src="data/media/ui/map_top_hive.png" alt="Hive">
+    <img src="media/ui/map_top_hive.png" alt="Hive">
     <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">Hive</div></div>
   </div>
   <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
-    <img src="data/media/ui/map_top_glory.png" alt="Glory">
+    <img src="media/ui/map_top_glory.png" alt="Glory">
     <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">Glory</div></div>
   </div>
 </div>
@@ -715,8 +715,7 @@ async function loadData() {
       name: enc.Encounter,
       enemies: enemyList,
       multi: enc.Multi || '',
-      emoji: enc.Emoji || '',
-      image: enc.Image || ''
+      emoji: enc.Emoji || ''
     });
   }
 
@@ -742,7 +741,7 @@ function getEncounterImageHtml(enc, cat) {
   if (enc.enemies && enc.enemies.length > 1 && isMultiEligible) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
-      const src = `data/media/enemies/${name}.png`;
+      const src = `media/enemies/${name}.png`;
       return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
@@ -752,12 +751,12 @@ function getEncounterImageHtml(enc, cat) {
 
   // If encounter has enemies, load first enemy directly from enemies folder (avoids 404 flash)
   if (enc.enemies && enc.enemies.length >= 1) {
-    const enemySrc = `data/media/enemies/${enc.enemies[0]}.png`;
+    const enemySrc = `media/enemies/${enc.enemies[0]}.png`;
     return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
-  const enemySrc = `data/media/enemies/${enc.name}.png`;
+  const enemySrc = `media/enemies/${enc.name}.png`;
   return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
@@ -772,7 +771,7 @@ const intentKeys = [
 ];
 
 function intentImg(key) {
-  const src = `data/media/intents/${key}.png`;
+  const src = `media/intents/${key}.png`;
   return `<img src="${src}" alt="${key}" title="${key}">`;
 }
 
@@ -886,7 +885,7 @@ function renderEnemySection(name) {
 
   const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
 
-  const imgSrc = `data/media/enemies/${name}.png`;
+  const imgSrc = `media/enemies/${name}.png`;
 
   return `
     <div class="enemy-section">

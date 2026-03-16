@@ -3,3 +3,15 @@ csv/
 data/moves - backup.csv
 __pycache__/
 *.pyc
+
+# Build/utility scripts (local only)
+batch_strip.py
+build_csvs.py
+build_html.py
+clip2png.py
+rebuild.bat
+strip_bg.py
+ui_mockup.html
+
+# Raw unprocessed sprites
+media/raw/
