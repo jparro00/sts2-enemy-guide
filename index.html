@@ -701,6 +701,7 @@
   <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
   <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
   <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
+  <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
 </div>
 
 <div class="section-label" id="section-label">Act 1: Overgrowth — All Encounters</div>
@@ -1040,7 +1041,8 @@ const actNames = {
   hive: "Act 2: Hive",
   glory: "Act 3: Glory",
 };
-const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
+const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses", events: "Events" };
+const actToEventZone = { overgrowth: 'overgrowth', underdocks: 'underdocks', hive: 'hive', glory: 'glory' };
 const eventZoneNames = {
   all: "All Events",
   ev_overgrowth: "Overgrowth",
@@ -1056,6 +1058,7 @@ const encounterTabsHtml = `
   <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
   <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
   <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
+  <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
 `;
 const eventTabsHtml = `
   <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
@@ -1164,7 +1167,25 @@ function render() {
 
   label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
 
-  if (currentCat === 'all') {
+  if (currentCat === 'events') {
+    // Show events for this act's zone + shared
+    const zone = actToEventZone[currentAct];
+    const zoneEvents = eventsData[zone] || [];
+    const sharedEvents = eventsData['shared'] || [];
+    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory' };
+    let html = '';
+    if (zoneEvents.length > 0) {
+      html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+      html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
+    }
+    if (sharedEvents.length > 0) {
+      html += `<div class="cat-group-label cat-events">Shared Events</div>`;
+      html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
+    }
+    grid.innerHTML = '';
+    grid.className = '';
+    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+  } else if (currentCat === 'all') {
     // Show all categories grouped with headers
     let html = '';
     for (const cat of ['easy', 'hard', 'elite', 'boss']) {
