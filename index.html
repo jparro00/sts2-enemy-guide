@@ -50,7 +50,8 @@
   .act-card img {
     display: block;
     width: 200px;
-    height: auto;
+    height: 141px;
+    object-fit: cover;
     border-radius: 10px;
   }
   .act-card .act-text {
@@ -85,6 +86,7 @@
   .act-underdocks { border-color: #1a3a5a; }
   .act-hive { border-color: #5a3a1a; }
   .act-glory { border-color: #3a1a5a; }
+  .act-events { border-color: #1a4a5a; }
 
   /* ── Category Tabs ── */
   .category-tabs {
@@ -112,6 +114,11 @@
   .cat-tab[data-cat="hard"].active { color: #d4a843; border-bottom-color: #d4a843; }
   .cat-tab[data-cat="elite"].active { color: #d46a6a; border-bottom-color: #d46a6a; }
   .cat-tab[data-cat="boss"].active { color: #b06ad4; border-bottom-color: #b06ad4; }
+  .cat-tab[data-cat="ev_overgrowth"].active { color: #6abf69; border-bottom-color: #6abf69; }
+  .cat-tab[data-cat="ev_underdocks"].active { color: #6ab0d4; border-bottom-color: #6ab0d4; }
+  .cat-tab[data-cat="ev_hive"].active { color: #d4a843; border-bottom-color: #d4a843; }
+  .cat-tab[data-cat="ev_glory"].active { color: #b06ad4; border-bottom-color: #b06ad4; }
+  .cat-tab[data-cat="ev_shared"].active { color: #999; border-bottom-color: #999; }
 
   /* ── Enemy Grid ── */
   .enemy-grid {
@@ -178,6 +185,7 @@
   .enemy-card[data-cat="hard"] .enemy-thumb { background: linear-gradient(135deg, #2e2a1a, #1a150d); }
   .enemy-card[data-cat="elite"] .enemy-thumb { background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }
   .enemy-card[data-cat="boss"] .enemy-thumb { background: linear-gradient(135deg, #251a2e, #150d1a); }
+  .enemy-card[data-cat="events"] .enemy-thumb { background: linear-gradient(135deg, #1a2a2e, #0d1a1e); }
   .enemy-name {
     padding: 8px 10px;
     font-size: 0.78rem;
@@ -321,6 +329,19 @@
     background: #14141c;
     border-radius: 6px;
   }
+  .event-lore {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: #14141c;
+    border-radius: 6px;
+    border-left: 3px solid #555;
+  }
+  .event-lore p { margin: 0 0 10px 0; }
+  .event-lore p:last-child { margin-bottom: 0; }
 
   /* ── Powers Section ── */
   .starts-with-section {
@@ -577,6 +598,7 @@
   .cat-group-label.cat-hard { color: #d4a843; border-bottom-color: #4a3a1a; }
   .cat-group-label.cat-elite { color: #d46a6a; border-bottom-color: #4a1a1a; }
   .cat-group-label.cat-boss { color: #b06ad4; border-bottom-color: #3a1a4a; }
+  .cat-group-label.cat-events { color: #6ab0d4; border-bottom-color: #1a3a4a; }
 
   /* ── Loading state ── */
   .loading {
@@ -667,9 +689,13 @@
     <img src="media/ui/map_top_glory.png" alt="Glory">
     <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">Glory</div></div>
   </div>
+  <div class="act-card act-events" data-act="events" onclick="selectAct('events')">
+    <img src="media/events/crystal_sphere.png" alt="Events">
+    <div class="act-text"><div class="act-label">Reference</div><div class="act-name">Events</div></div>
+  </div>
 </div>
 
-<div class="category-tabs">
+<div class="category-tabs" id="category-tabs">
   <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
   <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
   <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
@@ -776,13 +802,17 @@ function parseCSV(text) {
 
 let enemyDatabase = {};
 let encounters = {};
+let eventsData = {};     // keyed by act: { overgrowth: [...], shared: [...] }
+let eventChoices = {};   // keyed by event key: [ { choice, effect, notes } ]
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText] = await Promise.all([
     fetch('data/enemies.csv').then(r => r.text()),
     fetch('data/moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
     fetch('data/powers.csv').then(r => r.text()),
+    fetch('data/events.csv').then(r => r.text()),
+    fetch('data/event_choices.csv').then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -841,6 +871,33 @@ async function loadData() {
     });
   }
 
+  // Build events structure
+  const eventsRaw = parseCSV(eventsText);
+  const eventChoicesRaw = parseCSV(eventChoicesText);
+  const actMap = { Overgrowth: 'overgrowth', Underdocks: 'underdocks', Hive: 'hive', Glory: 'glory', Shared: 'shared' };
+
+  for (const ev of eventsRaw) {
+    const actKey = actMap[ev.Act] || ev.Act.toLowerCase();
+    if (!eventsData[actKey]) eventsData[actKey] = [];
+    eventsData[actKey].push({
+      key: ev.Key,
+      name: ev.Name,
+      act: actKey,
+      notes: ev.Notes || '',
+      image: ev.Image || '',
+      lore: ev.Lore || ''
+    });
+  }
+
+  for (const ch of eventChoicesRaw) {
+    if (!eventChoices[ch.Event]) eventChoices[ch.Event] = [];
+    eventChoices[ch.Event].push({
+      choice: ch.Choice,
+      effect: ch.Effect,
+      notes: ch.Notes || ''
+    });
+  }
+
   render();
 }
 
@@ -857,6 +914,26 @@ function renderPowerRefs(text) {
     const tooltip = ref.desc ? `<span class="power-tooltip">${ref.desc}</span>` : '';
     return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>${tooltip}</span>`;
   });
+}
+
+const loreColors = {
+  green: '#2ee8a5', blue: '#5eaade', red: '#e85454',
+  gold: '#d4a843', orange: '#e08830', purple: '#d462e8',
+  pink: '#d462e8'
+};
+
+function renderLore(text) {
+  if (!text) return '';
+  // Strip effect tags we can't render: [jitter], [sine], [/jitter], [/sine], etc.
+  let html = text.replace(/\[\/?(?:jitter|sine)\]/gi, '');
+  // Parse color tags: [green]...[/green]
+  html = html.replace(/\[(\w+)\](.*?)\[\/\1\]/gs, (m, tag, content) => {
+    const color = loreColors[tag.toLowerCase()];
+    return color ? `<span style="color:${color}">${content}</span>` : content;
+  });
+  // Split paragraphs on |
+  const paragraphs = html.split('|').map(p => `<p>${p.trim()}</p>`).join('');
+  return paragraphs;
 }
 
 function renderStartsWith(text) {
@@ -964,6 +1041,30 @@ const actNames = {
   glory: "Act 3: Glory",
 };
 const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses" };
+const eventZoneNames = {
+  all: "All Events",
+  ev_overgrowth: "Overgrowth",
+  ev_underdocks: "Underdocks",
+  ev_hive: "Hive",
+  ev_glory: "Glory",
+  ev_shared: "Shared"
+};
+
+const encounterTabsHtml = `
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
+  <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
+  <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
+  <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
+  <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
+`;
+const eventTabsHtml = `
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
+  <div class="cat-tab" data-cat="ev_overgrowth" onclick="selectCat('ev_overgrowth')">Overgrowth</div>
+  <div class="cat-tab" data-cat="ev_underdocks" onclick="selectCat('ev_underdocks')">Underdocks</div>
+  <div class="cat-tab" data-cat="ev_hive" onclick="selectCat('ev_hive')">Hive</div>
+  <div class="cat-tab" data-cat="ev_glory" onclick="selectCat('ev_glory')">Glory</div>
+  <div class="cat-tab" data-cat="ev_shared" onclick="selectCat('ev_shared')">Shared</div>
+`;
 
 let currentAct = "overgrowth";
 let currentCat = "all";
@@ -973,8 +1074,11 @@ function selectAct(act) {
   currentCat = "all";
   document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
   document.querySelector(`.act-card[data-act="${act}"]`).classList.add('selected');
-  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-  document.querySelector('.cat-tab[data-cat="all"]').classList.add('active');
+
+  // Swap category tabs based on mode
+  const tabsContainer = document.getElementById('category-tabs');
+  tabsContainer.innerHTML = act === 'events' ? eventTabsHtml : encounterTabsHtml;
+
   render();
 }
 
@@ -1000,9 +1104,64 @@ function renderCards(encs, cat) {
   }).join('');
 }
 
+function renderEventCards(events) {
+  return events.map(ev => {
+    const imgSrc = ev.image ? `media/events/${ev.image}` : '';
+    const imgHtml = imgSrc
+      ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">`
+      : '';
+    return `
+    <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
+      <div class="enemy-thumb">
+        ${imgHtml}
+      </div>
+      <div class="enemy-name">${ev.name}</div>
+    </div>`;
+  }).join('');
+}
+
 function render() {
   const grid = document.getElementById('enemy-grid');
   const label = document.getElementById('section-label');
+
+  if (currentAct === 'events') {
+    // Events mode
+    label.textContent = `Events — ${eventZoneNames[currentCat] || 'All Events'}`;
+    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
+    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory', shared: 'Shared' };
+    let html = '';
+
+    if (currentCat === 'all') {
+      // Show all zones grouped
+      for (const zone of eventZoneOrder) {
+        const events = eventsData[zone] || [];
+        if (events.length === 0) continue;
+        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+        html += `<div class="enemy-grid">${renderEventCards(events)}</div>`;
+      }
+    } else {
+      // Show specific zone + shared (if not already showing shared)
+      const zone = currentCat.replace('ev_', '');
+      const zoneEvents = eventsData[zone] || [];
+      if (zoneEvents.length > 0) {
+        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+        html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
+      }
+      if (zone !== 'shared') {
+        const sharedEvents = eventsData['shared'] || [];
+        if (sharedEvents.length > 0) {
+          html += `<div class="cat-group-label cat-events">Shared Events</div>`;
+          html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
+        }
+      }
+    }
+
+    grid.innerHTML = '';
+    grid.className = '';
+    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    return;
+  }
+
   label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
 
   if (currentCat === 'all') {
@@ -1114,6 +1273,56 @@ function openEncounter(encounterName, act, cat) {
   backdrop.classList.add('open');
 }
 
+function openEvent(eventKey) {
+  // Find the event
+  let ev = null;
+  for (const act in eventsData) {
+    ev = eventsData[act].find(e => e.key === eventKey);
+    if (ev) break;
+  }
+  if (!ev) return;
+
+  const panel = document.getElementById('detail-panel');
+  const backdrop = document.getElementById('backdrop');
+  document.getElementById('detail-name').textContent = ev.name;
+
+  const choices = eventChoices[eventKey] || [];
+  const choicesHtml = choices.length > 0 ? `
+    <h3>Choices</h3>
+    <table>
+      <tr><th>Choice</th><th>Effect</th></tr>
+      ${choices.map(c => `
+        <tr>
+          <td><strong>${c.choice}</strong></td>
+          <td>${c.effect}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${c.notes}</span>` : ''}</td>
+        </tr>
+      `).join('')}
+    </table>
+  ` : '';
+
+  const notesHtml = ev.notes ? `<div class="notes">&#9888;&#65039; ${ev.notes}</div>` : '';
+  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
+  const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
+
+  document.getElementById('detail-body').innerHTML = `
+    <div class="enemy-section">
+      <div class="enemy-section-header">
+        <div class="enemy-section-info">
+          <div class="enemy-section-name">${ev.name}</div>
+        </div>
+        ${imgHtml}
+      </div>
+      ${loreHtml}
+      ${choicesHtml}
+      ${notesHtml}
+    </div>
+    ${panelFeedbackLink}
+  `;
+
+  panel.classList.add('open');
+  backdrop.classList.add('open');
+}
+
 function closeDetail() {
   document.getElementById('detail-panel').classList.remove('open');
   document.getElementById('backdrop').classList.remove('open');
@@ -1180,7 +1389,17 @@ function onSearch(query) {
     }
   }
 
-  if (matches.length === 0) {
+  // Also search events
+  const eventMatches = [];
+  for (const act in eventsData) {
+    for (const ev of eventsData[act]) {
+      if (ev.name.toLowerCase().includes(q)) {
+        eventMatches.push({ ev, zone: act });
+      }
+    }
+  }
+
+  if (matches.length === 0 && eventMatches.length === 0) {
     results.innerHTML = '<div style="text-align:center; padding:40px; color:#666;">No matches found.</div>';
     return;
   }
@@ -1211,6 +1430,32 @@ function onSearch(query) {
         </div>`;
     }
     html += '</div>';
+  }
+
+  // Add event search results
+  if (eventMatches.length > 0) {
+    const eventGrouped = {};
+    for (const m of eventMatches) {
+      if (!eventGrouped[m.zone]) eventGrouped[m.zone] = [];
+      eventGrouped[m.zone].push(m.ev);
+    }
+    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
+    const eventZoneNames = { ...actNames, shared: 'Shared' };
+    for (const zone of eventZoneOrder) {
+      if (!eventGrouped[zone]) continue;
+      html += `<div class="search-zone-label">${eventZoneNames[zone]} — Events</div>`;
+      html += '<div class="search-grid">';
+      for (const ev of eventGrouped[zone]) {
+        const imgSrc = ev.image ? `media/events/${ev.image}` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
+        html += `
+          <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
+            <div class="enemy-thumb">${imgHtml}</div>
+            <div class="enemy-name">${ev.name}</div>
+          </div>`;
+      }
+      html += '</div>';
+    }
   }
 
   results.innerHTML = html;

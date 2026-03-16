@@ -30,7 +30,7 @@ nemesis,Nemesis,nemesis_power.png,"At the end of every other turn, gain 1 Intang
 painful_stabs,Painful Stabs,painful_stabs_power.png,Shuffle X Wounds into discard when inflicting unblocked damage.
 paper_cuts,Paper Cuts,paper_cuts_power.png,"Whenever you take unblocked attack damage from this enemy, lose X Max HP."
 personal_hive,Personal Hive,personal_hive_power.png,Add X Dazed to the draw pile whenever hit by an attack.
-plating,Plating,plating_power.png,Has X Block at the start of each turn.
+plating,Plating,plating_power.png,"At the end of your turn, gain x block. Plating is reduced by 1 at the start of your turn."
 plow,Plow,plow_power.png,"First time HP reaches X or below, becomes stunned and loses all Strength."
 rampart,Rampart,rampart_power.png,Gives Turret Operator X Block at the start of the player's turn.
 ravenous,Ravenous,ravenous_power.png,"When an enemy dies, become stunned and gain X Strength."
