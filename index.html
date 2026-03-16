@@ -244,6 +244,27 @@
   }
   .detail-close:hover { color: #fff; }
   .detail-body { padding: 20px 24px; }
+  .encounter-composition {
+    background: #1a1a2a;
+    border-left: 3px solid #c8b06a;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    border-radius: 0 6px 6px 0;
+  }
+  .encounter-composition ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .encounter-composition li {
+    color: #bbb;
+    font-size: 0.95rem;
+    padding: 2px 0;
+  }
+  .encounter-composition li::before {
+    content: "• ";
+    color: #c8b06a;
+  }
   .detail-body .hp-bar {
     display: inline-block;
     background: #2a1a1a;
@@ -715,7 +736,9 @@ async function loadData() {
       name: enc.Encounter,
       enemies: enemyList,
       multi: enc.Multi || '',
-      emoji: enc.Emoji || ''
+      emoji: enc.Emoji || '',
+      composition: enc.Composition || '',
+      altImage: enc.AltImage || ''
     });
   }
 
@@ -728,17 +751,22 @@ async function loadData() {
 
 const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new?title=Feedback&body=Type%20your%20feedback%20here" target="_blank">Submit feedback or report an issue</a></div>`;
 
-// Encounters where the image should align to top instead of center
-const topAlignEncounters = new Set(['Kaiser Crab']);
+// Resolve alt image path — if no folder prefix, default to media/enemies/
+function resolveAltImage(altImage) {
+  if (altImage.includes('/')) return altImage;
+  return `media/enemies/${altImage}`;
+}
 
-// Elites/bosses that should still render as multi-enemy images
-const forceMultiEncounters = new Set(['Phantasmal Gardeners', 'Knights']);
-
-// Try media/encounters/ first, then media/enemies/, then emoji fallback
+// Build encounter card image HTML
 function getEncounterImageHtml(enc, cat) {
-  // If encounter has multiple enemies, show individual enemy images (skip for elites/bosses unless forced)
-  const isMultiEligible = cat !== 'elite' && cat !== 'boss' || forceMultiEncounters.has(enc.name);
-  if (enc.enemies && enc.enemies.length > 1 && isMultiEligible) {
+  // If altImage is set, use that as a single image
+  if (enc.altImage) {
+    const src = resolveAltImage(enc.altImage);
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  }
+
+  // If encounter has multiple enemies, show individual enemy images
+  if (enc.enemies && enc.enemies.length > 1) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
       const src = `media/enemies/${name}.png`;
@@ -747,17 +775,15 @@ function getEncounterImageHtml(enc, cat) {
     return { multi: true, count, html: imgs };
   }
 
-  const topClass = topAlignEncounters.has(enc.name) ? ' img-top' : '';
-
-  // If encounter has enemies, load first enemy directly from enemies folder (avoids 404 flash)
+  // Single enemy — load from enemies folder
   if (enc.enemies && enc.enemies.length >= 1) {
     const enemySrc = `media/enemies/${enc.enemies[0]}.png`;
-    return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
   const enemySrc = `media/enemies/${enc.name}.png`;
-  return { multi: false, html: `<img class="${topClass}" src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 // ══════════════════════════════════════════
@@ -928,14 +954,21 @@ function openEncounter(encounterName, act, cat) {
     enc = encs.find(e => e.name === encounterName);
   }
 
+  // Build composition info if available
+  let compositionHtml = '';
+  if (enc && enc.composition) {
+    const items = enc.composition.split(';').map(s => s.trim()).filter(Boolean);
+    compositionHtml = `<div class="encounter-composition"><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></div>`;
+  }
+
   if (enc && enc.enemies && enc.enemies.length > 0) {
     const sections = enc.enemies
       .filter((name, idx, arr) => arr.indexOf(name) === idx)
       .map(name => renderEnemySection(name))
       .join('');
-    document.getElementById('detail-body').innerHTML = sections + panelFeedbackLink;
+    document.getElementById('detail-body').innerHTML = compositionHtml + sections + panelFeedbackLink;
   } else {
-    document.getElementById('detail-body').innerHTML = renderEnemySection(encounterName) + panelFeedbackLink;
+    document.getElementById('detail-body').innerHTML = compositionHtml + renderEnemySection(encounterName) + panelFeedbackLink;
   }
 
   panel.classList.add('open');
