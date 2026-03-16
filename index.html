@@ -333,6 +333,11 @@
     font-size: 0.85em;
     letter-spacing: 0.05em;
   }
+  .power-ref {
+    position: relative;
+    display: inline;
+    cursor: default;
+  }
   .power-icon-inline {
     height: 22px;
     width: 22px;
@@ -342,6 +347,29 @@
   .starts-with-power {
     color: #f0c040;
     font-weight: bold;
+  }
+  .power-ref .power-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2e;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #ccc;
+    width: max-content;
+    max-width: 300px;
+    z-index: 200;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    margin-bottom: 4px;
+  }
+  .power-ref:hover .power-tooltip {
+    display: block;
   }
 
   .powers-section {
@@ -826,7 +854,8 @@ function renderPowerRefs(text) {
   return text.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
-    return `<img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>`;
+    const tooltip = ref.desc ? `<span class="power-tooltip">${ref.desc}</span>` : '';
+    return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>${tooltip}</span>`;
   });
 }
 
