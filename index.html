@@ -804,16 +804,18 @@ function parseCSV(text) {
 let enemyDatabase = {};
 let encounters = {};
 let eventsData = {};     // keyed by act: { overgrowth: [...], shared: [...] }
-let eventChoices = {};   // keyed by event key: [ { choice, effect, notes } ]
+let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, card } ]
+let eventCardsRef = {};  // keyed by card name: { name, type, cost, keywords, description }
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText] = await Promise.all([
     fetch('data/enemies.csv').then(r => r.text()),
     fetch('data/moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
     fetch('data/powers.csv').then(r => r.text()),
     fetch('data/events.csv').then(r => r.text()),
     fetch('data/event_choices.csv').then(r => r.text()),
+    fetch('data/event_cards.csv').then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -895,8 +897,21 @@ async function loadData() {
     eventChoices[ch.Event].push({
       choice: ch.Choice,
       effect: ch.Effect,
-      notes: ch.Notes || ''
+      notes: ch.Notes || '',
+      card: ch.Card || ''
     });
+  }
+
+  // Build event cards reference
+  const eventCardsRaw = parseCSV(eventCardsText);
+  for (const c of eventCardsRaw) {
+    eventCardsRef[c.Name] = {
+      name: c.Name,
+      type: c.Type,
+      cost: c.Cost,
+      keywords: c.Keywords || '',
+      description: c.Description || ''
+    };
   }
 
   render();
@@ -918,7 +933,7 @@ function renderPowerRefs(text) {
 }
 
 const loreColors = {
-  green: '#2ee8a5', blue: '#5eaade', red: '#e85454',
+  green: '#5de82e', aqua: '#2ee8a5', blue: '#5eaade', red: '#e85454',
   gold: '#d4a843', orange: '#e08830', purple: '#d462e8',
   pink: '#d462e8'
 };
@@ -1315,7 +1330,7 @@ function openEvent(eventKey) {
       ${choices.map(c => `
         <tr>
           <td><strong>${c.choice}</strong></td>
-          <td>${c.effect}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${c.notes}</span>` : ''}</td>
+          <td>${renderLore(c.effect)}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${renderLore(c.notes)}</span>` : ''}</td>
         </tr>
       `).join('')}
     </table>
@@ -1324,6 +1339,37 @@ function openEvent(eventKey) {
   const notesHtml = ev.notes ? `<div class="notes">&#9888;&#65039; ${ev.notes}</div>` : '';
   const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
+
+  // Build cards reference table from choices that reference cards
+  const cardTypeIcons = {
+    Curse: 'media/cards/curse_icon_card.webp',
+    Event: 'media/cards/event_icon_card.webp',
+    Quest: 'media/cards/quest_icon_card.webp',
+    Colorless: 'media/cards/colorless_icon_card.webp'
+  };
+  const referencedCards = [...new Set(choices.filter(c => c.card).map(c => c.card))];
+  const cardsHtml = referencedCards.length > 0 ? (() => {
+    const rows = referencedCards.map(cardName => {
+      const card = eventCardsRef[cardName];
+      if (!card) return '';
+      const iconSrc = cardTypeIcons[card.type] || '';
+      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.type}" style="width:24px;height:24px;vertical-align:middle;" title="${card.type}">` : card.type;
+      const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
+      return `<tr>
+        <td style="text-align:center">${iconHtml}</td>
+        <td><strong>${card.name}</strong></td>
+        <td style="text-align:center">${costDisplay}</td>
+        <td>${renderLore(card.description)}</td>
+      </tr>`;
+    }).join('');
+    return `
+      <h3>Card Reference</h3>
+      <table>
+        <tr><th style="width:36px">Type</th><th>Name</th><th style="width:36px">Cost</th><th>Description</th></tr>
+        ${rows}
+      </table>
+    `;
+  })() : '';
 
   document.getElementById('detail-body').innerHTML = `
     <div class="enemy-section">
@@ -1335,6 +1381,7 @@ function openEvent(eventKey) {
       </div>
       ${loreHtml}
       ${choicesHtml}
+      ${cardsHtml}
       ${notesHtml}
     </div>
     ${panelFeedbackLink}
