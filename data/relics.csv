@@ -1,0 +1,31 @@
+Key,Name,Image,Description
+big_mushroom,Big Mushroom,big_mushroom.webp,"Upon pickup, raise your Max HP by [blue]20[/blue]. At the start of each combat, draw [blue]2[/blue] fewer cards."
+bing_bong,Bing Bong,bing_bong.webp,"Whenever you add a card to your [gold]Deck[/gold], add one additional copy."
+bone_tea,Bone Tea,bone_tea.webp,"At the start of the next combat, [gold]Upgrade[/gold] your starting hand."
+chosen_cheese,The Chosen Cheese,chosen_cheese.webp,"At the end of combat, gain [blue]1[/blue] Max HP."
+darkstone_periapt,Darkstone Periapt,darkstone_periapt.webp,"Whenever you obtain a [red]Curse[/red], raise your Max HP by [blue]6[/blue]."
+daughter_of_the_wind,Daughter of the Wind,daughter_of_the_wind.webp,"Whenever you play an Attack, gain [blue]1[/blue] [gold]Block[/gold]."
+dream_catcher,Dream Catcher,dream_catcher.webp,"Whenever you [gold]Rest[/gold], you may add a card to your [gold]Deck[/gold]."
+ember_tea,Ember Tea,ember_tea.webp,"At the start of the next [blue]5[/blue] combats, gain [blue]2[/blue] [gold]Strength[/gold]."
+fake_anchor,Anchor???,fake_anchor.webp,Start each combat with [blue]4[/blue] [gold]Block[/gold].
+fake_blood_vial,Blood Vial???,fake_blood_vial.webp,"At the start of each combat, heal [green]1[/green] HP."
+fake_happy_flower,Happy Flower???,fake_happy_flower.webp,"Every [blue]5[/blue] turns, gain [blue]1[/blue] Energy."
+fake_lees_waffle,Lee's Waffle???,fake_lees_waffle.webp,"Upon pickup, heal [green]10%[/green] of your HP."
+fake_mango,Mango???,fake_mango.webp,"Upon pickup, raise your Max HP by [blue]3[/blue]."
+fake_merchants_rug,The Merchant's Rug???,fake_merchants_rug.webp,Poor imitation. Does nothing.
+fake_orichalcum,Orichalcum???,fake_orichalcum.webp,"If you end your turn without [gold]Block[/gold], gain [blue]3[/blue] [gold]Block[/gold]."
+fake_snecko_eye,Snecko Eye???,fake_snecko_eye.webp,Start each combat [red]Confused[/red].
+fake_strike_dummy,Strike Dummy???,fake_strike_dummy.webp,Cards containing “Strike” deal [blue]1[/blue] additional damage.
+fake_venerable_tea_set,Venerable Tea Set???,fake_venerable_tea_set.webp,"Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [blue]1[/blue] Energy."
+fragrant_mushroom,Fragrant Mushroom,fragrant_mushroom.webp,"Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards."
+frenel_lens,Fresnel Lens,fresnel_lens.webp,"Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]2[/blue]."
+hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block[/gold], apply [blue]2[/blue] [gold]Vulnerable[/gold]."
+history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack or Skill."
+lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies."
+maw_bank,Maw Bank,maw_bank.webp,"Whenever you climb a floor, gain [blue]12[/blue] [gold]Gold[/gold]. No longer works when you spend any [gold]Gold[/gold] at the shop."
+mr_struggles,Mr. Struggles,mr_struggles.webp,"At the start of your turn, deal damage equal to the turn number to ALL enemies."
+royal_poison,Royal Poison,royal_poison.webp,"At the start of each combat, lose [blue]4[/blue] HP."
+sword_of_jade,Sword of Jade,sword_of_jade.webp,Start each combat with [blue]3[/blue] [gold]Strength[/gold].
+sword_of_stone,Sword of Stone,sword_of_stone.webp,Transforms into a powerful [gold]Relic[/gold] after defeating [blue]5[/blue] [gold]Elites[/gold].
+tea_of_discourtesy,Tea of Discourtesy,tea_of_discourtesy.webp,"At the start of the next combat, shuffle [blue]2[/blue] [gold]Dazed[/gold] into your [gold]Draw Pile[/gold]."
+the_boot,The Boot,the_boot.webp,"Whenever you would deal [blue]4[/blue] or less unblocked attack damage, increase it to [blue]5[/blue]."

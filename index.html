@@ -363,7 +363,7 @@
     50% { transform: translateY(-0.8px); }
   }
   .lore-jitter { display: inline-block; animation: jitter 0.8s linear infinite; }
-  .lore-sine { display: inline-block; animation: sine 2s ease-in-out infinite; }
+  .lore-sine { display: inline-block; animation: sine 1.33s ease-in-out infinite; }
   /* Fade-in: characters fade in sequentially */
   @keyframes fadeIn {
     0% { opacity: 0; }
@@ -853,7 +853,7 @@ let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, card 
 let eventCardsRef = {};  // keyed by card name: { name, type, cost, keywords, description }
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText] = await Promise.all([
     fetch('data/enemies.csv').then(r => r.text()),
     fetch('data/moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
@@ -861,6 +861,9 @@ async function loadData() {
     fetch('data/events.csv').then(r => r.text()),
     fetch('data/event_choices.csv').then(r => r.text()),
     fetch('data/event_cards.csv').then(r => r.text()),
+    fetch('data/enchantments.csv').then(r => r.text()),
+    fetch('data/potions.csv').then(r => r.text()),
+    fetch('data/relics.csv').then(r => r.text()),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -943,7 +946,10 @@ async function loadData() {
       choice: ch.Choice,
       effect: ch.Effect,
       notes: ch.Notes || '',
-      card: ch.Card || ''
+      card: ch.Card || '',
+      enchantment: ch.Enchantment || '',
+      potion: ch.Potion || '',
+      relic: ch.Relic || ''
     });
   }
 
@@ -959,6 +965,36 @@ async function loadData() {
     };
   }
 
+  // Build enchantments reference from CSV
+  const enchantmentsRaw = parseCSV(enchantmentsText);
+  for (const e of enchantmentsRaw) {
+    enchantmentsRef[e.Key] = {
+      name: e.Name,
+      image: e.Image,
+      desc: e.Description
+    };
+  }
+
+  // Build potions reference from CSV
+  const potionsRaw = parseCSV(potionsText);
+  for (const p of potionsRaw) {
+    potionsRef[p.Key] = {
+      name: p.Name,
+      image: p.Image,
+      desc: p.Description
+    };
+  }
+
+  // Build relics reference from CSV
+  const relicsRaw = parseCSV(relicsText);
+  for (const r of relicsRaw) {
+    relicsRef[r.Key] = {
+      name: r.Name,
+      image: r.Image,
+      desc: r.Description
+    };
+  }
+
   render();
 }
 
@@ -967,6 +1003,9 @@ async function loadData() {
 // ══════════════════════════════════════════
 
 const powersRef = {}; // Populated from data/powers.csv at load time
+const enchantmentsRef = {}; // Populated from data/enchantments.csv at load time
+const potionsRef = {}; // Populated from data/potions.csv at load time
+const relicsRef = {}; // Populated from data/relics.csv at load time
 
 function renderPowerRefs(text) {
   return text.replace(/\{(\w+)\}/g, (match, key) => {
@@ -1448,7 +1487,7 @@ function openEvent(eventKey) {
     Quest: 'media/cards/quest_icon_card.webp',
     Colorless: 'media/cards/colorless_icon_card.webp'
   };
-  const referencedCards = [...new Set(choices.filter(c => c.card).map(c => c.card))];
+  const referencedCards = [...new Set(choices.filter(c => c.card).flatMap(c => c.card.split(',').map(s => s.trim())).filter(Boolean))];
   const cardsHtml = referencedCards.length > 0 ? (() => {
     const rows = referencedCards.map(cardName => {
       const card = eventCardsRef[cardName];
@@ -1472,6 +1511,72 @@ function openEvent(eventKey) {
     `;
   })() : '';
 
+  // Build enchantments reference table from choices that reference enchantments
+  const referencedEnchantments = [...new Set(choices.filter(c => c.enchantment).map(c => c.enchantment))];
+  const enchantmentsHtml = referencedEnchantments.length > 0 ? (() => {
+    const rows = referencedEnchantments.map(enchKey => {
+      const ench = enchantmentsRef[enchKey];
+      if (!ench) return '';
+      const iconHtml = ench.image ? `<img src="media/enchantments/${ench.image}" alt="${ench.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
+      return `<tr>
+        <td style="text-align:center">${iconHtml}</td>
+        <td><strong>${ench.name}</strong></td>
+        <td>${renderLore(ench.desc)}</td>
+      </tr>`;
+    }).join('');
+    return `
+      <h3>Enchantment Reference</h3>
+      <table>
+        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
+        ${rows}
+      </table>
+    `;
+  })() : '';
+
+  // Build potions reference table
+  const referencedPotions = [...new Set(choices.filter(c => c.potion).flatMap(c => c.potion.split(',').map(s => s.trim())).filter(Boolean))];
+  const potionsHtml = referencedPotions.length > 0 ? (() => {
+    const rows = referencedPotions.map(potionKey => {
+      const pot = potionsRef[potionKey];
+      if (!pot) return '';
+      const iconHtml = pot.image ? `<img src="media/potions/${pot.image}" alt="${pot.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
+      return `<tr>
+        <td style="text-align:center">${iconHtml}</td>
+        <td><strong>${pot.name}</strong></td>
+        <td>${renderLore(pot.desc)}</td>
+      </tr>`;
+    }).join('');
+    return `
+      <h3>Potion Reference</h3>
+      <table>
+        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
+        ${rows}
+      </table>
+    `;
+  })() : '';
+
+  // Build relics reference table
+  const referencedRelics = [...new Set(choices.filter(c => c.relic).flatMap(c => c.relic.split(',').map(s => s.trim())).filter(Boolean))];
+  const relicsHtml = referencedRelics.length > 0 ? (() => {
+    const rows = referencedRelics.map(relicKey => {
+      const rel = relicsRef[relicKey];
+      if (!rel) return '';
+      const iconHtml = rel.image ? `<img src="media/relics/${rel.image}" alt="${rel.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
+      return `<tr>
+        <td style="text-align:center">${iconHtml}</td>
+        <td><strong>${rel.name}</strong></td>
+        <td>${renderLore(rel.desc)}</td>
+      </tr>`;
+    }).join('');
+    return `
+      <h3>Relic Reference</h3>
+      <table>
+        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
+        ${rows}
+      </table>
+    `;
+  })() : '';
+
   document.getElementById('detail-body').innerHTML = `
     <div class="enemy-section">
       <div class="enemy-section-header">
@@ -1482,8 +1587,11 @@ function openEvent(eventKey) {
       </div>
       ${loreHtml}
       ${choicesHtml}
-      ${cardsHtml}
       ${notesHtml}
+      ${cardsHtml}
+      ${relicsHtml}
+      ${potionsHtml}
+      ${enchantmentsHtml}
     </div>
     ${panelFeedbackLink}
   `;

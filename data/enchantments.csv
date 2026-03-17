@@ -1,0 +1,23 @@
+Key,Name,Image,Description
+adroit,Adroit,adroit.webp,Gain [blue]X[/blue] [gold]Block[/gold].
+clone,Clone,clone.webp,This card can be duplicated at [gold]Rest Sites[/gold].
+corrupted,Corrupted,corrupted.webp,"Deal [blue]50%[/blue] more damage, but lose [blue]2[/blue] HP."
+favored,Favored,favored.webp,This card's attack damage is doubled.
+glam,Glam,glam.webp,This card has [gold]Replay[/gold] once per combat.
+goopy,Goopy,goopy.webp,"This card gains [gold]Exhaust[/gold]. When played, permanently increase this card's [gold]Block[/gold] by [blue]1[/blue]."
+imbued,Imbued,imbued.webp,This card is played automatically at the start of each combat.
+instinct,Instinct,instinct.webp,Decrease the cost of this card by [blue]1[/blue].
+momentum,Momentum,momentum.webp,Increase this card's attack damage by [blue]X[/blue] this combat when played.
+nimble,Nimble,nimble.webp,Increases [gold]Block[/gold] gained from this card by [blue]X[/blue].
+perfect_fit,Perfect Fit,perfect_fit.webp,"Whenever this would be shuffled into your [gold]Draw Pile[/gold], place it on the top instead."
+royally_approved,Royally Approved,royally_approved.webp,This card has [gold]Innate[/gold] and [gold]Retain[/gold].
+sharp,Sharp,sharp.webp,Increases damage on this card by [blue]X[/blue].
+slither,Slither,slither.webp,"When you draw this card, randomize its cost from [blue]0[/blue] to [blue]3[/blue]."
+slumbering_essence,Slumbering Essence,slumbering_essence.webp,"If this card is in your hand at the end of turn, reduce its cost by [blue]1[/blue] until it is played."
+souls_power,Soul's Power,souls_power.webp,This card loses [gold]Exhaust[/gold].
+sown,Sown,sown.webp,"The first time you play this card each combat, gain [blue]X[/blue] Energy."
+spiral,Spiral,spiral.webp,This card gains [gold]Replay[/gold] [blue]1[/blue].
+steady,Steady,steady.webp,This card gains [gold]Retain[/gold].
+swift,Swift,swift.webp,"The first time you play this card, draw [blue]X[/blue] cards."
+tezcataras_ember,Tezcatara's Ember,tezcataras_ember.webp,Costs [blue]0[/blue] and gains [gold]Eternal[/gold].
+vigorous,Vigorous,vigorous.webp,"The first time this card is played, it deals [blue]X[/blue] additional damage."
