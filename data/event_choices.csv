@@ -39,11 +39,11 @@ endless_conveyor,Observe the Chef,[gold]Upgrade[/gold] a random card in your [go
 endless_conveyor,Grab Caviar off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,,
 endless_conveyor,Grab Fried Eel off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,,
 endless_conveyor,Grab Jelly Liver off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!,,
-endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,Forced every 5th grab.,Feeding Frenzy
-endless_conveyor,Grab Golden Eysh off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [blue]60[/blue] [gold]Gold[/gold]. Continue feasting!,Free (no gold cost). Only appears after first grab.,
-endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]8[/green] HP. Continue feasting!,,
+endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!,Forced every 5th grab.,Feeding Frenzy
+endless_conveyor,Grab Golden Eysh off the Belt,[green]LUCKY WINNER![/green] Gain [blue]75[/blue] [gold]Gold[/gold].,Free (no gold cost). Only appears after first grab.,
+endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,,
 endless_conveyor,Grab Suspicious Condiment off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Procure [blue]1[/blue] random [gold]Potion[/gold]. Continue feasting!,Only appears if you have open potion slots.,
-endless_conveyor,Grab Clam Roll off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Remove [blue]1[/blue] card from your [gold]Deck[/gold]. Continue feasting!,Only appears if not at full HP.,
+endless_conveyor,Grab Clam Roll off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!,Only appears if not at full HP.,
 endless_conveyor,Leave,Leave the conveyor belt.,,
 punch_off,I Can Take Them,Fight them for [gold]Greater Rewards[/gold].,,
 punch_off,Nab,Add [red]Injury[/red] to your [gold]Deck[/gold]. Obtain a random [gold]Relic[/gold].,,Injury
