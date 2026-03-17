@@ -1,59 +1,59 @@
 Key,Name,Image,Description
-artifact,Artifact,artifact_power.png,Negates the next X debuffs applied.
-block,Block,block.png,Until next turn prevents damage.
-strength,Strength,strength_power.png,Increases attack damage by X.
-vulnerable,Vulnerable,vulnerable_power.png,Take 50% more damage from attacks.
-weak,Weak,weak_power.png,Deal 25% less attack damage.
-asleep,Asleep,asleep_power.png,Sleeps for 3 turns or until losing HP.
-back_attack_left,Back Attack,back_attack_left_power.png,Deals 50% more damage if attacking you from behind.
-burrowed,Burrowed,burrowed_power.png,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.
-constrict,Constrict,constrict_power.png,"While alive, take X damage at the end of your turn."
-crab_rage,Crab Rage,crab_rage_power.png,"When an ally dies, gains 5 Strength and 99 Block."
-curl_up,Curl Up,curl_up_power.png,Gain Block upon first being hit.
-dampen,Dampen,dampen_power.png,"While alive, all your upgraded cards are downgraded."
-disintegration,Disintegration,disintegration_power.png,Take X damage at the end of your turn.
-enrage,Enrage,enrage_power.png,"Whenever you play a Skill, gain X Strength."
-escape_artist,Escape Artist,escape_artist_power.png,Tries to escape the combat after X turns.
-flutter,Flutter,flutter_power.png,Receives 50% less attack damage. Deal attack damage X times to remove and stun it.
-galvanic,Galvanic,galvanic_power.png,You take X damage when a Power is played.
-hard_to_kill,Hard to Kill,hard_to_kill_power.png,Reduce all damage taken and HP loss to X.
-hardened_shell,Hardened Shell,hardened_shell_power.png,Cannot lose more than X HP per turn.
-hatch,Hatch,hatch_power.png,Hatches after X turns.
-haunt,Haunt,haunt_power.png,Haunts the player.
-hex,Hex,hex_power.png,"While alive, all your cards are ethereal."
-high_voltage,High Voltage,high_voltage_power.png,"At the end of its turn, gains X Strength."
-illusion,Illusion,illusion_power.png,"When this dies, revives next turn at full HP."
-imbalanced,Imbalanced,imbalanced_power.png,Becomes stunned if its attack is fully blocked.
-infested,Infested,infested_power.png,Summons X Wrigglers after dying (they start stunned).
-mind_rot,Mind Rot,mind_rot_power.png,Draw 1 fewer card at the start of your turn.
-nemesis,Nemesis,nemesis_power.png,"At the end of every other turn, gain 1 Intangible."
-painful_stabs,Painful Stabs,painful_stabs_power.png,Shuffle X Wounds into discard when inflicting unblocked damage.
-paper_cuts,Paper Cuts,paper_cuts_power.png,"Whenever you take unblocked attack damage from this enemy, lose X Max HP."
-personal_hive,Personal Hive,personal_hive_power.png,Add X Dazed to the draw pile whenever hit by an attack.
-plating,Plating,plating_power.png,"At the end of your turn, gain x block. Plating is reduced by 1 at the start of your turn."
-plow,Plow,plow_power.png,"First time HP reaches X or below, becomes stunned and loses all Strength."
-rampart,Rampart,rampart_power.png,Gives Turret Operator X Block at the start of the player's turn.
-ravenous,Ravenous,ravenous_power.png,"When an enemy dies, become stunned and gain X Strength."
-reattach,Reattach,reattach_power.png,"If other segments are still alive, revives after 2 turns with 25 HP."
-ringing,Ringing,ringing_power.png,You can only play 1 card this turn.
-sandpit,Sandpit,sandpit_power.png,"In X turns, instantly die."
-shriek,Shriek,shriek_power.png,Becomes stunned after reaching X HP or below.
-shrink,Shrink,shrink_power.png,Deal 30% reduced damage.
-skittish,Skittish,skittish_power.png,"First time hit each turn, gain X Block."
-slippery,Slippery,slippery_power.png,"The next X times this loses HP, it loses 1 HP instead."
-sloth,Sloth,sloth_power.png,You cannot play more than 3 cards per turn.
-slow,Slow,slow_power.png,Attacks deal 10% extra damage for every card played this turn.
-slumber,Slumber,slumber_power.png,Counter decreases after taking a turn or losing HP. Awakens at 0.
-smoggy,Smoggy,smoggy_power.png,You can only play 1 Skill per turn.
-soar,Soar,soar_power.png,Receives 50% less attack damage until it lands.
-steam_eruption,Steam Eruption,steam_eruption_power.png,"After dying, wait 1 turn, then attack for X damage."
-stock,Stock,stock_power.png,"When killed, a new Axebot is summoned in its place (with Stock X-1)."
-suck,Suck,suck_power.png,"Whenever this deals unblocked attack damage, it gains X Strength."
-surprise,Surprise,surprise_power.png,"When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned)."
-swipe,Swipe,swipe_power.png,"Upon killing this enemy, the stolen card is returned."
-tangled,Tangled,tangled_power.png,Attacks cost 1 additional energy for X turns.
-tender,Tender,tender_power.png,"Whenever you play a card, lose 1 Strength and 1 Dexterity this turn."
-territorial,Territorial,territorial_power.png,"At the end of its turn, gains X Strength."
-thievery,Thievery,thievery_power.png,Steals X gold when attacking.
-vital_spark,Vital Spark,vital_spark_power.png,"The first time this takes attack damage each turn, the attacker gains X energy."
-waste_away,Waste Away,waste_away_power.png,Gain 1 less energy at the start of your turn.
+artifact,Artifact,artifact_power.webp,Negates the next X debuffs applied.
+block,Block,block.webp,Until next turn prevents damage.
+strength,Strength,strength_power.webp,Increases attack damage by X.
+vulnerable,Vulnerable,vulnerable_power.webp,Take 50% more damage from attacks.
+weak,Weak,weak_power.webp,Deal 25% less attack damage.
+asleep,Asleep,asleep_power.webp,Sleeps for 3 turns or until losing HP.
+back_attack_left,Back Attack,back_attack_left_power.webp,Deals 50% more damage if attacking you from behind.
+burrowed,Burrowed,burrowed_power.webp,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.
+constrict,Constrict,constrict_power.webp,"While alive, take X damage at the end of your turn."
+crab_rage,Crab Rage,crab_rage_power.webp,"When an ally dies, gains 5 Strength and 99 Block."
+curl_up,Curl Up,curl_up_power.webp,Gain Block upon first being hit.
+dampen,Dampen,dampen_power.webp,"While alive, all your upgraded cards are downgraded."
+disintegration,Disintegration,disintegration_power.webp,Take X damage at the end of your turn.
+enrage,Enrage,enrage_power.webp,"Whenever you play a Skill, gain X Strength."
+escape_artist,Escape Artist,escape_artist_power.webp,Tries to escape the combat after X turns.
+flutter,Flutter,flutter_power.webp,Receives 50% less attack damage. Deal attack damage X times to remove and stun it.
+galvanic,Galvanic,galvanic_power.webp,You take X damage when a Power is played.
+hard_to_kill,Hard to Kill,hard_to_kill_power.webp,Reduce all damage taken and HP loss to X.
+hardened_shell,Hardened Shell,hardened_shell_power.webp,Cannot lose more than X HP per turn.
+hatch,Hatch,hatch_power.webp,Hatches after X turns.
+haunt,Haunt,haunt_power.webp,Haunts the player.
+hex,Hex,hex_power.webp,"While alive, all your cards are ethereal."
+high_voltage,High Voltage,high_voltage_power.webp,"At the end of its turn, gains X Strength."
+illusion,Illusion,illusion_power.webp,"When this dies, revives next turn at full HP."
+imbalanced,Imbalanced,imbalanced_power.webp,Becomes stunned if its attack is fully blocked.
+infested,Infested,infested_power.webp,Summons X Wrigglers after dying (they start stunned).
+mind_rot,Mind Rot,mind_rot_power.webp,Draw 1 fewer card at the start of your turn.
+nemesis,Nemesis,nemesis_power.webp,"At the end of every other turn, gain 1 Intangible."
+painful_stabs,Painful Stabs,painful_stabs_power.webp,Shuffle X Wounds into discard when inflicting unblocked damage.
+paper_cuts,Paper Cuts,paper_cuts_power.webp,"Whenever you take unblocked attack damage from this enemy, lose X Max HP."
+personal_hive,Personal Hive,personal_hive_power.webp,Add X Dazed to the draw pile whenever hit by an attack.
+plating,Plating,plating_power.webp,"At the end of your turn, gain x block. Plating is reduced by 1 at the start of your turn."
+plow,Plow,plow_power.webp,"First time HP reaches X or below, becomes stunned and loses all Strength."
+rampart,Rampart,rampart_power.webp,Gives Turret Operator X Block at the start of the player's turn.
+ravenous,Ravenous,ravenous_power.webp,"When an enemy dies, become stunned and gain X Strength."
+reattach,Reattach,reattach_power.webp,"If other segments are still alive, revives after 2 turns with 25 HP."
+ringing,Ringing,ringing_power.webp,You can only play 1 card this turn.
+sandpit,Sandpit,sandpit_power.webp,"In X turns, instantly die."
+shriek,Shriek,shriek_power.webp,Becomes stunned after reaching X HP or below.
+shrink,Shrink,shrink_power.webp,Deal 30% reduced damage.
+skittish,Skittish,skittish_power.webp,"First time hit each turn, gain X Block."
+slippery,Slippery,slippery_power.webp,"The next X times this loses HP, it loses 1 HP instead."
+sloth,Sloth,sloth_power.webp,You cannot play more than 3 cards per turn.
+slow,Slow,slow_power.webp,Attacks deal 10% extra damage for every card played this turn.
+slumber,Slumber,slumber_power.webp,Counter decreases after taking a turn or losing HP. Awakens at 0.
+smoggy,Smoggy,smoggy_power.webp,You can only play 1 Skill per turn.
+soar,Soar,soar_power.webp,Receives 50% less attack damage until it lands.
+steam_eruption,Steam Eruption,steam_eruption_power.webp,"After dying, wait 1 turn, then attack for X damage."
+stock,Stock,stock_power.webp,"When killed, a new Axebot is summoned in its place (with Stock X-1)."
+suck,Suck,suck_power.webp,"Whenever this deals unblocked attack damage, it gains X Strength."
+surprise,Surprise,surprise_power.webp,"When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned)."
+swipe,Swipe,swipe_power.webp,"Upon killing this enemy, the stolen card is returned."
+tangled,Tangled,tangled_power.webp,Attacks cost 1 additional energy for X turns.
+tender,Tender,tender_power.webp,"Whenever you play a card, lose 1 Strength and 1 Dexterity this turn."
+territorial,Territorial,territorial_power.webp,"At the end of its turn, gains X Strength."
+thievery,Thievery,thievery_power.webp,Steals X gold when attacking.
+vital_spark,Vital Spark,vital_spark_power.webp,"The first time this takes attack damage each turn, the attacker gains X energy."
+waste_away,Waste Away,waste_away_power.webp,Gain 1 less energy at the start of your turn.

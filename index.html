@@ -674,23 +674,23 @@
 
 <div class="act-bar">
   <div class="act-card act-overgrowth selected" data-act="overgrowth" onclick="selectAct('overgrowth')">
-    <img src="media/ui/map_top_overgrowth.png" alt="Overgrowth">
+    <img src="media/ui/map_top_overgrowth.webp" alt="Overgrowth">
     <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Overgrowth</div></div>
   </div>
   <div class="act-card act-underdocks" data-act="underdocks" onclick="selectAct('underdocks')">
-    <img src="media/ui/map_top_underdocks.png" alt="Underdocks">
+    <img src="media/ui/map_top_underdocks.webp" alt="Underdocks">
     <div class="act-text"><div class="act-label">Act 1</div><div class="act-name">Underdocks</div></div>
   </div>
   <div class="act-card act-hive" data-act="hive" onclick="selectAct('hive')">
-    <img src="media/ui/map_top_hive.png" alt="Hive">
+    <img src="media/ui/map_top_hive.webp" alt="Hive">
     <div class="act-text"><div class="act-label">Act 2</div><div class="act-name">Hive</div></div>
   </div>
   <div class="act-card act-glory" data-act="glory" onclick="selectAct('glory')">
-    <img src="media/ui/map_top_glory.png" alt="Glory">
+    <img src="media/ui/map_top_glory.webp" alt="Glory">
     <div class="act-text"><div class="act-label">Act 3</div><div class="act-name">Glory</div></div>
   </div>
   <div class="act-card act-events" data-act="events" onclick="selectAct('events')">
-    <img src="media/events/crystal_sphere.png" alt="Events">
+    <img src="media/events/crystal_sphere.webp" alt="Events">
     <div class="act-text"><div class="act-label">Reference</div><div class="act-name">Events</div></div>
   </div>
 </div>
@@ -976,28 +976,28 @@ function getEncounterImageHtml(enc, cat) {
   // If altImage is set, use that as a single image
   if (enc.altImage) {
     const src = resolveAltImage(enc.altImage);
-    return { multi: false, html: `<img src="${src}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // If encounter has multiple enemies, show individual enemy images
   if (enc.enemies && enc.enemies.length > 1) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
-      const src = `media/enemies/${name}.png`;
-      return `<img src="${src}" alt="${name}" loading="lazy" onerror="this.style.display='none'">`;
+      const src = `media/enemies/${name}.webp`;
+      return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
 
   // Single enemy — load from enemies folder
   if (enc.enemies && enc.enemies.length >= 1) {
-    const enemySrc = `media/enemies/${enc.enemies[0]}.png`;
-    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    const enemySrc = `media/enemies/${enc.enemies[0]}.webp`;
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
-  const enemySrc = `media/enemies/${enc.name}.png`;
-  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  const enemySrc = `media/enemies/${enc.name}.webp`;
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 // ══════════════════════════════════════════
@@ -1011,7 +1011,7 @@ const intentKeys = [
 ];
 
 function intentImg(key) {
-  const src = `media/intents/${key}.png`;
+  const src = `media/intents/${key}.webp`;
   return `<img src="${src}" alt="${key}" title="${key}">`;
 }
 
@@ -1111,7 +1111,7 @@ function renderEventCards(events) {
   return events.map(ev => {
     const imgSrc = ev.image ? `media/events/${ev.image}` : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">`
+      ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">`
       : '';
     return `
     <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
@@ -1227,7 +1227,7 @@ function renderEnemySection(name) {
 
   const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
 
-  const imgSrc = `media/enemies/${name}.png`;
+  const imgSrc = `media/enemies/${name}.webp`;
 
   return `
     <div class="enemy-section">
@@ -1236,7 +1236,7 @@ function renderEnemySection(name) {
           <div class="enemy-section-name">${name}</div>
           <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
         </div>
-        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" loading="lazy" onerror="this.style.display='none'">
+        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
       </div>
 
       <h3>Attack Pattern</h3>
@@ -1322,7 +1322,7 @@ function openEvent(eventKey) {
   ` : '';
 
   const notesHtml = ev.notes ? `<div class="notes">&#9888;&#65039; ${ev.notes}</div>` : '';
-  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
+  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
 
   document.getElementById('detail-body').innerHTML = `
@@ -1468,7 +1468,7 @@ function onSearch(query) {
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';
-        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
         html += `
           <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
             <div class="enemy-thumb">${imgHtml}</div>
