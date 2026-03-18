@@ -7,6 +7,9 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     background: #0a0a12;
     color: #e0ddd4;
@@ -226,6 +229,13 @@
     animation: slideIn 0.2s ease-out;
   }
   .detail-overlay.open { display: block; }
+  @media (min-width: 1100px) and (max-width: 2040px) {
+    body.panel-open { padding-right: 520px; }
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.15s;
+  }
   @keyframes slideIn {
     from { transform: translateX(40px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
@@ -546,6 +556,9 @@
     z-index: 50;
   }
   .backdrop.open { display: block; }
+  @media (min-width: 1100px) {
+    .backdrop.open { background: transparent; }
+  }
 
   .section-label {
     text-align: center;
@@ -1447,6 +1460,11 @@ function openEncounter(encounterName, act, cat) {
 
   panel.classList.add('open');
   backdrop.classList.add('open');
+  if (document.startViewTransition) {
+    document.startViewTransition(() => document.body.classList.add('panel-open'));
+  } else {
+    document.body.classList.add('panel-open');
+  }
 }
 
 function openEvent(eventKey) {
@@ -1598,11 +1616,21 @@ function openEvent(eventKey) {
 
   panel.classList.add('open');
   backdrop.classList.add('open');
+  if (document.startViewTransition) {
+    document.startViewTransition(() => document.body.classList.add('panel-open'));
+  } else {
+    document.body.classList.add('panel-open');
+  }
 }
 
 function closeDetail() {
   document.getElementById('detail-panel').classList.remove('open');
   document.getElementById('backdrop').classList.remove('open');
+  if (document.startViewTransition) {
+    document.startViewTransition(() => document.body.classList.remove('panel-open'));
+  } else {
+    document.body.classList.remove('panel-open');
+  }
 }
 
 document.addEventListener('keydown', e => {
