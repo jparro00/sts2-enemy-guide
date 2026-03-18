@@ -1241,14 +1241,31 @@ let currentAct = "overgrowth";
 let currentCat = "all";
 
 function selectAct(act) {
+  const wasEvents = currentAct === 'events';
+  const isEvents = act === 'events';
+  const sameAct = act === currentAct;
+
+  if (sameAct) {
+    // Clicking the already-selected act resets filter to "all"
+    currentCat = "all";
+  } else if (isEvents || wasEvents) {
+    // Switching to/from events resets filter (different filter system)
+    currentCat = "all";
+  }
+  // Otherwise keep currentCat (preserve filter across act switches)
+
   currentAct = act;
-  currentCat = "all";
   document.querySelectorAll('.act-card').forEach(c => c.classList.remove('selected'));
   document.querySelector(`.act-card[data-act="${act}"]`).classList.add('selected');
 
   // Swap category tabs based on mode
   const tabsContainer = document.getElementById('category-tabs');
-  tabsContainer.innerHTML = act === 'events' ? eventTabsHtml : encounterTabsHtml;
+  tabsContainer.innerHTML = isEvents ? eventTabsHtml : encounterTabsHtml;
+
+  // Update active tab to reflect currentCat
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  const activeTab = document.querySelector(`.cat-tab[data-cat="${currentCat}"]`);
+  if (activeTab) activeTab.classList.add('active');
 
   render();
 }
