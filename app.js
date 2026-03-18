@@ -133,6 +133,7 @@ async function loadData() {
       enemyDatabase[m.Enemy].moves.push({
         name: m.Move,
         effects: m.Effects,
+        card: m.Card || '',
         intent: m.Intent
       });
     }
@@ -348,6 +349,42 @@ function renderPowers(powers) {
     </div>`;
   }).join('');
   return `<div class="powers-section"><h3>Powers</h3>${rows}</div>`;
+}
+
+function renderEnemyCards(moves) {
+  const cardNames = [...new Set(moves.filter(m => m.card).flatMap(m => m.card.split(',').map(s => s.trim())).filter(Boolean))];
+  if (cardNames.length === 0) return '';
+
+  const cardTypeIcons = {
+    Curse: 'media/cards/curse_icon_card.webp',
+    Event: 'media/cards/event_icon_card.webp',
+    Quest: 'media/cards/quest_icon_card.webp',
+    Colorless: 'media/cards/colorless_icon_card.webp'
+  };
+
+  const rows = cardNames.map(cardName => {
+    const card = eventCardsRef[cardName];
+    if (!card) return '';
+    const iconSrc = cardTypeIcons[card.type] || '';
+    const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.type}" style="width:24px;height:24px;vertical-align:middle;" title="${card.type}">` : card.type;
+    const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
+    return `<tr>
+      <td style="text-align:center">${iconHtml}</td>
+      <td><strong>${card.name}</strong></td>
+      <td style="text-align:center">${costDisplay}</td>
+      <td>${renderLore(card.description)}</td>
+    </tr>`;
+  }).join('');
+
+  if (!rows) return '';
+
+  return `
+    <h3>Card Reference</h3>
+    <table>
+      <tr><th style="width:36px">Type</th><th>Name</th><th style="width:36px">Cost</th><th>Description</th></tr>
+      ${rows}
+    </table>
+  `;
 }
 
 // ══════════════════════════════════════════
@@ -660,6 +697,7 @@ function renderEnemySection(name) {
 
       ${notesHtml}
       ${renderPowers(data.powers)}
+      ${renderEnemyCards(data.moves)}
     </div>
   `;
 }

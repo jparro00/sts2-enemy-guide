@@ -36,3 +36,11 @@ Outmaneuver,Event,1,,"Next turn, gain 2 energy."
 Rebound,Event,1,, Deal 9 damage. Put the next card you play this turn on top of your [gold]Draw Pile[/gold].
 Rip and Tear,Event,1,,Deal 7 damage to a random enemy twice.
 Stack,Event,1,,Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold].
+Dazed,Status,Unplayable,"Unplayable, Ethereal",[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
+Wound,Status,Unplayable,Unplayable,[gold]Unplayable[/gold].
+Slimed,Status,1,Exhaust,Draw 1 card. [gold]Exhaust[/gold].
+Toxic,Status,1,Exhaust,"At the end of your turn, if this is in your [gold]Hand[/gold], take 5 damage. [gold]Exhaust[/gold]."
+Infection,Status,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 3 damage."
+Burn,Status,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
+Beckon,Status,1,,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 6 HP."
+Frantic Escape,Status,1,,Get farther away. Increase [gold]Sandpit[/gold] by 1. Increase the cost of this card by 1.
