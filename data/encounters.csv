@@ -5,7 +5,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 1,Overgrowth,easy,Slimes (easy),Leaf Slime (Small); Twig Slime (Medium); Leaf Slime (Medium); Twig Slime (Small),3 enemies,🟢,Spawns a small twig and leaf slime; and one random medium slime.,
 1,Overgrowth,hard,Cubex Construct,Cubex Construct,,🔷,,
 1,Overgrowth,hard,Flyconid,Leaf Slime (Medium); Flyconid,2 enemies,🍄,,
-1,Overgrowth,hard,Fogmog,Fogmog; Eye with Teeth,2 enemies,🌫️,,fogmog.webp
+1,Overgrowth,hard,Fogmog,Fogmog; Eye with Teeth,2 enemies,🌫️,,Fogmog.webp
 1,Overgrowth,hard,Inklets,Inklet; Inklet; Inklet,3 enemies,🖤,,
 1,Overgrowth,hard,Mawler,Mawler,,👹,,
 1,Overgrowth,hard,Nibbits,Nibbit; Nibbit,2 enemies,🐀,,
@@ -54,7 +54,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 2,Hive,hard,Ovicopter,Ovicopter; Tough Egg; Hatchling,4 enemies,🪰,,
 2,Hive,hard,Slumbering Beetle,Slumbering Beetle; Bowlbug (Rock); Bowlbug (Silk),3 enemies,🪲,,
 2,Hive,hard,Spiny Toad,Spiny Toad,,🐸,,
-2,Hive,hard,The Obscura,The Obscura; Parafright,2 enemies,👁️,,the obscura.webp
+2,Hive,hard,The Obscura,The Obscura; Parafright,2 enemies,👁️,,The Obscura.webp
 2,Hive,hard,Tunneler,Tunneler; Bowlbug (Rock); Bowlbug (Silk),2 enemies,🪱,1 Tunneler; 1 Bowlbug (Silk or Rock),
 2,Hive,elite,Decimillipede,Decimillipede,3 enemies,🐛,,
 2,Hive,elite,Entomancer,Entomancer,,🧙,,
