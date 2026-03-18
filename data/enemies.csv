@@ -7,7 +7,7 @@ Bowlbug (Silk),40 - 43 (41 - 44),Alternates between Toxic Spit and Thrash.,,,,
 Calcified Cultist,38 - 41 (39 - 42),Starts with Incantation. Then uses Dark Strike every turn after.,,,,
 Chomper,60 - 64 (63 - 67),"First Chomper starts with Clamp, second with Screech. Then continue cycling through Clamp -> Screech.",,artifact,{artifact} 2
 Corpse Slug,25 - 27 (27 - 29),First Corpse Slug picks its first move randomly. Each subsequent Corpse Slug starts with the next move in the cycle. Cycle through Whip Slap  -> Glomp -> Gloop,,ravenous,{ravenous} 4 (5)
-Cubex Construct,65 (70),Cycles through Charge Up -> Repeater Blast - > Repeater Blast -> Expel Blast -> Submerge.,,artifact,13 {block} and {artifact} 1
+Cubex Construct,65 (70),Cycles through Charge Up -> Repeater Blast -> Repeater Blast -> Expel Blast.,As of v0.99.1 Submerge is never used in the cycle.,artifact,13 {block} and {artifact} 1
 Damp Cultist,51 - 53 (52 - 54),Starts with Incantation. Then uses Dark Strike every turn after.,,,,
 Devoted Sculptor,162 (172),"Starts with Forbidden Incantation, then uses Savage every turn.",,,,
 Exoskeleton,24 - 28 (25 - 29),"First Exoskeleton starts with Skitter, second starts with Mandible, third starts with Enrage (and fourth starts randomly with Skitter or Mandible, if present). After Skitter always uses Mandible. After Mandible always uses Enrage. After Enrage chooses randomly between Skitter and Mandible.",,hard_to_kill,{hard_to_kill} 9
@@ -24,8 +24,8 @@ Frog Knight,191 (199),"Cycles through Tongue Lash -> Strike Down Evil -> For the
 Fuzzy Wurm Crawler,55 - 57 (58 - 59),Starts with Acid Goop. Then cycles through Inhale -> Acid Goop -> Acid Goop.,,,,
 Globe Head,148 (158),Cycles through Shocking Slap -> Thunder Strike -> Galvanic Burst.,,galvanic,{galvanic} 6
 Gremlin Merc,47 - 49 (51 - 53),Cycles through Gimme -> Double Smash -> Hehe.,Stolen gold is held by Fat Gremlin once summoned,surprise; thievery,{surprise} and {thievery} 20
-Fat Gremlin,13 - 17 (14 - 18),Always uses Flee.,Starts stunned when summoned after killing Gremlin Merc. Keeps stolen gold if successfully Flees.,,
-Sneaky Gremlin,10 - 14 (11 - 15),Always uses Tackle.,Starts stunned when summoned after killing Gremlin Merc.,,
+Fat Gremlin,13 - 17 (14 - 18),Starts stunned. Then always uses Flee.,Keeps stolen gold if successfully Flees.,,
+Sneaky Gremlin,10 - 14 (11 - 15),Starts stunned. Then always uses Tackle.,,,,
 Haunted Ship,63 (67),"Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",,haunt,,
 Hunter Killer,121 (126),Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.,,tender,,
 Inklet,11 - 17 (12 - 18),"Front and back Inklet start with Jab. Middle Inklet starts with Whirlwind. Alternates between Jab -> Whirlwind or Piercing Gaze (chosen randomly, equally likely).",,slippery,{slippery} 1
@@ -48,9 +48,9 @@ Ruby Raider (Axe),20 - 22 (21 - 23),Cycles through Swing -> Swing -> Big Swing.,
 Ruby Raider (Brute),30 - 33 (31 - 34),Alternates between Beat -> Roar.,,,,
 Ruby Raider (Crossbow),18 - 21 (19 - 22),Alternates between Reload -> Fire.,,,,
 Ruby Raider (Tracker),21 - 25 (22 - 26),"Starts with Track, then uses Hounds every turn.",,,,
-Scroll of Biting,31 - 38 (32 - 39),"First scroll picks its first move randomly. Scrolls 2 and 3 starts with the next moves in the cycle Chomp -> Chew -> More Teeth. Scroll 4 (if present) starts with More Teeth. Then follows pattern Chomp -> More Teeth -> Chew, but after Chew picks randomly between Chomp and More Teeth and resumes pattern.",,paper_cuts,{paper_cuts} 2
+Scroll of Biting,31 - 38 (32 - 39),"First three scrolls are evenly distributed between Chomp, Chew, and More Teeth. Fourth scroll (if present) always starts with More Teeth. Then follows Chomp -> More Teeth -> Chew. After Chew, picks randomly between Chomp and Chew (Chew can repeat up to one time).",,paper_cuts,{paper_cuts} 2
 Seapunk,44 - 46 (47 - 49),Cycles through Sea Kick -> Spinning Kick -> Bubble Burp.,,,,
-Sewer Clam,56 (58),Alternates between Pressurize -> Jet.,,plating,{plating} 8 (9)
+Sewer Clam,56 (58),Starts with Jet. Then alternates Pressurize -> Jet.,,plating,{plating} 8 (9)
 Shrinker Beetle,38 - 40 (40 - 42),Starts with Shrinker. Then alternates Chomp -> Stomp.,,shrink,,
 Slimed Berserker,266 (276),Cycles through Vomit Ichor -> Furious Pummeling -> Leeching Hug -> Smother.,,,,
 Slithering Strangler,53 - 55 (54 - 56),"Alternates between Constrict -> Thwack/Lash (chooses between Thwack and Lash at random, equally likely)",,constrict,,
@@ -73,13 +73,13 @@ Vine Shambler,61 (64),Cycles through Swipe -> Grasping Vines -> Chomp.,,tangled,
 Wriggler,17 - 21 (18 - 22),"If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",,,,
 Bygone Effigy,127 (132),Starts with Sleep -> Wake -> Slash. Then uses Slash every turn after.,,slow,{slow}
 Byrdonis,91 - 94 (99),Alternates between Swoop -> Peck.,,territorial,{territorial} 1
-Decimillipede,42 - 48 (48 - 56),"First segment starts with a random move, second segment starts with the next move in the cycle Writhe -> Bulk -> Constrict, and third segment starts with the next move after that.",,reattach,{reattach}
-(3 segments),"(always even #, segments have different max HP)","Cycles through Writhe -> Constrict -> Bulk. When killed, spends one turn dead and then one turn reviving with 25 HP. After reviving, continues the regular attack cycle from a random starting move.",,reattach,,
+Decimillipede,42 - 48 (48 - 56),"First segment starts with a random move, second and third start with next moves in the cycle. Each segment cycles Constrict -> Bulk -> Writhe. When killed, revives after one turn with 25 HP and continues from its next move in the cycle.",,reattach,{reattach}
+(3 segments),"(always even #, segments have different max HP)",,,reattach,,
 Entomancer,145 (155),"Cycles through Bees -> Spear -> Pheromone Spit. After reaching 3 stacks of Personal Hive, switches to gaining 2 strength when using Pheromone Spit.",,personal_hive,{personal_hive} 1
 Infested Prism,200 (215),Cycles through Jab -> Radiate -> Whirlwind -> Pulsate,,vital_spark,{vital_spark} 1
 Flail Knight,101 (108),"Starts with Ram. Then chooses randomly between War Chant, Flail, and Ram (allowed options equally likely). Flail and Ram cannot be used more than twice in a row. War Chant cannot be used twice in a row.",,,,
 Spectral Knight,93 (97),Starts with Hex and then Soul Slash. Then chooses randomly between Soul Slash and Soul Flame (allowed options equally likely). Soul Slash cannot be used more than twice in a row. Soul Flame cannot be used twice in a row.,,hex,,
-Magi Knight,82 (89),Cycles through Power Shield -> Dampen -> Spear -> Prep -> Magic Bomb.,,dampen,,
+Magi Knight,82 (89),"Opens with Power Shield -> Dampen, then loops Spear -> Prep -> Magic Bomb.","Cards can still be upgraded during combat after Magi Knight applies Dampen",dampen,,
 Mecha Knight,300 (320),Starts with Charge. Then cycles through Flamethrower -> Windup -> Heavy Cleave.,,artifact,{artifact} 3
 Phantasmal Gardener,28 - 32 (29 -33),"1st one starts with Flail, 2nd with Bite, 3rd with Lash, and 4th with Enlarge. Then cycle through Bite -> Lash -> Flail -> Enlarge.",,skittish,{skittish} 6 (7)
 Phrog Parasite,61 - 64 (66 - 68),Alternates between Infect -> Lash.,,infested,{infested} 4
@@ -118,4 +118,4 @@ Kin Priest,190 (199),Cycles through Orb of Frailty -> Orb of Weakness -> Beam ->
 Kin Follower,58 - 59 (62 - 63),Cycles through Quick Slash -> Boomerang -> Power Dance.,Kin Follower is a minion.,,
 (Minion),,,,,,
 Vantom,173 (183),Cycles through Ink Blot -> Inky Lance -> Dismember -> Prepare.,,slippery,{slippery} 9
-Waterfall Giant,250 (260),Cycles through Pressurize -> Stomp -> Ram -> Siphon -> Pressure Gun -> Pressure Up.,* Heal is multiplied by player count,steam_eruption,,
+Waterfall Giant,250 (260),"Opens with Pressurize, then loops Stomp -> Ram -> Siphon -> Pressure Gun -> Pressure Up.",* Heal is multiplied by player count,steam_eruption,,

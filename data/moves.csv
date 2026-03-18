@@ -41,7 +41,7 @@ Flyconid,Vulnerable Spores,Apply 2 {vulnerable},debuff
 Fogmog,Illusion,Summon 1 Eye with Teeth,summon
 Fogmog,Swipe,Damage 8 (9); Gain 1 {strength},"attack, buff"
 Fogmog,Headbutt,Damage 14 (16),attack
-Eye with Teeth,Distract,3 Dazed to Discard,unknown
+Eye with Teeth,Distract,3 Dazed to Discard,add_statuses
 Fossil Stalker,Latch,Damage 12 (14),attack
 Fossil Stalker,Tackle,Damage 9 (11); Apply 1 Frail,"attack, debuff"
 Fossil Stalker,Lash,Damage 3x2 (4x2),multi_attack
@@ -57,7 +57,9 @@ Globe Head,Galvanic Burst,Damage 16 (17); Gain 2 {strength},"attack, buff"
 Gremlin Merc,Gimme,Damage 7x2 (8x2),multi_attack
 Gremlin Merc,Double Smash,Damage 6x2 (7x2); Apply 2 {weak},"multi_attack, debuff"
 Gremlin Merc,Hehe,Damage 8 (9); Gain 2 {strength},"attack, buff"
+Fat Gremlin,Stunned,Stunned for one turn,stun
 Fat Gremlin,Flee,Escape from combat,escape
+Sneaky Gremlin,Stunned,Stunned for one turn,stun
 Sneaky Gremlin,Tackle,Damage 9 (10),attack
 Haunted Ship,Ramming Speed,Damage 10 (11); Add 2 Wounds to Discard,"attack, add_statuses"
 Haunted Ship,Haunt,Apply 2 {weak}; Apply 2 Frail; Apply 2 {vulnerable},debuff
@@ -197,9 +199,9 @@ Spectral Knight,Soul Slash,Damage 15 (17),attack
 Spectral Knight,Soul Flame,Damage 3x3 (4x3),multi_attack
 Magi Knight,Power Shield,Damage 6 (7); {block} 5 (9),"attack, block"
 Magi Knight,Dampen,Apply {dampen},debuff
+Magi Knight,Spear,Damage 10 (11),attack
 Magi Knight,Prep,{block} 5 (9),block
 Magi Knight,Magic Bomb,Damage 35 (40),attack
-Magi Knight,Spear,Damage 10 (11),attack
 Mecha Knight,Charge,Damage 25 (30),attack
 Mecha Knight,Flamethrower,Add 4 Burns to Hand,add_statuses
 Mecha Knight,Windup,{block} 15; {strength} 5,"block, buff"
@@ -241,10 +243,10 @@ Rocket,Precision Beam,Damage 18 (20),attack
 Rocket,Charge Up,{strength} 2,buff
 Rocket,Laser,Damage 31 (35),attack
 Rocket,Recharge,Pass turn,sleeping
-Knowledge Demon,Curse of Knowledge,Player must choose one of two debuffs:; 1st choice: {disintegration} 6 or {mind_rot}; 2nd choice: {disintegration} 7 or {sloth}; 3rd Choice: {disintegration} 8 or {waste_away},unknown
+Knowledge Demon,Curse of Knowledge,Player must choose one of two debuffs:; 1st choice: {disintegration} 6 or {mind_rot}; 2nd choice: {disintegration} 7 or {sloth}; 3rd Choice: {disintegration} 8 or {waste_away},debuff
 Knowledge Demon,Slap,Damage 17 (18),attack
 Knowledge Demon,Knowledge Overwhelming,Damage 8x3 (9x3),multi_attack
-Knowledge Demon,Ponder,Damage 11 (13); Heal 30*; Gain 2 (3) {strength},"attack, buff"
+Knowledge Demon,Ponder,Damage 11 (13); Heal 30*; Gain 2 (3) {strength},"attack, heal, buff"
 Lagavulin Matriarch,Slash,Damage 19 (21),attack
 Lagavulin Matriarch,Disembowel,Damage 9x2 (10x2),multi_attack
 Lagavulin Matriarch,Slash 2,Damage 12 (14); {block} 12 (14),"attack, block"
@@ -286,8 +288,8 @@ Vantom,Inky Lance,Damage 6x2 (7x2),multi_attack
 Vantom,Dismember,Damage 27 (30); Add 3 Wounds into discard,"attack, add_statuses"
 Vantom,Prepare,Gain 2 {strength},buff
 Waterfall Giant,Pressurize,Gain 15 (20) {steam_eruption},buff
-Waterfall Giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},"attack, debuff"
+Waterfall Giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},"attack, debuff, buff"
 Waterfall Giant,Ram,Damage 10 (11); Gain 3 {steam_eruption},"attack, buff"
 Waterfall Giant,Siphon,Heal 15*; Gain 3 {steam_eruption},"heal, buff"
-Waterfall Giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 {steam_eruption},attack
-Waterfall Giant,Pressure Up,Damage 13 (14); Gain 3 {steam_eruption},attack
+Waterfall Giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 {steam_eruption},"attack, buff"
+Waterfall Giant,Pressure Up,Damage 13 (14); Gain 3 {steam_eruption},"attack, buff"
