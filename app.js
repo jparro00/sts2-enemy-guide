@@ -359,7 +359,8 @@ function renderEnemyCards(moves) {
     Curse: 'media/cards/curse_icon_card.webp',
     Event: 'media/cards/event_icon_card.webp',
     Quest: 'media/cards/quest_icon_card.webp',
-    Colorless: 'media/cards/colorless_icon_card.webp'
+    Colorless: 'media/cards/colorless_icon_card.webp',
+    Status: 'media/cards/status_icon_card.webp'
   };
 
   const rows = cardNames.map(cardName => {
@@ -781,7 +782,8 @@ function openEvent(eventKey) {
     Curse: 'media/cards/curse_icon_card.webp',
     Event: 'media/cards/event_icon_card.webp',
     Quest: 'media/cards/quest_icon_card.webp',
-    Colorless: 'media/cards/colorless_icon_card.webp'
+    Colorless: 'media/cards/colorless_icon_card.webp',
+    Status: 'media/cards/status_icon_card.webp'
   };
   const referencedCards = [...new Set(choices.filter(c => c.card).flatMap(c => c.card.split(',').map(s => s.trim())).filter(Boolean))];
   const cardsHtml = referencedCards.length > 0 ? (() => {
