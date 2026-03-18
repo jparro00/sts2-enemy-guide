@@ -354,7 +354,7 @@ function renderPowers(powers) {
 // IMAGE RESOLUTION
 // ══════════════════════════════════════════
 
-const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new?title=Feedback&body=Type%20your%20feedback%20here" target="_blank">Submit feedback or report an issue</a></div>`;
+const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback or report an issue</a></div>`;
 
 // Resolve alt image path — if no folder prefix, default to media/enemies/
 function resolveAltImage(altImage) {
