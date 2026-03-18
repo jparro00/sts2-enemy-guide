@@ -85,7 +85,7 @@ grave_of_the_forgotten,Accept the Forgotten Soul,Obtain Forgotten Soul.,,,,,
 grave_of_the_forgotten,Confront with Truth,Add [red]Decay[/red] to your [gold]Deck[/gold]. [gold]Enchant[/gold] a card that [gold]Exhausts[/gold] with [purple]Soul's Power[/purple].,,Decay,souls_power,,
 hungry_for_mushrooms,Big Mushroom,"Obtain [gold]Big Mushroom[/gold].",,,,,big_mushroom
 hungry_for_mushrooms,Fragrant Mushroom,"Obtain [gold]Fragrant Mushroom[/gold].",,,,,fragrant_mushroom
-reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,,Bad Luck,,,
+reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,"Does not copy the Bad Luck. Enchantments on cards do get copied",Bad Luck,,,
 reflections,Touch a Mirror,[red]Downgrade[/red] [blue]2[/blue] random cards. [green]Upgrade[/green] [blue]4[/blue] random cards.,,,,,
 round_tea_party,Enjoy Your Tea,Obtain [red]Royal Poison[/red]. [green]Heal to full HP.[/green],,,,,royal_poison
 round_tea_party,Pick a Fight,Lose [red]11[/red] HP. Obtain a random [gold]Relic[/gold].,,,,,
