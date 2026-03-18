@@ -1,0 +1,16 @@
+name: Missing Content
+description: Report a missing enemy, event, or other data
+labels: ["missing content"]
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: What's missing?
+      placeholder: Describe what content is missing from the site.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game Version (if known)
+      placeholder: e.g. v0.99.1

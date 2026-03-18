@@ -1,0 +1,23 @@
+name: Event Issue
+description: Report an issue with event choices, effects, or lore
+labels: ["events"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Event Name
+      placeholder: e.g. Potion Courier, Byrdonis Nest
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What's wrong or what should change?
+      placeholder: Describe the issue and what you think the correct data should be.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game Version (if known)
+      placeholder: e.g. v0.99.1

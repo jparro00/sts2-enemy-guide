@@ -1,0 +1,11 @@
+name: UI or General Feedback
+description: Suggest a UI improvement or share general feedback
+labels: ["feedback"]
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: What's on your mind?
+      placeholder: Describe your suggestion or feedback.
+    validations:
+      required: true
