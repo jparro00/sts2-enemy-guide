@@ -380,9 +380,8 @@ function renderEnemyCards(moves) {
   if (!rows) return '';
 
   return `
-    <h3>Card Reference</h3>
+    <h3>Cards</h3>
     <table>
-      <tr><th style="width:36px">Type</th><th>Name</th><th style="width:36px">Cost</th><th>Description</th></tr>
       ${rows}
     </table>
   `;
