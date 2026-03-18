@@ -7,7 +7,7 @@ Bowlbug (Silk),40 - 43 (41 - 44),Alternates between Toxic Spit and Thrash.,,,,
 Calcified Cultist,38 - 41 (39 - 42),Starts with Incantation. Then uses Dark Strike every turn after.,,,,
 Chomper,60 - 64 (63 - 67),"First Chomper starts with Clamp, second with Screech. Then continue cycling through Clamp -> Screech.",,artifact,{artifact} 2
 Corpse Slug,25 - 27 (27 - 29),First Corpse Slug picks its first move randomly. Each subsequent Corpse Slug starts with the next move in the cycle. Cycle through Whip Slap  -> Glomp -> Gloop,,ravenous,{ravenous} 4 (5)
-Cubex Construct,65 (70),Cycles through Charge Up -> Repeater Blast -> Repeater Blast -> Expel Blast.,As of v0.99.1 Submerge is never used in the cycle.,artifact,13 {block} and {artifact} 1
+Cubex Construct,65 (70),Starts with Charge Up then cycles through Repeater Blast -> Repeater Blast -> Expel Blast.,As of v0.99.1 Submerge is never used in the cycle.,artifact,13 {block} and {artifact} 1
 Damp Cultist,51 - 53 (52 - 54),Starts with Incantation. Then uses Dark Strike every turn after.,,,,
 Devoted Sculptor,162 (172),"Starts with Forbidden Incantation, then uses Savage every turn.",,,,
 Exoskeleton,24 - 28 (25 - 29),"First Exoskeleton starts with Skitter, second starts with Mandible, third starts with Enrage (and fourth starts randomly with Skitter or Mandible, if present). After Skitter always uses Mandible. After Mandible always uses Enrage. After Enrage chooses randomly between Skitter and Mandible.",,hard_to_kill,{hard_to_kill} 9
@@ -73,7 +73,7 @@ Vine Shambler,61 (64),Cycles through Swipe -> Grasping Vines -> Chomp.,,tangled,
 Wriggler,17 - 21 (18 - 22),"If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",,,,
 Bygone Effigy,127 (132),Starts with Sleep -> Wake -> Slash. Then uses Slash every turn after.,,slow,{slow}
 Byrdonis,91 - 94 (99),Alternates between Swoop -> Peck.,,territorial,{territorial} 1
-Decimillipede,42 - 48 (48 - 56),"First segment starts with a random move, second and third start with next moves in the cycle. Each segment cycles Constrict -> Bulk -> Writhe. When killed, revives after one turn with 25 HP and continues from its next move in the cycle.",,reattach,{reattach}
+Decimillipede,42 - 48 (48 - 56),"Segments start evenly distributed between Writhe, Bulk and Constrict. Then each segment cycles Constrict -> Bulk -> Writhe. When a segment is killed, it revives after one turn with 25 HP and continues from its next move in the cycle.",,reattach,{reattach}
 (3 segments),"(always even #, segments have different max HP)",,,reattach,,
 Entomancer,145 (155),"Cycles through Bees -> Spear -> Pheromone Spit. After reaching 3 stacks of Personal Hive, switches to gaining 2 strength when using Pheromone Spit.",,personal_hive,{personal_hive} 1
 Infested Prism,200 (215),Cycles through Jab -> Radiate -> Whirlwind -> Pulsate,,vital_spark,{vital_spark} 1
