@@ -19,7 +19,7 @@ Poor Sleep,Curse,Unplayable,"Unplayable, Retain",[gold]Unplayable[/gold]. [gold]
 Regret,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 1 HP for each card in your [gold]Hand[/gold]."
 Shame,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Frail[/gold]."
 Spoils Map,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Marks a site of 600 extra [gold]Gold[/gold] in the next Act.
-Lantern Key,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Marks a site of 600 extra [gold]Gold[/gold] in the next Act.
+Lantern Key,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Unlocks a special event in the next Act.
 Spore Mind,Curse,1,Exhaust,[gold]Exhaust[/gold].
 Squash,Event,1,,Deal 10 damage. Apply 2 [gold]Vulnerable[/gold].
 Toric Toughness,Event,2,,Gain 5 [gold]Block[/gold]. Gain 5 [gold]Block[/gold] at the start of the next 2 turns.
