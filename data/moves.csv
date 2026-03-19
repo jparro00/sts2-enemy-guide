@@ -13,7 +13,7 @@ Bowlbug (Silk),Thrash,Damage 4x2 (5x2),,multi_attack
 Calcified Cultist,Incantation,Gain Ritual 2,,buff
 Calcified Cultist,Dark Strike,Damage 9 (11),,attack
 Chomper,Clamp,Damage 8x2 (9x2),,multi_attack
-Chomper,Screech,Add 3 Dazed to Discard,Dazed,add_statuses
+Chomper,Screech,Add 3 Dazed to Discard,dazed,add_statuses
 Corpse Slug,Whip Slap,Damage 3x2,,multi_attack
 Corpse Slug,Glomp,Damage 8 (9),,attack
 Corpse Slug,Gloop,Apply 2 Frail,,debuff
@@ -32,7 +32,7 @@ Fabricator,Fabricate,Summons 1 Defensive Bot; Summons 1 Aggro Bot,,summon
 Fabricator,Fabricating Strike,Damage 18 (21); Summon 1 Aggro Bot,,"attack, summon"
 Fabricator,Disintegrate,Damage 11 (13),,attack
 Guardbot,Guard,{block} 15 on Fabricator,,block
-Noisebot,Noise,Add 1 Dazed to Discard; Add 1 Dazed to Draw,Dazed,add_statuses
+Noisebot,Noise,Add 1 Dazed to Discard; Add 1 Dazed to Draw,dazed,add_statuses
 Stabbot,Stab,Damage 11 (12); Apply 1 Frail,,"attack, debuff"
 Zapbot,Zap,Damage 14 (15),,attack
 Flyconid,Frail Spores,Damage 8 (9); Apply 2 Frail,,"attack, debuff"
@@ -41,7 +41,7 @@ Flyconid,Vulnerable Spores,Apply 2 {vulnerable},,debuff
 Fogmog,Illusion,Summon 1 Eye with Teeth,,summon
 Fogmog,Swipe,Damage 8 (9); Gain 1 {strength},,"attack, buff"
 Fogmog,Headbutt,Damage 14 (16),,attack
-Eye with Teeth,Distract,3 Dazed to Discard,Dazed,add_statuses
+Eye with Teeth,Distract,3 Dazed to Discard,dazed,add_statuses
 Fossil Stalker,Latch,Damage 12 (14),,attack
 Fossil Stalker,Tackle,Damage 9 (11); Apply 1 Frail,,"attack, debuff"
 Fossil Stalker,Lash,Damage 3x2 (4x2),,multi_attack
@@ -61,7 +61,7 @@ Fat Gremlin,Stunned,Stunned for one turn,,stun
 Fat Gremlin,Flee,Escape from combat,,escape
 Sneaky Gremlin,Stunned,Stunned for one turn,,stun
 Sneaky Gremlin,Tackle,Damage 9 (10),,attack
-Haunted Ship,Ramming Speed,Damage 10 (11); Add 2 Wounds to Discard,Wound,"attack, add_statuses"
+Haunted Ship,Ramming Speed,Damage 10 (11); Add 2 Wounds to Discard,wound,"attack, add_statuses"
 Haunted Ship,Haunt,Apply 2 {weak}; Apply 2 Frail; Apply 2 {vulnerable},,debuff
 Haunted Ship,Swipe,Damage 13 (14),,attack
 Haunted Ship,Stomp,Damage 4x3 (5x3),,multi_attack
@@ -72,8 +72,8 @@ Inklet,Jab,Damage 3 (4),,attack
 Inklet,Whirlwind,Damage 2x3 (3x3),,multi_attack
 Inklet,Piercing Gaze,Damage 10 (11),,attack
 Leaf Slime (Small),Tackle,Damage 3 (4),,attack
-Leaf Slime (Small),Goop,Add 1 Slimed to Discard,Slimed,add_statuses
-Leaf Slime (Medium),Sticky Shot,Add 2 Slimed to Discard,Slimed,add_statuses
+Leaf Slime (Small),Goop,Add 1 Slimed to Discard,slimed,add_statuses
+Leaf Slime (Medium),Sticky Shot,Add 2 Slimed to Discard,slimed,add_statuses
 Leaf Slime (Medium),Clump Shot,Damage 8 (9),,attack
 Living Fog,Advanced Gas,Damage 8 (9); Apply {smoggy},,"attack, debuff"
 Living Fog,Bloat,"Summon N Gas Bombs; (N = # times Bloat has been used + 1, capped to 5)",,summon
@@ -87,7 +87,7 @@ Louse Progenitor,Pounce,Damage 14 (16),,attack
 Mawler,Claw,Damage 4x2 (5x2),,multi_attack
 Mawler,Roar,Apply 3 {vulnerable},,debuff
 Mawler,Rip & Tear,Damage 14 (16),,attack
-Myte,Toxic,Add 2 Toxic to Hand,Toxic,add_statuses
+Myte,Toxic,Add 2 Toxic to Hand,toxic,add_statuses
 Myte,Bite,Damage 13 (15),,attack
 Myte,Suck,Damage 4 (6); Gain 2 (3) {strength},,"attack, buff"
 Nibbit,Butt,Damage 12 (13),,attack
@@ -126,7 +126,7 @@ Sewer Clam,Jet,Damage 10 (11),,attack
 Shrinker Beetle,Shrinker,Apply {shrink},,debuff
 Shrinker Beetle,Chomp,Damage 7 (8),,attack
 Shrinker Beetle,Stomp,Damage 13 (14),,attack
-Slimed Berserker,Vomit Ichor,Add 10 Slimed to discard,Slimed,add_statuses
+Slimed Berserker,Vomit Ichor,Add 10 Slimed to discard,slimed,add_statuses
 Slimed Berserker,Leeching Hug,Apply 3 {weak}; Gain 3 {strength},,"buff, debuff"
 Slimed Berserker,Smother,Damage 30 (33),,attack
 Slimed Berserker,Furious Pummeling,Damage 4x4 (5x4),,multi_attack
@@ -151,7 +151,7 @@ The Obscura,Piercing Gaze,Damage 10 (11),,attack
 The Obscura,Wail,Allies gain 3 {strength},,buff
 The Obscura,Hardening Strike,Damage 6 (7); {block} 6 (7),,"attack, block"
 Parafright,Slam,Damage 16 (17),,attack
-Thieving Hopper,Thievery,"Damage 17 (19); Steal 1 card and gain {swipe}",,"attack, affliction"
+Thieving Hopper,Thievery,Damage 17 (19); Steal 1 card and gain {swipe},,"attack, affliction"
 Thieving Hopper,Nab,Damage 14 (16),,attack
 Thieving Hopper,Hat Trick,Damage 21 (23),,attack
 Thieving Hopper,Flutter,Gain {flutter} 5,,buff
@@ -166,7 +166,7 @@ Turret Operator,Unload,Damage 3x5 (4x5),,multi_attack
 Turret Operator,Reload,Gain 1 {strength},,buff
 Twig Slime (Small),Tackle,Damage 4 (5),,attack
 Twig Slime (Medium),Clump Shot,Damage 11 (12),,attack
-Twig Slime (Medium),Sticky Shot,Add 1 Slimed to Discard,Slimed,add_statuses
+Twig Slime (Medium),Sticky Shot,Add 1 Slimed to Discard,slimed,add_statuses
 Two-Tailed Rat,Scratch,Damage 8 (9),,attack
 Two-Tailed Rat,Disease Bite,Damage 6 (7),,attack
 Two-Tailed Rat,Screech,Apply 1 Frail,,debuff
@@ -175,7 +175,7 @@ Vine Shambler,Grasping Vines,Damage 8 (9); Apply 1 {tangled},,"attack, debuff"
 Vine Shambler,Swipe,Damage 6x2 (7x2),,multi_attack
 Vine Shambler,Chomp,Damage 16 (18),,attack
 Wriggler,Nasty Bite,Damage 6 (7),,attack
-Wriggler,Wriggle,Add 1 Infection to Discard; Gain 2 {strength},Infection,"buff, add_statuses"
+Wriggler,Wriggle,Add 1 Infection to Discard; Gain 2 {strength},infection,"buff, add_statuses"
 Bygone Effigy,Sleep,Pass Turn,,sleeping
 Bygone Effigy,Wake,Gain 10 {strength},,buff
 Bygone Effigy,Slash,Damage 15 (17),,attack
@@ -184,7 +184,7 @@ Byrdonis,Swoop,Damage 16 (18),,attack
 Decimillipede,Constrict,Damage 8 (9); Apply 1 {weak},,"attack, debuff"
 Decimillipede,Bulk,Damage 6 (7); Gain 2 {strength},,"attack, buff"
 Decimillipede,Writhe,Damage 5x2 (6x2),,multi_attack
-Entomancer,Pheromone Spit,If less than 3 {personal_hive}: Gain 1 {personal_hive} and 1 {strength}; If at 3 {personal_hive}: Gain 2 {strength},Dazed,buff
+Entomancer,Pheromone Spit,If less than 3 {personal_hive}: Gain 1 {personal_hive} and 1 {strength}; If at 3 {personal_hive}: Gain 2 {strength},dazed,buff
 Entomancer,Bees,Damage 3x7 (3x8),,multi_attack
 Entomancer,Spear,Damage 18 (20),,attack
 Infested Prism,Jab,Damage 22 (24),,attack
@@ -203,19 +203,19 @@ Magi Knight,Spear,Damage 10 (11),,attack
 Magi Knight,Prep,{block} 5 (9),,block
 Magi Knight,Magic Bomb,Damage 35 (40),,attack
 Mecha Knight,Charge,Damage 25 (30),,attack
-Mecha Knight,Flamethrower,Add 4 Burns to Hand,Burn,add_statuses
+Mecha Knight,Flamethrower,Add 4 Burns to Hand,burn,add_statuses
 Mecha Knight,Windup,{block} 15; {strength} 5,,"block, buff"
 Mecha Knight,Heavy Cleave,Damage 35 (40),,attack
 Phantasmal Gardener,Bite,Damage 5,,attack
 Phantasmal Gardener,Lash,Damage 7,,attack
 Phantasmal Gardener,Flail,Damage 1x3,,multi_attack
 Phantasmal Gardener,Enlarge,{strength} 2 (3),,buff
-Phrog Parasite,Infect,Add 3 Infection to Discard,Infection,add_statuses
+Phrog Parasite,Infect,Add 3 Infection to Discard,infection,add_statuses
 Phrog Parasite,Lash,Damage 4x4 (5x4),,multi_attack
 Skulking Colony,Inertia,{block} 10 (13); Gain 3 {strength},,"block, buff"
 Skulking Colony,Zoom,Damage 16 (17),,attack
 Skulking Colony,Super Crab,Damage 6x2 (7x2),,multi_attack
-Skulking Colony,Smash,Damage 9 (11); Add 4 Dazed to Discard,Dazed,"attack, add_statuses"
+Skulking Colony,Smash,Damage 9 (11); Add 4 Dazed to Discard,dazed,"attack, add_statuses"
 Soul Nexus,Soul Burn,Damage 29 (31),,attack
 Soul Nexus,Maelstrom,Damage 6x4 (7x4),,multi_attack
 Soul Nexus,Drain Life,Damage 18 (19); Apply 2 {vulnerable}; Apply 2 {weak},,"attack, debuff"
@@ -260,9 +260,9 @@ Queen,Enrage,Gain 2 {strength},,buff
 Torch Head Amalgam,Tackle,Damage 18 (19),,attack
 Torch Head Amalgam,Soul Beam,Damage 8x3,,multi_attack
 Torch Head Amalgam,Weak Tackle,Damage 14 (15),,attack
-Soul Fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,Beckon,add_statuses
+Soul Fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,beckon,add_statuses
 Soul Fysh,De-Gas,Damage 16 (17),,attack
-Soul Fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,Beckon,"attack, add_statuses"
+Soul Fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,beckon,"attack, add_statuses"
 Soul Fysh,Fade,Gain 2* Intangible,,buff
 Soul Fysh,Scream,Damage 11 (12); Apply 3 {vulnerable},,"attack, debuff"
 Test Subject Stage 1,Bite,Damage 20 (22),,attack
@@ -271,8 +271,8 @@ Test Subject Stage 2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw 
 Test Subject Stage 2,Pounce,Damage 30 (32),,attack
 Test Subject Stage 3,Lacerate,Damage 10x3 (11x3),,multi_attack
 Test Subject Stage 3,Big Pounce,Damage 45,,attack
-Test Subject Stage 3,Burning Growl,Shuffle 3 (5) Burns into discard; Gain 2 (3) {strength},Burn,buff
-The Insatiable,Liquify Ground,Gain {sandpit} 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,Frantic Escape,"buff, add_statuses"
+Test Subject Stage 3,Burning Growl,Shuffle 3 (5) Burns into discard; Gain 2 (3) {strength},burn,buff
+The Insatiable,Liquify Ground,Gain {sandpit} 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,frantic_escape,"buff, add_statuses"
 The Insatiable,Thrash,Damage 8x2 (9x2),,multi_attack
 The Insatiable,Lunging Bite,Damage 28 (31),,attack
 The Insatiable,Salivate,Gain 2 (3) {strength},,buff
@@ -285,7 +285,7 @@ Kin Follower,Boomerang,Damage 2x2,,multi_attack
 Kin Follower,Power Dance,Gain 2 (3) {strength},,buff
 Vantom,Ink Blot,Damage 7 (8),,attack
 Vantom,Inky Lance,Damage 6x2 (7x2),,multi_attack
-Vantom,Dismember,Damage 27 (30); Add 3 Wounds into discard,Wound,"attack, add_statuses"
+Vantom,Dismember,Damage 27 (30); Add 3 Wounds into discard,wound,"attack, add_statuses"
 Vantom,Prepare,Gain 2 {strength},,buff
 Waterfall Giant,Pressurize,Gain 15 (20) {steam_eruption},,buff
 Waterfall Giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},,"attack, debuff, buff"

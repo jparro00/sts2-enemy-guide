@@ -86,7 +86,7 @@ let enemyDatabase = {};
 let encounters = {};
 let eventsData = {};     // keyed by act: { overgrowth: [...], shared: [...] }
 let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, card } ]
-let eventCardsRef = {};  // keyed by card name: { name, type, cost, keywords, description }
+let eventCardsRef = {};  // keyed by key: { key, name, rarity, type, cost, description }
 
 async function loadData() {
   const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText] = await Promise.all([
@@ -195,11 +195,12 @@ async function loadData() {
   // Build event cards reference
   const eventCardsRaw = parseCSV(eventCardsText);
   for (const c of eventCardsRaw) {
-    eventCardsRef[c.Name] = {
+    eventCardsRef[c.Key] = {
+      key: c.Key,
       name: c.Name,
-      type: c.Type,
+      rarity: c.Rarity,
+      type: c.Type || '',
       cost: c.Cost,
-      keywords: c.Keywords || '',
       description: c.Description || ''
     };
   }
@@ -357,7 +358,7 @@ function renderEnemyCards(moves) {
   const cardNames = [...new Set(moves.filter(m => m.card).flatMap(m => m.card.split(',').map(s => s.trim())).filter(Boolean))];
   if (cardNames.length === 0) return '';
 
-  const cardTypeIcons = {
+  const cardRarityIcons = {
     Curse: 'media/cards/curse_icon_card.webp',
     Event: 'media/cards/event_icon_card.webp',
     Quest: 'media/cards/quest_icon_card.webp',
@@ -368,8 +369,8 @@ function renderEnemyCards(moves) {
   const rows = cardNames.map(cardName => {
     const card = eventCardsRef[cardName];
     if (!card) return '';
-    const iconSrc = cardTypeIcons[card.type] || '';
-    const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.type}" style="width:24px;height:24px;vertical-align:middle;" title="${card.type}">` : card.type;
+    const iconSrc = cardRarityIcons[card.rarity] || '';
+    const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
     const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
     return `<tr>
       <td style="text-align:center">${iconHtml}</td>
@@ -834,7 +835,7 @@ function openEvent(eventKey) {
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
 
   // Build cards reference table from choices that reference cards
-  const cardTypeIcons = {
+  const cardRarityIcons = {
     Curse: 'media/cards/curse_icon_card.webp',
     Event: 'media/cards/event_icon_card.webp',
     Quest: 'media/cards/quest_icon_card.webp',
@@ -846,8 +847,8 @@ function openEvent(eventKey) {
     const rows = referencedCards.map(cardName => {
       const card = eventCardsRef[cardName];
       if (!card) return '';
-      const iconSrc = cardTypeIcons[card.type] || '';
-      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.type}" style="width:24px;height:24px;vertical-align:middle;" title="${card.type}">` : card.type;
+      const iconSrc = cardRarityIcons[card.rarity] || '';
+      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
       const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
       return `<tr>
         <td style="text-align:center">${iconHtml}</td>

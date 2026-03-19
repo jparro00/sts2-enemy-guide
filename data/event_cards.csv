@@ -1,46 +1,46 @@
-Name,Type,Cost,Keywords,Description
-Bad Luck,Curse,Unplayable,"Eternal, Unplayable","[gold]Unplayable[/gold]. At the end of your turn, if this is in your Hand, lose 13 HP. [gold]Eternal[/gold]."
-Byrdonis Egg,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Can be hatched at a [gold]Rest Site[/gold].
-Byrd Swoop,Event,0,,Deal 14 damage.
-Clumsy,Curse,Unplayable,"Unplayable, Ethereal",[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
-Debt,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 10 [gold]Gold[/gold]."
-Decay,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
-Doubt,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Weak[/gold]."
-Enlightenment,Event,0,Exhaust,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this turn. [gold]Exhaust[/gold].
-Exterminate,Event,1,,Deal 3 damage 4 times to ALL enemies.
-Feeding Frenzy,Event,0,,Gain 5 [gold]Strength[/gold] this turn.
-Greed,Curse,Unplayable,"Eternal, Unplayable",[gold]Unplayable[/gold]. [gold]Eternal[/gold].
-Guilty,Curse,Unplayable,Unplayable,[gold]Unplayable[/gold]. Removed from your [gold]Deck[/gold] after 5 combats.
-Injury,Curse,Unplayable,Unplayable,[gold]Unplayable[/gold].
-Metamorphosis,Event,2,Exhaust,Add 3 random Attacks into your [gold]Draw Pile[/gold]. They're free to play this combat. [gold]Exhaust[/gold].
-Normality,Curse,Unplayable,Unplayable,[gold]Unplayable[/gold]. You cannot play more than 3 cards this turn.
-Peck,Event,1,,Deal 2 damage 3 times.
-Poor Sleep,Curse,Unplayable,"Unplayable, Retain",[gold]Unplayable[/gold]. [gold]Retain[/gold].
-Regret,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 1 HP for each card in your [gold]Hand[/gold]."
-Shame,Curse,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Frail[/gold]."
-Spoils Map,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Marks a site of 600 extra [gold]Gold[/gold] in the next Act.
-Lantern Key,Quest,Unplayable,Unplayable,[gold]Unplayable[/gold]. Unlocks a special event in the next Act.
-Spore Mind,Curse,1,Exhaust,[gold]Exhaust[/gold].
-Squash,Event,1,,Deal 10 damage. Apply 2 [gold]Vulnerable[/gold].
-Toric Toughness,Event,2,,Gain 5 [gold]Block[/gold]. Gain 5 [gold]Block[/gold] at the start of the next 2 turns.
-Ultimate Defend,Colorless,1,,Gain 11 [gold]Block[/gold].
-Ultimate Strike,Colorless,1,,Deal 14 damage.
-Writhe,Curse,Unplayable,"Innate, Unplayable",[gold]Unplayable[/gold]. [gold]Innate[/gold].
-Caltrops,Event,1,,"Whenever you are attacked,  deal 3 damage back"
-Clash,Event,0,,Can only be played if every card in your [gold]Hand[/gold] is an Attack. Deal 14 damage.
-Distraction,Event,1,Exhaust,Add a random Skill into your [gold]Hand[/gold]. It's free to play this turn. [gold]Exhaust[/gold].
-Dual Wield,Event,1,,Choose an Attack or Power card. Add a copy of that card into your [gold]Hand[/gold].
-Entrench,Event,2,,Double your [gold]Block[/gold].
-Hello World,Event,1,,"At the start of your turn, add a random Common card into your [gold]Hand[/gold]."
-Outmaneuver,Event,1,,"Next turn, gain 2 energy."
-Rebound,Event,1,, Deal 9 damage. Put the next card you play this turn on top of your [gold]Draw Pile[/gold].
-Rip and Tear,Event,1,,Deal 7 damage to a random enemy twice.
-Stack,Event,1,,Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold].
-Dazed,Status,Unplayable,"Unplayable, Ethereal",[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
-Wound,Status,Unplayable,Unplayable,[gold]Unplayable[/gold].
-Slimed,Status,1,Exhaust,Draw 1 card. [gold]Exhaust[/gold].
-Toxic,Status,1,Exhaust,"At the end of your turn, if this is in your [gold]Hand[/gold], take 5 damage. [gold]Exhaust[/gold]."
-Infection,Status,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 3 damage."
-Burn,Status,Unplayable,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
-Beckon,Status,1,,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 6 HP."
-Frantic Escape,Status,1,,Get farther away. Increase [gold]Sandpit[/gold] by 1. Increase the cost of this card by 1.
+Key,Name,Rarity,Type,Cost,Description
+bad_luck,Bad Luck,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your Hand, lose 13 HP. [gold]Eternal[/gold]."
+byrdonis_egg,Byrdonis Egg,Quest,,Unplayable,[gold]Unplayable[/gold]. Can be hatched at a [gold]Rest Site[/gold].
+byrd_swoop,Byrd Swoop,Event,,0,Deal 14 damage.
+clumsy,Clumsy,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
+debt,Debt,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 10 [gold]Gold[/gold]."
+decay,Decay,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
+doubt,Doubt,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Weak[/gold]."
+enlightenment,Enlightenment,Event,,0,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this turn. [gold]Exhaust[/gold].
+exterminate,Exterminate,Event,,1,Deal 3 damage 4 times to ALL enemies.
+feeding_frenzy,Feeding Frenzy,Event,,0,Gain 5 [gold]Strength[/gold] this turn.
+greed,Greed,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Eternal[/gold].
+guilty,Guilty,Curse,,Unplayable,[gold]Unplayable[/gold]. Removed from your [gold]Deck[/gold] after 5 combats.
+injury,Injury,Curse,,Unplayable,[gold]Unplayable[/gold].
+metamorphosis,Metamorphosis,Event,,2,Add 3 random Attacks into your [gold]Draw Pile[/gold]. They're free to play this combat. [gold]Exhaust[/gold].
+normality,Normality,Curse,,Unplayable,[gold]Unplayable[/gold]. You cannot play more than 3 cards this turn.
+peck,Peck,Event,,1,Deal 2 damage 3 times.
+poor_sleep,Poor Sleep,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Retain[/gold].
+regret,Regret,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 1 HP for each card in your [gold]Hand[/gold]."
+shame,Shame,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Frail[/gold]."
+spoils_map,Spoils Map,Quest,,Unplayable,[gold]Unplayable[/gold]. Marks a site of 600 extra [gold]Gold[/gold] in the next Act.
+lantern_key,Lantern Key,Quest,,Unplayable,[gold]Unplayable[/gold]. Unlocks a special event in the next Act.
+spore_mind,Spore Mind,Curse,,1,[gold]Exhaust[/gold].
+squash,Squash,Event,,1,Deal 10 damage. Apply 2 [gold]Vulnerable[/gold].
+toric_toughness,Toric Toughness,Event,,2,Gain 5 [gold]Block[/gold]. Gain 5 [gold]Block[/gold] at the start of the next 2 turns.
+ultimate_defend,Ultimate Defend,Colorless,,1,Gain 11 [gold]Block[/gold].
+ultimate_strike,Ultimate Strike,Colorless,,1,Deal 14 damage.
+writhe,Writhe,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Innate[/gold].
+caltrops,Caltrops,Event,,1,"Whenever you are attacked,  deal 3 damage back"
+clash,Clash,Event,,0,Can only be played if every card in your [gold]Hand[/gold] is an Attack. Deal 14 damage.
+distraction,Distraction,Event,,1,Add a random Skill into your [gold]Hand[/gold]. It's free to play this turn. [gold]Exhaust[/gold].
+dual_wield,Dual Wield,Event,,1,Choose an Attack or Power card. Add a copy of that card into your [gold]Hand[/gold].
+entrench,Entrench,Event,,2,Double your [gold]Block[/gold].
+hello_world,Hello World,Event,,1,"At the start of your turn, add a random Common card into your [gold]Hand[/gold]."
+outmaneuver,Outmaneuver,Event,,1,"Next turn, gain 2 energy."
+rebound,Rebound,Event,,1, Deal 9 damage. Put the next card you play this turn on top of your [gold]Draw Pile[/gold].
+rip_and_tear,Rip and Tear,Event,,1,Deal 7 damage to a random enemy twice.
+stack,Stack,Event,,1,Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold].
+dazed,Dazed,Status,,Unplayable,[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
+wound,Wound,Status,,Unplayable,[gold]Unplayable[/gold].
+slimed,Slimed,Status,,1,Draw 1 card. [gold]Exhaust[/gold].
+toxic,Toxic,Status,,1,"At the end of your turn, if this is in your [gold]Hand[/gold], take 5 damage. [gold]Exhaust[/gold]."
+infection,Infection,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 3 damage."
+burn,Burn,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
+beckon,Beckon,Status,,1,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 6 HP."
+frantic_escape,Frantic Escape,Status,,1,Get farther away. Increase [gold]Sandpit[/gold] by 1. Increase the cost of this card by 1.
