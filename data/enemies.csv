@@ -23,8 +23,8 @@ Fossil Stalker,51 - 53 (54 - 56),"Starts with Latch. Then chooses randomly betwe
 Frog Knight,191 (199),"Cycles through Tongue Lash -> Strike Down Evil -> For the Queen. After For the Queen, if below half HP and Beetle Charge has not been used, then uses Beetle Charge before starting the cycle over.",,plating,{plating} 15 (19)
 Fuzzy Wurm Crawler,55 - 57 (58 - 59),Starts with Acid Goop. Then cycles through Inhale -> Acid Goop -> Acid Goop.,,,
 Globe Head,148 (158),Cycles through Shocking Slap -> Thunder Strike -> Galvanic Burst.,,galvanic,{galvanic} 6
-Gremlin Merc,47 - 49 (51 - 53),Cycles through Gimme -> Double Smash -> Hehe.,Stolen gold is held by Fat Gremlin once summoned,surprise; thievery,{surprise} and {thievery} 20
-Fat Gremlin,13 - 17 (14 - 18),Starts stunned. Then always uses Flee.,Keeps stolen gold if successfully Flees.,,
+Gremlin Merc,47 - 49 (51 - 53),Cycles through Gimme -> Double Smash -> Hehe.,Stolen gold is held by Fat Gremlin once summoned.  Fight has normal gold reward if Fat Gremlin doesn't escape,surprise; thievery,{surprise} and {thievery} 20
+Fat Gremlin,13 - 17 (14 - 18),Starts stunned. Then always uses Flee.,"If Fat Gremlin escape, player will not get the stolen gold or the normal gold reward",,
 Sneaky Gremlin,10 - 14 (11 - 15),Starts stunned. Then always uses Tackle.,,,
 Haunted Ship,63 (67),"Starts with Ramming Speed -> Haunt. Then picks randomly between Ramming Speed, Swipe, and Stomp (allowed options equally likely). Cannot use same move twice in a row.",,haunt,
 Hunter Killer,121 (126),Starts with Tenderizing Goop. Then chooses randomly between Bite and Puncture each turn. Bite cannot be used twice in a row. Puncture cannot be used more than twice in a row.,,tender,
@@ -73,7 +73,7 @@ Vine Shambler,61 (64),Cycles through Swipe -> Grasping Vines -> Chomp.,,tangled,
 Wriggler,17 - 21 (18 - 22),"If spawned from Phrog Parasite's death, starts stunned. Otherwise (or after stun), Wrigglers in positions 1 & 3 start with Nasty Bite and Wrigglers in positions 2 & 4 start with Wriggle. They then alternate between Nasty Bite -> Wriggle.",,,
 Bygone Effigy,127 (132),Starts with Sleep -> Wake -> Slash. Then uses Slash every turn after.,,slow,{slow}
 Byrdonis,91 - 94 (99),Alternates between Swoop -> Peck.,,territorial,{territorial} 1
-Decimillipede,42 - 48 (48 - 56),"Segments start evenly distributed between Writhe, Bulk and Constrict. Then each segment cycles Constrict -> Bulk -> Writhe. When a segment is killed, it revives after one turn with 25 HP and continues from its next move in the cycle.",,reattach,{reattach}
+Decimillipede,42 - 48 (48 - 56),"Segments start evenly distributed between Writhe, Bulk and Constrict. Then each segment cycles Constrict -> Bulk -> Writhe. When a segment is killed, it revives after one turn with 25 HP and continues from its next move in the cycle.","(Possible bug) Killing a segment of the Decimillipede with doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach}
 (3 segments),"(always even #, segments have different max HP)",,,reattach,
 Entomancer,145 (155),"Cycles through Bees -> Spear -> Pheromone Spit. After reaching 3 stacks of Personal Hive, switches to gaining 2 strength when using Pheromone Spit.",,personal_hive,{personal_hive} 1
 Infested Prism,200 (215),Cycles through Jab -> Radiate -> Whirlwind -> Pulsate,,vital_spark,{vital_spark} 1
@@ -113,7 +113,7 @@ When killed, revive next turn in stage 3.",,painful_stabs,{painful_stabs} 1
 Test Subject Stage 3,300 (313),Cycles through Lacerate -> Big Pounce -> Burning Growl.,,nemesis,{nemesis} (immediately gives 1 Intangible)
 The Insatiable,321 (341),"Starts with Liquify Ground.
 
-Afterwards, cycles through Thrash -> Lunging Bite -> Salivate -> Thrash.","Frantic Escape: 1 cost status, increase card cost and Sandpit by 1.",sandpit,
+Afterwards, cycles through Thrash -> Lunging Bite -> Salivate -> Thrash.","Frantic Escape: 1 cost status, increase card cost and Sandpit by 1. If a player is swallowed by the Sandpit, effects such as Lizard Tail will not revive you.",sandpit,
 Kin Priest,190 (199),Cycles through Orb of Frailty -> Orb of Weakness -> Beam -> Ritual.,,,
 Kin Follower,58 - 59 (62 - 63),Cycles through Quick Slash -> Boomerang -> Power Dance.,Kin Follower is a minion.,,
 (Minion),,,,,

@@ -139,7 +139,7 @@ the_legends_were_true,Nab the Map,Receive the [gold]Spoils Map[/gold].,,Spoils M
 the_legends_were_true,Slowly Find an Exit,Lose [red]8[/red] HP. Procure [blue]1[/blue] random [gold]Potion[/gold].,,,,,,
 this_or_that,This,Lose [red]6[/red] HP. Gain [blue]41-68[/blue] [gold]Gold[/gold].,,,,,,
 this_or_that,That,Add [red]Clumsy[/red] to your [gold]Deck[/gold]. Obtain a random [gold]Relic[/gold].,,Clumsy,,,,
-war_historian_repy,Unlock the Cage,Lose [gold]Lantern Key[/gold]. Obtain [gold]History Course[/gold].,,,,,history_course,
+war_historian_repy,Unlock the Cage,Lose [gold]Lantern Key[/gold]. Obtain [gold]History Course[/gold].,,Lantern Key,,,history_course,
 war_historian_repy,Unlock the Chest,Lose [gold]Lantern Key[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold]. Obtain [blue]2[/blue] random [gold]Relics[/gold].,,,,,,
 welcome_to_wongos,Wongo's Bargain Bin,Pay [red]100[/red] [gold]Gold[/gold]. Obtain [blue]1[/blue] random [gold]Common Relic[/gold].,,,,,,
 welcome_to_wongos,Wongo's Featured Item,Pay [red]200[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].,,,,,,
