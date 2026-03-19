@@ -36,14 +36,14 @@ doors_of_light_and_dark,Light Door,[gold]Upgrade[/gold] [blue]2[/blue] random ca
 drowning_beacon,Bottle,Procure [aqua]Glowwater Potion[/aqua].,,,,glowwater_potion,
 drowning_beacon,Climb,Obtain [gold]Fresnel Lens[/gold]. Lose [red]13[/red] Max HP.,,,nimble,,frenel_lens
 endless_conveyor,Observe the Chef,[gold]Upgrade[/gold] a random card in your [gold]Deck[/gold].,,,,,
-endless_conveyor,Grab Caviar off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,,,,,
-endless_conveyor,Grab Fried Eel off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,,,,,
-endless_conveyor,Grab Jelly Liver off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!,,,,,
-endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!,Forced every 5th grab.,Feeding Frenzy,,,
-endless_conveyor,Grab Golden Eysh off the Belt,[green]LUCKY WINNER![/green] Gain [blue]75[/blue] [gold]Gold[/gold].,Free (no gold cost). Only appears after first grab.,,,,
-endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,,,,,
-endless_conveyor,Grab Suspicious Condiment off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Procure [blue]1[/blue] random [gold]Potion[/gold]. Continue feasting!,Only appears if you have open potion slots.,,,,
-endless_conveyor,Grab Clam Roll off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!,Only appears if not at full HP.,,,,
+endless_conveyor,Grab Caviar off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,~24% chance.,,,,
+endless_conveyor,Grab Fried Eel off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,~12% chance.,,,,
+endless_conveyor,Grab Jelly Liver off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!,~12% chance.,,,,
+endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!,"Forced every 5th grab (5th, 10th, etc.).",Feeding Frenzy,,,
+endless_conveyor,Grab Golden Eysh off the Belt,[green]LUCKY WINNER![/green] Gain [blue]75[/blue] [gold]Gold[/gold].,~4% chance. Free (no gold cost). Only appears after first grab.,,,,
+endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,~12% chance.,,,,
+endless_conveyor,Grab Suspicious Condiment off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Procure [blue]1[/blue] random [gold]Potion[/gold]. Continue feasting!,~12% chance. Only appears if you have open potion slots.,,,,
+endless_conveyor,Grab Clam Roll off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!,~24% chance. Only appears if not at full HP.,,,,
 endless_conveyor,Leave,Leave the conveyor belt.,,,,,
 punch_off,I Can Take Them,Fight them for [gold]Greater Rewards[/gold].,,,,,
 punch_off,Nab,Add [red]Injury[/red] to your [gold]Deck[/gold]. Obtain a random [gold]Relic[/gold].,,Injury,,,
@@ -54,7 +54,7 @@ sunken_statue,Dive into the Water,Gain [blue]101-121[/blue] [gold]Gold[/gold]. L
 sunken_statue,Grab the Sword,Obtain the [gold]Sword of Stone[/gold].,Sword of Stone transforms into Sword of Jade after 5 fights,,,,"sword_of_stone, sword_of_jade"
 sunken_treasury,First Chest,Gain [blue]52-67[/blue] [gold]Gold[/gold].,,,,,
 sunken_treasury,Second Chest,Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red].,,Greed,,,
-trash_heap,Dive In,Lose [red]8[/red] HP. Obtain a random forgotten [gold]Relic[/gold] from the past.,,,,,
+trash_heap,Dive In,Lose [red]8[/red] HP. Obtain a random forgotten [gold]Relic[/gold] from the past.,,,,,"darkstone_periapt,dream_catcher,hand_drill,maw_bank,the_boot"
 trash_heap,Grab Random Junk,Gain [blue]100[/blue] [gold]Gold[/gold]. Obtain a random forgotten card from the past.,,"Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack",,,
 waterlogged_scriptorium,Bloody Ink,Gain [green]6[/green] Max HP.,,,,,
 waterlogged_scriptorium,Prickly Sponge,Pay [red]155[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,,steady,,
@@ -73,7 +73,7 @@ lost_wisp,Capture the Wisp,Add [red]Decay[/red] to your [gold]Deck[/gold]. Obtai
 lost_wisp,Search the Nearby Area,Gain [blue]45-75[/blue] [gold]Gold[/gold].,,,,,
 spirit_grafter,Let It In,Heal [green]25[/green] HP. Add [gold]Metamorphosis[/gold] to your [gold]Deck[/gold].,,Metamorphosis,,,
 spirit_grafter,Rejection,Lose [red]9[/red] HP. Remove a card from your [gold]Deck[/gold].,,,,,
-the_lantern_key,Keep the Key,Fight to obtain the Key.,"Initiates a fight with Mysterious Knight, who is Flail Knight that starts with 6 Stregnth and 6 Plating.  The fight give normal rewards in addition to the Lantern Key",Lantern Key,,,
+the_lantern_key,Keep the Key,Fight to obtain the Key.,"Initiates a fight with Mysterious Knight, who is Flail Knight that starts with 6 Stregnth and 6 Plating.  The fight gives normal rewards in addition to the Lantern Key",Lantern Key,,,
 the_lantern_key,Return the Key,Gain [blue]100[/blue] [gold]Gold[/gold].,,,,,
 zen_weaver,Arachnid Acupuncture,Pay [red]250[/red] [gold]Gold[/gold]. Remove [blue]2[/blue] cards from your [gold]Deck[/gold].,,,,,
 zen_weaver,Breathing Techniques,Pay [red]50[/red] [gold]Gold[/gold]. Add [blue]2[/blue] [gold]Enlightenment[/gold] to your [gold]Deck[/gold].,,Enlightenment,,,
@@ -83,9 +83,9 @@ battleworn_dummy,Setting 2,Fight a [blue]150[/blue] HP dummy. [gold]Upgrade[/gol
 battleworn_dummy,Setting 3,Fight a [blue]300[/blue] HP dummy. Obtain a random [gold]Relic[/gold].,,,,,
 grave_of_the_forgotten,Accept the Forgotten Soul,Obtain Forgotten Soul.,,,,,
 grave_of_the_forgotten,Confront with Truth,Add [red]Decay[/red] to your [gold]Deck[/gold]. [gold]Enchant[/gold] a card that [gold]Exhausts[/gold] with [purple]Soul's Power[/purple].,,Decay,souls_power,,
-hungry_for_mushrooms,Big Mushroom,"Obtain [gold]Big Mushroom[/gold].",,,,,big_mushroom
-hungry_for_mushrooms,Fragrant Mushroom,"Obtain [gold]Fragrant Mushroom[/gold].",,,,,fragrant_mushroom
-reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,"Does not copy the Bad Luck. Enchantments on cards do get copied",Bad Luck,,,
+hungry_for_mushrooms,Big Mushroom,Obtain [gold]Big Mushroom[/gold].,,,,,big_mushroom
+hungry_for_mushrooms,Fragrant Mushroom,Obtain [gold]Fragrant Mushroom[/gold].,,,,,fragrant_mushroom
+reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,Does not copy the Bad Luck. Enchantments on cards do get copied,Bad Luck,,,
 reflections,Touch a Mirror,[red]Downgrade[/red] [blue]2[/blue] random cards. [green]Upgrade[/green] [blue]4[/blue] random cards.,,,,,
 round_tea_party,Enjoy Your Tea,Obtain [red]Royal Poison[/red]. [green]Heal to full HP.[/green],,,,,royal_poison
 round_tea_party,Pick a Fight,Lose [red]11[/red] HP. Obtain a random [gold]Relic[/gold].,,,,,
@@ -98,12 +98,12 @@ trial,[Nondescript] Guilty,Add [red]Doubt[/red] to your Deck. Get 2 card rewards
 trial,[Nondescript] Innocent,Add [red]Doubt[/red] to your Deck. Transform 2 cards.,,Doubt,,,
 brain_leech,Rip the Leech Off,Lose [red]5[/red] HP. Gain a Colorless card reward.,,,,,
 brain_leech,Share Knowledge,Choose [blue]1[/blue] of [blue]5[/blue] random cards to add to your [gold]Deck[/gold].,,,,,
-crystal_sphere,Payment Plan,Gain a [red]Debt[/red]. [purple]Divine[/purple] [blue]6[/blue] times.,,Debt,,,
+crystal_sphere,Payment Plan,Gain a [red]Debt[/red]. [purple]Divine[/purple] [blue]6[/blue] times.,,"Debt, Doubt",,,
 crystal_sphere,Uncover Future,Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue] times.,,,,,
 doll_room,Pick at Random,Obtain a random [gold]Doll Relic[/gold].,,,,,
 doll_room,Take Some Time,Lose [red]5[/red] HP. Choose [blue]1[/blue] of [blue]2[/blue] [gold]Doll Relics[/gold].,,,,,
 doll_room,Examine Each and Make the Best Choice,Lose [red]15[/red] HP. Choose [blue]1[/blue] of [blue]3[/blue] [gold]Doll Relics[/gold].,,,,,"daughter_of_the_wind, bing_bong, mr_struggles"
-fake_merchant,Anchor???,Start each combat with 4 Block. (50 Gold),,,,,fake_anchor
+fake_merchant,Anchor???,Start each combat with 4 Block. (50 Gold),,,,foul_potion,fake_anchor
 fake_merchant,Blood Vial???,"At the start of each combat, heal 1 HP. (50 Gold)",,,,,fake_blood_vial
 fake_merchant,Happy Flower???,"Every 5 turns, gain 1 energy. (50 Gold)",,,,,fake_happy_flower
 fake_merchant,Lee's Waffle???,"Upon pickup, heal 10% of your HP. (50 Gold)",,,,,fake_lees_waffle
@@ -111,7 +111,7 @@ fake_merchant,Mango???,"Upon pickup, raise your Max HP by 3. (50 Gold)",,,,,fake
 fake_merchant,Orichalcum???,"If you end your turn without Block, gain 3 Block. (50 Gold)",,,,,fake_orichalcum
 fake_merchant,Snecko Eye???,Start each combat Confused. (50 Gold),,,,,fake_snecko_eye
 fake_merchant,Strike Dummy???,"Cards containing ""Strike"" deal 1 additional damage. (50 Gold)",,,,,fake_strike_dummy
-fake_merchant,Venerable Tea Set???,"Whenever you enter a Rest Site, start the next combat with an additional energy. (50 Gold)",,,,,fake_venerable_tea_set
+fake_merchant,Venerable Tea Set???,"Whenever you enter a Rest Site, start the next combat with an additional energy. (50 Gold)",,,,,"fake_venerable_tea_set,fake_merchants_rug"
 potion_courier,Grab Potions,Procure [blue]3[/blue] [gold]Foul Potions[/gold].,,,,foul_potion,
 potion_courier,Ransack,Procure [blue]1[/blue] random [gold]Uncommon Potion[/gold].,,,,,
 ranwid_the_elder,Give 100 Gold,Obtain a random Relic.,,,,,

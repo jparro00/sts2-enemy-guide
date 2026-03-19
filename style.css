@@ -377,6 +377,15 @@
     padding: 2px 0;
     line-height: 1.6;
   }
+  .note-sub {
+    margin-left: 20px;
+    padding: 1px 0;
+    color: #7a9ab0;
+    font-size: 0.82rem;
+  }
+  .note-sub::before {
+    content: '• ';
+  }
   .event-lore {
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 0.95rem;

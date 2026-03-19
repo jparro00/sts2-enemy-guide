@@ -2,7 +2,8 @@ Key,Name,Act,Notes,Acts,Image,Lore
 aroma_of_chaos,Aroma of Chaos,Overgrowth,,,aroma_of_chaos.webp,"Upon trudging through a thick underbrush and making it into a clearing, you're hit with an unplaceable nostalgia.|A mix of [purple]floral scents[/purple], [green]putrid decay[/green], and [orange]something else entirely[/orange]. The scent grows stronger with each step, and you feel as though the world around you is [sine]warping and twisting[/sine].|Overcome with a sense of [sine][rainbow freq=0.3 sat=0.8 val=1]shifting chaos[/rainbow][/sine], you begin to lose your sense of self."
 byrdonis_nest,Byrdonis Nest,Overgrowth,"[req]Can only appear if no player has an event pet.
 [info]Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.",,byrdonis_nest.webp,"You spot an enormous [jitter][red]Shambling Beast[/red][/jitter] chase off an injured [green][sine]Green Byrd[/sine][/green].|In the alcove the byrd fled from, a [gold]single unguarded egg[/gold] lies abandoned.|[sine]Your stomach gurgles...[/sine]"
-dense_vegetation,Dense Vegetation,Overgrowth,[coop]Decision made as a group in co-op.,,dense_vegetation.webp,"Having taken the wrong path for a good while, you find yourself in a thick jungle of [green]ferns[/green], [green]shrubs[/green], and [green]vines[/green]. Especially [green]vines[/green]. Exhaustion sets in, and a dark thought comes to mind:|[sine][purple]“You are lost, unprepared, and the inevitability of death is approaching.”[/purple][/sine]|What do you do?"
+dense_vegetation,Dense Vegetation,Overgrowth,"[coop]Decision made as a group in co-op.
+[info]The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)",,dense_vegetation.webp,"Having taken the wrong path for a good while, you find yourself in a thick jungle of [green]ferns[/green], [green]shrubs[/green], and [green]vines[/green]. Especially [green]vines[/green]. Exhaustion sets in, and a dark thought comes to mind:|[sine][purple]“You are lost, unprepared, and the inevitability of death is approaching.”[/purple][/sine]|What do you do?"
 jungle_maze_adventure,Jungle Maze Adventure,Overgrowth,[coop]Decision made as a group in co-op.,,jungle_maze_adventure.webp,"In a clearing, you run into a [green]Ragtag Group of Adventurers[/green] looking down and gesturing at a [purple]gigantic maze[/purple].|They offer to join forces with you in an [b]Epic Quest[/b] to loot the riches of this maze. As an experienced adventurer yourself, it's clear this maze is filled with [red][jitter]deadly traps[/jitter][/red] and [orange][sine]guardians[/sine][/orange].|It would be easier if you work together, but then you would have to split the loot."
 luminous_choir,Luminous Choir,Overgrowth,[req]Can only appear if all players have at least 149 Gold.,,luminous_choir.webp,"You stumble upon a clearing bathed in an unnatural blue glow. Towering mushrooms pulse with bioluminescence, their caps swollen and glistening. As you approach, the fungi begin to emit [sine][purple]haunting, melodic tones[/purple][/sine] that reverberate throughout your chest.|You notice something gleaming, embedded within the largest mushroom's flesh, [sine]pulsing[/sine] in rhythm with the fungal song."
 morphic_grove,Morphic Grove,Overgrowth,[req]Can only appear if all players have at least 100 Gold.,,morphic_grove.webp,"You enter a grove of [green]crystalline trees[/green], and they begin to [jitter]quiver excitedly[/jitter]!|A chorus of [sine]hellos and welcomes[/sine] bombard you as a group of [aqua]Morphics[/aqua] [jitter]burst[/jitter] forth from trees.|One of the [aqua]Morphics[/aqua] is fidgeting in the corner, clearly not as sociable as the others.|Approach the group or the loner?"
@@ -16,7 +17,16 @@ abyssal_baths,Abyssal Baths,Underdocks,,,abyssal_baths.webp,"You discover a secl
 doors_of_light_and_dark,Doors of Light and Dark,Underdocks,,,doors_of_light_and_dark.webp,"A doorway existed where none existed moments before...|You enter to find two shimmering doorways and a [gold]well-dressed doorman[/gold].|“Finally, a visitor! Please please! Choose a door, any door!”|[blue]Are we still in the Spire? How is this place so clean?[/blue]"
 drowning_beacon,Drowning Beacon,Underdocks,,,drowning_beacon.webp,"Crossing a dreamscape of rocks and still waters, you emerge to face a [sine]sinking lighthouse[/sine] emitting [purple]anti-light[/purple].|You can bottle up the [aqua][sine]eerily-glowing water[/sine][/aqua] that has pooled here or climb up the dilapidated structure to retrieve the [gold]lens[/gold]."
 endless_conveyor,Endless Conveyor,Underdocks,"[req]Can only appear if all players have at least 105 Gold.
-[info]Dishes are offered randomly until you run out of money or decide to leave. Seapunk Salad is forced every 5th grab.",,endless_conveyor.webp,"You lumber into a shack with a bright but crooked sign that reads:|[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]|Inside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].|One of the chef's arms point to a sign:|[blue]35[/blue] [gold]Gold[/gold] each"
+[info]Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.
+[info]Probabilities are weighted and shift if any options are unavailable.
+[info]Weights:
+    Caviar/+Max HP (6)
+    Clam Roll/Heal (6)
+    Spicy Snappy/Upgrade (3)
+    Jelly Liver/Transform (3)
+    Fried Eel/Colorless Card (3)
+    Suspicious Condiment/Potion (3)
+    Golden Fysh/Gold (1)",,endless_conveyor.webp,"You lumber into a shack with a bright but crooked sign that reads:|[aqua]“ENDLESS FEAST - PAY WHAT YOU HUNGER!”[/aqua]|Inside, a [orange]willowy multi-armed chef[/orange] is deftly preparing [green]bites of food[/green] and placing them onto a [sine]winding chitinous belt[/sine].|One of the chef's arms point to a sign:|[blue]35[/blue] [gold]Gold[/gold] each"
 punch_off,Punch Off,Underdocks,"[coop]Decision made as a group in co-op.
 [req]Can only appear on floor 6+.
 [info]Fight is against 2 Punch Constructs starting with 2-10 missing HP. One construct always starts with Strong Punch.
@@ -55,7 +65,20 @@ trial,The Trial,Glory,"[info]After accepting, one of 3 random trials is chosen (
 brain_leech,Brain Leech,Shared,"[req]Can only appear in Act 1 or Act 2.
 [info]Share Knowledge cards come from your character's card pool. Cards are selected with default rarity chance which does not respect your current rare or uncommon chance.","1,2",brain_leech.webp,[jitter]*thunk*[/jitter]|A sharp pain is felt atop your head and a thought stabs into your mind.|[purple][sine]“SHARE KNOWLEDGE???”[/sine][/purple]|You are unsure how to proceed...
 crystal_sphere,Crystal Sphere,Shared,"[req]Can only appear in Act 2 or Act 3.
-[req]Can only appear if all players have at least 100 Gold.","2,3",crystal_sphere.webp,"[sine][blue]“I predicted you'd enter...!”[/blue][/sine]|A [jitter]raspy[/jitter] voice calls out as you enter a [purple]mystic hut[/purple].|[sine][blue]“Your destiny has brought you here. We must uncover your future and fortunes so you can SAVE US ALL!!”[/blue][/sine]|“Okay, here are the options for the [gold]Crystal Sphere reading[/gold]. Be sure to sign this waiver as well,” she says while bringing out pen and parchment."
+[req]Can only appear if all players have at least 100 Gold.
+[info]The following items are guaranteed to be in the minigame:
+    1 Relic (4x4)
+    1 Rare Card (2x2)
+    1 Uncommon Card (2x2)
+    1 Common Card (2x2)
+    1 Rare Potion (2x2)
+    2 Common Potions (1x3)
+    1 Doubt curse (2x2)
+    2 Big Gold/30g (2x1)
+    5 Small Gold/10g (1x1)
+[info]51 of the 109 cells are populated with items.
+[info]The big tool can only click on a cell that has not yet been clicked and reveals the 8 neighbors.
+[info]All rewards can be skipped, but Doubt is added to your deck immediately when revealed.","2,3",crystal_sphere.webp,"[sine][blue]“I predicted you'd enter...!”[/blue][/sine]|A [jitter]raspy[/jitter] voice calls out as you enter a [purple]mystic hut[/purple].|[sine][blue]“Your destiny has brought you here. We must uncover your future and fortunes so you can SAVE US ALL!!”[/blue][/sine]|“Okay, here are the options for the [gold]Crystal Sphere reading[/gold]. Be sure to sign this waiver as well,” she says while bringing out pen and parchment."
 doll_room,Doll Room,Shared,"[req]Can only appear in Act 2.
 [info]There are 3 possible doll choices, and you will shown a number of random dolls based on your choice.",2,doll_room.webp,"You enter a hidden room...|It's packed with an array of dolls. Each are unique, their expressions ranging from [green]joy[/green] to [purple]sorrow[/purple], their attire spanning centuries and realms beyond your own.|A [sine][blue]chorus of whispers[/blue][/sine] grows louder and louder until [jitter][red]the dolls are shouting[/red][/jitter] over each other and calling for you...|You must choose one and leave immediately."
 fake_merchant,Fake Merchant,Shared,"[req]Can only appear in Act 2 or Act 3.

@@ -402,7 +402,13 @@ function renderNotes(notes) {
   for (const line of lines) {
     const trimmed = line.trim();
     if (!trimmed) continue;
-    if (trimmed.startsWith('[coop]')) coop.push(trimmed.replace('[coop]', '').trim());
+    // Indented lines become sub-bullets of the previous item
+    if (line.startsWith('    ') || line.startsWith('\t')) {
+      const lastArr = infos.length > 0 ? infos : tips.length > 0 ? tips : reqs;
+      if (lastArr.length > 0) {
+        lastArr[lastArr.length - 1] += `<div class="note-sub">${trimmed}</div>`;
+      }
+    } else if (trimmed.startsWith('[coop]')) coop.push(trimmed.replace('[coop]', '').trim());
     else if (trimmed.startsWith('[req]')) reqs.push(trimmed.replace('[req]', '').trim());
     else if (trimmed.startsWith('[info]')) infos.push(trimmed.replace('[info]', '').trim());
     else if (trimmed.startsWith('[tip]')) tips.push(trimmed.replace('[tip]', '').trim());
