@@ -227,6 +227,9 @@
   @media (min-width: 1100px) and (max-width: 2040px) {
     body.panel-open { padding-right: 520px; }
   }
+  @media (max-width: 1099px) {
+    body.panel-open { overflow: hidden; }
+  }
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation-duration: 0.15s;
