@@ -91,12 +91,12 @@ let itemsRef = {};       // unified lookup: { key: { ...data, category } }
 async function loadData() {
   const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText] = await Promise.all([
     fetch('data/enemies.csv').then(r => r.text()),
-    fetch('data/moves.csv').then(r => r.text()),
+    fetch('data/enemy_moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
     fetch('data/powers.csv').then(r => r.text()),
     fetch('data/events.csv').then(r => r.text()),
     fetch('data/event_choices.csv').then(r => r.text()),
-    fetch('data/event_cards.csv').then(r => r.text()),
+    fetch('data/cards.csv').then(r => r.text()),
     fetch('data/enchantments.csv').then(r => r.text()),
     fetch('data/potions.csv').then(r => r.text()),
     fetch('data/relics.csv').then(r => r.text()),
