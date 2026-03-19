@@ -184,7 +184,7 @@ Byrdonis,Swoop,Damage 16 (18),,attack
 Decimillipede,Constrict,Damage 8 (9); Apply 1 {weak},,"attack, debuff"
 Decimillipede,Bulk,Damage 6 (7); Gain 2 {strength},,"attack, buff"
 Decimillipede,Writhe,Damage 5x2 (6x2),,multi_attack
-Entomancer,Pheromone Spit,If less than 3 {personal_hive}: Gain 1 {personal_hive} and 1 {strength}; If at 3 {personal_hive}: Gain 2 {strength},,buff
+Entomancer,Pheromone Spit,If less than 3 {personal_hive}: Gain 1 {personal_hive} and 1 {strength}; If at 3 {personal_hive}: Gain 2 {strength},Dazed,buff
 Entomancer,Bees,Damage 3x7 (3x8),,multi_attack
 Entomancer,Spear,Damage 18 (20),,attack
 Infested Prism,Jab,Damage 22 (24),,attack

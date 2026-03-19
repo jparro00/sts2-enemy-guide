@@ -172,6 +172,7 @@ async function loadData() {
       name: ev.Name,
       act: actKey,
       notes: ev.Notes || '',
+      acts: ev.Acts ? ev.Acts.split(',').map(s => s.trim()) : [],
       image: ev.Image || '',
       lore: ev.Lore || ''
     });
@@ -471,6 +472,7 @@ const actNames = {
 };
 const catNames = { all: "All Encounters", easy: "Easy Encounters", hard: "Hard Encounters", elite: "Elites", boss: "Bosses", events: "Events" };
 const actToEventZone = { overgrowth: 'overgrowth', underdocks: 'underdocks', hive: 'hive', glory: 'glory' };
+const zoneToActNumber = { overgrowth: '1', underdocks: '1', hive: '2', glory: '3' };
 const eventZoneNames = {
   all: "All Events",
   ev_overgrowth: "Overgrowth",
@@ -596,7 +598,8 @@ function render() {
         html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
       }
       if (zone !== 'shared') {
-        const sharedEvents = eventsData['shared'] || [];
+        const actNum = zoneToActNumber[zone];
+        const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
         if (sharedEvents.length > 0) {
           html += `<div class="cat-group-label cat-events">Shared Events</div>`;
           html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
@@ -616,7 +619,8 @@ function render() {
     // Show events for this act's zone + shared
     const zone = actToEventZone[currentAct];
     const zoneEvents = eventsData[zone] || [];
-    const sharedEvents = eventsData['shared'] || [];
+    const actNum = zoneToActNumber[zone];
+    const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
     const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory' };
     let html = '';
     if (zoneEvents.length > 0) {
