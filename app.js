@@ -389,6 +389,52 @@ function renderEnemyCards(moves) {
 }
 
 // ══════════════════════════════════════════
+// NOTES RENDERING
+// ══════════════════════════════════════════
+
+function renderNotes(notes) {
+  const lines = notes.split('\n');
+  const coop = [];
+  const reqs = [];
+  const tips = [];
+  const infos = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith('[coop]')) coop.push(trimmed.replace('[coop]', '').trim());
+    else if (trimmed.startsWith('[req]')) reqs.push(trimmed.replace('[req]', '').trim());
+    else if (trimmed.startsWith('[info]')) infos.push(trimmed.replace('[info]', '').trim());
+    else if (trimmed.startsWith('[tip]')) tips.push(trimmed.replace('[tip]', '').trim());
+    else tips.push(trimmed); // default to tip
+  }
+
+  let html = '';
+
+  // Co-op badges
+  if (coop.length > 0) {
+    html += `<div class="note-badges">${coop.map(c => `<span class="note-badge note-coop">\u{1F91D} ${c}</span>`).join('')}</div>`;
+  }
+
+  // Requirements
+  if (reqs.length > 0) {
+    html += `<div class="note-reqs">${reqs.map(r => `<div class="note-req">\u2726 ${r}</div>`).join('')}</div>`;
+  }
+
+  // Info lines
+  if (infos.length > 0) {
+    html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${i}</div>`).join('')}</div>`;
+  }
+
+  // Tips (warning box)
+  if (tips.length > 0) {
+    html += `<div class="notes">\u26A0\uFE0F ${tips.join('<br>')}</div>`;
+  }
+
+  return html;
+}
+
+// ══════════════════════════════════════════
 // IMAGE RESOLUTION
 // ══════════════════════════════════════════
 
@@ -674,7 +720,7 @@ function renderEnemySection(name) {
     </tr>
   `).join('');
 
-  const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes}</div>` : '';
+  const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes.replace(/\n/g, '<br>')}</div>` : '';
 
   const imgSrc = `media/enemies/${name}.webp`;
 
@@ -776,7 +822,7 @@ function openEvent(eventKey) {
     </table>
   ` : '';
 
-  const notesHtml = ev.notes ? `<div class="notes">&#9888;&#65039; ${ev.notes}</div>` : '';
+  const notesHtml = ev.notes ? renderNotes(ev.notes) : '';
   const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
 
