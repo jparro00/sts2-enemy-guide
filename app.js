@@ -85,8 +85,8 @@ function parseCSV(text) {
 let enemyDatabase = {};
 let encounters = {};
 let eventsData = {};     // keyed by act: { overgrowth: [...], shared: [...] }
-let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, card } ]
-let eventCardsRef = {};  // keyed by key: { key, name, rarity, type, cost, description }
+let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, references } ]
+let itemsRef = {};       // unified lookup: { key: { ...data, category } }
 
 async function loadData() {
   const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText] = await Promise.all([
@@ -124,6 +124,7 @@ async function loadData() {
       notes: e.Notes,
       startsWith: e.StartsWith || '',
       powers: e.Powers ? e.Powers.split(';').map(p => p.trim()).filter(Boolean) : [],
+      references: e.References ? e.References.split(',').map(r => r.trim()).filter(Boolean) : [],
       moves: []
     };
   }
@@ -133,7 +134,7 @@ async function loadData() {
       enemyDatabase[m.Enemy].moves.push({
         name: m.Move,
         effects: m.Effects,
-        card: m.Card || '',
+        references: m.References || '',
         intent: m.Intent
       });
     }
@@ -184,55 +185,34 @@ async function loadData() {
       choice: ch.Choice,
       effect: ch.Effect,
       notes: ch.Notes || '',
-      card: ch.Card || '',
-      enchantment: ch.Enchantment || '',
-      potion: ch.Potion || '',
-      relic: ch.Relic || '',
-      powers: ch.Powers || ''
+      references: ch.References || ''
     });
   }
 
-  // Build event cards reference
+  // Build unified itemsRef from all reference CSVs
   const eventCardsRaw = parseCSV(eventCardsText);
   for (const c of eventCardsRaw) {
-    eventCardsRef[c.Key] = {
-      key: c.Key,
-      name: c.Name,
-      rarity: c.Rarity,
-      type: c.Type || '',
-      cost: c.Cost,
-      description: c.Description || ''
-    };
+    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '' };
   }
 
-  // Build enchantments reference from CSV
   const enchantmentsRaw = parseCSV(enchantmentsText);
   for (const e of enchantmentsRaw) {
-    enchantmentsRef[e.Key] = {
-      name: e.Name,
-      image: e.Image,
-      desc: e.Description
-    };
+    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description };
   }
 
-  // Build potions reference from CSV
   const potionsRaw = parseCSV(potionsText);
   for (const p of potionsRaw) {
-    potionsRef[p.Key] = {
-      name: p.Name,
-      image: p.Image,
-      desc: p.Description
-    };
+    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description };
   }
 
-  // Build relics reference from CSV
   const relicsRaw = parseCSV(relicsText);
   for (const r of relicsRaw) {
-    relicsRef[r.Key] = {
-      name: r.Name,
-      image: r.Image,
-      desc: r.Description
-    };
+    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description };
+  }
+
+  // Also add powers to itemsRef
+  for (const [key, val] of Object.entries(powersRef)) {
+    itemsRef[key] = { ...val, key, category: 'power' };
   }
 
   render();
@@ -242,10 +222,7 @@ async function loadData() {
 // POWERS REFERENCE
 // ══════════════════════════════════════════
 
-const powersRef = {}; // Populated from data/powers.csv at load time
-const enchantmentsRef = {}; // Populated from data/enchantments.csv at load time
-const potionsRef = {}; // Populated from data/potions.csv at load time
-const relicsRef = {}; // Populated from data/relics.csv at load time
+const powersRef = {}; // Populated from data/powers.csv at load time (also merged into itemsRef)
 
 function renderPowerRefs(text) {
   return text.replace(/\{(\w+)\}/g, (match, key) => {
@@ -337,57 +314,107 @@ function renderStartsWith(text) {
   return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(text)}</div>`;
 }
 
-function renderPowers(powers) {
-  if (!powers || powers.length === 0) return '';
-  const rows = powers.map(p => {
-    const ref = powersRef[p];
-    if (!ref) return '';
-    const iconSrc = `media/powers/${ref.image}`;
-    return `<div class="power-row">
-      <img class="power-icon" src="${iconSrc}" alt="${ref.name}" onerror="this.style.display='none'">
-      <div class="power-info">
-        <span class="power-name">${ref.name}</span>
-        <span class="power-desc">${ref.desc}</span>
-      </div>
-    </div>`;
-  }).join('');
-  return `<div class="powers-section"><h3>Powers</h3>${rows}</div>`;
+function renderEnemyReferences(powers, moves, references) {
+  const allKeys = [
+    ...(powers || []),
+    ...(references || []),
+    ...moves.filter(m => m.references).flatMap(m => m.references.split(',').map(s => s.trim())).filter(Boolean)
+  ];
+  if (allKeys.length === 0) return '';
+  return renderReferenceSections(allKeys);
 }
 
-function renderEnemyCards(moves) {
-  const cardNames = [...new Set(moves.filter(m => m.card).flatMap(m => m.card.split(',').map(s => s.trim())).filter(Boolean))];
-  if (cardNames.length === 0) return '';
+const cardRarityIcons = {
+  Curse: 'media/cards/curse_icon_card.webp',
+  Event: 'media/cards/event_icon_card.webp',
+  Quest: 'media/cards/quest_icon_card.webp',
+  Colorless: 'media/cards/colorless_icon_card.webp',
+  Status: 'media/cards/status_icon_card.webp'
+};
 
-  const cardRarityIcons = {
-    Curse: 'media/cards/curse_icon_card.webp',
-    Event: 'media/cards/event_icon_card.webp',
-    Quest: 'media/cards/quest_icon_card.webp',
-    Colorless: 'media/cards/colorless_icon_card.webp',
-    Status: 'media/cards/status_icon_card.webp'
-  };
+const categoryImagePaths = {
+  enchantment: 'media/enchantments/',
+  potion: 'media/potions/',
+  relic: 'media/relics/',
+  power: 'media/powers/'
+};
 
-  const rows = cardNames.map(cardName => {
-    const card = eventCardsRef[cardName];
-    if (!card) return '';
-    const iconSrc = cardRarityIcons[card.rarity] || '';
-    const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
-    const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
-    return `<tr>
-      <td style="text-align:center">${iconHtml}</td>
-      <td><strong>${card.name}</strong></td>
-      <td style="text-align:center">${costDisplay}</td>
-      <td>${renderLore(card.description)}</td>
-    </tr>`;
-  }).join('');
+function renderReferenceSections(keys, excludeKeys = []) {
+  const excludeSet = new Set(excludeKeys);
+  const uniqueKeys = [...new Set(keys)].filter(k => !excludeSet.has(k));
 
-  if (!rows) return '';
+  // Group by category
+  const groups = { card: [], power: [], relic: [], potion: [], enchantment: [] };
+  for (const key of uniqueKeys) {
+    const item = itemsRef[key];
+    if (!item) continue;
+    if (groups[item.category]) groups[item.category].push(item);
+  }
 
-  return `
-    <h3>Cards</h3>
-    <table>
-      ${rows}
-    </table>
-  `;
+  let html = '';
+
+  // Cards table
+  if (groups.card.length > 0) {
+    const rows = groups.card.map(card => {
+      const iconSrc = cardRarityIcons[card.rarity] || '';
+      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
+      const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
+      return `<tr>
+        <td style="text-align:center">${iconHtml}</td>
+        <td><strong>${card.name}</strong></td>
+        <td style="text-align:center">${costDisplay}</td>
+        <td>${renderLore(card.desc)}</td>
+      </tr>`;
+    }).join('');
+    html += `<h3>Cards</h3><table>${rows}</table>`;
+  }
+
+  // Relics table
+  if (groups.relic.length > 0) {
+    const rows = groups.relic.map(r => `<tr>
+      <td style="text-align:center">${r.image ? `<img src="${categoryImagePaths.relic}${r.image}" alt="${r.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td><strong>${r.name}</strong></td>
+      <td>${renderLore(r.desc)}</td>
+    </tr>`).join('');
+    html += `<h3>Relic Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+  }
+
+  // Potions table
+  if (groups.potion.length > 0) {
+    const rows = groups.potion.map(p => `<tr>
+      <td style="text-align:center">${p.image ? `<img src="${categoryImagePaths.potion}${p.image}" alt="${p.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td><strong>${p.name}</strong></td>
+      <td>${renderLore(p.desc)}</td>
+    </tr>`).join('');
+    html += `<h3>Potion Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+  }
+
+  // Enchantments table
+  if (groups.enchantment.length > 0) {
+    const rows = groups.enchantment.map(e => `<tr>
+      <td style="text-align:center">${e.image ? `<img src="${categoryImagePaths.enchantment}${e.image}" alt="${e.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td><strong>${e.name}</strong></td>
+      <td>${renderLore(e.desc)}</td>
+    </tr>`).join('');
+    html += `<h3>Enchantment Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+  }
+
+  // Powers
+  if (groups.power.length > 0) {
+    const rows = groups.power.map(p => {
+      const iconSrc = `${categoryImagePaths.power}${p.image}`;
+      return `<div class="power-row">
+        <img class="power-icon" src="${iconSrc}" alt="${p.name}" onerror="this.style.display='none'">
+        <div class="power-info">
+          <span class="power-name">${p.name}</span>
+          <span class="power-desc">${p.desc}</span>
+        </div>
+      </div>`;
+    }).join('');
+    html += `<div class="powers-section"><h3>Powers</h3>${rows}</div>`;
+  }
+
+  return html;
 }
 
 // ══════════════════════════════════════════
@@ -754,8 +781,7 @@ function renderEnemySection(name) {
       </table>
 
       ${notesHtml}
-      ${renderPowers(data.powers)}
-      ${renderEnemyCards(data.moves)}
+      ${renderEnemyReferences(data.powers, data.moves, data.references)}
     </div>
   `;
 }
@@ -834,107 +860,9 @@ function openEvent(eventKey) {
   const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
   const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
 
-  // Build cards reference table from choices that reference cards
-  const cardRarityIcons = {
-    Curse: 'media/cards/curse_icon_card.webp',
-    Event: 'media/cards/event_icon_card.webp',
-    Quest: 'media/cards/quest_icon_card.webp',
-    Colorless: 'media/cards/colorless_icon_card.webp',
-    Status: 'media/cards/status_icon_card.webp'
-  };
-  const referencedCards = [...new Set(choices.filter(c => c.card).flatMap(c => c.card.split(',').map(s => s.trim())).filter(Boolean))];
-  const cardsHtml = referencedCards.length > 0 ? (() => {
-    const rows = referencedCards.map(cardName => {
-      const card = eventCardsRef[cardName];
-      if (!card) return '';
-      const iconSrc = cardRarityIcons[card.rarity] || '';
-      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
-      const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
-      return `<tr>
-        <td style="text-align:center">${iconHtml}</td>
-        <td><strong>${card.name}</strong></td>
-        <td style="text-align:center">${costDisplay}</td>
-        <td>${renderLore(card.description)}</td>
-      </tr>`;
-    }).join('');
-    return `
-      <h3>Card Reference</h3>
-      <table>
-        <tr><th style="width:36px">Type</th><th>Name</th><th style="width:36px">Cost</th><th>Description</th></tr>
-        ${rows}
-      </table>
-    `;
-  })() : '';
-
-  // Build enchantments reference table from choices that reference enchantments
-  const referencedEnchantments = [...new Set(choices.filter(c => c.enchantment).map(c => c.enchantment))];
-  const enchantmentsHtml = referencedEnchantments.length > 0 ? (() => {
-    const rows = referencedEnchantments.map(enchKey => {
-      const ench = enchantmentsRef[enchKey];
-      if (!ench) return '';
-      const iconHtml = ench.image ? `<img src="media/enchantments/${ench.image}" alt="${ench.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
-      return `<tr>
-        <td style="text-align:center">${iconHtml}</td>
-        <td><strong>${ench.name}</strong></td>
-        <td>${renderLore(ench.desc)}</td>
-      </tr>`;
-    }).join('');
-    return `
-      <h3>Enchantment Reference</h3>
-      <table>
-        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
-        ${rows}
-      </table>
-    `;
-  })() : '';
-
-  // Build potions reference table
-  const referencedPotions = [...new Set(choices.filter(c => c.potion).flatMap(c => c.potion.split(',').map(s => s.trim())).filter(Boolean))];
-  const potionsHtml = referencedPotions.length > 0 ? (() => {
-    const rows = referencedPotions.map(potionKey => {
-      const pot = potionsRef[potionKey];
-      if (!pot) return '';
-      const iconHtml = pot.image ? `<img src="media/potions/${pot.image}" alt="${pot.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
-      return `<tr>
-        <td style="text-align:center">${iconHtml}</td>
-        <td><strong>${pot.name}</strong></td>
-        <td>${renderLore(pot.desc)}</td>
-      </tr>`;
-    }).join('');
-    return `
-      <h3>Potion Reference</h3>
-      <table>
-        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
-        ${rows}
-      </table>
-    `;
-  })() : '';
-
-  // Build relics reference table
-  const referencedRelics = [...new Set(choices.filter(c => c.relic).flatMap(c => c.relic.split(',').map(s => s.trim())).filter(Boolean))];
-  const relicsHtml = referencedRelics.length > 0 ? (() => {
-    const rows = referencedRelics.map(relicKey => {
-      const rel = relicsRef[relicKey];
-      if (!rel) return '';
-      const iconHtml = rel.image ? `<img src="media/relics/${rel.image}" alt="${rel.name}" style="width:28px;height:28px;vertical-align:middle;">` : '';
-      return `<tr>
-        <td style="text-align:center">${iconHtml}</td>
-        <td><strong>${rel.name}</strong></td>
-        <td>${renderLore(rel.desc)}</td>
-      </tr>`;
-    }).join('');
-    return `
-      <h3>Relic Reference</h3>
-      <table>
-        <tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>
-        ${rows}
-      </table>
-    `;
-  })() : '';
-
-  // Build powers reference from choices that reference powers
-  const referencedPowers = [...new Set(choices.filter(c => c.powers).flatMap(c => c.powers.split(',').map(s => s.trim())).filter(Boolean))];
-  const powersHtml = referencedPowers.length > 0 ? renderPowers(referencedPowers) : '';
+  // Build all reference sections from unified References column
+  const allRefKeys = [...new Set(choices.filter(c => c.references).flatMap(c => c.references.split(',').map(s => s.trim())).filter(Boolean))];
+  const refsHtml = renderReferenceSections(allRefKeys);
 
   document.getElementById('detail-body').innerHTML = `
     <div class="enemy-section">
@@ -947,11 +875,7 @@ function openEvent(eventKey) {
       ${loreHtml}
       ${choicesHtml}
       ${notesHtml}
-      ${cardsHtml}
-      ${relicsHtml}
-      ${potionsHtml}
-      ${enchantmentsHtml}
-      ${powersHtml}
+      ${refsHtml}
     </div>
     ${panelFeedbackLink}
   `;

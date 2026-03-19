@@ -1,4 +1,4 @@
-Enemy,Move,Effects,Card,Intent
+Enemy,Move,Effects,References,Intent
 Axebot,Boot Up,{block} 10; Gain 1 {strength},,"block, buff"
 Axebot,One-Two,Damage 5x2 (6x2),,multi_attack
 Axebot,Sharpen,Gain 4 {strength},,buff
