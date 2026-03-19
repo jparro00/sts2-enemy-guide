@@ -27,7 +27,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 1,Underdocks,easy,Toadpoles (easy),Toadpole; Toadpole,2 enemies,🐸,,
 1,Underdocks,hard,Corpse Slugs,Corpse Slug; Corpse Slug; Corpse Slug,3 enemies,🐌,,
 1,Underdocks,hard,Cultists,Calcified Cultist; Damp Cultist,2 enemies,🔮,,
-1,Underdocks,hard,Living Fog,Living Fog,,🌫️,,
+1,Underdocks,hard,Living Fog,Living Fog; Gas Bomb,2 enemies,🌫️,,Living Fog.webp
 1,Underdocks,hard,Fossil Stalker,Fossil Stalker,,🦴,,
 1,Underdocks,hard,Gremlin Merc,Gremlin Merc; Sneaky Gremlin; Fat Gremlin,,👺,,Gremlin Merc.webp
 1,Underdocks,hard,Haunted Ship,Haunted Ship,,🚢,,

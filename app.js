@@ -422,26 +422,27 @@ function renderReferenceSections(keys, excludeKeys = []) {
 // ══════════════════════════════════════════
 
 function renderNotes(notes) {
-  const lines = notes.split('\n');
+  // Split on literal \n, [info], [bug], [req], [coop] — each tag starts a new line automatically
+  const parts = notes.split(/(?=\[info\])|(?=\[bug\])|(?=\[req\])|(?=\[coop\])|\n/);
   const coop = [];
   const reqs = [];
-  const tips = [];
   const infos = [];
+  const bugs = [];
 
-  for (const line of lines) {
-    const trimmed = line.trim();
+  for (const part of parts) {
+    const trimmed = part.trim();
     if (!trimmed) continue;
     // Indented lines become sub-bullets of the previous item
-    if (line.startsWith('    ') || line.startsWith('\t')) {
-      const lastArr = infos.length > 0 ? infos : tips.length > 0 ? tips : reqs;
+    if (part.startsWith('    ') || part.startsWith('\t')) {
+      const lastArr = infos.length > 0 ? infos : bugs.length > 0 ? bugs : reqs;
       if (lastArr.length > 0) {
         lastArr[lastArr.length - 1] += `<div class="note-sub">${trimmed}</div>`;
       }
     } else if (trimmed.startsWith('[coop]')) coop.push(trimmed.replace('[coop]', '').trim());
     else if (trimmed.startsWith('[req]')) reqs.push(trimmed.replace('[req]', '').trim());
     else if (trimmed.startsWith('[info]')) infos.push(trimmed.replace('[info]', '').trim());
-    else if (trimmed.startsWith('[tip]')) tips.push(trimmed.replace('[tip]', '').trim());
-    else tips.push(trimmed); // default to tip
+    else if (trimmed.startsWith('[bug]')) bugs.push(trimmed.replace('[bug]', '').trim());
+    else infos.push(trimmed); // default to info
   }
 
   let html = '';
@@ -461,9 +462,9 @@ function renderNotes(notes) {
     html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${i}</div>`).join('')}</div>`;
   }
 
-  // Tips (warning box)
-  if (tips.length > 0) {
-    html += `<div class="notes">\u26A0\uFE0F ${tips.join('<br>')}</div>`;
+  // Bug lines
+  if (bugs.length > 0) {
+    html += `<div class="note-bugs">${bugs.map(b => `<div class="note-bug">\u26A0\uFE0F ${b}</div>`).join('')}</div>`;
   }
 
   return html;
@@ -755,7 +756,7 @@ function renderEnemySection(name) {
     </tr>
   `).join('');
 
-  const notesHtml = data.notes ? `<div class="notes">&#9888;&#65039; ${data.notes.replace(/\n/g, '<br>')}</div>` : '';
+  const notesHtml = data.notes ? renderNotes(data.notes) : '';
 
   const imgSrc = `media/enemies/${name}.webp`;
 
@@ -766,6 +767,7 @@ function renderEnemySection(name) {
           <div class="enemy-section-name">${name}</div>
           <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
         </div>
+        ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
         <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
       </div>
 

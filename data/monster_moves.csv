@@ -75,10 +75,10 @@ Leaf Slime (Small),Tackle,Damage 3 (4),,attack
 Leaf Slime (Small),Goop,Add 1 Slimed to Discard,slimed,add_statuses
 Leaf Slime (Medium),Sticky Shot,Add 2 Slimed to Discard,slimed,add_statuses
 Leaf Slime (Medium),Clump Shot,Damage 8 (9),,attack
-Living Fog,Advanced Gas,Damage 8 (9); Apply {smoggy},,"attack, debuff"
+Living Fog,Advanced Gas,Damage 8 (9); Apply {smoggy},,"attack, affliction"
 Living Fog,Bloat,"Summon N Gas Bombs; (N = # times Bloat has been used + 1, capped to 5)",,summon
 Living Fog,Super Gas Blast,Damage 8 (9),,attack
-Gas Bomb,Explode,Damage 8 (9); Dies,,attack
+Gas Bomb,Explode,Damage 8 (9); Dies,,deathblow
 Living Shield,Shield Slam,Damage 6,,attack
 Living Shield,Smash,Damage 16 (18); Gain 3 {strength},,"attack, buff"
 Louse Progenitor,Web Cannon,Damage 9 (10); Apply 2 Frail,,"attack, debuff"

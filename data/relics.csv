@@ -18,7 +18,7 @@ fake_snecko_eye,Snecko Eye???,fake_snecko_eye.webp,Start each combat [red]Confus
 fake_strike_dummy,Strike Dummy???,fake_strike_dummy.webp,Cards containing “Strike” deal [blue]1[/blue] additional damage.
 fake_venerable_tea_set,Venerable Tea Set???,fake_venerable_tea_set.webp,"Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [blue]1[/blue] Energy."
 fragrant_mushroom,Fragrant Mushroom,fragrant_mushroom.webp,"Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards."
-frenel_lens,Fresnel Lens,fresnel_lens.webp,"Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]2[/blue]."
+fresnel_lens,Fresnel Lens,fresnel_lens.webp,"Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]2[/blue]."
 hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block[/gold], apply [blue]2[/blue] [gold]Vulnerable[/gold]."
 history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack or Skill."
 lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies."

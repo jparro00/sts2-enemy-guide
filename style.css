@@ -325,17 +325,6 @@
     border-radius: 8px;
     border-left: 3px solid #c8b06a;
   }
-  .detail-body .notes {
-    font-size: 0.9rem;
-    color: #888;
-    font-style: italic;
-    margin-top: 12px;
-    padding: 10px;
-    background: #14141c;
-    border-radius: 6px;
-    line-height: 1.8;
-  }
-
   /* ── Note Tags ── */
   .note-badges {
     display: flex;
@@ -374,6 +363,15 @@
   .note-info {
     font-size: 0.85rem;
     color: #7a9ab0;
+    padding: 2px 0;
+    line-height: 1.6;
+  }
+  .note-bugs {
+    margin-top: 10px;
+  }
+  .note-bug {
+    font-size: 0.85rem;
+    color: #c8a84e;
     padding: 2px 0;
     line-height: 1.6;
   }
@@ -579,6 +577,14 @@
     gap: 12px;
   }
   .enemy-section-info { flex: 1; }
+  .minion-badge {
+    width: 28px;
+    height: 28px;
+    align-self: center;
+    flex-shrink: 0;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 4px rgba(200,176,106,0.4));
+  }
   .enemy-section-img {
     width: 80px;
     height: 80px;
