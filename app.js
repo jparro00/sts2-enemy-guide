@@ -135,7 +135,8 @@ async function loadData() {
         name: m.Move,
         effects: m.Effects,
         references: m.References || '',
-        intent: m.Intent
+        intent: m.Intent,
+        notes: m.Notes || ''
       });
     }
   }
@@ -224,13 +225,30 @@ async function loadData() {
 
 const powersRef = {}; // Populated from data/powers.csv at load time (also merged into itemsRef)
 
-function renderPowerRefs(text) {
-  return text.replace(/\{(\w+)\}/g, (match, key) => {
+function renderMoveRefs(text, enemyName) {
+  // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
+  return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
+    const moves = enemyName && enemyDatabase[enemyName] ? enemyDatabase[enemyName].moves : [];
+    const move = moves.find(m => m.name === moveName);
+    if (move) {
+      const intents = renderIntents(move.intent);
+      const effect = renderPowerRefs(move.effects.replace(/;/g, '<br>'), null);
+      return `<span class="move-ref">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
+    }
+    return `<span class="move-ref">${moveName}</span>`;
+  });
+}
+
+function renderPowerRefs(text, enemyName) {
+  // First handle move refs (with enemy context for tooltips), then power refs
+  let result = renderMoveRefs(text, enemyName);
+  result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
     const tooltip = ref.desc ? `<span class="power-tooltip">${ref.desc}</span>` : '';
     return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>${tooltip}</span>`;
   });
+  return result;
 }
 
 const loreColors = {
@@ -309,9 +327,9 @@ function renderLore(text) {
   return paragraphs;
 }
 
-function renderStartsWith(text) {
+function renderStartsWith(text, enemyName) {
   if (!text) return '';
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(text)}</div>`;
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(text, enemyName)}</div>`;
 }
 
 function renderEnemyReferences(powers, moves, references) {
@@ -421,7 +439,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
 // NOTES RENDERING
 // ══════════════════════════════════════════
 
-function renderNotes(notes) {
+function renderNotes(notes, enemyName) {
   // Split on literal \n, [info], [bug], [req], [coop] — each tag starts a new line automatically
   const parts = notes.split(/(?=\[info\])|(?=\[bug\])|(?=\[req\])|(?=\[coop\])|\n/);
   const coop = [];
@@ -449,22 +467,22 @@ function renderNotes(notes) {
 
   // Co-op badges
   if (coop.length > 0) {
-    html += `<div class="note-badges">${coop.map(c => `<span class="note-badge note-coop">\u{1F91D} ${c}</span>`).join('')}</div>`;
+    html += `<div class="note-badges">${coop.map(c => `<span class="note-badge note-coop">\u{1F91D} ${renderPowerRefs(c, enemyName)}</span>`).join('')}</div>`;
   }
 
   // Requirements
   if (reqs.length > 0) {
-    html += `<div class="note-reqs">${reqs.map(r => `<div class="note-req">\u2726 ${r}</div>`).join('')}</div>`;
+    html += `<div class="note-reqs">${reqs.map(r => `<div class="note-req">\u2726 ${renderPowerRefs(r, enemyName)}</div>`).join('')}</div>`;
   }
 
   // Info lines
   if (infos.length > 0) {
-    html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${i}</div>`).join('')}</div>`;
+    html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${renderPowerRefs(i, enemyName)}</div>`).join('')}</div>`;
   }
 
   // Bug lines
   if (bugs.length > 0) {
-    html += `<div class="note-bugs">${bugs.map(b => `<div class="note-bug">\u26A0\uFE0F ${b}</div>`).join('')}</div>`;
+    html += `<div class="note-bugs">${bugs.map(b => `<div class="note-bug">\u26A0\uFE0F ${renderPowerRefs(b, enemyName)}</div>`).join('')}</div>`;
   }
 
   return html;
@@ -532,7 +550,7 @@ function renderIntents(intentStr) {
     const key = i.trim();
     let inner;
     if (key === 'multi_attack') {
-      inner = intentImg('attack') + intentImg('attack');
+      inner = intentImg('multi_attack');
     } else if (intentKeys.includes(key)) {
       inner = intentImg(key);
     } else {
@@ -752,11 +770,11 @@ function renderEnemySection(name) {
     <tr>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(m.effects.replace(/;/g, '<br>'))}</td>
+      <td>${renderPowerRefs(m.effects.replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
     </tr>
   `).join('');
 
-  const notesHtml = data.notes ? renderNotes(data.notes) : '';
+  const notesHtml = data.notes ? renderNotes(data.notes, name) : '';
 
   const imgSrc = `media/enemies/${name}.webp`;
 
@@ -772,9 +790,9 @@ function renderEnemySection(name) {
       </div>
 
       <h3>Attack Pattern</h3>
-      <div class="pattern-text">${data.pattern}</div>
+      <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
 
-      ${renderStartsWith(data.startsWith)}
+      ${renderStartsWith(data.startsWith, name)}
 
       <h3>Moves</h3>
       <table>
@@ -808,8 +826,7 @@ function openEncounter(encounterName, act, cat) {
   // Build composition info if available
   let compositionHtml = '';
   if (enc && enc.composition) {
-    const items = enc.composition.split(';').map(s => s.trim()).filter(Boolean);
-    compositionHtml = `<div class="encounter-composition"><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></div>`;
+    compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
   }
 
   if (enc && enc.enemies && enc.enemies.length > 0) {
@@ -900,6 +917,32 @@ function closeDetail() {
     document.body.classList.remove('panel-open');
   }
 }
+
+// Position fixed tooltips above their trigger element
+document.addEventListener('mouseover', e => {
+  const ref = e.target.closest('.move-ref, .power-ref');
+  if (!ref) return;
+  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip');
+  if (!tooltip) return;
+  const rect = ref.getBoundingClientRect();
+  tooltip.style.left = '';
+  tooltip.style.right = '';
+  tooltip.style.top = '';
+  tooltip.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
+  // Center horizontally, but clamp to viewport
+  tooltip.style.display = 'block';
+  const tipWidth = tooltip.offsetWidth;
+  let left = rect.left + rect.width / 2 - tipWidth / 2;
+  if (left < 4) left = 4;
+  if (left + tipWidth > window.innerWidth - 4) left = window.innerWidth - tipWidth - 4;
+  tooltip.style.left = left + 'px';
+});
+document.addEventListener('mouseout', e => {
+  const ref = e.target.closest('.move-ref, .power-ref');
+  if (!ref) return;
+  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip');
+  if (tooltip) tooltip.style.display = '';
+});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {

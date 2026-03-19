@@ -64,3 +64,6 @@ dexterity,Dexterity,dexterity_power.webp,Increases Block gained from cards by X.
 frail,Frail,frail_power.webp,Gain 25% less Block from cards.
 innate,Innate,innate_power.webp,This card is always drawn in your opening hand.
 minion,Minion,minion_power.webp,Minions abandon combat without their leader.
+thorns,Thorns,thorns_power.webp,When hit by an attack deal X damage back.
+ritual,Ritual,ritual_power.webp,"At the end of its turn, gains X Strength."
+vigor,Vigor,vigor_power.webp,Your next Attack deals X additional damage.
