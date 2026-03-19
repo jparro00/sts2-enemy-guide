@@ -187,7 +187,8 @@ async function loadData() {
       card: ch.Card || '',
       enchantment: ch.Enchantment || '',
       potion: ch.Potion || '',
-      relic: ch.Relic || ''
+      relic: ch.Relic || '',
+      powers: ch.Powers || ''
     });
   }
 
@@ -930,6 +931,10 @@ function openEvent(eventKey) {
     `;
   })() : '';
 
+  // Build powers reference from choices that reference powers
+  const referencedPowers = [...new Set(choices.filter(c => c.powers).flatMap(c => c.powers.split(',').map(s => s.trim())).filter(Boolean))];
+  const powersHtml = referencedPowers.length > 0 ? renderPowers(referencedPowers) : '';
+
   document.getElementById('detail-body').innerHTML = `
     <div class="enemy-section">
       <div class="enemy-section-header">
@@ -945,6 +950,7 @@ function openEvent(eventKey) {
       ${relicsHtml}
       ${potionsHtml}
       ${enchantmentsHtml}
+      ${powersHtml}
     </div>
     ${panelFeedbackLink}
   `;

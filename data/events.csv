@@ -51,6 +51,7 @@ infested_automaton,Infested Automaton,Hive,[info]Cards are from your character's
 lost_wisp,The Lost Wisp,Hive,,,lost_wisp.webp,"In the distance is an odd sight. Mounds and mounds of [sine][red]deceased insects[/red][/sine], surrounding what looks to be a [orange]small glowing mote[/orange].|It seems to be an effective attractant for all manner of bugs but you see it lash out some flames!|You move closer to investigate."
 spirit_grafter,Spirit Grafter,Hive,,,spirit_grafter.webp,"Above, a cocoon is [jitter]shaking and wriggling[/jitter], about to burst forth!|...it stops wriggling. [orange][sine]The cocoon ignites[/sine][/orange]! [jitter]What is going on?[/jitter]|In a flash of [gold]light[/gold] and [red]flame[/red], a [orange]Spirit Grafter[/orange] rushes into you, threatening to merge with your being to become complete."
 the_lantern_key,The Lantern Key,Hive,"[coop]Decision made as a group in co-op.
+[info] Mysterious Knight is a Flail Knight that starts with 6 Stregnth and 6 Plating and has 101 HP.
 [info]The Lantern Key forces the War Historian, Repy event to appear at the next question mark in the next act.",,the_lantern_key.webp,You come upon a faintly glowing key and go to pick it up.|“Been looking all over for that key! Now if you don't mind...”| This person looks like bad news but maybe it's not good to be judgy.
 zen_weaver,Zen Weaver,Hive,[req]Can only appear if all players have at least 125 Gold.,,zen_weaver.webp,"You walk through a spider web and [jitter][red]PANIC[/red][/jitter]!|But then, a [sine][blue]wave of calm[/blue][/sine] washes over you...|[sine]“Calm down. I need you to quit fussing up my web.”[/sine]|How did you calm down so quickly?|An [orange]itsy bitsy[/orange] spider abseils down to meet you. It seems willing to impart some techniques for [gold]gold[/gold]."
 battleworn_dummy,Battleworn Dummy,Glory,[coop]Decision made as a group in co-op.,,battleworn_dummy.webp,"As you approach, it begins to rumble and fizzle and lights up brilliantly!|“[jitter]BZZZT![/jitter] TIME TO TRAIN!!! YOU HAVE [blue]3 TURNS[/blue] TO DEFEAT ME!|CHOOSE A SETTING OR FACE [red]LETHAL HUMILIATION[/red].|Here are the options:”|After the terrifying message, the dummy carefully reads out detailed instructions.|What do you choose?"
@@ -58,8 +59,19 @@ grave_of_the_forgotten,Grave of the Forgotten,Glory,[info]Confront with Truth is
 hungry_for_mushrooms,Hungry for Mushrooms,Glory,,,hungry_for_mushrooms.webp,"[sine]How long has it been since you ate?|...wait, what's that fantastic smell?[/sine]|Following the scent, you reach a cozy campground with all manner of [green]tasty mushrooms[/green] being cooked! You don't consider the safety of eating these mushrooms because you are so hungry.|(So hungry that you don't notice the dead adventurer)"
 reflections,Reflections,Glory,,,reflections.webp,What is this? Something feels wrong here...|[sine]...ereh gnorw sleef gnihtemoS ?siht si tahW[/sine]
 round_tea_party,The Round Tea Party,Glory,,,round_tea_party.webp,"You find an [orange]invitation[/orange] for a [blue]“Sir Galalot”[/blue] to a tea party and decide to show up in his stead.|Upon entering an unassuming rotunda, you find yourself in the midst of [gold]commanders[/gold], [aqua]generals[/aqua], [red]warlords[/red], and [blue]mercenaries[/blue] having... tea?|The gigantic knight donning a [gold]golden crown[/gold] speaks.|[jitter]“Thou art late for [b]Tea[/b]?!”[/jitter]"
-tinker_time,Tinker Time,Glory,"[info]Choose a card type (2 of 3 randomly offered: Attack/Skill/Power), then a rider effect (2 of 3 offered).
-[info]Creates a Mad Science card with the chosen type and rider.",,tinker_time.webp,"Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.|“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”"
+tinker_time,Tinker Time,Glory,"[info]Creates a Mad Science card (1 energy). Upgrading gives it Innate.
+[info]Attack — Deal 12 damage, plus:
+    Sapping: Apply 2 Weak and 2 Vulnerable
+    Violence: Hit 3 times (12x3)
+    Choking: Apply 6 Strangle
+[info]Skill — Gain 8 Block, plus:
+    Energized: Gain 2 Energy
+    Wisdom: Draw 3 cards
+    Chaos: Add a random card from your pool to hand at 0 cost
+[info]Power:
+    Expertise: Gain 2 Strength and 2 Dexterity
+    Curious: Gain 1 Curious
+    Improvement: Gain 1 Improvement",,tinker_time.webp,"Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.|“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”"
 trial,The Trial,Glory,"[info]After accepting, one of 3 random trials is chosen (Merchant, Noble, or Nondescript).
 [info]Rejecting is not allowed — double downing abandons the run.",,trial.webp,"You join a line of people entering a massive building.|As you pass under a [gold]golden archway[/gold], horns blare, [jitter]confetti explodes[/jitter], and [sine]streamers glide[/sine] down from the ceiling!|“Entrant [blue]{EntrantNumber}[/blue], you are the [green]DECIDER[/green] for today's [gold]Trial[/gold].”"
 brain_leech,Brain Leech,Shared,"[req]Can only appear in Act 1 or Act 2.
