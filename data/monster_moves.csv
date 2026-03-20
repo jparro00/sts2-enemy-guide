@@ -220,7 +220,7 @@ Soul Nexus,Soul Burn,Damage 29 (31),,attack,Cannot repeat.
 Soul Nexus,Maelstrom,Damage 6x4 (7x4),,multi_attack,Cannot repeat.
 Soul Nexus,Drain Life,Damage 18 (19); Apply 2 {vulnerable}; Apply 2 {weak},,"attack, debuff",Cannot repeat.
 Terror Eel,Crash,Damage 17 (19),,attack,
-Terror Eel,Thrash,Damage 3x3 (4x3); Gain 7 {vigor},,multi_attack,
+Terror Eel,Thrash,Damage 3x3 (4x3); Gain 7 {vigor},,"multi_attack,buff",
 Terror Eel,Terror,Apply 99 {vulnerable},,debuff,
 Ceremonial Beast,Stamp,Gains {plow} 150 (160),,buff,
 Ceremonial Beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,
