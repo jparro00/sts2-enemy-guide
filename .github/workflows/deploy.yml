@@ -1,0 +1,73 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+      - beta-*
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: main-site
+
+      - name: Start site from master
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' main-site/ _site/
+
+      - name: Find beta branches
+        id: beta
+        run: |
+          cd main-site
+          BETA_BRANCHES=$(git ls-remote --heads origin 'refs/heads/beta-*' | awk '{print $2}' | sed 's|refs/heads/||')
+          echo "branches<<EOF" >> $GITHUB_OUTPUT
+          echo "$BETA_BRANCHES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Found beta branches: $BETA_BRANCHES"
+
+      - name: Checkout and copy beta branches
+        run: |
+          while IFS= read -r branch; do
+            [ -z "$branch" ] && continue
+            echo "Processing beta branch: $branch"
+            # Derive folder name from branch (beta-v0.100.0 -> beta)
+            FOLDER="beta"
+            git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "beta-checkout-${FOLDER}" || continue
+            mkdir -p "_site/${FOLDER}"
+            rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "beta-checkout-${FOLDER}/" "_site/${FOLDER}/"
+            rm -rf "beta-checkout-${FOLDER}"
+            echo "Deployed $branch to /${FOLDER}/"
+          done <<< "${{ steps.beta.outputs.branches }}"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
