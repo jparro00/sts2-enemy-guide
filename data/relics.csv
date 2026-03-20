@@ -23,6 +23,7 @@ hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block
 history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack or Skill."
 lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies."
 maw_bank,Maw Bank,maw_bank.webp,"Whenever you climb a floor, gain [blue]12[/blue] [gold]Gold[/gold]. No longer works when you spend any [gold]Gold[/gold] at the shop."
+pollinous_core,Pollinous Core,pollinous_core.webp,"Every [blue]4[/blue] turns, draw [blue]2[/blue] additional cards."
 mr_struggles,Mr. Struggles,mr_struggles.webp,"At the start of your turn, deal damage equal to the turn number to ALL enemies."
 royal_poison,Royal Poison,royal_poison.webp,"At the start of each combat, lose [blue]4[/blue] HP."
 sword_of_jade,Sword of Jade,sword_of_jade.webp,Start each combat with [blue]3[/blue] [gold]Strength[/gold].

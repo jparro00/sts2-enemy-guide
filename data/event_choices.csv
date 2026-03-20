@@ -63,8 +63,8 @@ amalgamator,Combine Defends,Remove [blue]2[/blue] [gold]Defends[/gold]. Add [gol
 amalgamator,Combine Strikes,Remove [blue]2[/blue] [gold]Strikes[/gold]. Add [gold]Ultimate Strike[/gold] to your [gold]Deck[/gold].,,ultimate_strike
 bugslayer,Learn Extermination Technique,Add [gold]Exterminate[/gold] to your [gold]Deck[/gold].,,exterminate
 bugslayer,Learn Squash Technique,Add [gold]Squash[/gold] to your [gold]Deck[/gold].,,squash
-colossal_flower,Extract Nectar,Gain [blue]35/75/135[/blue] [gold]Gold[/gold] (depending on depth).,At each depth you choose to extract gold or reach deeper.,
-colossal_flower,Reach Deeper,Enter deeper. Lose [red]5[/red] HP.,Total HP cost for Pollinous Core: 18 HP.,
+colossal_flower,Extract Nectar,Gain [gold]Gold[/gold] based on depth.,Repeatable up to 3 times. Gold escalates: 35/75/135.,
+colossal_flower,Reach Deeper,Enter deeper. Lose HP.,Repeatable up to 3 times. Damage escalates: 5/6/7. The 3rd selection grants Pollinous Core.,pollinous_core
 field_of_man_sized_holes,Enter Your Hole,[gold]Enchant[/gold] a card with [purple]Perfect Fit[/purple].,,perfect_fit
 field_of_man_sized_holes,Resist,Remove [blue]2[/blue] cards from your [gold]Deck[/gold]. Add [red]Normality[/red] to your [gold]Deck[/gold].,,normality
 infested_automaton,Study,Obtain a random [gold]Power[/gold].,,
