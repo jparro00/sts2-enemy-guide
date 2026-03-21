@@ -27,6 +27,17 @@ jobs:
           ref: master
           path: main-site
 
+      - name: Force isBeta false on master
+        run: |
+          jq '.isBeta = false' main-site/site-config.json > tmp.json && mv tmp.json main-site/site-config.json
+
+      - name: Validate master config
+        run: |
+          if jq -e '.isBeta == true' main-site/site-config.json > /dev/null 2>&1; then
+            echo "ERROR: isBeta must not be true on master"
+            exit 1
+          fi
+
       - name: Start site from master
         run: |
           mkdir -p _site
@@ -52,6 +63,8 @@ jobs:
             git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "beta-checkout-${FOLDER}" || continue
             mkdir -p "_site/${FOLDER}"
             rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "beta-checkout-${FOLDER}/" "_site/${FOLDER}/"
+            # Force isBeta true on beta deployment
+            jq '.isBeta = true' "_site/${FOLDER}/site-config.json" > tmp.json && mv tmp.json "_site/${FOLDER}/site-config.json"
             rm -rf "beta-checkout-${FOLDER}"
             echo "Deployed $branch to /${FOLDER}/"
           done <<< "${{ steps.beta.outputs.branches }}"

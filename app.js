@@ -130,7 +130,7 @@ async function loadData() {
       banner.innerHTML = `⚠️ BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a>`;
     } else {
       banner.className = 'stable-banner';
-      banner.innerHTML = `A <strong>beta v${siteConfig.betaVersion}</strong> balance preview is available. <a href="beta/">View beta version</a>`;
+      banner.innerHTML = `This site is also available for the latest <strong>beta patch v${siteConfig.betaVersion}</strong>. <a href="beta/">Switch to beta</a>`;
     }
   }
   // Update footer game version

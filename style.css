@@ -16,17 +16,17 @@
     text-decoration: underline;
   }
   .stable-banner {
-    background: #1a2a1a;
-    color: #88c0ff;
+    background: #141a2a;
+    color: #8ab4d6;
     text-align: center;
     padding: 8px 16px;
     font-size: 0.9rem;
-    border-bottom: 2px solid #88c0ff;
+    border-bottom: 2px solid #2a4060;
     position: relative;
     z-index: 60;
   }
   .stable-banner a {
-    color: #ffd866;
+    color: #6db3f2;
     text-decoration: underline;
   }
 
