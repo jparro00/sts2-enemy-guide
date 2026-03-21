@@ -87,9 +87,11 @@ let encounters = {};
 let eventsData = {};     // keyed by act: { overgrowth: [...], shared: [...] }
 let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, references } ]
 let itemsRef = {};       // unified lookup: { key: { ...data, category } }
+let betaChanges = {};    // keyed by "type:name" -> change description
+let siteConfig = {};     // loaded from site-config.json
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText, betaText, configData] = await Promise.all([
     fetch('data/monsters.csv').then(r => r.text()),
     fetch('data/monster_moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
@@ -100,6 +102,8 @@ async function loadData() {
     fetch('data/enchantments.csv').then(r => r.text()),
     fetch('data/potions.csv').then(r => r.text()),
     fetch('data/relics.csv').then(r => r.text()),
+    fetch('data/beta_changes.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
+    fetch('site-config.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -114,6 +118,33 @@ async function loadData() {
       image: p.Image,
       desc: p.Description
     };
+  }
+
+  // Load site config and render version banner
+  siteConfig = configData;
+  const isBeta = window.location.pathname.startsWith('/beta');
+  const banner = document.getElementById('version-banner');
+  if (banner && siteConfig.betaVersion) {
+    if (isBeta) {
+      banner.className = 'beta-banner';
+      banner.innerHTML = `⚠️ BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a>`;
+    } else {
+      banner.className = 'stable-banner';
+      banner.innerHTML = `A <strong>beta v${siteConfig.betaVersion}</strong> balance preview is available. <a href="beta/">View beta version</a>`;
+    }
+  }
+  // Update footer game version
+  const versionEl = document.getElementById('game-version');
+  if (versionEl) {
+    versionEl.textContent = isBeta ? `beta v${siteConfig.betaVersion}` : `v${siteConfig.gameVersion}`;
+  }
+
+  // Build beta changes lookup
+  if (betaText) {
+    const betaRaw = parseCSV(betaText);
+    for (const b of betaRaw) {
+      betaChanges[`${b.Type}:${b.Name}`] = b.Change;
+    }
   }
 
   // Build enemy database
@@ -325,6 +356,13 @@ function renderLore(text) {
   // Split paragraphs on |
   const paragraphs = html.split('|').map(p => `<p>${p.trim()}</p>`).join('');
   return paragraphs;
+}
+
+function renderBetaBadge(type, name) {
+  const change = betaChanges[`${type}:${name}`];
+  if (!change) return '';
+  const escaped = change.replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  return ` <span class="beta-badge">Beta Patch<span class="beta-tooltip"><strong>Changed in Beta v${siteConfig.betaVersion || '?'}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
 
 function renderStartsWith(text, enemyName) {
@@ -764,7 +802,7 @@ function formatMultiBadge(multi) {
 
 function renderEnemySection(name) {
   const data = enemyDatabase[name];
-  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}</div><p style="color:#666;">No data available.</p></div>`;
+  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
 
   const movesHtml = data.moves.map(m => `
     <tr>
@@ -782,7 +820,7 @@ function renderEnemySection(name) {
     <div class="enemy-section">
       <div class="enemy-section-header">
         <div class="enemy-section-info">
-          <div class="enemy-section-name">${name}</div>
+          <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
           <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
@@ -811,7 +849,7 @@ function openEncounter(encounterName, act, cat) {
   const searchCat = cat || currentCat;
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').textContent = encounterName;
+  document.getElementById('detail-name').innerHTML = encounterName + renderBetaBadge('encounter', encounterName);
 
   // Search all categories if act/cat provided, otherwise use current
   let enc = null;
@@ -859,7 +897,7 @@ function openEvent(eventKey) {
 
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').textContent = ev.name;
+  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.name);
 
   const choices = eventChoices[eventKey] || [];
   const choicesHtml = choices.length > 0 ? `
@@ -920,27 +958,35 @@ function closeDetail() {
 
 // Position fixed tooltips above their trigger element
 document.addEventListener('mouseover', e => {
-  const ref = e.target.closest('.move-ref, .power-ref');
+  const ref = e.target.closest('.move-ref, .power-ref, .beta-badge');
   if (!ref) return;
-  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip');
+  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip, .beta-tooltip');
   if (!tooltip) return;
   const rect = ref.getBoundingClientRect();
   tooltip.style.left = '';
   tooltip.style.right = '';
   tooltip.style.top = '';
-  tooltip.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
-  // Center horizontally, but clamp to viewport
+  tooltip.style.bottom = '';
+  // Show tooltip to measure it
   tooltip.style.display = 'block';
+  const tipHeight = tooltip.offsetHeight;
   const tipWidth = tooltip.offsetWidth;
+  // Position above by default, flip below if it would go off-screen
+  if (rect.top - tipHeight - 4 < 0) {
+    tooltip.style.top = (rect.bottom + 4) + 'px';
+  } else {
+    tooltip.style.bottom = (window.innerHeight - rect.top + 4) + 'px';
+  }
+  // Center horizontally, but clamp to viewport
   let left = rect.left + rect.width / 2 - tipWidth / 2;
   if (left < 4) left = 4;
   if (left + tipWidth > window.innerWidth - 4) left = window.innerWidth - tipWidth - 4;
   tooltip.style.left = left + 'px';
 });
 document.addEventListener('mouseout', e => {
-  const ref = e.target.closest('.move-ref, .power-ref');
+  const ref = e.target.closest('.move-ref, .power-ref, .beta-badge');
   if (!ref) return;
-  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip');
+  const tooltip = ref.querySelector('.move-tooltip, .power-tooltip, .beta-tooltip');
   if (tooltip) tooltip.style.display = '';
 });
 

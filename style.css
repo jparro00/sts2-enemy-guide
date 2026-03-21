@@ -1,5 +1,35 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* ── Version Banner ── */
+  .beta-banner {
+    background: #4a3800;
+    color: #ffd866;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #ffd866;
+    position: relative;
+    z-index: 60;
+  }
+  .beta-banner a {
+    color: #88c0ff;
+    text-decoration: underline;
+  }
+  .stable-banner {
+    background: #1a2a1a;
+    color: #88c0ff;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #88c0ff;
+    position: relative;
+    z-index: 60;
+  }
+  .stable-banner a {
+    color: #ffd866;
+    text-decoration: underline;
+  }
+
   html {
     scrollbar-gutter: stable;
   }
@@ -329,6 +359,50 @@
     border-radius: 8px;
     border-left: 3px solid #c8b06a;
   }
+  /* ── Beta Patch Badge ── */
+  .beta-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #5a4400, #3a2d00);
+    color: #ffd866;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #ffd866;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 8px;
+    cursor: default;
+    position: relative;
+  }
+  .beta-badge .beta-tooltip {
+    display: none;
+    position: fixed;
+    background: #1a1a2e;
+    border: 1px solid #ffd866;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #ccc;
+    text-transform: none;
+    letter-spacing: normal;
+    width: max-content;
+    max-width: 320px;
+    z-index: 200;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    white-space: normal;
+    line-height: 1.5;
+  }
+  .beta-badge .beta-tooltip strong {
+    color: #ffd866;
+  }
+  .beta-badge:hover .beta-tooltip {
+    display: block;
+  }
+
   /* ── Note Tags ── */
   .note-badges {
     display: flex;
