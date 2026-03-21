@@ -172,7 +172,7 @@ Two-Tailed Rat,Disease Bite,Damage 6 (7),,attack,Cannot repeat.
 Two-Tailed Rat,Screech,Apply 1 {frail},,debuff,3-turn cooldown.
 Two-Tailed Rat,Call for Backup,Summon Two-Tailed Rat; (with random intent),,summon,Can only be used once per rat. Requires 2 turns before available.
 Vine Shambler,Swipe,Damage 6x2 (7x2),,multi_attack,
-Vine Shambler,Grasping Vines,Damage 8 (9); Apply 1 {tangled},,"attack, debuff",
+Vine Shambler,Grasping Vines,Damage 8 (9); Apply 1 {tangled},,"attack, affliction",
 Vine Shambler,Chomp,Damage 16 (18),,attack,
 Wriggler,Nasty Bite,Damage 6 (7),,attack,
 Wriggler,Wriggle,Add 1 Infection to Discard; Gain 2 {strength},infection,"buff, add_statuses",
