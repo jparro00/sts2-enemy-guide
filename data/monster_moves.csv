@@ -133,7 +133,7 @@ Slimed Berserker,Smother,Damage 30 (33),,attack,
 Slithering Strangler,Constrict,Apply 3 {constrict},,affliction,
 Slithering Strangler,Thwack,Damage 7 (8); {block} 5,,"attack, block",
 Slithering Strangler,Lash,Damage 12 (13),,attack,
-Sludge Spinner,Oil Spray,Damage 8 (9); {weak} 1,,attack,Cannot repeat.
+Sludge Spinner,Oil Spray,Damage 8 (9); {weak} 1,,"attack, debuff",Cannot repeat.
 Sludge Spinner,Slam,Damage 11 (12),,attack,Cannot repeat.
 Sludge Spinner,Rage,Damage 6 (7); {strength} 3,,"attack, buff",Cannot repeat.
 Slumbering Beetle,Sleep,Passes Turn,,sleeping,
@@ -156,7 +156,7 @@ Thieving Hopper,Flutter,Gain {flutter} 5,,buff,
 Thieving Hopper,Hat Trick,Damage 21 (23),,attack,
 Thieving Hopper,Nab,Damage 14 (16),,attack,
 Thieving Hopper,Escape,Escape from the combat,,escape,
-Toadpole,Spike Spit,Lose 2 {thorns}; Damage 3x3 (4x3),,multi_attack,
+Toadpole,Spike Spit,Damage 3x3 (4x3); Lose 2 {thorns},,multi_attack,
 Toadpole,Whirl,Damage 7 (8),,attack,
 Toadpole,Spiken,Gain 2 {thorns},,buff,
 Tunneler,Bite,Damage 13 (15),,attack,
