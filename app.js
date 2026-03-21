@@ -122,7 +122,7 @@ async function loadData() {
 
   // Load site config and render version banner
   siteConfig = configData;
-  const isBeta = window.location.pathname.startsWith('/beta');
+  const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
   const banner = document.getElementById('version-banner');
   if (banner && siteConfig.betaVersion) {
     if (isBeta) {
