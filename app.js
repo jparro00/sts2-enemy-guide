@@ -800,7 +800,7 @@ function formatMultiBadge(multi) {
   return multi;
 }
 
-function renderEnemySection(name) {
+function renderEnemySection(name, collapsible) {
   const data = enemyDatabase[name];
   if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
 
@@ -815,33 +815,42 @@ function renderEnemySection(name) {
   const notesHtml = data.notes ? renderNotes(data.notes, name) : '';
 
   const imgSrc = `media/enemies/${name}.webp`;
+  const collapseBtn = collapsible ? `<button class="collapse-toggle" onclick="toggleEnemySection(this)" title="Collapse/Expand">−</button>` : '';
 
   return `
-    <div class="enemy-section">
+    <div class="enemy-section${collapsible ? ' collapsible' : ''}">
       <div class="enemy-section-header">
         <div class="enemy-section-info">
           <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
-          <div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div>
+          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div></div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
         <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
       </div>
 
-      <h3>Attack Pattern</h3>
-      <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
+      <div class="enemy-section-body">
+        <h3>Attack Pattern</h3>
+        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
 
-      ${renderStartsWith(data.startsWith, name)}
+        ${renderStartsWith(data.startsWith, name)}
 
-      <h3>Moves</h3>
-      <table>
-        <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
-        ${movesHtml}
-      </table>
+        <h3>Moves</h3>
+        <table>
+          <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
+          ${movesHtml}
+        </table>
 
-      ${notesHtml}
-      ${renderEnemyReferences(data.powers, data.moves, data.references)}
+        ${notesHtml}
+        ${renderEnemyReferences(data.powers, data.moves, data.references)}
+      </div>
     </div>
   `;
+}
+
+function toggleEnemySection(btn) {
+  const section = btn.closest('.enemy-section');
+  section.classList.toggle('collapsed');
+  btn.textContent = section.classList.contains('collapsed') ? '+' : '−';
 }
 
 function openEncounter(encounterName, act, cat) {
@@ -868,9 +877,10 @@ function openEncounter(encounterName, act, cat) {
   }
 
   if (enc && enc.enemies && enc.enemies.length > 0) {
-    const sections = enc.enemies
-      .filter((name, idx, arr) => arr.indexOf(name) === idx)
-      .map(name => renderEnemySection(name))
+    const uniqueEnemies = enc.enemies.filter((name, idx, arr) => arr.indexOf(name) === idx);
+    const collapsible = uniqueEnemies.length > 1;
+    const sections = uniqueEnemies
+      .map(name => renderEnemySection(name, collapsible))
       .join('');
     document.getElementById('detail-body').innerHTML = compositionHtml + sections + panelFeedbackLink;
   } else {

@@ -312,6 +312,12 @@
     color: #ccc;
     font-size: 0.9rem;
   }
+  .hp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
   .detail-body .hp-bar {
     display: inline-block;
     background: #2a1a1a;
@@ -320,7 +326,6 @@
     padding: 4px 12px;
     font-size: 1rem;
     color: #e66;
-    margin-bottom: 16px;
   }
   .detail-body h3 {
     font-size: 0.95rem;
@@ -706,6 +711,33 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
+  }
+  .collapse-toggle {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #444;
+    color: #aaa;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 6px;
+    flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .collapse-toggle:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #777;
+    color: #fff;
+  }
+  .enemy-section.collapsed .enemy-section-body {
+    display: none;
   }
   .enemy-section-info { flex: 1; }
   .minion-badge {
