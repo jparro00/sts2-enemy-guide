@@ -121,15 +121,15 @@ Scroll of Biting,Chew,Damage 5x2 (6x2),,multi_attack,, 50% chance to repeat once
 Seapunk,Sea Kick,Damage 11 (12),,attack,
 Seapunk,Spinning Kick,Damage 2x4,,multi_attack,
 Seapunk,Bubble Burp,{block} 7 (8); Gain 1 (2) {strength},,"block, buff",
-Sewer Clam,Pressurize,{strength} 4,,buff,
 Sewer Clam,Jet,Damage 10 (11),,attack,
+Sewer Clam,Pressurize,{strength} 4,,buff,
 Shrinker Beetle,Shrinker,Apply {shrink},,debuff,
 Shrinker Beetle,Chomp,Damage 7 (8),,attack,
 Shrinker Beetle,Stomp,Damage 13 (14),,attack,
 Slimed Berserker,Vomit Ichor,Add 10 Slimed to discard,slimed,add_statuses,
+Slimed Berserker,Furious Pummeling,Damage 4x4 (5x4),,multi_attack,
 Slimed Berserker,Leeching Hug,Apply 3 {weak}; Gain 3 {strength},,"buff, debuff",
 Slimed Berserker,Smother,Damage 30 (33),,attack,
-Slimed Berserker,Furious Pummeling,Damage 4x4 (5x4),,multi_attack,
 Slithering Strangler,Constrict,Apply 3 {constrict},,affliction,
 Slithering Strangler,Thwack,Damage 7 (8); {block} 5,,"attack, block",
 Slithering Strangler,Lash,Damage 12 (13),,attack,
@@ -152,9 +152,9 @@ The Obscura,Wail,Allies gain 3 {strength},,buff,Cannot repeat.
 The Obscura,Hardening Strike,Damage 6 (7); {block} 6 (7),,"attack, block",Cannot repeat.
 Parafright,Slam,Damage 16 (17),,attack,
 Thieving Hopper,Thievery,Damage 17 (19); Steal 1 card and gain {swipe},,"attack, affliction",
-Thieving Hopper,Nab,Damage 14 (16),,attack,
-Thieving Hopper,Hat Trick,Damage 21 (23),,attack,
 Thieving Hopper,Flutter,Gain {flutter} 5,,buff,
+Thieving Hopper,Hat Trick,Damage 21 (23),,attack,
+Thieving Hopper,Nab,Damage 14 (16),,attack,
 Thieving Hopper,Escape,Escape from the combat,,escape,
 Toadpole,Spike Spit,Lose 2 {thorns}; Damage 3x3 (4x3),,multi_attack,
 Toadpole,Whirl,Damage 7 (8),,attack,
@@ -171,16 +171,16 @@ Two-Tailed Rat,Scratch,Damage 8 (9),,attack,Cannot repeat.
 Two-Tailed Rat,Disease Bite,Damage 6 (7),,attack,Cannot repeat.
 Two-Tailed Rat,Screech,Apply 1 {frail},,debuff,3-turn cooldown.
 Two-Tailed Rat,Call for Backup,Summon Two-Tailed Rat; (with random intent),,summon,Can only be used once per rat. Requires 2 turns before available.
-Vine Shambler,Grasping Vines,Damage 8 (9); Apply 1 {tangled},,"attack, debuff",
 Vine Shambler,Swipe,Damage 6x2 (7x2),,multi_attack,
+Vine Shambler,Grasping Vines,Damage 8 (9); Apply 1 {tangled},,"attack, debuff",
 Vine Shambler,Chomp,Damage 16 (18),,attack,
 Wriggler,Nasty Bite,Damage 6 (7),,attack,
 Wriggler,Wriggle,Add 1 Infection to Discard; Gain 2 {strength},infection,"buff, add_statuses",
 Bygone Effigy,Sleep,Pass Turn,,sleeping,
 Bygone Effigy,Wake,Gain 10 {strength},,buff,
 Bygone Effigy,Slash,Damage 15 (17),,attack,
-Byrdonis,Peck,Damage 3x3 (4x3),,multi_attack,
 Byrdonis,Swoop,Damage 16 (18),,attack,
+Byrdonis,Peck,Damage 3x3 (4x3),,multi_attack,
 Decimillipede,Constrict,Damage 8 (9); Apply 1 {weak},,"attack, debuff",
 Decimillipede,Bulk,Damage 6 (7); Gain 2 {strength},,"attack, buff",
 Decimillipede,Writhe,Damage 5x2 (6x2),,multi_attack,
@@ -191,9 +191,9 @@ Infested Prism,Jab,Damage 22 (24),,attack,
 Infested Prism,Radiate,Damage 16 (18); {block} 16 (18),,"attack, block",
 Infested Prism,Whirlwind,Damage 9x3 (10x3),,multi_attack,
 Infested Prism,Pulsate,{block} 20 (22); Gain 4 (5) {strength},,"buff, block",
+Flail Knight,Ram,Damage 15 (17),,attack,Max 2 in a row.
 Flail Knight,War Chant,Gain 3 {strength},,buff,Cannot repeat.
 Flail Knight,Flail,Damage 9x2 (10x2),,multi_attack,Max 2 in a row.
-Flail Knight,Ram,Damage 15 (17),,attack,Max 2 in a row.
 Spectral Knight,Hex,Apply {hex},,debuff,
 Spectral Knight,Soul Slash,Damage 15 (17),,attack,Max 2 in a row.
 Spectral Knight,Soul Flame,Damage 3x3 (4x3),,multi_attack,Cannot repeat.
