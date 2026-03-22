@@ -894,7 +894,6 @@ function openEncounter(encounterName, act, cat) {
   } else {
     document.body.classList.add('panel-open');
   }
-  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
 }
 
 function openEvent(eventKey) {
@@ -955,52 +954,17 @@ function openEvent(eventKey) {
   } else {
     document.body.classList.add('panel-open');
   }
-  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
 }
 
-function isMobilePanel() {
-  return window.matchMedia('(max-width: 1099px)').matches;
-}
-
-let panelPushedState = false;
-
-function closeDetail(fromPopstate) {
-  const panel = document.getElementById('detail-panel');
-  if (!panel.classList.contains('open')) return;
-  panel.classList.remove('open');
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
   document.getElementById('backdrop').classList.remove('open');
   if (document.startViewTransition) {
     document.startViewTransition(() => document.body.classList.remove('panel-open'));
   } else {
     document.body.classList.remove('panel-open');
   }
-  if (panelPushedState && !fromPopstate) history.back();
-  panelPushedState = false;
 }
-
-// Back button closes the detail panel (mobile only)
-window.addEventListener('popstate', e => {
-  if (document.getElementById('detail-panel').classList.contains('open')) {
-    panelPushedState = false;
-    closeDetail(true);
-  }
-});
-
-// Swipe right to close detail panel (mobile only)
-(() => {
-  const panel = document.getElementById('detail-panel');
-  let touchStartX = 0, touchStartY = 0;
-  panel.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-  panel.addEventListener('touchend', e => {
-    if (!isMobilePanel()) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-    if (dx > 80 && dy < 100) closeDetail();
-  }, { passive: true });
-})();
 
 // Position fixed tooltips above their trigger element
 document.addEventListener('mouseover', e => {
