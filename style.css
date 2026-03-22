@@ -252,6 +252,7 @@
     overflow-y: auto;
     box-shadow: -10px 0 40px rgba(0,0,0,0.6);
     animation: slideIn 0.2s ease-out;
+    transition: transform 0.2s ease-out;
   }
   .detail-overlay.open { display: block; }
   @media (min-width: 1100px) and (max-width: 2040px) {

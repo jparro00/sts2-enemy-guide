@@ -894,6 +894,7 @@ function openEncounter(encounterName, act, cat) {
   } else {
     document.body.classList.add('panel-open');
   }
+  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
 }
 
 function openEvent(eventKey) {
@@ -954,18 +955,81 @@ function openEvent(eventKey) {
   } else {
     document.body.classList.add('panel-open');
   }
+  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
 }
 
-function closeDetail() {
-  document.getElementById('detail-panel').classList.remove('open');
+function isMobilePanel() {
+  return window.matchMedia('(max-width: 1099px)').matches;
+}
+
+let panelPushedState = false;
+
+function closeDetail(fromPopstate) {
+  const panel = document.getElementById('detail-panel');
+  if (!panel.classList.contains('open')) return;
+  panel.classList.remove('open');
   document.getElementById('backdrop').classList.remove('open');
   if (document.startViewTransition) {
     document.startViewTransition(() => document.body.classList.remove('panel-open'));
   } else {
     document.body.classList.remove('panel-open');
   }
+  if (panelPushedState && !fromPopstate) history.back();
+  panelPushedState = false;
 }
 
+// Back button closes the detail panel (mobile only)
+window.addEventListener('popstate', e => {
+  if (document.getElementById('detail-panel').classList.contains('open')) {
+    panelPushedState = false;
+    closeDetail(true);
+  }
+});
+
+// Swipe right to close detail panel (mobile only)
+(() => {
+  const panel = document.getElementById('detail-panel');
+  let touchStartX = 0, touchStartY = 0, swiping = false, scrolling = false, gestureLocked = false;
+  panel.addEventListener('touchstart', e => {
+    if (!isMobilePanel()) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    swiping = false;
+    scrolling = false;
+    gestureLocked = false;
+    panel.style.transition = 'none';
+  }, { passive: true });
+  panel.addEventListener('touchmove', e => {
+    if (!isMobilePanel() || scrolling) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = Math.abs(e.touches[0].clientY - touchStartY);
+    // Lock gesture direction on first significant movement
+    if (!gestureLocked && (dx > 10 || dy > 10)) {
+      gestureLocked = true;
+      if (dy > dx) { scrolling = true; return; }
+    }
+    if (gestureLocked && dx > 10) {
+      swiping = true;
+      panel.style.transform = `translateX(${dx}px)`;
+      e.preventDefault();
+    }
+  }, { passive: false });
+  panel.addEventListener('touchend', e => {
+    if (!isMobilePanel()) return;
+    panel.style.transition = '';
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (swiping && dx > 80) {
+      panel.style.transform = 'translateX(100%)';
+      panel.addEventListener('transitionend', () => {
+        panel.style.transform = '';
+        closeDetail();
+      }, { once: true });
+    } else {
+      panel.style.transform = '';
+    }
+    swiping = false;
+  }, { passive: true });
+})();
 // Position fixed tooltips above their trigger element
 document.addEventListener('mouseover', e => {
   const ref = e.target.closest('.move-ref, .power-ref, .beta-badge');
