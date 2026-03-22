@@ -989,16 +989,37 @@ window.addEventListener('popstate', e => {
 // Swipe right to close detail panel (mobile only)
 (() => {
   const panel = document.getElementById('detail-panel');
-  let touchStartX = 0, touchStartY = 0;
+  let touchStartX = 0, touchStartY = 0, swiping = false;
   panel.addEventListener('touchstart', e => {
+    if (!isMobilePanel()) return;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
+    swiping = false;
+    panel.style.transition = 'none';
+  }, { passive: true });
+  panel.addEventListener('touchmove', e => {
+    if (!isMobilePanel()) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = Math.abs(e.touches[0].clientY - touchStartY);
+    if (dx > 10 && dy < 100) {
+      swiping = true;
+      panel.style.transform = `translateX(${dx}px)`;
+    }
   }, { passive: true });
   panel.addEventListener('touchend', e => {
     if (!isMobilePanel()) return;
+    panel.style.transition = '';
     const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-    if (dx > 80 && dy < 100) closeDetail();
+    if (swiping && dx > 80) {
+      panel.style.transform = 'translateX(100%)';
+      panel.addEventListener('transitionend', () => {
+        panel.style.transform = '';
+        closeDetail();
+      }, { once: true });
+    } else {
+      panel.style.transform = '';
+    }
+    swiping = false;
   }, { passive: true });
 })();
 
