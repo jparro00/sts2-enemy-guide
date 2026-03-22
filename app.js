@@ -1064,6 +1064,11 @@ document.addEventListener('mouseout', e => {
   if (tooltip) tooltip.style.display = '';
 });
 
+// Dismiss tooltips on scroll (fixes mobile where they persist after tap)
+document.getElementById('detail-panel').addEventListener('scroll', () => {
+  document.querySelectorAll('.move-tooltip, .power-tooltip, .beta-tooltip').forEach(t => t.style.display = '');
+}, { passive: true });
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeDetail();
