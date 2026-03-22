@@ -145,7 +145,7 @@ Cycles <Slap> → <Knowledge Overwhelming> → <Ponder>.",[info] Heal is multipl
 Lagavulin Matriarch,222 (233),Cycles <Slash> → <Disembowel> → <Slash 2> → <Soul Siphon>.,[info] On wakeup all Plating is removed.,plating; asleep,{plating} 12 and {asleep},
 Queen,400 (419),"Opens with <Puppet Strings> → <You Are Mine!>.
 While Amalgam alive: Always uses <Burn Bright For Me>.
-After Amalgam dies: Cycles <Off With Your Head> → <Execution> → <Enrage>.","[info] If Amalgam dies mid-turn and intent is <Burn Bright For Me>, it becomes <Enrage> instead.",,a Torch Head Amalgam in play,
+After Amalgam dies: Cycles <Off With Your Head> → <Execution> → <Enrage>.","[info] If Amalgam dies mid-turn and intent is <Burn Bright For Me>, it becomes <Enrage> instead.",,a Torch Head Amalgam in play,chains_of_binding
 Torch Head Amalgam,199 (211),"Opens with <Tackle> → <Tackle>.
 Then cycles <Soul Beam> → <Weak Tackle> → <Weak Tackle>.",,minion,,
 Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scream>.,[info] One of the 2 Intangible from <Fade> ticks down immediately.,,,

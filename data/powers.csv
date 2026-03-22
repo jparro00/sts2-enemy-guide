@@ -7,6 +7,7 @@ weak,Weak,weak_power.webp,Deal 25% less attack damage.
 asleep,Asleep,asleep_power.webp,Sleeps for 3 turns or until losing HP.
 back_attack_left,Back Attack,back_attack_left_power.webp,Deals 50% more damage if attacking you from behind.
 burrowed,Burrowed,burrowed_power.webp,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.
+chains_of_binding,Chains of Binding,chains_of_binding_power.webp,The first 3 cards drawn each turn are Afflicted with Bound.
 constrict,Constrict,constrict_power.webp,"While alive, take X damage at the end of your turn."
 crab_rage,Crab Rage,crab_rage_power.webp,"When an ally dies, gains 5 Strength and 99 Block."
 curl_up,Curl Up,curl_up_power.webp,Gain Block upon first being hit.
