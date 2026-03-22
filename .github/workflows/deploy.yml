@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - beta-*
+      - test
 
   workflow_dispatch:
 
@@ -43,31 +44,37 @@ jobs:
           mkdir -p _site
           rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' main-site/ _site/
 
-      - name: Find beta branches
-        id: beta
+      - name: Find extra branches
+        id: extra
         run: |
           cd main-site
-          BETA_BRANCHES=$(git ls-remote --heads origin 'refs/heads/beta-*' | awk '{print $2}' | sed 's|refs/heads/||')
+          EXTRA_BRANCHES=$(git ls-remote --heads origin 'refs/heads/beta-*' 'refs/heads/test' | awk '{print $2}' | sed 's|refs/heads/||')
           echo "branches<<EOF" >> $GITHUB_OUTPUT
-          echo "$BETA_BRANCHES" >> $GITHUB_OUTPUT
+          echo "$EXTRA_BRANCHES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo "Found beta branches: $BETA_BRANCHES"
+          echo "Found extra branches: $EXTRA_BRANCHES"
 
-      - name: Checkout and copy beta branches
+      - name: Checkout and copy extra branches
         run: |
           while IFS= read -r branch; do
             [ -z "$branch" ] && continue
-            echo "Processing beta branch: $branch"
-            # Derive folder name from branch (beta-v0.100.0 -> beta)
-            FOLDER="beta"
-            git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "beta-checkout-${FOLDER}" || continue
+            echo "Processing branch: $branch"
+            # Derive folder name: beta-* -> beta, others use branch name
+            if [[ "$branch" == beta-* ]]; then
+              FOLDER="beta"
+            else
+              FOLDER="$branch"
+            fi
+            git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "checkout-${FOLDER}" || continue
             mkdir -p "_site/${FOLDER}"
-            rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "beta-checkout-${FOLDER}/" "_site/${FOLDER}/"
-            # Force isBeta true on beta deployment
-            jq '.isBeta = true' "_site/${FOLDER}/site-config.json" > tmp.json && mv tmp.json "_site/${FOLDER}/site-config.json"
-            rm -rf "beta-checkout-${FOLDER}"
+            rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
+            # Force isBeta true on non-master deployments
+            if [ -f "_site/${FOLDER}/site-config.json" ]; then
+              jq '.isBeta = true' "_site/${FOLDER}/site-config.json" > tmp.json && mv tmp.json "_site/${FOLDER}/site-config.json"
+            fi
+            rm -rf "checkout-${FOLDER}"
             echo "Deployed $branch to /${FOLDER}/"
-          done <<< "${{ steps.beta.outputs.branches }}"
+          done <<< "${{ steps.extra.outputs.branches }}"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
