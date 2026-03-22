@@ -989,19 +989,26 @@ window.addEventListener('popstate', e => {
 // Swipe right to close detail panel (mobile only)
 (() => {
   const panel = document.getElementById('detail-panel');
-  let touchStartX = 0, touchStartY = 0, swiping = false;
+  let touchStartX = 0, touchStartY = 0, swiping = false, scrolling = false, gestureLocked = false;
   panel.addEventListener('touchstart', e => {
     if (!isMobilePanel()) return;
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     swiping = false;
+    scrolling = false;
+    gestureLocked = false;
     panel.style.transition = 'none';
   }, { passive: true });
   panel.addEventListener('touchmove', e => {
-    if (!isMobilePanel()) return;
+    if (!isMobilePanel() || scrolling) return;
     const dx = e.touches[0].clientX - touchStartX;
     const dy = Math.abs(e.touches[0].clientY - touchStartY);
-    if (dx > 10 && dy < 100) {
+    // Lock gesture direction on first significant movement
+    if (!gestureLocked && (dx > 10 || dy > 10)) {
+      gestureLocked = true;
+      if (dy > dx) { scrolling = true; return; }
+    }
+    if (gestureLocked && dx > 10) {
       swiping = true;
       panel.style.transform = `translateX(${dx}px)`;
       e.preventDefault();
