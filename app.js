@@ -1004,8 +1004,9 @@ window.addEventListener('popstate', e => {
     if (dx > 10 && dy < 100) {
       swiping = true;
       panel.style.transform = `translateX(${dx}px)`;
+      e.preventDefault();
     }
-  }, { passive: true });
+  }, { passive: false });
   panel.addEventListener('touchend', e => {
     if (!isMobilePanel()) return;
     panel.style.transition = '';
