@@ -1,0 +1,169 @@
+  /* ── Detail Panel ── */
+  .detail-overlay {
+    display: none;
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 520px;
+    max-width: 92vw;
+    background: #12121c;
+    border-left: 1px solid #2a2a3a;
+    z-index: 100;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+    animation: slideIn 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+  }
+  .detail-overlay.open { display: block; }
+  @media (min-width: 1100px) and (max-width: 2040px) {
+    body.panel-open { padding-right: 520px; }
+  }
+  @media (max-width: 1099px) {
+    body.panel-open { overflow: hidden; }
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.15s;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(40px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #1e1e2e;
+    position: sticky;
+    top: 0;
+    background: #12121c;
+    z-index: 1;
+  }
+  .detail-header h2 { font-size: 1.5rem; color: #c8b06a; }
+  .detail-close {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+  .detail-close:hover { color: #fff; }
+  .detail-body { padding: 20px 24px; }
+  .encounter-composition {
+    background: linear-gradient(135deg, #1a1a2e 0%, #1e1e30 100%);
+    border: 1px solid #2a2a3e;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .composition-label {
+    color: #c8b06a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+  .composition-text {
+    color: #ccc;
+    font-size: 0.9rem;
+  }
+  .hp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .detail-body .hp-bar {
+    display: inline-block;
+    background: #2a1a1a;
+    border: 1px solid #5a2a2a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 1rem;
+    color: #e66;
+  }
+  .detail-body h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 16px 0 8px;
+  }
+  .detail-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .detail-body th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #1a1a28;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .detail-body td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #1a1a28;
+    vertical-align: top;
+  }
+  .detail-body tr:hover td { background: #161620; }
+  .detail-body .pattern-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #aaa;
+    background: #16161f;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #c8b06a;
+  }
+  /* ── Beta Patch Badge ── */
+  .beta-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #5a4400, #3a2d00);
+    color: #ffd866;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #ffd866;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 8px;
+    cursor: default;
+    position: relative;
+  }
+  .beta-badge .beta-tooltip {
+    display: none;
+    position: fixed;
+    background: #1a1a2e;
+    border: 1px solid #ffd866;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #ccc;
+    text-transform: none;
+    letter-spacing: normal;
+    width: max-content;
+    max-width: 320px;
+    z-index: 200;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    white-space: normal;
+    line-height: 1.5;
+  }
+  .beta-badge .beta-tooltip strong {
+    color: #ffd866;
+  }
+  .beta-badge:hover .beta-tooltip {
+    display: block;
+  }
