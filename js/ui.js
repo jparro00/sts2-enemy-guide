@@ -15,7 +15,7 @@ function getEncounterImageHtml(enc, cat) {
   // If altImage is set, use that as a single image
   if (enc.altImage) {
     const src = resolveAltImage(enc.altImage);
-    return { multi: false, html: `<img src="${src}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // If encounter has multiple enemies, show individual enemy images
@@ -23,7 +23,7 @@ function getEncounterImageHtml(enc, cat) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
       const src = `media/enemies/${name}.webp`;
-      return `<img src="${src}" alt="${name}" onerror="this.style.display='none'">`;
+      return `<img src="${src}" alt="${name}" loading="lazy" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
@@ -31,12 +31,12 @@ function getEncounterImageHtml(enc, cat) {
   // Single enemy — load from enemies folder
   if (enc.enemies && enc.enemies.length >= 1) {
     const enemySrc = `media/enemies/${enc.enemies[0]}.webp`;
-    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
   const enemySrc = `media/enemies/${enc.name}.webp`;
-  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 const encounterTabsHtml = `
@@ -115,7 +115,7 @@ function renderEventCards(events) {
   return events.map(ev => {
     const imgSrc = ev.image ? `media/events/${ev.image}` : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">`
+      ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">`
       : '';
     return `
     <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
@@ -125,6 +125,19 @@ function renderEventCards(events) {
       <div class="enemy-name">${ev.name}</div>
     </div>`;
   }).join('');
+}
+
+// After visible images load, preload remaining lazy images in the background
+function preloadRemainingImages() {
+  const idle = window.requestIdleCallback || (cb => setTimeout(cb, 200));
+  idle(() => {
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      if (!img.complete) {
+        const preload = new Image();
+        preload.src = img.src;
+      }
+    });
+  });
 }
 
 function render() {
