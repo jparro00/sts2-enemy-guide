@@ -823,7 +823,7 @@
     border: 1px solid #2a2a3a;
     background: #14141f;
     color: #e0ddd4;
-    font-size: 0.9rem;
+    font-size: 16px;
     outline: none;
     transition: border-color 0.2s;
   }
