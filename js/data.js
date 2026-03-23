@@ -160,6 +160,7 @@ async function loadData() {
   }
 
   render();
+  preloadRemainingImages();
 }
 
 // ── Load and go ──

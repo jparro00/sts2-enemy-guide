@@ -109,7 +109,7 @@ function onSearch(query) {
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';
-        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
         html += `
           <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
             <div class="enemy-thumb">${imgHtml}</div>
