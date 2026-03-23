@@ -34,7 +34,7 @@ abyssal_baths,Immerse,Gain [green]2[/green] Max HP. Take [red]3[/red] damage.,Af
 doors_of_light_and_dark,Dark Door,Remove [blue]1[/blue] card from your [gold]Deck[/gold].,,
 doors_of_light_and_dark,Light Door,[gold]Upgrade[/gold] [blue]2[/blue] random cards.,,
 drowning_beacon,Bottle,Procure [aqua]Glowwater Potion[/aqua].,,glowwater_potion
-drowning_beacon,Climb,Obtain [gold]Fresnel Lens[/gold]. Lose [red]13[/red] Max HP.,,"nimble,frenel_lens"
+drowning_beacon,Climb,Obtain [gold]Fresnel Lens[/gold]. Lose [red]13[/red] Max HP.,,"nimble,fresnel_lens"
 endless_conveyor,Observe the Chef,[gold]Upgrade[/gold] a random card in your [gold]Deck[/gold].,,
 endless_conveyor,Grab Caviar off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,~24% chance.,
 endless_conveyor,Grab Fried Eel off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,~12% chance.,
