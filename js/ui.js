@@ -127,16 +127,38 @@ function renderEventCards(events) {
   }).join('');
 }
 
-// After visible images load, preload remaining lazy images in the background
+// After visible images load, preload all encounter/event images in the background
 function preloadRemainingImages() {
   const idle = window.requestIdleCallback || (cb => setTimeout(cb, 200));
   idle(() => {
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-      if (!img.complete) {
-        const preload = new Image();
-        preload.src = img.src;
+    const srcs = new Set();
+
+    // Collect all encounter enemy images across every act/category
+    for (const act in encounters) {
+      for (const cat in encounters[act]) {
+        for (const enc of encounters[act][cat]) {
+          if (enc.altImage) {
+            srcs.add(enc.altImage.includes('/') ? enc.altImage : `media/enemies/${enc.altImage}`);
+          } else if (enc.enemies) {
+            for (const name of enc.enemies) {
+              srcs.add(`media/enemies/${name}.webp`);
+            }
+          }
+        }
       }
-    });
+    }
+
+    // Collect all event images across every zone
+    for (const zone in eventsData) {
+      for (const ev of eventsData[zone]) {
+        if (ev.image) srcs.add(`media/events/${ev.image}`);
+      }
+    }
+
+    for (const src of srcs) {
+      const img = new Image();
+      img.src = src;
+    }
   });
 }
 
