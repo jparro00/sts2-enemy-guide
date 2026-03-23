@@ -1,0 +1,90 @@
+  /* ── Enemy Grid ── */
+  .enemy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 24px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .enemy-card {
+    background: #14141f;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #1e1e2e;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 60;
+  }
+  .enemy-card:hover {
+    border-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  }
+  .enemy-thumb {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+  }
+  .enemy-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .enemy-thumb img.img-top {
+    object-position: top;
+  }
+  .enemy-thumb.multi-img {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px;
+  }
+  .enemy-thumb.multi-img img {
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .enemy-thumb.multi-img.count-2 img { width: 48%; height: 48%; }
+  .enemy-thumb.multi-img.count-3 img { width: 45%; height: 45%; }
+  .enemy-thumb.multi-img.count-4 img { width: 46%; height: 46%; }
+  .enemy-thumb.multi-img.count-5 img { width: 30%; height: 30%; }
+  .enemy-thumb.multi-img.count-6 img { width: 30%; height: 30%; }
+  .enemy-card[data-cat="easy"] .enemy-thumb { background: linear-gradient(135deg, #1a2e1a, #0f1a0f); }
+  .enemy-card[data-cat="hard"] .enemy-thumb { background: linear-gradient(135deg, #2e2a1a, #1a150d); }
+  .enemy-card[data-cat="elite"] .enemy-thumb { background: linear-gradient(135deg, #2e1a1a, #1a0d0d); }
+  .enemy-card[data-cat="boss"] .enemy-thumb { background: linear-gradient(135deg, #251a2e, #150d1a); }
+  .enemy-card[data-cat="events"] .enemy-thumb { background: linear-gradient(135deg, #1a2a2e, #0d1a1e); }
+  .enemy-name {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .enemy-card .multi-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.65);
+    color: #c8b06a;
+    padding: 4px 0;
+    z-index: 2;
+  }

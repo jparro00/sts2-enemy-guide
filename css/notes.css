@@ -1,0 +1,72 @@
+  /* ── Note Tags ── */
+  .note-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .note-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+  }
+  .note-coop {
+    background: #1a2a1a;
+    color: #7ac07a;
+    border: 1px solid #2a4a2a;
+  }
+  .note-reqs {
+    margin-top: 10px;
+  }
+  .note-req {
+    font-size: 0.82rem;
+    color: #8a8a9a;
+    padding: 2px 0;
+    line-height: 1.6;
+  }
+  .note-req::first-letter {
+    color: #c8b06a;
+  }
+  .note-infos {
+    margin-top: 10px;
+  }
+  .note-info {
+    font-size: 0.85rem;
+    color: #7a9ab0;
+    padding: 2px 0;
+    line-height: 1.6;
+  }
+  .note-bugs {
+    margin-top: 10px;
+  }
+  .note-bug {
+    font-size: 0.85rem;
+    color: #c8a84e;
+    padding: 2px 0;
+    line-height: 1.6;
+  }
+  .note-sub {
+    margin-left: 20px;
+    padding: 1px 0;
+    color: #7a9ab0;
+    font-size: 0.82rem;
+  }
+  .note-sub::before {
+    content: '• ';
+  }
+  .event-lore {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: #14141c;
+    border-radius: 6px;
+    border-left: 3px solid #555;
+  }
+  .event-lore p { margin: 0 0 10px 0; }
+  .event-lore p:last-child { margin-bottom: 0; }
