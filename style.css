@@ -798,17 +798,17 @@
   .search-clear {
     display: none;
     position: absolute;
-    right: -48px;
+    right: 3px;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background: #6a2020;
     border: none;
     border-radius: 6px;
     color: #ff8888;
-    font-size: 1.3rem;
-    line-height: 40px;
+    font-size: 1.1rem;
+    line-height: 32px;
     text-align: center;
     cursor: pointer;
     transition: background 0.2s;
