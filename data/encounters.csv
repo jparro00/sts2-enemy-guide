@@ -33,7 +33,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 1,Underdocks,hard,Haunted Ship,Haunted Ship,,🚢,,
 1,Underdocks,hard,Punch Construct,Punch Construct,,🤖,,
 1,Underdocks,hard,Sewer Clam,Sewer Clam,,🐚,,
-1,Underdocks,hard,Toadpoles,Calcified Cultist; Toadpole,2 enemies,🐸,,
+1,Underdocks,hard,Seapunk,Calcified Cultist; Seapunk,2 enemies,🦑,,
 1,Underdocks,hard,Two-Tailed Rats,Two-Tailed Rat; Two-Tailed Rat; Two-Tailed Rat,3 enemies,🐀,,
 1,Underdocks,elite,Skulking Colony,Skulking Colony,,🕳️,,
 1,Underdocks,elite,Phantasmal Gardeners,Phantasmal Gardener; Phantasmal Gardener; Phantasmal Gardener; Phantasmal Gardener,4 enemies,👻,,
@@ -55,7 +55,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 2,Hive,hard,Slumbering Beetle,Slumbering Beetle; Bowlbug (Rock); Bowlbug (Silk),3 enemies,🪲,,
 2,Hive,hard,Spiny Toad,Spiny Toad,,🐸,,
 2,Hive,hard,The Obscura,The Obscura; Parafright,2 enemies,👁️,,The Obscura.webp
-2,Hive,hard,Tunneler,Tunneler; Bowlbug (Rock); Bowlbug (Silk),2 enemies,🪱,1 Tunneler + 1 Bowlbug (Silk or Rock),
+2,Hive,hard,Tunneler,Tunneler; Chomper,2 enemies,🪱,,
 2,Hive,elite,Decimillipede,Decimillipede,3 enemies,🐛,,
 2,Hive,elite,Entomancer,Entomancer,,🧙,,
 2,Hive,elite,Infested Prism,Infested Prism,,💎,,
@@ -77,6 +77,6 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 3,Glory,elite,Knights,Flail Knight; Spectral Knight; Magi Knight,3 enemies,⚔️,,
 3,Glory,elite,Mecha Knight,Mecha Knight,,🤖,,
 3,Glory,elite,Soul Nexus,Soul Nexus,,💜,,
-3,Glory,boss,Doormaker,Door; Doormaker,,🚪,,Doormaker.webp
+3,Glory,boss,Doormaker,Doormaker,,🚪,,Doormaker.webp
 3,Glory,boss,Queen,Queen; Torch Head Amalgam,2 enemies,👑,,Queen.webp
 3,Glory,boss,Test Subject,Test Subject Stage 1; Test Subject Stage 2; Test Subject Stage 3,,🧪,,Test Subject.webp
