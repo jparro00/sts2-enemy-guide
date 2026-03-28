@@ -70,8 +70,8 @@ tinker_time,Tinker Time,Glory,"[info]Creates a Mad Science card (1 energy). Upgr
     Chaos: Add a random card from your pool to hand. It is Free to Play
 [info]Power:
     Expertise: Gain 2 Strength and 2 Dexterity
-    Curious: Gain 1 Curious
-    Improvement: Gain 1 Improvement",,tinker_time.webp,"Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.|“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”"
+    Curious: Powers cost 1 Energy less
+    Improvement: At the end of combat, Upgrade a random card",,tinker_time.webp,"Navigating through an [red][sine]endless sea of corpses[/sine][/red], you find a [orange]mad scientist[/orange] scavenging for various scraps.|“Yes. Hi, hello! You look like a capable fighter... I need a tester for my next [green]atrocity device[/green]! How about it?”"
 trial,The Trial,Glory,"[info]After accepting, one of 3 random trials is chosen (Merchant, Noble, or Nondescript).
 [info]Rejecting is not allowed — double downing abandons the run.",,trial.webp,"You join a line of people entering a massive building.|As you pass under a [gold]golden archway[/gold], horns blare, [jitter]confetti explodes[/jitter], and [sine]streamers glide[/sine] down from the ceiling!|“Entrant [blue]{EntrantNumber}[/blue], you are the [green]DECIDER[/green] for today's [gold]Trial[/gold].”"
 brain_leech,Brain Leech,Shared,"[req]Can only appear in Act 1 or Act 2.
