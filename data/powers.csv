@@ -59,8 +59,8 @@ thievery,Thievery,thievery_power.webp,Steals X gold when attacking.
 vital_spark,Vital Spark,vital_spark_power.webp,"The first time this takes attack damage each turn, the attacker gains X energy."
 waste_away,Waste Away,waste_away_power.webp,Gain 1 less energy at the start of your turn.
 strangle,Strangle,strangle_power.webp,"At the end of your turn, lose X HP."
-curious,Curious,curious_power.webp,"The first card you play each turn costs 1 less energy."
-improvement,Improvement,improvement_power.webp,"Whenever you play a card, permanently reduce its cost by 1."
+curious,Curious,curious_power.webp,Powers cost 1 Energy less.
+improvement,Improvement,improvement_power.webp,"At the end of combat, Upgrade a random card."
 dexterity,Dexterity,dexterity_power.webp,Increases Block gained from cards by X.
 frail,Frail,frail_power.webp,Gain 25% less Block from cards.
 innate,Innate,innate_power.webp,This card is always drawn in your opening hand.
