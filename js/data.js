@@ -55,7 +55,7 @@ async function loadData() {
   if (betaText) {
     const betaRaw = parseCSV(betaText);
     for (const b of betaRaw) {
-      betaChanges[`${b.Type}:${b.Name}`] = b.Change;
+      betaChanges[`${b.Type}:${b.Name}`] = { change: b.Change, patch: b.Patch || '' };
     }
   }
 
