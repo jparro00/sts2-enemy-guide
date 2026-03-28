@@ -61,8 +61,8 @@ Fat Gremlin,Stunned,Stunned for one turn,,stun,
 Fat Gremlin,Flee,Escape from combat,,escape,
 Sneaky Gremlin,Stunned,Stunned for one turn,,stun,
 Sneaky Gremlin,Tackle,Damage 9 (10),,attack,
-Haunted Ship,Ramming Speed,Damage 10 (11); Add 2 Wounds to Discard,wound,"attack, add_statuses",Cannot repeat.
 Haunted Ship,Haunt,Apply 2 {weak}; Apply 2 {frail}; Apply 2 {vulnerable},,debuff,
+Haunted Ship,Ramming Speed,Damage 10 (11); Add 2 Wounds to Discard,wound,"attack, add_statuses",Cannot repeat.
 Haunted Ship,Swipe,Damage 13 (14),,attack,Cannot repeat.
 Haunted Ship,Stomp,Damage 4x3 (5x3),,multi_attack,Cannot repeat.
 Hunter Killer,Tenderizing Goop,Apply {tender},,debuff,
@@ -85,8 +85,8 @@ Louse Progenitor,Web Cannon,Damage 9 (10); Apply 2 {frail},,"attack, debuff",
 Louse Progenitor,Curl and Grow,{block} 14 (18); Gain 5 {strength},,"block, buff",
 Louse Progenitor,Pounce,Damage 14 (16),,attack,
 Mawler,Claw,Damage 4x2 (5x2),,multi_attack,Cannot repeat.
-Mawler,Roar,Apply 3 {vulnerable},,debuff,Can only be used once.
 Mawler,Rip & Tear,Damage 14 (16),,attack,Cannot repeat.
+Mawler,Roar,Apply 3 {vulnerable},,debuff,Can only be used once.
 Myte,Toxic,Add 2 Toxic to Hand,toxic,add_statuses,
 Myte,Bite,Damage 13 (15),,attack,
 Myte,Suck,Damage 4 (6); Gain 2 (3) {strength},,"attack, buff",
@@ -165,8 +165,8 @@ Tunneler,Below,Damage 23 (26),,attack,
 Turret Operator,Unload,Damage 3x5 (4x5),,multi_attack,
 Turret Operator,Reload,Gain 1 {strength},,buff,
 Twig Slime (Small),Tackle,Damage 4 (5),,attack,
-Twig Slime (Medium),Clump Shot,Damage 11 (12),,attack,Max 2 in a row.
 Twig Slime (Medium),Sticky Shot,Add 1 Slimed to Discard,slimed,add_statuses,Cannot repeat.
+Twig Slime (Medium),Clump Shot,Damage 11 (12),,attack,Max 2 in a row.
 Two-Tailed Rat,Scratch,Damage 8 (9),,attack,Cannot repeat.
 Two-Tailed Rat,Disease Bite,Damage 6 (7),,attack,Cannot repeat.
 Two-Tailed Rat,Screech,Apply 1 {frail},,debuff,3-turn cooldown.
@@ -184,9 +184,9 @@ Byrdonis,Peck,Damage 3x3 (4x3),,multi_attack,
 Decimillipede,Constrict,Damage 8 (9); Apply 1 {weak},,"attack, debuff",
 Decimillipede,Bulk,Damage 6 (7); Gain 2 {strength},,"attack, buff",
 Decimillipede,Writhe,Damage 5x2 (6x2),,multi_attack,
-Entomancer,Pheromone Spit,Gain 1 {personal_hive} and 1 {strength},dazed,buff,"After reaching 3 stacks of Personal Hive, instead only gains 2 strength."
 Entomancer,Bees,Damage 3x7 (3x8),,multi_attack,
 Entomancer,Spear,Damage 18 (20),,attack,
+Entomancer,Pheromone Spit,Gain 1 {personal_hive} and 1 {strength},dazed,buff,"After reaching 3 stacks of Personal Hive, instead only gains 2 strength."
 Infested Prism,Jab,Damage 22 (24),,attack,
 Infested Prism,Radiate,Damage 16 (18); {block} 16 (18),,"attack, block",
 Infested Prism,Whirlwind,Damage 9x3 (10x3),,multi_attack,
@@ -212,10 +212,10 @@ Phantasmal Gardener,Flail,Damage 1x3,,multi_attack,
 Phantasmal Gardener,Enlarge,{strength} 2 (3),,buff,
 Phrog Parasite,Infect,Add 3 Infection to Discard,infection,add_statuses,
 Phrog Parasite,Lash,Damage 4x4 (5x4),,multi_attack,
-Skulking Colony,Inertia,{block} 10 (13); Gain 3 {strength},,"block, buff",
-Skulking Colony,Zoom,Damage 16 (17),,attack,
-Skulking Colony,Super Crab,Damage 6x2 (7x2),,multi_attack,
 Skulking Colony,Smash,Damage 9 (11); Add 4 Dazed to Discard,dazed,"attack, add_statuses",
+Skulking Colony,Zoom,Damage 16 (17),,attack,
+Skulking Colony,Inertia,{block} 10 (13); Gain 3 {strength},,"block, buff",
+Skulking Colony,Super Crab,Damage 6x2 (7x2),,multi_attack,
 Soul Nexus,Soul Burn,Damage 29 (31),,attack,Cannot repeat.
 Soul Nexus,Maelstrom,Damage 6x4 (7x4),,multi_attack,Cannot repeat.
 Soul Nexus,Drain Life,Damage 18 (19); Apply 2 {vulnerable}; Apply 2 {weak},,"attack, debuff",Cannot repeat.
