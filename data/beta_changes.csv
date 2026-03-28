@@ -1,6 +1,6 @@
 Type,Name,Change,Patch
 monster,Doormaker,"Reworked: No longer transforms from Door. Opens with infinite HP, uses Dramatic Open to reveal actual HP. Cycles through 3 phases (Hunger, Scrutiny, Grasp), each applying a unique disruptive power.",0.100.0
-monster,Skulking Colony,"Nerfed: HP 79(84) → 74(79). Smash no longer adds Dazed. Zoom damage reduced 16(17) → 14(16) but now gives Block. Inertia no longer gives Block. Super Crab renamed to Piercing Stabs with increased damage. Hardened Shell reduced 20 → 15.",0.100.0
+monster,Skulking Colony,"Nerfed: HP 79(84) → 74(79). Smash no longer adds Dazed. Zoom damage reduced 16(17) → 14(16) but now gives Block. Inertia no longer gives Block. Super Crab renamed to Piercing Stabs with increased damage. Hardened Shell reduced 20 → 15.",0.101.0
 monster,Haunted Ship,"Changed: Haunt now adds 5 Dazed to Discard instead of applying Weak/Frail/Vulnerable. Ramming Speed now applies 1 Weak instead of adding 2 Wounds.",0.101.0
 monster,The Lost,"Reverted: Strength theft no longer scales with Ascension (always steals 2). Was buffed to scale in v0.100.0.",0.101.0
 monster,The Forgotten,"Reverted+Nerfed: Dexterity theft no longer scales with Ascension (always steals 2). Dread base damage reduced 15(17) → 13(15).",0.101.0
