@@ -103,7 +103,7 @@ function renderBetaBadge(type, name) {
   if (!entry) return '';
   const escaped = entry.change.replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const patchLabel = entry.patch ? `v${entry.patch}` : `v${siteConfig.betaVersion || '?'}`;
-  return ` <span class="beta-badge" data-patch="${entry.patch || ''}">Patch ${patchLabel}<span class="beta-tooltip"><strong>Changed in Beta ${patchLabel}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
+  return ` <span class="beta-badge" data-patch="${entry.patch || ''}">Beta Patch<span class="beta-tooltip"><strong>Changed in Beta ${patchLabel}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
 
 function renderStartsWith(text, enemyName) {
