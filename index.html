@@ -63,6 +63,13 @@
   <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
 </div>
 
+<div class="player-count-bar">
+  <span class="player-count-label">Players:</span>
+  <button class="player-btn active" data-players="1" onclick="setPlayerCount(1)">Solo</button>
+  <button class="player-btn" data-players="2" onclick="setPlayerCount(2)">2P</button>
+  <button class="player-btn" data-players="3" onclick="setPlayerCount(3)">3P</button>
+  <button class="player-btn" data-players="4" onclick="setPlayerCount(4)">4P</button>
+</div>
 <div class="section-label" id="section-label">Act 1: Overgrowth — All Encounters</div>
 <div class="enemy-grid" id="enemy-grid"><div class="loading">Loading data...</div></div>
 

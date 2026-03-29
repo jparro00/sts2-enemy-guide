@@ -58,6 +58,19 @@ const eventTabsHtml = `
 
 let currentAct = "overgrowth";
 let currentCat = "all";
+let openPanelInfo = null;  // tracks what's currently open: { type, name, act, cat }
+
+function setPlayerCount(count) {
+  playerCount = count;
+  document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
+  if (openPanelInfo) {
+    if (openPanelInfo.type === 'encounter') {
+      openEncounter(openPanelInfo.name, openPanelInfo.act, openPanelInfo.cat);
+    } else if (openPanelInfo.type === 'event') {
+      openEvent(openPanelInfo.name);
+    }
+  }
+}
 
 function selectAct(act) {
   const wasEvents = currentAct === 'events';
@@ -262,7 +275,7 @@ function renderEnemySection(name, collapsible) {
     <tr>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(m.effects.replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
+      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
     </tr>
   `).join('');
 
@@ -276,7 +289,7 @@ function renderEnemySection(name, collapsible) {
       <div class="enemy-section-header">
         <div class="enemy-section-info">
           <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
-          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hp}</div></div>
+          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${scaleHP(data.hp)}</div></div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
         <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
@@ -308,6 +321,7 @@ function toggleEnemySection(btn) {
 }
 
 function openEncounter(encounterName, act, cat) {
+  openPanelInfo = { type: 'encounter', name: encounterName, act: act || currentAct, cat: cat || currentCat };
   const searchAct = act || currentAct;
   const searchCat = cat || currentCat;
   const panel = document.getElementById('detail-panel');
@@ -352,6 +366,7 @@ function openEncounter(encounterName, act, cat) {
 }
 
 function openEvent(eventKey) {
+  openPanelInfo = { type: 'event', name: eventKey };
   // Find the event
   let ev = null;
   for (const act in eventsData) {
@@ -419,6 +434,7 @@ function isMobilePanel() {
 let panelPushedState = false;
 
 function closeDetail(fromPopstate) {
+  openPanelInfo = null;
   const panel = document.getElementById('detail-panel');
   if (!panel.classList.contains('open')) return;
   panel.classList.remove('open');
