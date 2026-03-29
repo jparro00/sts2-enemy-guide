@@ -1,4 +1,4 @@
-Name,HP,Pattern,Notes,Powers,StartsWith,References
+Name,HP,Pattern,Notes,Powers,StartsWith,References,HpScalePlayerCountOnly
 Axebot,40 - 44 (42 - 46),"Chooses randomly from <One-Two>, <Sharpen>, <Hammer Uppercut>.",[info] Summoned Axebots start with <Boot Up> then resume choosing randomly.,stock,{stock} 2,
 Bowlbug (Egg),21 - 22 (23 - 24),Always uses <Bite>.,,,,
 Bowlbug (Nectar),35 - 38 (36 - 39),"Opens with <Thrash> → <Buff>, then always uses <Thrash>.",,,,
@@ -153,8 +153,8 @@ Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scre
 Test Subject Stage 1,100 (111),"Cycles <Bite> → <Skull Bash>.
 When killed: Revives next turn in Stage 2.",,enrage,{enrage} 3,
 Test Subject Stage 2,200 (212),"Always uses <Multi-Claw>.
-When killed: Revives next turn in Stage 3.",,painful_stabs,{painful_stabs} 1,
-Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),
+When killed: Revives next turn in Stage 3.",,painful_stabs,{painful_stabs} 1,,true
+Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),,true
 The Insatiable,321 (341),"Opens with <Liquify Ground>.
 Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,
 Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,

@@ -3,7 +3,7 @@
 // ══════════════════════════════════════════
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText, betaText, configData] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
     fetch('data/monsters.csv').then(r => r.text()),
     fetch('data/monster_moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
@@ -16,6 +16,7 @@ async function loadData() {
     fetch('data/relics.csv').then(r => r.text()),
     fetch('data/beta_changes.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
     fetch('site-config.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch('data/multiplayer-scaling.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
   ]);
 
   const enemiesRaw = parseCSV(enemiesText);
@@ -28,12 +29,14 @@ async function loadData() {
     powersRef[p.Key] = {
       name: p.Name,
       image: p.Image,
-      desc: p.Description
+      desc: p.Description,
+      scalesInMultiplayer: p.ScalesInMultiplayer === 'true'
     };
   }
 
   // Load site config and render version banner
   siteConfig = configData;
+  multiplayerScaling = scalingData;
   const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
   const banner = document.getElementById('version-banner');
   if (banner && siteConfig.betaVersion) {
@@ -68,6 +71,7 @@ async function loadData() {
       startsWith: e.StartsWith || '',
       powers: e.Powers ? e.Powers.split(';').map(p => p.trim()).filter(Boolean) : [],
       references: e.References ? e.References.split(',').map(r => r.trim()).filter(Boolean) : [],
+      hpScalePlayerCountOnly: e.HpScalePlayerCountOnly === 'true',
       moves: []
     };
   }
