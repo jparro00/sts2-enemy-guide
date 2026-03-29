@@ -149,7 +149,7 @@ function renderBetaBadge(type, name) {
 
 function renderStartsWith(text, enemyName) {
   if (!text) return '';
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(text, enemyName)}</div>`;
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(scaleEffects(text), enemyName)}</div>`;
 }
 
 function renderEnemyReferences(powers, moves, references) {
