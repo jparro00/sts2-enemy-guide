@@ -28,6 +28,12 @@ function scaleHP(text) {
   return text.replace(/\d+/g, match => scaleNum(parseInt(match, 10)));
 }
 
+// HP scaling for monsters that revive with playerCount only (no act multiplier) — e.g. Test Subject stages 2+3
+function scaleHPPlayerCountOnly(text) {
+  if (playerCount <= 1) return text;
+  return text.replace(/\d+/g, match => Math.floor(parseInt(match, 10) * playerCount));
+}
+
 // Scale {power_key} N values for scalable powers; counter powers use their own formula
 function scaleEffects(text) {
   if (playerCount <= 1) return text;

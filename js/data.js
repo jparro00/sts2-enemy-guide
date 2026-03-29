@@ -71,6 +71,7 @@ async function loadData() {
       startsWith: e.StartsWith || '',
       powers: e.Powers ? e.Powers.split(';').map(p => p.trim()).filter(Boolean) : [],
       references: e.References ? e.References.split(',').map(r => r.trim()).filter(Boolean) : [],
+      hpScalePlayerCountOnly: e.HpScalePlayerCountOnly === 'true',
       moves: []
     };
   }
