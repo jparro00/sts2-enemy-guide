@@ -289,7 +289,7 @@ function renderEnemySection(name, collapsible) {
       <div class="enemy-section-header">
         <div class="enemy-section-info">
           <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
-          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${scaleHP(data.hp)}</div></div>
+          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(data.hp) : scaleHP(data.hp)}</div></div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
         <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
