@@ -9,6 +9,8 @@ let eventChoices = {};   // keyed by event key: [ { choice, effect, notes, refer
 let itemsRef = {};       // unified lookup: { key: { ...data, category } }
 let betaChanges = {};    // keyed by "type:name" -> change description
 let siteConfig = {};     // loaded from site-config.json
+let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
+let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 
 // Powers reference — populated from data/powers.csv at load time (also merged into itemsRef)
 const powersRef = {};

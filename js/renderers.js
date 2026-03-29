@@ -2,6 +2,47 @@
 // RENDERING HELPERS
 // ══════════════════════════════════════════
 
+// Return the act multiplier for the currently open panel (from multiplayer-scaling.json)
+function getActMultiplier() {
+  if (!openPanelInfo || !multiplayerScaling.actMultipliers) return 1.1;
+  const actNum = zoneToActNumber[openPanelInfo.act] || '1';
+  const key = (actNum === '3' && openPanelInfo.cat === 'boss') ? '3_boss' : actNum;
+  return multiplayerScaling.actMultipliers[key] || 1.1;
+}
+
+// Scale a number by playerCount × actMultiplier, rounding down
+function scaleNum(n) {
+  if (playerCount <= 1) return n;
+  return Math.floor(n * playerCount * getActMultiplier());
+}
+
+// Scale a counter-style power amount: (playerCount - 1) × 2 + 1
+function scaleNumCounter(n) {
+  if (playerCount <= 1) return n;
+  return Math.floor(n * ((playerCount - 1) * 2 + 1));
+}
+
+// Replace all numbers in an HP string with scaled values
+function scaleHP(text) {
+  if (playerCount <= 1) return text;
+  return text.replace(/\d+/g, match => scaleNum(parseInt(match, 10)));
+}
+
+// Scale {power_key} N values for scalable powers; counter powers use their own formula
+function scaleEffects(text) {
+  if (playerCount <= 1) return text;
+  const scalableKeys = Object.keys(powersRef).filter(k => powersRef[k].scalesInMultiplayer);
+  if (scalableKeys.length === 0) return text;
+  const counterKeys = new Set(multiplayerScaling.counterPowerKeys || []);
+  const keyPattern = scalableKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  const re = new RegExp(`(\\{(${keyPattern})\\})\\s*(\\d+(?:\\s*\\(\\d+\\))?)`, 'g');
+  return text.replace(re, (match, tag, key, nums) => {
+    const scaleFn = counterKeys.has(key) ? scaleNumCounter : scaleNum;
+    const scaled = nums.replace(/\d+/g, n => scaleFn(parseInt(n, 10)));
+    return `${tag} ${scaled}`;
+  });
+}
+
 function renderMoveRefs(text, enemyName) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
@@ -9,7 +50,7 @@ function renderMoveRefs(text, enemyName) {
     const move = moves.find(m => m.name === moveName);
     if (move) {
       const intents = renderIntents(move.intent);
-      const effect = renderPowerRefs(move.effects.replace(/;/g, '<br>'), null);
+      const effect = renderPowerRefs(scaleEffects(move.effects).replace(/;/g, '<br>'), null);
       return `<span class="move-ref">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
     return `<span class="move-ref">${moveName}</span>`;

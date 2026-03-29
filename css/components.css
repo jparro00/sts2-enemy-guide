@@ -79,6 +79,44 @@
     .backdrop.open { background: transparent; }
   }
 
+  /* ── Player Count Bar ── */
+  .player-count-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 16px 0;
+    position: relative;
+    z-index: 55;
+  }
+  .player-count-label {
+    color: #666;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 4px;
+  }
+  .player-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #2a2a3a;
+    color: #888;
+    font-size: 0.78rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .player-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #555;
+    color: #ccc;
+  }
+  .player-btn.active {
+    background: rgba(200,176,106,0.15);
+    border-color: #c8b06a;
+    color: #c8b06a;
+  }
+
   .section-label {
     text-align: center;
     padding: 16px;
