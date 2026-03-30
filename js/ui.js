@@ -10,12 +10,17 @@ function resolveAltImage(altImage) {
   return `media/enemies/${altImage}`;
 }
 
+// Returns loading attribute — lazy until preloader finishes, then eager
+function imgLoading() {
+  return imagesPreloaded ? '' : 'loading="lazy"';
+}
+
 // Build encounter card image HTML
 function getEncounterImageHtml(enc, cat) {
   // If altImage is set, use that as a single image
   if (enc.altImage) {
     const src = resolveAltImage(enc.altImage);
-    return { multi: false, html: `<img src="${src}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // If encounter has multiple enemies, show individual enemy images
@@ -23,7 +28,7 @@ function getEncounterImageHtml(enc, cat) {
     const count = enc.enemies.length;
     const imgs = enc.enemies.map(name => {
       const src = `media/enemies/${name}.webp`;
-      return `<img src="${src}" alt="${name}" loading="lazy" onerror="this.style.display='none'">`;
+      return `<img src="${src}" alt="${name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
@@ -31,12 +36,12 @@ function getEncounterImageHtml(enc, cat) {
   // Single enemy — load from enemies folder
   if (enc.enemies && enc.enemies.length >= 1) {
     const enemySrc = `media/enemies/${enc.enemies[0]}.webp`;
-    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
   // No enemies list — try enemies folder by encounter name, then emoji fallback
   const enemySrc = `media/enemies/${enc.name}.webp`;
-  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
 const encounterTabsHtml = `
@@ -128,7 +133,7 @@ function renderEventCards(events) {
   return events.map(ev => {
     const imgSrc = ev.image ? `media/events/${ev.image}` : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">`
+      ? `<img src="${imgSrc}" alt="${ev.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`
       : '';
     return `
     <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
@@ -139,6 +144,10 @@ function renderEventCards(events) {
     </div>`;
   }).join('');
 }
+
+// Preloaded image cache — keeps decoded images in memory so switching acts is instant
+const preloadedImages = new Map();
+let imagesPreloaded = false;
 
 // After visible images load, preload all encounter/event images in the background
 function preloadRemainingImages() {
@@ -168,9 +177,17 @@ function preloadRemainingImages() {
       }
     }
 
+    let loaded = 0;
+    const total = srcs.size;
     for (const src of srcs) {
       const img = new Image();
+      img.decoding = 'async';
+      img.onload = img.onerror = () => {
+        loaded++;
+        if (loaded >= total) imagesPreloaded = true;
+      };
       img.src = src;
+      preloadedImages.set(src, img);
     }
   });
 }
