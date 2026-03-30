@@ -5,9 +5,9 @@
     background: #4a3800;
     color: #ffd866;
     text-align: center;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    border-bottom: 2px solid #ffd866;
+    padding: 4px 16px;
+    font-size: 0.75rem;
+    border-bottom: 1px solid #ffd866;
     position: relative;
     z-index: 60;
   }

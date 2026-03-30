@@ -24,9 +24,6 @@
     <input type="text" id="search-input" placeholder="Search enemies or encounters..." oninput="onSearch(this.value)" />
     <button class="search-clear" id="search-clear" onclick="clearSearch()">&times;</button>
   </div>
-  <div class="feedback-link">
-    See an issue with the data or have a suggestion? <a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback here</a>
-  </div>
 </header>
 
 <div id="search-results" class="search-results" style="display:none;"></div>
@@ -70,7 +67,7 @@
   <button class="player-btn" data-players="3" onclick="setPlayerCount(3)">3P</button>
   <button class="player-btn" data-players="4" onclick="setPlayerCount(4)">4P</button>
 </div>
-<div class="section-label" id="section-label">Act 1: Overgrowth — All Encounters</div>
+<div class="section-label" id="section-label">All Encounters</div>
 <div class="enemy-grid" id="enemy-grid"><div class="loading">Loading data...</div></div>
 
 <div class="backdrop" id="backdrop" onclick="closeDetail()"></div>
@@ -93,6 +90,7 @@
   The data on this site was originally sourced from the <a href="https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/" target="_blank">STS2 Community Reference Sheet</a>,
   created by <span class="credit-names">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.<br>
   Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id="game-version">v0.99.1</span>.
+  <div class="footer-feedback"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback or report an issue</a></div>
 </footer>
 
 </body>

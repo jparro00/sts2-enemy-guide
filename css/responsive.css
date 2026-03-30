@@ -7,7 +7,7 @@
     .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
     .detail-overlay { width: 100vw; }
     .cat-tab { padding: 8px 14px; font-size: 0.75rem; }
-    header h1 { font-size: 1.2rem; }
+    header h1 { font-size: 1rem; letter-spacing: 0.5px; }
     .feedback-link a { font-size: 0.65rem; }
     .search-bar { padding-left: 0; padding-right: 0; }
   }

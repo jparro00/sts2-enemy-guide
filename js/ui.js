@@ -198,7 +198,7 @@ function render() {
 
   if (currentAct === 'events') {
     // Events mode
-    label.textContent = `Events — ${eventZoneNames[currentCat] || 'All Events'}`;
+    label.textContent = eventZoneNames[currentCat] || 'All Events';
     const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
     const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory', shared: 'Shared' };
     let html = '';
@@ -235,7 +235,7 @@ function render() {
     return;
   }
 
-  label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
+  label.textContent = catNames[currentCat];
 
   if (currentCat === 'events') {
     // Show events for this act's zone + shared

@@ -246,6 +246,11 @@
   .site-footer .credit-names {
     color: #777;
   }
+  .footer-feedback {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #1a1a2a;
+  }
 
   /* ── Feedback link ── */
   .feedback-link {
