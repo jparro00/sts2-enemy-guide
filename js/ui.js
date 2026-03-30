@@ -198,7 +198,7 @@ function render() {
 
   if (currentAct === 'events') {
     // Events mode
-    label.textContent = `Events — ${eventZoneNames[currentCat] || 'All Events'}`;
+    label.textContent = eventZoneNames[currentCat] || 'All Events';
     const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
     const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory', shared: 'Shared' };
     let html = '';
@@ -235,7 +235,7 @@ function render() {
     return;
   }
 
-  label.textContent = `${actNames[currentAct]} — ${catNames[currentCat]}`;
+  label.textContent = catNames[currentCat];
 
   if (currentCat === 'events') {
     // Show events for this act's zone + shared
@@ -270,10 +270,10 @@ function render() {
     grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
   } else {
     const encs = encounters[currentAct]?.[currentCat] || [];
-    // Restore grid class if it was removed by "all" view
-    const container = document.getElementById('enemy-grid');
-    container.className = 'enemy-grid';
-    container.innerHTML = renderCards(encs, currentCat);
+    const html = `<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`;
+    grid.innerHTML = '';
+    grid.className = '';
+    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
   }
 }
 

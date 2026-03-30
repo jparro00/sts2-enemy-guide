@@ -7,7 +7,50 @@
     .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
     .detail-overlay { width: 100vw; }
     .cat-tab { padding: 8px 14px; font-size: 0.75rem; }
-    header h1 { font-size: 1.2rem; }
     .feedback-link a { font-size: 0.65rem; }
-    .search-bar { padding-left: 0; padding-right: 0; }
+    .beta-banner { padding: 4px 16px; font-size: 0.75rem; border-bottom-width: 1px; }
+    .banner-full { display: none; }
+    .banner-short { display: inline; }
+
+    /* ── Mobile header: single row with centered title + search icon ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      position: relative;
+    }
+    header h1 {
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    .search-bar {
+      display: none;
+      margin-top: 0;
+      max-width: none;
+      width: 100%;
+    }
+    .search-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1px solid #2a2a3a;
+      border-radius: 8px;
+      color: #aaa;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .search-toggle:hover { color: #c8b06a; border-color: #c8b06a; }
+
+    /* ── Search open state ── */
+    header.search-open { padding: 8px 16px; }
+    header.search-open h1 { display: none; }
+    header.search-open .search-toggle { display: none; }
+    header.search-open .search-bar { display: block; }
+    header.search-open .search-clear { display: block; }
   }

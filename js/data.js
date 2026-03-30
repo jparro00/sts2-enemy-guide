@@ -42,7 +42,7 @@ async function loadData() {
   if (banner && siteConfig.betaVersion) {
     if (isBeta) {
       banner.className = 'beta-banner';
-      banner.innerHTML = `⚠️ BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a>`;
+      banner.innerHTML = `<span class="banner-full">BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a></span><span class="banner-short">BETA <strong>v${siteConfig.betaVersion}</strong> — <a href="../">View stable version</a></span>`;
     } else {
       banner.className = 'stable-banner';
       banner.innerHTML = `This site is also available for the latest <strong>beta patch v${siteConfig.betaVersion}</strong>. <a href="beta/">Switch to beta</a>`;
