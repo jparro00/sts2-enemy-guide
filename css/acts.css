@@ -85,6 +85,7 @@
   .cat-tab[data-cat="hard"].active { color: #d4a843; border-bottom-color: #d4a843; }
   .cat-tab[data-cat="elite"].active { color: #d46a6a; border-bottom-color: #d46a6a; }
   .cat-tab[data-cat="boss"].active { color: #b06ad4; border-bottom-color: #b06ad4; }
+  .cat-tab[data-cat="events"].active { color: #6ab0d4; border-bottom-color: #6ab0d4; }
   .cat-tab[data-cat="ev_overgrowth"].active { color: #6abf69; border-bottom-color: #6abf69; }
   .cat-tab[data-cat="ev_underdocks"].active { color: #6ab0d4; border-bottom-color: #6ab0d4; }
   .cat-tab[data-cat="ev_hive"].active { color: #d4a843; border-bottom-color: #d4a843; }
