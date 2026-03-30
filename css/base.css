@@ -30,6 +30,11 @@
     color: #6db3f2;
     text-decoration: underline;
   }
+  .banner-mobile { display: none; }
+  @media (max-width: 600px) {
+    .banner-full { display: none; }
+    .banner-mobile { display: inline; }
+  }
 
   html {
     scrollbar-gutter: stable;
