@@ -9,6 +9,8 @@
     .cat-tab { padding: 8px 14px; font-size: 0.75rem; }
     .feedback-link a { font-size: 0.65rem; }
     .beta-banner { padding: 4px 16px; font-size: 0.75rem; border-bottom-width: 1px; }
+    .banner-full { display: none; }
+    .banner-short { display: inline; }
 
     /* ── Mobile header: single row with centered title + search icon ── */
     header {

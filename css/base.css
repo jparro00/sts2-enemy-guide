@@ -15,6 +15,7 @@
     color: #88c0ff;
     text-decoration: underline;
   }
+  .banner-short { display: none; }
   .stable-banner {
     background: #141a2a;
     color: #8ab4d6;
