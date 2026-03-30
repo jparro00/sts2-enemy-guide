@@ -11,11 +11,24 @@ function getBrowseElements() {
   ];
 }
 
+function openSearch() {
+  document.querySelector('header').classList.add('search-open');
+  document.getElementById('search-input').focus();
+}
+
+function closeSearch() {
+  document.querySelector('header').classList.remove('search-open');
+}
+
 function clearSearch() {
   const input = document.getElementById('search-input');
   input.value = '';
   onSearch('');
-  input.focus();
+  if (window.innerWidth <= 600) {
+    closeSearch();
+  } else {
+    input.focus();
+  }
 }
 
 function onSearch(query) {
