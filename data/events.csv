@@ -73,7 +73,7 @@ tinker_time,Tinker Time,Glory,"[info]Creates a Mad Science card (1 energy). Upgr
 trial,The Trial,Glory,"[info]After accepting, one of 3 random trials is chosen (Merchant, Noble, or Nondescript).
 [info]Rejecting is not allowed — double downing abandons the run.",,trial.webp,"You join a line of people entering a massive building.|As you pass under a [gold]golden archway[/gold], horns blare, [jitter]confetti explodes[/jitter], and [sine]streamers glide[/sine] down from the ceiling!|“Entrant [blue]{EntrantNumber}[/blue], you are the [green]DECIDER[/green] for today's [gold]Trial[/gold].”"
 brain_leech,Brain Leech,Shared,"[req]Can only appear in Act 1 or Act 2.
-[info]Share Knowledge cards come from your character's card pool. Cards are selected with default rarity chance which does not respect your current rare or uncommon chance.","1,2",brain_leech.webp,[jitter]*thunk*[/jitter]|A sharp pain is felt atop your head and a thought stabs into your mind.|[purple][sine]“SHARE KNOWLEDGE???”[/sine][/purple]|You are unsure how to proceed...
+[info]Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.","1,2",brain_leech.webp,[jitter]*thunk*[/jitter]|A sharp pain is felt atop your head and a thought stabs into your mind.|[purple][sine]“SHARE KNOWLEDGE???”[/sine][/purple]|You are unsure how to proceed...
 crystal_sphere,Crystal Sphere,Shared,"[req]Can only appear in Act 2 or Act 3.
 [req]Can only appear if all players have at least 100 Gold.
 [info]The following items are guaranteed to be in the minigame:
