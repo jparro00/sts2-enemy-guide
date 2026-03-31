@@ -4,7 +4,7 @@
     .act-card .act-name { font-size: 0.85rem; }
     .act-card .act-label { font-size: 0.55rem; }
     .act-card .act-text { padding: 4px 0; }
-    .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
+    .enemy-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; padding: 12px; }
     .detail-overlay { width: 100vw; }
     .cat-tab { padding: 8px 14px; font-size: 0.75rem; }
     .feedback-link a { font-size: 0.65rem; }
