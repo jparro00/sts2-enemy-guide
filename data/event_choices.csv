@@ -24,7 +24,7 @@ unrest_site,Kill the Trees,Lose [red]8[/red] Max HP. Obtain a random [gold]Relic
 unrest_site,Rest Anyways,[green]Heal to full HP.[/green] Receive [red]Poor Sleep[/red].,,poor_sleep
 wellspring,Bathe,Remove [blue]1[/blue] card from your [gold]Deck[/gold]. Add [blue]1[/blue] [red]Guilty[/red] to your [gold]Deck[/gold].,,guilty
 wellspring,Bottle,Procure [blue]1[/blue] random [gold]Potion[/gold].,,
-whispering_hollow,Exchange Gold,Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,"[info]Gold cost varies by +-9 (range: 26-44).",
+whispering_hollow,Exchange Gold,Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,,
 whispering_hollow,Hug the Tree,Lose [red]9[/red] HP. Choose a card to [gold]Transform[/gold].,,
 wood_carvings,Bird,Choose [blue]1[/blue] starter card to [gold]Transform[/gold] into [gold]Peck[/gold].,,peck
 wood_carvings,Snake,[gold]Enchant[/gold] [blue]1[/blue] card with [purple]Slither[/purple].,,slither
