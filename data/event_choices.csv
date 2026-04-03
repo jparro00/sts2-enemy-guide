@@ -24,7 +24,7 @@ unrest_site,Kill the Trees,Lose [red]8[/red] Max HP. Obtain a random [gold]Relic
 unrest_site,Rest Anyways,[green]Heal to full HP.[/green] Receive [red]Poor Sleep[/red].,,poor_sleep
 wellspring,Bathe,Remove [blue]1[/blue] card from your [gold]Deck[/gold]. Add [blue]1[/blue] [red]Guilty[/red] to your [gold]Deck[/gold].,,guilty
 wellspring,Bottle,Procure [blue]1[/blue] random [gold]Potion[/gold].,,
-whispering_hollow,Exchange Gold,Lose [red]50[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,,
+whispering_hollow,Exchange Gold,Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,"[info]Gold cost varies by +-9 (range: 26-44).",
 whispering_hollow,Hug the Tree,Lose [red]9[/red] HP. Choose a card to [gold]Transform[/gold].,,
 wood_carvings,Bird,Choose [blue]1[/blue] starter card to [gold]Transform[/gold] into [gold]Peck[/gold].,,peck
 wood_carvings,Snake,[gold]Enchant[/gold] [blue]1[/blue] card with [purple]Slither[/purple].,,slither
@@ -57,8 +57,8 @@ sunken_treasury,Second Chest,Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receiv
 trash_heap,Dive In,Lose [red]8[/red] HP. Obtain a random forgotten [gold]Relic[/gold] from the past.,,"darkstone_periapt,dream_catcher,hand_drill,maw_bank,the_boot"
 trash_heap,Grab Random Junk,Gain [blue]100[/blue] [gold]Gold[/gold]. Obtain a random forgotten card from the past.,,"caltrops,clash,distraction,dual_wield,entrench,hello_world,outmaneuver,rebound,rip_and_tear,stack"
 waterlogged_scriptorium,Bloody Ink,Gain [green]6[/green] Max HP.,,
-waterlogged_scriptorium,Prickly Sponge,Pay [red]155[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
-waterlogged_scriptorium,Tentacle Quill,Pay [red]65[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple].,,steady
+waterlogged_scriptorium,Prickly Sponge,Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
+waterlogged_scriptorium,Tentacle Quill,Pay [red]55[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple].,,steady
 amalgamator,Combine Defends,Remove [blue]2[/blue] [gold]Defends[/gold]. Add [gold]Ultimate Defend[/gold] to your [gold]Deck[/gold].,,ultimate_defend
 amalgamator,Combine Strikes,Remove [blue]2[/blue] [gold]Strikes[/gold]. Add [gold]Ultimate Strike[/gold] to your [gold]Deck[/gold].,,ultimate_strike
 bugslayer,Learn Extermination Technique,Add [gold]Exterminate[/gold] to your [gold]Deck[/gold].,,exterminate
@@ -84,7 +84,7 @@ battleworn_dummy,Setting 3,Fight a [blue]300[/blue] HP dummy. Obtain a random [g
 grave_of_the_forgotten,Accept the Forgotten Soul,Obtain Forgotten Soul.,,
 grave_of_the_forgotten,Confront with Truth,Add [red]Decay[/red] to your [gold]Deck[/gold]. [gold]Enchant[/gold] a card that [gold]Exhausts[/gold] with [purple]Soul's Power[/purple].,,"decay,souls_power"
 hungry_for_mushrooms,Big Mushroom,Obtain [gold]Big Mushroom[/gold].,,big_mushroom
-hungry_for_mushrooms,Fragrant Mushroom,Obtain [gold]Fragrant Mushroom[/gold].,,fragrant_mushroom
+hungry_for_mushrooms,Fragrant Mushroom,Lose [red]15[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]2[/blue] random cards.,,fragrant_mushroom
 reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,Does not copy the Bad Luck. Enchantments on cards do get copied,bad_luck
 reflections,Touch a Mirror,[red]Downgrade[/red] [blue]2[/blue] random cards. [green]Upgrade[/green] [blue]4[/blue] random cards.,,
 round_tea_party,Enjoy Your Tea,Obtain [red]Royal Poison[/red]. [green]Heal to full HP.[/green],,royal_poison
