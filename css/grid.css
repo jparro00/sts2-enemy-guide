@@ -1,9 +1,9 @@
   /* ── Enemy Grid ── */
   .enemy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
-    padding: 20px 24px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    padding: 24px 32px;
     max-width: 1000px;
     margin: 0 auto;
   }
@@ -65,8 +65,8 @@
   .enemy-card[data-cat="boss"] .enemy-thumb { background: linear-gradient(135deg, #251a2e, #150d1a); }
   .enemy-card[data-cat="events"] .enemy-thumb { background: linear-gradient(135deg, #1a2a2e, #0d1a1e); }
   .enemy-name {
-    padding: 6px 8px;
-    font-size: 0.72rem;
+    padding: 8px 10px;
+    font-size: 0.78rem;
     font-weight: 600;
     text-align: center;
     white-space: nowrap;
