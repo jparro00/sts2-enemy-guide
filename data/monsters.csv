@@ -89,7 +89,7 @@ The Obscura,123 (129),"Opens with <Illusion>.
 Then chooses randomly from <Piercing Gaze>, <Wail>, <Hardening Strike>.",,,,
 Parafright,21,Always uses <Slam>.,[info] Retains Strength after reviving.,illusion;minion,{illusion},
 Thieving Hopper,79 (84),Always uses <Thievery> → <Flutter> → <Hat Trick> → <Nab> → <Escape>.,"[info] Stolen card is taken from draw or discard pile. Priorities: 1. non-imbued uncommon 2. non-imbued common/rare/event 3. non-imbued basic/quest 4. imbued or ancient 5. curse or anything else.[info] If stunned before turn 5, resumes with next move. If stunned on turn 5, tries <Escape> again.[bug] As of v0.98.3 the game softlocks if Thieving Hopper cannot find a valid target to steal.",escape_artist; flutter; swipe,{escape_artist} 5,
-Toadpole,21 - 25 (22 - 26),Cycles <Spike Spit> → <Whirl> → <Spiken>.,"[info] Front starts <Spiken>, non-front start <Whirl>.",thorns,,
+Toadpole,21 - 25 (22 - 26),Cycles <Whirl> → <Spiken> → <Spike Spit>.,"[info] Front starts <Spiken>, back starts <Whirl>.",thorns,,
 Tunneler,87 (92),"Opens with <Bite> → <Burrow>.
 While Burrowed: Always uses <Below>.
 After stun: Repeats <Bite> → <Burrow>.",,burrowed,,
