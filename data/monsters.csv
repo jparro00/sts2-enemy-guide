@@ -8,7 +8,7 @@ Calcified Cultist,38 - 41 (39 - 42),"Opens with <Incantation>, then always uses 
 Chomper,60 - 64 (63 - 67),Cycles <Clamp> → <Screech>.,"[info] 1st starts <Clamp>, 2nd starts <Screech>.",artifact,{artifact} 2,
 Corpse Slug,25 - 27 (27 - 29),Cycles <Whip Slap> → <Glomp> → <Gloop>.,"[info] 1st starts randomly, each subsequent starts at the next point in the cycle.",ravenous,{ravenous} 4 (5),
 Cubex Construct,65 (70),"Opens with <Charge Up>.
-Then cycles <Repeater Blast> → <Repeater Blast> → <Expel Blast>.",[bug] As of v0.99.1 <Submerge> is never used in the cycle.,artifact,13 {block} and {artifact} 1,
+Then cycles <Repeater Blast> → <Repeater Blast> → <Expel Blast>.",[bug] As of v0.99.1 <Submerge> is never used in the cycle.,artifact,{artifact} 1,
 Damp Cultist,51 - 53 (52 - 54),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,
 Devoted Sculptor,162 (172),"Opens with <Forbidden Incantation>, then always uses <Savage>.",,ritual,,
 Exoskeleton,24 - 28 (25 - 29),"Cycles <Skitter> → <Mandible> → <Enrage>, with 50% chance to skip <Skitter>.","[info] 1st starts <Skitter>, 2nd starts <Mandible>, 3rd starts <Enrage>, 4th starts randomly.",hard_to_kill,{hard_to_kill} 9,
