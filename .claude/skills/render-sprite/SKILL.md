@@ -1,0 +1,156 @@
+---
+name: render-sprite
+description: Render a Spine monster sprite using Godot, convert to 512x512 webp, and save to media/enemies/. Takes a monster display name (e.g. "Ruby Raider (Axe)") or spine folder name (e.g. "axe_ruby_raider").
+---
+
+# Render Monster Sprite
+
+Renders a monster's Spine skeleton into a 512x512 transparent webp sprite and places it in `media/enemies/`.
+
+## Arguments
+
+The user provides a monster name — either:
+- A display name like `Ruby Raider (Axe)` or `Axebot`
+- A spine folder name like `axe_ruby_raider` or `axebot`
+
+If unclear which monster, list close matches from `raw/animations/monsters/` and `media/enemies/` and ask.
+
+## Step 1: Resolve the spine folder name and display name
+
+Monster spine assets live at: `raw/animations/monsters/{folder_name}/`
+Note: some folders have mismatched filenames (e.g. `soul_nexus/soulnexus.skel`, `devoted_sculptor/devoted_scultpor.skel`). The GDScript auto-detects .skel and .atlas files independently.
+
+If the user gave a display name, find the matching spine folder by:
+- Checking `media/enemies/` for the webp filename (display name mapping)
+- Checking `raw/animations/monsters/` folder names
+- The mapping is usually: `Display Name` -> `display_name` (lowercase, spaces to underscores)
+- Variants like `Ruby Raider (Axe)` map to `axe_ruby_raider` (variant prefix + base name)
+
+Resolve BOTH the spine folder name AND the display name (for the webp filename).
+
+For shared skeletons (e.g. `cultists` folder with skins `coral`/`slug`), use `--skin=` and `--display-name=`.
+
+## Step 2: Render — choose automatic or interactive mode
+
+### Automatic mode
+Only use if the user explicitly asks for automatic/non-interactive rendering:
+
+```bash
+"C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe" --path "C:/Users/jparr/Documents/claude/sts2/spine_godot" -- --monster={folder_name} 2>&1
+```
+
+Then convert the output PNG to webp (see Step 3).
+
+Additional flags: `--skin=`, `--output-name=`, `--anim=`, `--frames=N`, `--track1=`, `--track2=`
+
+The automatic renderer uses a SubViewport at 6144x6144 so clipping should not be an issue.
+
+### Interactive mode (default)
+Opens a Godot window with a slider to scrub through the animation. The user picks a frame and clicks Capture — it auto-converts to webp, saves to media/enemies/, and quits.
+
+```bash
+"C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe" --path "C:/Users/jparr/Documents/claude/sts2/spine_godot" res://interactive.tscn -- --monster={folder_name} "--display-name={Display Name}" 2>&1
+```
+
+Additional flags: `--skin=`, `--track1=`, `--track2=`, `--anim=`
+
+Interactive mode handles the full pipeline — capture (via 6144x6144 SubViewport), crop, resize, convert to webp, and save to `media/enemies/`. No manual conversion step needed. After Godot exits, just show the result (Step 4).
+
+Note: The preview window (1920x1080) may show the sprite slightly clipped, but the actual capture uses a 6144x6144 SubViewport so the output will be correct.
+
+## Step 3: Convert to 512x512 webp (automatic mode only)
+
+Use Python/Pillow to:
+1. Open the rendered PNG (RGBA)
+2. Find bounding box of non-transparent pixels (alpha > 0)
+3. Crop to content
+4. Fit into 512x512 canvas with ~16px padding, preserving aspect ratio (LANCZOS resampling)
+5. Center on transparent 512x512 canvas
+6. Save as webp (quality=90) to `media/enemies/{Display Name}.webp`
+
+```python
+from PIL import Image
+import numpy as np
+
+img = Image.open('spine_godot/output/{folder_name}_sprite.png').convert('RGBA')
+arr = np.array(img)
+alpha = arr[:, :, 3]
+rows = np.any(alpha > 0, axis=1)
+cols = np.any(alpha > 0, axis=0)
+rmin, rmax = np.where(rows)[0][[0, -1]]
+cmin, cmax = np.where(cols)[0][[0, -1]]
+cropped = img.crop((cmin, rmin, cmax + 1, rmax + 1))
+w, h = cropped.size
+target = 512
+padding = 16
+max_dim = target - padding * 2
+scale = min(max_dim / w, max_dim / h)
+new_w, new_h = int(w * scale), int(h * scale)
+resized = cropped.resize((new_w, new_h), Image.LANCZOS)
+canvas = Image.new('RGBA', (target, target), (0, 0, 0, 0))
+canvas.paste(resized, ((target - new_w) // 2, (target - new_h) // 2))
+canvas.save('media/enemies/{Display Name}.webp', 'WEBP', quality=90)
+```
+
+## Step 4: Show the result
+
+Read and display the saved webp so the user can visually inspect it.
+
+## Multi-Track Monsters
+
+Some monsters need a `--track1=` overlay animation to look correct. Auto-apply these:
+
+| Monster | Folder | --track1= |
+|---------|--------|-----------|
+| Soul Nexus | soul_nexus | `tracks/writhe` |
+| Queen | queen | `tracks/writhe` |
+| Lagavulin Matriarch | lagavulin_matriarch | `_tracks/eyes_closed_loop` |
+| Vantom | vantom | `_tracks/charged_1` |
+| Kaiser Crab | kaiser_crab | `left/idle_loop` (also needs `--track2=right/idle_loop` and `--anim=body/idle_loop`) |
+
+## Monsters Requiring Non-Default Skins
+
+Some monsters need a specific `--skin=` to render correctly:
+
+| Monster | Folder | --skin= | Notes |
+|---------|--------|---------|-------|
+| Scroll of Biting | scroll_of_biting | `skin1` | Default skin is just a portal vortex |
+| Cubex Construct | cubex_construct | `moss2` | Default is just the orb; also needs `--anim=attack_loop` |
+| Calcified Cultist | cultists | `coral` | Shared skeleton |
+| Damp Cultist | cultists | `slug` | Shared skeleton |
+| Toadpole | toadpole | Combined `eye1` + `pattern1` | Needs custom script `render_toadpole.gd` |
+
+## Monsters Requiring Non-Default Animations
+
+| Monster | Folder | --anim= | Notes |
+|---------|--------|---------|-------|
+| Cubex Construct | cubex_construct | `attack_loop` | Idle is burrowed (just an orb) |
+| Kaiser Crab | kaiser_crab | `body/idle_loop` | Idle split across 3 tracks |
+
+## Monsters Requiring VFX Rendering
+
+These monsters need shader effects or particles to look correct. Use the `/render-sprite-vfx` skill instead:
+
+| Monster | Issue | VFX Script |
+|---------|-------|-----------|
+| Waterfall Giant | Water shader + mist particles | `render_waterfall.gd` |
+| Living Fog (living_smog) | Scrolling smoke shader | `render_living_fog.gd` |
+| The Lost / The Forgotten | Smoke shader | `render_lost_forgotten.gd` |
+| Entomancer | Bug swarm particles | `render_entomancer.gd` |
+| Kin Priest | Fire shader on staff | `render_kin_priest.gd` |
+| Fogmog | Gas/smoke shader | Not yet created |
+
+## Static Image Monsters (no Spine data)
+
+| Monster | Source |
+|---------|--------|
+| Skulking Colony | `raw/images/monsters/skulkling_colomy.png` (typo in game files). Convert directly from PNG. |
+
+## Paths
+
+- Godot exe: `C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe`
+- Spine assets: `C:/Users/jparr/Documents/claude/sts2/raw/animations/monsters/`
+- Godot project: `C:/Users/jparr/Documents/claude/sts2/spine_godot/`
+- Render output: `C:/Users/jparr/Documents/claude/sts2/spine_godot/output/`
+- Final webp: `C:/Users/jparr/Documents/claude/sts2/media/enemies/`
+- Static monster images: `C:/Users/jparr/Documents/claude/sts2/raw/images/monsters/`
