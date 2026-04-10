@@ -33,7 +33,9 @@ The approach:
 
 Read the `.tscn` and identify:
 - `SpineSlotNode` entries with `normal_material` (shader materials applied to spine slots)
+- `SpineBoneNode` entries (VFX attached to bones)
 - `GPUParticles2D` nodes (particle effects)
+- `Sprite2D` nodes with shader materials (fire, water effects)
 - External resource references (shaders, textures, materials)
 - The sprite's `scale` and `position`
 
@@ -41,10 +43,10 @@ Read the `.tscn` and identify:
 
 Extract all referenced resources from the PCK:
 - Shader files (`.tres` VisualShader or gdshader)
-- Texture PNGs (smoke textures, gradient textures, particle sprites)
+- Texture PNGs (smoke textures, gradient textures, particle sprites, fire textures)
 - Material .tres files (for reference — we recreate these in GDScript)
 
-Copy textures to `spine_godot/assets/textures/particles/` or similar.
+Copy textures to `spine_godot/assets/textures/` subdirectories.
 Copy shaders to `spine_godot/assets/shaders/`.
 
 **Important**: Godot can't load raw PNGs via `load()` without importing them first. Use `Image.load_from_file()` + `ImageTexture.create_from_image()` instead:
@@ -64,7 +66,7 @@ Create a GDScript (e.g. `render_{monster}.gd`) that:
 2. Creates a SpineSprite with the correct scale from the scene file
 3. Plays idle animation, paused (`set_time_scale(0)`)
 4. Creates ShaderMaterial instances in code, setting all shader_parameters from the scene file
-5. Attaches materials to SpineSlotNodes by slot_name
+5. Attaches materials to SpineSlotNodes or SpineBoneNodes by slot/bone name
 6. Optionally adds GPUParticles2D nodes (skip flipbook particles that don't render correctly — these show as white blobs)
 7. Adds interactive UI (CanvasLayer + VBoxContainer with slider and capture button)
 8. On capture: clones everything into a 6144x6144 SubViewport, waits for particles to fill, screenshots, converts to webp
@@ -78,6 +80,15 @@ slot_node.slot_name = "body_water_rect"  # from the .tscn
 slot_node.normal_material = my_shader_material
 slot_node.show_behind_parent = true
 sprite.add_child(slot_node)
+```
+
+**Attaching VFX to a Spine bone:**
+```gdscript
+var bone_node = SpineBoneNode.new()
+bone_node.bone_name = "staff_fire_attach"
+bone_node.show_behind_parent = true
+sprite.add_child(bone_node)
+# Then add Sprite2D or GPUParticles2D as children of the bone node
 ```
 
 **Creating shader materials from scene data:**
@@ -125,16 +136,16 @@ Launch with:
 |---------|--------|---------|
 | Waterfall Giant | `render_waterfall.gd` | Water shader on body/mouth slots, mist particles, droplets |
 | Living Fog | `render_living_fog.gd` | 3-layer scrolling smoke shader on smoke_tex slots |
+| The Lost / The Forgotten | `render_lost_forgotten.gd` | Scrolling smoke shader (shared script, use `--monster=` flag) |
+| Entomancer | `render_entomancer.gd` | Bug swarm ring particles |
+| Kin Priest | `render_kin_priest.gd` | Fire shader on staff bone + glow particles |
 
 ## Candidates for VFX Rendering
 
-These monsters are in the "known broken" list and could potentially be fixed with this approach:
-
 | Monster | Folder | Expected VFX |
 |---------|--------|-------------|
-| The Forgotten | the_forgotten | Scrolling smoke shader (same as Living Fog) |
 | Fogmog | fogmog | Likely similar smoke/gas shader |
-| Cubex Construct | cubex_construct | 2D sphere shader for the orb |
+| Cubex Construct | cubex_construct | 2D sphere shader for the orb (body blocks still need `--skin=moss2 --anim=attack_loop`) |
 
 ## Paths
 

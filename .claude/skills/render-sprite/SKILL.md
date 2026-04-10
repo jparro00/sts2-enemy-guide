@@ -41,7 +41,7 @@ Only use if the user explicitly asks for automatic/non-interactive rendering:
 
 Then convert the output PNG to webp (see Step 3).
 
-Additional flags: `--skin=`, `--output-name=`, `--anim=`, `--frames=N`, `--track1=`
+Additional flags: `--skin=`, `--output-name=`, `--anim=`, `--frames=N`, `--track1=`, `--track2=`
 
 The automatic renderer uses a SubViewport at 6144x6144 so clipping should not be an issue.
 
@@ -52,7 +52,7 @@ Opens a Godot window with a slider to scrub through the animation. The user pick
 "C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe" --path "C:/Users/jparr/Documents/claude/sts2/spine_godot" res://interactive.tscn -- --monster={folder_name} "--display-name={Display Name}" 2>&1
 ```
 
-Additional flags: `--skin=`, `--track1=`, `--anim=`
+Additional flags: `--skin=`, `--track1=`, `--track2=`, `--anim=`
 
 Interactive mode handles the full pipeline — capture (via 6144x6144 SubViewport), crop, resize, convert to webp, and save to `media/enemies/`. No manual conversion step needed. After Godot exits, just show the result (Step 4).
 
@@ -106,6 +106,7 @@ Some monsters need a `--track1=` overlay animation to look correct. Auto-apply t
 | Queen | queen | `tracks/writhe` |
 | Lagavulin Matriarch | lagavulin_matriarch | `_tracks/eyes_closed_loop` |
 | Vantom | vantom | `_tracks/charged_1` |
+| Kaiser Crab | kaiser_crab | `left/idle_loop` (also needs `--track2=right/idle_loop` and `--anim=body/idle_loop`) |
 
 ## Monsters Requiring Non-Default Skins
 
@@ -117,12 +118,14 @@ Some monsters need a specific `--skin=` to render correctly:
 | Cubex Construct | cubex_construct | `moss2` | Default is just the orb; also needs `--anim=attack_loop` |
 | Calcified Cultist | cultists | `coral` | Shared skeleton |
 | Damp Cultist | cultists | `slug` | Shared skeleton |
+| Toadpole | toadpole | Combined `eye1` + `pattern1` | Needs custom script `render_toadpole.gd` |
 
 ## Monsters Requiring Non-Default Animations
 
 | Monster | Folder | --anim= | Notes |
 |---------|--------|---------|-------|
 | Cubex Construct | cubex_construct | `attack_loop` | Idle is burrowed (just an orb) |
+| Kaiser Crab | kaiser_crab | `body/idle_loop` | Idle split across 3 tracks |
 
 ## Monsters Requiring VFX Rendering
 
@@ -132,7 +135,9 @@ These monsters need shader effects or particles to look correct. Use the `/rende
 |---------|-------|-----------|
 | Waterfall Giant | Water shader + mist particles | `render_waterfall.gd` |
 | Living Fog (living_smog) | Scrolling smoke shader | `render_living_fog.gd` |
-| The Forgotten | Smoke shader (similar to Living Fog) | Not yet created |
+| The Lost / The Forgotten | Smoke shader | `render_lost_forgotten.gd` |
+| Entomancer | Bug swarm particles | `render_entomancer.gd` |
+| Kin Priest | Fire shader on staff | `render_kin_priest.gd` |
 | Fogmog | Gas/smoke shader | Not yet created |
 
 ## Static Image Monsters (no Spine data)
@@ -140,16 +145,6 @@ These monsters need shader effects or particles to look correct. Use the `/rende
 | Monster | Source |
 |---------|--------|
 | Skulking Colony | `raw/images/monsters/skulkling_colomy.png` (typo in game files). Convert directly from PNG. |
-
-## Static Image Monsters
-
-Some monsters use static PNGs instead of Spine. Convert directly:
-
-```python
-# Example for Skulking Colony
-img = Image.open('raw/images/monsters/skulkling_colomy.png').convert('RGBA')
-# ... same crop/resize/webp pipeline
-```
 
 ## Paths
 

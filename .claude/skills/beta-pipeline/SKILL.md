@@ -1,3 +1,4 @@
+---
 name: beta-pipeline
 description: Run the STS2 beta patch pipeline — fetch patch notes, decompile game files, cross-reference changes, update CSVs, and prepare beta branch for deployment.
 ---
@@ -16,9 +17,7 @@ curl -s "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=2868840
 
 ## Step 2: Create branch and update config
 - If a `beta-v{VERSION}` branch already exists, check it out
-- If not, create from the previous beta branch (the latest `beta-v*` branch): `git checkout beta-v{PREV} && git checkout -b beta-v{VERSION}`
-  - To find the previous beta branch: `git branch -r | grep beta-v | sort -V | tail -1`
-  - This ensures all prior beta-only data (CSV rows, assets) carries forward
+- If not, create from master: `git checkout master && git checkout -b beta-v{VERSION}`
 - Update `site-config.json`:
   - Set `betaVersion` to the new version string
   - Set `isBeta` to `true`
@@ -81,7 +80,6 @@ Update the relevant CSVs based on verified changes:
 - `data/powers.csv` — if new powers or description changes
 
 ### CSV formatting rules
-- **Always quote fields that contain commas** — wrap the entire field in `"` (e.g. `"attack, buff"`, `"Damage 10; Apply 2 {weak}, 2 {vulnerable}"`)
 - Multi-line CSV fields must be wrapped in `"` quotes with closing `"` on the last line
 - Ascension scaling format: `base(ascension)` or `min-max(asc_min-asc_max)`
 - Move references use `<Move Name>` angle brackets
