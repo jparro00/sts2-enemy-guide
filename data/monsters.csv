@@ -102,7 +102,7 @@ If <Call for Backup> is allowed, 75% chance to use it instead.","[info]All 3 rat
 Vine Shambler,61 (64),Cycles <Swipe> → <Grasping Vines> → <Chomp>.,,tangled,,
 Wriggler,17 - 21 (18 - 22),Cycles <Nasty Bite> → <Wriggle>.,"[info] If spawned from Phrog Parasite, starts stunned.[info] Positions 1 & 3 start <Nasty Bite>, positions 2 & 4 start <Wriggle>.",minion,,
 Bygone Effigy,127 (132),"Opens with <Sleep> → <Wake> → <Slash>, then always uses <Slash>.",,slow,{slow},
-Byrdonis,91 - 94 (99),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,
+Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,
 Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
 When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},
 (3 segments),"(always even #, segments have different max HP)",,,reattach,,
@@ -119,7 +119,7 @@ Mecha Knight,300 (320),"Opens with <Charge>.
 Then cycles <Flamethrower> → <Windup> → <Heavy Cleave>.",,artifact,{artifact} 3,
 Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (7),
 Phrog Parasite,61 - 64 (66 - 68),Cycles <Infect> → <Lash>.,,infested,{infested} 4,
-Skulking Colony,74 (79),Cycles <Smash> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 15,
+Skulking Colony,70 (75),Cycles <Smash> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 15,
 Soul Nexus,234 (254),"Opens with <Soul Burn>.
 Then chooses randomly from <Soul Burn>, <Maelstrom>, <Drain Life>.",,,,
 Terror Eel,140 (150),"Phase 1:
