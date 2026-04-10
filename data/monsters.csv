@@ -132,10 +132,9 @@ Opens with <Stamp>, then always uses <Plow>.
 
 Phase 2 (after stun):
 Cycles <Beast Cry> → <Stomp> → <Crush>.",,plow; ringing,,
-Doormaker,489 (512),"Opens with infinite HP as Door.
-Uses <Dramatic Open> to reveal actual HP and apply {hunger}.
+Doormaker,489 (512),"Uses <Dramatic Open> to reveal actual HP.
 Then cycles <Hunger> → <Scrutiny> → <Grasp>.
-Each phase swaps to a different power.",[info] Starts the fight as Door with infinite HP.,hunger; scrutiny; grasp,"{hunger}, {scrutiny}, or {grasp} (cycled each phase)",
+Each phase swaps to a different power.","[info] Infinite HP is actually 999,999,999 HP.",hunger; scrutiny; grasp,{infinite} HP as Door,
 Crusher,209 (219),Cycles <Thrash> → <Enlarging Strike> → <Bug Sting> → <Adapt> → <Guarded Strike>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Rocket,199 (209),Cycles <Targeting Reticle> → <Precision Beam> → <Charge Up> → <Laser> → <Recharge>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Knowledge Demon,379 (399),"Phase 1:
