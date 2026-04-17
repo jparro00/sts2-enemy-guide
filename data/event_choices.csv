@@ -9,12 +9,12 @@ colorful_philosophers,Blue,Obtain [blue]3[/blue] Defect cards.,,
 colorful_philosophers,Orange,Obtain [blue]3[/blue] Regent cards.,,
 colorful_philosophers,Pink,Obtain [blue]3[/blue] Necrobinder cards.,,
 dense_vegetation,Rest,Heal [green]30%[/green] Max HP. Fight some [red]enemies[/red].,,
-dense_vegetation,Trudge On,Remove a card from your [gold]Deck[/gold]. Lose [red]11[/red] HP.,,
+dense_vegetation,Trudge On,Lose [red]8[/red] HP. Gain [blue]61-100[/blue] [gold]Gold[/gold].,,
 jungle_maze_adventure,Join Forces,Gain [blue]35-65[/blue] [gold]Gold[/gold].,,
 jungle_maze_adventure,Solo Quest,Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.,,
 luminous_choir,Offer Tribute,Pay [red]99-149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold].,,
 luminous_choir,Reach into the Flesh,Remove [blue]2[/blue] cards from your [gold]Deck[/gold]. Add [red]Spore Mind[/red] to your [gold]Deck[/gold].,,spore_mind
-morphic_grove,Group,Lose [red]100[/red] [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards.,,
+morphic_grove,Group,Lose [red]all[/red] [gold]Gold[/gold]. [gold]Transform[/gold] [blue]2[/blue] cards.,,
 morphic_grove,Loner,Gain [green]5[/green] Max HP.,,
 sapphire_seed,Consume,Heal [green]9[/green] HP. [gold]Upgrade[/gold] a card in your [gold]Deck[/gold].,,
 sapphire_seed,Plant and Nourish,[gold]Enchant[/gold] a card with [purple]Sown[/purple].,,sown
@@ -24,7 +24,7 @@ unrest_site,Kill the Trees,Lose [red]8[/red] Max HP. Obtain a random [gold]Relic
 unrest_site,Rest Anyways,[green]Heal to full HP.[/green] Receive [red]Poor Sleep[/red].,,poor_sleep
 wellspring,Bathe,Remove [blue]1[/blue] card from your [gold]Deck[/gold]. Add [blue]1[/blue] [red]Guilty[/red] to your [gold]Deck[/gold].,,guilty
 wellspring,Bottle,Procure [blue]1[/blue] random [gold]Potion[/gold].,,
-whispering_hollow,Exchange Gold,Lose [red]50[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,,
+whispering_hollow,Exchange Gold,Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Potions[/gold].,,
 whispering_hollow,Hug the Tree,Lose [red]9[/red] HP. Choose a card to [gold]Transform[/gold].,,
 wood_carvings,Bird,Choose [blue]1[/blue] starter card to [gold]Transform[/gold] into [gold]Peck[/gold].,,peck
 wood_carvings,Snake,[gold]Enchant[/gold] [blue]1[/blue] card with [purple]Slither[/purple].,,slither
@@ -36,14 +36,14 @@ doors_of_light_and_dark,Light Door,[gold]Upgrade[/gold] [blue]2[/blue] random ca
 drowning_beacon,Bottle,Procure [aqua]Glowwater Potion[/aqua].,,glowwater_potion
 drowning_beacon,Climb,Obtain [gold]Fresnel Lens[/gold]. Lose [red]13[/red] Max HP.,,"nimble,fresnel_lens"
 endless_conveyor,Observe the Chef,[gold]Upgrade[/gold] a random card in your [gold]Deck[/gold].,,
-endless_conveyor,Grab Caviar off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,~24% chance.,
-endless_conveyor,Grab Fried Eel off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,~12% chance.,
-endless_conveyor,Grab Jelly Liver off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!,~12% chance.,
-endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!,"Forced every 5th grab (5th, 10th, etc.).",feeding_frenzy
+endless_conveyor,Grab Caviar off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. Gain [green]4[/green] Max HP. Continue feasting!,~24% chance.,
+endless_conveyor,Grab Fried Eel off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. Add a random Colorless Card to your [gold]Deck[/gold]. Continue feasting!,~12% chance.,
+endless_conveyor,Grab Jelly Liver off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. [gold]Transform[/gold] a card. Continue feasting!,~12% chance.,
+endless_conveyor,Grab Seapunk Salad off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. Add [gold]Feeding Frenzy[/gold] to your [gold]Deck[/gold]. Continue feasting!,"Forced every 5th grab (5th, 10th, etc.).",feeding_frenzy
 endless_conveyor,Grab Golden Eysh off the Belt,[green]LUCKY WINNER![/green] Gain [blue]75[/blue] [gold]Gold[/gold].,~4% chance. Free (no gold cost). Only appears after first grab.,
-endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,~12% chance.,
-endless_conveyor,Grab Suspicious Condiment off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Procure [blue]1[/blue] random [gold]Potion[/gold]. Continue feasting!,~12% chance. Only appears if you have open potion slots.,
-endless_conveyor,Grab Clam Roll off the Belt,Pay [red]35[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!,~24% chance. Only appears if not at full HP.,
+endless_conveyor,Grab Spicy Snappy off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. [gold]Upgrade[/gold] a random card. Continue feasting!,~12% chance.,
+endless_conveyor,Grab Suspicious Condiment off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. Procure [blue]1[/blue] random [gold]Potion[/gold]. Continue feasting!,~12% chance. Only appears if you have open potion slots.,
+endless_conveyor,Grab Clam Roll off the Belt,Pay [red]40[/red] [gold]Gold[/gold]. Heal [green]10[/green] HP. Continue feasting!,~24% chance. Only appears if not at full HP.,
 endless_conveyor,Leave,Leave the conveyor belt.,,
 punch_off,I Can Take Them,Fight them for [gold]Greater Rewards[/gold].,,
 punch_off,Nab,Add [red]Injury[/red] to your [gold]Deck[/gold]. Obtain a random [gold]Relic[/gold].,,injury
@@ -57,8 +57,8 @@ sunken_treasury,Second Chest,Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receiv
 trash_heap,Dive In,Lose [red]8[/red] HP. Obtain a random forgotten [gold]Relic[/gold] from the past.,,"darkstone_periapt,dream_catcher,hand_drill,maw_bank,the_boot"
 trash_heap,Grab Random Junk,Gain [blue]100[/blue] [gold]Gold[/gold]. Obtain a random forgotten card from the past.,,"caltrops,clash,distraction,dual_wield,entrench,hello_world,outmaneuver,rebound,rip_and_tear,stack"
 waterlogged_scriptorium,Bloody Ink,Gain [green]6[/green] Max HP.,,
-waterlogged_scriptorium,Prickly Sponge,Pay [red]155[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
-waterlogged_scriptorium,Tentacle Quill,Pay [red]65[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple].,,steady
+waterlogged_scriptorium,Prickly Sponge,Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
+waterlogged_scriptorium,Tentacle Quill,Pay [red]55[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple].,,steady
 amalgamator,Combine Defends,Remove [blue]2[/blue] [gold]Defends[/gold]. Add [gold]Ultimate Defend[/gold] to your [gold]Deck[/gold].,,ultimate_defend
 amalgamator,Combine Strikes,Remove [blue]2[/blue] [gold]Strikes[/gold]. Add [gold]Ultimate Strike[/gold] to your [gold]Deck[/gold].,,ultimate_strike
 bugslayer,Learn Extermination Technique,Add [gold]Exterminate[/gold] to your [gold]Deck[/gold].,,exterminate
@@ -72,7 +72,7 @@ infested_automaton,Touch the Core,Obtain a random [gold]0 cost card[/gold].,,
 lost_wisp,Capture the Wisp,Add [red]Decay[/red] to your [gold]Deck[/gold]. Obtain the [gold]Lost Wisp[/gold].,,"decay,lost_wisp"
 lost_wisp,Search the Nearby Area,Gain [blue]45-75[/blue] [gold]Gold[/gold].,,
 spirit_grafter,Let It In,Heal [green]25[/green] HP. Add [gold]Metamorphosis[/gold] to your [gold]Deck[/gold].,,metamorphosis
-spirit_grafter,Rejection,Lose [red]9[/red] HP. Remove a card from your [gold]Deck[/gold].,,
+spirit_grafter,Rejection,Lose [red]10[/red] HP. [gold]Upgrade[/gold] a card.,,
 the_lantern_key,Keep the Key,Fight to obtain the Key.,Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key,"lantern_key,strength,plating"
 the_lantern_key,Return the Key,Gain [blue]100[/blue] [gold]Gold[/gold].,,
 zen_weaver,Arachnid Acupuncture,Pay [red]250[/red] [gold]Gold[/gold]. Remove [blue]2[/blue] cards from your [gold]Deck[/gold].,,
@@ -84,7 +84,7 @@ battleworn_dummy,Setting 3,Fight a [blue]300[/blue] HP dummy. Obtain a random [g
 grave_of_the_forgotten,Accept the Forgotten Soul,Obtain Forgotten Soul.,,
 grave_of_the_forgotten,Confront with Truth,Add [red]Decay[/red] to your [gold]Deck[/gold]. [gold]Enchant[/gold] a card that [gold]Exhausts[/gold] with [purple]Soul's Power[/purple].,,"decay,souls_power"
 hungry_for_mushrooms,Big Mushroom,Obtain [gold]Big Mushroom[/gold].,,big_mushroom
-hungry_for_mushrooms,Fragrant Mushroom,Obtain [gold]Fragrant Mushroom[/gold].,,fragrant_mushroom
+hungry_for_mushrooms,Fragrant Mushroom,Lose [red]15[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]2[/blue] random cards.,,fragrant_mushroom
 reflections,Shatter,Duplicate your [gold]Deck[/gold]. Receive [purple]Bad Luck[/purple].,Does not copy the Bad Luck. Enchantments on cards do get copied,bad_luck
 reflections,Touch a Mirror,[red]Downgrade[/red] [blue]2[/blue] random cards. [green]Upgrade[/green] [blue]4[/blue] random cards.,,
 round_tea_party,Enjoy Your Tea,Obtain [red]Royal Poison[/red]. [green]Heal to full HP.[/green],,royal_poison

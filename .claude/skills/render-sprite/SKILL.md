@@ -146,6 +146,50 @@ These monsters need shader effects or particles to look correct. Use the `/rende
 |---------|--------|
 | Skulking Colony | `raw/images/monsters/skulkling_colomy.png` (typo in game files). Convert directly from PNG. |
 
+## Extracting Updated Assets During a Patch
+
+When rendering sprites after a game patch, the raw `.atlas`, `.skel`, and `.png` files in `raw/animations/monsters/` may be outdated. The game's PCK contains updated versions in Godot's imported format at `raw/.godot/imported/`. **All three files must be extracted together as a matched set** — mixing old and new files produces broken sprites (wrong dimensions, fragmented pieces).
+
+### Imported format conversions:
+
+| Source format | Target | How to extract |
+|---------------|--------|----------------|
+| `.spatlas` | `.atlas` | JSON file — parse with `json.load()`, extract the `atlas_data` field, write as plain text |
+| `.spskel` | `.skel` | Direct copy — the spskel IS the raw skel binary |
+| `.ctex` | `.png` | Binary file with GST2 header + embedded WEBP — find `RIFF` header offset, extract bytes from there, open with PIL |
+
+### Extraction script:
+
+```python
+import json, io
+from PIL import Image
+
+monster = "brute_ruby_raider"  # folder name in .godot/imported/
+
+# 1. Atlas: parse JSON, extract atlas_data
+with open(f'raw/.godot/imported/{monster}.atlas-HASH.spatlas', 'r') as f:
+    atlas_text = json.load(f)['atlas_data']
+with open(f'raw/animations/monsters/{folder}/{monster}.atlas', 'w', newline='\n') as f:
+    f.write(atlas_text)
+
+# 2. Skel: direct copy
+shutil.copy(f'raw/.godot/imported/{monster}.skel-HASH.spskel',
+            f'raw/animations/monsters/{folder}/{monster}.skel')
+
+# 3. PNG: extract WEBP from ctex
+with open(f'raw/.godot/imported/{monster}.png-HASH.ctex', 'rb') as f:
+    data = f.read()
+riff_pos = data.find(b'RIFF')
+img = Image.open(io.BytesIO(data[riff_pos:]))
+img.save(f'raw/animations/monsters/{folder}/{monster}.png')
+```
+
+### Verify dimensions match:
+After extraction, confirm the PNG dimensions match the atlas `size:` header line. If they don't, the files are from different versions.
+
+### Finding the imported files:
+Use glob patterns like `raw/.godot/imported/{monster}*.spatlas` to find files — the hash in the filename changes between versions. The `.import` files in the monster's folder also contain the exact imported path.
+
 ## Paths
 
 - Godot exe: `C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe`
