@@ -1,1 +1,11 @@
 Type,Name,Change,Patch
+monster,Axebot,"Reworked: HP 40-44(42-46) → 70-78(76-86). One-Two damage 5x2(6x2) → 9x2(10x2). Hammer Uppercut 8(10) → 12(14); Weak/Frail 1 → 2. Boot Up block 10 → 10(15); Strength now 3(4) per respawn. Sharpen move removed.",0.104.0
+monster,Ruby Raider (Assassin),Nerfed: Killshot damage 11(12) → 10(11).,0.104.0
+monster,Scroll of Biting,"Changed: HP 31-38(32-39) → 30-37(33-39). Slightly lower at low Ascension, slightly higher at high.",0.104.0
+monster,Owl Magistrate,"Changed: HP 234(243) → 231(247). Slightly lower at low Ascension, slightly higher at high.",0.104.0
+monster,Slimed Berserker,"Changed: HP 266(276) → 261(281). Slightly lower at low Ascension, slightly higher at high.",0.104.0
+monster,Vantom,Nerfed: Dismember damage 27(30) → 26(30). Slippery power 9 → 8(9).,0.104.0
+monster,Waterfall Giant,Nerfed: Siphon heal 15 → 10(15) (reduced at low Ascension only).,0.104.0
+encounter,Axebots (Glory hard),Reworked: now a single more challenging Axebot (with Stock 2) instead of two Axebots.,0.104.0
+event,Slippery Bridge,Changed: Overcome card pool no longer re-offers previously-shown cards until all others have been offered.,0.104.0
+monster,Multiplayer Scaling,"Nerfed: {artifact} now scales additively (base + count-1) instead of (count-1)*2+1. {slippery} now scales as base*count instead of (count-1)*2+1. {skittish} now scales as base*(1 + (count-1)*0.5) instead of count*actMultiplier.",0.104.0

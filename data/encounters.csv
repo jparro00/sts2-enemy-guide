@@ -64,7 +64,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 3,Glory,easy,Devoted Sculptor,Devoted Sculptor,,⚒️,,
 3,Glory,easy,Scrolls of Biting (easy),Scroll of Biting; Scroll of Biting; Scroll of Biting,3 enemies,📜,,
 3,Glory,easy,Turret Operator,Living Shield; Turret Operator,2 enemies,🛡️,,
-3,Glory,hard,Axebots,Axebot; Axebot,2 enemies,🪓,,
+3,Glory,hard,Axebots,Axebot,,🪓,,
 3,Glory,hard,Construct Menagerie,Punch Construct; Cubex Construct; Cubex Construct,3 enemies,🤖,,
 3,Glory,hard,Fabricator,Fabricator; Guardbot; Zapbot; Noisebot; Stabbot,,⚙️,,Fabricator.webp
 3,Glory,hard,Frog Knight,Frog Knight,,🐸,,

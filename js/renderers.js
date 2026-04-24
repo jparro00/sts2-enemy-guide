@@ -16,10 +16,40 @@ function scaleNum(n) {
   return Math.floor(n * playerCount * getActMultiplier());
 }
 
-// Scale a counter-style power amount: (playerCount - 1) × 2 + 1
+// Counter-style: (playerCount - 1) × 2 + 1 — used by Plating & Buffer
 function scaleNumCounter(n) {
   if (playerCount <= 1) return n;
   return Math.floor(n * ((playerCount - 1) * 2 + 1));
+}
+
+// Additive: amount + (playerCount - 1) — used by Artifact
+function scaleNumAdditive(n) {
+  if (playerCount <= 1) return n;
+  return Math.floor(n + (playerCount - 1));
+}
+
+// Linear: amount × playerCount (no act multiplier) — used by Slippery
+function scaleNumLinear(n) {
+  if (playerCount <= 1) return n;
+  return Math.floor(n * playerCount);
+}
+
+// Half-linear: amount × (1 + (playerCount - 1) × 0.5) — used by Skittish
+function scaleNumHalfLinear(n) {
+  if (playerCount <= 1) return n;
+  return Math.floor(n * (1 + (playerCount - 1) * 0.5));
+}
+
+// Return the scaling function for a given power key
+function getPowerScaleFn(powerKey) {
+  const formula = (multiplayerScaling.powerFormulas || {})[powerKey];
+  switch (formula) {
+    case 'counter': return scaleNumCounter;
+    case 'additive': return scaleNumAdditive;
+    case 'linear': return scaleNumLinear;
+    case 'half_linear': return scaleNumHalfLinear;
+    default: return scaleNum;
+  }
 }
 
 // Replace all numbers in an HP string with scaled values
@@ -34,16 +64,15 @@ function scaleHPPlayerCountOnly(text) {
   return text.replace(/\d+/g, match => Math.floor(parseInt(match, 10) * playerCount));
 }
 
-// Scale {power_key} N values for scalable powers; counter powers use their own formula
+// Scale {power_key} N values for scalable powers; each power uses its own formula (see getPowerScaleFn)
 function scaleEffects(text) {
   if (playerCount <= 1) return text;
   const scalableKeys = Object.keys(powersRef).filter(k => powersRef[k].scalesInMultiplayer);
   if (scalableKeys.length === 0) return text;
-  const counterKeys = new Set(multiplayerScaling.counterPowerKeys || []);
   const keyPattern = scalableKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
   const re = new RegExp(`(\\{(${keyPattern})\\})\\s*(\\d+(?:\\s*\\(\\d+\\))?)`, 'g');
   return text.replace(re, (match, tag, key, nums) => {
-    const scaleFn = counterKeys.has(key) ? scaleNumCounter : scaleNum;
+    const scaleFn = getPowerScaleFn(key);
     const scaled = nums.replace(/\d+/g, n => scaleFn(parseInt(n, 10)));
     return `${tag} ${scaled}`;
   });

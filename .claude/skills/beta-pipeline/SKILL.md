@@ -17,12 +17,16 @@ curl -s "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=2868840
 
 ## Step 2: Create branch and update config
 - If a `beta-v{VERSION}` branch already exists, check it out
-- If not, create from the previous beta branch (the latest `beta-v*` branch): `git checkout beta-v{PREV} && git checkout -b beta-v{VERSION}`
-  - To find the previous beta branch: `git branch -r | grep beta-v | sort -V | tail -1`
-  - This ensures all prior beta-only data (CSV rows, assets) carries forward
+- If not, determine the correct base branch:
+  - **If there's an active beta** (master's `site-config.json` has `isBeta: true` OR `betaVersion` set), create from the previous beta branch: `git checkout beta-v{PREV} && git checkout -b beta-v{VERSION}`
+    - To find the previous beta branch: `git branch -r | grep beta-v | sort -V | tail -1`
+    - This ensures all prior beta-only data (CSV rows, assets) carries forward
+  - **If there's no active beta** (previous beta was promoted to stable and merged into master — indicated by `isBeta: false` and no `betaVersion` in master's `site-config.json`), create from **master**: `git checkout master && git checkout -b beta-v{VERSION}`
+    - This is the clean case: master already contains all the previous beta's data, and branching from a stale `beta-v*` branch would introduce outdated `site-config.json` values
 - Update `site-config.json`:
   - Set `betaVersion` to the new version string
   - Set `isBeta` to `true`
+  - Ensure `gameVersion` reflects the current stable version (don't overwrite it)
 
 ## Step 3: Decompile game files
 Run the GDRE tools extraction:
