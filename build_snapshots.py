@@ -504,6 +504,46 @@ with open(os.path.join(BASE, "index.html"), encoding="utf-8") as f:
     INDEX_HTML = f.read()
 
 
+def render_banner_html():
+    """SSR the version banner so it's in the initial HTML (mirrors data.js).
+    Eliminates CLS from JS injecting the banner after page load.
+    Master with no active beta returns '' — banner stays hidden."""
+    beta_version = CONFIG.get("betaVersion", "") or ""
+    game_version = CONFIG.get("gameVersion", "") or ""
+    is_beta = bool(CONFIG.get("isBeta"))
+    if not beta_version:
+        return ""
+    if is_beta:
+        return (
+            '<div id="version-banner" class="beta-banner">'
+            f'<span class="banner-full">BETA — This page reflects <strong>beta v{beta_version}</strong> '
+            f'balance changes. <a href="../">View stable version</a></span>'
+            f'<span class="banner-short">BETA <strong>v{beta_version}</strong> — '
+            f'<a href="../">View stable version</a></span>'
+            "</div>"
+        )
+    return (
+        '<div id="version-banner" class="stable-banner">'
+        f'<span class="banner-full">This site is also available for the latest '
+        f'<strong>beta patch v{beta_version}</strong>. <a href="beta/">Switch to beta</a></span>'
+        f'<span class="banner-mobile">v{game_version} · <a href="beta/">Switch to beta</a></span>'
+        "</div>"
+    )
+
+
+BANNER_HTML = render_banner_html()
+
+# Idempotently swap whatever's currently in <div id="version-banner">…</div>
+# for the SSR'd banner (or back to empty if no banner is needed).
+INDEX_HTML = re.sub(
+    r'<div id="version-banner"[^>]*>.*?</div>',
+    BANNER_HTML or '<div id="version-banner"></div>',
+    INDEX_HTML,
+    count=1,
+    flags=re.S,
+)
+
+
 def build_page(title, description, og_image, canonical, json_ld, panel_name, panel_html):
     """Produce a full snapshot HTML by adapting index.html."""
     html = INDEX_HTML
@@ -736,7 +776,14 @@ not_found_html = not_found_html.replace(
 with open(os.path.join(OUT_DIR, "404.html"), "w", encoding="utf-8") as f:
     f.write(not_found_html)
 
-# Root index.html stays untouched — relative paths resolve correctly from
+# Root index.html: write back the (possibly banner-injected) shell so the
+# homepage ships with the banner pre-rendered too — no CLS at first paint.
+# When BANNER_HTML is empty (e.g. master with no active beta), the version-
+# banner div stays empty, matching prior behavior. Re-runs are idempotent.
+with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
+    f.write(INDEX_HTML)
+
+# Note: relative paths resolve correctly from
 # any deploy root (/, /test/, /beta/) without a <base href>. The SPA's JS
 # reads siteConfig.noindex at runtime to inject the noindex meta tag.
 
