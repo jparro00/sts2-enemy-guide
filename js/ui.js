@@ -337,10 +337,18 @@ function toggleEnemySection(btn) {
   btn.textContent = section.classList.contains('collapsed') ? '+' : '−';
 }
 
-function openEncounter(encounterName, act, cat) {
+function navigateToPanel(state, url, opts) {
+  opts = opts || {};
+  if (opts.fromRoute) {
+    if (opts.initial) history.replaceState(state, '', url);
+    return;
+  }
+  history.pushState(state, '', url);
+  panelPushedState = true;
+}
+
+function openEncounter(encounterName, act, cat, opts) {
   openPanelInfo = { type: 'encounter', name: encounterName, act: act || currentAct, cat: cat || currentCat };
-  const searchAct = act || currentAct;
-  const searchCat = cat || currentCat;
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').innerHTML = encounterName + renderBetaBadge('encounter', encounterName);
@@ -379,10 +387,35 @@ function openEncounter(encounterName, act, cat) {
   } else {
     document.body.classList.add('panel-open');
   }
-  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
+  navigateToPanel(
+    { type: 'encounter', name: encounterName, act: openPanelInfo.act, cat: openPanelInfo.cat },
+    `${getSiteBase()}/encounter/${encounterSlug(encounterName, openPanelInfo.cat)}/`,
+    opts
+  );
 }
 
-function openEvent(eventKey) {
+function openEnemy(enemyName, opts) {
+  openPanelInfo = { type: 'enemy', name: enemyName };
+  const panel = document.getElementById('detail-panel');
+  const backdrop = document.getElementById('backdrop');
+  document.getElementById('detail-name').innerHTML = enemyName + renderBetaBadge('monster', enemyName);
+  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyName) + panelFeedbackLink;
+
+  panel.classList.add('open');
+  backdrop.classList.add('open');
+  if (document.startViewTransition) {
+    document.startViewTransition(() => document.body.classList.add('panel-open'));
+  } else {
+    document.body.classList.add('panel-open');
+  }
+  navigateToPanel(
+    { type: 'enemy', name: enemyName },
+    `${getSiteBase()}/enemy/${slugify(enemyName)}/`,
+    opts
+  );
+}
+
+function openEvent(eventKey, opts) {
   openPanelInfo = { type: 'event', name: eventKey };
   // Find the event
   let ev = null;
@@ -441,7 +474,11 @@ function openEvent(eventKey) {
   } else {
     document.body.classList.add('panel-open');
   }
-  if (isMobilePanel()) { history.pushState({ panelOpen: true }, ''); panelPushedState = true; }
+  navigateToPanel(
+    { type: 'event', name: eventKey },
+    `${getSiteBase()}/event/${slugify(ev.name)}/`,
+    opts
+  );
 }
 
 function isMobilePanel() {
@@ -461,16 +498,20 @@ function closeDetail(fromPopstate) {
   } else {
     document.body.classList.remove('panel-open');
   }
-  if (panelPushedState && !fromPopstate) history.back();
+  if (!fromPopstate) {
+    if (panelPushedState) {
+      history.back();
+    } else {
+      // Deep-link landing — no entry to pop back to, push root URL instead
+      history.pushState({ root: true }, '', getSiteBase() + '/');
+    }
+  }
   panelPushedState = false;
 }
 
-// Back button closes the detail panel (mobile only)
+// Browser back/forward — re-route based on new URL
 window.addEventListener('popstate', e => {
-  if (document.getElementById('detail-panel').classList.contains('open')) {
-    panelPushedState = false;
-    closeDetail(true);
-  }
+  if (typeof routeFromURL === 'function') routeFromURL(false);
 });
 
 // Swipe right to close detail panel (mobile only)

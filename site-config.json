@@ -1,5 +1,7 @@
 {
   "gameVersion": "0.103.0",
   "betaVersion": "0.104.0",
-  "isBeta": false
+  "isBeta": false,
+  "siteBase": "",
+  "noindex": false
 }
