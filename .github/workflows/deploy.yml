@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Pillow
+        run: pip install Pillow
+
       - name: Checkout master
         uses: actions/checkout@v4
         with:
@@ -42,6 +45,14 @@ jobs:
           if jq -e '.isBeta == true' main-site/site-config.json > /dev/null 2>&1; then
             echo "ERROR: isBeta must not be true on master"
             exit 1
+          fi
+
+      - name: Resize media for master
+        run: |
+          if [ -f main-site/build_thumbs.py ]; then
+            cd main-site && python build_thumbs.py
+          else
+            echo "build_thumbs.py not present on master — skipping thumb generation"
           fi
 
       - name: Generate snapshots for master
@@ -83,6 +94,12 @@ jobs:
             if [ -f "checkout-${FOLDER}/site-config.json" ]; then
               jq --arg base "/${FOLDER}" '.isBeta = true | .noindex = true | .siteBase = $base' \
                 "checkout-${FOLDER}/site-config.json" > tmp.json && mv tmp.json "checkout-${FOLDER}/site-config.json"
+            fi
+            # Resize media inside the branch checkout (if script present)
+            if [ -f "checkout-${FOLDER}/build_thumbs.py" ]; then
+              (cd "checkout-${FOLDER}" && python build_thumbs.py)
+            else
+              echo "build_thumbs.py not present on $branch — skipping thumb generation"
             fi
             # Generate snapshots inside the branch checkout (if build script present)
             if [ -f "checkout-${FOLDER}/build_snapshots.py" ]; then
