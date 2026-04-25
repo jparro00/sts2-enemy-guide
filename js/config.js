@@ -12,6 +12,27 @@ let siteConfig = {};     // loaded from site-config.json
 let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
 let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 
+// Slug lookups built after data loads — slug → original name/key
+const slugToEnemy = {};
+const slugToEncounter = {};   // slug → { name, act, cat }
+const slugToEventKey = {};
+const encSlugCounts = {};     // base slug → count, for disambiguation
+
+function slugify(s) {
+  return (s || '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function encounterSlug(name, cat) {
+  const base = slugify(name);
+  return encSlugCounts[base] > 1 ? `${base}-${cat}` : base;
+}
+
+function getSiteBase() {
+  return (siteConfig && siteConfig.siteBase) || '';
+}
+
 // Powers reference — populated from data/powers.csv at load time (also merged into itemsRef)
 const powersRef = {};
 

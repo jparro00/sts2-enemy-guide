@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /beta/
+Disallow: /test/
+
+Sitemap: https://spirecodex.com/sitemap.xml

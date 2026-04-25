@@ -163,8 +163,71 @@ async function loadData() {
     itemsRef[key] = { ...val, key, category: 'power' };
   }
 
+  // Build slug lookups for URL routing
+  for (const name in enemyDatabase) {
+    slugToEnemy[slugify(name)] = name;
+  }
+  // First pass — count encounter base slugs to detect collisions
+  for (const act in encounters) {
+    for (const cat in encounters[act]) {
+      for (const enc of encounters[act][cat]) {
+        const base = slugify(enc.name);
+        encSlugCounts[base] = (encSlugCounts[base] || 0) + 1;
+      }
+    }
+  }
+  // Second pass — write disambiguated slug for each encounter
+  for (const act in encounters) {
+    for (const cat in encounters[act]) {
+      for (const enc of encounters[act][cat]) {
+        slugToEncounter[encounterSlug(enc.name, cat)] = { name: enc.name, act, cat };
+      }
+    }
+  }
+  for (const act in eventsData) {
+    for (const ev of eventsData[act]) {
+      slugToEventKey[slugify(ev.name)] = ev.key;
+    }
+  }
+
+  // Apply noindex from config (for beta/test deploys)
+  if (siteConfig.noindex) {
+    const m = document.createElement('meta');
+    m.name = 'robots';
+    m.content = 'noindex';
+    document.head.appendChild(m);
+  }
+
   render();
   preloadRemainingImages();
+  routeFromURL(true);  // open matching panel if URL points to one
+}
+
+// Open the right panel based on current URL, or close if at root.
+// initial=true uses replaceState so the deep-link entry is the bottom of history.
+function routeFromURL(initial) {
+  const base = getSiteBase();
+  let path = window.location.pathname;
+  if (base && path.startsWith(base)) path = path.slice(base.length);
+  if (!path.startsWith('/')) path = '/' + path;
+
+  const m = path.match(/^\/(enemy|encounter|event)\/([^\/]+)\/?$/);
+  if (!m) {
+    // Root or unknown — make sure no panel is open
+    if (!initial) closeDetail(true);
+    return;
+  }
+  const [, type, slug] = m;
+  if (type === 'encounter') {
+    const found = slugToEncounter[slug];
+    if (found) openEncounter(found.name, found.act, found.cat, { fromRoute: true, initial });
+  } else if (type === 'enemy') {
+    const name = slugToEnemy[slug];
+    if (name) openEnemy(name, { fromRoute: true, initial });
+  } else if (type === 'event') {
+    const key = slugToEventKey[slug];
+    if (key) openEvent(key, { fromRoute: true, initial });
+  }
 }
 
 // ── Load and go ──

@@ -22,6 +22,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Checkout master
         uses: actions/checkout@v4
         with:
@@ -30,13 +35,21 @@ jobs:
 
       - name: Force isBeta false on master
         run: |
-          jq '.isBeta = false' main-site/site-config.json > tmp.json && mv tmp.json main-site/site-config.json
+          jq '.isBeta = false | .siteBase = "" | .noindex = false' main-site/site-config.json > tmp.json && mv tmp.json main-site/site-config.json
 
       - name: Validate master config
         run: |
           if jq -e '.isBeta == true' main-site/site-config.json > /dev/null 2>&1; then
             echo "ERROR: isBeta must not be true on master"
             exit 1
+          fi
+
+      - name: Generate snapshots for master
+        run: |
+          if [ -f main-site/build_snapshots.py ]; then
+            cd main-site && python build_snapshots.py
+          else
+            echo "build_snapshots.py not present on master — skipping snapshot generation"
           fi
 
       - name: Start site from master
@@ -66,12 +79,19 @@ jobs:
               FOLDER="$branch"
             fi
             git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "checkout-${FOLDER}" || continue
+            # Set branch-specific config: isBeta, noindex, siteBase
+            if [ -f "checkout-${FOLDER}/site-config.json" ]; then
+              jq --arg base "/${FOLDER}" '.isBeta = true | .noindex = true | .siteBase = $base' \
+                "checkout-${FOLDER}/site-config.json" > tmp.json && mv tmp.json "checkout-${FOLDER}/site-config.json"
+            fi
+            # Generate snapshots inside the branch checkout (if build script present)
+            if [ -f "checkout-${FOLDER}/build_snapshots.py" ]; then
+              (cd "checkout-${FOLDER}" && python build_snapshots.py)
+            else
+              echo "build_snapshots.py not present on $branch — skipping snapshot generation"
+            fi
             mkdir -p "_site/${FOLDER}"
             rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
-            # Force isBeta true on non-master deployments
-            if [ -f "_site/${FOLDER}/site-config.json" ]; then
-              jq '.isBeta = true' "_site/${FOLDER}/site-config.json" > tmp.json && mv tmp.json "_site/${FOLDER}/site-config.json"
-            fi
             rm -rf "checkout-${FOLDER}"
             echo "Deployed $branch to /${FOLDER}/"
           done <<< "${{ steps.extra.outputs.branches }}"
