@@ -343,11 +343,19 @@ function navigateToPanel(state, url, opts) {
     if (opts.initial) history.replaceState(state, '', url);
     return;
   }
-  history.pushState(state, '', url);
-  panelPushedState = true;
+  // If a panel is already open, replace the current entry instead of stacking
+  // a new one — closing should always return to root, not chain back through
+  // every panel the user clicked through.
+  if (opts.replace) {
+    history.replaceState(state, '', url);
+  } else {
+    history.pushState(state, '', url);
+    panelPushedState = true;
+  }
 }
 
 function openEncounter(encounterName, act, cat, opts) {
+  const wasOpen = openPanelInfo !== null;
   openPanelInfo = { type: 'encounter', name: encounterName, act: act || currentAct, cat: cat || currentCat };
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
@@ -390,11 +398,12 @@ function openEncounter(encounterName, act, cat, opts) {
   navigateToPanel(
     { type: 'encounter', name: encounterName, act: openPanelInfo.act, cat: openPanelInfo.cat },
     `${getSiteBase()}/encounter/${encounterSlug(encounterName, openPanelInfo.cat)}/`,
-    opts
+    { ...opts, replace: wasOpen }
   );
 }
 
 function openEnemy(enemyName, opts) {
+  const wasOpen = openPanelInfo !== null;
   openPanelInfo = { type: 'enemy', name: enemyName };
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
@@ -411,11 +420,12 @@ function openEnemy(enemyName, opts) {
   navigateToPanel(
     { type: 'enemy', name: enemyName },
     `${getSiteBase()}/enemy/${slugify(enemyName)}/`,
-    opts
+    { ...opts, replace: wasOpen }
   );
 }
 
 function openEvent(eventKey, opts) {
+  const wasOpen = openPanelInfo !== null;
   openPanelInfo = { type: 'event', name: eventKey };
   // Find the event
   let ev = null;
@@ -477,7 +487,7 @@ function openEvent(eventKey, opts) {
   navigateToPanel(
     { type: 'event', name: eventKey },
     `${getSiteBase()}/event/${slugify(ev.name)}/`,
-    opts
+    { ...opts, replace: wasOpen }
   );
 }
 
