@@ -72,3 +72,5 @@ hunger,Hunger,hunger_power.webp,"Whenever you play an Attack or Skill, it is Exh
 scrutiny,Scrutiny,scrutiny_power.webp,You cannot draw additional cards during your turn.,
 grasp,Grasp,grasp_power.webp,"Whenever you play a card, lose 1 energy.",
 infinite,Infinite,infinite.webp,HP cannot be reduced.,
+ebb,Ebb,ebb_power.webp,"Lose 3 Strength and 3 Dexterity this turn.",
+withering_presence,Withering Presence,withering_presence_power.webp,"Every 4 non-Status cards you play, add a Wither to your Hand.",

@@ -60,8 +60,8 @@ Fat Gremlin,Stunned,Stunned for one turn,,stun,
 Fat Gremlin,Flee,Escape from combat,,escape,
 Sneaky Gremlin,Stunned,Stunned for one turn,,stun,
 Sneaky Gremlin,Tackle,Damage 9 (10),,attack,
-Haunted Ship,Haunt,Add 5 Dazed to Discard,dazed,add_statuses,
-Haunted Ship,Ramming Speed,Damage 10 (11); Apply 1 {weak},,"attack, debuff",Cannot repeat.
+Haunted Ship,Haunt,Apply 3 {weak}; Add 5 Dazed to Discard,dazed,"debuff, add_statuses",
+Haunted Ship,Ramming Speed,Damage 10 (11),,attack,Cannot repeat.
 Haunted Ship,Swipe,Damage 13 (14),,attack,Cannot repeat.
 Haunted Ship,Stomp,Damage 4x3 (5x3),,multi_attack,Cannot repeat.
 Hunter Killer,Tenderizing Goop,Apply {tender},,debuff,
@@ -226,10 +226,9 @@ Ceremonial Beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,
 Ceremonial Beast,Beast Cry,Apply {ringing},,debuff,
 Ceremonial Beast,Stomp,Damage 15 (17),,attack,
 Ceremonial Beast,Crush,Damage 17 (19); Gains 3 (4) {strength},,attack,
-Doormaker,Dramatic Open,Reveals actual HP; Removes all powers; Has {infinite} HP,,buff,
-Doormaker,Hunger,Damage 30 (35); Has {hunger},,attack,
-Doormaker,Scrutiny,Damage 24 (26); Has {scrutiny},,attack,
-Doormaker,Grasp,"Damage 10x2 (11x2); Gain 3 (4) {strength}; Has {grasp}",,"multi_attack, buff",
+Aeonglass,Ebb,Damage 26 (32); Apply {ebb},,"attack, debuff",
+Aeonglass,Eye Lasers,Damage 11x2 (12x2),,multi_attack,
+Aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; {block} 33,,"buff, block",{strength} gain increases by 1 each use.
 Crusher,Thrash,Damage 12 (14),,attack,
 Crusher,Enlarging Strike,Damage 4,,attack,
 Crusher,Bug Sting,Damage 6x2 (7x2); Apply 2 {weak}; Apply 2 {frail},,"multi_attack, debuff",
@@ -261,7 +260,7 @@ Soul Fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,becko
 Soul Fysh,De-Gas,Damage 16 (17),,attack,
 Soul Fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,beckon,"attack, add_statuses",
 Soul Fysh,Fade,Gain 2* Intangible,,buff,
-Soul Fysh,Scream,Damage 11 (12); Apply 3 {vulnerable},,"attack, debuff",
+Soul Fysh,Scream,Damage 13 (15); Apply 3 {vulnerable},,"attack, debuff",
 Test Subject Stage 1,Bite,Damage 20 (22),,attack,
 Test Subject Stage 1,Skull Bash,Damage 14 (16); Apply 1 {vulnerable},,"attack, debuff",
 Test Subject Stage 2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used),,multi_attack,

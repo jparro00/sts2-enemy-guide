@@ -9,3 +9,8 @@ monster,Waterfall Giant,Nerfed: Siphon heal 15 → 10(15) (reduced at low Ascens
 encounter,Axebots (Glory hard),Reworked: now a single more challenging Axebot (with Stock 2) instead of two Axebots.,0.104.0
 event,Slippery Bridge,Changed: Overcome card pool no longer re-offers previously-shown cards until all others have been offered.,0.104.0
 monster,Multiplayer Scaling,"Nerfed: {artifact} now scales additively (base + count-1) instead of (count-1)*2+1. {slippery} now scales as base*count instead of (count-1)*2+1. {skittish} now scales as base*(1 + (count-1)*0.5) instead of count*actMultiplier.",0.104.0
+monster,Doormaker,Replaced with Aeonglass.,0.105.0
+monster,Aeonglass,"New Act 3 boss replacing Doormaker. HP 512(535). Cycles Ebb → Eye Lasers → Increasing Intensity. Starts with {artifact} 3 and {withering_presence} 4.",0.105.0
+monster,Haunted Ship,"Changed: Haunt now applies 3 {weak} on Turn 1 instead of Ramming Speed applying {weak} when attacking.",0.105.0
+monster,Soul Fysh,Buffed: Scream damage 11(12) → 13(15).,0.105.0
+monster,Fossil Stalker,"Changed: In multiplayer, now gains a set amount of Strength on hit instead of per-player.",0.105.0

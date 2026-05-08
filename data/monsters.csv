@@ -26,7 +26,7 @@ After <Swipe> (2nd in a row): Always uses <Headbutt>.
 After <Headbutt>: Always uses <Swipe>.",,,,
 Eye with Teeth,6,Always uses <Distract>.,,illusion,{illusion},
 Fossil Stalker,51 - 53 (54 - 56),"Opens with <Latch>.
-Then chooses randomly from <Tackle>, <Latch>, <Lash>.",,,suck,{suck} 3,
+Then chooses randomly from <Tackle>, <Latch>, <Lash>.",[coop]🤝 Gains a set amount of Strength on hit instead of per-player.,suck,{suck} 3,
 Frog Knight,191 (199),"Phase 1:
 Cycles <Tongue Lash> → <Strike Down Evil> → <For the Queen>.
 
@@ -40,7 +40,7 @@ Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.",[
 Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,
 Haunted Ship,63 (67),"Opens with <Haunt>.
 Then chooses randomly from <Ramming Speed>, <Swipe>, <Stomp>.
-Uses <Haunt> every other turn.",,haunt,,
+Uses <Haunt> every other turn.",,haunt; weak,,
 Hunter Killer,121 (126),"Opens with <Tenderizing Goop>.
 Then chooses randomly from <Bite>, <Puncture>.",,tender,,
 Inklet,11 - 17 (12 - 18),"Cycles <Jab> → <Whirlwind> or <Piercing Gaze> (50/50).","[info] Front and back start with <Jab>. Middle starts with <Whirlwind>.",slippery,{slippery} 1,
@@ -132,9 +132,7 @@ Opens with <Stamp>, then always uses <Plow>.
 
 Phase 2 (after stun):
 Cycles <Beast Cry> → <Stomp> → <Crush>.",,plow; ringing,,
-Doormaker,489 (512),"Uses <Dramatic Open> to reveal actual HP.
-Then cycles <Hunger> → <Scrutiny> → <Grasp>.
-Each phase swaps to a different power.","[info] Infinite HP is actually 999,999,999 HP.",hunger; scrutiny; grasp,{infinite} HP as Door,
+Aeonglass,512 (535),Cycles <Ebb> → <Eye Lasers> → <Increasing Intensity>.,[info] <Increasing Intensity> {strength} gain increases by 1 each use.,artifact; withering_presence; ebb,{artifact} 3 and {withering_presence} 4,
 Crusher,209 (219),Cycles <Thrash> → <Enlarging Strike> → <Bug Sting> → <Adapt> → <Guarded Strike>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Rocket,199 (209),Cycles <Targeting Reticle> → <Precision Beam> → <Charge Up> → <Laser> → <Recharge>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Knowledge Demon,379 (399),"Phase 1:
