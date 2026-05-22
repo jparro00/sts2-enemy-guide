@@ -123,3 +123,21 @@ Update the relevant CSVs based on verified changes:
 - Push master first when pushing both branches, then merge master into beta, then push beta
 - NEVER push to remote unless the user explicitly asks to push
 - Always safe to push `test` without asking; never push `master` or `beta-*` without permission
+
+### Deployment flow & branch-file dependencies
+- The GitHub Actions workflow lives at `.github/workflows/deploy.yml` and triggers on pushes to `master`, `beta-*`, `test`. **The version of the workflow that actually runs is the one from the branch being pushed.**
+- Regardless of which branch triggers it, the workflow does the same job: checks out master fresh into `main-site/`, builds it, then iterates over all `beta-*` and `test` remote branches and builds each one into `_site/beta/` and `_site/test/`. So the deployed output is the same regardless of which branch was pushed — *as long as the workflow content is the same on whatever branch you push.*
+- Files-per-branch matrix (memorize this — it's not obvious):
+  | File | Effective branch |
+  |------|------------------|
+  | `robots.txt` | Only master's served at `spirecodex.com/robots.txt`. Copies on beta/test are inert. |
+  | `.github/workflows/deploy.yml` | The triggering branch's version runs. Must be up to date on every branch you'll ever push to. |
+  | `build_snapshots.py` | Each branch's own copy is invoked when the workflow builds that branch. |
+- For the canonical-tag SEO strategy: beta's `build_snapshots.py` reads from `master-data/` (a directory the workflow copies in from master's `data/` before building beta). For each entity that also exists on master, beta's build emits `rel="canonical"` + `og:url` pointing to the master URL. Beta-only entities get self-canonical.
+- The workflow's `Checkout and copy extra branches` step also forces `noindex=true` for `test` only — beta is allowed to be indexed (with canonicals doing the dedup work).
+- Before pushing changes that touch workflow / build_snapshots / robots.txt, **propagate them to every branch that will ever be pushed**:
+  - Update on master first (commit there).
+  - Merge master into the active `beta-v*` branch.
+  - Merge master into `test` (fast-forward usually). This is critical — if `test` has the old workflow and someone pushes to it, the old workflow would rebuild beta with `noindex=true` forced, undoing the SEO setup.
+  - Don't touch retired `beta-v*` branches (they're dead; no one pushes to them).
+- When creating the next beta branch (e.g. `beta-v0.107.0`), branch from the previous beta — it inherits everything from the merge chain.
