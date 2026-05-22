@@ -543,18 +543,24 @@ INDEX_HTML = re.sub(
     flags=re.S,
 )
 
+# Set <base href> to the deploy root so relative URLs (media/, css/, js/, data/)
+# keep resolving from there even after the SPA pushState's the URL to a deep
+# panel route like /encounter/foo/. Without this, re-renders after navigation
+# request /encounter/foo/media/intents/attack.webp and get the 404 fallback.
+_base_tag = f'<base href="{BASE_HREF}">'
+if re.search(r"<base\s[^>]*>", INDEX_HTML):
+    INDEX_HTML = re.sub(r"<base\s[^>]*>", _base_tag, INDEX_HTML, count=1)
+else:
+    INDEX_HTML = INDEX_HTML.replace(
+        '<meta charset="UTF-8">',
+        f'<meta charset="UTF-8">\n{_base_tag}',
+        1,
+    )
+
 
 def build_page(title, description, og_image, canonical, json_ld, panel_name, panel_html):
     """Produce a full snapshot HTML by adapting index.html."""
     html = INDEX_HTML
-
-    # Inject <base href> right after <meta charset>
-    base_tag = f'<base href="{BASE_HREF}">'
-    html = html.replace(
-        '<meta charset="UTF-8">',
-        f'<meta charset="UTF-8">\n{base_tag}',
-        1,
-    )
 
     # Replace title
     html = re.sub(r"<title>.*?</title>", f"<title>{html_escape(title)}</title>", html, count=1)
@@ -753,11 +759,6 @@ for ev in all_events:
 
 # ─── 404.html (siteBase-aware SPA shell with noindex) ──────────────────
 not_found_html = INDEX_HTML
-not_found_html = not_found_html.replace(
-    '<meta charset="UTF-8">',
-    f'<meta charset="UTF-8">\n<base href="{BASE_HREF}">',
-    1,
-)
 not_found_html = re.sub(
     r"<title>.*?</title>",
     "<title>Page not found — Spire Codex</title>",
@@ -783,9 +784,10 @@ with open(os.path.join(OUT_DIR, "404.html"), "w", encoding="utf-8") as f:
 with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
     f.write(INDEX_HTML)
 
-# Note: relative paths resolve correctly from
-# any deploy root (/, /test/, /beta/) without a <base href>. The SPA's JS
-# reads siteConfig.noindex at runtime to inject the noindex meta tag.
+# Note: <base href> is set above so relative paths keep resolving from the
+# deploy root (/, /test/, /beta/) even after the SPA pushState's the URL.
+# The SPA's JS reads siteConfig.noindex at runtime to inject the noindex meta
+# tag.
 
 # ─── sitemap.xml (master only — empty file otherwise) ──────────────────
 sitemap_path = os.path.join(OUT_DIR, "sitemap.xml")
