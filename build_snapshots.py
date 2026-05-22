@@ -73,6 +73,28 @@ relics_raw = load_csv("relics.csv")
 potions_raw = load_csv("potions.csv")
 enchantments_raw = load_csv("enchantments.csv")
 
+# ─── Master data (for canonical tags on beta builds) ───────────────────
+# When the workflow builds a beta branch, it copies master's data/ into
+# master-data/. For each entity that also exists on master, emit a
+# canonical URL pointing to master so search engines consolidate the
+# shared content. Beta-only entities (e.g. a new boss) get self-canonical
+# and are indexed under /beta/.
+MASTER_DATA = os.path.join(BASE, "master-data")
+HAS_MASTER_DATA = os.path.isdir(MASTER_DATA) and SITE_BASE
+
+
+def load_master_csv(name):
+    path = os.path.join(MASTER_DATA, name)
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+MASTER_ENEMY_NAMES = set()
+MASTER_EVENT_NAMES = set()
+MASTER_ENCOUNTER_SLUGS = {}  # (name, cat) -> slug-on-master
+
 # ─── Build lookups ─────────────────────────────────────────────────────
 enemy_db = {}
 for m in monsters_raw:
@@ -167,6 +189,34 @@ def slugify(s):
     s = re.sub(r"[^a-z0-9]+", "-", s)
     s = re.sub(r"^-+|-+$", "", s)
     return s
+
+
+# Populate master entity sets now that slugify is defined.
+if HAS_MASTER_DATA:
+    for _m in load_master_csv("monsters.csv"):
+        if _m.get("Name"):
+            MASTER_ENEMY_NAMES.add(_m["Name"])
+    for _ev in load_master_csv("events.csv"):
+        if _ev.get("Name"):
+            MASTER_EVENT_NAMES.add(_ev["Name"])
+    # Encounters use the same slug-disambig-by-category logic as the per-branch
+    # build, so compute master's slugs against master's own dataset.
+    _master_encs = load_master_csv("encounters.csv")
+    _master_slug_counts = {}
+    for _enc in _master_encs:
+        _base = slugify(_enc.get("Encounter", ""))
+        if _base:
+            _master_slug_counts[_base] = _master_slug_counts.get(_base, 0) + 1
+    for _enc in _master_encs:
+        _base = slugify(_enc.get("Encounter", ""))
+        if not _base:
+            continue
+        _cat = _enc.get("Category", "")
+        _slug = _base if _master_slug_counts.get(_base, 0) == 1 else f"{_base}-{_cat}"
+        MASTER_ENCOUNTER_SLUGS[(_enc["Encounter"], _cat)] = _slug
+    print(f"[canonical] master-data loaded: "
+          f"enemies={len(MASTER_ENEMY_NAMES)} encounters={len(MASTER_ENCOUNTER_SLUGS)} "
+          f"events={len(MASTER_EVENT_NAMES)}")
 
 
 CARD_RARITY_ICONS = {
@@ -674,6 +724,9 @@ for name, data in enemy_db.items():
         continue
     rel = f"enemy/{slug}"
     url = f"{SITE_PREFIX}/enemy/{slug}/"
+    # If this enemy also exists on master, canonical to master URL
+    canonical_url = (f"{SITE_ORIGIN}/enemy/{slug}/"
+                     if name in MASTER_ENEMY_NAMES else url)
     pattern_summary = re.sub(r"\s+", " ", (data["pattern"] or "").replace("\n", " "))[:160]
     description = (f"{name} attack pattern, HP, and moves in Slay the Spire 2. "
                    f"{pattern_summary}").strip()
@@ -684,8 +737,8 @@ for name, data in enemy_db.items():
         title=title,
         description=description,
         og_image=image,
-        canonical=url,
-        json_ld=jsonld_for("enemy", name, description, url, image),
+        canonical=canonical_url,
+        json_ld=jsonld_for("enemy", name, description, canonical_url, image),
         panel_name=name,
         panel_html=panel_html,
     )
@@ -708,6 +761,9 @@ for enc in all_encounters:
     slug = base_slug if enc_slug_counts[base_slug] == 1 else f"{base_slug}-{enc['cat']}"
     rel = f"encounter/{slug}"
     url = f"{SITE_PREFIX}/encounter/{slug}/"
+    _master_slug = MASTER_ENCOUNTER_SLUGS.get((enc["name"], enc["cat"]))
+    canonical_url = (f"{SITE_ORIGIN}/encounter/{_master_slug}/"
+                     if _master_slug else url)
     enemies_str = ", ".join(enc["enemies"]) if enc["enemies"] else enc["name"]
     description = (f"{enc['name']} encounter in Slay the Spire 2: {enemies_str}. "
                    f"HP, attack patterns, and strategy.").strip()
@@ -719,8 +775,8 @@ for enc in all_encounters:
         title=title,
         description=description,
         og_image=image,
-        canonical=url,
-        json_ld=jsonld_for("encounter", enc["name"], description, url, image),
+        canonical=canonical_url,
+        json_ld=jsonld_for("encounter", enc["name"], description, canonical_url, image),
         panel_name=enc["name"],
         panel_html=panel_html,
     )
@@ -736,6 +792,8 @@ for ev in all_events:
         continue
     rel = f"event/{slug}"
     url = f"{SITE_PREFIX}/event/{slug}/"
+    canonical_url = (f"{SITE_ORIGIN}/event/{slug}/"
+                     if ev["name"] in MASTER_EVENT_NAMES else url)
     description_src = ev["lore"] or ev["notes"] or ev["name"]
     description = first_sentence(description_src,
                                  fallback=f"{ev['name']} event in Slay the Spire 2.")
@@ -747,8 +805,8 @@ for ev in all_events:
         title=title,
         description=description,
         og_image=image,
-        canonical=url,
-        json_ld=jsonld_for("event", ev["name"], description, url, image),
+        canonical=canonical_url,
+        json_ld=jsonld_for("event", ev["name"], description, canonical_url, image),
         panel_name=ev["name"],
         panel_html=panel_html,
     )

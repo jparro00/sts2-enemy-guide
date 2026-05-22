@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
-Disallow: /beta/
 Disallow: /test/
 
+# /beta/ is crawlable. Shared content has rel="canonical" pointing to
+# /<entity>/ on master so search engines consolidate to the stable version.
+# Beta-only entities (e.g. new bosses in a beta-only patch) have no master
+# equivalent, so they get indexed directly under /beta/.
+
 Sitemap: https://spirecodex.com/sitemap.xml
+Sitemap: https://spirecodex.com/beta/sitemap.xml

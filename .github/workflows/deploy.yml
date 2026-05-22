@@ -90,10 +90,21 @@ jobs:
               FOLDER="$branch"
             fi
             git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "checkout-${FOLDER}" || continue
+            # Beta is crawlable (canonicals point to master for shared content); test stays noindex'd.
+            if [[ "$FOLDER" == "beta" ]]; then
+              NOINDEX="false"
+            else
+              NOINDEX="true"
+            fi
             # Set branch-specific config: isBeta, noindex, siteBase
             if [ -f "checkout-${FOLDER}/site-config.json" ]; then
-              jq --arg base "/${FOLDER}" '.isBeta = true | .noindex = true | .siteBase = $base' \
+              jq --arg base "/${FOLDER}" --argjson noindex "$NOINDEX" '.isBeta = true | .noindex = $noindex | .siteBase = $base' \
                 "checkout-${FOLDER}/site-config.json" > tmp.json && mv tmp.json "checkout-${FOLDER}/site-config.json"
+            fi
+            # Copy master's data/ into the beta checkout as master-data/ so build_snapshots.py
+            # can set canonical tags to master URLs for entities that exist on both branches.
+            if [[ "$FOLDER" == "beta" ]] && [ -d "main-site/data" ]; then
+              cp -r main-site/data "checkout-${FOLDER}/master-data"
             fi
             # Resize media inside the branch checkout (if script present)
             if [ -f "checkout-${FOLDER}/build_thumbs.py" ]; then
