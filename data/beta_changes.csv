@@ -10,7 +10,14 @@ encounter,Axebots (Glory hard),Reworked: now a single more challenging Axebot (w
 event,Slippery Bridge,Changed: Overcome card pool no longer re-offers previously-shown cards until all others have been offered.,0.104.0
 monster,Multiplayer Scaling,"Nerfed: {artifact} now scales additively (base + count-1) instead of (count-1)*2+1. {slippery} now scales as base*count instead of (count-1)*2+1. {skittish} now scales as base*(1 + (count-1)*0.5) instead of count*actMultiplier.",0.104.0
 monster,Doormaker,Replaced with Aeonglass.,0.105.0
-monster,Aeonglass,"New Act 3 boss replacing Doormaker. HP 512(535). Cycles Ebb → Eye Lasers → Increasing Intensity. Starts with {artifact} 3 and {withering_presence} 4.",0.105.0
-monster,Haunted Ship,"Changed: Haunt now applies 3 {weak} on Turn 1 instead of Ramming Speed applying {weak} when attacking.",0.105.0
+monster,Aeonglass,"New Act 3 boss replacing Doormaker. HP 512(535). Cycles Ebb → Eye Lasers → Increasing Intensity. Starts with {artifact} 3 and {withering_presence} 6. Increasing Intensity now also adds 1(2) Wither cards.",0.106.0
+monster,Haunted Ship,"Changed: Haunt now applies 3 {weak} on Turn 1; Ramming Speed removed; now alternates Swipe ↔ Stomp.",0.106.0
 monster,Soul Fysh,Buffed: Scream damage 11(12) → 13(15).,0.105.0
 monster,Fossil Stalker,"Changed: In multiplayer, now gains a set amount of Strength on hit instead of per-player.",0.105.0
+monster,Infested Prism,"Reworked: HP 200(215) → 161(171). Jab 22(24) → 15(17). Radiate 16(18)+16(18) block → 11(13)+11(13) block. Whirlwind 9x3(10x3) → 5x3(6x3). Pulsate 20(22) block + 4(5) strength → 8(10) damage + 20(22) block + 2(3) {vital_spark}. Starts with {vital_spark} 2(3) (was 1).",0.106.0
+monster,Skulking Colony,"Changed: HP 70(75) → 75(80). {hardened_shell} 15 → 20. Smash removed; now opens with Zoom twice instead. Zoom no longer gains block.",0.106.0
+monster,Punch Construct,"Changed: Pattern reordered (Ready → Fast Punch → Strong Punch). Fast Punch now applies {frail} instead of {weak}.",0.106.0
+monster,Test Subject Stage 2,"Changed: HP scaling in multiplayer now uses act multiplier (was previously playerCount only).",0.106.0
+monster,Test Subject Stage 3,"Changed: HP scaling in multiplayer now uses act multiplier (was previously playerCount only).",0.106.0
+power,Vital Spark,"Reworked: Now makes ALL Skills {tainted} X (was: ""first time hit each turn, attacker gains X energy"").",0.106.0
+power,Withering Presence,"Changed: Every 6 cards you play (was 4 non-Status cards), add a Wither to your Hand.",0.106.0

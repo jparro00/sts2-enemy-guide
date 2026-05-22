@@ -61,9 +61,8 @@ Fat Gremlin,Flee,Escape from combat,,escape,
 Sneaky Gremlin,Stunned,Stunned for one turn,,stun,
 Sneaky Gremlin,Tackle,Damage 9 (10),,attack,
 Haunted Ship,Haunt,Apply 3 {weak}; Add 5 Dazed to Discard,dazed,"debuff, add_statuses",
-Haunted Ship,Ramming Speed,Damage 10 (11),,attack,Cannot repeat.
-Haunted Ship,Swipe,Damage 13 (14),,attack,Cannot repeat.
-Haunted Ship,Stomp,Damage 4x3 (5x3),,multi_attack,Cannot repeat.
+Haunted Ship,Swipe,Damage 13 (14),,attack,
+Haunted Ship,Stomp,Damage 4x3 (5x3),,multi_attack,
 Hunter Killer,Tenderizing Goop,Apply {tender},,debuff,
 Hunter Killer,Bite,Damage 17 (19),,attack,Cannot repeat.
 Hunter Killer,Puncture,Damage 7x3 (8x3),,multi_attack,Max 2 in a row.
@@ -104,7 +103,7 @@ Owl Magistrate,Judicial Flight,Gain {soar},,buff,
 Owl Magistrate,Verdict,Damage 33 (36); Apply 4 {vulnerable}; Lose {soar},,"attack, debuff",
 Punch Construct,Ready,{block} 10,,block,
 Punch Construct,Strong Punch,Damage 14 (16),,attack,
-Punch Construct,Fast Punch,Damage 5x2 (6x2); Apply 1 {weak},,"multi_attack, debuff",
+Punch Construct,Fast Punch,Damage 5x2 (6x2); Apply 1 {frail},,"multi_attack, debuff",
 Ruby Raider (Assassin),Killshot,Damage 10 (11),,attack,
 Ruby Raider (Axe),Swing,Damage 5 (6); {block} 5 (6),,"attack, block",
 Ruby Raider (Axe),Big Swing,Damage 12 (13),,attack,
@@ -186,10 +185,10 @@ Decimillipede,Writhe,Damage 5x2 (6x2),,multi_attack,
 Entomancer,Bees,Damage 3x7 (3x8),,multi_attack,
 Entomancer,Spear,Damage 18 (20),,attack,
 Entomancer,Pheromone Spit,Gain 1 {personal_hive} and 1 {strength},dazed,buff,"After reaching 3 stacks of Personal Hive, instead only gains 2 strength."
-Infested Prism,Jab,Damage 22 (24),,attack,
-Infested Prism,Radiate,Damage 16 (18); {block} 16 (18),,"attack, block",
-Infested Prism,Whirlwind,Damage 9x3 (10x3),,multi_attack,
-Infested Prism,Pulsate,{block} 20 (22); Gain 4 (5) {strength},,"buff, block",
+Infested Prism,Jab,Damage 15 (17),,attack,
+Infested Prism,Radiate,Damage 11 (13); {block} 11 (13),,"attack, block",
+Infested Prism,Whirlwind,Damage 5x3 (6x3),,multi_attack,
+Infested Prism,Pulsate,Damage 8 (10); {block} 20 (22); Gain 2 (3) {vital_spark},,"attack, buff, block",
 Flail Knight,Ram,Damage 15 (17),,attack,Max 2 in a row.
 Flail Knight,War Chant,Gain 3 {strength},,buff,Cannot repeat.
 Flail Knight,Flail,Damage 9x2 (10x2),,multi_attack,Max 2 in a row.
@@ -211,8 +210,7 @@ Phantasmal Gardener,Flail,Damage 1x3,,multi_attack,
 Phantasmal Gardener,Enlarge,{strength} 2 (3),,buff,
 Phrog Parasite,Infect,Add 3 Infection to Discard,infection,add_statuses,
 Phrog Parasite,Lash,Damage 4x4 (5x4),,multi_attack,
-Skulking Colony,Smash,Damage 12 (13),,attack,
-Skulking Colony,Zoom,Damage 14 (16); {block} 10 (13),,"attack, block",
+Skulking Colony,Zoom,Damage 14 (16),,attack,
 Skulking Colony,Inertia,Damage 9 (11); Gain 2 (3) {strength},,"attack, buff",
 Skulking Colony,Piercing Stabs,Damage 7x2 (8x2),,multi_attack,
 Soul Nexus,Soul Burn,Damage 29 (31),,attack,Cannot repeat.
@@ -226,9 +224,9 @@ Ceremonial Beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,
 Ceremonial Beast,Beast Cry,Apply {ringing},,debuff,
 Ceremonial Beast,Stomp,Damage 15 (17),,attack,
 Ceremonial Beast,Crush,Damage 17 (19); Gains 3 (4) {strength},,attack,
-Aeonglass,Ebb,Damage 26 (32); Apply {ebb},,"attack, debuff",
+Aeonglass,Ebb,Damage 26 (32); Apply 3 {ebb},,"attack, debuff",
 Aeonglass,Eye Lasers,Damage 11x2 (12x2),,multi_attack,
-Aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; {block} 33,,"buff, block",{strength} gain increases by 1 each use.
+Aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; {block} 33; Add 1 (2) Wither to Discard,wither,"buff, block, add_statuses",Increases Wither damage by 3 each use.
 Crusher,Thrash,Damage 12 (14),,attack,
 Crusher,Enlarging Strike,Damage 4,,attack,
 Crusher,Bug Sting,Damage 6x2 (7x2); Apply 2 {weak}; Apply 2 {frail},,"multi_attack, debuff",

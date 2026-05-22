@@ -38,9 +38,7 @@ Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic B
 Gremlin Merc,47 - 49 (51 - 53),Cycles <Gimme> → <Double Smash> → <Hehe>.,[info] Stolen gold is held by Fat Gremlin once summoned.[info] Fight has normal gold reward if Fat Gremlin doesn't escape.,surprise; thievery,{surprise} and {thievery} 20,
 Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.",[info] If Fat Gremlin escapes you will not get the stolen gold or normal gold reward.,,,
 Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,
-Haunted Ship,63 (67),"Opens with <Haunt>.
-Then chooses randomly from <Ramming Speed>, <Swipe>, <Stomp>.
-Uses <Haunt> every other turn.",,haunt; weak,,
+Haunted Ship,63 (67),"Opens with <Haunt>; then alternates <Swipe> ↔ <Stomp> (always starting with <Swipe>).",,haunt; weak,,
 Hunter Killer,121 (126),"Opens with <Tenderizing Goop>.
 Then chooses randomly from <Bite>, <Puncture>.",,tender,,
 Inklet,11 - 17 (12 - 18),"Cycles <Jab> → <Whirlwind> or <Piercing Gaze> (50/50).","[info] Front and back start with <Jab>. Middle starts with <Whirlwind>.",slippery,{slippery} 1,
@@ -64,7 +62,7 @@ If allies < 3 after <Tenderizer>: <Lay Eggs> → <Smash> → <Tenderizer>.",,,,
 Tough Egg,14 - 18 (15 - 19),Always uses <Hatch>.,,hatch; minion,{hatch} 1,
 Hatchling,19 - 22 (20 - 23),Always uses <Nibble>.,,minion,,
 Owl Magistrate,231 (247),Cycles <Magistrate Scrutiny> → <Peck Assault> → <Judicial Flight> → <Verdict>.,,soar,,
-Punch Construct,55 (60),Cycles <Ready> → <Strong Punch> → <Fast Punch>.,"[info] Punch-Off event: 1st starts <Strong Punch>, 2nd starts <Ready>.",artifact,{artifact} 1,
+Punch Construct,55 (60),Cycles <Ready> → <Fast Punch> → <Strong Punch>.,"[info] Punch-Off event: 1st starts <Fast Punch>, 2nd starts <Ready>.",artifact,{artifact} 1,
 Ruby Raider (Assassin),18 - 23 (19 - 24),Always uses <Killshot>.,,,,
 Ruby Raider (Axe),20 - 22 (21 - 23),Cycles <Swing> → <Swing> → <Big Swing>.,,,,
 Ruby Raider (Brute),30 - 33 (31 - 34),Cycles <Beat> → <Roar>.,,,,
@@ -88,7 +86,7 @@ The Forgotten,106 (111),Cycles <Miasma> → <Dread>.,,,,
 The Obscura,123 (129),"Opens with <Illusion>.
 Then chooses randomly from <Piercing Gaze>, <Wail>, <Hardening Strike>.",,,,
 Parafright,21,Always uses <Slam>.,[info] Retains Strength after reviving.,illusion;minion,{illusion},
-Thieving Hopper,79 (84),Always uses <Thievery> → <Flutter> → <Hat Trick> → <Nab> → <Escape>.,"[info] Stolen card is taken from draw or discard pile. Priorities: 1. non-imbued uncommon 2. non-imbued common/rare/event 3. non-imbued basic/quest 4. imbued or ancient 5. curse or anything else.[info] If stunned before turn 5, resumes with next move. If stunned on turn 5, tries <Escape> again.[bug] As of v0.98.3 the game softlocks if Thieving Hopper cannot find a valid target to steal.",escape_artist; flutter; swipe,{escape_artist} 5,
+Thieving Hopper,79 (84),Always uses <Thievery> → <Flutter> → <Hat Trick> → <Nab> → <Escape>.,"[info] Stolen card is taken from draw or discard pile. Priorities: 1. non-imbued uncommon 2. non-imbued common/rare/event 3. non-imbued basic/quest 4. imbued or ancient 5. curse or anything else.[info] If stunned before turn 5, resumes with next move. If stunned on turn 5, tries <Escape> again.",escape_artist; flutter; swipe,{escape_artist} 5,
 Toadpole,21 - 25 (22 - 26),Cycles <Whirl> → <Spiken> → <Spike Spit>.,"[info] Front starts <Spiken>, back starts <Whirl>.",thorns,,
 Tunneler,87 (92),"Opens with <Bite> → <Burrow>.
 While Burrowed: Always uses <Below>.
@@ -108,7 +106,7 @@ When killed: Revives after 1 turn with 25 HP and continues from next move.","[in
 (3 segments),"(always even #, segments have different max HP)",,,reattach,,
 Entomancer,145 (155),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
 After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,
-Infested Prism,200 (215),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 1,
+Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),
 Flail Knight,101 (108),"Opens with <Ram>.
 Then chooses randomly from <War Chant>, <Flail>, <Ram>.",,,,
 Spectral Knight,93 (97),"Opens with <Hex> → <Soul Slash>.
@@ -119,7 +117,7 @@ Mecha Knight,300 (320),"Opens with <Charge>.
 Then cycles <Flamethrower> → <Windup> → <Heavy Cleave>.",,artifact,{artifact} 3,
 Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (7),
 Phrog Parasite,61 - 64 (66 - 68),Cycles <Infect> → <Lash>.,,infested,{infested} 4,
-Skulking Colony,70 (75),Cycles <Smash> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 15,
+Skulking Colony,75 (80),Cycles <Zoom> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 20,
 Soul Nexus,234 (254),"Opens with <Soul Burn>.
 Then chooses randomly from <Soul Burn>, <Maelstrom>, <Drain Life>.",,,,
 Terror Eel,140 (150),"Phase 1:
@@ -132,7 +130,7 @@ Opens with <Stamp>, then always uses <Plow>.
 
 Phase 2 (after stun):
 Cycles <Beast Cry> → <Stomp> → <Crush>.",,plow; ringing,,
-Aeonglass,512 (535),Cycles <Ebb> → <Eye Lasers> → <Increasing Intensity>.,[info] <Increasing Intensity> {strength} gain increases by 1 each use.,artifact; withering_presence; ebb,{artifact} 3 and {withering_presence} 4,
+Aeonglass,512 (535),Cycles <Ebb> → <Eye Lasers> → <Increasing Intensity>.,[info] <Increasing Intensity> {strength} gain increases by 1 each use.,artifact; withering_presence; ebb,{artifact} 3 and {withering_presence} 6,
 Crusher,209 (219),Cycles <Thrash> → <Enlarging Strike> → <Bug Sting> → <Adapt> → <Guarded Strike>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Rocket,199 (209),Cycles <Targeting Reticle> → <Precision Beam> → <Charge Up> → <Laser> → <Recharge>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
 Knowledge Demon,379 (399),"Phase 1:
@@ -150,8 +148,8 @@ Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scre
 Test Subject Stage 1,100 (111),"Cycles <Bite> → <Skull Bash>.
 When killed: Revives next turn in Stage 2.",,enrage,{enrage} 3,
 Test Subject Stage 2,200 (212),"Always uses <Multi-Claw>.
-When killed: Revives next turn in Stage 3.",,painful_stabs,{painful_stabs} 1,,true
-Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),,true
+When killed: Revives next turn in Stage 3.",,painful_stabs,{painful_stabs} 1,,
+Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),,
 The Insatiable,321 (341),"Opens with <Liquify Ground>.
 Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,
 Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,

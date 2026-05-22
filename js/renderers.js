@@ -92,13 +92,25 @@ function renderMoveRefs(text, enemyName) {
   });
 }
 
+// Inline-only power ref: icon + name with no nested tooltip. Used inside descriptions
+// that are themselves shown in a tooltip/section (avoids nested tooltip recursion).
+function renderInlinePowerRefs(text) {
+  return text.replace(/\{(\w+)\}/g, (match, key) => {
+    const ref = powersRef[key];
+    if (!ref) return match;
+    return `<span class="power-ref-inline"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span></span>`;
+  });
+}
+
 function renderPowerRefs(text, enemyName) {
   // First handle move refs (with enemy context for tooltips), then power refs
   let result = renderMoveRefs(text, enemyName);
   result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
-    const tooltip = ref.desc ? `<span class="power-tooltip">${ref.desc}</span>` : '';
+    // Process power refs inside the description (e.g. Vital Spark mentions {tainted})
+    const renderedDesc = ref.desc ? renderInlinePowerRefs(ref.desc) : '';
+    const tooltip = renderedDesc ? `<span class="power-tooltip">${renderedDesc}</span>` : '';
     return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>${tooltip}</span>`;
   });
   return result;
@@ -193,6 +205,18 @@ function renderEnemyReferences(powers, moves, references) {
     ...(references || []),
     ...moves.filter(m => m.references).flatMap(m => m.references.split(',').map(s => s.trim())).filter(Boolean)
   ];
+  // Also pull in power refs from each referenced power's description (e.g. Vital Spark → Tainted)
+  const refRegex = /\{(\w+)\}/g;
+  const transitive = [];
+  for (const k of allKeys) {
+    const p = powersRef[k];
+    if (!p?.desc) continue;
+    let m;
+    while ((m = refRegex.exec(p.desc)) !== null) {
+      if (powersRef[m[1]]) transitive.push(m[1]);
+    }
+  }
+  allKeys.push(...transitive);
   if (allKeys.length === 0) return '';
   return renderReferenceSections(allKeys);
 }
@@ -265,7 +289,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
         <img class="power-icon" src="${iconSrc}" alt="${p.name}" onerror="this.style.display='none'">
         <div class="power-info">
           <span class="power-name">${p.name}</span>
-          <span class="power-desc">${p.desc}</span>
+          <span class="power-desc">${renderInlinePowerRefs(p.desc)}</span>
         </div>
       </div>`;
     }).join('');

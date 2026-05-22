@@ -44,3 +44,4 @@ infection,Infection,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of y
 burn,Burn,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
 beckon,Beckon,Status,,1,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 6 HP."
 frantic_escape,Frantic Escape,Status,,1,Get farther away. Increase [gold]Sandpit[/gold] by 1. Increase the cost of this card by 1.
+wither,Wither,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 3 damage."
