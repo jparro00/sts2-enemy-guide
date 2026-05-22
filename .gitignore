@@ -22,3 +22,8 @@ media/raw/
 /encounter/
 /event/
 /sitemap.xml
+
+# Build artifact: copied by the deploy workflow into beta checkouts so
+# build_snapshots.py can emit canonical tags pointing to master URLs.
+# Never committed.
+master-data/
