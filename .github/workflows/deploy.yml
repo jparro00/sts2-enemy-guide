@@ -72,7 +72,10 @@ jobs:
         id: extra
         run: |
           cd main-site
-          EXTRA_BRANCHES=$(git ls-remote --heads origin 'refs/heads/beta-*' 'refs/heads/test' | awk '{print $2}' | sed 's|refs/heads/||')
+          # Only the highest-version beta-* branch deploys to /beta/; retired beta branches are ignored.
+          LATEST_BETA=$(git ls-remote --heads origin 'refs/heads/beta-*' | awk '{print $2}' | sed 's|refs/heads/||' | sort -V | tail -1)
+          TEST_BRANCH=$(git ls-remote --heads origin 'refs/heads/test' | awk '{print $2}' | sed 's|refs/heads/||')
+          EXTRA_BRANCHES=$(printf '%s\n%s\n' "$LATEST_BETA" "$TEST_BRANCH" | sed '/^$/d')
           echo "branches<<EOF" >> $GITHUB_OUTPUT
           echo "$EXTRA_BRANCHES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -119,7 +122,7 @@ jobs:
               echo "build_snapshots.py not present on $branch — skipping snapshot generation"
             fi
             mkdir -p "_site/${FOLDER}"
-            rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
+            rsync -a --delete --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
             rm -rf "checkout-${FOLDER}"
             echo "Deployed $branch to /${FOLDER}/"
           done <<< "${{ steps.extra.outputs.branches }}"
