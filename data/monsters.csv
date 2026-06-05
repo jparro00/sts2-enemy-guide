@@ -36,7 +36,7 @@ Fuzzy Wurm Crawler,55 - 57 (58 - 59),"Opens with <Acid Goop>.
 Then cycles <Inhale> → <Acid Goop> → <Acid Goop>.",,,,
 Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6,
 Gremlin Merc,47 - 49 (51 - 53),Cycles <Gimme> → <Double Smash> → <Hehe>.,[info] Stolen gold is held by Fat Gremlin once summoned.[info] Fight has normal gold reward if Fat Gremlin doesn't escape.,surprise; thievery,{surprise} and {thievery} 20,
-Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.","[info] If Fat Gremlin escapes after stealing gold, you get [red]no[/red] gold reward; if he escapes without having stolen gold, you still get [green]50%[/green] of the normal gold reward.",,,
+Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.","[info] If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get 50% of the normal gold reward.",,,
 Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,
 Haunted Ship,63 (67),"Opens with <Haunt>; then alternates <Swipe> ↔ <Stomp> (always starting with <Swipe>).",,haunt; weak,,
 Hunter Killer,121 (126),"Opens with <Tenderizing Goop>.
