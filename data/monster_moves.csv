@@ -211,7 +211,7 @@ Phantasmal Gardener,Enlarge,{strength} 2 (3),,buff,
 Phrog Parasite,Infect,Add 3 Infection to Discard,infection,add_statuses,
 Phrog Parasite,Lash,Damage 4x4 (5x4),,multi_attack,
 Skulking Colony,Zoom,Damage 14 (16),,attack,
-Skulking Colony,Inertia,Damage 9 (11); Gain 2 (3) {strength},,"attack, buff",
+Skulking Colony,Inertia,Damage 9 (11); Gain 2 (4) {strength},,"attack, buff",
 Skulking Colony,Piercing Stabs,Damage 7x2 (8x2),,multi_attack,
 Soul Nexus,Soul Burn,Damage 29 (31),,attack,Cannot repeat.
 Soul Nexus,Maelstrom,Damage 6x4 (7x4),,multi_attack,Cannot repeat.
@@ -224,9 +224,9 @@ Ceremonial Beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,
 Ceremonial Beast,Beast Cry,Apply {ringing},,debuff,
 Ceremonial Beast,Stomp,Damage 15 (17),,attack,
 Ceremonial Beast,Crush,Damage 17 (19); Gains 3 (4) {strength},,attack,
-Aeonglass,Ebb,Damage 26 (32); Apply 3 {ebb},,"attack, debuff",
+Aeonglass,Ebb,Damage 26 (32); {block} 33,,"attack, block",
 Aeonglass,Eye Lasers,Damage 11x2 (12x2),,multi_attack,
-Aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; {block} 33; Add 1 (2) Wither to Discard,wither,"buff, block, add_statuses",Increases Wither damage by 3 each use.
+Aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; Add 1 (2) Wither to Discard,wither,"buff, add_statuses",Increases Wither damage by 3 each use.
 Crusher,Thrash,Damage 12 (14),,attack,
 Crusher,Enlarging Strike,Damage 4,,attack,
 Crusher,Bug Sting,Damage 6x2 (7x2); Apply 2 {weak}; Apply 2 {frail},,"multi_attack, debuff",
