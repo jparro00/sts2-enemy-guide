@@ -64,7 +64,7 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 3,Glory,easy,Devoted Sculptor,Devoted Sculptor,,⚒️,,
 3,Glory,easy,Scrolls of Biting (easy),Scroll of Biting; Scroll of Biting; Scroll of Biting,3 enemies,📜,,
 3,Glory,easy,Turret Operator,Living Shield; Turret Operator,2 enemies,🛡️,,
-3,Glory,hard,Axebots,Axebot; Axebot,2 enemies,🪓,,
+3,Glory,hard,Axebots,Axebot,,🪓,,
 3,Glory,hard,Construct Menagerie,Punch Construct; Cubex Construct; Cubex Construct,3 enemies,🤖,,
 3,Glory,hard,Fabricator,Fabricator; Guardbot; Zapbot; Noisebot; Stabbot,,⚙️,,Fabricator.webp
 3,Glory,hard,Frog Knight,Frog Knight,,🐸,,
@@ -76,6 +76,6 @@ Act,Zone,Category,Encounter,Enemies,Multi,Emoji,Composition,AltImage
 3,Glory,elite,Knights,Flail Knight; Spectral Knight; Magi Knight,3 enemies,⚔️,,
 3,Glory,elite,Mecha Knight,Mecha Knight,,🤖,,
 3,Glory,elite,Soul Nexus,Soul Nexus,,💜,,
-3,Glory,boss,Doormaker,Doormaker,,🚪,,Doormaker.webp
+3,Glory,boss,Aeonglass,Aeonglass,,⏳,,
 3,Glory,boss,Queen,Queen; Torch Head Amalgam,2 enemies,👑,,Queen.webp
 3,Glory,boss,Test Subject,Test Subject Stage 1; Test Subject Stage 2; Test Subject Stage 3,,🧪,,Test Subject.webp

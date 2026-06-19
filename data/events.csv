@@ -111,7 +111,7 @@ self_help_book,Self-Help Book,Shared,[info]Each option is locked if you have no 
 slippery_bridge,Slippery Bridge,Shared,"[req]Can only appear on floor 7+.
 [req]Can only appear if all players have at least 1 removable card.
 [info]Hold On is repeatable. Damage starts at 3 and increases by 1 each time.
-[info]The Overcome card is re-randomized each Hold On.",,slippery_bridge.webp,"While crossing a rickety wooden bridge, there is a sudden [blue][jitter]torrent of rain[/jitter][/blue]. [purple][sine]Massive gusts of wind[/sine][/purple] buffet you, threatening to end your journey."
+[info]The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.",,slippery_bridge.webp,"While crossing a rickety wooden bridge, there is a sudden [blue][jitter]torrent of rain[/jitter][/blue]. [purple][sine]Massive gusts of wind[/sine][/purple] buffet you, threatening to end your journey."
 stone_of_all_time,Stone of All Time,Shared,"[req]Can only appear in Act 2.
 [req]Can only appear if all players have at least 1 potion.
 [info]The specific potion to be lost is shown in the option text.",2,stone_of_all_time.webp,"A massive boulder sits in the middle of an abandoned courtyard.|A plaque reads:|[gold][b]Stone of All Time[/b][/gold].|Its presence, shape, and adornments indicate that this courtyard was built around this [blue]Stone[/blue] and that it has never moved from this spot."
