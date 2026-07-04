@@ -36,12 +36,12 @@ Monster spine assets live at: `raw/animations/monsters/{folder_name}/`
 Note: some folders have mismatched filenames (e.g. `soul_nexus/soulnexus.skel`, `devoted_sculptor/devoted_scultpor.skel`). The GDScript auto-detects .skel and .atlas files independently.
 
 If the user gave a display name, find the matching spine folder by:
-- Checking `media/enemies/` for the webp filename (display name mapping)
+- Looking up the monster's `Key` in `data/monsters.csv` (Name → Key)
 - Checking `raw/animations/monsters/` folder names
 - The mapping is usually: `Display Name` -> `display_name` (lowercase, spaces to underscores)
 - Variants like `Ruby Raider (Axe)` map to `axe_ruby_raider` (variant prefix + base name)
 
-Resolve BOTH the spine folder name AND the display name (for the webp filename).
+Resolve BOTH the spine folder name AND the monster's **Key** (the Key is the output webp filename).
 
 For shared skeletons (e.g. `cultists` folder with skins `coral`/`slug`), use `--skin=` and `--display-name=`.
 
@@ -64,8 +64,10 @@ The automatic renderer uses a SubViewport at 6144x6144 so clipping should not be
 Opens a Godot window with a slider to scrub through the animation. The user picks a frame and clicks Capture — it auto-converts to webp, saves to media/enemies/, and quits.
 
 ```bash
-"C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe" --path "C:/Users/jparr/Documents/claude/sts2/spine_godot" res://interactive.tscn -- --monster={folder_name} "--display-name={Display Name}" 2>&1
+"C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/Godot_v4.6.1-stable_win64_console.exe" --path "C:/Users/jparr/Documents/claude/sts2/spine_godot" res://interactive.tscn -- --monster={folder_name} "--display-name={key}" 2>&1
 ```
+
+(`--display-name` drives the saved filename — pass the monster's **Key**, e.g. `ruby-raider-axe`, so the file lands as `media/enemies/{key}.webp`.)
 
 Additional flags: `--skin=`, `--track1=`, `--track2=`, `--anim=`
 
@@ -81,7 +83,7 @@ Use Python/Pillow to:
 3. Crop to content
 4. Fit into 512x512 canvas with ~16px padding, preserving aspect ratio (LANCZOS resampling)
 5. Center on transparent 512x512 canvas
-6. Save as webp (quality=90) to `media/enemies/{Display Name}.webp`
+6. Save as webp (quality=90) to `media/enemies/{key}.webp` (the monster's Key from data/monsters.csv)
 
 ```python
 from PIL import Image
@@ -104,7 +106,7 @@ new_w, new_h = int(w * scale), int(h * scale)
 resized = cropped.resize((new_w, new_h), Image.LANCZOS)
 canvas = Image.new('RGBA', (target, target), (0, 0, 0, 0))
 canvas.paste(resized, ((target - new_w) // 2, (target - new_h) // 2))
-canvas.save('media/enemies/{Display Name}.webp', 'WEBP', quality=90)
+canvas.save('media/enemies/{key}.webp', 'WEBP', quality=90)
 ```
 
 ## Step 4: Show the result

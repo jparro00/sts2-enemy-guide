@@ -2,7 +2,7 @@
 
 An unofficial reference guide for **Slay the Spire 2**. Look up enemy attack patterns, event outcomes, and item details without leaving your run.
 
-**[Open the Guide →](https://jparro00.github.io/sts2-enemy-guide/)**
+**[Open the Guide →](https://spirecodex.com/)**
 
 ---
 

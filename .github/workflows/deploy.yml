@@ -110,8 +110,8 @@ jobs:
               jq --arg base "/${FOLDER}" --argjson noindex "$NOINDEX" '.isBeta = true | .noindex = $noindex | .siteBase = $base' \
                 "checkout-${FOLDER}/site-config.json" > tmp.json && mv tmp.json "checkout-${FOLDER}/site-config.json"
             fi
-            # Copy master's data/ into the beta checkout as master-data/ so build_snapshots.py
-            # can set canonical tags to master URLs for entities that exist on both branches.
+            # Copy master's data/ into the beta checkout as master-data/ so the snapshot
+            # build can set canonical tags to master URLs for entities that exist on both branches.
             if [[ "$FOLDER" == "beta" ]] && [ -d "main-site/data" ]; then
               cp -r main-site/data "checkout-${FOLDER}/master-data"
             fi

@@ -147,6 +147,22 @@ Update the relevant CSVs based on verified changes (see `data/README.md` for sch
 - Repo: `C:/Users/jparr/Documents/claude/sts2/`
 - Raw output: `C:/Users/jparr/Documents/claude/sts2/raw/`
 
+## Promotion: releasing a beta to live
+
+When Mega Crit ships the beta as a live patch, promote the active beta branch's content to master (reference: commits `7bf1aba` + `5294d8c`, the v0.107.0 → v0.107.1 promotion):
+
+1. **On `master`**, bring over the beta branch's content — data and media only, never a wholesale merge (beta → master merges are forbidden):
+   ```bash
+   git checkout master
+   git checkout beta-v{VERSION} -- data/ media/
+   ```
+2. **Fix up `site-config.json` on master**: set `gameVersion` to the new live version (may differ from the beta version, e.g. beta 0.107.0 shipped as 0.107.1); keep `isBeta: false`; set `betaVersion` to `""` (no active beta) — or to the next beta's version if one is already running.
+3. **Reset `data/beta_changes.csv` to header-only** (`Type,Name,Change,Patch`) — live has no active beta diff. (The beta branch's copy carried the changelog; it retires with the branch.)
+4. Check whether the live patch added content the beta didn't have (patch notes vs beta notes) — usually out of scope (deck cards etc.), but verify enemies/events.
+5. Commit on master. Push **only with explicit user approval** (this deploys live).
+6. The promoted `beta-v*` branch is now retired — leave it; only the highest `beta-v*` deploys, and its canonicals point at master, so a stale `/beta/` is harmless until the next beta starts.
+7. The next beta then follows Step 2a above (branches from master, since `betaVersion` is empty).
+
 ## Branch management
 - Beta branches deploy to `/beta/` on the site
 - Always merge master -> beta, NEVER beta -> master
@@ -171,4 +187,4 @@ Update the relevant CSVs based on verified changes (see `data/README.md` for sch
   - Merge master into the active `beta-v*` branch.
   - Merge master into `test` (fast-forward usually). This is critical — if `test` has the old workflow and someone pushes to it, the old workflow would rebuild beta with `noindex=true` forced, undoing the SEO setup.
   - Don't touch retired `beta-v*` branches (they're dead; no one pushes to them).
-- When creating the next beta branch (e.g. `beta-v0.107.0`), branch from the previous beta — it inherits everything from the merge chain.
+- When creating the next beta branch, follow Step 2a's rule: branch from the previous beta **only if it's still active** (unreleased); after a promotion, branch from master. Never branch from a retired beta.
