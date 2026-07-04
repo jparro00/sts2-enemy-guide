@@ -179,14 +179,10 @@ async function loadData() {
   multiplayerScaling = scalingData;
   const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
   const banner = document.getElementById('version-banner');
-  if (banner && siteConfig.betaVersion) {
-    if (isBeta) {
-      banner.className = 'beta-banner';
-      banner.innerHTML = `<span class="banner-full">BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a></span><span class="banner-short">BETA <strong>v${siteConfig.betaVersion}</strong> — <a href="../">View stable version</a></span>`;
-    } else {
-      banner.className = 'stable-banner';
-      banner.innerHTML = `<span class="banner-full">This site is also available for the latest <strong>beta patch v${siteConfig.betaVersion}</strong>. <a href="beta/">Switch to beta</a></span><span class="banner-mobile">v${siteConfig.gameVersion} · <a href="beta/">Switch to beta</a></span>`;
-    }
+  const bannerContent = buildVersionBanner(siteConfig, isBeta);  // shared with build_snapshots.mjs
+  if (banner && bannerContent) {
+    banner.className = bannerContent.className;
+    banner.innerHTML = bannerContent.html;
   }
   // Update footer game version
   const versionEl = document.getElementById('game-version');
@@ -211,10 +207,14 @@ async function loadData() {
   // Render site chrome (act bar + category tabs) from the ACTS config.
   // The static markup in index.html is SSR'd by build_snapshots.mjs from the
   // same builders, so this is an idempotent refresh — no visible change.
+  // (Re-apply current selection — the user may have clicked before data finished loading.)
   const actBar = document.querySelector('.act-bar');
   if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
   const tabsEl = document.getElementById('category-tabs');
-  if (tabsEl) tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
+  if (tabsEl) {
+    tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
+    tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
+  }
 
   // Apply noindex from config (for beta/test deploys)
   if (siteConfig.noindex) {

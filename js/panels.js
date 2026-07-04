@@ -18,11 +18,30 @@ function buildActBarHtml(selectedAct) {
     <div class="act-text"><div class="act-label">Act ${a.actNumber}</div><div class="act-name">${a.name}</div></div>
   </div>`).join('');
   const eventsCard = `
-  <div class="act-card act-events" data-act="events" onclick="selectAct('events')">
+  <div class="act-card act-events${selectedAct === 'events' ? ' selected' : ''}" data-act="events" onclick="selectAct('events')">
     <img src="media/events/crystal_sphere.webp" alt="Events">
     <div class="act-text"><div class="act-label">Reference</div><div class="act-name">Events</div></div>
   </div>`;
   return actCards + eventsCard + '\n';
+}
+
+// Version banner content — shared by the SPA (data.js) and the SSR in
+// build_snapshots.mjs so the pre-rendered and hydrated banners never diverge.
+// Returns null when there is no active beta (banner stays hidden).
+function buildVersionBanner(config, isBeta) {
+  const betaVersion = config.betaVersion || '';
+  const gameVersion = config.gameVersion || '';
+  if (!betaVersion) return null;
+  if (isBeta) {
+    return {
+      className: 'beta-banner',
+      html: `<span class="banner-full">BETA — This page reflects <strong>beta v${betaVersion}</strong> balance changes. <a href="../">View stable version</a></span><span class="banner-short">BETA <strong>v${betaVersion}</strong> — <a href="../">View stable version</a></span>`
+    };
+  }
+  return {
+    className: 'stable-banner',
+    html: `<span class="banner-full">This site is also available for the latest <strong>beta patch v${betaVersion}</strong>. <a href="beta/">Switch to beta</a></span><span class="banner-mobile">v${gameVersion} · <a href="beta/">Switch to beta</a></span>`
+  };
 }
 
 const encounterTabsHtml = `

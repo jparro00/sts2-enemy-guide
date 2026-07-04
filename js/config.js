@@ -10,6 +10,7 @@ let itemsRef = {};       // unified lookup: { key: { ...data, category } }
 let betaChanges = {};    // keyed by "type:name" -> change description
 let siteConfig = {};     // loaded from site-config.json
 let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
+let openPanelInfo = null;     // currently open panel: { type, name, act, cat } — read by renderers.js scaling
 let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 
 // Slug lookups built after data loads — slug → original name/key
@@ -24,9 +25,14 @@ function slugify(s) {
     .replace(/^-+|-+$/g, '');
 }
 
+// Disambiguate colliding encounter slugs by category (e.g. "Seapunk" easy/hard).
+// Shared by the SPA (via encounterSlug) and build_snapshots.mjs (master-data canonicals).
+function disambiguateSlug(base, cat, counts) {
+  return counts[base] > 1 ? `${base}-${cat}` : base;
+}
+
 function encounterSlug(name, cat) {
-  const base = slugify(name);
-  return encSlugCounts[base] > 1 ? `${base}-${cat}` : base;
+  return disambiguateSlug(slugify(name), cat, encSlugCounts);
 }
 
 function getSiteBase() {
@@ -91,7 +97,6 @@ const catNames = {
   events: "Events"
 };
 const encounterCatKeys = ENCOUNTER_CATS.map(c => c.key);
-const actToEventZone = Object.fromEntries(ACTS.map(a => [a.key, a.key]));
 const zoneToActNumber = Object.fromEntries(ACTS.map(a => [a.key, a.actNumber]));
 const eventZoneNames = {
   all: "All Events",
@@ -100,5 +105,6 @@ const eventZoneNames = {
 const zoneOrder = ACTS.map(a => a.key);                       // encounter zones, display order
 const eventZoneOrder = [...zoneOrder, SHARED_ZONE.key];       // event zones, display order
 const zoneLabels = Object.fromEntries([...ACTS, SHARED_ZONE].map(z => [z.key, z.name]));
+const eventSearchZoneNames = { ...actNames, [SHARED_ZONE.key]: SHARED_ZONE.name };  // search result headers
 const csvZoneMap = Object.fromEntries(ACTS.map(a => [a.csvName, a.key]));            // encounters.csv Zone → key
 const csvActMap = { ...csvZoneMap, [SHARED_ZONE.csvName]: SHARED_ZONE.key };         // events.csv Act → key

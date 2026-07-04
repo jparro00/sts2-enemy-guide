@@ -50,7 +50,7 @@ function getEncounterImageHtml(enc, cat) {
 
 let currentAct = "overgrowth";
 let currentCat = "all";
-let openPanelInfo = null;  // tracks what's currently open: { type, name, act, cat }
+// openPanelInfo lives in js/config.js (shared state — renderers.js reads it)
 
 function setPlayerCount(count) {
   playerCount = count;
@@ -223,8 +223,8 @@ function render() {
   label.textContent = catNames[currentCat];
 
   if (currentCat === 'events') {
-    // Show events for this act's zone + shared
-    const zone = actToEventZone[currentAct];
+    // Show events for this act's zone + shared (act keys double as event zone keys)
+    const zone = currentAct;
     const zoneEvents = eventsData[zone] || [];
     const actNum = zoneToActNumber[zone];
     const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));

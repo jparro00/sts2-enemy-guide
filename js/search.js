@@ -113,10 +113,9 @@ function onSearch(query) {
       if (!eventGrouped[m.zone]) eventGrouped[m.zone] = [];
       eventGrouped[m.zone].push(m.ev);
     }
-    const eventZoneNamesLocal = { ...actNames, shared: 'Shared' };
     for (const zone of eventZoneOrder) {
       if (!eventGrouped[zone]) continue;
-      html += `<div class="search-zone-label">${eventZoneNamesLocal[zone]} — Events</div>`;
+      html += `<div class="search-zone-label">${eventSearchZoneNames[zone]} — Events</div>`;
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';
