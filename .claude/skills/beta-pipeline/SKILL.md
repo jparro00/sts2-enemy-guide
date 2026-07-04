@@ -7,6 +7,14 @@ description: Run the STS2 beta patch pipeline — fetch patch notes, decompile g
 
 When invoked, run through the following steps for a new STS2 beta patch. If a version argument is provided (e.g. `/beta-pipeline 0.102.0`), use that version. Otherwise, fetch patch notes first to determine the latest version.
 
+## Scope — what this app actually tracks
+The app is an **enemy & event reference** (see `README.md`). It only cares about:
+- **Enemies** — HP, attack patterns/moves, powers, encounters.
+- **Events** — outcomes, requirements (IsAllowed), lore.
+- **Cards / relics / potions / enchantments — ONLY when referenced by an event.** These files (`cards.csv`, `relics.csv`, `potions.csv`, `enchantments.csv`) exist solely so event detail views can render the items events give/remove. A card/relic/potion balance change matters **only if a *changed* item is referenced by an event** — verify with `grep -i "<item>" data/event_choices.csv data/events.csv` before acting.
+
+Therefore the huge player-facing card-balance batches and new (multiplayer) deck cards in most patches are **out of scope** — they are deck cards, not event rewards. Do not update `cards.csv` for a deck-card rebalance unless that exact card appears in an event. When in doubt about scope, re-read `README.md` rather than guessing from the CSV file list.
+
 ## Step 1: Fetch patch notes
 ```bash
 curl -s "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=2868840&count=5&maxlength=99999&feeds=steam_community_announcements"
@@ -16,13 +24,39 @@ curl -s "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=2868840
 - Present the patch notes summary to the user and confirm this is the correct patch before proceeding
 
 ## Step 2: Create branch and update config
-- If a `beta-v{VERSION}` branch already exists, check it out
-- If not, create from the previous beta branch (the latest `beta-v*` branch): `git checkout beta-v{PREV} && git checkout -b beta-v{VERSION}`
-  - To find the previous beta branch: `git branch -r | grep beta-v | sort -V | tail -1`
-  - This ensures all prior beta-only data (CSV rows, assets) carries forward
-- Update `site-config.json`:
-  - Set `betaVersion` to the new version string
-  - Set `isBeta` to `true`
+
+If a `beta-v{VERSION}` branch already exists, just check it out and skip the rest of this step.
+
+### 2a. Decide what to branch FROM — read master's config, don't assume
+The branch source depends on whether an active beta branch already exists. **`master`'s `site-config.json` is the source of truth** — check it first:
+```bash
+git show master:site-config.json   # look at betaVersion
+```
+
+- **`betaVersion` is `""` (empty) → the previous beta was already promoted to live, so there is NO active beta branch.** This new beta is a *between-release* beta. **Branch from `master`:**
+  ```bash
+  git checkout master && git checkout -b beta-v{VERSION}
+  ```
+  Master already contains all promoted content (plus any live hotfixes), and its `beta_changes.csv` was reset to header-only on promotion — so this beta's changelog correctly starts fresh. The retired `beta-v*` branches are dead; never branch from them.
+
+- **`betaVersion` names a version (e.g. `"0.106.0"`) → that beta is still active (not yet released).** Branch from the latest beta branch to carry forward all prior beta-only data (CSV rows, assets, changelog):
+  ```bash
+  PREV=$(git branch -r | grep beta-v | sort -V | tail -1)   # e.g. origin/beta-v0.106.0
+  git checkout {PREV} && git checkout -b beta-v{VERSION}
+  ```
+
+You can also confirm the situation from git log: a recent `Promote beta ... to live` + `Clear betaVersion ...` pair on master means the last beta was released (→ branch from master).
+
+### 2b. Update `site-config.json` on the **beta** branch
+- Set `betaVersion` to the new version string
+- Set `isBeta` to `true`
+
+### 2c. If (and only if) you branched from master, re-tag the beta on **master**
+When branching from master, `master`'s config has an empty `betaVersion`, so the live→beta cross-link banner is currently off. Restore it by tagging the new beta on master:
+- On `master`: set `betaVersion` to `{VERSION}`, but **keep `isBeta: false`** (master stays the live build). Leave `gameVersion` as the live version.
+- Commit this on master (local only — do NOT push without asking). This is required so the deploy shows the cross-link banner on live pointing at `/beta/`.
+- Then create/populate the beta branch from that updated master.
+- (When branching from an active beta branch instead, master already carries the correct `betaVersion` — no master change needed.)
 
 ## Step 3: Decompile game files
 Run the GDRE tools extraction:
