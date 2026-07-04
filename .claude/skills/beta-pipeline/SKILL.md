@@ -107,10 +107,10 @@ For each change mentioned in the patch notes:
 - CS pattern: `GetValueIfAscension(Level, ascensionValue, normalValue)` — ascension value comes FIRST
 
 ## Step 6: Update CSV data files
-Update the relevant CSVs based on verified changes:
-- `data/monsters.csv` — HP, Pattern, Notes, Powers, StartsWith, References
-- `data/monster_moves.csv` — Effects, Intent, Notes, References
-- `data/encounters.csv` — Enemies, Composition, Emoji, Category
+Update the relevant CSVs based on verified changes (see `data/README.md` for schemas):
+- `data/monsters.csv` — HP, Pattern, Notes, Powers, StartsWith, References. New monsters need a `Key` (slugified display name, e.g. `ruby-raider-axe`) — it becomes the URL slug and image filename; never change an existing Key.
+- `data/monster_moves.csv` — Effects, Intent, Notes, References. `Enemy` column holds the monster's `Key`.
+- `data/encounters.csv` — Enemies (monster `Key`s, `;`-separated), Composition, Emoji, Category. New encounters need a `Key` (slugified name, plus `-<category>` if the name collides with another encounter).
 - `data/events.csv` — Notes (requirements/tags), Acts
 - `data/event_choices.csv` — Effect, Notes, References
 - `data/powers.csv` — if new powers or description changes
@@ -131,6 +131,7 @@ Update the relevant CSVs based on verified changes:
 - Add a row for every changed encounter, monster, and event
 - Format: `Type,Name,Change,Patch`
   - Type: `encounter`, `monster`, or `event`
+  - Name: the entity's **Key** (monsters/encounters: their `Key` column; events: `events.csv` Key)
   - Patch: version number (e.g. `0.101.0`)
 - Change description should be concise patch-note style
 - If a monster/event was changed in a previous beta patch AND this patch, update the existing row's Change description and set Patch to the latest version
@@ -145,6 +146,22 @@ Update the relevant CSVs based on verified changes:
 - GDRE: `C:/Users/jparr/Downloads/GDRE_tools/gdre_tools.exe`
 - Repo: `C:/Users/jparr/Documents/claude/sts2/`
 - Raw output: `C:/Users/jparr/Documents/claude/sts2/raw/`
+
+## Promotion: releasing a beta to live
+
+When Mega Crit ships the beta as a live patch, promote the active beta branch's content to master (reference: commits `7bf1aba` + `5294d8c`, the v0.107.0 → v0.107.1 promotion):
+
+1. **On `master`**, bring over the beta branch's content — data and media only, never a wholesale merge (beta → master merges are forbidden):
+   ```bash
+   git checkout master
+   git checkout beta-v{VERSION} -- data/ media/
+   ```
+2. **Fix up `site-config.json` on master**: set `gameVersion` to the new live version (may differ from the beta version, e.g. beta 0.107.0 shipped as 0.107.1); keep `isBeta: false`; set `betaVersion` to `""` (no active beta) — or to the next beta's version if one is already running.
+3. **Reset `data/beta_changes.csv` to header-only** (`Type,Name,Change,Patch`) — live has no active beta diff. (The beta branch's copy carried the changelog; it retires with the branch.)
+4. Check whether the live patch added content the beta didn't have (patch notes vs beta notes) — usually out of scope (deck cards etc.), but verify enemies/events.
+5. Commit on master. Push **only with explicit user approval** (this deploys live).
+6. The promoted `beta-v*` branch is now retired — leave it; only the highest `beta-v*` deploys, and its canonicals point at master, so a stale `/beta/` is harmless until the next beta starts.
+7. The next beta then follows Step 2a above (branches from master, since `betaVersion` is empty).
 
 ## Branch management
 - Beta branches deploy to `/beta/` on the site
@@ -162,12 +179,12 @@ Update the relevant CSVs based on verified changes:
   |------|------------------|
   | `robots.txt` | Only master's served at `spirecodex.com/robots.txt`. Copies on beta/test are inert. |
   | `.github/workflows/deploy.yml` | The triggering branch's version runs. Must be up to date on every branch you'll ever push to. |
-  | `build_snapshots.py` | Each branch's own copy is invoked when the workflow builds that branch. |
-- For the canonical-tag SEO strategy: beta's `build_snapshots.py` reads from `master-data/` (a directory the workflow copies in from master's `data/` before building beta). For each entity that also exists on master, beta's build emits `rel="canonical"` + `og:url` pointing to the master URL. Beta-only entities get self-canonical.
+  | `build_snapshots.mjs` | Each branch's own copy is invoked when the workflow builds that branch. |
+- For the canonical-tag SEO strategy: beta's `build_snapshots.mjs` reads from `master-data/` (a directory the workflow copies in from master's `data/` before building beta). For each entity that also exists on master, beta's build emits `rel="canonical"` + `og:url` pointing to the master URL. Beta-only entities get self-canonical.
 - The workflow's `Checkout and copy extra branches` step also forces `noindex=true` for `test` only — beta is allowed to be indexed (with canonicals doing the dedup work).
 - Before pushing changes that touch workflow / build_snapshots / robots.txt, **propagate them to every branch that will ever be pushed**:
   - Update on master first (commit there).
   - Merge master into the active `beta-v*` branch.
   - Merge master into `test` (fast-forward usually). This is critical — if `test` has the old workflow and someone pushes to it, the old workflow would rebuild beta with `noindex=true` forced, undoing the SEO setup.
   - Don't touch retired `beta-v*` branches (they're dead; no one pushes to them).
-- When creating the next beta branch (e.g. `beta-v0.107.0`), branch from the previous beta — it inherits everything from the merge chain.
+- When creating the next beta branch, follow Step 2a's rule: branch from the previous beta **only if it's still active** (unreleased); after a promotion, branch from master. Never branch from a retired beta.

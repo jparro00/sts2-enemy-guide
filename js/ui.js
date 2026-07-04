@@ -2,7 +2,8 @@
 // UI LOGIC
 // ══════════════════════════════════════════
 
-const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback or report an issue</a></div>`;
+// Panel content builders (renderEnemySection, buildEncounterPanelBody,
+// buildEventPanelBody) live in js/panels.js — shared with the snapshot build.
 
 // Resolve alt image path — if no folder prefix, default to media/enemies/
 function resolveAltImage(altImage) {
@@ -26,9 +27,10 @@ function getEncounterImageHtml(enc, cat) {
   // If encounter has multiple enemies, show individual enemy images
   if (enc.enemies && enc.enemies.length > 1) {
     const count = enc.enemies.length;
-    const imgs = enc.enemies.map(name => {
-      const src = `media/enemies/${name}.webp`;
-      return `<img src="${src}" alt="${name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
+    const imgs = enc.enemies.map(key => {
+      const src = `media/enemies/${key}.webp`;
+      const alt = enemyDatabase[key] ? enemyDatabase[key].name : key;
+      return `<img src="${src}" alt="${alt}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
@@ -39,40 +41,26 @@ function getEncounterImageHtml(enc, cat) {
     return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
-  // No enemies list — try enemies folder by encounter name, then emoji fallback
-  const enemySrc = `media/enemies/${enc.name}.webp`;
+  // No enemies list — try enemies folder by encounter key, then emoji fallback
+  const enemySrc = `media/enemies/${enc.key}.webp`;
   return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
-const encounterTabsHtml = `
-  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
-  <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
-  <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
-  <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
-  <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
-  <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
-`;
-const eventTabsHtml = `
-  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
-  <div class="cat-tab" data-cat="ev_overgrowth" onclick="selectCat('ev_overgrowth')">Overgrowth</div>
-  <div class="cat-tab" data-cat="ev_underdocks" onclick="selectCat('ev_underdocks')">Underdocks</div>
-  <div class="cat-tab" data-cat="ev_hive" onclick="selectCat('ev_hive')">Hive</div>
-  <div class="cat-tab" data-cat="ev_glory" onclick="selectCat('ev_glory')">Glory</div>
-  <div class="cat-tab" data-cat="ev_shared" onclick="selectCat('ev_shared')">Shared</div>
-`;
+// Category tab markup (encounterTabsHtml / eventTabsHtml) lives in
+// js/panels.js, derived from ENCOUNTER_CATS / ACTS in config.js.
 
 let currentAct = "overgrowth";
 let currentCat = "all";
-let openPanelInfo = null;  // tracks what's currently open: { type, name, act, cat }
+// openPanelInfo lives in js/config.js (shared state — renderers.js reads it)
 
 function setPlayerCount(count) {
   playerCount = count;
   document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
   if (openPanelInfo) {
     if (openPanelInfo.type === 'encounter') {
-      openEncounter(openPanelInfo.name, openPanelInfo.act, openPanelInfo.cat);
+      openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat);
     } else if (openPanelInfo.type === 'event') {
-      openEvent(openPanelInfo.name);
+      openEvent(openPanelInfo.key);
     }
   }
 }
@@ -119,7 +107,7 @@ function renderCards(encs, cat) {
     const img = getEncounterImageHtml(e, cat);
     const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
     return `
-    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}', '${currentAct}', '${cat}')">
+    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${currentAct}', '${cat}')">
       <div class="${thumbClass}">
         ${img.html}
         ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
@@ -162,8 +150,8 @@ function preloadRemainingImages() {
           if (enc.altImage) {
             srcs.add(enc.altImage.includes('/') ? enc.altImage : `media/enemies/${enc.altImage}`);
           } else if (enc.enemies) {
-            for (const name of enc.enemies) {
-              srcs.add(`media/enemies/${name}.webp`);
+            for (const key of enc.enemies) {
+              srcs.add(`media/enemies/${key}.webp`);
             }
           }
         }
@@ -192,88 +180,67 @@ function preloadRemainingImages() {
   });
 }
 
-function render() {
+// Replace the grid wholesale (outerHTML swap drops the old subtree in one go)
+function setGrid(html) {
   const grid = document.getElementById('enemy-grid');
+  grid.innerHTML = '';
+  grid.className = '';
+  grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+}
+
+// Labelled group of event cards; empty groups render nothing
+function eventGroupHtml(label, events) {
+  if (!events || events.length === 0) return '';
+  return `<div class="cat-group-label cat-events">${label} Events</div><div class="enemy-grid">${renderEventCards(events)}</div>`;
+}
+
+// Shared events that can appear in the given zone's act
+function sharedEventsForZone(zone) {
+  const actNum = zoneToActNumber[zone];
+  return (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
+}
+
+function render() {
   const label = document.getElementById('section-label');
 
   if (currentAct === 'events') {
     // Events mode
     label.textContent = eventZoneNames[currentCat] || 'All Events';
-    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
-    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory', shared: 'Shared' };
     let html = '';
-
     if (currentCat === 'all') {
       // Show all zones grouped
       for (const zone of eventZoneOrder) {
-        const events = eventsData[zone] || [];
-        if (events.length === 0) continue;
-        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
-        html += `<div class="enemy-grid">${renderEventCards(events)}</div>`;
+        html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
       }
     } else {
       // Show specific zone + shared (if not already showing shared)
       const zone = currentCat.replace('ev_', '');
-      const zoneEvents = eventsData[zone] || [];
-      if (zoneEvents.length > 0) {
-        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
-        html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
-      }
-      if (zone !== 'shared') {
-        const actNum = zoneToActNumber[zone];
-        const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-        if (sharedEvents.length > 0) {
-          html += `<div class="cat-group-label cat-events">Shared Events</div>`;
-          html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
-        }
-      }
+      html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
+      if (zone !== 'shared') html += eventGroupHtml('Shared', sharedEventsForZone(zone));
     }
-
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(html);
     return;
   }
 
   label.textContent = catNames[currentCat];
 
   if (currentCat === 'events') {
-    // Show events for this act's zone + shared
-    const zone = actToEventZone[currentAct];
-    const zoneEvents = eventsData[zone] || [];
-    const actNum = zoneToActNumber[zone];
-    const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory' };
-    let html = '';
-    if (zoneEvents.length > 0) {
-      html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
-      html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
-    }
-    if (sharedEvents.length > 0) {
-      html += `<div class="cat-group-label cat-events">Shared Events</div>`;
-      html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
-    }
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    // Show events for this act's zone + shared (act keys double as event zone keys)
+    const zone = currentAct;
+    setGrid(eventGroupHtml(zoneLabels[zone], eventsData[zone]) + eventGroupHtml('Shared', sharedEventsForZone(zone)));
   } else if (currentCat === 'all') {
     // Show all categories grouped with headers
     let html = '';
-    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+    for (const cat of encounterCatKeys) {
       const encs = encounters[currentAct]?.[cat] || [];
       if (encs.length === 0) continue;
       html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;
       html += `<div class="enemy-grid">${renderCards(encs, cat)}</div>`;
     }
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(html);
   } else {
     const encs = encounters[currentAct]?.[currentCat] || [];
-    const html = `<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`;
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(`<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`);
   }
 }
 
@@ -282,53 +249,6 @@ function formatMultiBadge(multi) {
   const m = multi.match(/^(\d+(?:-\d+)?)/);
   if (m) return m[1].includes('-') ? m[1] : `×${m[1]}`;
   return multi;
-}
-
-function renderEnemySection(name, collapsible) {
-  const data = enemyDatabase[name];
-  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
-
-  const movesHtml = data.moves.map(m => `
-    <tr>
-      <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
-      <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
-    </tr>
-  `).join('');
-
-  const notesHtml = data.notes ? renderNotes(data.notes, name) : '';
-
-  const imgSrc = `media/enemies/${name}.webp`;
-  const collapseBtn = collapsible ? `<button class="collapse-toggle" onclick="toggleEnemySection(this)" title="Collapse/Expand">−</button>` : '';
-
-  return `
-    <div class="enemy-section${collapsible ? ' collapsible' : ''}">
-      <div class="enemy-section-header">
-        <div class="enemy-section-info">
-          <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
-          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(data.hp) : scaleHP(data.hp)}</div></div>
-        </div>
-        ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
-        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
-      </div>
-
-      <div class="enemy-section-body">
-        <h3>Attack Pattern</h3>
-        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
-
-        ${renderStartsWith(data.startsWith, name)}
-
-        <h3>Moves</h3>
-        <table>
-          <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
-          ${movesHtml}
-        </table>
-
-        ${notesHtml}
-        ${renderEnemyReferences(data.powers, data.moves, data.references)}
-      </div>
-    </div>
-  `;
 }
 
 function toggleEnemySection(btn) {
@@ -354,79 +274,55 @@ function navigateToPanel(state, url, opts) {
   }
 }
 
-function openEncounter(encounterName, act, cat, opts) {
-  const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'encounter', name: encounterName, act: act || currentAct, cat: cat || currentCat };
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = encounterName + renderBetaBadge('encounter', encounterName);
-
-  // Search all categories if act/cat provided, otherwise use current
-  let enc = null;
-  if (act && cat) {
-    const encs = encounters[act]?.[cat] || [];
-    enc = encs.find(e => e.name === encounterName);
-  } else {
-    const encs = encounters[currentAct]?.[currentCat] || [];
-    enc = encs.find(e => e.name === encounterName);
-  }
-
-  // Build composition info if available
-  let compositionHtml = '';
-  if (enc && enc.composition) {
-    compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
-  }
-
-  if (enc && enc.enemies && enc.enemies.length > 0) {
-    const uniqueEnemies = enc.enemies.filter((name, idx, arr) => arr.indexOf(name) === idx);
-    const collapsible = uniqueEnemies.length > 1;
-    const sections = uniqueEnemies
-      .map(name => renderEnemySection(name, collapsible))
-      .join('');
-    document.getElementById('detail-body').innerHTML = compositionHtml + sections + panelFeedbackLink;
-  } else {
-    document.getElementById('detail-body').innerHTML = compositionHtml + renderEnemySection(encounterName) + panelFeedbackLink;
-  }
-
-  panel.classList.add('open');
-  backdrop.classList.add('open');
+// Shared tail of every open*: reveal the panel (with view transition) and
+// update the URL/history. `wasOpen` makes panel→panel navigation replace the
+// history entry instead of stacking one.
+function presentPanel(state, url, opts, wasOpen) {
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('backdrop').classList.add('open');
   if (document.startViewTransition) {
     document.startViewTransition(() => document.body.classList.add('panel-open'));
   } else {
     document.body.classList.add('panel-open');
   }
-  navigateToPanel(
-    { type: 'encounter', name: encounterName, act: openPanelInfo.act, cat: openPanelInfo.cat },
-    `${getSiteBase()}/encounter/${encounterSlug(encounterName, openPanelInfo.cat)}/`,
-    { ...opts, replace: wasOpen }
+  navigateToPanel(state, url, { ...opts, replace: wasOpen });
+}
+
+function openEncounter(encounterKey, act, cat, opts) {
+  const wasOpen = openPanelInfo !== null;
+  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat };
+
+  // Search all categories if act/cat provided, otherwise use current
+  const encs = (act && cat) ? (encounters[act]?.[cat] || []) : (encounters[currentAct]?.[currentCat] || []);
+  const enc = encs.find(e => e.key === encounterKey) || null;
+
+  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey);
+
+  presentPanel(
+    { type: 'encounter', key: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
+    `${getSiteBase()}/encounter/${encounterKey}/`,
+    opts, wasOpen
   );
 }
 
-function openEnemy(enemyName, opts) {
+function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'enemy', name: enemyName };
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = enemyName + renderBetaBadge('monster', enemyName);
-  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyName) + panelFeedbackLink;
+  openPanelInfo = { type: 'enemy', key: enemyKey };
+  const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
+  document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
+  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyKey) + panelFeedbackLink;  // single enemy: section + feedback link
 
-  panel.classList.add('open');
-  backdrop.classList.add('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
-  navigateToPanel(
-    { type: 'enemy', name: enemyName },
-    `${getSiteBase()}/enemy/${slugify(enemyName)}/`,
-    { ...opts, replace: wasOpen }
+  presentPanel(
+    { type: 'enemy', key: enemyKey },
+    `${getSiteBase()}/enemy/${enemyKey}/`,
+    opts, wasOpen
   );
 }
 
 function openEvent(eventKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'event', name: eventKey };
+  openPanelInfo = { type: 'event', key: eventKey };
   // Find the event
   let ev = null;
   for (const act in eventsData) {
@@ -435,63 +331,19 @@ function openEvent(eventKey, opts) {
   }
   if (!ev) return;
 
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.name);
+  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.key);
+  document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 
-  const choices = eventChoices[eventKey] || [];
-  const choicesHtml = choices.length > 0 ? `
-    <h3>Choices</h3>
-    <table>
-      <tr><th>Choice</th><th>Effect</th></tr>
-      ${choices.map(c => `
-        <tr>
-          <td><strong>${c.choice}</strong></td>
-          <td>${renderLore(c.effect)}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${renderLore(c.notes)}</span>` : ''}</td>
-        </tr>
-      `).join('')}
-    </table>
-  ` : '';
-
-  const notesHtml = ev.notes ? renderNotes(ev.notes) : '';
-  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
-  const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
-
-  // Build all reference sections from unified References column
-  const allRefKeys = [...new Set(choices.filter(c => c.references).flatMap(c => c.references.split(',').map(s => s.trim())).filter(Boolean))];
-  const refsHtml = renderReferenceSections(allRefKeys);
-
-  document.getElementById('detail-body').innerHTML = `
-    <div class="enemy-section">
-      <div class="enemy-section-header">
-        <div class="enemy-section-info">
-          <div class="enemy-section-name">${ev.name}</div>
-        </div>
-        ${imgHtml}
-      </div>
-      ${loreHtml}
-      ${choicesHtml}
-      ${notesHtml}
-      ${refsHtml}
-    </div>
-    ${panelFeedbackLink}
-  `;
-
-  panel.classList.add('open');
-  backdrop.classList.add('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
-  navigateToPanel(
-    { type: 'event', name: eventKey },
+  presentPanel(
+    { type: 'event', key: eventKey },
     `${getSiteBase()}/event/${slugify(ev.name)}/`,
-    { ...opts, replace: wasOpen }
+    opts, wasOpen
   );
 }
 
 function isMobilePanel() {
+  // Keep in sync with the 1099px side-panel breakpoint in css/detail-panel.css
+  // (media queries can't read CSS custom properties, so this stays a literal)
   return window.matchMedia('(max-width: 1099px)').matches;
 }
 

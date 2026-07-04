@@ -1,44 +1,44 @@
-  /* ── Lore text effects ── */
-  /* Jitter: subtle shiver, like text is shaking from cold */
-  @keyframes jitter {
-    0%, 100% { transform: translate(0, 0); }
-    10%  { transform: translate(0.4px, -0.3px); }
-    20%  { transform: translate(-0.3px, 0.4px); }
-    30%  { transform: translate(0.5px, 0.2px); }
-    40%  { transform: translate(-0.2px, -0.5px); }
-    50%  { transform: translate(0.3px, 0.4px); }
-    60%  { transform: translate(-0.5px, -0.1px); }
-    70%  { transform: translate(0.2px, -0.4px); }
-    80%  { transform: translate(-0.4px, 0.3px); }
-    90%  { transform: translate(0.3px, -0.2px); }
-  }
-  /* Sine: gentle vertical bob */
-  @keyframes sine {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-0.8px); }
-  }
-  .lore-jitter { display: inline-block; animation: jitter 0.8s linear infinite; }
-  .lore-sine { display: inline-block; animation: sine 1.33s ease-in-out infinite; }
-  /* Fade-in: characters fade in sequentially */
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  .lore-fade-in { display: inline-block; opacity: 0; animation: fadeIn 0.5s ease-out forwards; }
-  /* Thinky dots: bounce up then pause */
-  @keyframes thinkyDots {
-    0%, 9%, 100% { transform: translateY(0); }
-    4.5% { transform: translateY(-1.5px); }
-  }
-  .lore-thinky-dots { display: inline-block; animation: thinkyDots 4.4s ease-in-out infinite; }
-  /* Rainbow: cycling hue shift */
-  @keyframes rainbow {
-    0% { color: #ff6666; }
-    16% { color: #ffaa33; }
-    33% { color: #ffff66; }
-    50% { color: #66ff66; }
-    66% { color: #6699ff; }
-    83% { color: #cc66ff; }
-    100% { color: #ff6666; }
-  }
-  .lore-rainbow { display: inline-block; animation: rainbow 3s linear infinite; }
+/* ── Lore text effects ── */
+/* Jitter: subtle shiver, like text is shaking from cold */
+@keyframes jitter {
+  0%, 100% { transform: translate(0, 0); }
+  10%  { transform: translate(0.4px, -0.3px); }
+  20%  { transform: translate(-0.3px, 0.4px); }
+  30%  { transform: translate(0.5px, 0.2px); }
+  40%  { transform: translate(-0.2px, -0.5px); }
+  50%  { transform: translate(0.3px, 0.4px); }
+  60%  { transform: translate(-0.5px, -0.1px); }
+  70%  { transform: translate(0.2px, -0.4px); }
+  80%  { transform: translate(-0.4px, 0.3px); }
+  90%  { transform: translate(0.3px, -0.2px); }
+}
+/* Sine: gentle vertical bob */
+@keyframes sine {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.8px); }
+}
+.lore-jitter { display: inline-block; animation: jitter 0.8s linear infinite; }
+.lore-sine { display: inline-block; animation: sine 1.33s ease-in-out infinite; }
+/* Fade-in: characters fade in sequentially */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.lore-fade-in { display: inline-block; opacity: 0; animation: fadeIn 0.5s ease-out forwards; }
+/* Thinky dots: bounce up then pause */
+@keyframes thinkyDots {
+  0%, 9%, 100% { transform: translateY(0); }
+  4.5% { transform: translateY(-1.5px); }
+}
+.lore-thinky-dots { display: inline-block; animation: thinkyDots 4.4s ease-in-out infinite; }
+/* Rainbow: cycling hue shift */
+@keyframes rainbow {
+  0% { color: #ff6666; }
+  16% { color: #ffaa33; }
+  33% { color: #ffff66; }
+  50% { color: #66ff66; }
+  66% { color: #6699ff; }
+  83% { color: #cc66ff; }
+  100% { color: #ff6666; }
+}
+.lore-rainbow { display: inline-block; animation: rainbow 3s linear infinite; }

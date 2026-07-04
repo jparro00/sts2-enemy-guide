@@ -2,27 +2,15 @@
 // DATA LOADING
 // ══════════════════════════════════════════
 
-async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
-    fetch('data/monsters.csv').then(r => r.text()),
-    fetch('data/monster_moves.csv').then(r => r.text()),
-    fetch('data/encounters.csv').then(r => r.text()),
-    fetch('data/powers.csv').then(r => r.text()),
-    fetch('data/events.csv').then(r => r.text()),
-    fetch('data/event_choices.csv').then(r => r.text()),
-    fetch('data/cards.csv').then(r => r.text()),
-    fetch('data/enchantments.csv').then(r => r.text()),
-    fetch('data/potions.csv').then(r => r.text()),
-    fetch('data/relics.csv').then(r => r.text()),
-    fetch('data/beta_changes.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
-    fetch('site-config.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
-    fetch('data/multiplayer-scaling.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
-  ]);
-
-  const enemiesRaw = parseCSV(enemiesText);
-  const movesRaw = parseCSV(movesText);
-  const encountersRaw = parseCSV(encountersText);
-  const powersRaw = parseCSV(powersText);
+// Build all global data structures from raw CSV texts. DOM-free — shared by
+// the browser (loadData below) and the static snapshot build
+// (build_snapshots.mjs), so the live site and its SEO snapshots always
+// render from the same code.
+function buildDataStructures(texts) {
+  const enemiesRaw = parseCSV(texts.monsters);
+  const movesRaw = parseCSV(texts.moves);
+  const encountersRaw = parseCSV(texts.encounters);
+  const powersRaw = parseCSV(texts.powers);
 
   // Build powers reference from CSV
   for (const p of powersRaw) {
@@ -34,37 +22,18 @@ async function loadData() {
     };
   }
 
-  // Load site config and render version banner
-  siteConfig = configData;
-  multiplayerScaling = scalingData;
-  const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
-  const banner = document.getElementById('version-banner');
-  if (banner && siteConfig.betaVersion) {
-    if (isBeta) {
-      banner.className = 'beta-banner';
-      banner.innerHTML = `<span class="banner-full">BETA — This page reflects <strong>beta v${siteConfig.betaVersion}</strong> balance changes. <a href="../">View stable version</a></span><span class="banner-short">BETA <strong>v${siteConfig.betaVersion}</strong> — <a href="../">View stable version</a></span>`;
-    } else {
-      banner.className = 'stable-banner';
-      banner.innerHTML = `<span class="banner-full">This site is also available for the latest <strong>beta patch v${siteConfig.betaVersion}</strong>. <a href="beta/">Switch to beta</a></span><span class="banner-mobile">v${siteConfig.gameVersion} · <a href="beta/">Switch to beta</a></span>`;
-    }
-  }
-  // Update footer game version
-  const versionEl = document.getElementById('game-version');
-  if (versionEl) {
-    versionEl.textContent = isBeta ? `beta v${siteConfig.betaVersion}` : `v${siteConfig.gameVersion}`;
-  }
-
   // Build beta changes lookup
-  if (betaText) {
-    const betaRaw = parseCSV(betaText);
+  if (texts.beta) {
+    const betaRaw = parseCSV(texts.beta);
     for (const b of betaRaw) {
       betaChanges[`${b.Type}:${b.Name}`] = { change: b.Change, patch: b.Patch || '' };
     }
   }
 
-  // Build enemy database
+  // Build enemy database — keyed by the stable Key column; display name is data
   for (const e of enemiesRaw) {
-    enemyDatabase[e.Name] = {
+    enemyDatabase[e.Key] = {
+      name: e.Name,
       hp: e.HP,
       pattern: e.Pattern,
       notes: e.Notes,
@@ -88,17 +57,17 @@ async function loadData() {
     }
   }
 
-  // Build encounters structure
-  const zoneMap = { Overgrowth: 'overgrowth', Underdocks: 'underdocks', Hive: 'hive', Glory: 'glory' };
+  // Build encounters structure (zone mapping derives from ACTS in config.js)
   for (const enc of encountersRaw) {
-    const zoneKey = zoneMap[enc.Zone] || enc.Zone.toLowerCase();
+    const zoneKey = csvZoneMap[enc.Zone] || enc.Zone.toLowerCase();
     const cat = enc.Category;
     if (!encounters[zoneKey]) encounters[zoneKey] = {};
     if (!encounters[zoneKey][cat]) encounters[zoneKey][cat] = [];
 
-    const enemyList = enc.Enemies ? enc.Enemies.split(';').map(e => e.trim()).filter(Boolean) : [];
+    const enemyList = enc.Enemies ? enc.Enemies.split(';').map(e => e.trim()).filter(Boolean) : [];  // monster Keys
 
     encounters[zoneKey][cat].push({
+      key: enc.Key,
       name: enc.Encounter,
       enemies: enemyList,
       multi: enc.Multi || '',
@@ -109,12 +78,11 @@ async function loadData() {
   }
 
   // Build events structure
-  const eventsRaw = parseCSV(eventsText);
-  const eventChoicesRaw = parseCSV(eventChoicesText);
-  const actMap = { Overgrowth: 'overgrowth', Underdocks: 'underdocks', Hive: 'hive', Glory: 'glory', Shared: 'shared' };
+  const eventsRaw = parseCSV(texts.events);
+  const eventChoicesRaw = parseCSV(texts.eventChoices);
 
   for (const ev of eventsRaw) {
-    const actKey = actMap[ev.Act] || ev.Act.toLowerCase();
+    const actKey = csvActMap[ev.Act] || ev.Act.toLowerCase();
     if (!eventsData[actKey]) eventsData[actKey] = [];
     eventsData[actKey].push({
       key: ev.Key,
@@ -138,22 +106,22 @@ async function loadData() {
   }
 
   // Build unified itemsRef from all reference CSVs
-  const eventCardsRaw = parseCSV(eventCardsText);
+  const eventCardsRaw = parseCSV(texts.cards);
   for (const c of eventCardsRaw) {
     itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '' };
   }
 
-  const enchantmentsRaw = parseCSV(enchantmentsText);
+  const enchantmentsRaw = parseCSV(texts.enchantments);
   for (const e of enchantmentsRaw) {
     itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description };
   }
 
-  const potionsRaw = parseCSV(potionsText);
+  const potionsRaw = parseCSV(texts.potions);
   for (const p of potionsRaw) {
     itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description };
   }
 
-  const relicsRaw = parseCSV(relicsText);
+  const relicsRaw = parseCSV(texts.relics);
   for (const r of relicsRaw) {
     itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description };
   }
@@ -163,24 +131,11 @@ async function loadData() {
     itemsRef[key] = { ...val, key, category: 'power' };
   }
 
-  // Build slug lookups for URL routing
-  for (const name in enemyDatabase) {
-    slugToEnemy[slugify(name)] = name;
-  }
-  // First pass — count encounter base slugs to detect collisions
+  // Build URL-routing lookups (enemy slugs are their Keys — no map needed)
   for (const act in encounters) {
     for (const cat in encounters[act]) {
       for (const enc of encounters[act][cat]) {
-        const base = slugify(enc.name);
-        encSlugCounts[base] = (encSlugCounts[base] || 0) + 1;
-      }
-    }
-  }
-  // Second pass — write disambiguated slug for each encounter
-  for (const act in encounters) {
-    for (const cat in encounters[act]) {
-      for (const enc of encounters[act][cat]) {
-        slugToEncounter[encounterSlug(enc.name, cat)] = { name: enc.name, act, cat };
+        slugToEncounter[enc.key] = { act, cat };
       }
     }
   }
@@ -188,6 +143,66 @@ async function loadData() {
     for (const ev of eventsData[act]) {
       slugToEventKey[slugify(ev.name)] = ev.key;
     }
+  }
+}
+
+async function loadData() {
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, cardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
+    fetch('data/monsters.csv').then(r => r.text()),
+    fetch('data/monster_moves.csv').then(r => r.text()),
+    fetch('data/encounters.csv').then(r => r.text()),
+    fetch('data/powers.csv').then(r => r.text()),
+    fetch('data/events.csv').then(r => r.text()),
+    fetch('data/event_choices.csv').then(r => r.text()),
+    fetch('data/cards.csv').then(r => r.text()),
+    fetch('data/enchantments.csv').then(r => r.text()),
+    fetch('data/potions.csv').then(r => r.text()),
+    fetch('data/relics.csv').then(r => r.text()),
+    fetch('data/beta_changes.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
+    fetch('site-config.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetch('data/multiplayer-scaling.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  ]);
+
+  // Load site config and render version banner
+  siteConfig = configData;
+  multiplayerScaling = scalingData;
+  const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
+  const banner = document.getElementById('version-banner');
+  const bannerContent = buildVersionBanner(siteConfig, isBeta);  // shared with build_snapshots.mjs
+  if (banner && bannerContent) {
+    banner.className = bannerContent.className;
+    banner.innerHTML = bannerContent.html;
+  }
+  // Update footer game version
+  const versionEl = document.getElementById('game-version');
+  if (versionEl) {
+    versionEl.textContent = isBeta ? `beta v${siteConfig.betaVersion}` : `v${siteConfig.gameVersion}`;
+  }
+
+  buildDataStructures({
+    monsters: enemiesText,
+    moves: movesText,
+    encounters: encountersText,
+    powers: powersText,
+    events: eventsText,
+    eventChoices: eventChoicesText,
+    cards: cardsText,
+    enchantments: enchantmentsText,
+    potions: potionsText,
+    relics: relicsText,
+    beta: betaText,
+  });
+
+  // Render site chrome (act bar + category tabs) from the ACTS config.
+  // The static markup in index.html is SSR'd by build_snapshots.mjs from the
+  // same builders, so this is an idempotent refresh — no visible change.
+  // (Re-apply current selection — the user may have clicked before data finished loading.)
+  const actBar = document.querySelector('.act-bar');
+  if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
+  const tabsEl = document.getElementById('category-tabs');
+  if (tabsEl) {
+    tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
+    tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
   }
 
   // Apply noindex from config (for beta/test deploys)
@@ -220,15 +235,14 @@ function routeFromURL(initial) {
   const [, type, slug] = m;
   if (type === 'encounter') {
     const found = slugToEncounter[slug];
-    if (found) openEncounter(found.name, found.act, found.cat, { fromRoute: true, initial });
+    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial });
   } else if (type === 'enemy') {
-    const name = slugToEnemy[slug];
-    if (name) openEnemy(name, { fromRoute: true, initial });
+    if (enemyDatabase[slug]) openEnemy(slug, { fromRoute: true, initial });
   } else if (type === 'event') {
     const key = slugToEventKey[slug];
     if (key) openEvent(key, { fromRoute: true, initial });
   }
 }
 
-// ── Load and go ──
-loadData();
+// ── Load and go (browser only — the snapshot build calls buildDataStructures directly) ──
+if (typeof window !== 'undefined') loadData();

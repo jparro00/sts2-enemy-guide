@@ -24,6 +24,7 @@ function clearSearch() {
   const input = document.getElementById('search-input');
   input.value = '';
   onSearch('');
+  // Keep in sync with the 600px mobile breakpoint in css/base.css + css/responsive.css
   if (window.innerWidth <= 600) {
     closeSearch();
   } else {
@@ -47,16 +48,15 @@ function onSearch(query) {
   getBrowseElements().forEach(el => { if (el) el.style.display = 'none'; });
   results.style.display = 'block';
 
-  // Search all encounters across all acts/categories
+  // Search all encounters across all acts/categories (orders from config.js)
   const matches = [];
-  const zoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory'];
 
   for (const zone of zoneOrder) {
-    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+    for (const cat of encounterCatKeys) {
       const encs = encounters[zone]?.[cat] || [];
       for (const enc of encs) {
         const nameMatch = enc.name.toLowerCase().includes(q);
-        const enemyMatch = enc.enemies.some(e => e.toLowerCase().includes(q));
+        const enemyMatch = enc.enemies.some(k => (enemyDatabase[k] ? enemyDatabase[k].name : k).toLowerCase().includes(q));
         if (nameMatch || enemyMatch) {
           matches.push({ enc, zone, cat });
         }
@@ -96,7 +96,7 @@ function onSearch(query) {
       const img = getEncounterImageHtml(enc, cat);
       const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
       html += `
-        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.name.replace(/'/g, "\\'")}', '${zone}', '${cat}')">
+        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.key}', '${zone}', '${cat}')">
           <div class="${thumbClass}">
             ${img.html}
             ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}
@@ -114,11 +114,9 @@ function onSearch(query) {
       if (!eventGrouped[m.zone]) eventGrouped[m.zone] = [];
       eventGrouped[m.zone].push(m.ev);
     }
-    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
-    const eventZoneNamesLocal = { ...actNames, shared: 'Shared' };
     for (const zone of eventZoneOrder) {
       if (!eventGrouped[zone]) continue;
-      html += `<div class="search-zone-label">${eventZoneNamesLocal[zone]} — Events</div>`;
+      html += `<div class="search-zone-label">${eventSearchZoneNames[zone]} — Events</div>`;
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';

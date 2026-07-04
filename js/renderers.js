@@ -2,12 +2,16 @@
 // RENDERING HELPERS
 // ══════════════════════════════════════════
 
-// Return the act multiplier for the currently open panel (from multiplayer-scaling.json)
+// Fallback act multiplier when multiplayer-scaling.json hasn't loaded or has no entry
+const DEFAULT_ACT_MULTIPLIER = 1.1;
+
+// Return the act multiplier for the currently open panel (from multiplayer-scaling.json;
+// act 3 bosses use the special '3_boss' key defined there)
 function getActMultiplier() {
-  if (!openPanelInfo || !multiplayerScaling.actMultipliers) return 1.1;
+  if (!openPanelInfo || !multiplayerScaling.actMultipliers) return DEFAULT_ACT_MULTIPLIER;
   const actNum = zoneToActNumber[openPanelInfo.act] || '1';
   const key = (actNum === '3' && openPanelInfo.cat === 'boss') ? '3_boss' : actNum;
-  return multiplayerScaling.actMultipliers[key] || 1.1;
+  return multiplayerScaling.actMultipliers[key] || DEFAULT_ACT_MULTIPLIER;
 }
 
 // Scale a number by playerCount × actMultiplier, rounding down
@@ -49,10 +53,10 @@ function scaleEffects(text) {
   });
 }
 
-function renderMoveRefs(text, enemyName) {
+function renderMoveRefs(text, enemyKey) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
-    const moves = enemyName && enemyDatabase[enemyName] ? enemyDatabase[enemyName].moves : [];
+    const moves = enemyKey && enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].moves : [];
     const move = moves.find(m => m.name === moveName);
     if (move) {
       const intents = renderIntents(move.intent);
@@ -63,9 +67,9 @@ function renderMoveRefs(text, enemyName) {
   });
 }
 
-function renderPowerRefs(text, enemyName) {
+function renderPowerRefs(text, enemyKey) {
   // First handle move refs (with enemy context for tooltips), then power refs
-  let result = renderMoveRefs(text, enemyName);
+  let result = renderMoveRefs(text, enemyKey);
   result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
@@ -76,6 +80,9 @@ function renderPowerRefs(text, enemyName) {
 }
 
 function wrapCharsWithDelay(content, cssClass, baseDelay) {
+  // Static snapshot builds skip the per-char animation spans — plain content
+  // (colors/bold already processed) keeps the SEO pages lean.
+  if (typeof STATIC_RENDER !== 'undefined' && STATIC_RENDER) return content;
   // Wrap each character in a span with staggered animation-delay for wave effect.
   // Words are grouped in nowrap containers so letters never break across lines.
   let i = 0;
@@ -186,7 +193,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
   if (groups.card.length > 0) {
     const rows = groups.card.map(card => {
       const iconSrc = cardRarityIcons[card.rarity] || '';
-      const iconHtml = iconSrc ? `<img src="${iconSrc}" alt="${card.rarity}" style="width:24px;height:24px;vertical-align:middle;" title="${card.rarity}">` : card.rarity;
+      const iconHtml = iconSrc ? `<img class="ref-icon-sm" src="${iconSrc}" alt="${card.rarity}" title="${card.rarity}">` : card.rarity;
       const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
       return `<tr>
         <td style="text-align:center">${iconHtml}</td>
@@ -201,7 +208,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
   // Relics table
   if (groups.relic.length > 0) {
     const rows = groups.relic.map(r => `<tr>
-      <td style="text-align:center">${r.image ? `<img src="${categoryImagePaths.relic}${r.image}" alt="${r.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td style="text-align:center">${r.image ? `<img class="ref-icon" src="${categoryImagePaths.relic}${r.image}" alt="${r.name}">` : ''}</td>
       <td><strong>${r.name}</strong></td>
       <td>${renderLore(r.desc)}</td>
     </tr>`).join('');
@@ -211,7 +218,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
   // Potions table
   if (groups.potion.length > 0) {
     const rows = groups.potion.map(p => `<tr>
-      <td style="text-align:center">${p.image ? `<img src="${categoryImagePaths.potion}${p.image}" alt="${p.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td style="text-align:center">${p.image ? `<img class="ref-icon" src="${categoryImagePaths.potion}${p.image}" alt="${p.name}">` : ''}</td>
       <td><strong>${p.name}</strong></td>
       <td>${renderLore(p.desc)}</td>
     </tr>`).join('');
@@ -221,7 +228,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
   // Enchantments table
   if (groups.enchantment.length > 0) {
     const rows = groups.enchantment.map(e => `<tr>
-      <td style="text-align:center">${e.image ? `<img src="${categoryImagePaths.enchantment}${e.image}" alt="${e.name}" style="width:28px;height:28px;vertical-align:middle;">` : ''}</td>
+      <td style="text-align:center">${e.image ? `<img class="ref-icon" src="${categoryImagePaths.enchantment}${e.image}" alt="${e.name}">` : ''}</td>
       <td><strong>${e.name}</strong></td>
       <td>${renderLore(e.desc)}</td>
     </tr>`).join('');
