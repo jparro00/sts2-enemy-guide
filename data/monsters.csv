@@ -102,8 +102,7 @@ Wriggler,17 - 21 (18 - 22),Cycles <Nasty Bite> → <Wriggle>.,"[info] If spawned
 Bygone Effigy,127 (132),"Opens with <Sleep> → <Wake> → <Slash>, then always uses <Slash>.",,slow,{slow},
 Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,
 Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
-When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},
-(3 segments),"(always even #, segments have different max HP)",,,reattach,,
+When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Fights as 3 segments — HP is always an even number, and segments have different max HP.[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},
 Entomancer,145 (155),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
 After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,
 Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),
@@ -154,7 +153,6 @@ The Insatiable,321 (341),"Opens with <Liquify Ground>.
 Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,
 Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,
 Kin Follower,58 - 59 (62 - 63),Cycles <Quick Slash> → <Boomerang> → <Power Dance>.,,minion,,
-(Minion),,,,,,
 Vantom,173 (183),Cycles <Ink Blot> → <Inky Lance> → <Dismember> → <Prepare>.,,slippery,{slippery} 8 (9),
 Waterfall Giant,240 (250),"Opens with <Pressurize>.
 Then cycles <Stomp> → <Ram> → <Siphon> → <Pressure Gun> → <Pressure Up>.",[info] Heal is multiplied by player count in co-op.,steam_eruption,,
