@@ -24,6 +24,7 @@ function clearSearch() {
   const input = document.getElementById('search-input');
   input.value = '';
   onSearch('');
+  // Keep in sync with the 600px mobile breakpoint in css/base.css + css/responsive.css
   if (window.innerWidth <= 600) {
     closeSearch();
   } else {

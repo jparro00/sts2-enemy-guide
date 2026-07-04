@@ -96,7 +96,9 @@ jobs:
             else
               FOLDER="$branch"
             fi
-            git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "checkout-${FOLDER}" || continue
+            # Fail the deploy on clone failure — silently skipping would ship
+            # the site with /beta/ or /test/ missing or stale.
+            git clone --depth 1 --branch "$branch" https://github.com/${{ github.repository }}.git "checkout-${FOLDER}" || { echo "ERROR: failed to clone $branch"; exit 1; }
             # Beta is crawlable (canonicals point to master for shared content); test stays noindex'd.
             if [[ "$FOLDER" == "beta" ]]; then
               NOINDEX="false"

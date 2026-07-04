@@ -58,9 +58,9 @@ function setPlayerCount(count) {
   document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
   if (openPanelInfo) {
     if (openPanelInfo.type === 'encounter') {
-      openEncounter(openPanelInfo.name, openPanelInfo.act, openPanelInfo.cat);
+      openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat);
     } else if (openPanelInfo.type === 'event') {
-      openEvent(openPanelInfo.name);
+      openEvent(openPanelInfo.key);
     }
   }
 }
@@ -180,44 +180,45 @@ function preloadRemainingImages() {
   });
 }
 
-function render() {
+// Replace the grid wholesale (outerHTML swap drops the old subtree in one go)
+function setGrid(html) {
   const grid = document.getElementById('enemy-grid');
+  grid.innerHTML = '';
+  grid.className = '';
+  grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+}
+
+// Labelled group of event cards; empty groups render nothing
+function eventGroupHtml(label, events) {
+  if (!events || events.length === 0) return '';
+  return `<div class="cat-group-label cat-events">${label} Events</div><div class="enemy-grid">${renderEventCards(events)}</div>`;
+}
+
+// Shared events that can appear in the given zone's act
+function sharedEventsForZone(zone) {
+  const actNum = zoneToActNumber[zone];
+  return (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
+}
+
+function render() {
   const label = document.getElementById('section-label');
 
   if (currentAct === 'events') {
     // Events mode
     label.textContent = eventZoneNames[currentCat] || 'All Events';
     let html = '';
-
     if (currentCat === 'all') {
       // Show all zones grouped
       for (const zone of eventZoneOrder) {
-        const events = eventsData[zone] || [];
-        if (events.length === 0) continue;
-        html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
-        html += `<div class="enemy-grid">${renderEventCards(events)}</div>`;
+        html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
       }
     } else {
       // Show specific zone + shared (if not already showing shared)
       const zone = currentCat.replace('ev_', '');
-      const zoneEvents = eventsData[zone] || [];
-      if (zoneEvents.length > 0) {
-        html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
-        html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
-      }
-      if (zone !== 'shared') {
-        const actNum = zoneToActNumber[zone];
-        const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-        if (sharedEvents.length > 0) {
-          html += `<div class="cat-group-label cat-events">Shared Events</div>`;
-          html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
-        }
-      }
+      html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
+      if (zone !== 'shared') html += eventGroupHtml('Shared', sharedEventsForZone(zone));
     }
-
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(html);
     return;
   }
 
@@ -226,21 +227,7 @@ function render() {
   if (currentCat === 'events') {
     // Show events for this act's zone + shared (act keys double as event zone keys)
     const zone = currentAct;
-    const zoneEvents = eventsData[zone] || [];
-    const actNum = zoneToActNumber[zone];
-    const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-    let html = '';
-    if (zoneEvents.length > 0) {
-      html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
-      html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
-    }
-    if (sharedEvents.length > 0) {
-      html += `<div class="cat-group-label cat-events">Shared Events</div>`;
-      html += `<div class="enemy-grid">${renderEventCards(sharedEvents)}</div>`;
-    }
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(eventGroupHtml(zoneLabels[zone], eventsData[zone]) + eventGroupHtml('Shared', sharedEventsForZone(zone)));
   } else if (currentCat === 'all') {
     // Show all categories grouped with headers
     let html = '';
@@ -250,15 +237,10 @@ function render() {
       html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;
       html += `<div class="enemy-grid">${renderCards(encs, cat)}</div>`;
     }
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(html);
   } else {
     const encs = encounters[currentAct]?.[currentCat] || [];
-    const html = `<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`;
-    grid.innerHTML = '';
-    grid.className = '';
-    grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
+    setGrid(`<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`);
   }
 }
 
@@ -292,65 +274,55 @@ function navigateToPanel(state, url, opts) {
   }
 }
 
-function openEncounter(encounterKey, act, cat, opts) {
-  const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'encounter', name: encounterKey, act: act || currentAct, cat: cat || currentCat };
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
-
-  // Search all categories if act/cat provided, otherwise use current
-  let enc = null;
-  if (act && cat) {
-    const encs = encounters[act]?.[cat] || [];
-    enc = encs.find(e => e.key === encounterKey);
-  } else {
-    const encs = encounters[currentAct]?.[currentCat] || [];
-    enc = encs.find(e => e.key === encounterKey);
-  }
-
-  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
-  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey);
-
-  panel.classList.add('open');
-  backdrop.classList.add('open');
+// Shared tail of every open*: reveal the panel (with view transition) and
+// update the URL/history. `wasOpen` makes panel→panel navigation replace the
+// history entry instead of stacking one.
+function presentPanel(state, url, opts, wasOpen) {
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('backdrop').classList.add('open');
   if (document.startViewTransition) {
     document.startViewTransition(() => document.body.classList.add('panel-open'));
   } else {
     document.body.classList.add('panel-open');
   }
-  navigateToPanel(
-    { type: 'encounter', name: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
+  navigateToPanel(state, url, { ...opts, replace: wasOpen });
+}
+
+function openEncounter(encounterKey, act, cat, opts) {
+  const wasOpen = openPanelInfo !== null;
+  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat };
+
+  // Search all categories if act/cat provided, otherwise use current
+  const encs = (act && cat) ? (encounters[act]?.[cat] || []) : (encounters[currentAct]?.[currentCat] || []);
+  const enc = encs.find(e => e.key === encounterKey) || null;
+
+  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey);
+
+  presentPanel(
+    { type: 'encounter', key: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
     `${getSiteBase()}/encounter/${encounterKey}/`,
-    { ...opts, replace: wasOpen }
+    opts, wasOpen
   );
 }
 
 function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'enemy', name: enemyKey };
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
+  openPanelInfo = { type: 'enemy', key: enemyKey };
   const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
   document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
   document.getElementById('detail-body').innerHTML = renderEnemySection(enemyKey) + panelFeedbackLink;  // single enemy: section + feedback link
 
-  panel.classList.add('open');
-  backdrop.classList.add('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
-  navigateToPanel(
-    { type: 'enemy', name: enemyKey },
+  presentPanel(
+    { type: 'enemy', key: enemyKey },
     `${getSiteBase()}/enemy/${enemyKey}/`,
-    { ...opts, replace: wasOpen }
+    opts, wasOpen
   );
 }
 
 function openEvent(eventKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'event', name: eventKey };
+  openPanelInfo = { type: 'event', key: eventKey };
   // Find the event
   let ev = null;
   for (const act in eventsData) {
@@ -359,27 +331,19 @@ function openEvent(eventKey, opts) {
   }
   if (!ev) return;
 
-  const panel = document.getElementById('detail-panel');
-  const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.key);
-
   document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 
-  panel.classList.add('open');
-  backdrop.classList.add('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
-  navigateToPanel(
-    { type: 'event', name: eventKey },
+  presentPanel(
+    { type: 'event', key: eventKey },
     `${getSiteBase()}/event/${slugify(ev.name)}/`,
-    { ...opts, replace: wasOpen }
+    opts, wasOpen
   );
 }
 
 function isMobilePanel() {
+  // Keep in sync with the 1099px side-panel breakpoint in css/detail-panel.css
+  // (media queries can't read CSS custom properties, so this stays a literal)
   return window.matchMedia('(max-width: 1099px)').matches;
 }
 

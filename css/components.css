@@ -1,270 +1,274 @@
-  /* ── Enemy separator in detail panel ── */
-  .enemy-section {
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid #2a2a3a;
-  }
-  .enemy-section:first-child {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-  }
-  .enemy-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .collapse-toggle {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #444;
-    color: #aaa;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    box-sizing: border-box;
-    cursor: pointer;
-    border-radius: 6px;
-    flex-shrink: 0;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s ease;
-  }
-  .collapse-toggle:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: #777;
-    color: #fff;
-  }
-  .enemy-section.collapsed .enemy-section-body {
-    display: none;
-  }
-  .enemy-section-info { flex: 1; }
-  .minion-badge {
-    width: 28px;
-    height: 28px;
-    align-self: center;
-    flex-shrink: 0;
-    opacity: 0.85;
-    filter: drop-shadow(0 0 4px rgba(200,176,106,0.4));
-  }
-  .enemy-section-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #2a2a3a;
-    flex-shrink: 0;
-  }
-  .enemy-section-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #c8b06a;
-    margin-bottom: 8px;
-  }
+/* ── Reference-table item icons (cards/relics/potions/enchantments) ── */
+.ref-icon { width: 28px; height: 28px; vertical-align: middle; }
+.ref-icon-sm { width: 24px; height: 24px; vertical-align: middle; }
 
-  /* ── Backdrop ── */
-  .backdrop {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.3);
-    z-index: 50;
-  }
-  .backdrop.open { display: block; }
-  @media (min-width: 1100px) {
-    .backdrop.open { background: transparent; }
-  }
+/* ── Enemy separator in detail panel ── */
+.enemy-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--panel-border);
+}
+.enemy-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.enemy-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.collapse-toggle {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #444;
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 6px;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+.collapse-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #777;
+  color: #fff;
+}
+.enemy-section.collapsed .enemy-section-body {
+  display: none;
+}
+.enemy-section-info { flex: 1; }
+.minion-badge {
+  width: 28px;
+  height: 28px;
+  align-self: center;
+  flex-shrink: 0;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(200,176,106,0.4));
+}
+.enemy-section-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  flex-shrink: 0;
+}
+.enemy-section-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
 
-  /* ── Player Count Bar ── */
-  .player-count-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 16px 0;
-    position: relative;
-    z-index: 55;
-  }
-  .player-count-label {
-    color: #666;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-right: 4px;
-  }
-  .player-btn {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #2a2a3a;
-    color: #888;
-    font-size: 0.78rem;
-    padding: 4px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  .player-btn:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: #555;
-    color: #ccc;
-  }
-  .player-btn.active {
-    background: rgba(200,176,106,0.15);
-    border-color: #c8b06a;
-    color: #c8b06a;
-  }
+/* ── Backdrop ── */
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 50;
+}
+.backdrop.open { display: block; }
+@media (min-width: 1100px) {
+  .backdrop.open { background: transparent; }
+}
 
-  .section-label {
-    text-align: center;
-    padding: 16px;
-    color: #555;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
+/* ── Player Count Bar ── */
+.player-count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px 0;
+  position: relative;
+  z-index: 55;
+}
+.player-count-label {
+  color: #666;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 4px;
+}
+.player-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  color: #888;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.player-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #555;
+  color: #ccc;
+}
+.player-btn.active {
+  background: rgba(200,176,106,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
 
-  /* ── Search Bar ── */
-  .search-bar {
-    margin-top: 12px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 60;
-  }
-  .search-clear {
-    display: none;
-    position: absolute;
-    right: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    background: #6a2020;
-    border: none;
-    border-radius: 6px;
-    color: #ff8888;
-    font-size: 1.1rem;
-    line-height: 32px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.2s;
-    padding: 0;
-  }
-  .search-clear:hover { background: #8b2020; color: #ffaaaa; }
-  .search-clear.visible { display: block; }
-  .search-bar input {
-    width: 100%;
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid #2a2a3a;
-    background: #14141f;
-    color: #e0ddd4;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .search-bar input:focus {
-    border-color: #c8b06a;
-  }
-  .search-bar input::placeholder {
-    color: #555;
-  }
-  .search-results {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 32px 24px;
-  }
-  .search-results .search-zone-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #666;
-    padding: 16px 0 8px;
-    border-bottom: 1px solid #1a1a2a;
-    margin-bottom: 12px;
-  }
-  .search-results .search-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 12px;
-    margin-bottom: 8px;
-  }
+.section-label {
+  text-align: center;
+  padding: 16px;
+  color: #555;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
-  /* ── Category Group Headers ── */
-  .cat-group-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #666;
-    padding: 16px 0 8px;
-    border-bottom: 1px solid #1a1a2a;
-    margin-bottom: 12px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-  .cat-group-label.cat-easy { color: #6abf69; border-bottom-color: #2a4a2a; }
-  .cat-group-label.cat-hard { color: #d4a843; border-bottom-color: #4a3a1a; }
-  .cat-group-label.cat-elite { color: #d46a6a; border-bottom-color: #4a1a1a; }
-  .cat-group-label.cat-boss { color: #b06ad4; border-bottom-color: #3a1a4a; }
-  .cat-group-label.cat-events { color: #6ab0d4; border-bottom-color: #1a3a4a; }
+/* ── Search Bar ── */
+.search-bar {
+  margin-top: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 60;
+}
+.search-clear {
+  display: none;
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: #6a2020;
+  border: none;
+  border-radius: 6px;
+  color: #ff8888;
+  font-size: 1.1rem;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+.search-clear:hover { background: #8b2020; color: #ffaaaa; }
+.search-clear.visible { display: block; }
+.search-bar input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: #14141f;
+  color: #e0ddd4;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-bar input:focus {
+  border-color: var(--gold);
+}
+.search-bar input::placeholder {
+  color: #555;
+}
+.search-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 32px 24px;
+}
+.search-results .search-zone-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #666;
+  padding: 16px 0 8px;
+  border-bottom: 1px solid #1a1a2a;
+  margin-bottom: 12px;
+}
+.search-results .search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
 
-  /* ── Loading state ── */
-  .loading {
-    text-align: center;
-    padding: 60px;
-    color: #666;
-    font-size: 1rem;
-  }
+/* ── Category Group Headers ── */
+.cat-group-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #666;
+  padding: 16px 0 8px;
+  border-bottom: 1px solid #1a1a2a;
+  margin-bottom: 12px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.cat-group-label.cat-easy { color: #6abf69; border-bottom-color: #2a4a2a; }
+.cat-group-label.cat-hard { color: var(--gold-bright); border-bottom-color: #4a3a1a; }
+.cat-group-label.cat-elite { color: #d46a6a; border-bottom-color: #4a1a1a; }
+.cat-group-label.cat-boss { color: #b06ad4; border-bottom-color: #3a1a4a; }
+.cat-group-label.cat-events { color: #6ab0d4; border-bottom-color: #1a3a4a; }
 
-  /* ── Footer / Credits ── */
-  .site-footer {
-    text-align: center;
-    padding: 32px 16px 24px;
-    margin-top: 40px;
-    border-top: 1px solid #1a1a2a;
-    color: #555;
-    font-size: 0.75rem;
-    line-height: 1.6;
-    position: relative;
-    z-index: 60;
-  }
-  .site-footer a {
-    color: #8a7a4a;
-    text-decoration: none;
-  }
-  .site-footer a:hover {
-    color: #c8b06a;
-    text-decoration: underline;
-  }
-  .site-footer .credit-names {
-    color: #777;
-  }
-  .footer-feedback {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #1a1a2a;
-  }
+/* ── Loading state ── */
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: #666;
+  font-size: 1rem;
+}
 
-  /* ── Feedback link ── */
-  .feedback-link {
-    text-align: center;
-    margin-top: 6px;
-    position: relative;
-    z-index: 60;
-  }
-  .feedback-link a {
-    color: #666;
-    font-size: 0.72rem;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .feedback-link a:hover {
-    color: #c8b06a;
-  }
+/* ── Footer / Credits ── */
+.site-footer {
+  text-align: center;
+  padding: 32px 16px 24px;
+  margin-top: 40px;
+  border-top: 1px solid #1a1a2a;
+  color: #555;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 60;
+}
+.site-footer a {
+  color: #8a7a4a;
+  text-decoration: none;
+}
+.site-footer a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.site-footer .credit-names {
+  color: #777;
+}
+.footer-feedback {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #1a1a2a;
+}
+
+/* ── Feedback link ── */
+.feedback-link {
+  text-align: center;
+  margin-top: 6px;
+  position: relative;
+  z-index: 60;
+}
+.feedback-link a {
+  color: #666;
+  font-size: 0.72rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.feedback-link a:hover {
+  color: var(--gold);
+}

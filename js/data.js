@@ -147,7 +147,7 @@ function buildDataStructures(texts) {
 }
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, eventCardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, cardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
     fetch('data/monsters.csv').then(r => r.text()),
     fetch('data/monster_moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
@@ -186,7 +186,7 @@ async function loadData() {
     powers: powersText,
     events: eventsText,
     eventChoices: eventChoicesText,
-    cards: eventCardsText,
+    cards: cardsText,
     enchantments: enchantmentsText,
     potions: potionsText,
     relics: relicsText,

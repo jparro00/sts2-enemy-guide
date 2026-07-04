@@ -57,6 +57,7 @@ CSV schemas and the micro-syntax used inside cells (`{power_key}` refs, `<Move N
 ## Code conventions
 
 - JS: plain scripts sharing globals (`js/config.js` declares state; `js/data.js` loads and auto-runs; `js/ui.js` renders). No modules — script order in `index.html` is load-bearing.
-- No HTML escaping: CSV content flows into `innerHTML`. Data is first-party, but avoid `"`, `<`, `>` in names.
+- No HTML escaping in the renderers: CSV content flows into `innerHTML` (data is first-party). The guard is build-time: `build_snapshots.mjs` **fails the deploy** on `<>"&` in display names, malformed/duplicate Keys, or broken joins, and **warns** on unresolved `{power}`/`<Move>` refs and unknown intents. Run `rebuild.bat` (or `node build_snapshots.mjs`) after data edits to get this validation locally.
 - Comments explain *why*, not *what* — keep that standard.
-- No tests. The only build guard is `build_snapshots.mjs` failing if it generates < 50 pages. Verify data edits by loading the site locally.
+- CSS theme colors live as custom properties in `css/base.css` `:root` (`--gold`, `--gold-bright`, `--gold-light`, `--panel-border`). Media-query breakpoints (600px, 1099px) can't use `var()` — they're literals kept in sync per the comments at each site.
+- No tests. Build guards: data validation above + fail if < 50 pages generated. Verify UI behavior by loading the site locally.

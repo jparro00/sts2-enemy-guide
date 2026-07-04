@@ -76,6 +76,15 @@ ctx.__texts = {
   relics: readData('relics.csv'),
   beta: readData('beta_changes.csv'),
 };
+// Every core CSV is required — a missing/empty file would silently generate
+// pages full of "No data available" while staying above the page-count guard.
+for (const [name, text] of Object.entries(ctx.__texts)) {
+  if (name !== 'beta' && !text.trim()) {
+    console.error(`ERROR: data/${name === 'moves' ? 'monster_moves' : name}.csv missing or empty`);
+    process.exit(1);
+  }
+}
+
 ctx.__config = CONFIG;
 inCtx('siteConfig = __config; buildDataStructures(__texts)');
 
@@ -105,6 +114,110 @@ const allEvents = inCtx(`(() => {
     for (const ev of eventsData[act]) out.push(ev);
   return out;
 })()`);
+
+// ─── Data validation ────────────────────────────────────────────────────
+// There are no tests and no runtime escaping — this is the safety net.
+// Schema violations fail the deploy (exit 1); soft issues (unresolved refs,
+// unknown intents) print warnings so a typo'd {power} or <Move> is visible.
+{
+  const errors = [];
+  const warnings = [];
+  const KEY_RE = /^[a-z0-9_-]+$/;
+  const NAME_BAD = /[<>"&]/; // raw HTML/attribute breakers — renderers don't escape
+
+  const mRows = parseCSV(ctx.__texts.monsters);
+  const monsterKeySet = new Set();
+  for (const r of mRows) {
+    if (!KEY_RE.test(r.Key || '')) errors.push(`monsters.csv: bad Key ${JSON.stringify(r.Key)} (${r.Name})`);
+    else if (monsterKeySet.has(r.Key)) errors.push(`monsters.csv: duplicate Key ${r.Key}`);
+    monsterKeySet.add(r.Key);
+    if (NAME_BAD.test(r.Name || '')) errors.push(`monsters.csv: Name contains <>\"& (breaks HTML): ${JSON.stringify(r.Name)}`);
+  }
+
+  const intentKeySet = new Set(inCtx('intentKeys'));
+  const powerKeySet = new Set(inCtx('Object.keys(powersRef)'));
+  const itemKeySet = new Set(inCtx('Object.keys(itemsRef)'));
+
+  const mvRows = parseCSV(ctx.__texts.moves);
+  const movesByEnemy = {};
+  for (const r of mvRows) {
+    if (!monsterKeySet.has(r.Enemy)) errors.push(`monster_moves.csv: Enemy ${JSON.stringify(r.Enemy)} is not a monsters.csv Key (move ${r.Move})`);
+    (movesByEnemy[r.Enemy] ||= new Set()).add(r.Move);
+    for (const i of (r.Intent || '').split(',').map((s) => s.trim()).filter(Boolean)) {
+      if (!intentKeySet.has(i)) warnings.push(`monster_moves.csv: unknown intent ${JSON.stringify(i)} on ${r.Enemy}/${r.Move} (renders as 'unknown' icon)`);
+    }
+  }
+
+  const encRows = parseCSV(ctx.__texts.encounters);
+  const encounterKeySet = new Set();
+  for (const r of encRows) {
+    if (!KEY_RE.test(r.Key || '')) errors.push(`encounters.csv: bad Key ${JSON.stringify(r.Key)} (${r.Encounter})`);
+    else if (encounterKeySet.has(r.Key)) errors.push(`encounters.csv: duplicate Key ${r.Key}`);
+    encounterKeySet.add(r.Key);
+    if (NAME_BAD.test(r.Encounter || '')) errors.push(`encounters.csv: Encounter contains <>\"&: ${JSON.stringify(r.Encounter)}`);
+    for (const e of (r.Enemies || '').split(';').map((s) => s.trim()).filter(Boolean)) {
+      if (!monsterKeySet.has(e)) errors.push(`encounters.csv: ${r.Key} references unknown monster Key ${JSON.stringify(e)}`);
+    }
+  }
+
+  const evRows = parseCSV(ctx.__texts.events);
+  const eventKeySet = new Set(evRows.map((r) => r.Key));
+  for (const r of evRows) {
+    if (NAME_BAD.test(r.Name || '')) errors.push(`events.csv: Name contains <>\"&: ${JSON.stringify(r.Name)}`);
+  }
+  for (const r of parseCSV(ctx.__texts.eventChoices)) {
+    if (!eventKeySet.has(r.Event)) errors.push(`event_choices.csv: Event ${JSON.stringify(r.Event)} is not an events.csv Key`);
+  }
+
+  for (const r of parseCSV(ctx.__texts.beta)) {
+    const ok = r.Type === 'monster' ? monsterKeySet.has(r.Name)
+      : r.Type === 'encounter' ? encounterKeySet.has(r.Name)
+      : r.Type === 'event' ? eventKeySet.has(r.Name)
+      : false;
+    if (!ok) errors.push(`beta_changes.csv: ${r.Type}:${r.Name} does not resolve to an entity Key`);
+  }
+
+  // Soft checks: unresolved {power} and <Move> references render as plain text
+  const checkRefs = (owner, enemyKey, text) => {
+    if (!text) return;
+    for (const [, k] of text.matchAll(/\{(\w+)\}/g)) {
+      if (!powerKeySet.has(k)) warnings.push(`${owner}: unresolved power ref {${k}}`);
+    }
+    if (enemyKey) {
+      for (const [, mv] of text.matchAll(/<([A-Z][^>]*)>/g)) {
+        if (!(movesByEnemy[enemyKey] || new Set()).has(mv)) warnings.push(`${owner}: <${mv}> does not match a move of ${enemyKey}`);
+      }
+    }
+  };
+  for (const r of mRows) {
+    checkRefs(`monsters.csv ${r.Key} Pattern`, r.Key, r.Pattern);
+    checkRefs(`monsters.csv ${r.Key} Notes`, r.Key, r.Notes);
+    checkRefs(`monsters.csv ${r.Key} StartsWith`, r.Key, r.StartsWith);
+    for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
+      if (!itemKeySet.has(k)) warnings.push(`monsters.csv ${r.Key}: References key ${JSON.stringify(k)} not in any reference CSV`);
+    }
+  }
+  for (const r of mvRows) {
+    checkRefs(`monster_moves.csv ${r.Enemy}/${r.Move} Effects`, r.Enemy, r.Effects);
+    checkRefs(`monster_moves.csv ${r.Enemy}/${r.Move} Notes`, r.Enemy, r.Notes);
+    for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
+      if (!itemKeySet.has(k)) warnings.push(`monster_moves.csv ${r.Enemy}/${r.Move}: References key ${JSON.stringify(k)} unknown`);
+    }
+  }
+  for (const r of parseCSV(ctx.__texts.eventChoices)) {
+    for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
+      if (!itemKeySet.has(k)) warnings.push(`event_choices.csv ${r.Event}: References key ${JSON.stringify(k)} unknown`);
+    }
+  }
+
+  for (const w of warnings) console.warn(`WARN: ${w}`);
+  if (warnings.length) console.warn(`(${warnings.length} data warnings)`);
+  if (errors.length) {
+    for (const e of errors) console.error(`ERROR: ${e}`);
+    console.error(`${errors.length} data validation errors — refusing to build`);
+    process.exit(1);
+  }
+}
 
 // ─── Master data (for canonical tags on beta builds) ───────────────────
 // When the workflow builds a beta branch, it copies master's data/ into

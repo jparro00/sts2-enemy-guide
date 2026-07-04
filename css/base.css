@@ -1,63 +1,74 @@
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── Theme (single source for the repeated palette) ──
+   Note: media-query breakpoints can't use var() — the mobile breakpoints
+   (600px search/banner, 1099px side-panel) are literals kept in sync across
+   base.css, responsive.css, detail-panel.css, js/ui.js, js/search.js. */
+:root {
+  --gold: #c8b06a;          /* primary accent — headings, borders, names */
+  --gold-bright: #d4a843;   /* emphasis text (matches loreColors.gold in js/config.js) */
+  --gold-light: #ffd866;    /* banner / highlight yellow */
+  --panel-border: #2a2a3a;  /* standard panel & divider border */
+}
 
-  /* ── Version Banner ── */
-  .beta-banner {
-    background: #4a3800;
-    color: #ffd866;
-    text-align: center;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    border-bottom: 2px solid #ffd866;
-    position: relative;
-    z-index: 60;
-  }
-  .beta-banner a {
-    color: #88c0ff;
-    text-decoration: underline;
-  }
-  .banner-short { display: none; }
-  .stable-banner {
-    background: #141a2a;
-    color: #8ab4d6;
-    text-align: center;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    border-bottom: 2px solid #2a4060;
-    position: relative;
-    z-index: 60;
-  }
-  .stable-banner a {
-    color: #6db3f2;
-    text-decoration: underline;
-  }
-  .banner-mobile { display: none; }
-  @media (max-width: 600px) {
-    .banner-full { display: none; }
-    .banner-mobile { display: inline; }
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html {
-    scrollbar-gutter: stable;
-  }
-  body {
-    background: #0a0a12;
-    color: #e0ddd4;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* ── Version Banner ── */
+.beta-banner {
+  background: #4a3800;
+  color: var(--gold-light);
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid var(--gold-light);
+  position: relative;
+  z-index: 60;
+}
+.beta-banner a {
+  color: #88c0ff;
+  text-decoration: underline;
+}
+.banner-short { display: none; }
+.stable-banner {
+  background: #141a2a;
+  color: #8ab4d6;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #2a4060;
+  position: relative;
+  z-index: 60;
+}
+.stable-banner a {
+  color: #6db3f2;
+  text-decoration: underline;
+}
+.banner-mobile { display: none; }
+@media (max-width: 600px) {
+  .banner-full { display: none; }
+  .banner-mobile { display: inline; }
+}
 
-  /* ── Header ── */
-  header {
-    text-align: center;
-    padding: 24px 16px 8px;
-    border-bottom: 1px solid #2a2a3a;
-  }
-  header h1 {
-    font-size: 1.6rem;
-    letter-spacing: 2px;
-    color: #c8b06a;
-    text-transform: uppercase;
-  }
-  header p { font-size: 0.8rem; color: #666; margin-top: 4px; }
-  .search-toggle { display: none; }
+html {
+  scrollbar-gutter: stable;
+}
+body {
+  background: #0a0a12;
+  color: #e0ddd4;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Header ── */
+header {
+  text-align: center;
+  padding: 24px 16px 8px;
+  border-bottom: 1px solid var(--panel-border);
+}
+header h1 {
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+header p { font-size: 0.8rem; color: #666; margin-top: 4px; }
+.search-toggle { display: none; }
