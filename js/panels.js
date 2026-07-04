@@ -57,28 +57,29 @@ const eventTabsHtml = `
   <div class="cat-tab" data-cat="ev_${z.key}" onclick="selectCat('ev_${z.key}')">${z.name}</div>`).join('') + `
 `;
 
-function renderEnemySection(name, collapsible) {
-  const data = enemyDatabase[name];
-  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
+function renderEnemySection(key, collapsible) {
+  const data = enemyDatabase[key];
+  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${key}${renderBetaBadge('monster', key)}</div><p style="color:#666;">No data available.</p></div>`;
+  const name = data.name;
 
   const movesHtml = data.moves.map(m => `
     <tr>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
+      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), key)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, key)}</span>` : ''}</td>
     </tr>
   `).join('');
 
-  const notesHtml = data.notes ? renderNotes(data.notes, name) : '';
+  const notesHtml = data.notes ? renderNotes(data.notes, key) : '';
 
-  const imgSrc = `media/enemies/${name}.webp`;
+  const imgSrc = `media/enemies/${key}.webp`;
   const collapseBtn = collapsible ? `<button class="collapse-toggle" onclick="toggleEnemySection(this)" title="Collapse/Expand">−</button>` : '';
 
   return `
     <div class="enemy-section${collapsible ? ' collapsible' : ''}">
       <div class="enemy-section-header">
         <div class="enemy-section-info">
-          <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
+          <div class="enemy-section-name">${name}${renderBetaBadge('monster', key)}</div>
           <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(data.hp) : scaleHP(data.hp)}</div></div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
@@ -87,9 +88,9 @@ function renderEnemySection(name, collapsible) {
 
       <div class="enemy-section-body">
         <h3>Attack Pattern</h3>
-        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
+        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), key)}</div>
 
-        ${renderStartsWith(data.startsWith, name)}
+        ${renderStartsWith(data.startsWith, key)}
 
         <h3>Moves</h3>
         <table>
@@ -105,22 +106,23 @@ function renderEnemySection(name, collapsible) {
 }
 
 // Full detail-body HTML for an encounter panel. `enc` may be null (unknown
-// encounter) — falls back to rendering `encounterName` as a single enemy.
-function buildEncounterPanelBody(enc, encounterName) {
+// encounter) — falls back to rendering `encounterKey` as a single enemy
+// (single-enemy encounters share their monster's key).
+function buildEncounterPanelBody(enc, encounterKey) {
   let compositionHtml = '';
   if (enc && enc.composition) {
     compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
   }
 
   if (enc && enc.enemies && enc.enemies.length > 0) {
-    const uniqueEnemies = enc.enemies.filter((name, idx, arr) => arr.indexOf(name) === idx);
+    const uniqueEnemies = enc.enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
     const collapsible = uniqueEnemies.length > 1;
     const sections = uniqueEnemies
-      .map(name => renderEnemySection(name, collapsible))
+      .map(key => renderEnemySection(key, collapsible))
       .join('');
     return compositionHtml + sections + panelFeedbackLink;
   }
-  return compositionHtml + renderEnemySection(encounterName) + panelFeedbackLink;
+  return compositionHtml + renderEnemySection(encounterKey) + panelFeedbackLink;
 }
 
 // Full detail-body HTML for an event panel.

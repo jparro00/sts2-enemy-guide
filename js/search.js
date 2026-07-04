@@ -55,7 +55,7 @@ function onSearch(query) {
       const encs = encounters[zone]?.[cat] || [];
       for (const enc of encs) {
         const nameMatch = enc.name.toLowerCase().includes(q);
-        const enemyMatch = enc.enemies.some(e => e.toLowerCase().includes(q));
+        const enemyMatch = enc.enemies.some(k => (enemyDatabase[k] ? enemyDatabase[k].name : k).toLowerCase().includes(q));
         if (nameMatch || enemyMatch) {
           matches.push({ enc, zone, cat });
         }
@@ -95,7 +95,7 @@ function onSearch(query) {
       const img = getEncounterImageHtml(enc, cat);
       const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
       html += `
-        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.name.replace(/'/g, "\\'")}', '${zone}', '${cat}')">
+        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.key}', '${zone}', '${cat}')">
           <div class="${thumbClass}">
             ${img.html}
             ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}

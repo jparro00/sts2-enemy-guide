@@ -1,158 +1,158 @@
-Name,HP,Pattern,Notes,Powers,StartsWith,References,HpScalePlayerCountOnly
-Axebot,70 - 78 (76 - 86),Cycles <Hammer Uppercut> → <One-Two>.,[info] Respawns with <Boot Up> via {stock}.,stock,{stock} 2,
-Bowlbug (Egg),21 - 22 (23 - 24),Always uses <Bite>.,,,,
-Bowlbug (Nectar),35 - 38 (36 - 39),"Opens with <Thrash> → <Buff>, then always uses <Thrash>.",,,,
-Bowlbug (Rock),45 - 48 (46 - 49),Always uses <Headbutt>.,,imbalanced,{imbalanced},
-Bowlbug (Silk),40 - 43 (41 - 44),Cycles <Toxic Spit> → <Thrash>.,,,,
-Calcified Cultist,38 - 41 (39 - 42),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,
-Chomper,60 - 64 (63 - 67),Cycles <Clamp> → <Screech>.,"[info] 1st starts <Clamp>, 2nd starts <Screech>.",artifact,{artifact} 2,
-Corpse Slug,25 - 27 (27 - 29),Cycles <Whip Slap> → <Glomp> → <Gloop>.,"[info] 1st starts randomly, each subsequent starts at the next point in the cycle.",ravenous,{ravenous} 4 (5),
-Cubex Construct,65 (70),"Opens with <Charge Up>.
-Then cycles <Repeater Blast> → <Repeater Blast> → <Expel Blast>.",[bug] As of v0.99.1 <Submerge> is never used in the cycle.,artifact,{artifact} 1,
-Damp Cultist,51 - 53 (52 - 54),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,
-Devoted Sculptor,162 (172),"Opens with <Forbidden Incantation>, then always uses <Savage>.",,ritual,,
-Exoskeleton,24 - 28 (25 - 29),"Cycles <Skitter> → <Mandible> → <Enrage>, with 50% chance to skip <Skitter>.","[info] 1st starts <Skitter>, 2nd starts <Mandible>, 3rd starts <Enrage>, 4th starts randomly.",hard_to_kill,{hard_to_kill} 9,
-Fabricator,150 (155),"When allies ≤ 2: Chooses randomly from <Fabricate>, <Fabricating Strike>.
-When allies ≥ 3: Always uses <Disintegrate>.",,,,
-Guardbot,21 - 25 (22 - 26),Always uses <Guard>.,,minion,,
-Noisebot,23 - 28 (24 - 29),Always uses <Noise>.,,minion,,
-Stabbot,23 - 28 (24 - 29),Always uses <Stab>.,,minion,,
-Zapbot,23 - 28 (24 - 29),Always uses <Zap>.,,high_voltage; minion,{high_voltage} 2,
-Flyconid,47 - 49 (51 - 53),"Opens with <Frail Spores> or <Smash>.
-Then chooses randomly from <Vulnerable Spores>, <Frail Spores>, <Smash>.",,,,
-Fogmog,74 (78),"Opens with <Illusion> → <Swipe>.
+Key,Name,HP,Pattern,Notes,Powers,StartsWith,References,HpScalePlayerCountOnly
+axebot,Axebot,70 - 78 (76 - 86),Cycles <Hammer Uppercut> → <One-Two>.,[info] Respawns with <Boot Up> via {stock}.,stock,{stock} 2,,
+bowlbug-egg,Bowlbug (Egg),21 - 22 (23 - 24),Always uses <Bite>.,,,,,
+bowlbug-nectar,Bowlbug (Nectar),35 - 38 (36 - 39),"Opens with <Thrash> → <Buff>, then always uses <Thrash>.",,,,,
+bowlbug-rock,Bowlbug (Rock),45 - 48 (46 - 49),Always uses <Headbutt>.,,imbalanced,{imbalanced},,
+bowlbug-silk,Bowlbug (Silk),40 - 43 (41 - 44),Cycles <Toxic Spit> → <Thrash>.,,,,,
+calcified-cultist,Calcified Cultist,38 - 41 (39 - 42),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,,
+chomper,Chomper,60 - 64 (63 - 67),Cycles <Clamp> → <Screech>.,"[info] 1st starts <Clamp>, 2nd starts <Screech>.",artifact,{artifact} 2,,
+corpse-slug,Corpse Slug,25 - 27 (27 - 29),Cycles <Whip Slap> → <Glomp> → <Gloop>.,"[info] 1st starts randomly, each subsequent starts at the next point in the cycle.",ravenous,{ravenous} 4 (5),,
+cubex-construct,Cubex Construct,65 (70),"Opens with <Charge Up>.
+Then cycles <Repeater Blast> → <Repeater Blast> → <Expel Blast>.",[bug] As of v0.99.1 <Submerge> is never used in the cycle.,artifact,{artifact} 1,,
+damp-cultist,Damp Cultist,51 - 53 (52 - 54),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,,
+devoted-sculptor,Devoted Sculptor,162 (172),"Opens with <Forbidden Incantation>, then always uses <Savage>.",,ritual,,,
+exoskeleton,Exoskeleton,24 - 28 (25 - 29),"Cycles <Skitter> → <Mandible> → <Enrage>, with 50% chance to skip <Skitter>.","[info] 1st starts <Skitter>, 2nd starts <Mandible>, 3rd starts <Enrage>, 4th starts randomly.",hard_to_kill,{hard_to_kill} 9,,
+fabricator,Fabricator,150 (155),"When allies ≤ 2: Chooses randomly from <Fabricate>, <Fabricating Strike>.
+When allies ≥ 3: Always uses <Disintegrate>.",,,,,
+guardbot,Guardbot,21 - 25 (22 - 26),Always uses <Guard>.,,minion,,,
+noisebot,Noisebot,23 - 28 (24 - 29),Always uses <Noise>.,,minion,,,
+stabbot,Stabbot,23 - 28 (24 - 29),Always uses <Stab>.,,minion,,,
+zapbot,Zapbot,23 - 28 (24 - 29),Always uses <Zap>.,,high_voltage; minion,{high_voltage} 2,,
+flyconid,Flyconid,47 - 49 (51 - 53),"Opens with <Frail Spores> or <Smash>.
+Then chooses randomly from <Vulnerable Spores>, <Frail Spores>, <Smash>.",,,,,
+fogmog,Fogmog,74 (78),"Opens with <Illusion> → <Swipe>.
 After <Swipe> (1st in a row): 40% <Swipe>, 60% <Headbutt>.
 After <Swipe> (2nd in a row): Always uses <Headbutt>.
-After <Headbutt>: Always uses <Swipe>.",,,,
-Eye with Teeth,6,Always uses <Distract>.,,illusion,{illusion},
-Fossil Stalker,51 - 53 (54 - 56),"Opens with <Latch>.
-Then chooses randomly from <Tackle>, <Latch>, <Lash>.",[coop]🤝 Gains a set amount of Strength on hit instead of per-player.,suck,{suck} 3,
-Frog Knight,191 (199),"Phase 1:
+After <Headbutt>: Always uses <Swipe>.",,,,,
+eye-with-teeth,Eye with Teeth,6,Always uses <Distract>.,,illusion,{illusion},,
+fossil-stalker,Fossil Stalker,51 - 53 (54 - 56),"Opens with <Latch>.
+Then chooses randomly from <Tackle>, <Latch>, <Lash>.",[coop]🤝 Gains a set amount of Strength on hit instead of per-player.,suck,{suck} 3,,
+frog-knight,Frog Knight,191 (199),"Phase 1:
 Cycles <Tongue Lash> → <Strike Down Evil> → <For the Queen>.
 
 Phase 2 (below 50% HP after using <For the Queen>):
-Uses <Beetle Charge> once, then restarts Phase 1.",,plating,{plating} 15 (19),
-Fuzzy Wurm Crawler,55 - 57 (58 - 59),"Opens with <Acid Goop>.
-Then cycles <Inhale> → <Acid Goop> → <Acid Goop>.",,,,
-Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6,
-Gremlin Merc,47 - 49 (51 - 53),Cycles <Gimme> → <Double Smash> → <Hehe>.,[info] Stolen gold is held by Fat Gremlin once summoned.[info] Fight has normal gold reward if Fat Gremlin doesn't escape.,surprise; thievery,{surprise} and {thievery} 20,
-Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.","[info] If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get 50% of the normal gold reward.",,,
-Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,
-Haunted Ship,63 (67),"Opens with <Haunt>; then alternates <Swipe> ↔ <Stomp> (always starting with <Swipe>).",,haunt; weak,,
-Hunter Killer,121 (126),"Opens with <Tenderizing Goop>.
-Then chooses randomly from <Bite>, <Puncture>.",,tender,,
-Inklet,11 - 17 (12 - 18),"Cycles <Jab> → <Whirlwind> or <Piercing Gaze> (50/50).","[info] Front and back start with <Jab>. Middle starts with <Whirlwind>.",slippery,{slippery} 1,
-Leaf Slime (Small),11 - 15 (12 - 16),"Opens with <Tackle> or <Goop>.
-Then cycles <Tackle> → <Goop>.",,,,
-Leaf Slime (Medium),32 - 35 (33 - 36),"Opens with <Sticky Shot>.
-Then cycles <Clump Shot> → <Sticky Shot>.",,,,
-Living Fog,80 (82),"Opens with <Advanced Gas>.
-Then cycles <Bloat> → <Super Gas Blast>.",,smoggy,,
-Gas Bomb,7 (8),Always uses <Explode>.,,minion,,
-Living Shield,55 (65),"While Turret Operator alive: Always uses <Shield Slam>.
-After Turret Operator dies: Always uses <Smash>.",,rampart,{rampart} 25,
-Louse Progenitor,134 - 136 (138 - 141),Cycles <Web Cannon> → <Curl and Grow> → <Pounce>.,,curl_up,{curl_up} (14/18 {block}),
-Mawler,72 (76),"Opens with <Claw>.
-Then chooses randomly from <Rip & Tear>, <Roar>, <Claw>.",,,,
-Myte,61 - 67 (64 - 69),Cycles <Toxic> → <Bite> → <Suck>.,"[info] 1st starts <Toxic>, 2nd starts <Suck>.",,,
-Nibbit,42 - 46 (44 - 48),Cycles <Butt> → <Slice> → <Hiss>.,"[info] In 2-Nibbit encounter: front starts <Slice>, back starts <Hiss>.",,,
-Ovicopter,124 - 130 (126 - 132),"Opens with <Lay Eggs> → <Smash> → <Tenderizer>.
+Uses <Beetle Charge> once, then restarts Phase 1.",,plating,{plating} 15 (19),,
+fuzzy-wurm-crawler,Fuzzy Wurm Crawler,55 - 57 (58 - 59),"Opens with <Acid Goop>.
+Then cycles <Inhale> → <Acid Goop> → <Acid Goop>.",,,,,
+globe-head,Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6,,
+gremlin-merc,Gremlin Merc,47 - 49 (51 - 53),Cycles <Gimme> → <Double Smash> → <Hehe>.,[info] Stolen gold is held by Fat Gremlin once summoned.[info] Fight has normal gold reward if Fat Gremlin doesn't escape.,surprise; thievery,{surprise} and {thievery} 20,,
+fat-gremlin,Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.","[info] If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get 50% of the normal gold reward.",,,,
+sneaky-gremlin,Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,,
+haunted-ship,Haunted Ship,63 (67),Opens with <Haunt>; then alternates <Swipe> ↔ <Stomp> (always starting with <Swipe>).,,haunt; weak,,,
+hunter-killer,Hunter Killer,121 (126),"Opens with <Tenderizing Goop>.
+Then chooses randomly from <Bite>, <Puncture>.",,tender,,,
+inklet,Inklet,11 - 17 (12 - 18),Cycles <Jab> → <Whirlwind> or <Piercing Gaze> (50/50).,[info] Front and back start with <Jab>. Middle starts with <Whirlwind>.,slippery,{slippery} 1,,
+leaf-slime-small,Leaf Slime (Small),11 - 15 (12 - 16),"Opens with <Tackle> or <Goop>.
+Then cycles <Tackle> → <Goop>.",,,,,
+leaf-slime-medium,Leaf Slime (Medium),32 - 35 (33 - 36),"Opens with <Sticky Shot>.
+Then cycles <Clump Shot> → <Sticky Shot>.",,,,,
+living-fog,Living Fog,80 (82),"Opens with <Advanced Gas>.
+Then cycles <Bloat> → <Super Gas Blast>.",,smoggy,,,
+gas-bomb,Gas Bomb,7 (8),Always uses <Explode>.,,minion,,,
+living-shield,Living Shield,55 (65),"While Turret Operator alive: Always uses <Shield Slam>.
+After Turret Operator dies: Always uses <Smash>.",,rampart,{rampart} 25,,
+louse-progenitor,Louse Progenitor,134 - 136 (138 - 141),Cycles <Web Cannon> → <Curl and Grow> → <Pounce>.,,curl_up,{curl_up} (14/18 {block}),,
+mawler,Mawler,72 (76),"Opens with <Claw>.
+Then chooses randomly from <Rip & Tear>, <Roar>, <Claw>.",,,,,
+myte,Myte,61 - 67 (64 - 69),Cycles <Toxic> → <Bite> → <Suck>.,"[info] 1st starts <Toxic>, 2nd starts <Suck>.",,,,
+nibbit,Nibbit,42 - 46 (44 - 48),Cycles <Butt> → <Slice> → <Hiss>.,"[info] In 2-Nibbit encounter: front starts <Slice>, back starts <Hiss>.",,,,
+ovicopter,Ovicopter,124 - 130 (126 - 132),"Opens with <Lay Eggs> → <Smash> → <Tenderizer>.
 If allies ≥ 3 after <Tenderizer>: <Nutritional Paste> → <Smash> → <Tenderizer>.
-If allies < 3 after <Tenderizer>: <Lay Eggs> → <Smash> → <Tenderizer>.",,,,
-Tough Egg,14 - 18 (15 - 19),Always uses <Hatch>.,,hatch; minion,{hatch} 1,
-Hatchling,19 - 22 (20 - 23),Always uses <Nibble>.,,minion,,
-Owl Magistrate,231 (247),Cycles <Magistrate Scrutiny> → <Peck Assault> → <Judicial Flight> → <Verdict>.,,soar,,
-Punch Construct,55 (60),Cycles <Ready> → <Fast Punch> → <Strong Punch>.,"[info] Punch-Off event: 1st starts <Fast Punch>, 2nd starts <Ready>.",artifact,{artifact} 1,
-Ruby Raider (Assassin),18 - 23 (19 - 24),Always uses <Killshot>.,,,,
-Ruby Raider (Axe),20 - 22 (21 - 23),Cycles <Swing> → <Swing> → <Big Swing>.,,,,
-Ruby Raider (Brute),30 - 33 (31 - 34),Cycles <Beat> → <Roar>.,,,,
-Ruby Raider (Crossbow),18 - 21 (19 - 22),Cycles <Reload> → <Fire>.,,,,
-Ruby Raider (Tracker),21 - 25 (22 - 26),"Opens with <Track>, then always uses <Hounds>.",,,,
-Scroll of Biting,30 - 37 (33 - 39),Cycles <Chomp> → <More Teeth> → <Chew> (50% chance to repeat <Chew> once).,"[info] 1st/2nd/3rd evenly distributed between <Chomp>, <Chew>, <More Teeth>. 4th starts <More Teeth>.",paper_cuts,{paper_cuts} 2,
-Seapunk,44 - 46 (47 - 49),Cycles <Sea Kick> → <Spinning Kick> → <Bubble Burp>.,,,,
-Sewer Clam,56 (58),"Opens with <Jet>.
-Then cycles <Pressurize> → <Jet>.",,plating,{plating} 8 (9),
-Shrinker Beetle,38 - 40 (40 - 42),"Opens with <Shrinker>.
-Then cycles <Chomp> → <Stomp>.",,shrink,,
-Slimed Berserker,261 (281),Cycles <Vomit Ichor> → <Furious Pummeling> → <Leeching Hug> → <Smother>.,,,,
-Slithering Strangler,53 - 55 (54 - 56),"Cycles <Constrict> → <Thwack> or <Lash> (50/50).",,constrict,,
-Sludge Spinner,37 - 39 (41 - 42),"Opens with <Oil Spray>.
-Then chooses randomly from all moves.",,,,
-Slumbering Beetle,86 (89),"Sleeps until awakened, then always uses <Roll Out>.",,plating; slumber,{plating} 15 (18) and {slumber} 3,
-Snapping Jaxfruit,31 - 33 (34 - 36),Always uses <Energy Orb>.,,,,
-Spiny Toad,116 - 119 (121 - 124),Cycles <Protruding Spikes> → <Spike Explosion> → <Tongue Lash>.,,thorns,,
-The Lost,93 (99),Cycles <Debilitating Smog> → <Eye Lasers>.,,,,
-The Forgotten,106 (111),Cycles <Miasma> → <Dread>.,,,,
-The Obscura,123 (129),"Opens with <Illusion>.
-Then chooses randomly from <Piercing Gaze>, <Wail>, <Hardening Strike>.",,,,
-Parafright,21,Always uses <Slam>.,[info] Retains Strength after reviving.,illusion;minion,{illusion},
-Thieving Hopper,79 (84),Always uses <Thievery> → <Flutter> → <Hat Trick> → <Nab> → <Escape>.,"[info] Stolen card is taken from draw or discard pile. Priorities: 1. non-imbued uncommon 2. non-imbued common/rare/event 3. non-imbued basic/quest 4. imbued or ancient 5. curse or anything else.[info] If stunned before turn 5, resumes with next move. If stunned on turn 5, tries <Escape> again.",escape_artist; flutter; swipe,{escape_artist} 5,
-Toadpole,21 - 25 (22 - 26),Cycles <Whirl> → <Spiken> → <Spike Spit>.,"[info] Front starts <Spiken>, back starts <Whirl>.",thorns,,
-Tunneler,87 (92),"Opens with <Bite> → <Burrow>.
+If allies < 3 after <Tenderizer>: <Lay Eggs> → <Smash> → <Tenderizer>.",,,,,
+tough-egg,Tough Egg,14 - 18 (15 - 19),Always uses <Hatch>.,,hatch; minion,{hatch} 1,,
+hatchling,Hatchling,19 - 22 (20 - 23),Always uses <Nibble>.,,minion,,,
+owl-magistrate,Owl Magistrate,231 (247),Cycles <Magistrate Scrutiny> → <Peck Assault> → <Judicial Flight> → <Verdict>.,,soar,,,
+punch-construct,Punch Construct,55 (60),Cycles <Ready> → <Fast Punch> → <Strong Punch>.,"[info] Punch-Off event: 1st starts <Fast Punch>, 2nd starts <Ready>.",artifact,{artifact} 1,,
+ruby-raider-assassin,Ruby Raider (Assassin),18 - 23 (19 - 24),Always uses <Killshot>.,,,,,
+ruby-raider-axe,Ruby Raider (Axe),20 - 22 (21 - 23),Cycles <Swing> → <Swing> → <Big Swing>.,,,,,
+ruby-raider-brute,Ruby Raider (Brute),30 - 33 (31 - 34),Cycles <Beat> → <Roar>.,,,,,
+ruby-raider-crossbow,Ruby Raider (Crossbow),18 - 21 (19 - 22),Cycles <Reload> → <Fire>.,,,,,
+ruby-raider-tracker,Ruby Raider (Tracker),21 - 25 (22 - 26),"Opens with <Track>, then always uses <Hounds>.",,,,,
+scroll-of-biting,Scroll of Biting,30 - 37 (33 - 39),Cycles <Chomp> → <More Teeth> → <Chew> (50% chance to repeat <Chew> once).,"[info] 1st/2nd/3rd evenly distributed between <Chomp>, <Chew>, <More Teeth>. 4th starts <More Teeth>.",paper_cuts,{paper_cuts} 2,,
+seapunk,Seapunk,44 - 46 (47 - 49),Cycles <Sea Kick> → <Spinning Kick> → <Bubble Burp>.,,,,,
+sewer-clam,Sewer Clam,56 (58),"Opens with <Jet>.
+Then cycles <Pressurize> → <Jet>.",,plating,{plating} 8 (9),,
+shrinker-beetle,Shrinker Beetle,38 - 40 (40 - 42),"Opens with <Shrinker>.
+Then cycles <Chomp> → <Stomp>.",,shrink,,,
+slimed-berserker,Slimed Berserker,261 (281),Cycles <Vomit Ichor> → <Furious Pummeling> → <Leeching Hug> → <Smother>.,,,,,
+slithering-strangler,Slithering Strangler,53 - 55 (54 - 56),Cycles <Constrict> → <Thwack> or <Lash> (50/50).,,constrict,,,
+sludge-spinner,Sludge Spinner,37 - 39 (41 - 42),"Opens with <Oil Spray>.
+Then chooses randomly from all moves.",,,,,
+slumbering-beetle,Slumbering Beetle,86 (89),"Sleeps until awakened, then always uses <Roll Out>.",,plating; slumber,{plating} 15 (18) and {slumber} 3,,
+snapping-jaxfruit,Snapping Jaxfruit,31 - 33 (34 - 36),Always uses <Energy Orb>.,,,,,
+spiny-toad,Spiny Toad,116 - 119 (121 - 124),Cycles <Protruding Spikes> → <Spike Explosion> → <Tongue Lash>.,,thorns,,,
+the-lost,The Lost,93 (99),Cycles <Debilitating Smog> → <Eye Lasers>.,,,,,
+the-forgotten,The Forgotten,106 (111),Cycles <Miasma> → <Dread>.,,,,,
+the-obscura,The Obscura,123 (129),"Opens with <Illusion>.
+Then chooses randomly from <Piercing Gaze>, <Wail>, <Hardening Strike>.",,,,,
+parafright,Parafright,21,Always uses <Slam>.,[info] Retains Strength after reviving.,illusion;minion,{illusion},,
+thieving-hopper,Thieving Hopper,79 (84),Always uses <Thievery> → <Flutter> → <Hat Trick> → <Nab> → <Escape>.,"[info] Stolen card is taken from draw or discard pile. Priorities: 1. non-imbued uncommon 2. non-imbued common/rare/event 3. non-imbued basic/quest 4. imbued or ancient 5. curse or anything else.[info] If stunned before turn 5, resumes with next move. If stunned on turn 5, tries <Escape> again.",escape_artist; flutter; swipe,{escape_artist} 5,,
+toadpole,Toadpole,21 - 25 (22 - 26),Cycles <Whirl> → <Spiken> → <Spike Spit>.,"[info] Front starts <Spiken>, back starts <Whirl>.",thorns,,,
+tunneler,Tunneler,87 (92),"Opens with <Bite> → <Burrow>.
 While Burrowed: Always uses <Below>.
-After stun: Repeats <Bite> → <Burrow>.",,burrowed,,
-Turret Operator,41 (51),Cycles <Unload> → <Unload> → <Reload>.,,,,
-Twig Slime (Small),7 - 11 (8 - 12),Always uses <Tackle>.,,,,
-Twig Slime (Medium),26 - 28 (27 - 29),"Opens with <Sticky Shot> → <Clump Shot>.
-Then chooses randomly from <Sticky Shot>, <Clump Shot>.",,,,
-Two-Tailed Rat,17 - 21 (18 - 22),"Chooses randomly from <Scratch>, <Disease Bite>, and <Screech>.
-If <Call for Backup> is allowed, 75% chance to use it instead.","[info]All 3 rats start evenly distributed between <Scratch>, <Disease Bite>, and <Screech>.[info]Only 1 rat can use <Call for Backup> per turn.",,,
-Vine Shambler,61 (64),Cycles <Swipe> → <Grasping Vines> → <Chomp>.,,tangled,,
-Wriggler,17 - 21 (18 - 22),Cycles <Nasty Bite> → <Wriggle>.,"[info] If spawned from Phrog Parasite, starts stunned.[info] Positions 1 & 3 start <Nasty Bite>, positions 2 & 4 start <Wriggle>.",minion,,
-Bygone Effigy,127 (132),"Opens with <Sleep> → <Wake> → <Slash>, then always uses <Slash>.",,slow,{slow},
-Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,
-Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
-When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Fights as 3 segments — HP is always an even number, and segments have different max HP.[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},
-Entomancer,145 (155),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
-After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,
-Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),
-Flail Knight,101 (108),"Opens with <Ram>.
-Then chooses randomly from <War Chant>, <Flail>, <Ram>.",,,,
-Spectral Knight,93 (97),"Opens with <Hex> → <Soul Slash>.
-Then chooses randomly from <Soul Slash>, <Soul Flame>.",,hex,,
-Magi Knight,82 (89),"Opens with <Power Shield> → <Dampen>.
-Then cycles <Spear> → <Prep> → <Magic Bomb>.",[info] Cards can still be upgraded during combat after Magi Knight applies Dampen.,dampen,,
-Mecha Knight,300 (320),"Opens with <Charge>.
-Then cycles <Flamethrower> → <Windup> → <Heavy Cleave>.",,artifact,{artifact} 3,
-Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (7),
-Phrog Parasite,61 - 64 (66 - 68),Cycles <Infect> → <Lash>.,,infested,{infested} 4,
-Skulking Colony,75 (80),Cycles <Zoom> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 20,
-Soul Nexus,234 (254),"Opens with <Soul Burn>.
-Then chooses randomly from <Soul Burn>, <Maelstrom>, <Drain Life>.",,,,
-Terror Eel,140 (150),"Phase 1:
+After stun: Repeats <Bite> → <Burrow>.",,burrowed,,,
+turret-operator,Turret Operator,41 (51),Cycles <Unload> → <Unload> → <Reload>.,,,,,
+twig-slime-small,Twig Slime (Small),7 - 11 (8 - 12),Always uses <Tackle>.,,,,,
+twig-slime-medium,Twig Slime (Medium),26 - 28 (27 - 29),"Opens with <Sticky Shot> → <Clump Shot>.
+Then chooses randomly from <Sticky Shot>, <Clump Shot>.",,,,,
+two-tailed-rat,Two-Tailed Rat,17 - 21 (18 - 22),"Chooses randomly from <Scratch>, <Disease Bite>, and <Screech>.
+If <Call for Backup> is allowed, 75% chance to use it instead.","[info]All 3 rats start evenly distributed between <Scratch>, <Disease Bite>, and <Screech>.[info]Only 1 rat can use <Call for Backup> per turn.",,,,
+vine-shambler,Vine Shambler,61 (64),Cycles <Swipe> → <Grasping Vines> → <Chomp>.,,tangled,,,
+wriggler,Wriggler,17 - 21 (18 - 22),Cycles <Nasty Bite> → <Wriggle>.,"[info] If spawned from Phrog Parasite, starts stunned.[info] Positions 1 & 3 start <Nasty Bite>, positions 2 & 4 start <Wriggle>.",minion,,,
+bygone-effigy,Bygone Effigy,127 (132),"Opens with <Sleep> → <Wake> → <Slash>, then always uses <Slash>.",,slow,{slow},,
+byrdonis,Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,,
+decimillipede,Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
+When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Fights as 3 segments — HP is always an even number, and segments have different max HP.[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},,
+entomancer,Entomancer,145 (155),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
+After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,,
+infested-prism,Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),,
+flail-knight,Flail Knight,101 (108),"Opens with <Ram>.
+Then chooses randomly from <War Chant>, <Flail>, <Ram>.",,,,,
+spectral-knight,Spectral Knight,93 (97),"Opens with <Hex> → <Soul Slash>.
+Then chooses randomly from <Soul Slash>, <Soul Flame>.",,hex,,,
+magi-knight,Magi Knight,82 (89),"Opens with <Power Shield> → <Dampen>.
+Then cycles <Spear> → <Prep> → <Magic Bomb>.",[info] Cards can still be upgraded during combat after Magi Knight applies Dampen.,dampen,,,
+mecha-knight,Mecha Knight,300 (320),"Opens with <Charge>.
+Then cycles <Flamethrower> → <Windup> → <Heavy Cleave>.",,artifact,{artifact} 3,,
+phantasmal-gardener,Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (7),,
+phrog-parasite,Phrog Parasite,61 - 64 (66 - 68),Cycles <Infect> → <Lash>.,,infested,{infested} 4,,
+skulking-colony,Skulking Colony,75 (80),Cycles <Zoom> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 20,,
+soul-nexus,Soul Nexus,234 (254),"Opens with <Soul Burn>.
+Then chooses randomly from <Soul Burn>, <Maelstrom>, <Drain Life>.",,,,,
+terror-eel,Terror Eel,140 (150),"Phase 1:
 Cycles <Crash> → <Thrash>.
 
 Phase 2 (stunned at 75 HP):
-Uses <Terror>, then cycles <Crash> → <Thrash>.",,shriek; vigor,{shriek} 75,
-Ceremonial Beast,252 (262),"Phase 1:
+Uses <Terror>, then cycles <Crash> → <Thrash>.",,shriek; vigor,{shriek} 75,,
+ceremonial-beast,Ceremonial Beast,252 (262),"Phase 1:
 Opens with <Stamp>, then always uses <Plow>.
 
 Phase 2 (after stun):
-Cycles <Beast Cry> → <Stomp> → <Crush>.",,plow; ringing,,
-Aeonglass,512 (535),Cycles <Ebb> → <Eye Lasers> → <Increasing Intensity>.,[info] <Increasing Intensity> {strength} gain increases by 1 each use.,artifact; withering_presence,{artifact} 3 and {withering_presence} 6,
-Crusher,209 (219),Cycles <Thrash> → <Enlarging Strike> → <Bug Sting> → <Adapt> → <Guarded Strike>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
-Rocket,199 (209),Cycles <Targeting Reticle> → <Precision Beam> → <Charge Up> → <Laser> → <Recharge>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,
-Knowledge Demon,379 (399),"Phase 1:
+Cycles <Beast Cry> → <Stomp> → <Crush>.",,plow; ringing,,,
+aeonglass,Aeonglass,512 (535),Cycles <Ebb> → <Eye Lasers> → <Increasing Intensity>.,[info] <Increasing Intensity> {strength} gain increases by 1 each use.,artifact; withering_presence,{artifact} 3 and {withering_presence} 6,,
+crusher,Crusher,209 (219),Cycles <Thrash> → <Enlarging Strike> → <Bug Sting> → <Adapt> → <Guarded Strike>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,,
+rocket,Rocket,199 (209),Cycles <Targeting Reticle> → <Precision Beam> → <Charge Up> → <Laser> → <Recharge>.,,back_attack_left; crab_rage,{back_attack_left} and {crab_rage} 6,,
+knowledge-demon,Knowledge Demon,379 (399),"Phase 1:
 Cycles <Curse of Knowledge> → <Slap> → <Knowledge Overwhelming> → <Ponder> (until <Curse of Knowledge> used 3 times).
 
 Phase 2:
-Cycles <Slap> → <Knowledge Overwhelming> → <Ponder>.",[info] Heal is multiplied by player count in co-op.,disintegration; mind_rot; sloth; waste_away,,
-Lagavulin Matriarch,222 (233),Cycles <Slash> → <Disembowel> → <Slash 2> → <Soul Siphon>.,[info] On wakeup all Plating is removed.,plating; asleep,{plating} 12 and {asleep},
-Queen,400 (419),"Opens with <Puppet Strings> → <You Are Mine!>.
+Cycles <Slap> → <Knowledge Overwhelming> → <Ponder>.",[info] Heal is multiplied by player count in co-op.,disintegration; mind_rot; sloth; waste_away,,,
+lagavulin-matriarch,Lagavulin Matriarch,222 (233),Cycles <Slash> → <Disembowel> → <Slash 2> → <Soul Siphon>.,[info] On wakeup all Plating is removed.,plating; asleep,{plating} 12 and {asleep},,
+queen,Queen,400 (419),"Opens with <Puppet Strings> → <You Are Mine!>.
 While Amalgam alive: Always uses <Burn Bright For Me>.
-After Amalgam dies: Cycles <Off With Your Head> → <Execution> → <Enrage>.","[info] If Amalgam dies mid-turn and intent is <Burn Bright For Me>, it becomes <Enrage> instead.",,a Torch Head Amalgam in play,chains_of_binding
-Torch Head Amalgam,199 (211),"Opens with <Tackle> → <Tackle>.
-Then cycles <Soul Beam> → <Weak Tackle> → <Weak Tackle>.",,minion,,
-Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scream>.,[info] One of the 2 Intangible from <Fade> ticks down immediately.,,,
-Test Subject Stage 1,100 (111),"Cycles <Bite> → <Skull Bash>.
-When killed: Revives next turn in Stage 2.",,enrage,{enrage} 3,
-Test Subject Stage 2,200 (212),"Always uses <Multi-Claw>.
+After Amalgam dies: Cycles <Off With Your Head> → <Execution> → <Enrage>.","[info] If Amalgam dies mid-turn and intent is <Burn Bright For Me>, it becomes <Enrage> instead.",,a Torch Head Amalgam in play,chains_of_binding,
+torch-head-amalgam,Torch Head Amalgam,199 (211),"Opens with <Tackle> → <Tackle>.
+Then cycles <Soul Beam> → <Weak Tackle> → <Weak Tackle>.",,minion,,,
+soul-fysh,Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scream>.,[info] One of the 2 Intangible from <Fade> ticks down immediately.,,,,
+test-subject-stage-1,Test Subject Stage 1,100 (111),"Cycles <Bite> → <Skull Bash>.
+When killed: Revives next turn in Stage 2.",,enrage,{enrage} 3,,
+test-subject-stage-2,Test Subject Stage 2,200 (212),"Always uses <Multi-Claw>.
 When killed: Revives next turn in Stage 3.",,painful_stabs,{painful_stabs} 1,,
-Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),,
-The Insatiable,321 (341),"Opens with <Liquify Ground>.
-Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,
-Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,
-Kin Follower,58 - 59 (62 - 63),Cycles <Quick Slash> → <Boomerang> → <Power Dance>.,,minion,,
-Vantom,173 (183),Cycles <Ink Blot> → <Inky Lance> → <Dismember> → <Prepare>.,,slippery,{slippery} 8 (9),
-Waterfall Giant,240 (250),"Opens with <Pressurize>.
-Then cycles <Stomp> → <Ram> → <Siphon> → <Pressure Gun> → <Pressure Up>.",[info] Heal is multiplied by player count in co-op.,steam_eruption,,
+test-subject-stage-3,Test Subject Stage 3,300 (313),Cycles <Lacerate> → <Big Pounce> → <Burning Growl>.,,nemesis,{nemesis} (immediately gives 1 Intangible),,
+the-insatiable,The Insatiable,321 (341),"Opens with <Liquify Ground>.
+Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,,
+kin-priest,Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,,
+kin-follower,Kin Follower,58 - 59 (62 - 63),Cycles <Quick Slash> → <Boomerang> → <Power Dance>.,,minion,,,
+vantom,Vantom,173 (183),Cycles <Ink Blot> → <Inky Lance> → <Dismember> → <Prepare>.,,slippery,{slippery} 8 (9),,
+waterfall-giant,Waterfall Giant,240 (250),"Opens with <Pressurize>.
+Then cycles <Stomp> → <Ram> → <Siphon> → <Pressure Gun> → <Pressure Up>.",[info] Heal is multiplied by player count in co-op.,steam_eruption,,,

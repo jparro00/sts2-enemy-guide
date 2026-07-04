@@ -30,9 +30,10 @@ function buildDataStructures(texts) {
     }
   }
 
-  // Build enemy database
+  // Build enemy database — keyed by the stable Key column; display name is data
   for (const e of enemiesRaw) {
-    enemyDatabase[e.Name] = {
+    enemyDatabase[e.Key] = {
+      name: e.Name,
       hp: e.HP,
       pattern: e.Pattern,
       notes: e.Notes,
@@ -63,9 +64,10 @@ function buildDataStructures(texts) {
     if (!encounters[zoneKey]) encounters[zoneKey] = {};
     if (!encounters[zoneKey][cat]) encounters[zoneKey][cat] = [];
 
-    const enemyList = enc.Enemies ? enc.Enemies.split(';').map(e => e.trim()).filter(Boolean) : [];
+    const enemyList = enc.Enemies ? enc.Enemies.split(';').map(e => e.trim()).filter(Boolean) : [];  // monster Keys
 
     encounters[zoneKey][cat].push({
+      key: enc.Key,
       name: enc.Encounter,
       enemies: enemyList,
       multi: enc.Multi || '',
@@ -129,24 +131,11 @@ function buildDataStructures(texts) {
     itemsRef[key] = { ...val, key, category: 'power' };
   }
 
-  // Build slug lookups for URL routing
-  for (const name in enemyDatabase) {
-    slugToEnemy[slugify(name)] = name;
-  }
-  // First pass — count encounter base slugs to detect collisions
+  // Build URL-routing lookups (enemy slugs are their Keys — no map needed)
   for (const act in encounters) {
     for (const cat in encounters[act]) {
       for (const enc of encounters[act][cat]) {
-        const base = slugify(enc.name);
-        encSlugCounts[base] = (encSlugCounts[base] || 0) + 1;
-      }
-    }
-  }
-  // Second pass — write disambiguated slug for each encounter
-  for (const act in encounters) {
-    for (const cat in encounters[act]) {
-      for (const enc of encounters[act][cat]) {
-        slugToEncounter[encounterSlug(enc.name, cat)] = { name: enc.name, act, cat };
+        slugToEncounter[enc.key] = { act, cat };
       }
     }
   }
@@ -246,10 +235,9 @@ function routeFromURL(initial) {
   const [, type, slug] = m;
   if (type === 'encounter') {
     const found = slugToEncounter[slug];
-    if (found) openEncounter(found.name, found.act, found.cat, { fromRoute: true, initial });
+    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial });
   } else if (type === 'enemy') {
-    const name = slugToEnemy[slug];
-    if (name) openEnemy(name, { fromRoute: true, initial });
+    if (enemyDatabase[slug]) openEnemy(slug, { fromRoute: true, initial });
   } else if (type === 'event') {
     const key = slugToEventKey[slug];
     if (key) openEvent(key, { fromRoute: true, initial });

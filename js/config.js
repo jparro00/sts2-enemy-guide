@@ -13,11 +13,11 @@ let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
 let openPanelInfo = null;     // currently open panel: { type, name, act, cat } — read by renderers.js scaling
 let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 
-// Slug lookups built after data loads — slug → original name/key
-const slugToEnemy = {};
-const slugToEncounter = {};   // slug → { name, act, cat }
-const slugToEventKey = {};
-const encSlugCounts = {};     // base slug → count, for disambiguation
+// URL-routing lookups built after data loads.
+// Monsters and encounters are keyed by their stable Key column (slug format),
+// so the enemy/encounter URL slug IS the key. Events route by slugified name.
+const slugToEncounter = {};   // encounter key → { act, cat }
+const slugToEventKey = {};    // slugified event name → events.csv Key
 
 function slugify(s) {
   return (s || '').toLowerCase()
@@ -25,14 +25,11 @@ function slugify(s) {
     .replace(/^-+|-+$/g, '');
 }
 
-// Disambiguate colliding encounter slugs by category (e.g. "Seapunk" easy/hard).
-// Shared by the SPA (via encounterSlug) and build_snapshots.mjs (master-data canonicals).
+// Disambiguate colliding slugs by category (e.g. "Seapunk" easy/hard).
+// Used by tools/migrate-to-keys.mjs (Key generation) and build_snapshots.mjs
+// (fallback for master-data CSVs that predate the Key column).
 function disambiguateSlug(base, cat, counts) {
   return counts[base] > 1 ? `${base}-${cat}` : base;
-}
-
-function encounterSlug(name, cat) {
-  return disambiguateSlug(slugify(name), cat, encSlugCounts);
 }
 
 function getSiteBase() {

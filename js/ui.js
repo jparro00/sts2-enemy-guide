@@ -27,9 +27,10 @@ function getEncounterImageHtml(enc, cat) {
   // If encounter has multiple enemies, show individual enemy images
   if (enc.enemies && enc.enemies.length > 1) {
     const count = enc.enemies.length;
-    const imgs = enc.enemies.map(name => {
-      const src = `media/enemies/${name}.webp`;
-      return `<img src="${src}" alt="${name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
+    const imgs = enc.enemies.map(key => {
+      const src = `media/enemies/${key}.webp`;
+      const alt = enemyDatabase[key] ? enemyDatabase[key].name : key;
+      return `<img src="${src}" alt="${alt}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
     }).join('');
     return { multi: true, count, html: imgs };
   }
@@ -40,8 +41,8 @@ function getEncounterImageHtml(enc, cat) {
     return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
   }
 
-  // No enemies list — try enemies folder by encounter name, then emoji fallback
-  const enemySrc = `media/enemies/${enc.name}.webp`;
+  // No enemies list — try enemies folder by encounter key, then emoji fallback
+  const enemySrc = `media/enemies/${enc.key}.webp`;
   return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
@@ -106,7 +107,7 @@ function renderCards(encs, cat) {
     const img = getEncounterImageHtml(e, cat);
     const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
     return `
-    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.name.replace(/'/g, "\\'")}', '${currentAct}', '${cat}')">
+    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${currentAct}', '${cat}')">
       <div class="${thumbClass}">
         ${img.html}
         ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
@@ -149,8 +150,8 @@ function preloadRemainingImages() {
           if (enc.altImage) {
             srcs.add(enc.altImage.includes('/') ? enc.altImage : `media/enemies/${enc.altImage}`);
           } else if (enc.enemies) {
-            for (const name of enc.enemies) {
-              srcs.add(`media/enemies/${name}.webp`);
+            for (const key of enc.enemies) {
+              srcs.add(`media/enemies/${key}.webp`);
             }
           }
         }
@@ -291,24 +292,24 @@ function navigateToPanel(state, url, opts) {
   }
 }
 
-function openEncounter(encounterName, act, cat, opts) {
+function openEncounter(encounterKey, act, cat, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'encounter', name: encounterName, act: act || currentAct, cat: cat || currentCat };
+  openPanelInfo = { type: 'encounter', name: encounterKey, act: act || currentAct, cat: cat || currentCat };
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = encounterName + renderBetaBadge('encounter', encounterName);
 
   // Search all categories if act/cat provided, otherwise use current
   let enc = null;
   if (act && cat) {
     const encs = encounters[act]?.[cat] || [];
-    enc = encs.find(e => e.name === encounterName);
+    enc = encs.find(e => e.key === encounterKey);
   } else {
     const encs = encounters[currentAct]?.[currentCat] || [];
-    enc = encs.find(e => e.name === encounterName);
+    enc = encs.find(e => e.key === encounterKey);
   }
 
-  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterName);
+  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey);
 
   panel.classList.add('open');
   backdrop.classList.add('open');
@@ -318,19 +319,20 @@ function openEncounter(encounterName, act, cat, opts) {
     document.body.classList.add('panel-open');
   }
   navigateToPanel(
-    { type: 'encounter', name: encounterName, act: openPanelInfo.act, cat: openPanelInfo.cat },
-    `${getSiteBase()}/encounter/${encounterSlug(encounterName, openPanelInfo.cat)}/`,
+    { type: 'encounter', name: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
+    `${getSiteBase()}/encounter/${encounterKey}/`,
     { ...opts, replace: wasOpen }
   );
 }
 
-function openEnemy(enemyName, opts) {
+function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'enemy', name: enemyName };
+  openPanelInfo = { type: 'enemy', name: enemyKey };
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = enemyName + renderBetaBadge('monster', enemyName);
-  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyName) + panelFeedbackLink;  // single enemy: section + feedback link
+  const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
+  document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
+  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyKey) + panelFeedbackLink;  // single enemy: section + feedback link
 
   panel.classList.add('open');
   backdrop.classList.add('open');
@@ -340,8 +342,8 @@ function openEnemy(enemyName, opts) {
     document.body.classList.add('panel-open');
   }
   navigateToPanel(
-    { type: 'enemy', name: enemyName },
-    `${getSiteBase()}/enemy/${slugify(enemyName)}/`,
+    { type: 'enemy', name: enemyKey },
+    `${getSiteBase()}/enemy/${enemyKey}/`,
     { ...opts, replace: wasOpen }
   );
 }
@@ -359,7 +361,7 @@ function openEvent(eventKey, opts) {
 
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
-  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.name);
+  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.key);
 
   document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 

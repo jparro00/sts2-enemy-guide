@@ -81,7 +81,6 @@ inCtx('siteConfig = __config; buildDataStructures(__texts)');
 
 // Shared renderers/utilities pulled out of the context
 const slugify = inCtx('slugify');
-const encounterSlug = inCtx('encounterSlug');
 const disambiguateSlug = inCtx('disambiguateSlug');
 const buildVersionBanner = inCtx('buildVersionBanner');
 const parseCSV = inCtx('parseCSV');
@@ -92,8 +91,7 @@ const renderBetaBadge = inCtx('renderBetaBadge');
 const panelFeedbackLink = inCtx('panelFeedbackLink');
 const getChoices = inCtx('(key) => eventChoices[key] || []');
 
-const enemyNames = inCtx('Object.keys(enemyDatabase)');
-const enemyPatterns = inCtx('Object.fromEntries(Object.entries(enemyDatabase).map(([n, d]) => [n, d.pattern]))');
+const enemies = inCtx('Object.entries(enemyDatabase).map(([key, d]) => ({ key, name: d.name, pattern: d.pattern }))');
 const allEncounters = inCtx(`(() => {
   const out = [];
   for (const zone in encounters)
@@ -122,15 +120,19 @@ const loadMasterCsv = (name) => {
   return fs.existsSync(p) ? parseCSV(fs.readFileSync(p, 'utf8')) : [];
 };
 
-const MASTER_ENEMY_NAMES = new Set();
-const MASTER_EVENT_NAMES = new Set();
-const MASTER_ENCOUNTER_SLUGS = new Map(); // "name|cat" -> slug-on-master
+const MASTER_ENEMY_KEYS = new Set();
+const MASTER_ENCOUNTER_KEYS = new Set();
+const MASTER_EVENT_NAMES = new Set(); // events route by slugified name, so match on name
 
 if (HAS_MASTER_DATA) {
-  for (const m of loadMasterCsv('monsters.csv')) if (m.Name) MASTER_ENEMY_NAMES.add(m.Name);
+  // Key columns are canonical; fall back to computing keys from names for
+  // master-data snapshots that predate the Key migration (same rules the
+  // migration used, so keys agree either way).
+  for (const m of loadMasterCsv('monsters.csv')) {
+    const key = m.Key || slugify(m.Name || '');
+    if (key) MASTER_ENEMY_KEYS.add(key);
+  }
   for (const ev of loadMasterCsv('events.csv')) if (ev.Name) MASTER_EVENT_NAMES.add(ev.Name);
-  // Encounters use the same slug-disambig-by-category logic as the per-branch
-  // build, so compute master's slugs against master's own dataset.
   const masterEncs = loadMasterCsv('encounters.csv');
   const masterSlugCounts = {};
   for (const enc of masterEncs) {
@@ -138,14 +140,11 @@ if (HAS_MASTER_DATA) {
     if (base) masterSlugCounts[base] = (masterSlugCounts[base] || 0) + 1;
   }
   for (const enc of masterEncs) {
-    const base = slugify(enc.Encounter || '');
-    if (!base) continue;
-    const cat = enc.Category || '';
-    // Same disambiguation rule the SPA routes with (config.js)
-    MASTER_ENCOUNTER_SLUGS.set(`${enc.Encounter}|${cat}`, disambiguateSlug(base, cat, masterSlugCounts));
+    const key = enc.Key || disambiguateSlug(slugify(enc.Encounter || ''), enc.Category || '', masterSlugCounts);
+    if (key) MASTER_ENCOUNTER_KEYS.add(key);
   }
-  console.log(`[canonical] master-data loaded: enemies=${MASTER_ENEMY_NAMES.size} ` +
-    `encounters=${MASTER_ENCOUNTER_SLUGS.size} events=${MASTER_EVENT_NAMES.size}`);
+  console.log(`[canonical] master-data loaded: enemies=${MASTER_ENEMY_KEYS.size} ` +
+    `encounters=${MASTER_ENCOUNTER_KEYS.size} events=${MASTER_EVENT_NAMES.size}`);
 }
 
 // ─── Shell template ─────────────────────────────────────────────────────
@@ -291,50 +290,49 @@ function jsonldFor(name, description, url, image) {
   return obj;
 }
 
-// Enemies
-for (const name of enemyNames) {
-  const slug = slugify(name);
-  if (!slug) continue;
-  const url = `${SITE_PREFIX}/enemy/${slug}/`;
+// Enemies (URL slug = stable Key)
+for (const { key, name, pattern } of enemies) {
+  if (!key) continue;
+  const url = `${SITE_PREFIX}/enemy/${key}/`;
   // If this enemy also exists on master, canonical to master URL
-  const canonical = MASTER_ENEMY_NAMES.has(name) ? `${SITE_ORIGIN}/enemy/${slug}/` : url;
-  const patternSummary = (enemyPatterns[name] || '').replace(/\n/g, ' ').replace(/\s+/g, ' ').slice(0, 160);
+  const canonical = MASTER_ENEMY_KEYS.has(key) ? `${SITE_ORIGIN}/enemy/${key}/` : url;
+  const patternSummary = (pattern || '').replace(/\n/g, ' ').replace(/\s+/g, ' ').slice(0, 160);
   const description = `${name} attack pattern, HP, and moves in Slay the Spire 2. ${patternSummary}`.trim();
   const title = `${name} — Slay the Spire 2 Enemy Guide`;
-  const image = `${SITE_ORIGIN}${SITE_BASE}/media/enemies/${name}.webp`;
+  const image = `${SITE_ORIGIN}${SITE_BASE}/media/enemies/${key}.webp`;
   const page = buildPage({
     title, description, ogImage: image, canonical,
     jsonLd: jsonldFor(name, description, canonical, image),
     panelName: name,
-    panelBadgeHtml: renderBetaBadge('monster', name),
-    panelHtml: renderEnemySection(name) + panelFeedbackLink,
+    panelBadgeHtml: renderBetaBadge('monster', key),
+    panelHtml: renderEnemySection(key) + panelFeedbackLink,
   });
-  writePage(`enemy/${slug}`, page);
+  writePage(`enemy/${key}`, page);
   if (!NOINDEX) sitemapUrls.push(url);
   generated++;
 }
 
-// Encounters (slug collisions like "Seapunk" easy/hard are disambiguated
-// by category via encounterSlug, matching the SPA's routing exactly)
-for (const { enc, cat } of allEncounters) {
-  const slug = encounterSlug(enc.name, cat);
-  if (!slug) continue;
-  const url = `${SITE_PREFIX}/encounter/${slug}/`;
-  const masterSlug = MASTER_ENCOUNTER_SLUGS.get(`${enc.name}|${cat}`);
-  const canonical = masterSlug ? `${SITE_ORIGIN}/encounter/${masterSlug}/` : url;
-  const enemiesStr = enc.enemies.length ? enc.enemies.join(', ') : enc.name;
+// Encounters (URL slug = stable Key; collisions like "Seapunk" easy/hard
+// were baked into the Keys as name-cat at migration time)
+const enemyNameByKey = Object.fromEntries(enemies.map((e) => [e.key, e.name]));
+for (const { enc } of allEncounters) {
+  if (!enc.key) continue;
+  const url = `${SITE_PREFIX}/encounter/${enc.key}/`;
+  const canonical = MASTER_ENCOUNTER_KEYS.has(enc.key) ? `${SITE_ORIGIN}/encounter/${enc.key}/` : url;
+  const enemyDisplayNames = enc.enemies.map((k) => enemyNameByKey[k] || k);
+  const enemiesStr = enemyDisplayNames.length ? enemyDisplayNames.join(', ') : enc.name;
   const description = `${enc.name} encounter in Slay the Spire 2: ${enemiesStr}. HP, attack patterns, and strategy.`.trim();
   const title = `${enc.name} — Slay the Spire 2 Encounter Guide`;
-  const primary = enc.enemies.length ? enc.enemies[0] : enc.name;
+  const primary = enc.enemies.length ? enc.enemies[0] : enc.key;
   const image = `${SITE_ORIGIN}${SITE_BASE}/media/enemies/${primary}.webp`;
   const page = buildPage({
     title, description, ogImage: image, canonical,
     jsonLd: jsonldFor(enc.name, description, canonical, image),
     panelName: enc.name,
-    panelBadgeHtml: renderBetaBadge('encounter', enc.name),
-    panelHtml: buildEncounterPanelBody(enc, enc.name),
+    panelBadgeHtml: renderBetaBadge('encounter', enc.key),
+    panelHtml: buildEncounterPanelBody(enc, enc.key),
   });
-  writePage(`encounter/${slug}`, page);
+  writePage(`encounter/${enc.key}`, page);
   if (!NOINDEX) sitemapUrls.push(url);
   generated++;
 }
@@ -354,7 +352,7 @@ for (const ev of allEvents) {
     title, description, ogImage: image, canonical,
     jsonLd: jsonldFor(ev.name, description, canonical, image),
     panelName: ev.name,
-    panelBadgeHtml: renderBetaBadge('event', ev.name),
+    panelBadgeHtml: renderBetaBadge('event', ev.key),
     panelHtml: buildEventPanelBody(ev, getChoices(ev.key)),
   });
   writePage(`event/${slug}`, page);
@@ -400,7 +398,7 @@ fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), sitemap);
 
 // ─── Summary ───────────────────────────────────────────────────────────
 console.log(`build_snapshots.mjs: generated ${generated} entity pages`);
-console.log(`  enemies=${enemyNames.length}  encounters=${allEncounters.length}  events=${allEvents.length}`);
+console.log(`  enemies=${enemies.length}  encounters=${allEncounters.length}  events=${allEvents.length}`);
 console.log(`  siteBase=${JSON.stringify(SITE_BASE)}  noindex=${NOINDEX}  out=${OUT_DIR}`);
 console.log(`  sitemap urls: ${sitemapUrls.length}`);
 if (generated < 50) {

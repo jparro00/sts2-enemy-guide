@@ -49,10 +49,10 @@ function scaleEffects(text) {
   });
 }
 
-function renderMoveRefs(text, enemyName) {
+function renderMoveRefs(text, enemyKey) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
-    const moves = enemyName && enemyDatabase[enemyName] ? enemyDatabase[enemyName].moves : [];
+    const moves = enemyKey && enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].moves : [];
     const move = moves.find(m => m.name === moveName);
     if (move) {
       const intents = renderIntents(move.intent);
@@ -63,9 +63,9 @@ function renderMoveRefs(text, enemyName) {
   });
 }
 
-function renderPowerRefs(text, enemyName) {
+function renderPowerRefs(text, enemyKey) {
   // First handle move refs (with enemy context for tooltips), then power refs
-  let result = renderMoveRefs(text, enemyName);
+  let result = renderMoveRefs(text, enemyKey);
   result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;

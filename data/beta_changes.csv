@@ -1,3 +1,3 @@
 Type,Name,Change,Patch
-monster,Torch Head Amalgam,"Buffed: Tackle 18(19) → 18(22); Weak Tackle 14(15) → 14(16) at high Ascension.",0.108.0
-event,Jungle Maze Adventure,"Changed: In co-op, no longer appears if any player has 18 HP or less (the Solo Quest HP cost).",0.108.0
+monster,torch-head-amalgam,Buffed: Tackle 18(19) → 18(22); Weak Tackle 14(15) → 14(16) at high Ascension.,0.108.0
+event,jungle_maze_adventure,"Changed: In co-op, no longer appears if any player has 18 HP or less (the Solo Quest HP cost).",0.108.0

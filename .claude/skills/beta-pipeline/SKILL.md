@@ -107,10 +107,10 @@ For each change mentioned in the patch notes:
 - CS pattern: `GetValueIfAscension(Level, ascensionValue, normalValue)` — ascension value comes FIRST
 
 ## Step 6: Update CSV data files
-Update the relevant CSVs based on verified changes:
-- `data/monsters.csv` — HP, Pattern, Notes, Powers, StartsWith, References
-- `data/monster_moves.csv` — Effects, Intent, Notes, References
-- `data/encounters.csv` — Enemies, Composition, Emoji, Category
+Update the relevant CSVs based on verified changes (see `data/README.md` for schemas):
+- `data/monsters.csv` — HP, Pattern, Notes, Powers, StartsWith, References. New monsters need a `Key` (slugified display name, e.g. `ruby-raider-axe`) — it becomes the URL slug and image filename; never change an existing Key.
+- `data/monster_moves.csv` — Effects, Intent, Notes, References. `Enemy` column holds the monster's `Key`.
+- `data/encounters.csv` — Enemies (monster `Key`s, `;`-separated), Composition, Emoji, Category. New encounters need a `Key` (slugified name, plus `-<category>` if the name collides with another encounter).
 - `data/events.csv` — Notes (requirements/tags), Acts
 - `data/event_choices.csv` — Effect, Notes, References
 - `data/powers.csv` — if new powers or description changes
@@ -131,6 +131,7 @@ Update the relevant CSVs based on verified changes:
 - Add a row for every changed encounter, monster, and event
 - Format: `Type,Name,Change,Patch`
   - Type: `encounter`, `monster`, or `event`
+  - Name: the entity's **Key** (monsters/encounters: their `Key` column; events: `events.csv` Key)
   - Patch: version number (e.g. `0.101.0`)
 - Change description should be concise patch-note style
 - If a monster/event was changed in a previous beta patch AND this patch, update the existing row's Change description and set Patch to the latest version

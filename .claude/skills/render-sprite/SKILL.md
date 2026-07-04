@@ -7,6 +7,8 @@ description: Render a Spine monster sprite using Godot, convert to 512x512 webp,
 
 Renders a monster's Spine skeleton into a 512x512 transparent webp sprite and places it in `media/enemies/`.
 
+**Output filename = the monster's `Key` from `data/monsters.csv`** (slug format, e.g. `ruby-raider-axe.webp`) — NOT the display name. In interactive mode, pass the Key as `--display-name=` (that flag drives the saved filename).
+
 ## Arguments
 
 The user provides a monster name — either:
