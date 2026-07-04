@@ -162,8 +162,8 @@ Update the relevant CSVs based on verified changes:
   |------|------------------|
   | `robots.txt` | Only master's served at `spirecodex.com/robots.txt`. Copies on beta/test are inert. |
   | `.github/workflows/deploy.yml` | The triggering branch's version runs. Must be up to date on every branch you'll ever push to. |
-  | `build_snapshots.py` | Each branch's own copy is invoked when the workflow builds that branch. |
-- For the canonical-tag SEO strategy: beta's `build_snapshots.py` reads from `master-data/` (a directory the workflow copies in from master's `data/` before building beta). For each entity that also exists on master, beta's build emits `rel="canonical"` + `og:url` pointing to the master URL. Beta-only entities get self-canonical.
+  | `build_snapshots.mjs` | Each branch's own copy is invoked when the workflow builds that branch. |
+- For the canonical-tag SEO strategy: beta's `build_snapshots.mjs` reads from `master-data/` (a directory the workflow copies in from master's `data/` before building beta). For each entity that also exists on master, beta's build emits `rel="canonical"` + `og:url` pointing to the master URL. Beta-only entities get self-canonical.
 - The workflow's `Checkout and copy extra branches` step also forces `noindex=true` for `test` only — beta is allowed to be indexed (with canonicals doing the dedup work).
 - Before pushing changes that touch workflow / build_snapshots / robots.txt, **propagate them to every branch that will ever be pushed**:
   - Update on master first (commit there).

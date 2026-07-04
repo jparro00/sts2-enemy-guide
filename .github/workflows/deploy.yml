@@ -57,16 +57,20 @@ jobs:
 
       - name: Generate snapshots for master
         run: |
-          if [ -f main-site/build_snapshots.py ]; then
+          # Node build (single renderer shared with the SPA); python fallback
+          # for branches that predate the .mjs migration.
+          if [ -f main-site/build_snapshots.mjs ]; then
+            cd main-site && node build_snapshots.mjs
+          elif [ -f main-site/build_snapshots.py ]; then
             cd main-site && python build_snapshots.py
           else
-            echo "build_snapshots.py not present on master — skipping snapshot generation"
+            echo "no snapshot build script on master — skipping snapshot generation"
           fi
 
       - name: Start site from master
         run: |
           mkdir -p _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' main-site/ _site/
+          rsync -a --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.mjs' --exclude='*.bat' --exclude='*.xlsx' main-site/ _site/
 
       - name: Find extra branches
         id: extra
@@ -115,14 +119,17 @@ jobs:
             else
               echo "build_thumbs.py not present on $branch — skipping thumb generation"
             fi
-            # Generate snapshots inside the branch checkout (if build script present)
-            if [ -f "checkout-${FOLDER}/build_snapshots.py" ]; then
+            # Generate snapshots inside the branch checkout (if build script present).
+            # Node build preferred; python fallback for pre-migration branches.
+            if [ -f "checkout-${FOLDER}/build_snapshots.mjs" ]; then
+              (cd "checkout-${FOLDER}" && node build_snapshots.mjs)
+            elif [ -f "checkout-${FOLDER}/build_snapshots.py" ]; then
               (cd "checkout-${FOLDER}" && python build_snapshots.py)
             else
-              echo "build_snapshots.py not present on $branch — skipping snapshot generation"
+              echo "no snapshot build script on $branch — skipping snapshot generation"
             fi
             mkdir -p "_site/${FOLDER}"
-            rsync -a --delete --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
+            rsync -a --delete --exclude='.git' --exclude='.github' --exclude='.claude' --exclude='raw' --exclude='__pycache__' --exclude='*.py' --exclude='*.mjs' --exclude='*.bat' --exclude='*.xlsx' "checkout-${FOLDER}/" "_site/${FOLDER}/"
             rm -rf "checkout-${FOLDER}"
             echo "Deployed $branch to /${FOLDER}/"
           done <<< "${{ steps.extra.outputs.branches }}"

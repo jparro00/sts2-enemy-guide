@@ -2,7 +2,8 @@
 // UI LOGIC
 // ══════════════════════════════════════════
 
-const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback or report an issue</a></div>`;
+// Panel content builders (renderEnemySection, buildEncounterPanelBody,
+// buildEventPanelBody) live in js/panels.js — shared with the snapshot build.
 
 // Resolve alt image path — if no folder prefix, default to media/enemies/
 function resolveAltImage(altImage) {
@@ -284,53 +285,6 @@ function formatMultiBadge(multi) {
   return multi;
 }
 
-function renderEnemySection(name, collapsible) {
-  const data = enemyDatabase[name];
-  if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
-
-  const movesHtml = data.moves.map(m => `
-    <tr>
-      <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
-      <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), name)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, name)}</span>` : ''}</td>
-    </tr>
-  `).join('');
-
-  const notesHtml = data.notes ? renderNotes(data.notes, name) : '';
-
-  const imgSrc = `media/enemies/${name}.webp`;
-  const collapseBtn = collapsible ? `<button class="collapse-toggle" onclick="toggleEnemySection(this)" title="Collapse/Expand">−</button>` : '';
-
-  return `
-    <div class="enemy-section${collapsible ? ' collapsible' : ''}">
-      <div class="enemy-section-header">
-        <div class="enemy-section-info">
-          <div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div>
-          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(data.hp) : scaleHP(data.hp)}</div></div>
-        </div>
-        ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
-        <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
-      </div>
-
-      <div class="enemy-section-body">
-        <h3>Attack Pattern</h3>
-        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), name)}</div>
-
-        ${renderStartsWith(data.startsWith, name)}
-
-        <h3>Moves</h3>
-        <table>
-          <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
-          ${movesHtml}
-        </table>
-
-        ${notesHtml}
-        ${renderEnemyReferences(data.powers, data.moves, data.references)}
-      </div>
-    </div>
-  `;
-}
-
 function toggleEnemySection(btn) {
   const section = btn.closest('.enemy-section');
   section.classList.toggle('collapsed');
@@ -371,22 +325,7 @@ function openEncounter(encounterName, act, cat, opts) {
     enc = encs.find(e => e.name === encounterName);
   }
 
-  // Build composition info if available
-  let compositionHtml = '';
-  if (enc && enc.composition) {
-    compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
-  }
-
-  if (enc && enc.enemies && enc.enemies.length > 0) {
-    const uniqueEnemies = enc.enemies.filter((name, idx, arr) => arr.indexOf(name) === idx);
-    const collapsible = uniqueEnemies.length > 1;
-    const sections = uniqueEnemies
-      .map(name => renderEnemySection(name, collapsible))
-      .join('');
-    document.getElementById('detail-body').innerHTML = compositionHtml + sections + panelFeedbackLink;
-  } else {
-    document.getElementById('detail-body').innerHTML = compositionHtml + renderEnemySection(encounterName) + panelFeedbackLink;
-  }
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterName);
 
   panel.classList.add('open');
   backdrop.classList.add('open');
@@ -408,7 +347,7 @@ function openEnemy(enemyName, opts) {
   const panel = document.getElementById('detail-panel');
   const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').innerHTML = enemyName + renderBetaBadge('monster', enemyName);
-  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyName) + panelFeedbackLink;
+  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyName) + panelFeedbackLink;  // single enemy: section + feedback link
 
   panel.classList.add('open');
   backdrop.classList.add('open');
@@ -439,43 +378,7 @@ function openEvent(eventKey, opts) {
   const backdrop = document.getElementById('backdrop');
   document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.name);
 
-  const choices = eventChoices[eventKey] || [];
-  const choicesHtml = choices.length > 0 ? `
-    <h3>Choices</h3>
-    <table>
-      <tr><th>Choice</th><th>Effect</th></tr>
-      ${choices.map(c => `
-        <tr>
-          <td><strong>${c.choice}</strong></td>
-          <td>${renderLore(c.effect)}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${renderLore(c.notes)}</span>` : ''}</td>
-        </tr>
-      `).join('')}
-    </table>
-  ` : '';
-
-  const notesHtml = ev.notes ? renderNotes(ev.notes) : '';
-  const imgHtml = ev.image ? `<img class="enemy-section-img" src="media/events/${ev.image}" alt="${ev.name}" onerror="this.style.display='none'">` : '';
-  const loreHtml = ev.lore ? `<div class="event-lore">${renderLore(ev.lore)}</div>` : '';
-
-  // Build all reference sections from unified References column
-  const allRefKeys = [...new Set(choices.filter(c => c.references).flatMap(c => c.references.split(',').map(s => s.trim())).filter(Boolean))];
-  const refsHtml = renderReferenceSections(allRefKeys);
-
-  document.getElementById('detail-body').innerHTML = `
-    <div class="enemy-section">
-      <div class="enemy-section-header">
-        <div class="enemy-section-info">
-          <div class="enemy-section-name">${ev.name}</div>
-        </div>
-        ${imgHtml}
-      </div>
-      ${loreHtml}
-      ${choicesHtml}
-      ${notesHtml}
-      ${refsHtml}
-    </div>
-    ${panelFeedbackLink}
-  `;
+  document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 
   panel.classList.add('open');
   backdrop.classList.add('open');

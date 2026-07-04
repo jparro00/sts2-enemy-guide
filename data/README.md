@@ -1,6 +1,6 @@
 # data/ — canonical site data
 
-Hand-maintained CSVs fetched by the SPA at runtime (`js/data.js`) and re-read at deploy time by `build_snapshots.py`. Editing these requires **no build step** — refresh the page.
+Hand-maintained CSVs fetched by the SPA at runtime (`js/data.js`) and re-read at deploy time by `build_snapshots.mjs`. Editing these requires **no build step** — refresh the page.
 
 Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the header, quoted fields supported. Column names below are exact and case-sensitive.
 
@@ -44,7 +44,7 @@ Lines split on `\n` or at each tag. Tags: `[coop]` (🤝 badge), `[req]` (✦ re
 - `[b]…[/b]` — bold
 - Color tags: `[green] [aqua] [blue] [red] [gold] [orange] [purple] [pink]`
 - Animated effects (per-character): `[rainbow freq=…]`, `[jitter]`, `[sine]`, `[fade_in]`, `[thinky_dots]` — colors/bold may nest inside
-- Snapshot builds (`build_snapshots.py`) strip animation tags to plain text — expected divergence from the live page.
+- Snapshot builds (`build_snapshots.mjs`, via the `STATIC_RENDER` flag) render animated text as plain colored text — expected divergence from the live page.
 
 ## Images
 

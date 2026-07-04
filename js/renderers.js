@@ -76,6 +76,9 @@ function renderPowerRefs(text, enemyName) {
 }
 
 function wrapCharsWithDelay(content, cssClass, baseDelay) {
+  // Static snapshot builds skip the per-char animation spans — plain content
+  // (colors/bold already processed) keeps the SEO pages lean.
+  if (typeof STATIC_RENDER !== 'undefined' && STATIC_RENDER) return content;
   // Wrap each character in a span with staggered animation-delay for wave effect.
   // Words are grouped in nowrap containers so letters never break across lines.
   let i = 0;
