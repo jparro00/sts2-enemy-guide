@@ -152,15 +152,20 @@ if (beta.length) {
 }
 
 // ─── media/enemies: rename files to slug form ───────────────────────────
+// Renames go through `git mv` — on Windows (case-insensitive FS with
+// core.ignorecase) a plain fs.rename for a case-only change (Nibbit.webp →
+// nibbit.webp) never registers in the git index, so the deploy (case-
+// SENSITIVE GitHub Pages) keeps serving the old name and images 404.
+import { execFileSync } from 'node:child_process';
 const mediaDir = path.join(BASE, 'media', 'enemies');
 let renamed = 0;
 for (const f of fs.readdirSync(mediaDir)) {
   if (!f.endsWith('.webp')) continue;
   const target = slugify(f.replace(/\.webp$/, '')) + '.webp';
   if (target !== f) {
-    fs.renameSync(path.join(mediaDir, f), path.join(mediaDir, target));
+    execFileSync('git', ['mv', '-f', `media/enemies/${f}`, `media/enemies/${target}`], { cwd: BASE });
     renamed++;
   }
 }
-console.log(`renamed ${renamed} media/enemies files to key form`);
+console.log(`renamed ${renamed} media/enemies files to key form (via git mv)`);
 console.log('migration complete');
