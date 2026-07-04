@@ -41,6 +41,7 @@ CSV schemas and the micro-syntax used inside cells (`{power_key}` refs, `<Move N
 | Update enemy stats/moves | Edit `data/monsters.csv` / `data/monster_moves.csv`. No build needed. |
 | Add/update an event | `data/events.csv` + `data/event_choices.csv` (joined on event `Key`). |
 | Add enemy art | Use the `/render-sprite` skill → outputs 512×512 webp to `media/enemies/`. |
+| Add a new act/zone | ONE entry in `ACTS` in `js/config.js` + a color theme in `css/acts.css` + map image in `media/ui/`. Act bar, tabs, zone maps, and search all derive from `ACTS`. |
 | Look up game mechanics | Use the `/lookup` skill (decompiles live from the game PCK). |
 | Apply a game patch | Use the `/beta-pipeline` skill. |
 | Preview locally | `serve.bat`, then http://localhost:8080. User prefers to test UI changes themselves — don't screenshot/preview-verify UI on their behalf. |

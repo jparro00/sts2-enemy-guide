@@ -45,22 +45,8 @@ function getEncounterImageHtml(enc, cat) {
   return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
 }
 
-const encounterTabsHtml = `
-  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
-  <div class="cat-tab" data-cat="easy" onclick="selectCat('easy')">Easy</div>
-  <div class="cat-tab" data-cat="hard" onclick="selectCat('hard')">Hard</div>
-  <div class="cat-tab" data-cat="elite" onclick="selectCat('elite')">Elite</div>
-  <div class="cat-tab" data-cat="boss" onclick="selectCat('boss')">Boss</div>
-  <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
-`;
-const eventTabsHtml = `
-  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>
-  <div class="cat-tab" data-cat="ev_overgrowth" onclick="selectCat('ev_overgrowth')">Overgrowth</div>
-  <div class="cat-tab" data-cat="ev_underdocks" onclick="selectCat('ev_underdocks')">Underdocks</div>
-  <div class="cat-tab" data-cat="ev_hive" onclick="selectCat('ev_hive')">Hive</div>
-  <div class="cat-tab" data-cat="ev_glory" onclick="selectCat('ev_glory')">Glory</div>
-  <div class="cat-tab" data-cat="ev_shared" onclick="selectCat('ev_shared')">Shared</div>
-`;
+// Category tab markup (encounterTabsHtml / eventTabsHtml) lives in
+// js/panels.js, derived from ENCOUNTER_CATS / ACTS in config.js.
 
 let currentAct = "overgrowth";
 let currentCat = "all";
@@ -200,8 +186,6 @@ function render() {
   if (currentAct === 'events') {
     // Events mode
     label.textContent = eventZoneNames[currentCat] || 'All Events';
-    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
-    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory', shared: 'Shared' };
     let html = '';
 
     if (currentCat === 'all') {
@@ -209,7 +193,7 @@ function render() {
       for (const zone of eventZoneOrder) {
         const events = eventsData[zone] || [];
         if (events.length === 0) continue;
-        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+        html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
         html += `<div class="enemy-grid">${renderEventCards(events)}</div>`;
       }
     } else {
@@ -217,7 +201,7 @@ function render() {
       const zone = currentCat.replace('ev_', '');
       const zoneEvents = eventsData[zone] || [];
       if (zoneEvents.length > 0) {
-        html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+        html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
         html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
       }
       if (zone !== 'shared') {
@@ -244,10 +228,9 @@ function render() {
     const zoneEvents = eventsData[zone] || [];
     const actNum = zoneToActNumber[zone];
     const sharedEvents = (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-    const eventZoneLabels = { overgrowth: 'Overgrowth', underdocks: 'Underdocks', hive: 'Hive', glory: 'Glory' };
     let html = '';
     if (zoneEvents.length > 0) {
-      html += `<div class="cat-group-label cat-events">${eventZoneLabels[zone]} Events</div>`;
+      html += `<div class="cat-group-label cat-events">${zoneLabels[zone]} Events</div>`;
       html += `<div class="enemy-grid">${renderEventCards(zoneEvents)}</div>`;
     }
     if (sharedEvents.length > 0) {
@@ -260,7 +243,7 @@ function render() {
   } else if (currentCat === 'all') {
     // Show all categories grouped with headers
     let html = '';
-    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+    for (const cat of encounterCatKeys) {
       const encs = encounters[currentAct]?.[cat] || [];
       if (encs.length === 0) continue;
       html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;

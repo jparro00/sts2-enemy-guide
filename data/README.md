@@ -25,6 +25,7 @@ Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the heade
 - `encounters.Enemies` — split on `;` (values are `monsters.Name`)
 - `events.Acts` — split on `,`
 - Booleans (`HpScalePlayerCountOnly`, `ScalesInMultiplayer`) — literal lowercase string `true`
+- `encounters.Zone` / `events.Act` values must match a `csvName` in `ACTS` (`js/config.js`) — `Overgrowth`, `Underdocks`, `Hive`, `Glory` (+ `Shared` for events)
 - In `Effects`/`Change` text, `;` renders as a line break
 
 ## Inline micro-syntax (inside cell text)

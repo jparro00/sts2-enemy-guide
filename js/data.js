@@ -56,10 +56,9 @@ function buildDataStructures(texts) {
     }
   }
 
-  // Build encounters structure
-  const zoneMap = { Overgrowth: 'overgrowth', Underdocks: 'underdocks', Hive: 'hive', Glory: 'glory' };
+  // Build encounters structure (zone mapping derives from ACTS in config.js)
   for (const enc of encountersRaw) {
-    const zoneKey = zoneMap[enc.Zone] || enc.Zone.toLowerCase();
+    const zoneKey = csvZoneMap[enc.Zone] || enc.Zone.toLowerCase();
     const cat = enc.Category;
     if (!encounters[zoneKey]) encounters[zoneKey] = {};
     if (!encounters[zoneKey][cat]) encounters[zoneKey][cat] = [];
@@ -79,10 +78,9 @@ function buildDataStructures(texts) {
   // Build events structure
   const eventsRaw = parseCSV(texts.events);
   const eventChoicesRaw = parseCSV(texts.eventChoices);
-  const actMap = { Overgrowth: 'overgrowth', Underdocks: 'underdocks', Hive: 'hive', Glory: 'glory', Shared: 'shared' };
 
   for (const ev of eventsRaw) {
-    const actKey = actMap[ev.Act] || ev.Act.toLowerCase();
+    const actKey = csvActMap[ev.Act] || ev.Act.toLowerCase();
     if (!eventsData[actKey]) eventsData[actKey] = [];
     eventsData[actKey].push({
       key: ev.Key,
@@ -209,6 +207,14 @@ async function loadData() {
     relics: relicsText,
     beta: betaText,
   });
+
+  // Render site chrome (act bar + category tabs) from the ACTS config.
+  // The static markup in index.html is SSR'd by build_snapshots.mjs from the
+  // same builders, so this is an idempotent refresh — no visible change.
+  const actBar = document.querySelector('.act-bar');
+  if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
+  const tabsEl = document.getElementById('category-tabs');
+  if (tabsEl) tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
 
   // Apply noindex from config (for beta/test deploys)
   if (siteConfig.noindex) {

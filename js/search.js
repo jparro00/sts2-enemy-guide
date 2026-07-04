@@ -47,12 +47,11 @@ function onSearch(query) {
   getBrowseElements().forEach(el => { if (el) el.style.display = 'none'; });
   results.style.display = 'block';
 
-  // Search all encounters across all acts/categories
+  // Search all encounters across all acts/categories (orders from config.js)
   const matches = [];
-  const zoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory'];
 
   for (const zone of zoneOrder) {
-    for (const cat of ['easy', 'hard', 'elite', 'boss']) {
+    for (const cat of encounterCatKeys) {
       const encs = encounters[zone]?.[cat] || [];
       for (const enc of encs) {
         const nameMatch = enc.name.toLowerCase().includes(q);
@@ -114,7 +113,6 @@ function onSearch(query) {
       if (!eventGrouped[m.zone]) eventGrouped[m.zone] = [];
       eventGrouped[m.zone].push(m.ev);
     }
-    const eventZoneOrder = ['overgrowth', 'underdocks', 'hive', 'glory', 'shared'];
     const eventZoneNamesLocal = { ...actNames, shared: 'Shared' };
     for (const zone of eventZoneOrder) {
       if (!eventGrouped[zone]) continue;

@@ -7,6 +7,37 @@
 
 const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #2a2a3a;"><a href="https://github.com/jparro00/sts2-enemy-guide/issues/new/choose" target="_blank">Submit feedback or report an issue</a></div>`;
 
+// ── Site chrome (act bar + category tabs), derived from ACTS/ENCOUNTER_CATS
+// in config.js. Rendered by the SPA at load (data.js) and SSR'd into
+// index.html by build_snapshots.mjs so there is no pre-JS flash.
+
+function buildActBarHtml(selectedAct) {
+  const actCards = ACTS.map(a => `
+  <div class="act-card act-${a.key}${a.key === selectedAct ? ' selected' : ''}" data-act="${a.key}" onclick="selectAct('${a.key}')">
+    <img src="${a.image}" alt="${a.name}">
+    <div class="act-text"><div class="act-label">Act ${a.actNumber}</div><div class="act-name">${a.name}</div></div>
+  </div>`).join('');
+  const eventsCard = `
+  <div class="act-card act-events" data-act="events" onclick="selectAct('events')">
+    <img src="media/events/crystal_sphere.webp" alt="Events">
+    <div class="act-text"><div class="act-label">Reference</div><div class="act-name">Events</div></div>
+  </div>`;
+  return actCards + eventsCard + '\n';
+}
+
+const encounterTabsHtml = `
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>` +
+  ENCOUNTER_CATS.map(c => `
+  <div class="cat-tab" data-cat="${c.key}" onclick="selectCat('${c.key}')">${c.label}</div>`).join('') + `
+  <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
+`;
+
+const eventTabsHtml = `
+  <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>` +
+  [...ACTS, SHARED_ZONE].map(z => `
+  <div class="cat-tab" data-cat="ev_${z.key}" onclick="selectCat('ev_${z.key}')">${z.name}</div>`).join('') + `
+`;
+
 function renderEnemySection(name, collapsible) {
   const data = enemyDatabase[name];
   if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${name}${renderBetaBadge('monster', name)}</div><p style="color:#666;">No data available.</p></div>`;
