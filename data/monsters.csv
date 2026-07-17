@@ -141,7 +141,7 @@ lagavulin-matriarch,Lagavulin Matriarch,222 (233),Cycles <Slash> → <Disembowel
 queen,Queen,400 (419),"Opens with <Puppet Strings> → <You Are Mine!>.
 While Amalgam alive: Always uses <Burn Bright For Me>.
 After Amalgam dies: Cycles <Off With Your Head> → <Execution> → <Enrage>.","[info] If Amalgam dies mid-turn and intent is <Burn Bright For Me>, it becomes <Enrage> instead.",,a Torch Head Amalgam in play,chains_of_binding,
-torch-head-amalgam,Torch Head Amalgam,199 (211),"Opens with <Tackle> → <Tackle>.
+torch-head-amalgam,Torch Head Amalgam,199 (211),"Opens with <Strong Tackle> → <Tackle>.
 Then cycles <Soul Beam> → <Weak Tackle> → <Weak Tackle>.",,minion,,,
 soul-fysh,Soul Fysh,211 (221),Cycles <Beckon> → <De-Gas> → <Gaze> → <Fade> → <Scream>.,[info] One of the 2 Intangible from <Fade> ticks down immediately.,,,,
 test-subject-stage-1,Test Subject Stage 1,100 (111),"Cycles <Bite> → <Skull Bash>.

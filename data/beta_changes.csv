@@ -1,3 +1,5 @@
 Type,Name,Change,Patch
-monster,torch-head-amalgam,Buffed: Tackle 18(19) → 18(22); Weak Tackle 14(15) → 14(16) at high Ascension.,0.108.0
+monster,torch-head-amalgam,"Buffed: now opens with a new Strong Tackle (26(32)) on turn 1, up from Tackle 18(22); Weak Tackle 14(15) → 14(16) at high Ascension.",0.109.0
+monster,aeonglass,Nerfed: Ebb damage 26(32) → 22(26) to lower its front-loaded damage.,0.109.0
+event,war_historian_repy,"Nerfed: History Course relic reward now only repeats your last played Attack (no longer Skills).",0.109.0
 event,jungle_maze_adventure,"Changed: In co-op, no longer appears if any player has 18 HP or less (the Solo Quest HP cost).",0.108.0
