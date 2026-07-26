@@ -10,6 +10,7 @@
     "slippery": "linear",
     "skittish": "half_linear",
     "plating": "counter",
-    "buffer": "counter"
+    "buffer": "counter",
+    "block": "block_multiplicative"
   }
 }
