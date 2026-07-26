@@ -20,10 +20,25 @@ function scaleNum(n) {
   return Math.floor(n * playerCount * getActMultiplier());
 }
 
-// Scale a counter-style power amount: (playerCount - 1) × 2 + 1
-function scaleNumCounter(n) {
+// Per-power multiplayer scaling formulas, keyed by the formula name in
+// multiplayer-scaling.json's powerFormulas. These mirror each power's
+// GetScaledAmountForMultiplayer in the game source. Unlike HP/block, these
+// power amounts do NOT get the act multiplier — only the player-count formula.
+const POWER_SCALE_FORMULAS = {
+  additive: (n, p) => n + (p - 1),                // Artifact
+  linear: (n, p) => n * p,                        // Slippery
+  half_linear: (n, p) => n * (1 + (p - 1) * 0.5), // Skittish
+  counter: (n, p) => n * ((p - 1) * 2 + 1),       // Plating, Buffer
+};
+
+// Block gained by enemies (MultiplayerScalingModel.ModifyBlockMultiplicative):
+// ×playerCount at 1–2 players, ×playerCount×actMultiplier at 3+. This differs
+// from HP (scaleNum), which applies the act multiplier at 2 players too. Needs
+// the act multiplier, so it can't be a pure count formula in the table above.
+function scaleBlock(n) {
   if (playerCount <= 1) return n;
-  return Math.floor(n * ((playerCount - 1) * 2 + 1));
+  if (playerCount <= 2) return Math.floor(n * playerCount);
+  return Math.floor(n * playerCount * getActMultiplier());
 }
 
 // Replace all numbers in an HP string with scaled values
@@ -38,16 +53,23 @@ function scaleHPPlayerCountOnly(text) {
   return text.replace(/\d+/g, match => Math.floor(parseInt(match, 10) * playerCount));
 }
 
-// Scale {power_key} N values for scalable powers; counter powers use their own formula
+// Scale {power_key} N values for scalable powers. Each power uses the formula
+// named for it in multiplayer-scaling.json (POWER_SCALE_FORMULAS, or the special
+// block_multiplicative rule). A scalable power with no named formula falls back
+// to the game's default (amount × players × act multiplier, same as HP/scaleNum).
 function scaleEffects(text) {
   if (playerCount <= 1) return text;
   const scalableKeys = Object.keys(powersRef).filter(k => powersRef[k].scalesInMultiplayer);
   if (scalableKeys.length === 0) return text;
-  const counterKeys = new Set(multiplayerScaling.counterPowerKeys || []);
+  const formulas = multiplayerScaling.powerFormulas || {};
   const keyPattern = scalableKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
   const re = new RegExp(`(\\{(${keyPattern})\\})\\s*(\\d+(?:\\s*\\(\\d+\\))?)`, 'g');
   return text.replace(re, (match, tag, key, nums) => {
-    const scaleFn = counterKeys.has(key) ? scaleNumCounter : scaleNum;
+    const formulaName = formulas[key];
+    let scaleFn;
+    if (formulaName === 'block_multiplicative') scaleFn = scaleBlock;
+    else if (POWER_SCALE_FORMULAS[formulaName]) scaleFn = n => Math.floor(POWER_SCALE_FORMULAS[formulaName](n, playerCount));
+    else scaleFn = scaleNum;
     const scaled = nums.replace(/\d+/g, n => scaleFn(parseInt(n, 10)));
     return `${tag} ${scaled}`;
   });
