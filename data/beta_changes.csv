@@ -1,4 +1,11 @@
 Type,Name,Change,Patch
+monster,axebot,"Buffed: Hammer Uppercut damage 12(14) → 14(18); One-Two damage 9(10)x2 → 10(11)x2; now gains 10 Max HP each time it respawns.",0.111.0
+monster,mecha-knight,Buffed: Flamethrower now also deals 8(12) damage.,0.111.0
+monster,exoskeleton,Buffed: HP at high Ascension 25-29 → 26-30.,0.111.0
+monster,globe-head,Buffed: starting Galvanic at high Ascension 6 → 8.,0.111.0
+monster,louse-progenitor,Buffed: Curl and Grow Strength gain at high Ascension 5 → 7.,0.111.0
+monster,soul-fysh,Buffed: De-Gas damage at high Ascension 17 → 18.,0.111.0
+monster,entomancer,Buffed: HP at high Ascension 155 → 165.,0.111.0
 monster,torch-head-amalgam,"Buffed: now opens with a new Strong Tackle (26(32)) on turn 1, up from Tackle 18(22); Weak Tackle 14(15) → 14(16) at high Ascension.",0.109.0
 monster,aeonglass,Nerfed: Ebb damage 26(32) → 22(26) to lower its front-loaded damage.,0.109.0
 event,war_historian_repy,"Nerfed: History Course relic reward now only repeats your last played Attack (no longer Skills).",0.109.0

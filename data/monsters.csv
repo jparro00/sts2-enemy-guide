@@ -1,5 +1,5 @@
 Key,Name,HP,Pattern,Notes,Powers,StartsWith,References,HpScalePlayerCountOnly
-axebot,Axebot,70 - 78 (76 - 86),Cycles <Hammer Uppercut> → <One-Two>.,[info] Respawns with <Boot Up> via {stock}.,stock,{stock} 2,,
+axebot,Axebot,70 - 78 (76 - 86),Cycles <Hammer Uppercut> → <One-Two>.,[info] Respawns with <Boot Up> via {stock}; gains 10 Max HP each respawn.,stock,{stock} 2,,
 bowlbug-egg,Bowlbug (Egg),21 - 22 (23 - 24),Always uses <Bite>.,,,,,
 bowlbug-nectar,Bowlbug (Nectar),35 - 38 (36 - 39),"Opens with <Thrash> → <Buff>, then always uses <Thrash>.",,,,,
 bowlbug-rock,Bowlbug (Rock),45 - 48 (46 - 49),Always uses <Headbutt>.,,imbalanced,{imbalanced},,
@@ -11,7 +11,7 @@ cubex-construct,Cubex Construct,65 (70),"Opens with <Charge Up>.
 Then cycles <Repeater Blast> → <Repeater Blast> → <Expel Blast>.",[bug] As of v0.99.1 <Submerge> is never used in the cycle.,artifact,{artifact} 1,,
 damp-cultist,Damp Cultist,51 - 53 (52 - 54),"Opens with <Incantation>, then always uses <Dark Strike>.",,ritual,,,
 devoted-sculptor,Devoted Sculptor,162 (172),"Opens with <Forbidden Incantation>, then always uses <Savage>.",,ritual,,,
-exoskeleton,Exoskeleton,24 - 28 (25 - 29),"Cycles <Skitter> → <Mandible> → <Enrage>, with 50% chance to skip <Skitter>.","[info] 1st starts <Skitter>, 2nd starts <Mandible>, 3rd starts <Enrage>, 4th starts randomly.",hard_to_kill,{hard_to_kill} 9,,
+exoskeleton,Exoskeleton,24 - 28 (26 - 30),"Cycles <Skitter> → <Mandible> → <Enrage>, with 50% chance to skip <Skitter>.","[info] 1st starts <Skitter>, 2nd starts <Mandible>, 3rd starts <Enrage>, 4th starts randomly.",hard_to_kill,{hard_to_kill} 9,,
 fabricator,Fabricator,150 (155),"When allies ≤ 2: Chooses randomly from <Fabricate>, <Fabricating Strike>.
 When allies ≥ 3: Always uses <Disintegrate>.",,,,,
 guardbot,Guardbot,21 - 25 (22 - 26),Always uses <Guard>.,,minion,,,
@@ -34,7 +34,7 @@ Phase 2 (below 50% HP after using <For the Queen>):
 Uses <Beetle Charge> once, then restarts Phase 1.",,plating,{plating} 15 (19),,
 fuzzy-wurm-crawler,Fuzzy Wurm Crawler,55 - 57 (58 - 59),"Opens with <Acid Goop>.
 Then cycles <Inhale> → <Acid Goop> → <Acid Goop>.",,,,,
-globe-head,Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6,,
+globe-head,Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6 (8),,
 gremlin-merc,Gremlin Merc,47 - 49 (51 - 53),Cycles <Gimme> → <Double Smash> → <Hehe>.,[info] Stolen gold is held by Fat Gremlin once summoned.[info] Fight has normal gold reward if Fat Gremlin doesn't escape.,surprise; thievery,{surprise} and {thievery} 20,,
 fat-gremlin,Fat Gremlin,13 - 17 (14 - 18),"Opens with <Stunned>, then always uses <Flee>.","[info] If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get 50% of the normal gold reward.",,,,
 sneaky-gremlin,Sneaky Gremlin,10 - 14 (11 - 15),"Opens with <Stunned>, then always uses <Tackle>.",,,,,
@@ -103,7 +103,7 @@ bygone-effigy,Bygone Effigy,127 (132),"Opens with <Sleep> → <Wake> → <Slash>
 byrdonis,Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territorial} 1,,
 decimillipede,Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
 When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Fights as 3 segments — HP is always an even number, and segments have different max HP.[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},,
-entomancer,Entomancer,145 (155),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
+entomancer,Entomancer,145 (165),"Cycles <Bees> → <Spear> → <Pheromone Spit>.
 After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,,
 infested-prism,Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),,
 flail-knight,Flail Knight,101 (108),"Opens with <Ram>.
