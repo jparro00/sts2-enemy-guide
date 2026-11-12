@@ -89,14 +89,18 @@ Only if the patch adds new powers/relics/potions/enchantments:
   - Relics: `res://images/relics/{key}.png` -> `media/relics/{key}.webp`
   - Potions: `res://images/potions/{key}.png` -> `media/potions/{key}.webp`
   - Enchantments: `res://images/enchantments/{key}.png` -> `media/enchantments/{key}.webp`
-- Targeted extraction:
+  - Events: `res://images/events/{key}.png` -> `media/events/{key}.webp`
+- Targeted extraction — include **both** the `.import` stub and its texture under `.godot/imported`. A bare `{name}.png*` include only matches the stub, and GDRE then reports "Successfully converted: 0" and writes no image (hit 2026-11-12). With both, GDRE decodes every texture format (WEBP, S3TC, BPTC) to a real PNG:
 ```bash
 "/c/Users/jparr/Downloads/GDRE_tools/gdre_tools.exe" --headless \
   "--recover=/d/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.pck" \
-  "--output=/c/Users/jparr/Documents/claude/sts2/raw" \
-  "--include=res://images/powers/{name}_power.png*"
+  "--output=<scratch dir>" \
+  "--include=res://images/relics/{name}.png.import" \
+  "--include=res://.godot/imported/{name}.png-*"
 ```
-- Convert PNG to webp and place in appropriate `media/` folder
+- Convert PNG to webp and place in appropriate `media/` folder (`build_thumbs.py` resizes at deploy: relics/powers/potions 64px, events 400px).
+- **Event portraits:** the game art is a wide scene (≈3440×1613). The site's 400×400 portraits are the in-game event frame — crop the square `(x=684, y=420, size=1192)` and resize to 400. This rect was recovered by template-matching existing portraits (Zen Weaver, Punch Off) against their game art; both matched it with mean error < 3/255.
+- Some new relics/powers ship without art (no `.import` stub exists). Leave the CSV `Image` blank for relics; power icons fail silently.
 
 ## Step 5: Cross-reference patch notes against decompiled CS files
 For each change mentioned in the patch notes:
