@@ -20,7 +20,7 @@ fake_venerable_tea_set,Venerable Tea Set???,fake_venerable_tea_set.webp,"Wheneve
 fragrant_mushroom,Fragrant Mushroom,fragrant_mushroom.webp,"Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards."
 fresnel_lens,Fresnel Lens,fresnel_lens.webp,"Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]2[/blue]."
 hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block[/gold], apply [blue]2[/blue] [gold]Vulnerable[/gold]."
-history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack or Skill."
+history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack."
 lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies."
 maw_bank,Maw Bank,maw_bank.webp,"Whenever you climb a floor, gain [blue]12[/blue] [gold]Gold[/gold]. No longer works when you spend any [gold]Gold[/gold] at the shop."
 pollinous_core,Pollinous Core,pollinous_core.webp,"Every [blue]4[/blue] turns, draw [blue]2[/blue] additional cards."
