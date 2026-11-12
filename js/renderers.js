@@ -75,6 +75,57 @@ function scaleEffects(text) {
   });
 }
 
+// ══════════════════════════════════════════
+// DREAD MODE
+// ══════════════════════════════════════════
+// Dread runs with every Ascension modifier on, so each "base (ascension)" pair
+// collapses to its ascension value. Dread* CSV columns override a field
+// outright (boss buffs that only exist in Dread) and are highlighted.
+// Both transforms run on raw cell text, before multiplayer scaling and HTML.
+
+// "N (M)" pairs as written in the CSVs: 8 (10), 10x2 (11x2), 10xN (11xN), 70 - 78 (76 - 86).
+// The ascension half must start with a digit, so "(N = ...)" style asides are left alone.
+const ASC_PAIR_RE = /(\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\s*\((\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\)/g;
+
+function ascensionOnly(text) {
+  return text ? text.replace(ASC_PAIR_RE, '$2') : text;
+}
+
+function ascensionOnlyIfDread(text) {
+  return dreadMode ? ascensionOnly(text) : text;
+}
+
+// Text to show for a field with an optional Dread override.
+// Returns { text, dread } — dread is true when the override is in effect.
+function dreadText(base, override) {
+  if (!dreadMode) return { text: base, dread: false };
+  if (override) return { text: override, dread: true };
+  return { text: ascensionOnly(base), dread: false };
+}
+
+function markDread(html, isDread) {
+  return isDread ? `<span class="dread-value">${html}</span>` : html;
+}
+
+function moveEffectsText(move) {
+  return dreadText(move.effects, move.dreadEffects);
+}
+
+function isMoveVisible(move) {
+  if (move.mode === 'dread') return dreadMode;
+  if (move.mode === 'no-dread') return !dreadMode;
+  return true;
+}
+
+// Enemy list / multi badge for an encounter, honouring Dread compositions (e.g. a 3rd Kin Follower)
+function encounterEnemies(enc) {
+  return (dreadMode && enc.dreadEnemies && enc.dreadEnemies.length) ? enc.dreadEnemies : enc.enemies;
+}
+
+function encounterMulti(enc) {
+  return (dreadMode && enc.dreadMulti) ? enc.dreadMulti : enc.multi;
+}
+
 function renderMoveRefs(text, enemyKey) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
@@ -82,7 +133,8 @@ function renderMoveRefs(text, enemyKey) {
     const move = moves.find(m => m.name === moveName);
     if (move) {
       const intents = renderIntents(move.intent);
-      const effect = renderPowerRefs(scaleEffects(move.effects).replace(/;/g, '<br>'), null);
+      const fx = moveEffectsText(move);
+      const effect = markDread(renderPowerRefs(scaleEffects(fx.text).replace(/;/g, '<br>'), null), fx.dread);
       return `<span class="move-ref">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
     return `<span class="move-ref">${moveName}</span>`;
@@ -182,9 +234,9 @@ function renderBetaBadge(type, name) {
   return ` <span class="beta-badge" data-patch="${entry.patch || ''}">Beta Patch<span class="beta-tooltip"><strong>Changed in Beta ${patchLabel}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
 
-function renderStartsWith(text, enemyName) {
+function renderStartsWith(text, enemyName, isDread) {
   if (!text) return '';
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${renderPowerRefs(scaleEffects(text), enemyName)}</div>`;
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${markDread(renderPowerRefs(scaleEffects(text), enemyName), isDread)}</div>`;
 }
 
 function renderEnemyReferences(powers, moves, references) {

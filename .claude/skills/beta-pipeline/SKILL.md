@@ -115,6 +115,13 @@ Update the relevant CSVs based on verified changes (see `data/README.md` for sch
 - `data/event_choices.csv` — Effect, Notes, References
 - `data/powers.csv` — if new powers or description changes
 
+### Dread mode data (bosses and Dominions)
+Dread values live in optional trailing columns (`DreadHP`, `DreadPattern`, `DreadStartsWith`, `DreadNotes`, `DreadEffects`, `Mode`, `DreadEnemies`, `DreadMulti`, `Dominion`) — schema in `data/README.md` → "Dread mode columns". Every patch:
+- `grep -n "IsDread" raw/src/Core/Models/Monsters/*.cs raw/src/Core/Models/Encounters/*.cs` and re-check each boss's Dread-only values (they are written as the ascension value + the Dread bonus, as a single number).
+- Re-read `raw/src/Core/Models/Dread/Dominions/*.cs` (decompile `res://src/Core/Models/Dread/**`) and update each boss encounter's `Dominion` text.
+- When a boss move is renamed or retuned, update its `DreadEffects` too — the override replaces the base text wholesale in Dread.
+- The Dread columns only exist on branches carrying Dread data; when promoting, they travel with `data/` like everything else.
+
 ### CSV formatting rules
 - **Always quote fields that contain commas** — wrap the entire field in `"` (e.g. `"attack, buff"`, `"Damage 10; Apply 2 {weak}, 2 {vulnerable}"`)
 - Multi-line CSV fields must be wrapped in `"` quotes with closing `"` on the last line

@@ -7,6 +7,8 @@
   --gold-bright: #d4a843;   /* emphasis text (matches loreColors.gold in js/config.js) */
   --gold-light: #ffd866;    /* banner / highlight yellow */
   --panel-border: #2a2a3a;  /* standard panel & divider border */
+  --dread: #b8322a;         /* Dread mode accent — toggle, Dominion block borders */
+  --dread-bright: #ff6a5c;  /* Dread-only values (readable on dark panels) */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }

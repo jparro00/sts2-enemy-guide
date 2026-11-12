@@ -158,6 +158,10 @@ const allEvents = inCtx(`(() => {
     for (const e of (r.Enemies || '').split(';').map((s) => s.trim()).filter(Boolean)) {
       if (!monsterKeySet.has(e)) errors.push(`encounters.csv: ${r.Key} references unknown monster Key ${JSON.stringify(e)}`);
     }
+    for (const e of (r.DreadEnemies || '').split(';').map((s) => s.trim()).filter(Boolean)) {
+      if (!monsterKeySet.has(e)) errors.push(`encounters.csv: ${r.Key} DreadEnemies references unknown monster Key ${JSON.stringify(e)}`);
+    }
+    if (r.Dominion && r.Category !== 'boss') warnings.push(`encounters.csv: ${r.Key} has a Dominion but is not a boss (Dominions come from boss encounters)`);
   }
 
   const evRows = parseCSV(ctx.__texts.events);
@@ -193,6 +197,10 @@ const allEvents = inCtx(`(() => {
     checkRefs(`monsters.csv ${r.Key} Pattern`, r.Key, r.Pattern);
     checkRefs(`monsters.csv ${r.Key} Notes`, r.Key, r.Notes);
     checkRefs(`monsters.csv ${r.Key} StartsWith`, r.Key, r.StartsWith);
+    // Dread-mode overrides (optional columns)
+    checkRefs(`monsters.csv ${r.Key} DreadPattern`, r.Key, r.DreadPattern);
+    checkRefs(`monsters.csv ${r.Key} DreadStartsWith`, r.Key, r.DreadStartsWith);
+    checkRefs(`monsters.csv ${r.Key} DreadNotes`, r.Key, r.DreadNotes);
     for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
       if (!itemKeySet.has(k)) warnings.push(`monsters.csv ${r.Key}: References key ${JSON.stringify(k)} not in any reference CSV`);
     }
@@ -200,10 +208,13 @@ const allEvents = inCtx(`(() => {
   for (const r of mvRows) {
     checkRefs(`monster_moves.csv ${r.Enemy}/${r.Move} Effects`, r.Enemy, r.Effects);
     checkRefs(`monster_moves.csv ${r.Enemy}/${r.Move} Notes`, r.Enemy, r.Notes);
+    checkRefs(`monster_moves.csv ${r.Enemy}/${r.Move} DreadEffects`, r.Enemy, r.DreadEffects);
+    if (r.Mode && r.Mode !== 'dread' && r.Mode !== 'no-dread') errors.push(`monster_moves.csv: ${r.Enemy}/${r.Move} Mode must be empty, "dread" or "no-dread" (got ${JSON.stringify(r.Mode)})`);
     for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
       if (!itemKeySet.has(k)) warnings.push(`monster_moves.csv ${r.Enemy}/${r.Move}: References key ${JSON.stringify(k)} unknown`);
     }
   }
+  for (const r of encRows) checkRefs(`encounters.csv ${r.Key} Dominion`, null, r.Dominion);
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
       if (!itemKeySet.has(k)) warnings.push(`event_choices.csv ${r.Event}: References key ${JSON.stringify(k)} unknown`);

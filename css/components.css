@@ -86,6 +86,7 @@
 /* ── Player Count Bar ── */
 .player-count-bar {
   display: flex;
+  flex-wrap: wrap;          /* narrow phones: the Dread toggle drops to its own line */
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -119,6 +120,111 @@
   background: rgba(200,176,106,0.15);
   border-color: var(--gold);
   color: var(--gold);
+}
+
+/* ── Dread toggle (shown only when the data has Dread values) ── */
+.dread-toggle-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dread-toggle-wrap[hidden] { display: none; }
+.bar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--panel-border);
+  margin: 0 4px;
+}
+.dread-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  color: #888;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.dread-btn:hover {
+  background: rgba(184,50,42,0.12);
+  border-color: var(--dread);
+  color: #ddd;
+}
+.dread-btn.active {
+  background: rgba(184,50,42,0.22);
+  border-color: var(--dread);
+  color: var(--dread-bright);
+  box-shadow: 0 0 10px rgba(184,50,42,0.35);
+}
+
+/* Dread-only values inside panels */
+.dread-value {
+  color: var(--dread-bright);
+  font-weight: 600;
+}
+.dread-notes {
+  border-left: 2px solid var(--dread);
+  padding-left: 8px;
+  margin-top: 8px;
+}
+
+/* ── Dominion block (encounter panels, Dread mode) ── */
+.dominion-section {
+  border: 1px solid rgba(184,50,42,0.45);
+  border-left: 3px solid var(--dread);
+  background: rgba(184,50,42,0.08);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 0 0 14px;
+}
+.dominion-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.dominion-title {
+  color: var(--dread-bright);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.dominion-scope {
+  color: #888;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.dominion-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+.dominion-row + .dominion-row { border-top: 1px solid rgba(184,50,42,0.2); }
+.dominion-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.dominion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.dominion-boss {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.dominion-effect {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 .section-label {

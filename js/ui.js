@@ -25,9 +25,10 @@ function getEncounterImageHtml(enc, cat) {
   }
 
   // If encounter has multiple enemies, show individual enemy images
-  if (enc.enemies && enc.enemies.length > 1) {
-    const count = enc.enemies.length;
-    const imgs = enc.enemies.map(key => {
+  const enemies = encounterEnemies(enc);
+  if (enemies && enemies.length > 1) {
+    const count = enemies.length;
+    const imgs = enemies.map(key => {
       const src = `media/enemies/${key}.webp`;
       const alt = enemyDatabase[key] ? enemyDatabase[key].name : key;
       return `<img src="${src}" alt="${alt}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
@@ -56,13 +57,54 @@ let currentCat = "all";
 function setPlayerCount(count) {
   playerCount = count;
   document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
-  if (openPanelInfo) {
-    if (openPanelInfo.type === 'encounter') {
-      openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat);
-    } else if (openPanelInfo.type === 'event') {
-      openEvent(openPanelInfo.key);
-    }
+  rerenderOpenPanel();
+}
+
+// Rebuild the open panel in place after a display setting changes
+function rerenderOpenPanel() {
+  if (!openPanelInfo) return;
+  if (openPanelInfo.type === 'encounter') {
+    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat);
+  } else if (openPanelInfo.type === 'enemy') {
+    openEnemy(openPanelInfo.key);
+  } else if (openPanelInfo.type === 'event') {
+    openEvent(openPanelInfo.key);
   }
+}
+
+// ── Dread toggle ──
+// Only shown when the loaded data has Dread values (beta branches carrying a
+// Dread-mode patch); the choice persists across visits.
+const DREAD_STORAGE_KEY = 'spirecodex.dread';
+
+function initDreadToggle() {
+  const wrap = document.getElementById('dread-toggle-wrap');
+  if (!wrap || !hasDreadData) return;
+  wrap.hidden = false;
+  let saved = false;
+  try { saved = localStorage.getItem(DREAD_STORAGE_KEY) === '1'; } catch (e) { /* storage blocked */ }
+  if (saved) setDreadMode(true, { skipSave: true, skipRender: true });
+}
+
+function setDreadMode(on, opts) {
+  opts = opts || {};
+  dreadMode = on;
+  document.body.classList.toggle('dread-mode', on);
+  const btn = document.getElementById('dread-toggle');
+  if (btn) {
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  if (!opts.skipSave) {
+    try { localStorage.setItem(DREAD_STORAGE_KEY, on ? '1' : '0'); } catch (e) { /* storage blocked */ }
+  }
+  if (opts.skipRender) return;
+  render();             // grid badges follow Dread compositions
+  rerenderOpenPanel();
+}
+
+function toggleDread() {
+  setDreadMode(!dreadMode);
 }
 
 function selectAct(act) {
@@ -110,7 +152,7 @@ function renderCards(encs, cat) {
     <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${currentAct}', '${cat}')">
       <div class="${thumbClass}">
         ${img.html}
-        ${e.multi ? `<span class="multi-badge">${e.multi}</span>` : ''}
+        ${encounterMulti(e) ? `<span class="multi-badge">${encounterMulti(e)}</span>` : ''}
       </div>
       <div class="enemy-name">${e.name}</div>
     </div>`;

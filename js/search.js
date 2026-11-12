@@ -99,7 +99,7 @@ function onSearch(query) {
         <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.key}', '${zone}', '${cat}')">
           <div class="${thumbClass}">
             ${img.html}
-            ${enc.multi ? `<span class="multi-badge">${enc.multi}</span>` : ''}
+            ${encounterMulti(enc) ? `<span class="multi-badge">${encounterMulti(enc)}</span>` : ''}
           </div>
           <div class="enemy-name">${enc.name}</div>
         </div>`;

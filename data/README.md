@@ -49,6 +49,26 @@ Lines split on `\n` or at each tag. Tags: `[coop]` (🤝 badge), `[req]` (✦ re
 - Animated effects (per-character): `[rainbow freq=…]`, `[jitter]`, `[sine]`, `[fade_in]`, `[thinky_dots]` — colors/bold may nest inside
 - Snapshot builds (`build_snapshots.mjs`, via the `STATIC_RENDER` flag) render animated text as plain colored text — expected divergence from the live page.
 
+## Dread mode columns (optional)
+
+Dread is a game mode (beta v0.113.0+) with every Ascension modifier on, Dread-only boss buffs, and per-boss **Dominions** that affect the act's other fights. The site shows it through a **Dread** toggle next to the player-count buttons. The toggle appears only when at least one column below is filled, so branches without Dread data (e.g. live, before Dread ships) need nothing.
+
+With Dread on, every `N (M)` pair renders as its ascension value `M`. Fill a Dread column only where Dread differs from that; Dread values are written as a single number (no `(M)`) and are highlighted.
+
+| File | Column | Meaning |
+|---|---|---|
+| `monsters.csv` | `DreadHP` | HP in Dread (replaces `HP`) |
+| `monsters.csv` | `DreadPattern` | Pattern in Dread (replaces `Pattern`) |
+| `monsters.csv` | `DreadStartsWith` | Replaces `StartsWith` |
+| `monsters.csv` | `DreadNotes` | Extra note lines shown only in Dread (appended, same tag syntax as `Notes`) |
+| `monster_moves.csv` | `DreadEffects` | Effects in Dread (replaces `Effects`) |
+| `monster_moves.csv` | `Mode` | empty = always shown; `dread` = only in Dread (Dread-only moves); `no-dread` = hidden in Dread (moves Dread skips) |
+| `encounters.csv` | `DreadEnemies` | Monster Keys in Dread (replaces `Enemies`, `;`-separated) |
+| `encounters.csv` | `DreadMulti` | Multi badge in Dread (replaces `Multi`) |
+| `encounters.csv` | `Dominion` | Boss encounters only: the Dominion effect (`{power}` refs allowed, `;` = line break). Encounter panels in that zone list it while Dread is on |
+
+The columns are trailing and optional: rows without Dread data can stop at the last regular column (the parser fills missing fields with `''`). Write power amounts in Dominion text as `7 {plating}` (number first) so multiplayer scaling, which only rewrites `{power} N`, leaves them alone. `build_snapshots.mjs` validates `{power}`/`<Move>` refs in these columns, `DreadEnemies` keys, and `Mode` values.
+
 ## Images
 
 - Enemy art: `media/enemies/<monsters.Key>.webp` (512×512, via `/render-sprite` skill)

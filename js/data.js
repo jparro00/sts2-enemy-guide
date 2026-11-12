@@ -41,8 +41,14 @@ function buildDataStructures(texts) {
       powers: e.Powers ? e.Powers.split(';').map(p => p.trim()).filter(Boolean) : [],
       references: e.References ? e.References.split(',').map(r => r.trim()).filter(Boolean) : [],
       hpScalePlayerCountOnly: e.HpScalePlayerCountOnly === 'true',
+      // Dread-mode overrides (optional trailing columns — absent on branches without Dread data)
+      dreadHp: e.DreadHP || '',
+      dreadPattern: e.DreadPattern || '',
+      dreadStartsWith: e.DreadStartsWith || '',
+      dreadNotes: e.DreadNotes || '',
       moves: []
     };
+    if (e.DreadHP || e.DreadPattern || e.DreadStartsWith || e.DreadNotes) hasDreadData = true;
   }
 
   for (const m of movesRaw) {
@@ -52,8 +58,11 @@ function buildDataStructures(texts) {
         effects: m.Effects,
         references: m.References || '',
         intent: m.Intent,
-        notes: m.Notes || ''
+        notes: m.Notes || '',
+        dreadEffects: m.DreadEffects || '',
+        mode: m.Mode || ''   // '' = always, 'dread' = Dread only, 'no-dread' = hidden in Dread
       });
+      if (m.DreadEffects || m.Mode) hasDreadData = true;
     }
   }
 
@@ -69,12 +78,18 @@ function buildDataStructures(texts) {
     encounters[zoneKey][cat].push({
       key: enc.Key,
       name: enc.Encounter,
+      zone: zoneKey,
+      cat,
       enemies: enemyList,
       multi: enc.Multi || '',
       emoji: enc.Emoji || '',
       composition: enc.Composition || '',
-      altImage: enc.AltImage || ''
+      altImage: enc.AltImage || '',
+      dreadEnemies: enc.DreadEnemies ? enc.DreadEnemies.split(';').map(e => e.trim()).filter(Boolean) : [],
+      dreadMulti: enc.DreadMulti || '',
+      dominion: enc.Dominion || ''   // boss encounters: effect on the act's other fights in Dread
     });
+    if (enc.DreadEnemies || enc.DreadMulti || enc.Dominion) hasDreadData = true;
   }
 
   // Build events structure
@@ -204,6 +219,9 @@ async function loadData() {
     tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
     tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
   }
+
+  // Reveal the Dread toggle only when this branch's data carries Dread values
+  initDreadToggle();
 
   // Apply noindex from config (for beta/test deploys)
   if (siteConfig.noindex) {

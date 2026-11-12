@@ -12,6 +12,8 @@ let siteConfig = {};     // loaded from site-config.json
 let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
 let openPanelInfo = null;     // currently open panel: { type, name, act, cat } — read by renderers.js scaling
 let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
+let dreadMode = false;        // Dread toggle (ui.js) — read by renderers.js/panels.js; always false in snapshot builds
+let hasDreadData = false;     // set by buildDataStructures when any Dread* column is filled; gates the toggle
 
 // URL-routing lookups built after data loads.
 // Monsters and encounters are keyed by their stable Key column (slug format),

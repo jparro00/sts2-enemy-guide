@@ -61,16 +61,27 @@ function renderEnemySection(key, collapsible) {
   const data = enemyDatabase[key];
   if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${key}${renderBetaBadge('monster', key)}</div><p style="color:#666;">No data available.</p></div>`;
   const name = data.name;
+  const moves = data.moves.filter(isMoveVisible);
 
-  const movesHtml = data.moves.map(m => `
-    <tr>
+  const movesHtml = moves.map(m => {
+    const fx = moveEffectsText(m);
+    const note = m.notes ? ascensionOnlyIfDread(m.notes) : '';
+    return `
+    <tr${fx.dread ? ' class="dread-row"' : ''}>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${m.name}</strong></td>
-      <td>${renderPowerRefs(scaleEffects(m.effects).replace(/;/g, '<br>'), key)}${m.notes ? `<br><span class="move-note">${renderPowerRefs(m.notes, key)}</span>` : ''}</td>
+      <td>${markDread(renderPowerRefs(scaleEffects(fx.text).replace(/;/g, '<br>'), key), fx.dread)}${note ? `<br><span class="move-note">${renderPowerRefs(note, key)}</span>` : ''}</td>
     </tr>
-  `).join('');
+  `;
+  }).join('');
 
-  const notesHtml = data.notes ? renderNotes(data.notes, key) : '';
+  const hp = dreadText(data.hp, data.dreadHp);
+  const hpHtml = markDread(data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(hp.text) : scaleHP(hp.text), hp.dread);
+  const pattern = dreadText(data.pattern, data.dreadPattern);
+  const startsWith = dreadText(data.startsWith, data.dreadStartsWith);
+
+  const notesHtml = (data.notes ? renderNotes(ascensionOnlyIfDread(data.notes), key) : '') +
+    (dreadMode && data.dreadNotes ? `<div class="dread-notes">${renderNotes(data.dreadNotes, key)}</div>` : '');
 
   const imgSrc = `media/enemies/${key}.webp`;
   const collapseBtn = collapsible ? `<button class="collapse-toggle" onclick="toggleEnemySection(this)" title="Collapse/Expand">−</button>` : '';
@@ -80,7 +91,7 @@ function renderEnemySection(key, collapsible) {
       <div class="enemy-section-header">
         <div class="enemy-section-info">
           <div class="enemy-section-name">${name}${renderBetaBadge('monster', key)}</div>
-          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(data.hp) : scaleHP(data.hp)}</div></div>
+          <div class="hp-row">${collapseBtn}<div class="hp-bar">&#10084;&#65039; HP: ${hpHtml}</div></div>
         </div>
         ${data.powers.includes('minion') ? '<img class="minion-badge" src="media/powers/minion_power.webp" alt="Minion" title="Minion — abandons combat without their leader">' : ''}
         <img class="enemy-section-img" src="${imgSrc}" alt="${name}" onerror="this.style.display='none'">
@@ -88,9 +99,9 @@ function renderEnemySection(key, collapsible) {
 
       <div class="enemy-section-body">
         <h3>Attack Pattern</h3>
-        <div class="pattern-text">${renderPowerRefs(data.pattern.replace(/\n/g, '<br>'), key)}</div>
+        <div class="pattern-text">${markDread(renderPowerRefs(pattern.text.replace(/\n/g, '<br>'), key), pattern.dread)}</div>
 
-        ${renderStartsWith(data.startsWith, key)}
+        ${renderStartsWith(startsWith.text, key, startsWith.dread)}
 
         <h3>Moves</h3>
         <table>
@@ -99,7 +110,7 @@ function renderEnemySection(key, collapsible) {
         </table>
 
         ${notesHtml}
-        ${renderEnemyReferences(data.powers, data.moves, data.references)}
+        ${renderEnemyReferences(data.powers, moves, data.references)}
       </div>
     </div>
   `;
@@ -113,9 +124,11 @@ function buildEncounterPanelBody(enc, encounterKey) {
   if (enc && enc.composition) {
     compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
   }
+  compositionHtml += renderDominionSection(enc);
 
-  if (enc && enc.enemies && enc.enemies.length > 0) {
-    const uniqueEnemies = enc.enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
+  const enemies = enc ? encounterEnemies(enc) : [];
+  if (enemies && enemies.length > 0) {
+    const uniqueEnemies = enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
     const collapsible = uniqueEnemies.length > 1;
     const sections = uniqueEnemies
       .map(key => renderEnemySection(key, collapsible))
@@ -123,6 +136,34 @@ function buildEncounterPanelBody(enc, encounterKey) {
     return compositionHtml + sections + panelFeedbackLink;
   }
   return compositionHtml + renderEnemySection(encounterKey) + panelFeedbackLink;
+}
+
+// Dread Dominions. In Dread, every fight in an act before its boss gets the
+// boss encounter's Dominion. A boss panel shows its own Dominion (it doesn't
+// apply in that fight); other panels list the zone's possible bosses, since
+// which one applies depends on the boss the run rolled.
+function encounterThumb(enc) {
+  if (enc.altImage) return enc.altImage.includes('/') ? enc.altImage : `media/enemies/${enc.altImage}`;
+  return `media/enemies/${enc.enemies[0] || enc.key}.webp`;
+}
+
+function renderDominionSection(enc) {
+  if (!dreadMode || !enc) return '';
+  const isBoss = enc.cat === 'boss';
+  const sources = isBoss
+    ? (enc.dominion ? [enc] : [])
+    : (encounters[enc.zone]?.boss || []).filter(b => b.dominion);
+  if (sources.length === 0) return '';
+  const rows = sources.map(b => `
+    <div class="dominion-row">
+      <img class="dominion-thumb" src="${encounterThumb(b)}" alt="${b.name}" onerror="this.style.visibility='hidden'">
+      <div class="dominion-info">
+        <span class="dominion-boss">${b.name}</span>
+        <span class="dominion-effect">${renderPowerRefs(b.dominion.replace(/;/g, '<br>'), null)}</span>
+      </div>
+    </div>`).join('');
+  const scope = isBoss ? 'Other fights this act' : 'Set by act boss';
+  return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">Dominion</span><span class="dominion-scope">${scope}</span></div>${rows}</div>`;
 }
 
 // Full detail-body HTML for an event panel.
