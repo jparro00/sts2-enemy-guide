@@ -1,4 +1,4 @@
-Enemy,Move,Effects,References,Intent,Notes
+Enemy,Move,Effects,References,Intent,Notes,DreadEffects,Mode
 axebot,Boot Up,{block} 10 (15); Gain 3 (4) {strength} per respawn,,"block, buff",
 axebot,One-Two,Damage 10x2 (11x2),,multi_attack,
 axebot,Hammer Uppercut,Damage 14 (18); Apply 2 {weak}; Apply 2 {frail},,"attack, debuff",
@@ -159,7 +159,7 @@ toadpole,Spiken,Gain 2 {thorns},,buff,
 toadpole,Spike Spit,Damage 3x3 (4x3); Lose 2 {thorns},,multi_attack,
 tunneler,Bite,Damage 13 (15),,attack,
 tunneler,Burrow,Gain {burrowed}; {block} 32 (37),,"block, buff",
-tunneler,Below,Damage 23 (26),,attack,
+tunneler,From Below,Damage 24 (28),,attack,
 turret-operator,Unload,Damage 3x5 (4x5),,multi_attack,
 turret-operator,Reload,Gain 1 {strength},,buff,
 twig-slime-small,Tackle,Damage 4 (5),,attack,
@@ -186,9 +186,8 @@ entomancer,Bees,Damage 3x7 (3x8),,multi_attack,
 entomancer,Spear,Damage 18 (20),,attack,
 entomancer,Pheromone Spit,Gain 1 {personal_hive} and 1 {strength},dazed,buff,"After reaching 3 stacks of Personal Hive, instead only gains 2 strength."
 infested-prism,Jab,Damage 15 (17),,attack,
-infested-prism,Radiate,Damage 11 (13); {block} 11 (13),,"attack, block",
 infested-prism,Whirlwind,Damage 5x3 (6x3),,multi_attack,
-infested-prism,Pulsate,Damage 8 (10); {block} 20 (22); Gain 2 (3) {vital_spark},,"attack, buff, block",
+infested-prism,Pulsate,Damage 8 (10); Apply 1 {vulnerable}; Gain 2 (3) {vital_spark},,"attack, debuff, buff",
 flail-knight,Ram,Damage 15 (17),,attack,Max 2 in a row.
 flail-knight,War Chant,Gain 3 {strength},,buff,Cannot repeat.
 flail-knight,Flail,Damage 9x2 (10x2),,multi_attack,Max 2 in a row.
@@ -220,53 +219,54 @@ terror-eel,Crash,Damage 16 (18),,attack,
 terror-eel,Thrash,Damage 3x3 (4x3); Gain 6 {vigor},,"multi_attack,buff",
 terror-eel,Terror,Apply 99 {vulnerable},,debuff,
 ceremonial-beast,Stamp,Gains {plow} 150 (160),,buff,
-ceremonial-beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,
+ceremonial-beast,Plow,Damage 18 (20); Gains 2 {strength},,attack,,Damage 20; Gains 3 {strength}
 ceremonial-beast,Beast Cry,Apply {ringing},,debuff,
 ceremonial-beast,Stomp,Damage 15 (17),,attack,
 ceremonial-beast,Crush,Damage 17 (19); Gains 3 (4) {strength},,attack,
 aeonglass,Ebb,Damage 22 (26); {block} 33,,"attack, block",
 aeonglass,Eye Lasers,Damage 11x2 (12x2),,multi_attack,
-aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; Add 1 (2) Wither to Discard,wither,"buff, add_statuses",Increases Wither damage by 3 each use.
+aeonglass,Increasing Intensity,Gain 3 (4)+ {strength}; Add 1 (2) Wither to Discard,wither,"buff, add_statuses",Increases Wither damage by 3 each use.,Gain 4+ {strength}; Add 3 Wither to Draw Pile
 crusher,Thrash,Damage 12 (14),,attack,
 crusher,Enlarging Strike,Damage 4,,attack,
 crusher,Bug Sting,Damage 6x2 (7x2); Apply 2 {weak}; Apply 2 {frail},,"multi_attack, debuff",
 crusher,Adapt,Gain 2 (3) {strength},,buff,
 crusher,Guarded Strike,Damage 12 (14); {block} 18,,"attack, block",
-rocket,Targeting Reticle,Damage 3 (4),,attack,
-rocket,Precision Beam,Damage 18 (20),,attack,
+rocket,Calculating,Damage 3 (4),,attack,
+rocket,Precise Smash,Damage 18 (20),,attack,
 rocket,Charge Up,{strength} 2 (3),,buff,
-rocket,Laser,Damage 31 (35),,attack,
+rocket,Rocket Claw,Damage 31 (35),,attack,,Damage 40
 rocket,Recharge,Pass turn,,sleeping,
-knowledge-demon,Curse of Knowledge,Player must choose one of two debuffs:; 1st choice: {disintegration} 6 or {mind_rot}; 2nd choice: {disintegration} 7 or {sloth}; 3rd Choice: {disintegration} 8 or {waste_away},,debuff,
+knowledge-demon,Curse of Knowledge,Player must choose one of two debuffs:; 1st choice: {disintegration} 6 or {mind_rot}; 2nd choice: {disintegration} 7 or {sloth}; 3rd Choice: {disintegration} 8 or {waste_away},,debuff,,Player must choose one of two debuffs:; 1st choice: {disintegration} 8 or {mind_rot}; 2nd choice: {disintegration} 9 or {sloth}; 3rd Choice: {disintegration} 10 or {waste_away}
 knowledge-demon,Slap,Damage 17 (18),,attack,
 knowledge-demon,Knowledge Overwhelming,Damage 8x3 (9x3),,multi_attack,
 knowledge-demon,Ponder,Damage 11 (13); Heal 30*; Gain 2 (3) {strength},,"attack, heal, buff",
 lagavulin-matriarch,Slash,Damage 19 (21),,attack,
 lagavulin-matriarch,Disembowel,Damage 9x2 (10x2),,multi_attack,
-lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (14),,"attack, block",
-lagavulin-matriarch,Soul Siphon,Apply -2 {strength}; Apply -2 {dexterity}; Gain 2 {strength},,"buff, debuff",
-queen,Puppet Strings,Apply {chains_of_binding} 3,,affliction,
-queen,You Are Mine!,Apply 99 {frail}; Apply 99 {weak}; Apply 99 {vulnerable},,debuff,
-queen,Burn Bright For Me,Give allies 1 {strength}; {block} 20,,"buff, block",
+lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (14),,"attack, block",,Damage 16; {block} 16
+lagavulin-matriarch,Soul Siphon,Apply -2 {strength}; Apply -2 {dexterity}; Gain 2 {strength},,"buff, debuff",,Apply -3 {strength}; Apply -3 {dexterity}; Gain 2 {strength}
+queen,Puppet Strings,Apply {chains_of_binding} 3,,affliction,,,no-dread
+queen,You Are Mine!,Apply 99 {frail}; Apply 99 {weak}; Apply 99 {vulnerable},,debuff,,,no-dread
+queen,Dread Initial,Apply {chains_of_binding} 3; Apply 99 {frail}; Apply 99 {weak}; Apply 99 {vulnerable},,"affliction, debuff",,,dread
+queen,Burn Bright For Me,Give allies 1 {strength}; {block} 20,,"buff, block",,Give allies 2 {strength}; {block} 20
 queen,Off With Your Head,Damage 3x5 (4x5),,multi_attack,
 queen,Execution,Damage 15 (18),,attack,
 queen,Enrage,Gain 2 {strength},,buff,
-torch-head-amalgam,Strong Tackle,Damage 26 (32),,attack,
+torch-head-amalgam,Strong Tackle,Damage 26 (32),,attack,,Damage 37
 torch-head-amalgam,Tackle,Damage 18 (22),,attack,
 torch-head-amalgam,Soul Beam,Damage 8x3,,multi_attack,
 torch-head-amalgam,Weak Tackle,Damage 14 (16),,attack,
-soul-fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,beckon,add_statuses,
+soul-fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,beckon,add_statuses,,Shuffle 1 Beckon into draw; Add 1 Beckon to Hand; Shuffle 1 Beckon into discard
 soul-fysh,De-Gas,Damage 16 (18),,attack,
 soul-fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,beckon,"attack, add_statuses",
 soul-fysh,Fade,Gain 2* Intangible,,buff,
 soul-fysh,Scream,Damage 13 (15); Apply 3 {vulnerable},,"attack, debuff",
 test-subject-stage-1,Bite,Damage 20 (22),,attack,
 test-subject-stage-1,Skull Bash,Damage 14 (16); Apply 1 {vulnerable},,"attack, debuff",
-test-subject-stage-2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used),,multi_attack,
+test-subject-stage-2,Multi-Claw,Damage 10xN (11xN); (N = 3 + # times Multi-Claw has been used),,multi_attack,,Damage 11xN; (N = 4 + # times Multi-Claw has been used)
 test-subject-stage-3,Lacerate,Damage 10x3 (11x3),,multi_attack,
 test-subject-stage-3,Big Pounce,Damage 45,,attack,
-test-subject-stage-3,Burning Growl,Shuffle 3 (5) Burns into discard; Gain 2 (3) {strength},burn,buff,
-the-insatiable,Liquify Ground,Gain {sandpit} 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,frantic_escape,"buff, add_statuses",
+test-subject-stage-3,Burning Growl,Shuffle 3 (5) Burns into discard; Gain 2 (3) {strength},burn,buff,,Shuffle 5 Burns into discard; Gain 6 {strength}
+the-insatiable,Liquify Ground,Gain {sandpit} 4; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard,frantic_escape,"buff, add_statuses",,Gain {sandpit} 3; Shuffle 3 Frantic Escapes into draw; Shuffle 3 Frantic Escapes into discard
 the-insatiable,Thrash,Damage 8x2 (9x2),,multi_attack,
 the-insatiable,Lunging Bite,Damage 28 (31),,attack,
 the-insatiable,Salivate,Gain 2 (3) {strength},,buff,
@@ -280,10 +280,10 @@ kin-follower,Power Dance,Gain 2 (3) {strength},,buff,
 vantom,Ink Blot,Damage 7 (8),,attack,
 vantom,Inky Lance,Damage 6x2 (7x2),,multi_attack,
 vantom,Dismember,Damage 26 (30); Add 3 Wounds into discard,wound,"attack, add_statuses",
-vantom,Prepare,Gain 2 {strength},,buff,
+vantom,Prepare,Gain 2 {strength},,buff,,Gain 3 {strength}
 waterfall-giant,Pressurize,Gain 15 (20) {steam_eruption},,buff,
-waterfall-giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},,"attack, debuff, buff",
-waterfall-giant,Ram,Damage 10 (11); Gain 3 {steam_eruption},,"attack, buff",
-waterfall-giant,Siphon,Heal 10 (15)*; Gain 3 {steam_eruption},,"heal, buff",
-waterfall-giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 {steam_eruption},,"attack, buff",
-waterfall-giant,Pressure Up,Damage 13 (14); Gain 3 {steam_eruption},,"attack, buff",
+waterfall-giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},,"attack, debuff, buff",,Damage 16; Apply 1 {weak}; Gain 4 {steam_eruption}
+waterfall-giant,Ram,Damage 10 (11); Gain 3 {steam_eruption},,"attack, buff",,Damage 11; Gain 4 {steam_eruption}
+waterfall-giant,Siphon,Heal 10 (15)*; Gain 3 {steam_eruption},,"heal, buff",,Heal 15*; Gain 4 {steam_eruption}
+waterfall-giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 {steam_eruption},,"attack, buff",,Damage 23 + 5*N; N = # of times this move was used; Gain 4 {steam_eruption}
+waterfall-giant,Pressure Up,Damage 13 (14); Gain 3 {steam_eruption},,"attack, buff",,Damage 14; Gain 4 {steam_eruption}

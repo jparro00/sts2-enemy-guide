@@ -1,7 +1,11 @@
 Key,Name,Image,Description
+bath_robes,Bath Robes,,"At the start of the next [gold]Boss[/gold] combat, heal all of your HP."
+bath_towel,Bath Towel,,"At the start of each combat, heal [green]8[/green] HP."
 big_mushroom,Big Mushroom,big_mushroom.webp,"Upon pickup, raise your Max HP by [blue]20[/blue]. At the start of each combat, draw [blue]2[/blue] fewer cards."
 bing_bong,Bing Bong,bing_bong.webp,"Whenever you add a card to your [gold]Deck[/gold], add one additional copy."
 bone_tea,Bone Tea,bone_tea.webp,"At the start of the next combat, [gold]Upgrade[/gold] your starting hand."
+byrdine,Byrdine,byrdine.webp,"Upon pickup, [gold]Transform[/gold] [gold]Byrd Swoop[/gold] into [gold]God Byrd[/gold]. A [gold]Byrdine[/gold] will accompany you in battles."
+byrdpip,Byrdpip,byrdpip.webp,"Upon pickup, gain the card [gold]Byrd Swoop[/gold]. A [gold]Byrdpip[/gold] will accompany you in battles. Once you play [gold]Byrd Swoop[/gold] [blue]6[/blue] times, you can evolve [gold]Byrdpip[/gold] at a [gold]Rest Site[/gold]."
 chosen_cheese,The Chosen Cheese,chosen_cheese.webp,"At the end of combat, gain [blue]1[/blue] Max HP."
 darkstone_periapt,Darkstone Periapt,darkstone_periapt.webp,"Whenever you obtain a [red]Curse[/red], raise your Max HP by [blue]6[/blue]."
 daughter_of_the_wind,Daughter of the Wind,daughter_of_the_wind.webp,"Whenever you play an Attack, gain [blue]1[/blue] [gold]Block[/gold]."
@@ -23,10 +27,15 @@ hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block
 history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack."
 lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies."
 maw_bank,Maw Bank,maw_bank.webp,"Whenever you climb a floor, gain [blue]12[/blue] [gold]Gold[/gold]. No longer works when you spend any [gold]Gold[/gold] at the shop."
+mighty_wings,Mighty Wings,,"Whenever you deal [blue]30[/blue] or more attack damage in a single hit, gain [blue]2[/blue] [gold]Strength[/gold]."
 pollinous_core,Pollinous Core,pollinous_core.webp,"Every [blue]4[/blue] turns, draw [blue]2[/blue] additional cards."
 mr_struggles,Mr. Struggles,mr_struggles.webp,"At the start of your turn, deal damage equal to the turn number to ALL enemies."
+obsidian_vice,Obsidian Vice,obsidian_vice.webp,"At the end of your turn, deal [blue]1[/blue] damage to a random enemy for each card in your [gold]Hand[/gold]."
 royal_poison,Royal Poison,royal_poison.webp,"At the start of each combat, lose [blue]4[/blue] HP."
 sword_of_jade,Sword of Jade,sword_of_jade.webp,Start each combat with [blue]3[/blue] [gold]Strength[/gold].
 sword_of_stone,Sword of Stone,sword_of_stone.webp,Transforms into a powerful [gold]Relic[/gold] after defeating [blue]5[/blue] [gold]Elites[/gold].
 tea_of_discourtesy,Tea of Discourtesy,tea_of_discourtesy.webp,"At the start of the next combat, shuffle [blue]2[/blue] [gold]Dazed[/gold] into your [gold]Draw Pile[/gold]."
 the_boot,The Boot,the_boot.webp,"Whenever you would deal [blue]4[/blue] or less unblocked attack damage, increase it to [blue]5[/blue]."
+thumbscrew,Thumbscrew,thumbscrew.webp,Attacks that hit multiple times hit one additional time.
+tormentous_collar,Tormentous Collar,tormentous_collar.webp,"At the start of Elite combats, apply [blue]2[/blue] [gold]Weak[/gold] to ALL enemies."
+wuppy,Wuppy,,[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.

@@ -6,7 +6,7 @@ clumsy,Clumsy,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Ethereal[/gold].
 debt,Debt,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], lose 10 [gold]Gold[/gold]."
 decay,Decay,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 2 damage."
 doubt,Doubt,Curse,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], gain 1 [gold]Weak[/gold]."
-enlightenment,Enlightenment,Event,,0,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this turn. [gold]Exhaust[/gold].
+enlightenment,Enlightenment,Event,,0,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this turn.
 exterminate,Exterminate,Event,,1,Deal 3 damage 4 times to ALL enemies.
 feeding_frenzy,Feeding Frenzy,Event,,0,Gain 5 [gold]Strength[/gold] this turn.
 greed,Greed,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Eternal[/gold].
@@ -45,3 +45,7 @@ burn,Burn,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, 
 beckon,Beckon,Status,,1,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 6 HP."
 frantic_escape,Frantic Escape,Status,,1,Get farther away. Increase [gold]Sandpit[/gold] by 1. Increase the cost of this card by 1.
 wither,Wither,Status,,Unplayable,"[gold]Unplayable[/gold]. At the end of your turn, if this is in your [gold]Hand[/gold], take 3 damage."
+dingy_dagger,Dingy Dagger,Event,,0,Deal 7 damage. Can be upgraded any number of times.
+mighty_weapon,Mighty Weapon,Event,,1,Deal 25 damage to ALL enemies. Add 2 [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].
+mighty_shield,Mighty Shield,Event,,1,Gain 20 [gold]Block[/gold]. Add 3 [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].
+god_byrd,God Byrd,Event,,0,"At the start of your next turn, deal 30 damage to ALL enemies."

@@ -1,1 +1,16 @@
 Type,Name,Change,Patch
+monster,axebot,"Changed: HP is now a fixed value, 70-78 (76-86) → 70 (80).",0.113.0
+monster,infested-prism,Changed: Radiate removed; pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies 1 Vulnerable instead of gaining 20 (22) Block.,0.113.0
+monster,tunneler,Buffed: Below renamed From Below; damage 23 (26) → 24 (28).,0.113.0
+monster,rocket,Renamed moves: Targeting Reticle → Calculating; Precision Beam → Precise Smash; Laser → Rocket Claw.,0.113.0
+monster,thieving-hopper,Changed: can no longer steal Quest cards.,0.113.0
+event,doors_of_light_and_dark,Changed: Light Door upgrades 1 card of your choice instead of 2 random cards.,0.113.0
+event,zen_weaver,Changed: Breathing Techniques costs 25 Gold (was 50) and adds 1 Enlightenment (was 2); Enlightenment no longer Exhausts.,0.113.0
+event,waterlogged_scriptorium,Nerfed: Prickly Sponge costs 120 Gold (was 99).,0.113.0
+event,colorful_philosophers,Added: Yellow option (3 Fool cards).,0.113.0
+event,byrdonis_nest,Added: Byrdpip can evolve into Byrdine at a rest site after 6 Byrd Swoops.,0.113.0
+event,waterfall_of_obvious_secrets,New event.,0.113.0
+event,wuppy_in_trouble,New event.,0.113.0
+event,museum_of_torture,New event.,0.113.0
+event,shrine_of_the_warlord,New event.,0.113.0
+event,thermae_nonupeipe,New event.,0.113.0

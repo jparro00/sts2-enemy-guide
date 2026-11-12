@@ -2,12 +2,13 @@ Event,Choice,Effect,Notes,References
 aroma_of_chaos,Let Go,[gold]Transform[/gold] a card in your [gold]Deck[/gold].,,
 aroma_of_chaos,Maintain Control,[gold]Upgrade[/gold] a card in your [gold]Deck[/gold].,,
 byrdonis_nest,Eat the Egg,Gain [blue]7[/blue] Max HP.,,
-byrdonis_nest,Take the Egg,Add [gold]Byrdonis Egg[/gold] to your [gold]Deck[/gold].,,"byrdonis_egg,byrd_swoop"
+byrdonis_nest,Take the Egg,Add [gold]Byrdonis Egg[/gold] to your [gold]Deck[/gold].,,"byrdonis_egg,byrd_swoop,byrdpip,byrdine,god_byrd"
 colorful_philosophers,Red,Obtain [blue]3[/blue] Ironclad cards.,,
 colorful_philosophers,Green,Obtain [blue]3[/blue] Silent cards.,,
 colorful_philosophers,Blue,Obtain [blue]3[/blue] Defect cards.,,
 colorful_philosophers,Orange,Obtain [blue]3[/blue] Regent cards.,,
 colorful_philosophers,Pink,Obtain [blue]3[/blue] Necrobinder cards.,,
+colorful_philosophers,Yellow,Obtain [blue]3[/blue] Fool cards.,,
 dense_vegetation,Rest,Heal [green]30%[/green] Max HP. Fight some [red]enemies[/red].,,
 dense_vegetation,Trudge On,Lose [red]8[/red] HP. Gain [blue]61-100[/blue] [gold]Gold[/gold].,,
 jungle_maze_adventure,Join Forces,Gain [blue]35-65[/blue] [gold]Gold[/gold].,,
@@ -32,7 +33,7 @@ wood_carvings,Torus,Choose [blue]1[/blue] starter card to [gold]Transform[/gold]
 abyssal_baths,Abstain,Heal [green]10[/green] HP.,,
 abyssal_baths,Immerse,Gain [green]2[/green] Max HP. Take [red]3[/red] damage.,After immersing you can Linger (same effect with +1 damage each time) or Exit Baths.,
 doors_of_light_and_dark,Dark Door,Remove [blue]1[/blue] card from your [gold]Deck[/gold].,,
-doors_of_light_and_dark,Light Door,[gold]Upgrade[/gold] [blue]2[/blue] random cards.,,
+doors_of_light_and_dark,Light Door,[gold]Upgrade[/gold] a card.,,
 drowning_beacon,Bottle,Procure [aqua]Glowwater Potion[/aqua].,,glowwater_potion
 drowning_beacon,Climb,Obtain [gold]Fresnel Lens[/gold]. Lose [red]13[/red] Max HP.,,"nimble,fresnel_lens"
 endless_conveyor,Observe the Chef,[gold]Upgrade[/gold] a random card in your [gold]Deck[/gold].,,
@@ -57,7 +58,7 @@ sunken_treasury,Second Chest,Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receiv
 trash_heap,Dive In,Lose [red]8[/red] HP. Obtain a random forgotten [gold]Relic[/gold] from the past.,,"darkstone_periapt,dream_catcher,hand_drill,maw_bank,the_boot"
 trash_heap,Grab Random Junk,Gain [blue]100[/blue] [gold]Gold[/gold]. Obtain a random forgotten card from the past.,,"caltrops,clash,distraction,dual_wield,entrench,hello_world,outmaneuver,rebound,rip_and_tear,stack"
 waterlogged_scriptorium,Bloody Ink,Gain [green]6[/green] Max HP.,,
-waterlogged_scriptorium,Prickly Sponge,Pay [red]99[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
+waterlogged_scriptorium,Prickly Sponge,Pay [red]120[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] [blue]2[/blue] cards with [purple]Steady[/purple].,,steady
 waterlogged_scriptorium,Tentacle Quill,Pay [red]55[/red] [gold]Gold[/gold]. [gold]Enchant[/gold] a card with [purple]Steady[/purple].,,steady
 amalgamator,Combine Defends,Remove [blue]2[/blue] [gold]Defends[/gold]. Add [gold]Ultimate Defend[/gold] to your [gold]Deck[/gold].,,ultimate_defend
 amalgamator,Combine Strikes,Remove [blue]2[/blue] [gold]Strikes[/gold]. Add [gold]Ultimate Strike[/gold] to your [gold]Deck[/gold].,,ultimate_strike
@@ -76,7 +77,7 @@ spirit_grafter,Rejection,Lose [red]10[/red] HP. [gold]Upgrade[/gold] a card.,,
 the_lantern_key,Keep the Key,Fight to obtain the Key.,Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key,"lantern_key,strength,plating"
 the_lantern_key,Return the Key,Gain [blue]100[/blue] [gold]Gold[/gold].,,
 zen_weaver,Arachnid Acupuncture,Pay [red]250[/red] [gold]Gold[/gold]. Remove [blue]2[/blue] cards from your [gold]Deck[/gold].,,
-zen_weaver,Breathing Techniques,Pay [red]50[/red] [gold]Gold[/gold]. Add [blue]2[/blue] [gold]Enlightenment[/gold] to your [gold]Deck[/gold].,,enlightenment
+zen_weaver,Breathing Techniques,Pay [red]25[/red] [gold]Gold[/gold]. Add an [gold]Enlightenment[/gold] to your [gold]Deck[/gold].,,enlightenment
 zen_weaver,Emotional Awareness,Pay [red]125[/red] [gold]Gold[/gold]. Remove [blue]1[/blue] card from your [gold]Deck[/gold].,,
 battleworn_dummy,Setting 1,Fight a [blue]75[/blue] HP dummy. Procure [blue]1[/blue] random [gold]Potion[/gold].,,
 battleworn_dummy,Setting 2,Fight a [blue]150[/blue] HP dummy. [gold]Upgrade[/gold] [blue]2[/blue] random cards.,,
@@ -145,3 +146,17 @@ welcome_to_wongos,Wongo's Bargain Bin,Pay [red]100[/red] [gold]Gold[/gold]. Obta
 welcome_to_wongos,Wongo's Featured Item,Pay [red]200[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].,,
 welcome_to_wongos,Wongo's Mystery Box,Pay [red]300[/red] [gold]Gold[/gold]. Obtain [blue]3[/blue] random [gold]Relics[/gold] after 5 combats.,,
 welcome_to_wongos,Leave,[red]Downgrade[/red] a random card.,,
+waterfall_of_obvious_secrets,Be Nice,Obtain [gold]Dingy Dagger[/gold].,,dingy_dagger
+waterfall_of_obvious_secrets,Beat Up,Obtain a random relic. Add [blue]2[/blue] [red]Guilty[/red] to your [gold]Deck[/gold].,,guilty
+waterfall_of_obvious_secrets,Negotiate,Lose [red]70[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.,Locked below 70 Gold. The card comes from your character's pool and is never upgraded.,
+wuppy_in_trouble,Help Immediately,Add an [red]Injury[/red] to your [gold]Deck[/gold]. Obtain [gold]Wuppy[/gold] with [green]60[/green] HP.,,"injury,wuppy"
+wuppy_in_trouble,Be Cautious,Lose [red]5%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]30[/green] HP.,,wuppy
+wuppy_in_trouble,Ignore,Procure a random potion.,,
+museum_of_torture,Take It,Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].,,"obsidian_vice,thumbscrew,tormentous_collar"
+museum_of_torture,Break Out,Lose [red]10[/red] Max HP.,,
+shrine_of_the_warlord,Take the Weapon,Add [gold]Mighty Weapon[/gold] to your [gold]Deck[/gold].,,"mighty_weapon,dazed"
+shrine_of_the_warlord,Take the Shield,Add [gold]Mighty Shield[/gold] to your [gold]Deck[/gold].,,"mighty_shield,dazed"
+shrine_of_the_warlord,Take the Wings,Add a [red]Clumsy[/red] to your [gold]Deck[/gold]. Obtain [gold]Mighty Wings[/gold].,,"clumsy,mighty_wings"
+thermae_nonupeipe,Thermal Baths,Pay [red]88[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].,,bath_towel
+thermae_nonupeipe,Private Oasis,Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].,,bath_robes
+thermae_nonupeipe,Drink Bath Water,Lose [red]31[/red] HP. Add [blue]3[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.,,guilty
