@@ -157,6 +157,46 @@
   box-shadow: 0 0 10px rgba(184,50,42,0.35);
 }
 
+/* Act-boss picker (Dread): toolbar copy + inline copy in Dominion blocks */
+.boss-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+}
+.boss-picker[hidden] { display: none; }
+.boss-pick {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.15s ease;
+}
+.boss-pick img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.boss-pick:hover {
+  opacity: 0.85;
+  border-color: var(--dread);
+}
+.boss-pick.active {
+  opacity: 1;
+  background: rgba(184,50,42,0.22);
+  border-color: var(--dread);
+  box-shadow: 0 0 8px rgba(184,50,42,0.35);
+}
+
 /* Dread-only values inside panels */
 .dread-value {
   color: var(--dread-bright);
@@ -179,10 +219,19 @@
 }
 .dominion-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  align-items: center;
   gap: 8px;
   margin-bottom: 6px;
+}
+.dominion-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.boss-picker-inline {
+  display: inline-flex;
+  gap: 4px;
 }
 .dominion-title {
   color: var(--dread-bright);

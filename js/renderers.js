@@ -126,6 +126,77 @@ function encounterMulti(enc) {
   return (dreadMode && enc.dreadMulti) ? enc.dreadMulti : enc.multi;
 }
 
+function encountersWithEnemy(enemyKey) {
+  const found = [];
+  for (const zone in encounters) {
+    for (const cat in encounters[zone]) {
+      for (const enc of encounters[zone][cat]) {
+        if (encounterEnemies(enc).includes(enemyKey)) found.push(enc);
+      }
+    }
+  }
+  return found;
+}
+
+// ── Dominions ──
+// A Dread run's act boss (rolled per run, shown on the map) projects its
+// encounter's Dominion onto every other fight in the act. The user picks the
+// boss per zone (dreadBosses, set from ui.js); until they do, the zone's
+// first boss is assumed.
+function zoneDominionBosses(zone) {
+  return (encounters[zone]?.boss || []).filter(b => b.dominion);
+}
+
+function selectedDominionBoss(zone) {
+  const bosses = zoneDominionBosses(zone);
+  return bosses.find(b => b.key === dreadBosses[zone]) || bosses[0] || null;
+}
+
+// How much of DominionPower `dp` the enemy gets in non-boss encounter `enc`
+// (0 = none). Precedence mirrors the Dominion code: mid-fight spawns first
+// (Vantom gives spawns 1 even in elites; Waterfall Giant skips spawned
+// minions), then "multi" (2+ starting enemies, which Waterfall Giant checks
+// before the room type), then the encounter category, then the default.
+function dominionAmount(enc, enemyKey, dp) {
+  const s = dp.scopes;
+  const spawned = enc.spawns.includes(enemyKey);
+  if (spawned && 'spawned-minion' in s && enemyDatabase[enemyKey]?.powers.includes('minion')) return s['spawned-minion'];
+  if (spawned && 'spawned' in s) return s.spawned;
+  const starters = encounterEnemies(enc).filter(k => !enc.spawns.includes(k)).length;
+  if (starters > 1 && 'multi' in s) return s.multi;
+  if (enc.cat in s) return s[enc.cat];
+  return dp.amount;
+}
+
+// What the selected Dominions give an enemy at combat start, as
+// [{ zone, boss, power, min, max }]. With `enc`: that one fight. Without
+// (standalone enemy panel): every non-boss fight the enemy appears in, one
+// entry per zone spanning the amounts across those fights.
+function enemyDominionGrants(enemyKey, enc) {
+  if (!dreadMode) return [];
+  const byZone = {};
+  for (const c of (enc ? [enc] : encountersWithEnemy(enemyKey))) {
+    if (c.cat === 'boss') continue;   // the Dominion is lifted in the boss room
+    const boss = selectedDominionBoss(c.zone);
+    if (!boss || !boss.dominionPower) continue;
+    (byZone[c.zone] = byZone[c.zone] || { boss, amounts: [] }).amounts.push(dominionAmount(c, enemyKey, boss.dominionPower));
+  }
+  return Object.entries(byZone)
+    .map(([zone, z]) => ({ zone, boss: z.boss, power: z.boss.dominionPower.power, min: Math.min(...z.amounts), max: Math.max(...z.amounts) }))
+    .filter(g => g.max > 0);
+}
+
+// Grants rendered for the STARTS WITH line. Fixed amounts: Dominions don't
+// scale with player count, so this bypasses scaleEffects.
+function dominionGrantsHtml(grants, enemyKey) {
+  const labelZones = grants.length > 1;
+  return grants.map(g => {
+    const amount = g.min === g.max ? `${g.max}` : `${g.min}–${g.max}`;
+    const zone = labelZones ? `${zoneLabels[g.zone]}: ` : '';
+    return `<span class="dread-value">${zone}${renderPowerRefs(`{${g.power}} ${amount}`, enemyKey)}</span>`;
+  }).join(', ');
+}
+
 function renderMoveRefs(text, enemyKey) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
@@ -234,9 +305,13 @@ function renderBetaBadge(type, name) {
   return ` <span class="beta-badge" data-patch="${entry.patch || ''}">Beta Patch<span class="beta-tooltip"><strong>Changed in Beta ${patchLabel}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
 
-function renderStartsWith(text, enemyName, isDread) {
-  if (!text) return '';
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${markDread(renderPowerRefs(scaleEffects(text), enemyName), isDread)}</div>`;
+// `extraHtml` is already-rendered (unscaled) content appended after the
+// monster's own StartsWith — used for Dominion grants.
+function renderStartsWith(text, enemyName, isDread, extraHtml) {
+  if (!text && !extraHtml) return '';
+  const own = text ? markDread(renderPowerRefs(scaleEffects(text), enemyName), isDread) : '';
+  const body = [own, extraHtml].filter(Boolean).join(', ');
+  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${body}</div>`;
 }
 
 function renderEnemyReferences(powers, moves, references) {
