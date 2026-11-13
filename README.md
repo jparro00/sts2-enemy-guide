@@ -27,7 +27,7 @@ Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/r
 | `players` | `1`–`4` |
 | `act` | `overgrowth`, `underdocks`, `hive`, `glory` or `events`. Also sets which act an enemy that appears in several acts is scaled for. |
 | `dread` | `1` or `0` (beta, when the patch has Dread mode) |
-| `boss` | Act boss keys, comma-separated, one per act (Dread only) |
+| `boss` | Act boss keys, comma-separated, one per act (Dread only). Acts left out use their first boss. |
 
 ---
 
