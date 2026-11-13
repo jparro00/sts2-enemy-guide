@@ -28,6 +28,7 @@ Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/r
 | `act` | `overgrowth`, `underdocks`, `hive`, `glory` or `events`. Also sets which act an enemy that appears in several acts is scaled for. |
 | `dread` | `1` or `0` (beta, when the patch has Dread mode) |
 | `boss` | Act boss keys, comma-separated, one per act (Dread only). Acts left out use their first boss. |
+| `enemies` | Encounter pages only: enemy keys, comma-separated, e.g. `/encounter/ruby-raiders/?enemies=ruby-raider-axe,ruby-raider-brute,ruby-raider-tracker`. Shows just those enemies. Pool encounters also have a picker for this. |
 
 ---
 

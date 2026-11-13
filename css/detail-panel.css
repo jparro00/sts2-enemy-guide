@@ -57,6 +57,7 @@
   padding: 12px 16px;
   margin-bottom: 20px;
   display: flex;
+  flex-wrap: wrap;   /* the enemy picker takes its own row */
   align-items: baseline;
   gap: 12px;
 }
@@ -71,6 +72,42 @@
 .composition-text {
   color: #ccc;
   font-size: 0.9rem;
+  flex: 1 1 0;     /* zero basis: long text wraps beside the label instead of dropping below it */
+  min-width: 0;
+}
+/* Pool-encounter picker: boss-picker tiles in gold. A single row whose tiles
+   shrink to fit (Slithering Strangler lists 6) rather than wrapping. */
+.enemy-picker {
+  flex-basis: 100%;
+  display: flex;
+  align-items: flex-start;   /* tiles size from aspect-ratio, not stretch */
+  gap: 6px;
+}
+.enemy-pick {
+  flex: 0 1 56px;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.enemy-pick img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+}
+.enemy-picker.has-picks .enemy-pick:not(.active) { opacity: 0.4; }
+.enemy-pick:hover { border-color: var(--gold); }
+.enemy-pick.active {
+  background: rgba(200,176,106,0.18);
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(200,176,106,0.35);
 }
 .hp-row {
   display: flex;
