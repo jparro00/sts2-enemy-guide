@@ -423,7 +423,12 @@ function navigateToPanel(state, url, opts) {
 function presentPanel(state, url, opts, wasOpen) {
   document.getElementById('detail-panel').classList.add('open');
   document.getElementById('backdrop').classList.add('open');
-  if (document.startViewTransition) {
+  // Only opening needs the transition. Re-rendering an open panel (picker taps,
+  // setting toggles) would start one per tap, and each new one aborts the last
+  // (an uncaught AbortError) while the running one can swallow the next tap.
+  if (document.body.classList.contains('panel-open')) {
+    // already open
+  } else if (document.startViewTransition) {
     document.startViewTransition(() => document.body.classList.add('panel-open'));
   } else {
     document.body.classList.add('panel-open');
