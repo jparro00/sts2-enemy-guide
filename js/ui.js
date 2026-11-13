@@ -54,9 +54,13 @@ let currentAct = "overgrowth";
 let currentCat = "all";
 // openPanelInfo lives in js/config.js (shared state — renderers.js reads it)
 
-function setPlayerCount(count) {
+function showPlayerCount(count) {
   playerCount = count;
   document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
+}
+
+function setPlayerCount(count) {
+  showPlayerCount(count);
   rerenderOpenPanel();
   syncSettingsUrl();
 }
@@ -74,14 +78,16 @@ const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss', 'enemies'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
-// and before the act bar and grid render so they pick up the act.
+// and before the act bar and grid render so they pick up the act. It must not
+// write the URL (no setPlayerCount etc.): routeFromURL reads ?enemies= after
+// it, and the sync would drop it since no panel is open yet.
 function applyUrlSettings() {
   const params = new URLSearchParams(window.location.search);
   if (!URL_SETTING_KEYS.some(k => params.has(k))) return;
   urlSettingsActive = true;
 
   const players = parseInt(params.get('players'), 10);
-  if (players >= 1 && players <= 4) setPlayerCount(players);
+  if (players >= 1 && players <= 4) showPlayerCount(players);
 
   const act = params.get('act');
   if (act && (act in zoneToActNumber || act === 'events')) currentAct = act;
