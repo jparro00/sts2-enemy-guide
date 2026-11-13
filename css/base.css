@@ -51,9 +51,27 @@
 
 html {
   scrollbar-gutter: stable;
+  background: #0a0a12;
+  overscroll-behavior: none;   /* no rubber-band area above the page for iOS Safari to blur */
+}
+/* iOS Safari tints the status bar from a solid fixed element at the top edge;
+   without one it blurs whatever scrolls under it. Below the banners (z 60)
+   and the detail panel (z 100). iOS only (-webkit-touch-callout), so desktop
+   content never scrolls under the strip. */
+.ios-topedge { display: none; }
+@supports (-webkit-touch-callout: none) {
+  .ios-topedge {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: #0a0a12;
+    z-index: 40;
+  }
 }
 body {
   background: #0a0a12;
+  overscroll-behavior: none;
   color: #e0ddd4;
   font-family: 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
