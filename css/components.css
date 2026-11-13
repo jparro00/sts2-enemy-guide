@@ -166,8 +166,8 @@
 }
 .boss-picker[hidden] { display: none; }
 .boss-pick {
-  width: 28px;
-  height: 28px;
+  width: 42px;
+  height: 42px;
   padding: 0;
   display: inline-flex;
   align-items: center;
