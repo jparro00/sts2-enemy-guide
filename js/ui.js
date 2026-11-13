@@ -74,7 +74,7 @@ function setPlayerCount(count) {
 // grows a query string. `enemies` belongs to one encounter page rather than the
 // visit (routeFromURL reads it, it's dropped on leaving the page), but it
 // counts as a settings link all the same.
-const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss', 'enemies'];
+const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss', 'enemies', 'moves'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
@@ -101,9 +101,9 @@ function applyUrlSettings() {
   if (params.has('dread')) setDreadMode(params.get('dread') === '1', { skipSave: true, skipRender: true });
 }
 
-// Query string for the live settings plus the open encounter's picked enemies
-// ('' unless the visit started with one). Keys and act names are slugs, so
-// it's built by hand to keep the commas readable.
+// Query string for the live settings plus the open panel's picked enemies and
+// marked moves ('' unless the visit started with one). Keys and act names are
+// slugs, so it's built by hand to keep the commas readable.
 function settingsQuery() {
   if (!urlSettingsActive) return '';
   let q = `?players=${playerCount}&act=${currentAct}`;
@@ -118,7 +118,28 @@ function settingsQuery() {
   if (openPanelInfo && openPanelInfo.type === 'encounter' && openPanelInfo.enemies.length) {
     q += `&enemies=${openPanelInfo.enemies.join(',')}`;
   }
+  if (openPanelInfo && openPanelInfo.moves && openPanelInfo.moves.length) {
+    q += `&moves=${openPanelInfo.moves.join(',')}`;
+  }
   return q;
+}
+
+// ?moves= entries ("enemy:move-slug") for the enemies a panel can show. Repeats
+// stay (two of the same enemy on one move); order is kept so the URL is stable.
+function moveMarksFor(requested, enemyKeys) {
+  return (requested || []).filter(e => /^[a-z0-9-]+:[a-z0-9-]+$/.test(e) && enemyKeys.includes(e.split(':')[0]));
+}
+
+// Swap the open panel's marked moves without reloading the page. Called by
+// tools/game-watcher.mjs over DevTools as each turn's intents come in.
+function setMoveHighlights(list) {
+  if (!openPanelInfo) return false;
+  if (openPanelInfo.type === 'encounter') {
+    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: openPanelInfo.enemies, moves: list });
+  } else if (openPanelInfo.type === 'enemy') {
+    openEnemy(openPanelInfo.key, { moves: list });
+  } else return false;
+  return true;
 }
 
 // Rewrite the current entry's query in place: settings changes aren't history steps.
@@ -131,9 +152,9 @@ function syncSettingsUrl() {
 function rerenderOpenPanel() {
   if (!openPanelInfo) return;
   if (openPanelInfo.type === 'encounter') {
-    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: openPanelInfo.enemies });
+    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: openPanelInfo.enemies, moves: openPanelInfo.moves });
   } else if (openPanelInfo.type === 'enemy') {
-    openEnemy(openPanelInfo.key);
+    openEnemy(openPanelInfo.key, { moves: openPanelInfo.moves });
   } else if (openPanelInfo.type === 'event') {
     openEvent(openPanelInfo.key);
   }
@@ -437,6 +458,7 @@ function presentPanel(state, url, opts, wasOpen) {
 }
 
 // opts.enemies: enemy keys to narrow the panel to (picker / ?enemies=)
+// opts.moves: moves to mark (?moves=, see moveMarksFor)
 function openEncounter(encounterKey, act, cat, opts) {
   const wasOpen = openPanelInfo !== null;
 
@@ -449,10 +471,11 @@ function openEncounter(encounterKey, act, cat, opts) {
   const requested = (opts && opts.enemies) || [];
   const listed = enc ? [...enc.enemies, ...enc.dreadEnemies] : [];
   const enemies = listed.filter((key, idx) => listed.indexOf(key) === idx && requested.includes(key));
-  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat, enemies };
+  const moves = moveMarksFor(opts && opts.moves, enc ? listed : [encounterKey]);
+  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat, enemies, moves };
 
   document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
-  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey, enemies);
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey, enemies, moves);
 
   presentPanel(
     { type: 'encounter', key: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
@@ -468,15 +491,16 @@ function toggleEncounterEnemy(key) {
   if (!openPanelInfo || openPanelInfo.type !== 'encounter') return;
   const picks = openPanelInfo.enemies;
   const next = picks.includes(key) ? picks.filter(k => k !== key) : [...picks, key];
-  openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: next });
+  openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: next, moves: openPanelInfo.moves });
 }
 
 function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'enemy', key: enemyKey, ...enemyScalingContext(enemyKey, currentAct) };
+  const moves = moveMarksFor(opts && opts.moves, [enemyKey]);
+  openPanelInfo = { type: 'enemy', key: enemyKey, ...enemyScalingContext(enemyKey, currentAct), moves };
   const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
   document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
-  document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey);
+  document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey, moves);
 
   presentPanel(
     { type: 'enemy', key: enemyKey },
