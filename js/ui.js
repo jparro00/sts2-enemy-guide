@@ -58,6 +58,55 @@ function setPlayerCount(count) {
   playerCount = count;
   document.querySelectorAll('.player-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.players) === count));
   rerenderOpenPanel();
+  syncSettingsUrl();
+}
+
+// ── URL settings: ?players=3&act=hive&dread=1&boss=vantom,kaiser-crab ──
+// A link can preset the display settings. They apply to this visit only: the
+// saved Dread and boss choices stay as they were. Once a page is opened with
+// any of them, the address bar keeps tracking the live settings, so copying it
+// reproduces what's on screen. A plain visit never grows a query string.
+const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss'];
+let urlSettingsActive = false;
+
+// Runs once at load, after the saved Dread choices so the link's values win,
+// and before the act bar and grid render so they pick up the act.
+function applyUrlSettings() {
+  const params = new URLSearchParams(window.location.search);
+  if (!URL_SETTING_KEYS.some(k => params.has(k))) return;
+  urlSettingsActive = true;
+
+  const players = parseInt(params.get('players'), 10);
+  if (players >= 1 && players <= 4) setPlayerCount(players);
+
+  const act = params.get('act');
+  if (act && (act in zoneToActNumber || act === 'events')) currentAct = act;
+
+  if (!hasDreadData) return;   // no Dread on this branch: nothing to apply
+  for (const key of (params.get('boss') || '').split(',')) {
+    const zone = ACTS.map(a => a.key).find(z => zoneDominionBosses(z).some(b => b.key === key));
+    if (zone) dreadBosses[zone] = key;
+  }
+  if (params.has('dread')) setDreadMode(params.get('dread') === '1', { skipSave: true, skipRender: true });
+}
+
+// Query string for the live settings ('' unless the visit started with one).
+// Keys and act names are slugs, so it's built by hand to keep the commas readable.
+function settingsQuery() {
+  if (!urlSettingsActive) return '';
+  let q = `?players=${playerCount}&act=${currentAct}`;
+  if (hasDreadData) {
+    q += `&dread=${dreadMode ? 1 : 0}`;
+    const bosses = ACTS.filter(a => zoneDominionBosses(a.key).length > 1).map(a => selectedDominionBoss(a.key).key);
+    if (dreadMode && bosses.length) q += `&boss=${bosses.join(',')}`;
+  }
+  return q;
+}
+
+// Rewrite the current entry's query in place: settings changes aren't history steps.
+function syncSettingsUrl() {
+  if (!urlSettingsActive) return;
+  history.replaceState(history.state, '', window.location.pathname + settingsQuery());
 }
 
 // Rebuild the open panel in place after a display setting changes
@@ -78,14 +127,19 @@ function rerenderOpenPanel() {
 const DREAD_STORAGE_KEY = 'spirecodex.dread';
 const DREAD_BOSS_STORAGE_KEY = 'spirecodex.dreadBoss';
 
+function savedDreadBosses() {
+  try {
+    const bosses = JSON.parse(localStorage.getItem(DREAD_BOSS_STORAGE_KEY) || '{}');
+    if (bosses && typeof bosses === 'object') return bosses;
+  } catch (e) { /* storage blocked or corrupt — fall back to each zone's first boss */ }
+  return {};
+}
+
 function initDreadToggle() {
   const wrap = document.getElementById('dread-toggle-wrap');
   if (!wrap || !hasDreadData) return;
   wrap.hidden = false;
-  try {
-    const bosses = JSON.parse(localStorage.getItem(DREAD_BOSS_STORAGE_KEY) || '{}');
-    if (bosses && typeof bosses === 'object') dreadBosses = bosses;
-  } catch (e) { /* storage blocked or corrupt — fall back to each zone's first boss */ }
+  dreadBosses = savedDreadBosses();
   let saved = false;
   try { saved = localStorage.getItem(DREAD_STORAGE_KEY) === '1'; } catch (e) { /* storage blocked */ }
   if (saved) setDreadMode(true, { skipSave: true, skipRender: true });
@@ -102,9 +156,13 @@ function renderBossPicker() {
 
 function selectDreadBoss(zone, key) {
   dreadBosses[zone] = key;
-  try { localStorage.setItem(DREAD_BOSS_STORAGE_KEY, JSON.stringify(dreadBosses)); } catch (e) { /* storage blocked */ }
+  // Save just this pick: dreadBosses can also hold a link's one-visit choices
+  const saved = savedDreadBosses();
+  saved[zone] = key;
+  try { localStorage.setItem(DREAD_BOSS_STORAGE_KEY, JSON.stringify(saved)); } catch (e) { /* storage blocked */ }
   renderBossPicker();
   rerenderOpenPanel();
+  syncSettingsUrl();
 }
 
 function setDreadMode(on, opts) {
@@ -122,6 +180,7 @@ function setDreadMode(on, opts) {
   if (opts.skipRender) return;
   render();             // grid badges follow Dread compositions
   rerenderOpenPanel();
+  syncSettingsUrl();
 }
 
 function toggleDread() {
@@ -156,6 +215,8 @@ function selectAct(act) {
   if (activeTab) activeTab.classList.add('active');
 
   render();
+  if (openPanelInfo && openPanelInfo.type === 'enemy') rerenderOpenPanel();  // its scaling act can follow the browsed act
+  syncSettingsUrl();
 }
 
 function selectCat(cat) {
@@ -365,21 +426,21 @@ function openEncounter(encounterKey, act, cat, opts) {
 
   presentPanel(
     { type: 'encounter', key: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
-    `${getSiteBase()}/encounter/${encounterKey}/`,
+    `${getSiteBase()}/encounter/${encounterKey}/${settingsQuery()}`,
     opts, wasOpen
   );
 }
 
 function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'enemy', key: enemyKey };
+  openPanelInfo = { type: 'enemy', key: enemyKey, ...enemyScalingContext(enemyKey, currentAct) };
   const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
   document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
   document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey);
 
   presentPanel(
     { type: 'enemy', key: enemyKey },
-    `${getSiteBase()}/enemy/${enemyKey}/`,
+    `${getSiteBase()}/enemy/${enemyKey}/${settingsQuery()}`,
     opts, wasOpen
   );
 }
@@ -400,7 +461,7 @@ function openEvent(eventKey, opts) {
 
   presentPanel(
     { type: 'event', key: eventKey },
-    `${getSiteBase()}/event/${slugify(ev.name)}/`,
+    `${getSiteBase()}/event/${slugify(ev.name)}/${settingsQuery()}`,
     opts, wasOpen
   );
 }
@@ -429,15 +490,17 @@ function closeDetail(fromPopstate) {
       history.back();
     } else {
       // Deep-link landing — no entry to pop back to, push root URL instead
-      history.pushState({ root: true }, '', getSiteBase() + '/');
+      history.pushState({ root: true }, '', getSiteBase() + '/' + settingsQuery());
     }
   }
   panelPushedState = false;
 }
 
-// Browser back/forward — re-route based on new URL
+// Browser back/forward — re-route based on new URL. Settings aren't history,
+// so the entry we land on gets the live settings written over its older ones.
 window.addEventListener('popstate', e => {
   if (typeof routeFromURL === 'function') routeFromURL(false);
+  syncSettingsUrl();
 });
 
 // Swipe right to close detail panel (mobile only)

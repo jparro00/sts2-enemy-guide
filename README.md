@@ -18,6 +18,17 @@ Easily reference event information for each of the acts. Event outcomes are laid
 
 ![Event detail view](media/readme-event.png)
 
+## Link settings
+
+Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/ruby-raider-brute/?players=3&dread=1&boss=vantom`. They apply to that visit only, and the address bar then keeps tracking your settings so you can copy it to share exactly what you see.
+
+| Parameter | Values |
+|---|---|
+| `players` | `1`–`4` |
+| `act` | `overgrowth`, `underdocks`, `hive`, `glory` or `events`. Also sets which act an enemy that appears in several acts is scaled for. |
+| `dread` | `1` or `0` (beta, when the patch has Dread mode) |
+| `boss` | Act boss keys, comma-separated, one per act (Dread only) |
+
 ---
 
 All game assets and data belong to [Mega Crit](https://www.megacrit.com/). This is an unofficial fan project, not affiliated with or endorsed by Mega Crit. Enemy patterns are kept current with the latest game patch — the exact version is shown in the site's banner and footer.

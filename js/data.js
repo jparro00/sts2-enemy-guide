@@ -225,6 +225,12 @@ async function loadData() {
     beta: betaText,
   });
 
+  // Reveal the Dread toggle only when this branch's data carries Dread values,
+  // then let a link's ?players=&act=&dread=&boss= override the saved choices
+  // (before the act bar renders, so it picks up the act).
+  initDreadToggle();
+  applyUrlSettings();
+
   // Render site chrome (act bar + category tabs) from the ACTS config.
   // The static markup in index.html is SSR'd by build_snapshots.mjs from the
   // same builders, so this is an idempotent refresh — no visible change.
@@ -237,9 +243,6 @@ async function loadData() {
     tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
   }
 
-  // Reveal the Dread toggle only when this branch's data carries Dread values
-  initDreadToggle();
-
   // Apply noindex from config (for beta/test deploys)
   if (siteConfig.noindex) {
     const m = document.createElement('meta');
@@ -251,6 +254,7 @@ async function loadData() {
   render();
   preloadRemainingImages();
   routeFromURL(true);  // open matching panel if URL points to one
+  syncSettingsUrl();   // a settings link's query, normalised to the full live set
 }
 
 // Open the right panel based on current URL, or close if at root.
