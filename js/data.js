@@ -6,6 +6,21 @@
 // the browser (loadData below) and the static snapshot build
 // (build_snapshots.mjs), so the live site and its SEO snapshots always
 // render from the same code.
+
+// encounters.DominionPower: "{explosive} 5; multi 3; easy 4; elite 7; spawned-minion 0"
+// -> { power: 'explosive', amount: 5, scopes: { multi: 3, ... } }. Schema in data/README.md.
+function parseDominionPower(cell) {
+  const parts = cell.split(';').map(s => s.trim()).filter(Boolean);
+  const head = parts.length ? parts[0].match(/^\{(\w+)\}\s+(\d+)$/) : null;
+  if (!head) return null;
+  const scopes = {};
+  for (const part of parts.slice(1)) {
+    const s = part.match(/^([a-z-]+)\s+(\d+)$/);
+    if (s) scopes[s[1]] = parseInt(s[2], 10);
+  }
+  return { power: head[1], amount: parseInt(head[2], 10), scopes };
+}
+
 function buildDataStructures(texts) {
   const enemiesRaw = parseCSV(texts.monsters);
   const movesRaw = parseCSV(texts.moves);
@@ -87,9 +102,11 @@ function buildDataStructures(texts) {
       altImage: enc.AltImage || '',
       dreadEnemies: enc.DreadEnemies ? enc.DreadEnemies.split(';').map(e => e.trim()).filter(Boolean) : [],
       dreadMulti: enc.DreadMulti || '',
-      dominion: enc.Dominion || ''   // boss encounters: effect on the act's other fights in Dread
+      dominion: enc.Dominion || '',   // boss encounters: effect on the act's other fights in Dread
+      dominionPower: parseDominionPower(enc.DominionPower || ''),
+      spawns: enc.Spawns ? enc.Spawns.split(';').map(e => e.trim()).filter(Boolean) : []  // Enemies that join mid-fight
     });
-    if (enc.DreadEnemies || enc.DreadMulti || enc.Dominion) hasDreadData = true;
+    if (enc.DreadEnemies || enc.DreadMulti || enc.Dominion || enc.DominionPower) hasDreadData = true;
   }
 
   // Build events structure

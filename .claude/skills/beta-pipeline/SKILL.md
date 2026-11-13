@@ -122,7 +122,8 @@ Update the relevant CSVs based on verified changes (see `data/README.md` for sch
 ### Dread mode data (bosses and Dominions)
 Dread values live in optional trailing columns (`DreadHP`, `DreadPattern`, `DreadStartsWith`, `DreadNotes`, `DreadEffects`, `Mode`, `DreadEnemies`, `DreadMulti`, `Dominion`) — schema in `data/README.md` → "Dread mode columns". Every patch:
 - `grep -n "IsDread" raw/src/Core/Models/Monsters/*.cs raw/src/Core/Models/Encounters/*.cs` and re-check each boss's Dread-only values (they are written as the ascension value + the Dread bonus, as a single number).
-- Re-read `raw/src/Core/Models/Dread/Dominions/*.cs` (decompile `res://src/Core/Models/Dread/**`) and update each boss encounter's `Dominion` text.
+- Re-read `raw/src/Core/Models/Dread/Dominions/*.cs` (decompile `res://src/Core/Models/Dread/**`) and update each boss encounter's `Dominion` text, plus `DominionPower` for Dominions that apply a power to enemies (amount per room type, spawn and minion rules — read `AfterRoomEntered` / `AfterEnemiesEnteredCombat` / `AfterCreatureAddedToCombat`).
+- For new or changed encounters, fill `Spawns`: monsters in `AllPossibleMonsters` that `GenerateMonsters()` never returns (plus anything a monster summons that the encounter lists). `DominionPower`'s spawn and `multi` scopes depend on it.
 - When a boss move is renamed or retuned, update its `DreadEffects` too — the override replaces the base text wholesale in Dread.
 - The Dread columns only exist on branches carrying Dread data; when promoting, they travel with `data/` like everything else.
 

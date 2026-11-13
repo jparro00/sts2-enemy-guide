@@ -65,9 +65,11 @@ With Dread on, every `N (M)` pair renders as its ascension value `M`. Fill a Dre
 | `monster_moves.csv` | `Mode` | empty = always shown; `dread` = only in Dread (Dread-only moves); `no-dread` = hidden in Dread (moves Dread skips) |
 | `encounters.csv` | `DreadEnemies` | Monster Keys in Dread (replaces `Enemies`, `;`-separated) |
 | `encounters.csv` | `DreadMulti` | Multi badge in Dread (replaces `Multi`) |
-| `encounters.csv` | `Dominion` | Boss encounters only: the Dominion effect (`{power}` refs allowed, `;` = line break). Encounter panels in that zone list it while Dread is on |
+| `encounters.csv` | `Dominion` | Boss encounters only: the Dominion effect (`{power}` refs allowed, `;` = line break). With Dread on, panels in that zone show the Dominion of the act boss picked in the boss picker (toolbar or the panel's Dominion block) |
+| `encounters.csv` | `DominionPower` | Boss encounters only, for Dominions that give enemies a power: `{power} N`, then optional `; <scope> N` overrides. Added to each enemy's STARTS WITH in the zone's other fights (fixed amount, no multiplayer scaling; 0 = none). Scopes, first match wins: `spawned-minion` (a minion listed in `Spawns`), `spawned` (any enemy in `Spawns`), `multi` (2+ starting enemies, i.e. `Enemies` minus `Spawns`), then the fight's category `easy` / `hard` / `elite`; otherwise `N`. E.g. Waterfall Giant: `{explosive} 5; multi 3; easy 4; elite 7; spawned-minion 0` |
+| `encounters.csv` | `Spawns` | Monster Keys from `Enemies` that join mid-fight rather than starting it (`;`-separated), from the encounter's `GenerateMonsters()` vs. `AllPossibleMonsters`. Used by `DominionPower` scopes |
 
-The columns are trailing and optional: rows without Dread data can stop at the last regular column (the parser fills missing fields with `''`). Write power amounts in Dominion text as `7 {plating}` (number first) so multiplayer scaling, which only rewrites `{power} N`, leaves them alone. `build_snapshots.mjs` validates `{power}`/`<Move>` refs in these columns, `DreadEnemies` keys, and `Mode` values.
+The columns are trailing and optional: rows without Dread data can stop at the last regular column (the parser fills missing fields with `''`). Write power amounts in Dominion text as `7 {plating}` (number first) so multiplayer scaling, which only rewrites `{power} N`, leaves them alone. `build_snapshots.mjs` validates `{power}`/`<Move>` refs in these columns, `DreadEnemies` keys, `Mode` values, the `DominionPower` format, and that every `Spawns` key is in the encounter's enemy list.
 
 ## Images
 

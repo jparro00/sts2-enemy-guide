@@ -93,11 +93,10 @@ const slugify = inCtx('slugify');
 const disambiguateSlug = inCtx('disambiguateSlug');
 const buildVersionBanner = inCtx('buildVersionBanner');
 const parseCSV = inCtx('parseCSV');
-const renderEnemySection = inCtx('renderEnemySection');
+const buildEnemyPanelBody = inCtx('buildEnemyPanelBody');
 const buildEncounterPanelBody = inCtx('buildEncounterPanelBody');
 const buildEventPanelBody = inCtx('buildEventPanelBody');
 const renderBetaBadge = inCtx('renderBetaBadge');
-const panelFeedbackLink = inCtx('panelFeedbackLink');
 const getChoices = inCtx('(key) => eventChoices[key] || []');
 
 const enemies = inCtx('Object.entries(enemyDatabase).map(([key, d]) => ({ key, name: d.name, pattern: d.pattern }))');
@@ -124,6 +123,8 @@ const allEvents = inCtx(`(() => {
   const warnings = [];
   const KEY_RE = /^[a-z0-9_-]+$/;
   const NAME_BAD = /[<>"&]/; // raw HTML/attribute breakers — renderers don't escape
+  // encounters.DominionPower — keep in step with parseDominionPower (js/data.js) and dominionAmount (js/renderers.js)
+  const DOMINION_POWER_RE = /^\{\w+\}\s+\d+(\s*;\s*(multi|easy|hard|elite|spawned|spawned-minion)\s+\d+)*$/;
 
   const mRows = parseCSV(ctx.__texts.monsters);
   const monsterKeySet = new Set();
@@ -162,6 +163,14 @@ const allEvents = inCtx(`(() => {
       if (!monsterKeySet.has(e)) errors.push(`encounters.csv: ${r.Key} DreadEnemies references unknown monster Key ${JSON.stringify(e)}`);
     }
     if (r.Dominion && r.Category !== 'boss') warnings.push(`encounters.csv: ${r.Key} has a Dominion but is not a boss (Dominions come from boss encounters)`);
+    if (r.DominionPower) {
+      if (!DOMINION_POWER_RE.test(r.DominionPower)) errors.push(`encounters.csv: ${r.Key} DominionPower must be "{power} N" plus optional "; <scope> N" (scopes: multi, easy, hard, elite, spawned, spawned-minion), got ${JSON.stringify(r.DominionPower)}`);
+      if (!r.Dominion) errors.push(`encounters.csv: ${r.Key} has DominionPower but no Dominion text`);
+    }
+    const listed = new Set([r.Enemies, r.DreadEnemies].flatMap((c) => (c || '').split(';')).map((s) => s.trim()).filter(Boolean));
+    for (const e of (r.Spawns || '').split(';').map((s) => s.trim()).filter(Boolean)) {
+      if (!listed.has(e)) errors.push(`encounters.csv: ${r.Key} Spawns lists ${JSON.stringify(e)}, which is not in its Enemies`);
+    }
   }
 
   const evRows = parseCSV(ctx.__texts.events);
@@ -214,7 +223,10 @@ const allEvents = inCtx(`(() => {
       if (!itemKeySet.has(k)) warnings.push(`monster_moves.csv ${r.Enemy}/${r.Move}: References key ${JSON.stringify(k)} unknown`);
     }
   }
-  for (const r of encRows) checkRefs(`encounters.csv ${r.Key} Dominion`, null, r.Dominion);
+  for (const r of encRows) {
+    checkRefs(`encounters.csv ${r.Key} Dominion`, null, r.Dominion);
+    checkRefs(`encounters.csv ${r.Key} DominionPower`, null, r.DominionPower);
+  }
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
       if (!itemKeySet.has(k)) warnings.push(`event_choices.csv ${r.Event}: References key ${JSON.stringify(k)} unknown`);
@@ -429,7 +441,7 @@ for (const { key, name, pattern } of enemies) {
     jsonLd: jsonldFor(name, description, canonical, image),
     panelName: name,
     panelBadgeHtml: renderBetaBadge('monster', key),
-    panelHtml: renderEnemySection(key) + panelFeedbackLink,
+    panelHtml: buildEnemyPanelBody(key),
   });
   writePage(`enemy/${key}`, page);
   if (!NOINDEX) sitemapUrls.push(url);

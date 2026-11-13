@@ -76,14 +76,35 @@ function rerenderOpenPanel() {
 // Only shown when the loaded data has Dread values (beta branches carrying a
 // Dread-mode patch); the choice persists across visits.
 const DREAD_STORAGE_KEY = 'spirecodex.dread';
+const DREAD_BOSS_STORAGE_KEY = 'spirecodex.dreadBoss';
 
 function initDreadToggle() {
   const wrap = document.getElementById('dread-toggle-wrap');
   if (!wrap || !hasDreadData) return;
   wrap.hidden = false;
+  try {
+    const bosses = JSON.parse(localStorage.getItem(DREAD_BOSS_STORAGE_KEY) || '{}');
+    if (bosses && typeof bosses === 'object') dreadBosses = bosses;
+  } catch (e) { /* storage blocked or corrupt — fall back to each zone's first boss */ }
   let saved = false;
   try { saved = localStorage.getItem(DREAD_STORAGE_KEY) === '1'; } catch (e) { /* storage blocked */ }
   if (saved) setDreadMode(true, { skipSave: true, skipRender: true });
+}
+
+// Toolbar act-boss picker: the current act's Dominion bosses, Dread only.
+function renderBossPicker() {
+  const el = document.getElementById('boss-picker');
+  if (!el) return;
+  const show = dreadMode && zoneDominionBosses(currentAct).length > 1;
+  el.hidden = !show;
+  el.innerHTML = show ? `<span class="player-count-label">Boss:</span>${bossPickerButtons(currentAct)}` : '';
+}
+
+function selectDreadBoss(zone, key) {
+  dreadBosses[zone] = key;
+  try { localStorage.setItem(DREAD_BOSS_STORAGE_KEY, JSON.stringify(dreadBosses)); } catch (e) { /* storage blocked */ }
+  renderBossPicker();
+  rerenderOpenPanel();
 }
 
 function setDreadMode(on, opts) {
@@ -243,6 +264,7 @@ function sharedEventsForZone(zone) {
 }
 
 function render() {
+  renderBossPicker();   // follows the act and the Dread toggle
   const label = document.getElementById('section-label');
 
   if (currentAct === 'events') {
@@ -353,7 +375,7 @@ function openEnemy(enemyKey, opts) {
   openPanelInfo = { type: 'enemy', key: enemyKey };
   const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
   document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
-  document.getElementById('detail-body').innerHTML = renderEnemySection(enemyKey) + panelFeedbackLink;  // single enemy: section + feedback link
+  document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey);
 
   presentPanel(
     { type: 'enemy', key: enemyKey },

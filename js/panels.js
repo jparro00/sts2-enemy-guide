@@ -57,7 +57,9 @@ const eventTabsHtml = `
   <div class="cat-tab" data-cat="ev_${z.key}" onclick="selectCat('ev_${z.key}')">${z.name}</div>`).join('') + `
 `;
 
-function renderEnemySection(key, collapsible) {
+// `enc` is the encounter the section sits in (for that fight's Dominion);
+// omitted on standalone enemy panels.
+function renderEnemySection(key, collapsible, enc) {
   const data = enemyDatabase[key];
   if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${key}${renderBetaBadge('monster', key)}</div><p style="color:#666;">No data available.</p></div>`;
   const name = data.name;
@@ -79,6 +81,7 @@ function renderEnemySection(key, collapsible) {
   const hpHtml = markDread(data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(hp.text) : scaleHP(hp.text), hp.dread);
   const pattern = dreadText(data.pattern, data.dreadPattern);
   const startsWith = dreadText(data.startsWith, data.dreadStartsWith);
+  const grants = enemyDominionGrants(key, enc);
 
   const notesHtml = (data.notes ? renderNotes(ascensionOnlyIfDread(data.notes), key) : '') +
     (dreadMode && data.dreadNotes ? `<div class="dread-notes">${renderNotes(data.dreadNotes, key)}</div>` : '');
@@ -101,7 +104,7 @@ function renderEnemySection(key, collapsible) {
         <h3>Attack Pattern</h3>
         <div class="pattern-text">${markDread(renderPowerRefs(pattern.text.replace(/\n/g, '<br>'), key), pattern.dread)}</div>
 
-        ${renderStartsWith(startsWith.text, key, startsWith.dread)}
+        ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key))}
 
         <h3>Moves</h3>
         <table>
@@ -110,7 +113,7 @@ function renderEnemySection(key, collapsible) {
         </table>
 
         ${notesHtml}
-        ${renderEnemyReferences(data.powers, moves, data.references)}
+        ${renderEnemyReferences(data.powers, moves, data.references.concat(grants.map(g => g.power)))}
       </div>
     </div>
   `;
@@ -131,39 +134,66 @@ function buildEncounterPanelBody(enc, encounterKey) {
     const uniqueEnemies = enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
     const collapsible = uniqueEnemies.length > 1;
     const sections = uniqueEnemies
-      .map(key => renderEnemySection(key, collapsible))
+      .map(key => renderEnemySection(key, collapsible, enc))
       .join('');
     return compositionHtml + sections + panelFeedbackLink;
   }
   return compositionHtml + renderEnemySection(encounterKey) + panelFeedbackLink;
 }
 
+// Standalone enemy panel: a Dominion block per zone the enemy fights in
+// (outside boss rooms), then the enemy section.
+function buildEnemyPanelBody(key) {
+  const zones = [...new Set(encountersWithEnemy(key).filter(e => e.cat !== 'boss').map(e => e.zone))];
+  const dominions = zones.map(z => renderZoneDominion(z, `${zoneLabels[z]} boss`)).join('');
+  return dominions + renderEnemySection(key) + panelFeedbackLink;
+}
+
 // Dread Dominions. In Dread, every fight in an act before its boss gets the
 // boss encounter's Dominion. A boss panel shows its own Dominion (it doesn't
-// apply in that fight); other panels list the zone's possible bosses, since
-// which one applies depends on the boss the run rolled.
+// apply in that fight); other panels show the selected act boss's, with a
+// picker to switch boss (selection shared with the toolbar picker).
 function encounterThumb(enc) {
   if (enc.altImage) return enc.altImage.includes('/') ? enc.altImage : `media/enemies/${enc.altImage}`;
   return `media/enemies/${enc.enemies[0] || enc.key}.webp`;
 }
 
+// One button per Dominion boss in the zone; selectDreadBoss lives in ui.js.
+function bossPickerButtons(zone) {
+  const selected = selectedDominionBoss(zone);
+  return zoneDominionBosses(zone).map(b => {
+    const on = b === selected;
+    return `<button class="boss-pick${on ? ' active' : ''}" onclick="selectDreadBoss('${zone}', '${b.key}')" title="${b.name}" aria-label="${b.name}" aria-pressed="${on}"><img src="${encounterThumb(b)}" alt="" onerror="this.style.visibility='hidden'"></button>`;
+  }).join('');
+}
+
+function dominionBlock(scope, controlsHtml, rowHtml) {
+  return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">Dominion</span><span class="dominion-controls"><span class="dominion-scope">${scope}</span>${controlsHtml}</span></div>${rowHtml}</div>`;
+}
+
+function dominionRow(boss, withThumb) {
+  const thumb = withThumb ? `<img class="dominion-thumb" src="${encounterThumb(boss)}" alt="${boss.name}" onerror="this.style.visibility='hidden'">` : '';
+  return `
+    <div class="dominion-row">
+      ${thumb}
+      <div class="dominion-info">
+        <span class="dominion-boss">${boss.name}</span>
+        <span class="dominion-effect">${renderPowerRefs(boss.dominion.replace(/;/g, '<br>'), null)}</span>
+      </div>
+    </div>`;
+}
+
+function renderZoneDominion(zone, scope) {
+  const boss = selectedDominionBoss(zone);
+  if (!dreadMode || !boss) return '';
+  const picker = zoneDominionBosses(zone).length > 1 ? `<span class="boss-picker-inline">${bossPickerButtons(zone)}</span>` : '';
+  return dominionBlock(scope, picker, dominionRow(boss, !picker));
+}
+
 function renderDominionSection(enc) {
   if (!dreadMode || !enc) return '';
-  const isBoss = enc.cat === 'boss';
-  const sources = isBoss
-    ? (enc.dominion ? [enc] : [])
-    : (encounters[enc.zone]?.boss || []).filter(b => b.dominion);
-  if (sources.length === 0) return '';
-  const rows = sources.map(b => `
-    <div class="dominion-row">
-      <img class="dominion-thumb" src="${encounterThumb(b)}" alt="${b.name}" onerror="this.style.visibility='hidden'">
-      <div class="dominion-info">
-        <span class="dominion-boss">${b.name}</span>
-        <span class="dominion-effect">${renderPowerRefs(b.dominion.replace(/;/g, '<br>'), null)}</span>
-      </div>
-    </div>`).join('');
-  const scope = isBoss ? 'Other fights this act' : 'Set by act boss';
-  return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">Dominion</span><span class="dominion-scope">${scope}</span></div>${rows}</div>`;
+  if (enc.cat !== 'boss') return renderZoneDominion(enc.zone, 'Act boss');
+  return enc.dominion ? dominionBlock('Other fights this act', '', dominionRow(enc, true)) : '';
 }
 
 // Full detail-body HTML for an event panel.
