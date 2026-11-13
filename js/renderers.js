@@ -138,6 +138,11 @@ function encountersWithEnemy(enemyKey) {
   return found;
 }
 
+// Zones whose non-boss fights include the enemy (where a Dominion can reach it)
+function enemyFightZones(enemyKey) {
+  return [...new Set(encountersWithEnemy(enemyKey).filter(e => e.cat !== 'boss').map(e => e.zone))];
+}
+
 // ── Dominions ──
 // A Dread run's act boss (rolled per run, shown on the map) projects its
 // encounter's Dominion onto every other fight in the act. The user picks the
@@ -187,9 +192,9 @@ function enemyDominionGrants(enemyKey, enc) {
 }
 
 // Grants rendered for the STARTS WITH line. Fixed amounts: Dominions don't
-// scale with player count, so this bypasses scaleEffects.
-function dominionGrantsHtml(grants, enemyKey) {
-  const labelZones = grants.length > 1;
+// scale with player count, so this bypasses scaleEffects. `labelZones` names
+// the act on each grant (standalone panels of enemies fought in several acts).
+function dominionGrantsHtml(grants, enemyKey, labelZones) {
   return grants.map(g => {
     const amount = g.min === g.max ? `${g.max}` : `${g.min}–${g.max}`;
     const zone = labelZones ? `${zoneLabels[g.zone]}: ` : '';

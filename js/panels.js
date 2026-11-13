@@ -82,6 +82,7 @@ function renderEnemySection(key, collapsible, enc) {
   const pattern = dreadText(data.pattern, data.dreadPattern);
   const startsWith = dreadText(data.startsWith, data.dreadStartsWith);
   const grants = enemyDominionGrants(key, enc);
+  const labelZones = grants.length > 0 && !enc && enemyFightZones(key).length > 1;
 
   const notesHtml = (data.notes ? renderNotes(ascensionOnlyIfDread(data.notes), key) : '') +
     (dreadMode && data.dreadNotes ? `<div class="dread-notes">${renderNotes(data.dreadNotes, key)}</div>` : '');
@@ -104,7 +105,7 @@ function renderEnemySection(key, collapsible, enc) {
         <h3>Attack Pattern</h3>
         <div class="pattern-text">${markDread(renderPowerRefs(pattern.text.replace(/\n/g, '<br>'), key), pattern.dread)}</div>
 
-        ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key))}
+        ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key, labelZones))}
 
         <h3>Moves</h3>
         <table>
@@ -144,8 +145,7 @@ function buildEncounterPanelBody(enc, encounterKey) {
 // Standalone enemy panel: a Dominion block per zone the enemy fights in
 // (outside boss rooms), then the enemy section.
 function buildEnemyPanelBody(key) {
-  const zones = [...new Set(encountersWithEnemy(key).filter(e => e.cat !== 'boss').map(e => e.zone))];
-  const dominions = zones.map(z => renderZoneDominion(z, `${zoneLabels[z]} boss`)).join('');
+  const dominions = dreadMode ? enemyFightZones(key).map(z => renderZoneDominion(z, `${zoneLabels[z]} boss`)).join('') : '';
   return dominions + renderEnemySection(key) + panelFeedbackLink;
 }
 
