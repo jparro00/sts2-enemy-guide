@@ -37,6 +37,8 @@ Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/r
 
 It reads only the game's own log and save files. Pool encounters show the enemies that were actually rolled. In a solo run the game doesn't log which event you entered, so the watcher works it out from the run's event queue; an event whose entry requirement depends on your deck can occasionally be guessed wrong.
 
+With the **SpireCodexBridge** mod installed, the watcher also marks each enemy's current move every turn (`moves=`, updated in place) and opens the exact event in solo runs. The game records intents nowhere else, so this needs the mod. It is read-only and marked `affects_gameplay: false`, so co-op partners don't need it. Like any mod, it makes the game use its separate modded save profile.
+
 ---
 
 All game assets and data belong to [Mega Crit](https://www.megacrit.com/). This is an unofficial fan project, not affiliated with or endorsed by Mega Crit. Enemy patterns are kept current with the latest game patch — the exact version is shown in the site's banner and footer.
