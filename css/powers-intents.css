@@ -108,6 +108,14 @@
   color: #e0ddd4;
   font-weight: bold;
 }
+/* A marked (current) move named in the attack pattern, in the moves-table
+   frame's yellow. The fixed-position tooltip doesn't inherit the underline. */
+.move-ref-current {
+  text-decoration-line: underline;
+  text-decoration-color: var(--gold-light);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
 .move-ref .move-tooltip {
   display: none;
   position: fixed;

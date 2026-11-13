@@ -109,7 +109,7 @@ function renderEnemySection(key, collapsible, enc, current) {
 
       <div class="enemy-section-body">
         <h3>Attack Pattern</h3>
-        <div class="pattern-text">${markDread(renderPowerRefs(pattern.text.replace(/\n/g, '<br>'), key), pattern.dread)}</div>
+        <div class="pattern-text">${markDread(renderPowerRefs(pattern.text.replace(/\n/g, '<br>'), key, marks), pattern.dread)}</div>
 
         ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key, labelZones))}
 

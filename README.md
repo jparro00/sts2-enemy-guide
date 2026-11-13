@@ -29,7 +29,7 @@ Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/r
 | `dread` | `1` or `0` (beta, when the patch has Dread mode) |
 | `boss` | Act boss keys, comma-separated, one per act (Dread only). Acts left out use their first boss. |
 | `enemies` | Encounter pages only: enemy keys, comma-separated, e.g. `/encounter/ruby-raiders/?enemies=ruby-raider-axe,ruby-raider-brute,ruby-raider-tracker`. Shows just those enemies. Pool encounters also have a picker for this. |
-| `moves` | Encounter and enemy pages: `enemy:move` pairs, comma-separated, where the move is its name in lowercase with hyphens, e.g. `/encounter/corpse-slugs/?moves=corpse-slug:whip-slap,corpse-slug:glomp`. Marks those moves in the enemy's moves table. Repeat an enemy for duplicates on different moves; a move named twice shows a count. |
+| `moves` | Encounter and enemy pages: `enemy:move` pairs, comma-separated, where the move is its name in lowercase with hyphens, e.g. `/encounter/corpse-slugs/?moves=corpse-slug:whip-slap,corpse-slug:glomp`. Marks those moves in the enemy's moves table and underlines them in its attack pattern. Repeat an enemy for duplicates on different moves; a move named twice shows a count. |
 
 ## Game watcher (Windows)
 
