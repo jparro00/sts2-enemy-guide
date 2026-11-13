@@ -67,8 +67,10 @@ function setPlayerCount(count) {
 // a boss for uses its first boss, so `boss=` lists only the other picks. Once a
 // page is opened with any of them, the address bar keeps tracking the live
 // settings, so copying it reproduces what's on screen. A plain visit never
-// grows a query string.
-const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss'];
+// grows a query string. `enemies` belongs to one encounter page rather than the
+// visit (routeFromURL reads it, it's dropped on leaving the page), but it
+// counts as a settings link all the same.
+const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss', 'enemies'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
@@ -93,8 +95,9 @@ function applyUrlSettings() {
   if (params.has('dread')) setDreadMode(params.get('dread') === '1', { skipSave: true, skipRender: true });
 }
 
-// Query string for the live settings ('' unless the visit started with one).
-// Keys and act names are slugs, so it's built by hand to keep the commas readable.
+// Query string for the live settings plus the open encounter's picked enemies
+// ('' unless the visit started with one). Keys and act names are slugs, so
+// it's built by hand to keep the commas readable.
 function settingsQuery() {
   if (!urlSettingsActive) return '';
   let q = `?players=${playerCount}&act=${currentAct}`;
@@ -105,6 +108,9 @@ function settingsQuery() {
       .filter((b, i) => b && b !== zoneDominionBosses(ACTS[i].key)[0])
       .map(b => b.key);
     if (dreadMode && bosses.length) q += `&boss=${bosses.join(',')}`;
+  }
+  if (openPanelInfo && openPanelInfo.type === 'encounter' && openPanelInfo.enemies.length) {
+    q += `&enemies=${openPanelInfo.enemies.join(',')}`;
   }
   return q;
 }
@@ -119,7 +125,7 @@ function syncSettingsUrl() {
 function rerenderOpenPanel() {
   if (!openPanelInfo) return;
   if (openPanelInfo.type === 'encounter') {
-    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat);
+    openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: openPanelInfo.enemies });
   } else if (openPanelInfo.type === 'enemy') {
     openEnemy(openPanelInfo.key);
   } else if (openPanelInfo.type === 'event') {
@@ -419,22 +425,39 @@ function presentPanel(state, url, opts, wasOpen) {
   navigateToPanel(state, url, { ...opts, replace: wasOpen });
 }
 
+// opts.enemies: enemy keys to narrow the panel to (picker / ?enemies=)
 function openEncounter(encounterKey, act, cat, opts) {
   const wasOpen = openPanelInfo !== null;
-  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat };
 
   // Search all categories if act/cat provided, otherwise use current
   const encs = (act && cat) ? (encounters[act]?.[cat] || []) : (encounters[currentAct]?.[currentCat] || []);
   const enc = encs.find(e => e.key === encounterKey) || null;
 
+  // Keep picks that belong to the encounter (either composition, so a Dread
+  // toggle doesn't drop them), in list order so the URL is stable
+  const requested = (opts && opts.enemies) || [];
+  const listed = enc ? [...enc.enemies, ...enc.dreadEnemies] : [];
+  const enemies = listed.filter((key, idx) => listed.indexOf(key) === idx && requested.includes(key));
+  openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat, enemies };
+
   document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
-  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey);
+  document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey, enemies);
 
   presentPanel(
     { type: 'encounter', key: encounterKey, act: openPanelInfo.act, cat: openPanelInfo.cat },
     `${getSiteBase()}/encounter/${encounterKey}/${settingsQuery()}`,
     opts, wasOpen
   );
+}
+
+// Pool-encounter picker tile: tapping enemies narrows the panel to the picked
+// ones; un-picking the last brings the whole list back. openEncounter's
+// history replace carries the picks into the URL (settings links only).
+function toggleEncounterEnemy(key) {
+  if (!openPanelInfo || openPanelInfo.type !== 'encounter') return;
+  const picks = openPanelInfo.enemies;
+  const next = picks.includes(key) ? picks.filter(k => k !== key) : [...picks, key];
+  openEncounter(openPanelInfo.key, openPanelInfo.act, openPanelInfo.cat, { enemies: next });
 }
 
 function openEnemy(enemyKey, opts) {

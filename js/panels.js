@@ -123,23 +123,43 @@ function renderEnemySection(key, collapsible, enc) {
 // Full detail-body HTML for an encounter panel. `enc` may be null (unknown
 // encounter) — falls back to rendering `encounterKey` as a single enemy
 // (single-enemy encounters share their monster's key).
-function buildEncounterPanelBody(enc, encounterKey) {
+// `picks` (enemy keys, from the picker or ?enemies=) narrows the panel to just
+// those enemies; the rest aren't rendered at all. Picks outside this
+// encounter's list are ignored, and none valid means the whole list.
+function buildEncounterPanelBody(enc, encounterKey, picks) {
+  const enemies = enc ? encounterEnemies(enc) : [];
+  const uniqueEnemies = enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
+  const picked = uniqueEnemies.filter(key => (picks || []).includes(key));
+  const shown = picked.length ? picked : uniqueEnemies;
+
   let compositionHtml = '';
   if (enc && enc.composition) {
-    compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span></div>`;
+    // A Composition means only some of the listed enemies show up (a pool),
+    // so it carries the picker for which ones you're facing
+    const picker = uniqueEnemies.length > 1 ? enemyPickerHtml(uniqueEnemies, picked) : '';
+    compositionHtml = `<div class="encounter-composition"><span class="composition-label">Composition</span><span class="composition-text">${enc.composition}</span>${picker}</div>`;
   }
   compositionHtml += renderDominionSection(enc);
 
-  const enemies = enc ? encounterEnemies(enc) : [];
-  if (enemies && enemies.length > 0) {
-    const uniqueEnemies = enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
-    const collapsible = uniqueEnemies.length > 1;
-    const sections = uniqueEnemies
+  if (shown.length > 0) {
+    const collapsible = shown.length > 1;
+    const sections = shown
       .map(key => renderEnemySection(key, collapsible, enc))
       .join('');
     return compositionHtml + sections + panelFeedbackLink;
   }
   return compositionHtml + renderEnemySection(encounterKey) + panelFeedbackLink;
+}
+
+// One tile per pool enemy; toggleEncounterEnemy lives in ui.js. With nothing
+// picked every tile is lit (whole list shown); once some are, the rest dim.
+function enemyPickerHtml(keys, picked) {
+  const tiles = keys.map(key => {
+    const on = picked.includes(key);
+    const name = enemyDatabase[key] ? enemyDatabase[key].name : key;
+    return `<button class="enemy-pick${on ? ' active' : ''}" onclick="toggleEncounterEnemy('${key}')" title="${name}" aria-label="${name}" aria-pressed="${on}"><img src="media/enemies/${key}.webp" alt="" onerror="this.style.visibility='hidden'"></button>`;
+  }).join('');
+  return `<div class="enemy-picker${picked.length ? ' has-picks' : ''}">${tiles}</div>`;
 }
 
 // Standalone enemy panel: a Dominion block per zone the enemy fights in

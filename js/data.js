@@ -274,7 +274,9 @@ function routeFromURL(initial) {
   const [, type, slug] = m;
   if (type === 'encounter') {
     const found = slugToEncounter[slug];
-    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial });
+    // ?enemies=a,b narrows the panel to those enemies (openEncounter validates them)
+    const enemies = (new URLSearchParams(window.location.search).get('enemies') || '').split(',').filter(Boolean);
+    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial, enemies });
   } else if (type === 'enemy') {
     if (enemyDatabase[slug]) openEnemy(slug, { fromRoute: true, initial });
   } else if (type === 'event') {
