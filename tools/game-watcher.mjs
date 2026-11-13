@@ -773,7 +773,9 @@ async function main() {
   if (fresh && lastTrigger?.kind === 'combat') await go(combatTarget(lastTrigger.id, true, true));
   else if (fresh && lastTrigger?.kind === 'event') await go(eventTarget(lastTrigger.id, true, false));
   else if (fresh && lastTrigger?.kind === 'soloEvent') await go(soloEventTarget(lastTrigger.savedSince));
-  else if (!DRY_RUN) {
+  else if (!DRY_RUN && !(await browser.alive())) {
+    // Nothing recent to show: open the window, but leave an already-open one
+    // where it is (a quiet log can still mean a fight is on screen)
     try { await browser.open(`${site.base}/`); } catch (e) { say(`Browser: ${e.message}`); }
   }
   say(`Watching ${LOG_FILE}${DRY_RUN ? ' (dry run)' : ''}. Press Ctrl+C to stop.`);
