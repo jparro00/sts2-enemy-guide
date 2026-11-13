@@ -219,19 +219,16 @@
 }
 .dominion-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 8px;
   margin-bottom: 6px;
 }
-.dominion-controls {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .boss-picker-inline {
-  display: inline-flex;
-  gap: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 2px;
 }
 .dominion-title {
   color: var(--dread-bright);
@@ -245,6 +242,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 .dominion-row {
   display: flex;

@@ -167,8 +167,8 @@ function bossPickerButtons(zone) {
   }).join('');
 }
 
-function dominionBlock(scope, controlsHtml, rowHtml) {
-  return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">Dominion</span><span class="dominion-controls"><span class="dominion-scope">${scope}</span>${controlsHtml}</span></div>${rowHtml}</div>`;
+function dominionBlock(scope, bodyHtml) {
+  return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">Dominion</span><span class="dominion-scope">${scope}</span></div>${bodyHtml}</div>`;
 }
 
 function dominionRow(boss, withThumb) {
@@ -186,14 +186,15 @@ function dominionRow(boss, withThumb) {
 function renderZoneDominion(zone, scope) {
   const boss = selectedDominionBoss(zone);
   if (!dreadMode || !boss) return '';
-  const picker = zoneDominionBosses(zone).length > 1 ? `<span class="boss-picker-inline">${bossPickerButtons(zone)}</span>` : '';
-  return dominionBlock(scope, picker, dominionRow(boss, !picker));
+  // Own row: three 56px buttons don't fit beside the title on phones
+  const picker = zoneDominionBosses(zone).length > 1 ? `<div class="boss-picker-inline">${bossPickerButtons(zone)}</div>` : '';
+  return dominionBlock(scope, picker + dominionRow(boss, !picker));
 }
 
 function renderDominionSection(enc) {
   if (!dreadMode || !enc) return '';
   if (enc.cat !== 'boss') return renderZoneDominion(enc.zone, 'Act boss');
-  return enc.dominion ? dominionBlock('Other fights this act', '', dominionRow(enc, true)) : '';
+  return enc.dominion ? dominionBlock('Other fights this act', dominionRow(enc, true)) : '';
 }
 
 // Full detail-body HTML for an event panel.
