@@ -30,6 +30,12 @@ Any page link can preset the display settings, e.g. `spirecodex.com/beta/enemy/r
 | `boss` | Act boss keys, comma-separated, one per act (Dread only). Acts left out use their first boss. |
 | `enemies` | Encounter pages only: enemy keys, comma-separated, e.g. `/encounter/ruby-raiders/?enemies=ruby-raider-axe,ruby-raider-brute,ruby-raider-tracker`. Shows just those enemies. Pool encounters also have a picker for this. |
 
+## Game watcher (Windows)
+
+`tools/game-watcher.mjs` follows a run while you play and opens the matching page, with these link settings filled in, each time a fight or event starts. It opens its own browser window; place it once and Chrome remembers where. Run `tools\game-watcher.bat` (needs Node 22+), or `node tools/game-watcher.mjs --dry-run` to print the links without a browser.
+
+It reads only the game's own log and save files. Pool encounters show the enemies that were actually rolled. In a solo run the game doesn't log which event you entered, so the watcher works it out from the run's event queue; an event whose entry requirement depends on your deck can occasionally be guessed wrong.
+
 ---
 
 All game assets and data belong to [Mega Crit](https://www.megacrit.com/). This is an unofficial fan project, not affiliated with or endorsed by Mega Crit. Enemy patterns are kept current with the latest game patch — the exact version is shown in the site's banner and footer.
