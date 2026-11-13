@@ -143,6 +143,19 @@ function enemyFightZones(enemyKey) {
   return [...new Set(encountersWithEnemy(enemyKey).filter(e => e.cat !== 'boss').map(e => e.zone))];
 }
 
+// Act and category an enemy panel scales in (getActMultiplier reads them from
+// openPanelInfo). Unlike an encounter, an enemy has no act of its own: use the
+// act being browsed when the enemy fights there, otherwise the first act it
+// appears in. 'boss' only when every fight in that act is a boss fight, which
+// is what picks act 3's boss multiplier.
+function enemyScalingContext(enemyKey, preferredZone) {
+  const encs = encountersWithEnemy(enemyKey);
+  if (!encs.length) return { act: preferredZone, cat: null };
+  const zone = encs.some(e => e.zone === preferredZone) ? preferredZone : encs[0].zone;
+  const nonBoss = encs.find(e => e.zone === zone && e.cat !== 'boss');
+  return { act: zone, cat: nonBoss ? nonBoss.cat : 'boss' };
+}
+
 // ── Dominions ──
 // A Dread run's act boss (rolled per run, shown on the map) projects its
 // encounter's Dominion onto every other fight in the act. The user picks the
