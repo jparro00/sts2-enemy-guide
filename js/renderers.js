@@ -215,24 +215,27 @@ function dominionGrantsHtml(grants, enemyKey, labelZones) {
   }).join(', ');
 }
 
-function renderMoveRefs(text, enemyKey) {
+// `marked`: move-name slugs to underline, i.e. the moves a ?moves= link marks
+// as current (passed for the attack pattern only)
+function renderMoveRefs(text, enemyKey, marked) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
   return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
     const moves = enemyKey && enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].moves : [];
     const move = moves.find(m => m.name === moveName);
+    const cls = marked && marked.includes(slugify(moveName)) ? 'move-ref move-ref-current' : 'move-ref';
     if (move) {
       const intents = renderIntents(move.intent);
       const fx = moveEffectsText(move);
       const effect = markDread(renderPowerRefs(scaleEffects(fx.text).replace(/;/g, '<br>'), null), fx.dread);
-      return `<span class="move-ref">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
+      return `<span class="${cls}">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
-    return `<span class="move-ref">${moveName}</span>`;
+    return `<span class="${cls}">${moveName}</span>`;
   });
 }
 
-function renderPowerRefs(text, enemyKey) {
+function renderPowerRefs(text, enemyKey, marked) {
   // First handle move refs (with enemy context for tooltips), then power refs
-  let result = renderMoveRefs(text, enemyKey);
+  let result = renderMoveRefs(text, enemyKey, marked);
   result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
