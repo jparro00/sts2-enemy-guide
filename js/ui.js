@@ -63,9 +63,11 @@ function setPlayerCount(count) {
 
 // ── URL settings: ?players=3&act=hive&dread=1&boss=vantom,kaiser-crab ──
 // A link can preset the display settings. They apply to this visit only: the
-// saved Dread and boss choices stay as they were. Once a page is opened with
-// any of them, the address bar keeps tracking the live settings, so copying it
-// reproduces what's on screen. A plain visit never grows a query string.
+// saved Dread and boss choices stay as they were. An act the link doesn't name
+// a boss for uses its first boss, so `boss=` lists only the other picks. Once a
+// page is opened with any of them, the address bar keeps tracking the live
+// settings, so copying it reproduces what's on screen. A plain visit never
+// grows a query string.
 const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss'];
 let urlSettingsActive = false;
 
@@ -83,6 +85,7 @@ function applyUrlSettings() {
   if (act && (act in zoneToActNumber || act === 'events')) currentAct = act;
 
   if (!hasDreadData) return;   // no Dread on this branch: nothing to apply
+  dreadBosses = {};            // acts the link leaves out fall back to their first boss
   for (const key of (params.get('boss') || '').split(',')) {
     const zone = ACTS.map(a => a.key).find(z => zoneDominionBosses(z).some(b => b.key === key));
     if (zone) dreadBosses[zone] = key;
@@ -97,7 +100,10 @@ function settingsQuery() {
   let q = `?players=${playerCount}&act=${currentAct}`;
   if (hasDreadData) {
     q += `&dread=${dreadMode ? 1 : 0}`;
-    const bosses = ACTS.filter(a => zoneDominionBosses(a.key).length > 1).map(a => selectedDominionBoss(a.key).key);
+    // First bosses are implied by their absence (see applyUrlSettings)
+    const bosses = ACTS.map(a => selectedDominionBoss(a.key))
+      .filter((b, i) => b && b !== zoneDominionBosses(ACTS[i].key)[0])
+      .map(b => b.key);
     if (dreadMode && bosses.length) q += `&boss=${bosses.join(',')}`;
   }
   return q;
