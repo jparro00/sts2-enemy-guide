@@ -21,6 +21,9 @@
 //    reproduces that roll, so the picks are known as the fight starts.
 //  - Solo runs never log which event was entered, so the event is predicted from
 //    the save's event queue (see predictEvent).
+//  - With the SpireCodexBridge mod installed (Abyssal repo), spirecodex_bridge.json
+//    adds each enemy's current move, marked on the page every turn, and the exact
+//    event id. The game writes intents nowhere else.
 // Requires Node 22+ (global fetch and WebSocket).
 
 import fs from 'node:fs';
@@ -40,6 +43,7 @@ const HEADLESS = args.includes('--headless');   // testing: no visible window
 
 const GAME_DIR = opt('--game-dir') || path.join(process.env.APPDATA || path.join(os.homedir(), 'AppData/Roaming'), 'SlayTheSpire2');
 const LOG_FILE = path.join(GAME_DIR, 'logs', 'godot.log');
+const BRIDGE_FILE = path.join(GAME_DIR, 'spirecodex_bridge.json');
 const LIVE_SITE = 'https://spirecodex.com';
 
 const say = msg => console.log(`[${new Date().toLocaleTimeString()}] ${msg}`);
@@ -69,7 +73,9 @@ function parseCsv(text) {
   return body.filter(r => r.some(Boolean)).map(r => Object.fromEntries(header.map((h, i) => [h, r[i] ?? ''])));
 }
 
-let site = null;   // { base, encounters: Map(key -> row), events: Set(key) }
+// { base, encounters: Map(key -> row), events: Map(key -> page slug), moves: Map(monster key -> move slugs) }
+let site = null;
+const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');   // js/config.js
 
 async function chooseSiteBase(gameVersion) {
   if (SITE_OVERRIDE) return SITE_OVERRIDE;
@@ -89,12 +95,18 @@ async function loadSite(gameVersion) {
     if (!res.ok) throw new Error(`${base}${p}: HTTP ${res.status}`);
     return res.text();
   };
-  const [enc, ev] = await Promise.all([get('/data/encounters.csv'), get('/data/events.csv')]);
+  const [enc, ev, mv] = await Promise.all([get('/data/encounters.csv'), get('/data/events.csv'), get('/data/monster_moves.csv')]);
+  const moves = new Map();
+  for (const r of parseCsv(mv)) {
+    if (!moves.has(r.Enemy)) moves.set(r.Enemy, []);
+    moves.get(r.Enemy).push(slugify(r.Move));
+  }
   site = {
     base,
     encounters: new Map(parseCsv(enc).map(r => [r.Key, r])),
-    // Event pages are addressed by their slugified name (js/config.js slugify), not the Key
-    events: new Map(parseCsv(ev).map(r => [r.Key, r.Name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')])),
+    // Event pages are addressed by their slugified name, not the Key
+    events: new Map(parseCsv(ev).map(r => [r.Key, slugify(r.Name)])),
+    moves,
   };
   say(`Site: ${base} (${site.encounters.size} encounters, ${site.events.size} events)`);
 }
@@ -139,6 +151,49 @@ function monsterKey(gameId) {
 
 const siteEventSlug = gameId => site.events.get(bare(gameId).toLowerCase()) || null;
 const zoneOf = actId => (actId ? bare(actId).toLowerCase() : null);
+
+// A move the bridge reports (state id like WHIP_SLAP_MOVE or THRASH_MOVE_2, plus
+// the game's display title) -> "enemy:move-slug" for ?moves=, or null when the
+// site has no such row. The site names moves by their in-game title, so the
+// title usually matches; the id forms cover repeat states (SWING_1 -> swing)
+// and the aliases cover rows the site names differently from the game.
+const MOVE_ALIASES = {
+  'corpse-slug:GOOP': 'gloop',
+  'cubex-construct:EXPEL': 'expel-blast',
+  'exoskeleton:MANDIBLES': 'mandible',
+  'fogmog:SWIPE_RANDOM': 'swipe',                  // Swipe at a random target
+  'fuzzy-wurm-crawler:FIRST_ACID_GOOP': 'acid-goop', // its opening Acid Goop
+  'mawler:RIP_AND_TEAR': 'rip-tear',
+  'torch-head-amalgam:BEAM': 'soul-beam',
+};
+// Monsters the site splits or merges differently: the Decimillipede's segments
+// are one site enemy, and the Test Subject is one monster per phase on the site.
+const MOVE_SITE_KEYS = {
+  'decimillipede-segment': ['decimillipede'],
+  'decimillipede-segment-front': ['decimillipede'],
+  'decimillipede-segment-middle': ['decimillipede'],
+  'decimillipede-segment-back': ['decimillipede'],
+  'test-subject': ['test-subject-stage-1', 'test-subject-stage-2', 'test-subject-stage-3'],
+};
+function siteMoveMark(monsterId, stateId, title) {
+  if (!stateId) return null;
+  const own = monsterKey(monsterId);
+  const base = stateId.replace(/_MOVE/g, '');
+  for (const key of MOVE_SITE_KEYS[own] || [own]) {
+    const rows = site.moves.get(key);
+    if (!rows) continue;
+    const tries = [
+      MOVE_ALIASES[`${key}:${base}`],
+      title && slugify(title),
+      slugify(base),                                   // WHIP_SLAP -> whip-slap
+      slugify(base.replace(/(\D)(\d+)$/, '$1_$2')),    // SLASH2 -> slash-2
+      slugify(base.replace(/_?\d+$/, '')),             // SWING_1 -> swing
+    ];
+    const hit = tries.find(s => s && rows.includes(s));
+    if (hit) return `${key}:${hit}`;
+  }
+  return null;
+}
 
 // ---------------------------------------------------------------------------
 // The game's encounter RNG, ported from the decompiled source:
@@ -381,13 +436,14 @@ function bossKeys(ctx) {
   return keys;
 }
 
-function buildUrl(pagePath, ctx, enemies) {
+function buildUrl(pagePath, ctx, enemies, marks = []) {
   let q = `?players=${Math.min(4, Math.max(1, ctx.players || 1))}`;
   if (ctx.actZone) q += `&act=${ctx.actZone}`;
   q += `&dread=${ctx.dread ? 1 : 0}`;
   const bosses = ctx.dread ? bossKeys(ctx) : [];
   if (bosses.length) q += `&boss=${bosses.join(',')}`;
   if (enemies.length) q += `&enemies=${[...new Set(enemies)].join(',')}`;
+  if (marks.length) q += `&moves=${marks.join(',')}`;
   return `${site.base}${pagePath}${q}`;
 }
 
@@ -401,7 +457,7 @@ function describe(ctx) {
 
 let lastTrigger = null;   // replayed at startup so the window opens on the current room
 
-function combatTarget(encounterId, useSave) {
+function combatTarget(encounterId, useSave, withBridgeMarks = false) {
   const row = siteEncounter(encounterId);
   if (!row) return { skip: `fight ${encounterId} has no encounter page` };
   const ctx = runContext(useSave);
@@ -412,7 +468,11 @@ function combatTarget(encounterId, useSave) {
     else note = ' (enemies unknown: run start not seen)';
   }
   const label = `${row.Encounter}${enemies.length ? ` [${enemies.join(', ')}]` : ''}${note}`;
-  return { url: buildUrl(`/encounter/${row.Key}/`, ctx, enemies), label: `Fight  ${label}  |  ${describe(ctx)}` };
+  // Moves are rolled just after the room is created and arrive via the bridge.
+  // Only at startup can the file already hold this fight; live, it may still
+  // hold an earlier fight of the same encounter.
+  const marks = withBridgeMarks && bridge.data?.combat?.encounter === encounterId ? combatMarks(bridge.data.combat) : [];
+  return { url: buildUrl(`/encounter/${row.Key}/`, ctx, enemies, marks), label: `Fight  ${label}  |  ${describe(ctx)}`, encounterKey: row.Key };
 }
 
 function eventTarget(eventId, useSave, predicted) {
@@ -440,17 +500,94 @@ function soloEventTarget(savedSince = false) {
 
 let browser = null;
 let lastUrl = null;
+let lastFight = null;   // { url, encounterKey } of the fight on screen, for move marks
 
 async function go(target) {
   if (!target) return;
   if (target.skip) { say(`Skip   ${target.skip}`); return; }
-  say(target.label);
-  if (target.url === lastUrl) return;
+  if (target.encounterKey) lastFight = { url: target.url, encounterKey: target.encounterKey };
+  if (target.url === lastUrl) return;   // e.g. a predicted event the bridge then confirms
   lastUrl = target.url;
+  say(target.label);
   console.log(`         ${target.url}`);
   if (!DRY_RUN) {
     try { await browser.open(target.url); } catch (e) { say(`Browser: ${e.message}`); }
   }
+}
+
+// ---------------------------------------------------------------------------
+// SpireCodexBridge mod output. The mod rewrites the file (atomically) whenever
+// an intent changes or an event begins; `session` changes per game launch and
+// event.seq per event, so old content is never mistaken for new.
+
+const bridge = {
+  mtime: 0, session: null, eventSeq: null, data: null,
+  marks: null,            // marks last shown for the current fight
+  liveThisLog: false,     // the mod has written since this godot.log began
+  unmatched: new Set(),
+};
+
+function combatMarks(combat) {
+  const marks = [];
+  for (const e of combat.enemies || []) {
+    if (!e.alive || !e.move) continue;
+    const mark = siteMoveMark(e.monster, e.move, e.title);
+    if (mark) marks.push(mark);
+    else if (!bridge.unmatched.has(`${e.monster}:${e.move}`)) {
+      bridge.unmatched.add(`${e.monster}:${e.move}`);
+      say(`Note   no site row for ${e.monster} ${e.move}${e.title ? ` ("${e.title}")` : ''}`);
+    }
+  }
+  return marks;
+}
+
+function readBridge() {
+  let st;
+  try { st = fs.statSync(BRIDGE_FILE); } catch { return null; }
+  if (st.mtimeMs === bridge.mtime) return null;
+  try {
+    const data = JSON.parse(fs.readFileSync(BRIDGE_FILE, 'utf8'));
+    bridge.mtime = st.mtimeMs;
+    return data.schema === 1 ? data : null;
+  } catch { return null; }   // unreadable this instant: try again next tick
+}
+
+// `live` is false for the read at startup: note what's there, show nothing.
+async function handleBridge(data, live) {
+  const newSession = data.session !== bridge.session;
+  bridge.session = data.session;
+  bridge.data = data;
+
+  // An event is new when its seq changes; in a launch not seen before, only if
+  // this very write announced it (the mod gives the event the write's seq)
+  const ev = data.event;
+  const eventIsNew = ev && (newSession ? ev.seq === data.seq : ev.seq !== bridge.eventSeq);
+  bridge.eventSeq = ev ? ev.seq : null;
+  if (live && eventIsNew) {
+    lastTrigger = { kind: 'event', id: `EVENT.${ev.id}` };
+    await go(eventTarget(`EVENT.${ev.id}`, true, false));
+  }
+
+  const fight = data.combat;
+  if (fight && lastTrigger?.kind === 'combat' && fight.encounter === lastTrigger.id) {
+    const marks = combatMarks(fight);
+    if (marks.join(',') !== bridge.marks) {
+      bridge.marks = marks.join(',');
+      if (live) await showMarks(marks);
+    }
+  }
+}
+
+async function showMarks(marks) {
+  say(`Moves  ${marks.length ? marks.join(', ') : '(none)'}`);
+  if (DRY_RUN || !lastFight) return;
+  try {
+    if (await browser.highlight(lastFight.encounterKey, marks)) return;
+    // No page with that fight open (closed, or an old site): load it with the marks
+    const url = lastFight.url.replace(/&moves=[^&]*/, '') + (marks.length ? `&moves=${marks.join(',')}` : '');
+    lastUrl = url;
+    await browser.open(url);
+  } catch (e) { say(`Browser: ${e.message}`); }
 }
 
 // ---------------------------------------------------------------------------
@@ -486,6 +623,8 @@ async function handleLine(line, live) {
     if (lastTrigger) lastTrigger.savedSince = true;
   } else if ((m = line.match(/Creating NCombatRoom with mode=ActiveCombat encounter=([A-Z0-9_]+)\./))) {
     lastTrigger = { kind: 'combat', id: m[1] };
+    bridge.marks = null;
+    lastFight = null;   // set again by go() only if this fight has a page
     if (live) await go(combatTarget(m[1], run.saveFresh));
     run.saveFresh = false;
   } else if ((m = line.match(/\[EventSynchronizer\] Beginning event (EVENT\.[A-Z0-9_]+)/))) {
@@ -495,7 +634,7 @@ async function handleLine(line, live) {
   } else if (line.includes("Preloading 'Event Room' assets")) {
     if (!run.saveFresh) return;   // guest, or no save this room: wait for the multiplayer event line
     lastTrigger = { kind: 'soloEvent' };
-    if (!live) return;
+    if (!live || bridge.liveThisLog) return;   // with the mod, its exact event follows
     const target = soloEventTarget();
     if (target) { await go(target); run.saveFresh = false; }   // null: multiplayer host, the event line follows
   }
@@ -570,6 +709,22 @@ class Browser {
     if (!page) { await fetch(this.endpoint(`/json/new?${url}`), { method: 'PUT' }); return; }
     await cdp(page.webSocketDebuggerUrl, 'Page.navigate', { url });
   }
+  // Swap the marked moves in place (site's setMoveHighlights) if the window
+  // shows this fight. The fight's page may still be loading, so retry briefly.
+  async highlight(encounterKey, marks) {
+    if (!(await this.alive())) return false;
+    const targets = await (await fetch(this.endpoint('/json/list'))).json();
+    const page = targets.find(t => t.type === 'page' && !t.url.startsWith('devtools://'));
+    if (!page) return false;
+    const expression = `(typeof setMoveHighlights === 'function' && typeof openPanelInfo !== 'undefined' && openPanelInfo
+      && openPanelInfo.key === ${JSON.stringify(encounterKey)}) ? setMoveHighlights(${JSON.stringify(marks)}) : null`;
+    for (let i = 0; i < 20; i++) {
+      const res = await cdp(page.webSocketDebuggerUrl, 'Runtime.evaluate', { expression, returnByValue: true });
+      if (res?.result?.value === true) return true;
+      await new Promise(r => setTimeout(r, 250));
+    }
+    return false;
+  }
 }
 
 function cdp(wsUrl, method, params) {
@@ -609,10 +764,13 @@ async function main() {
   const { lines } = tail.read();
   for (const line of lines) await handleLine(line, false);
   await loadSite(run.gameVersion);
+  const initialBridge = readBridge();
+  if (initialBridge) await handleBridge(initialBridge, false);
+  try { bridge.liveThisLog = bridge.mtime >= fs.statSync(LOG_FILE).birthtimeMs; } catch { /* no log yet */ }
 
   let fresh = false;
   try { fresh = Date.now() - fs.statSync(LOG_FILE).mtimeMs < 15 * 60 * 1000; } catch { /* no log yet */ }
-  if (fresh && lastTrigger?.kind === 'combat') await go(combatTarget(lastTrigger.id, true));
+  if (fresh && lastTrigger?.kind === 'combat') await go(combatTarget(lastTrigger.id, true, true));
   else if (fresh && lastTrigger?.kind === 'event') await go(eventTarget(lastTrigger.id, true, false));
   else if (fresh && lastTrigger?.kind === 'soloEvent') await go(soloEventTarget(lastTrigger.savedSince));
   else if (!DRY_RUN) {
@@ -626,8 +784,10 @@ async function main() {
     busy = true;
     try {
       const { lines: next, restarted } = tail.read();
-      if (restarted) { say('Game restarted'); resetRun(); }
+      if (restarted) { say('Game restarted'); resetRun(); bridge.liveThisLog = false; }
       for (const line of next) await handleLine(line, true);
+      const update = readBridge();
+      if (update) { bridge.liveThisLog = true; await handleBridge(update, true); }
     } catch (e) {
       say(`Error: ${e.message}`);
     } finally { busy = false; }
@@ -639,4 +799,4 @@ if (process.argv[1] && path.resolve(process.argv[1]).toLowerCase() === fileURLTo
   main().catch(e => { console.error(e); process.exit(1); });
 }
 
-export { ROLLS, encounterRng, predictEvent, parseCsv, siteEncounter, monsterKey, loadSite, handleLine, run };
+export { ROLLS, encounterRng, predictEvent, parseCsv, siteEncounter, monsterKey, siteMoveMark, loadSite, handleLine, run };
