@@ -10,7 +10,7 @@ let itemsRef = {};       // unified lookup: { key: { ...data, category } }
 let betaChanges = {};    // keyed by "type:name" -> change description
 let siteConfig = {};     // loaded from site-config.json
 let playerCount = 1;          // multiplayer scaling: 1 = solo (no scaling)
-let openPanelInfo = null;     // currently open panel: { type, key, act, cat, enemies? } — read by renderers.js scaling
+let openPanelInfo = null;     // currently open panel: { type, key, act, cat, enemies?, moves? } — read by renderers.js scaling
 let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 let dreadMode = false;        // Dread toggle (ui.js) — read by renderers.js/panels.js; always false in snapshot builds
 let hasDreadData = false;     // set by buildDataStructures when any Dread* column is filled; gates the toggle

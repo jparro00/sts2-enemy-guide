@@ -272,13 +272,15 @@ function routeFromURL(initial) {
     return;
   }
   const [, type, slug] = m;
+  const params = new URLSearchParams(window.location.search);
+  const list = name => (params.get(name) || '').split(',').filter(Boolean);
   if (type === 'encounter') {
     const found = slugToEncounter[slug];
-    // ?enemies=a,b narrows the panel to those enemies (openEncounter validates them)
-    const enemies = (new URLSearchParams(window.location.search).get('enemies') || '').split(',').filter(Boolean);
-    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial, enemies });
+    // ?enemies=a,b narrows the panel to those enemies and ?moves=enemy:move
+    // marks moves (openEncounter validates both)
+    if (found) openEncounter(slug, found.act, found.cat, { fromRoute: true, initial, enemies: list('enemies'), moves: list('moves') });
   } else if (type === 'enemy') {
-    if (enemyDatabase[slug]) openEnemy(slug, { fromRoute: true, initial });
+    if (enemyDatabase[slug]) openEnemy(slug, { fromRoute: true, initial, moves: list('moves') });
   } else if (type === 'event') {
     const key = slugToEventKey[slug];
     if (key) openEvent(key, { fromRoute: true, initial });

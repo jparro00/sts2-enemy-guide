@@ -59,19 +59,25 @@ const eventTabsHtml = `
 
 // `enc` is the encounter the section sits in (for that fight's Dominion);
 // omitted on standalone enemy panels.
-function renderEnemySection(key, collapsible, enc) {
+// `current` holds the moves to mark ("enemy:move-slug", from ?moves=). Two of
+// the same enemy can be on different moves, so an enemy may appear several
+// times; a move named more than once gets a count.
+function renderEnemySection(key, collapsible, enc, current) {
   const data = enemyDatabase[key];
   if (!data) return `<div class="enemy-section"><div class="enemy-section-name">${key}${renderBetaBadge('monster', key)}</div><p style="color:#666;">No data available.</p></div>`;
   const name = data.name;
   const moves = data.moves.filter(isMoveVisible);
+  const marks = (current || []).filter(e => e.startsWith(key + ':')).map(e => e.slice(key.length + 1));
 
   const movesHtml = moves.map(m => {
     const fx = moveEffectsText(m);
     const note = m.notes ? ascensionOnlyIfDread(m.notes) : '';
+    const times = marks.filter(s => s === slugify(m.name)).length;
+    const rowClass = [fx.dread ? 'dread-row' : '', times ? 'move-current' : ''].filter(Boolean).join(' ');
     return `
-    <tr${fx.dread ? ' class="dread-row"' : ''}>
+    <tr${rowClass ? ` class="${rowClass}"` : ''}>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
-      <td><strong>${m.name}</strong></td>
+      <td><strong>${m.name}</strong>${times > 1 ? `<span class="move-count">×${times}</span>` : ''}</td>
       <td>${markDread(renderPowerRefs(scaleEffects(fx.text).replace(/;/g, '<br>'), key), fx.dread)}${note ? `<br><span class="move-note">${renderPowerRefs(note, key)}</span>` : ''}</td>
     </tr>
   `;
@@ -108,7 +114,7 @@ function renderEnemySection(key, collapsible, enc) {
         ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key, labelZones))}
 
         <h3>Moves</h3>
-        <table>
+        <table class="moves-table">
           <tr><th style="width:40px;">Intent</th><th>Move</th><th>Effect</th></tr>
           ${movesHtml}
         </table>
@@ -126,7 +132,8 @@ function renderEnemySection(key, collapsible, enc) {
 // `picks` (enemy keys, from the picker or ?enemies=) narrows the panel to just
 // those enemies; the rest aren't rendered at all. Picks outside this
 // encounter's list are ignored, and none valid means the whole list.
-function buildEncounterPanelBody(enc, encounterKey, picks) {
+// `current`: marked moves (see renderEnemySection).
+function buildEncounterPanelBody(enc, encounterKey, picks, current) {
   const enemies = enc ? encounterEnemies(enc) : [];
   const uniqueEnemies = enemies.filter((key, idx, arr) => arr.indexOf(key) === idx);
   const picked = uniqueEnemies.filter(key => (picks || []).includes(key));
@@ -144,11 +151,11 @@ function buildEncounterPanelBody(enc, encounterKey, picks) {
   if (shown.length > 0) {
     const collapsible = shown.length > 1;
     const sections = shown
-      .map(key => renderEnemySection(key, collapsible, enc))
+      .map(key => renderEnemySection(key, collapsible, enc, current))
       .join('');
     return compositionHtml + sections + panelFeedbackLink;
   }
-  return compositionHtml + renderEnemySection(encounterKey) + panelFeedbackLink;
+  return compositionHtml + renderEnemySection(encounterKey, false, undefined, current) + panelFeedbackLink;
 }
 
 // One tile per pool enemy; toggleEncounterEnemy lives in ui.js. With nothing
@@ -164,9 +171,9 @@ function enemyPickerHtml(keys, picked) {
 
 // Standalone enemy panel: a Dominion block per zone the enemy fights in
 // (outside boss rooms), then the enemy section.
-function buildEnemyPanelBody(key) {
+function buildEnemyPanelBody(key, current) {
   const dominions = dreadMode ? enemyFightZones(key).map(z => renderZoneDominion(z, `${zoneLabels[z]} boss`)).join('') : '';
-  return dominions + renderEnemySection(key) + panelFeedbackLink;
+  return dominions + renderEnemySection(key, false, undefined, current) + panelFeedbackLink;
 }
 
 // Dread Dominions. In Dread, every fight in an act before its boss gets the

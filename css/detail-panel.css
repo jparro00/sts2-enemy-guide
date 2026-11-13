@@ -152,6 +152,32 @@
   vertical-align: top;
 }
 .detail-body tr:hover td { background: #161620; }
+/* Moves a link marks as current (?moves=, the game watcher): a rounded yellow
+   frame around the whole row. Cell radii need the separate border model, and
+   inset shadows follow the radius without changing the row's size. */
+.detail-body table.moves-table { border-collapse: separate; border-spacing: 0; }
+.detail-body tr.move-current td {
+  background: rgba(255, 216, 102, 0.08);
+  border-bottom-color: transparent;
+  box-shadow: inset 0 2px 0 var(--gold-light), inset 0 -2px 0 var(--gold-light);
+}
+.detail-body tr.move-current td:first-child {
+  border-radius: 8px 0 0 8px;
+  box-shadow: inset 2px 2px 0 var(--gold-light), inset 2px -2px 0 var(--gold-light);
+}
+.detail-body tr.move-current td:last-child {
+  border-radius: 0 8px 8px 0;
+  box-shadow: inset -2px 2px 0 var(--gold-light), inset -2px -2px 0 var(--gold-light);
+}
+.move-count {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: var(--gold-light);
+  color: #111;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
 .detail-body .pattern-text {
   font-size: 0.95rem;
   line-height: 1.6;
