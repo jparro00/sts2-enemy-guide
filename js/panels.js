@@ -12,7 +12,7 @@ const panelFeedbackLink = `<div class="feedback-link" style="margin-top: 20px; p
 // index.html by build_snapshots.mjs so there is no pre-JS flash.
 
 function buildActBarHtml(selectedAct) {
-  const actCards = ACTS.map(a => `
+  const actCards = ACTS.filter(a => !hiddenZones.includes(a.key)).map(a => `
   <div class="act-card act-${a.key}${a.key === selectedAct ? ' selected' : ''}" data-act="${a.key}" onclick="selectAct('${a.key}')">
     <img src="${a.image}" alt="${a.name}">
     <div class="act-text"><div class="act-label">Act ${a.actNumber}</div><div class="act-name">${a.name}</div></div>
@@ -51,11 +51,15 @@ const encounterTabsHtml = `
   <div class="cat-tab" data-cat="events" onclick="selectCat('events')">Events</div>
 `;
 
-const eventTabsHtml = `
+// The category tabs for an act; the Events act gets one per event zone
+function categoryTabsHtml(act) {
+  if (act !== 'events') return encounterTabsHtml;
+  return `
   <div class="cat-tab active" data-cat="all" onclick="selectCat('all')">All</div>` +
-  [...ACTS, SHARED_ZONE].map(z => `
+    [...ACTS, SHARED_ZONE].filter(z => !hiddenZones.includes(z.key)).map(z => `
   <div class="cat-tab" data-cat="ev_${z.key}" onclick="selectCat('ev_${z.key}')">${z.name}</div>`).join('') + `
 `;
+}
 
 // ── Browse grid (encounter and event cards) and search results. ui.js and
 // search.js put them in the page; the in-game panel renders the same HTML.
@@ -153,7 +157,7 @@ function buildGridHtml(act, cat) {
     let html = '';
     if (cat === 'all') {
       // Show all zones grouped
-      for (const zone of eventZoneOrder) {
+      for (const zone of eventZoneOrder.filter(z => !hiddenZones.includes(z))) {
         html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
       }
     } else {
@@ -190,7 +194,7 @@ function buildGridHtml(act, cat) {
 function buildSearchResultsHtml(q) {
   // Search all encounters across all acts/categories (orders from config.js)
   const matches = [];
-  for (const zone of zoneOrder) {
+  for (const zone of zoneOrder.filter(z => !hiddenZones.includes(z))) {
     for (const cat of encounterCatKeys) {
       const encs = encounters[zone]?.[cat] || [];
       for (const enc of encs) {
@@ -206,6 +210,7 @@ function buildSearchResultsHtml(q) {
   // Also search events
   const eventMatches = [];
   for (const act in eventsData) {
+    if (hiddenZones.includes(act)) continue;
     for (const ev of eventsData[act]) {
       if (ev.name.toLowerCase().includes(q)) {
         eventMatches.push({ ev, zone: act });

@@ -5,7 +5,7 @@
 // Panel content builders (renderEnemySection, buildEncounterPanelBody,
 // buildEventPanelBody) live in js/panels.js — shared with the snapshot build.
 
-// Category tab markup (encounterTabsHtml / eventTabsHtml) and the grid's
+// Category tab markup (categoryTabsHtml) and the grid's
 // cards (buildGridHtml) live in js/panels.js, derived from ENCOUNTER_CATS /
 // ACTS in config.js.
 
@@ -210,7 +210,7 @@ function selectAct(act) {
 
   // Swap category tabs based on mode
   const tabsContainer = document.getElementById('category-tabs');
-  tabsContainer.innerHTML = isEvents ? eventTabsHtml : encounterTabsHtml;
+  tabsContainer.innerHTML = categoryTabsHtml(act);
 
   // Update active tab to reflect currentCat
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
