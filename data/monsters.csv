@@ -31,7 +31,7 @@ frog-knight,Frog Knight,191 (199),"Phase 1:
 Cycles <Tongue Lash> → <Strike Down Evil> → <For the Queen>.
 
 Phase 2 (below 50% HP after using <For the Queen>):
-Uses <Beetle Charge> once, then restarts Phase 1.",,plating,{plating} 15 (19),,
+Uses <Beetle Charge> once, then restarts Phase 1.",,plating,{plating} 15 (A8 19),,
 fuzzy-wurm-crawler,Fuzzy Wurm Crawler,55 - 57 (58 - 59),"Opens with <Acid Goop>.
 Then cycles <Inhale> → <Acid Goop> → <Acid Goop>.",,,,,
 globe-head,Globe Head,148 (158),Cycles <Shocking Slap> → <Thunder Strike> → <Galvanic Burst>.,,galvanic,{galvanic} 6 (8),,
@@ -51,7 +51,7 @@ Then cycles <Bloat> → <Super Gas Blast>.",,smoggy,,,
 gas-bomb,Gas Bomb,7 (8),Always uses <Explode>.,,minion,,,
 living-shield,Living Shield,55 (65),"While Turret Operator alive: Always uses <Shield Slam>.
 After Turret Operator dies: Always uses <Smash>.",,rampart,{rampart} 25,,
-louse-progenitor,Louse Progenitor,134 - 136 (138 - 141),Cycles <Web Cannon> → <Curl and Grow> → <Pounce>.,,curl_up,{curl_up} (14/18 {block}),,
+louse-progenitor,Louse Progenitor,134 - 136 (138 - 141),Cycles <Web Cannon> → <Curl and Grow> → <Pounce>.,,curl_up,{curl_up} 14 (A8 18),,
 mawler,Mawler,72 (76),"Opens with <Claw>.
 Then chooses randomly from <Rip & Tear>, <Roar>, <Claw>.",,,,,
 myte,Myte,61 - 67 (64 - 69),Cycles <Toxic> → <Bite> → <Suck>.,"[info] 1st starts <Toxic>, 2nd starts <Suck>.",,,,
@@ -71,14 +71,14 @@ ruby-raider-tracker,Ruby Raider (Tracker),21 - 25 (22 - 26),"Opens with <Track>,
 scroll-of-biting,Scroll of Biting,30 - 37 (33 - 39),Cycles <Chomp> → <More Teeth> → <Chew> (50% chance to repeat <Chew> once).,"[info] 1st/2nd/3rd evenly distributed between <Chomp>, <Chew>, <More Teeth>. 4th starts <More Teeth>.",paper_cuts,{paper_cuts} 2,,
 seapunk,Seapunk,44 - 46 (47 - 49),Cycles <Sea Kick> → <Spinning Kick> → <Bubble Burp>.,,,,,
 sewer-clam,Sewer Clam,56 (58),"Opens with <Jet>.
-Then cycles <Pressurize> → <Jet>.",,plating,{plating} 8 (9),,
+Then cycles <Pressurize> → <Jet>.",,plating,{plating} 8 (A8 9),,
 shrinker-beetle,Shrinker Beetle,38 - 40 (40 - 42),"Opens with <Shrinker>.
 Then cycles <Chomp> → <Stomp>.",,shrink,,,
 slimed-berserker,Slimed Berserker,261 (281),Cycles <Vomit Ichor> → <Furious Pummeling> → <Leeching Hug> → <Smother>.,,,,,
 slithering-strangler,Slithering Strangler,53 - 55 (54 - 56),Cycles <Constrict> → <Thwack> or <Lash> (50/50).,,constrict,,,
 sludge-spinner,Sludge Spinner,37 - 39 (41 - 42),"Opens with <Oil Spray>.
 Then chooses randomly from all moves.",,,,,
-slumbering-beetle,Slumbering Beetle,86 (89),"Sleeps until awakened, then always uses <Roll Out>.",,plating; slumber,{plating} 15 (18) and {slumber} 3,,
+slumbering-beetle,Slumbering Beetle,86 (89),"Sleeps until awakened, then always uses <Roll Out>.",,plating; slumber,{plating} 15 (A8 18) and {slumber} 3,,
 snapping-jaxfruit,Snapping Jaxfruit,31 - 33 (34 - 36),Always uses <Energy Orb>.,,,,,
 spiny-toad,Spiny Toad,116 - 119 (121 - 124),Cycles <Protruding Spikes> → <Spike Explosion> → <Tongue Lash>.,,thorns,,,
 the-lost,The Lost,93 (99),Cycles <Debilitating Smog> → <Eye Lasers>.,,,,,
@@ -114,7 +114,7 @@ magi-knight,Magi Knight,82 (89),"Opens with <Power Shield> → <Dampen>.
 Then cycles <Spear> → <Prep> → <Magic Bomb>.",[info] Cards can still be upgraded during combat after Magi Knight applies Dampen.,dampen,,,
 mecha-knight,Mecha Knight,300 (320),"Opens with <Charge>.
 Then cycles <Flamethrower> → <Windup> → <Heavy Cleave>.",,artifact,{artifact} 3,,
-phantasmal-gardener,Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (7),,
+phantasmal-gardener,Phantasmal Gardener,26 - 31 (27 - 32),Cycles <Bite> → <Lash> → <Flail> → <Enlarge>.,"[info] 1st starts <Flail>, 2nd starts <Bite>, 3rd starts <Lash>, 4th starts <Enlarge>.",skittish,{skittish} 6 (A8 7),,
 phrog-parasite,Phrog Parasite,61 - 64 (66 - 68),Cycles <Infect> → <Lash>.,,infested,{infested} 4,,
 skulking-colony,Skulking Colony,75 (80),Cycles <Zoom> → <Zoom> → <Inertia> → <Piercing Stabs>.,,hardened_shell,{hardened_shell} 20,,
 soul-nexus,Soul Nexus,234 (254),"Opens with <Soul Burn>.
@@ -122,8 +122,8 @@ Then chooses randomly from <Soul Burn>, <Maelstrom>, <Drain Life>.",,,,,
 terror-eel,Terror Eel,140 (150),"Phase 1:
 Cycles <Crash> → <Thrash>.
 
-Phase 2 (stunned at 75 HP):
-Uses <Terror>, then cycles <Crash> → <Thrash>.",,shriek; vigor,{shriek} 75,,
+Phase 2 (stunned at 70 (A8 75) HP):
+Uses <Terror>, then cycles <Crash> → <Thrash>.",,shriek; vigor,{shriek} 70 (A8 75),,
 ceremonial-beast,Ceremonial Beast,252 (262),"Phase 1:
 Opens with <Stamp>, then always uses <Plow>.
 
@@ -153,6 +153,6 @@ the-insatiable,The Insatiable,321 (341),"Opens with <Liquify Ground>.
 Then cycles <Thrash> → <Lunging Bite> → <Salivate> → <Thrash>.",[info] If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.,sandpit,,,
 kin-priest,Kin Priest,190 (199),Cycles <Orb of Frailty> → <Orb of Weakness> → <Beam> → <Ritual>.,,,,,
 kin-follower,Kin Follower,58 - 59 (62 - 63),Cycles <Quick Slash> → <Boomerang> → <Power Dance>.,,minion,,,
-vantom,Vantom,173 (183),Cycles <Ink Blot> → <Inky Lance> → <Dismember> → <Prepare>.,,slippery,{slippery} 8 (9),,
+vantom,Vantom,173 (183),Cycles <Ink Blot> → <Inky Lance> → <Dismember> → <Prepare>.,,slippery,{slippery} 8 (A8 9),,
 waterfall-giant,Waterfall Giant,240 (250),"Opens with <Pressurize>.
 Then cycles <Stomp> → <Ram> → <Siphon> → <Pressure Gun> → <Pressure Up>.",[info] Heal is multiplied by player count in co-op.,steam_eruption,,,

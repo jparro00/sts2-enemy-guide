@@ -76,31 +76,45 @@ function scaleEffects(text) {
 }
 
 // ══════════════════════════════════════════
-// DREAD MODE
+// ASCENSION & DREAD MODE
 // ══════════════════════════════════════════
-// Dread runs with every Ascension modifier on, so each "base (ascension)" pair
-// collapses to its ascension value. Dread* CSV columns override a field
-// outright (boss buffs that only exist in Dread) and are highlighted.
+// Each "base (ascension)" pair collapses to one value once the ascension is
+// known: from ?asc= (ascensionLevel), or Dread, which runs with every
+// Ascension modifier on. Dread* CSV columns override a field outright (boss
+// buffs that only exist in Dread) and are highlighted.
 // Both transforms run on raw cell text, before multiplayer scaling and HTML.
 
-// "N (M)" pairs as written in the CSVs: 8 (10), 10x2 (11x2), 10xN (11xN), 70 - 78 (76 - 86).
-// The ascension half must start with a digit, so "(N = ...)" style asides are left alone.
-const ASC_PAIR_RE = /(\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\s*\((\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\)/g;
+// Enemies get tougher at two Ascension levels: Tough Enemies raises HP, and
+// Deadly Enemies raises everything else, apart from the few values written
+// "N (A8 M)", which the game raises at Tough Enemies too.
+const TOUGH_ENEMIES = 8;
+const DEADLY_ENEMIES = 9;
 
-function ascensionOnly(text) {
-  return text ? text.replace(ASC_PAIR_RE, '$2') : text;
+// "N (M)" pairs as written in the CSVs: 8 (10), 10x2 (11x2), 10xN (11xN), 70 - 78 (76 - 86), 5 (A8 9).
+// The ascension half must start with a digit, so "(N = ...)" style asides are left alone.
+const ASC_PAIR_RE = /(\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\s*\((A8 )?(\d+(?:x(?:\d+|N))?(?:\s*-\s*\d+)?)\)/g;
+
+// The ascension the values are for: every modifier in Dread, else ?asc=, else
+// null (unknown: both values of each pair are shown)
+function effectiveAscension() {
+  return dreadMode ? Infinity : ascensionLevel;
 }
 
-function ascensionOnlyIfDread(text) {
-  return dreadMode ? ascensionOnly(text) : text;
+// `hp`: the text is an HP value, which Tough Enemies raises
+function ascensionText(text, hp) {
+  if (!text) return text;
+  const level = effectiveAscension();
+  return text.replace(ASC_PAIR_RE, (pair, base, a8, asc) => {
+    if (level === null) return a8 ? pair.replace('(A8 ', '(') : pair;
+    return level >= (hp || a8 ? TOUGH_ENEMIES : DEADLY_ENEMIES) ? asc : base;
+  });
 }
 
 // Text to show for a field with an optional Dread override.
 // Returns { text, dread } — dread is true when the override is in effect.
-function dreadText(base, override) {
-  if (!dreadMode) return { text: base, dread: false };
-  if (override) return { text: override, dread: true };
-  return { text: ascensionOnly(base), dread: false };
+function dreadText(base, override, hp) {
+  if (dreadMode && override) return { text: override, dread: true };
+  return { text: ascensionText(base, hp), dread: false };
 }
 
 function markDread(html, isDread) {
@@ -160,14 +174,16 @@ function enemyScalingContext(enemyKey, preferredZone) {
 // A Dread run's act boss (rolled per run, shown on the map) projects its
 // encounter's Dominion onto every other fight in the act. The user picks the
 // boss per zone (dreadBosses, set from ui.js); until they do, the zone's
-// first boss is assumed.
+// first boss is assumed. A boss the viewer already knows (knownDreadBosses)
+// wins over both.
 function zoneDominionBosses(zone) {
   return (encounters[zone]?.boss || []).filter(b => b.dominion);
 }
 
 function selectedDominionBoss(zone) {
   const bosses = zoneDominionBosses(zone);
-  return bosses.find(b => b.key === dreadBosses[zone]) || bosses[0] || null;
+  return bosses.find(b => b.key === knownDreadBosses[zone])
+    || bosses.find(b => b.key === dreadBosses[zone]) || bosses[0] || null;
 }
 
 // How much of DominionPower `dp` the enemy gets in non-boss encounter `enc`

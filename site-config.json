@@ -3,5 +3,9 @@
   "betaVersion": "0.113.0",
   "isBeta": false,
   "siteBase": "",
-  "noindex": false
+  "noindex": false,
+  "codexMod": {
+    "minVersion": "0.4.0",
+    "workshopId": ""
+  }
 }

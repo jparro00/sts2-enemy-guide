@@ -15,6 +15,10 @@ let multiplayerScaling = {};  // loaded from data/multiplayer-scaling.json
 let dreadMode = false;        // Dread toggle (ui.js) — read by renderers.js/panels.js; always false in snapshot builds
 let hasDreadData = false;     // set by buildDataStructures when any Dread* column is filled; gates the toggle
 let dreadBosses = {};         // Dread act boss per zone: zone key -> boss encounter Key (ui.js persists it)
+let knownDreadBosses = {};    // zone key -> boss Key the viewer already knows, so no boss picker there (set by the in-game panel, which reads the run's act boss)
+let ascensionLevel = null;    // ?asc= (0–10, ui.js) — read by renderers.js; null = unknown, both values of each "N (M)" pair shown
+let hiddenZones = [];         // zone keys left out of the act bar, event tabs, event grid and search (the in-game panel: alternate acts of one the run has entered)
+let imagesPreloaded = false;  // ui.js sets it once every grid image is cached; until then grid images load lazily
 
 // URL-routing lookups built after data loads.
 // Monsters and encounters are keyed by their stable Key column (slug format),

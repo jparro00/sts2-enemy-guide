@@ -239,7 +239,7 @@ async function loadData() {
   if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
   const tabsEl = document.getElementById('category-tabs');
   if (tabsEl) {
-    tabsEl.innerHTML = currentAct === 'events' ? eventTabsHtml : encounterTabsHtml;
+    tabsEl.innerHTML = categoryTabsHtml(currentAct);
     tabsEl.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
   }
 
