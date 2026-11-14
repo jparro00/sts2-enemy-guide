@@ -35,6 +35,8 @@ Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the heade
 - `{power_key}` — power reference → icon + name + tooltip from `powers.csv`. Unknown keys render as literal text.
 - `<Move Name>` — move reference with tooltip. **Must start with a capital letter** (that's how the regex avoids HTML tags). Only resolves for moves of the same enemy.
 - `N (M)` — base value with Ascension value in parens, e.g. `Deal 8 (10) damage`. Multiplayer scaling rewrites both numbers; scalable `{power} N (M)` values scale only when the power's `ScalesInMultiplayer` is true.
+  - Which Ascension raises `M`: **A8** (Tough Enemies, `AscensionLevel.ToughEnemies` in the game code) for HP, **A9** (Deadly Enemies) for everything else. A value outside `HP` that the game raises at A8 is written `N (A8 M)`, e.g. `{block} 5 (A8 9)`; the `A8 ` doesn't show on the page. Check the `GetValueIfAscension` call's level when adding a pair.
+  - With a known Ascension (`?asc=0`–`10`, which the in-game panel's links set, or Dread) each pair renders as the one value for that level.
 - HP strings: **every digit** gets scaled in multiplayer mode — don't put unrelated numbers in `HP`.
 
 ### Notes columns (`monsters.Notes`, `monster_moves.Notes`, `event_choices.Notes`)
@@ -53,7 +55,7 @@ Lines split on `\n` or at each tag. Tags: `[coop]` (🤝 badge), `[req]` (✦ re
 
 Dread is a game mode (beta v0.113.0+) with every Ascension modifier on, Dread-only boss buffs, and per-boss **Dominions** that affect the act's other fights. The site shows it through a **Dread** toggle next to the player-count buttons. The toggle appears only when at least one column below is filled, so branches without Dread data (e.g. live, before Dread ships) need nothing.
 
-With Dread on, every `N (M)` pair renders as its ascension value `M`. Fill a Dread column only where Dread differs from that; Dread values are written as a single number (no `(M)`) and are highlighted.
+With Dread on, every `N (M)` pair renders as its ascension value `M` (it overrides `?asc=`). Fill a Dread column only where Dread differs from that; Dread values are written as a single number (no `(M)`) and are highlighted.
 
 | File | Column | Meaning |
 |---|---|---|

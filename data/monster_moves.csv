@@ -53,9 +53,9 @@ fuzzy-wurm-crawler,Inhale,Gain 7 {strength},,buff,
 globe-head,Shocking Slap,Damage 13 (14); Apply 2 {frail},,"attack, debuff",
 globe-head,Thunder Strike,Damage 6x3 (7x3),,multi_attack,
 globe-head,Galvanic Burst,Damage 16 (17); Gain 2 {strength},,"attack, buff",
-gremlin-merc,Gimme,Damage 7x2 (8x2),,multi_attack,
-gremlin-merc,Double Smash,Damage 6x2 (7x2); Apply 2 {weak},,"multi_attack, debuff",
-gremlin-merc,Hehe,Damage 8 (9); Gain 2 {strength},,"attack, buff",
+gremlin-merc,Gimme,Damage 7x2 (A8 8x2),,multi_attack,
+gremlin-merc,Double Smash,Damage 6x2 (A8 7x2); Apply 2 {weak},,"multi_attack, debuff",
+gremlin-merc,Hehe,Damage 8 (A8 9); Gain 2 {strength},,"attack, buff",
 fat-gremlin,Stunned,Stunned for one turn,,stun,
 fat-gremlin,Flee,Escape from combat,,escape,
 sneaky-gremlin,Stunned,Stunned for one turn,,stun,
@@ -80,7 +80,7 @@ gas-bomb,Explode,Damage 8 (9); Dies,,deathblow,
 living-shield,Shield Slam,Damage 6,,attack,
 living-shield,Smash,Damage 16 (18); Gain 3 {strength},,"attack, buff",
 louse-progenitor,Web Cannon,Damage 9 (10); Apply 2 {frail},,"attack, debuff",
-louse-progenitor,Curl and Grow,{block} 14 (18); Gain 5 (7) {strength},,"block, buff",
+louse-progenitor,Curl and Grow,{block} 14 (A8 18); Gain 5 (7) {strength},,"block, buff",
 louse-progenitor,Pounce,Damage 14 (16),,attack,
 mawler,Claw,Damage 4x2 (5x2),,multi_attack,Cannot repeat.
 mawler,Rip & Tear,Damage 14 (16),,attack,Cannot repeat.
@@ -89,7 +89,7 @@ myte,Toxic,Add 2 Toxic to Hand,toxic,add_statuses,
 myte,Bite,Damage 13 (15),,attack,
 myte,Suck,Damage 4 (6); Gain 2 (3) {strength},,"attack, buff",
 nibbit,Butt,Damage 12 (13),,attack,
-nibbit,Slice,Damage 6 (7); {block} 5 (6),,"attack, block",
+nibbit,Slice,Damage 6 (7); {block} 5 (A8 6),,"attack, block",
 nibbit,Hiss,{strength} 2 (3),,buff,
 ovicopter,Lay Eggs,Summon up to 3 Tough Eggs,,summon,
 ovicopter,Smash,Damage 16 (17),,attack,
@@ -118,7 +118,7 @@ scroll-of-biting,More Teeth,Gain 2 {strength},,buff,
 scroll-of-biting,Chew,Damage 5x2 (6x2),,multi_attack,
 seapunk,Sea Kick,Damage 11 (13),,attack,
 seapunk,Spinning Kick,Damage 2x4,,multi_attack,
-seapunk,Bubble Burp,{block} 7 (8); Gain 1 (2) {strength},,"block, buff",
+seapunk,Bubble Burp,{block} 7 (A8 8); Gain 1 (2) {strength},,"block, buff",
 sewer-clam,Jet,Damage 10 (11),,attack,
 sewer-clam,Pressurize,{strength} 4,,buff,
 shrinker-beetle,Shrinker,Apply {shrink},,debuff,
@@ -158,7 +158,7 @@ toadpole,Whirl,Damage 7 (8),,attack,
 toadpole,Spiken,Gain 2 {thorns},,buff,
 toadpole,Spike Spit,Damage 3x3 (4x3); Lose 2 {thorns},,multi_attack,
 tunneler,Bite,Damage 13 (15),,attack,
-tunneler,Burrow,Gain {burrowed}; {block} 32 (37),,"block, buff",
+tunneler,Burrow,Gain {burrowed}; {block} 32 (A8 37),,"block, buff",
 tunneler,From Below,Damage 24 (28),,attack,
 turret-operator,Unload,Damage 3x5 (4x5),,multi_attack,
 turret-operator,Reload,Gain 1 {strength},,buff,
@@ -194,10 +194,10 @@ flail-knight,Flail,Damage 9x2 (10x2),,multi_attack,Max 2 in a row.
 spectral-knight,Hex,Apply {hex},,debuff,
 spectral-knight,Soul Slash,Damage 15 (17),,attack,Max 2 in a row.
 spectral-knight,Soul Flame,Damage 3x3 (4x3),,multi_attack,Cannot repeat.
-magi-knight,Power Shield,Damage 6 (7); {block} 5 (9),,"attack, block",
+magi-knight,Power Shield,Damage 6 (7); {block} 5 (A8 9),,"attack, block",
 magi-knight,Dampen,Apply {dampen},,debuff,
 magi-knight,Spear,Damage 10 (11),,attack,
-magi-knight,Prep,{block} 5 (9),,block,
+magi-knight,Prep,{block} 5 (A8 9),,block,
 magi-knight,Magic Bomb,Damage 35 (40),,attack,
 mecha-knight,Charge,Damage 25 (30),,attack,
 mecha-knight,Flamethrower,Damage 8 (12); Add 4 Burns to Hand,burn,"attack, add_statuses",
@@ -242,7 +242,7 @@ knowledge-demon,Knowledge Overwhelming,Damage 8x3 (9x3),,multi_attack,
 knowledge-demon,Ponder,Damage 11 (13); Heal 30*; Gain 2 (3) {strength},,"attack, heal, buff",
 lagavulin-matriarch,Slash,Damage 19 (21),,attack,
 lagavulin-matriarch,Disembowel,Damage 9x2 (10x2),,multi_attack,
-lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (14),,"attack, block",,Damage 16; {block} 16
+lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (A8 14),,"attack, block",,Damage 16; {block} 16
 lagavulin-matriarch,Soul Siphon,Apply -2 {strength}; Apply -2 {dexterity}; Gain 2 {strength},,"buff, debuff",,Apply -3 {strength}; Apply -3 {dexterity}; Gain 2 {strength}
 queen,Puppet Strings,Apply {chains_of_binding} 3,,affliction,,,no-dread
 queen,You Are Mine!,Apply 99 {frail}; Apply 99 {weak}; Apply 99 {vulnerable},,debuff,,,no-dread
@@ -284,6 +284,6 @@ vantom,Prepare,Gain 2 {strength},,buff,,Gain 3 {strength}
 waterfall-giant,Pressurize,Gain 15 (20) {steam_eruption},,buff,
 waterfall-giant,Stomp,Damage 15 (16); Apply 1 {weak}; Gain 3 {steam_eruption},,"attack, debuff, buff",,Damage 16; Apply 1 {weak}; Gain 4 {steam_eruption}
 waterfall-giant,Ram,Damage 10 (11); Gain 3 {steam_eruption},,"attack, buff",,Damage 11; Gain 4 {steam_eruption}
-waterfall-giant,Siphon,Heal 10 (15)*; Gain 3 {steam_eruption},,"heal, buff",,Heal 15*; Gain 4 {steam_eruption}
+waterfall-giant,Siphon,Heal 10 (A8 15)*; Gain 3 {steam_eruption},,"heal, buff",,Heal 15*; Gain 4 {steam_eruption}
 waterfall-giant,Pressure Gun,Damage 20 (23) + 5*N; N = # of times this move was used; Gain 3 {steam_eruption},,"attack, buff",,Damage 23 + 5*N; N = # of times this move was used; Gain 4 {steam_eruption}
 waterfall-giant,Pressure Up,Damage 13 (14); Gain 3 {steam_eruption},,"attack, buff",,Damage 14; Gain 4 {steam_eruption}

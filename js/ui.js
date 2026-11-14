@@ -5,50 +5,9 @@
 // Panel content builders (renderEnemySection, buildEncounterPanelBody,
 // buildEventPanelBody) live in js/panels.js — shared with the snapshot build.
 
-// Resolve alt image path — if no folder prefix, default to media/enemies/
-function resolveAltImage(altImage) {
-  if (altImage.includes('/')) return altImage;
-  return `media/enemies/${altImage}`;
-}
-
-// Returns loading attribute — lazy until preloader finishes, then eager
-function imgLoading() {
-  return imagesPreloaded ? '' : 'loading="lazy"';
-}
-
-// Build encounter card image HTML
-function getEncounterImageHtml(enc, cat) {
-  // If altImage is set, use that as a single image
-  if (enc.altImage) {
-    const src = resolveAltImage(enc.altImage);
-    return { multi: false, html: `<img src="${src}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
-  }
-
-  // If encounter has multiple enemies, show individual enemy images
-  const enemies = encounterEnemies(enc);
-  if (enemies && enemies.length > 1) {
-    const count = enemies.length;
-    const imgs = enemies.map(key => {
-      const src = `media/enemies/${key}.webp`;
-      const alt = enemyDatabase[key] ? enemyDatabase[key].name : key;
-      return `<img src="${src}" alt="${alt}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
-    }).join('');
-    return { multi: true, count, html: imgs };
-  }
-
-  // Single enemy — load from enemies folder
-  if (enc.enemies && enc.enemies.length >= 1) {
-    const enemySrc = `media/enemies/${enc.enemies[0]}.webp`;
-    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
-  }
-
-  // No enemies list — try enemies folder by encounter key, then emoji fallback
-  const enemySrc = `media/enemies/${enc.key}.webp`;
-  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
-}
-
-// Category tab markup (encounterTabsHtml / eventTabsHtml) lives in
-// js/panels.js, derived from ENCOUNTER_CATS / ACTS in config.js.
+// Category tab markup (encounterTabsHtml / eventTabsHtml) and the grid's
+// cards (buildGridHtml) live in js/panels.js, derived from ENCOUNTER_CATS /
+// ACTS in config.js.
 
 let currentAct = "overgrowth";
 let currentCat = "all";
@@ -65,7 +24,7 @@ function setPlayerCount(count) {
   syncSettingsUrl();
 }
 
-// ── URL settings: ?players=3&act=hive&dread=1&boss=vantom,kaiser-crab ──
+// ── URL settings: ?players=3&act=hive&asc=8&dread=1&boss=vantom,kaiser-crab ──
 // A link can preset the display settings. They apply to this visit only: the
 // saved Dread and boss choices stay as they were. An act the link doesn't name
 // a boss for uses its first boss, so `boss=` lists only the other picks. Once a
@@ -73,8 +32,9 @@ function setPlayerCount(count) {
 // settings, so copying it reproduces what's on screen. A plain visit never
 // grows a query string. `enemies` belongs to one encounter page rather than the
 // visit (routeFromURL reads it, it's dropped on leaving the page), but it
-// counts as a settings link all the same.
-const URL_SETTING_KEYS = ['players', 'act', 'dread', 'boss', 'enemies', 'moves'];
+// counts as a settings link all the same. `asc` (the run's Ascension, 0–10) has
+// no control on the page: links from the in-game panel set it.
+const URL_SETTING_KEYS = ['players', 'act', 'asc', 'dread', 'boss', 'enemies', 'moves'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
@@ -92,6 +52,9 @@ function applyUrlSettings() {
   const act = params.get('act');
   if (act && (act in zoneToActNumber || act === 'events')) currentAct = act;
 
+  const asc = params.get('asc');
+  if (asc !== null && /^(?:[0-9]|10)$/.test(asc)) ascensionLevel = parseInt(asc, 10);
+
   if (!hasDreadData) return;   // no Dread on this branch: nothing to apply
   dreadBosses = {};            // acts the link leaves out fall back to their first boss
   for (const key of (params.get('boss') || '').split(',')) {
@@ -107,6 +70,7 @@ function applyUrlSettings() {
 function settingsQuery() {
   if (!urlSettingsActive) return '';
   let q = `?players=${playerCount}&act=${currentAct}`;
+  if (ascensionLevel !== null) q += `&asc=${ascensionLevel}`;
   if (hasDreadData) {
     q += `&dread=${dreadMode ? 1 : 0}`;
     // First bosses are implied by their absence (see applyUrlSettings)
@@ -265,40 +229,8 @@ function selectCat(cat) {
   render();
 }
 
-function renderCards(encs, cat) {
-  return encs.map(e => {
-    const img = getEncounterImageHtml(e, cat);
-    const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
-    return `
-    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${currentAct}', '${cat}')">
-      <div class="${thumbClass}">
-        ${img.html}
-        ${encounterMulti(e) ? `<span class="multi-badge">${encounterMulti(e)}</span>` : ''}
-      </div>
-      <div class="enemy-name">${e.name}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderEventCards(events) {
-  return events.map(ev => {
-    const imgSrc = ev.image ? `media/events/${ev.image}` : '';
-    const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${ev.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`
-      : '';
-    return `
-    <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
-      <div class="enemy-thumb">
-        ${imgHtml}
-      </div>
-      <div class="enemy-name">${ev.name}</div>
-    </div>`;
-  }).join('');
-}
-
 // Preloaded image cache — keeps decoded images in memory so switching acts is instant
-const preloadedImages = new Map();
-let imagesPreloaded = false;
+const preloadedImages = new Map();   // imagesPreloaded lives in config.js (panels.js reads it)
 
 // After visible images load, preload all encounter/event images in the background
 function preloadRemainingImages() {
@@ -351,61 +283,11 @@ function setGrid(html) {
   grid.outerHTML = `<div id="enemy-grid">${html}</div>`;
 }
 
-// Labelled group of event cards; empty groups render nothing
-function eventGroupHtml(label, events) {
-  if (!events || events.length === 0) return '';
-  return `<div class="cat-group-label cat-events">${label} Events</div><div class="enemy-grid">${renderEventCards(events)}</div>`;
-}
-
-// Shared events that can appear in the given zone's act
-function sharedEventsForZone(zone) {
-  const actNum = zoneToActNumber[zone];
-  return (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
-}
-
 function render() {
   renderBossPicker();   // follows the act and the Dread toggle
-  const label = document.getElementById('section-label');
-
-  if (currentAct === 'events') {
-    // Events mode
-    label.textContent = eventZoneNames[currentCat] || 'All Events';
-    let html = '';
-    if (currentCat === 'all') {
-      // Show all zones grouped
-      for (const zone of eventZoneOrder) {
-        html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
-      }
-    } else {
-      // Show specific zone + shared (if not already showing shared)
-      const zone = currentCat.replace('ev_', '');
-      html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
-      if (zone !== 'shared') html += eventGroupHtml('Shared', sharedEventsForZone(zone));
-    }
-    setGrid(html);
-    return;
-  }
-
-  label.textContent = catNames[currentCat];
-
-  if (currentCat === 'events') {
-    // Show events for this act's zone + shared (act keys double as event zone keys)
-    const zone = currentAct;
-    setGrid(eventGroupHtml(zoneLabels[zone], eventsData[zone]) + eventGroupHtml('Shared', sharedEventsForZone(zone)));
-  } else if (currentCat === 'all') {
-    // Show all categories grouped with headers
-    let html = '';
-    for (const cat of encounterCatKeys) {
-      const encs = encounters[currentAct]?.[cat] || [];
-      if (encs.length === 0) continue;
-      html += `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div>`;
-      html += `<div class="enemy-grid">${renderCards(encs, cat)}</div>`;
-    }
-    setGrid(html);
-  } else {
-    const encs = encounters[currentAct]?.[currentCat] || [];
-    setGrid(`<div class="cat-group-label cat-${currentCat}">${catNames[currentCat]}</div><div class="enemy-grid">${renderCards(encs, currentCat)}</div>`);
-  }
+  const grid = buildGridHtml(currentAct, currentCat);
+  document.getElementById('section-label').textContent = grid.label;
+  setGrid(grid.html);
 }
 
 function formatMultiBadge(multi) {

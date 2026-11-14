@@ -57,6 +57,221 @@ const eventTabsHtml = `
   <div class="cat-tab" data-cat="ev_${z.key}" onclick="selectCat('ev_${z.key}')">${z.name}</div>`).join('') + `
 `;
 
+// ── Browse grid (encounter and event cards) and search results. ui.js and
+// search.js put them in the page; the in-game panel renders the same HTML.
+
+// Alt image path: with no folder prefix it's in media/enemies/
+function resolveAltImage(altImage) {
+  if (altImage.includes('/')) return altImage;
+  return `media/enemies/${altImage}`;
+}
+
+// Loading attribute: lazy until every grid image is cached (imagesPreloaded), then eager
+function imgLoading() {
+  return imagesPreloaded ? '' : 'loading="lazy"';
+}
+
+// Encounter card image HTML
+function getEncounterImageHtml(enc, cat) {
+  // If altImage is set, use that as a single image
+  if (enc.altImage) {
+    const src = resolveAltImage(enc.altImage);
+    return { multi: false, html: `<img src="${src}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  }
+
+  // If encounter has multiple enemies, show individual enemy images
+  const enemies = encounterEnemies(enc);
+  if (enemies && enemies.length > 1) {
+    const count = enemies.length;
+    const imgs = enemies.map(key => {
+      const src = `media/enemies/${key}.webp`;
+      const alt = enemyDatabase[key] ? enemyDatabase[key].name : key;
+      return `<img src="${src}" alt="${alt}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`;
+    }).join('');
+    return { multi: true, count, html: imgs };
+  }
+
+  // Single enemy — load from enemies folder
+  if (enc.enemies && enc.enemies.length >= 1) {
+    const enemySrc = `media/enemies/${enc.enemies[0]}.webp`;
+    return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+  }
+
+  // No enemies list — try enemies folder by encounter key, then emoji fallback
+  const enemySrc = `media/enemies/${enc.key}.webp`;
+  return { multi: false, html: `<img src="${enemySrc}" alt="${enc.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','${enc.emoji}')">` };
+}
+
+// `act`: the zone the cards open their encounters in
+function renderCards(encs, cat, act) {
+  return encs.map(e => {
+    const img = getEncounterImageHtml(e, cat);
+    const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
+    return `
+    <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${act}', '${cat}')">
+      <div class="${thumbClass}">
+        ${img.html}
+        ${encounterMulti(e) ? `<span class="multi-badge">${encounterMulti(e)}</span>` : ''}
+      </div>
+      <div class="enemy-name">${e.name}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderEventCards(events) {
+  return events.map(ev => {
+    const imgSrc = ev.image ? `media/events/${ev.image}` : '';
+    const imgHtml = imgSrc
+      ? `<img src="${imgSrc}" alt="${ev.name}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`
+      : '';
+    return `
+    <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
+      <div class="enemy-thumb">
+        ${imgHtml}
+      </div>
+      <div class="enemy-name">${ev.name}</div>
+    </div>`;
+  }).join('');
+}
+
+// Labelled group of event cards; empty groups render nothing
+function eventGroupHtml(label, events) {
+  if (!events || events.length === 0) return '';
+  return `<div class="cat-group-label cat-events">${label} Events</div><div class="enemy-grid">${renderEventCards(events)}</div>`;
+}
+
+// Shared events that can appear in the given zone's act
+function sharedEventsForZone(zone) {
+  const actNum = zoneToActNumber[zone];
+  return (eventsData['shared'] || []).filter(ev => ev.acts.length === 0 || ev.acts.includes(actNum));
+}
+
+// The browse grid for an act (or 'events') and category tab, as { label, html }:
+// the section label's text and the grid's contents
+function buildGridHtml(act, cat) {
+  if (act === 'events') {
+    let html = '';
+    if (cat === 'all') {
+      // Show all zones grouped
+      for (const zone of eventZoneOrder) {
+        html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
+      }
+    } else {
+      // Show specific zone + shared (if not already showing shared)
+      const zone = cat.replace('ev_', '');
+      html += eventGroupHtml(zoneLabels[zone], eventsData[zone]);
+      if (zone !== 'shared') html += eventGroupHtml('Shared', sharedEventsForZone(zone));
+    }
+    return { label: eventZoneNames[cat] || 'All Events', html };
+  }
+
+  const label = catNames[cat];
+  if (cat === 'events') {
+    // Events for this act's zone + shared (act keys double as event zone keys)
+    return { label, html: eventGroupHtml(zoneLabels[act], eventsData[act]) + eventGroupHtml('Shared', sharedEventsForZone(act)) };
+  }
+  if (cat === 'all') {
+    // All categories grouped with headers
+    let html = '';
+    for (const c of encounterCatKeys) {
+      const encs = encounters[act]?.[c] || [];
+      if (encs.length === 0) continue;
+      html += `<div class="cat-group-label cat-${c}">${catNames[c]}</div>`;
+      html += `<div class="enemy-grid">${renderCards(encs, c, act)}</div>`;
+    }
+    return { label, html };
+  }
+  const encs = encounters[act]?.[cat] || [];
+  return { label, html: `<div class="cat-group-label cat-${cat}">${catNames[cat]}</div><div class="enemy-grid">${renderCards(encs, cat, act)}</div>` };
+}
+
+// Search results for a query (already trimmed and lower-cased): encounters whose
+// name or enemies match, then events, grouped by zone
+function buildSearchResultsHtml(q) {
+  // Search all encounters across all acts/categories (orders from config.js)
+  const matches = [];
+  for (const zone of zoneOrder) {
+    for (const cat of encounterCatKeys) {
+      const encs = encounters[zone]?.[cat] || [];
+      for (const enc of encs) {
+        const nameMatch = enc.name.toLowerCase().includes(q);
+        const enemyMatch = enc.enemies.some(k => (enemyDatabase[k] ? enemyDatabase[k].name : k).toLowerCase().includes(q));
+        if (nameMatch || enemyMatch) {
+          matches.push({ enc, zone, cat });
+        }
+      }
+    }
+  }
+
+  // Also search events
+  const eventMatches = [];
+  for (const act in eventsData) {
+    for (const ev of eventsData[act]) {
+      if (ev.name.toLowerCase().includes(q)) {
+        eventMatches.push({ ev, zone: act });
+      }
+    }
+  }
+
+  if (matches.length === 0 && eventMatches.length === 0) {
+    return '<div style="text-align:center; padding:40px; color:#666;">No matches found.</div>';
+  }
+
+  // Group by zone
+  const grouped = {};
+  for (const m of matches) {
+    const key = m.zone;
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push(m);
+  }
+
+  let html = '';
+  for (const zone of zoneOrder) {
+    if (!grouped[zone]) continue;
+    html += `<div class="search-zone-label">${actNames[zone]}</div>`;
+    html += '<div class="search-grid">';
+    for (const { enc, cat } of grouped[zone]) {
+      const img = getEncounterImageHtml(enc, cat);
+      const thumbClass = img.multi ? `enemy-thumb multi-img count-${img.count}` : 'enemy-thumb';
+      html += `
+        <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.key}', '${zone}', '${cat}')">
+          <div class="${thumbClass}">
+            ${img.html}
+            ${encounterMulti(enc) ? `<span class="multi-badge">${encounterMulti(enc)}</span>` : ''}
+          </div>
+          <div class="enemy-name">${enc.name}</div>
+        </div>`;
+    }
+    html += '</div>';
+  }
+
+  // Add event search results
+  if (eventMatches.length > 0) {
+    const eventGrouped = {};
+    for (const m of eventMatches) {
+      if (!eventGrouped[m.zone]) eventGrouped[m.zone] = [];
+      eventGrouped[m.zone].push(m.ev);
+    }
+    for (const zone of eventZoneOrder) {
+      if (!eventGrouped[zone]) continue;
+      html += `<div class="search-zone-label">${eventSearchZoneNames[zone]} — Events</div>`;
+      html += '<div class="search-grid">';
+      for (const ev of eventGrouped[zone]) {
+        const imgSrc = ev.image ? `media/events/${ev.image}` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${ev.name}" loading="lazy" onerror="this.style.display='none'">` : '';
+        html += `
+          <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
+            <div class="enemy-thumb">${imgHtml}</div>
+            <div class="enemy-name">${ev.name}</div>
+          </div>`;
+      }
+      html += '</div>';
+    }
+  }
+
+  return html;
+}
+
 // `enc` is the encounter the section sits in (for that fight's Dominion);
 // omitted on standalone enemy panels.
 // `current` holds the moves to mark ("enemy:move-slug", from ?moves=). Two of
@@ -71,7 +286,7 @@ function renderEnemySection(key, collapsible, enc, current) {
 
   const movesHtml = moves.map(m => {
     const fx = moveEffectsText(m);
-    const note = m.notes ? ascensionOnlyIfDread(m.notes) : '';
+    const note = m.notes ? ascensionText(m.notes) : '';
     const times = marks.filter(s => s === slugify(m.name)).length;
     const rowClass = [fx.dread ? 'dread-row' : '', times ? 'move-current' : ''].filter(Boolean).join(' ');
     return `
@@ -83,14 +298,14 @@ function renderEnemySection(key, collapsible, enc, current) {
   `;
   }).join('');
 
-  const hp = dreadText(data.hp, data.dreadHp);
+  const hp = dreadText(data.hp, data.dreadHp, true);
   const hpHtml = markDread(data.hpScalePlayerCountOnly ? scaleHPPlayerCountOnly(hp.text) : scaleHP(hp.text), hp.dread);
   const pattern = dreadText(data.pattern, data.dreadPattern);
   const startsWith = dreadText(data.startsWith, data.dreadStartsWith);
   const grants = enemyDominionGrants(key, enc);
   const labelZones = grants.length > 0 && !enc && enemyFightZones(key).length > 1;
 
-  const notesHtml = (data.notes ? renderNotes(ascensionOnlyIfDread(data.notes), key) : '') +
+  const notesHtml = (data.notes ? renderNotes(ascensionText(data.notes), key) : '') +
     (dreadMode && data.dreadNotes ? `<div class="dread-notes">${renderNotes(data.dreadNotes, key)}</div>` : '');
 
   const imgSrc = `media/enemies/${key}.webp`;
@@ -214,7 +429,7 @@ function renderZoneDominion(zone, scope) {
   const boss = selectedDominionBoss(zone);
   if (!dreadMode || !boss) return '';
   // Own row: three 56px buttons don't fit beside the title on phones
-  const picker = zoneDominionBosses(zone).length > 1 ? `<div class="boss-picker-inline">${bossPickerButtons(zone)}</div>` : '';
+  const picker = zoneDominionBosses(zone).length > 1 && !knownDreadBosses[zone] ? `<div class="boss-picker-inline">${bossPickerButtons(zone)}</div>` : '';
   return dominionBlock(scope, picker + dominionRow(boss, !picker));
 }
 
