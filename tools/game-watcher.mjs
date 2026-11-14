@@ -88,11 +88,11 @@ function compareVersions(a, b, parts = 3) {
   return 0;
 }
 
-// The live branch runs exactly gameVersion, so anything newer is the beta branch, hotfixes included
-// (the game's 0.113.1 for the site's 0.113.0 beta). Without a gameVersion: a beta of the same major.minor.
+// The beta when the game's major.minor is at least the site's beta: a beta hotfix (the game's 0.113.1 for
+// the site's 0.113.0) and a newer beta the site hasn't caught up with keep the beta's data, while a live
+// hotfix (0.111.1 under a 0.113 beta) stays on the live site.
 function onBeta(v, cfg) {
-  if (!v || !cfg.betaVersion) return false;
-  return cfg.gameVersion ? compareVersions(v, cfg.gameVersion) > 0 : compareVersions(v, cfg.betaVersion, 2) === 0;
+  return Boolean(v && cfg.betaVersion) && compareVersions(v, cfg.betaVersion, 2) >= 0;
 }
 
 async function chooseSiteBase(gameVersion) {
