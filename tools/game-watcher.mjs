@@ -77,12 +77,29 @@ function parseCsv(text) {
 let site = null;
 const slugify = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');   // js/config.js
 
+// Dotted versions compared numerically ("0.113.1" > "0.113.0"); missing parts count as 0
+function compareVersions(a, b, parts = 3) {
+  const parse = v => String(v).replace(/^v/, '').split('.').slice(0, parts).map(p => parseInt(p, 10) || 0);
+  const x = parse(a), y = parse(b);
+  for (let i = 0; i < parts; i++) {
+    const d = (x[i] ?? 0) - (y[i] ?? 0);
+    if (d) return Math.sign(d);
+  }
+  return 0;
+}
+
+// The live branch runs exactly gameVersion, so anything newer is the beta branch, hotfixes included
+// (the game's 0.113.1 for the site's 0.113.0 beta). Without a gameVersion: a beta of the same major.minor.
+function onBeta(v, cfg) {
+  if (!v || !cfg.betaVersion) return false;
+  return cfg.gameVersion ? compareVersions(v, cfg.gameVersion) > 0 : compareVersions(v, cfg.betaVersion, 2) === 0;
+}
+
 async function chooseSiteBase(gameVersion) {
   if (SITE_OVERRIDE) return SITE_OVERRIDE;
   try {
     const cfg = await (await fetch(`${LIVE_SITE}/site-config.json`, { cache: 'no-store' })).json();
-    const v = (gameVersion || '').replace(/^v/, '');
-    if (v && cfg.betaVersion && v === cfg.betaVersion) return `${LIVE_SITE}/beta`;
+    if (onBeta((gameVersion || '').replace(/^v/, ''), cfg)) return `${LIVE_SITE}/beta`;
   } catch { /* offline: fall back to the live site */ }
   return LIVE_SITE;
 }
