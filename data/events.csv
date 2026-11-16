@@ -107,7 +107,7 @@ doll_room,Doll Room,Shared,"[req]Can only appear in Act 2.
 fake_merchant,The Merchant???,Shared,"[req]Can only appear in Act 2 or Act 3.
 [req]Single-player only.
 [req]Can only appear if you have at least 100 Gold or a Foul Potion.
-[info]6 of 9 knockoff relics randomly offered for 45-55 Gold each.
+[info]6 of 9 knockoff relics randomly offered for 43-57 Gold each.
 [info]Throwing a Foul Potion triggers a fight. Reward: 300 Gold, all 6 relics, a Cheap Knockoff Merchant's Rug, and a card reward.","2,3",fake_merchant.webp,,FAKE_MERCHANT,,,
 potion_courier,Potion Courier,Shared,"[req]Can only appear in Act 2 or Act 3.
 [info]The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.","2,3",potion_courier.webp,"There is a [sine]sour[/sine] smell in the air and shortly after, you find a [gold]Potion Courier[/gold] collapsed on the ground.|Unmoving. Lifeless. [jitter]Dead!?[/jitter]|While their belongings have been ransacked, there is a batch of [green][sine]Foul Smelling Potions[/sine][/green] with a note: ""Recipient: Merchant"".",POTION_COURIER,,,

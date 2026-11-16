@@ -32,7 +32,7 @@ distraction,Distraction,Event,,1,Add a random Skill into your [gold]Hand[/gold].
 dual_wield,Dual Wield,Event,,1,Choose an Attack or Power card. Add a copy of that card into your [gold]Hand[/gold].,DUAL_WIELD,,
 entrench,Entrench,Event,,2,Double your [gold]Block[/gold].,ENTRENCH,,
 hello_world,Hello World,Event,,1,"At the start of your turn, add a random Common card into your [gold]Hand[/gold].",HELLO_WORLD,,
-outmaneuver,Outmaneuver,Event,,1,"Next turn, gain [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img][img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img].",OUTMANEUVER,Energy=2,
+outmaneuver,Outmaneuver,Event,,1,"Next turn, gain [img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img][img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img].",OUTMANEUVER,Energy=2,
 rebound,Rebound,Event,,1, Deal 9 damage. Put the next card you play this turn on top of your [gold]Draw Pile[/gold].,REBOUND,Damage=9,
 rip_and_tear,Rip and Tear,Event,,1,Deal 7 damage to a random enemy twice.,RIP_AND_TEAR,Damage=7;HitCount=2,
 stack,Stack,Event,,1,Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold].,STACK,,

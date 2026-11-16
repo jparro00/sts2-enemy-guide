@@ -114,8 +114,8 @@ const FORMAT_CULTURES = {
   zhs: { plural: 'single', group: ',' },
   spa: { plural: 'one-other', group: '.' },
 };
-// What the site's text describes: a solo run, outside combat, cards not upgraded, colorless energy
-const GAME_VAR_DEFAULTS = { IsMultiplayer: false, InCombat: false, IfUpgraded: 'normal', energyPrefix: 'colorless' };
+// What the site's text describes: a solo run, outside combat, cards not upgraded, the Ironclad's energy icon
+const GAME_VAR_DEFAULTS = { IsMultiplayer: false, InCombat: false, IfUpgraded: 'normal', energyPrefix: 'ironclad' };
 const SF_FORMATTERS = new Set(['plural', 'cond', 'choose', 'show', 'diff', 'inverseDiff', 'abs', 'percentMore', 'percentLess', 'energyIcons', 'starIcons', 'n']);
 
 // Splits at the top-level occurrences of `ch` (not inside a nested placeholder)
@@ -238,7 +238,7 @@ function sfPlaceholder(body, vars, current, culture) {
     case 'energyIcons': case 'starIcons': {
       let n, file;
       if (name === 'energyIcons') {
-        const prefix = typeof v === 'string' ? v : (vars.energyPrefix || 'colorless');
+        const prefix = typeof v === 'string' ? v : (vars.energyPrefix || 'ironclad');
         n = typeof v === 'string' ? parseInt(opts, 10) : Math.trunc(Number(v));
         file = `${prefix}_energy_icon`;
       } else { n = Math.trunc(Number(v)); file = 'star_icon'; }

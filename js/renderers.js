@@ -285,7 +285,7 @@ function wrapCharsWithDelay(content, cssClass, baseDelay) {
   });
 }
 
-// The game's inline images in its text ([img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img]):
+// The game's inline images in its text ([img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img]):
 // the site's copy in media/ui/
 function renderGameImages(text) {
   return text.replace(/\[img\]res:\/\/images\/packed\/sprite_fonts\/(\w+)\.png\[\/img\]/g,

@@ -104,15 +104,15 @@ crystal_sphere,Uncover Future,Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Di
 doll_room,Pick at Random,Obtain a random [gold]Doll Relic[/gold].,,,INITIAL.RANDOM,
 doll_room,Take Some Time,Lose [red]5[/red] HP. Choose [blue]1[/blue] of [blue]2[/blue] [gold]Doll Relics[/gold].,,,INITIAL.TAKE_SOME_TIME,TakeTimeHpLoss=5
 doll_room,Examine Each and Make the Best Choice,Lose [red]15[/red] HP. Choose [blue]1[/blue] of [blue]3[/blue] [gold]Doll Relics[/gold].,,"daughter_of_the_wind,bing_bong,mr_struggles",INITIAL.EXAMINE,ExamineHpLoss=15
-fake_merchant,Anchor???,Start each combat with 4 Block. (50 Gold),,"foul_potion,fake_anchor",relics:FAKE_ANCHOR,
-fake_merchant,Blood Vial???,"At the start of each combat, heal 1 HP. (50 Gold)",,fake_blood_vial,relics:FAKE_BLOOD_VIAL,
-fake_merchant,Happy Flower???,"Every 5 turns, gain 1 energy. (50 Gold)",,fake_happy_flower,relics:FAKE_HAPPY_FLOWER,
-fake_merchant,Lee's Waffle???,"Upon pickup, heal 10% of your HP. (50 Gold)",,fake_lees_waffle,relics:FAKE_LEES_WAFFLE,
-fake_merchant,Mango???,"Upon pickup, raise your Max HP by 3. (50 Gold)",,fake_mango,relics:FAKE_MANGO,
-fake_merchant,Orichalcum???,"If you end your turn without Block, gain 3 Block. (50 Gold)",,fake_orichalcum,relics:FAKE_ORICHALCUM,
-fake_merchant,Snecko Eye???,Start each combat Confused. (50 Gold),,fake_snecko_eye,relics:FAKE_SNECKO_EYE,
-fake_merchant,Strike Dummy???,"Cards containing ""Strike"" deal 1 additional damage. (50 Gold)",,fake_strike_dummy,relics:FAKE_STRIKE_DUMMY,
-fake_merchant,Venerable Tea Set???,"Whenever you enter a Rest Site, start the next combat with an additional energy. (50 Gold)",,"fake_venerable_tea_set,fake_merchants_rug",relics:FAKE_VENERABLE_TEA_SET,
+fake_merchant,Anchor???,Start each combat with [blue]4[/blue] [gold]Block[/gold].,,"foul_potion,fake_anchor",relics:FAKE_ANCHOR,Block=4
+fake_merchant,Blood Vial???,"At the start of each combat, heal [green]1[/green] HP.",,fake_blood_vial,relics:FAKE_BLOOD_VIAL,Heal=1
+fake_merchant,Happy Flower???,"Every [blue]5[/blue] turns, gain [img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img].",,fake_happy_flower,relics:FAKE_HAPPY_FLOWER,Turns=5;Energy=1
+fake_merchant,Lee's Waffle???,"Upon pickup, heal [green]10%[/green] of your HP.",,fake_lees_waffle,relics:FAKE_LEES_WAFFLE,Heal=10
+fake_merchant,Mango???,"Upon pickup, raise your Max HP by [blue]3[/blue].",,fake_mango,relics:FAKE_MANGO,MaxHp=3
+fake_merchant,Orichalcum???,"If you end your turn without [gold]Block[/gold], gain [blue]3[/blue] [gold]Block[/gold].",,fake_orichalcum,relics:FAKE_ORICHALCUM,Block=3
+fake_merchant,Snecko Eye???,Start each combat [red]Confused[/red].,,fake_snecko_eye,relics:FAKE_SNECKO_EYE,
+fake_merchant,Strike Dummy???,Cards containing “Strike” deal [blue]1[/blue] additional damage.,,fake_strike_dummy,relics:FAKE_STRIKE_DUMMY,ExtraDamage=1
+fake_merchant,Venerable Tea Set???,"Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img].",,"fake_venerable_tea_set,fake_merchants_rug",relics:FAKE_VENERABLE_TEA_SET,Energy=1
 potion_courier,Grab Potions,Procure [blue]3[/blue] [gold]Foul Potions[/gold].,,foul_potion,INITIAL.GRAB_POTIONS,FoulPotions=3
 potion_courier,Ransack,Procure [blue]1[/blue] random [gold]Uncommon Potion[/gold].,,,INITIAL.RANSACK,
 ranwid_the_elder,Give 100 Gold,Obtain a random [gold]Relic[/gold].,,,INITIAL.GOLD,Gold=100
