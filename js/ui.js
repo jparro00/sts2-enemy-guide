@@ -435,22 +435,49 @@ function navigateToPanel(state, url, opts) {
 // Where the side panel narrows the page (css/detail-panel.css, body.panel-open
 // padding; keep the range in sync), what the reflow moves glides to its new
 // place instead of jumping: each element gets its own transition name for the
-// transition's length. Only elements that stay one box: an inline element that
-// wraps onto two lines aborts the transition, so the banner and footer text
-// stay in the page's crossfade.
-const PANEL_SHIFTING = 'header h1, header .search-bar, .lang-select, .act-card, .cat-tab, .player-count-bar > *, .enemy-card';
+// transition's length. Boxes the size of their content move (and resize, cards
+// in a narrower grid). Full-width boxes would squeeze if scaled; they get a
+// transition class (css/detail-panel.css) that keeps their snapshot's size:
+//   row        centered text with nothing behind it: stays centered as it moves
+//   row-start  a background or a line across the page: stays put on the left
+//              and is clipped from the right (its centered text is named apart:
+//              the banner's and footer's text are blocks for that)
+// Centered text that wraps onto another number of lines can't glide: it gets
+// "reflow" too, and swaps (the old fades out, then the new in) rather than
+// showing both layouts at once. Only boxes that stay one box: an inline element
+// that wraps onto two lines aborts the transition (the footer's feedback link
+// is one short line). Nothing in the panel: it slides as one.
+const PANEL_SHIFTING = [
+  ['header .search-bar, .lang-select, .act-card, .cat-tab, .player-count-bar > *, .enemy-card, .footer-feedback a', ''],
+  ['header h1, .banner-full, #section-label, .footer-credit, .footer-early', 'row'],
+  ['#version-banner, header, #category-tabs, .cat-group-label, .search-zone-label, .site-footer, .footer-feedback', 'row-start'],
+];
 let panelTransitionGen = 0;
 
 function panelTransition(update) {
   if (!document.startViewTransition) { update(); return; }
   const gen = ++panelTransitionGen;
-  const named = window.matchMedia('(min-width: 1100px) and (max-width: 2040px)').matches
-    ? [...document.querySelectorAll(PANEL_SHIFTING)] : [];
-  named.forEach((el, i) => { el.style.viewTransitionName = `shift-${i}`; });
-  const t = document.startViewTransition(update);
+  const named = [], rows = [];
+  if (window.matchMedia('(min-width: 1100px) and (max-width: 2040px)').matches) {
+    for (const [sel, cls] of PANEL_SHIFTING) {
+      for (const el of document.querySelectorAll(sel)) {
+        if (el.closest('#detail-panel')) continue;
+        el.style.viewTransitionName = `shift-${named.length}`;
+        if (cls) el.style.viewTransitionClass = cls;
+        if (cls === 'row') rows.push([el, el.offsetHeight]);
+        named.push(el);
+      }
+    }
+  }
+  const t = document.startViewTransition(() => {
+    update();
+    for (const [el, height] of rows) if (el.offsetHeight !== height) el.style.viewTransitionClass = 'row reflow';
+  });
   t.ready.catch(() => { /* skipped */ });
   // (a newer transition has named the same elements: leave its names)
-  t.finished.finally(() => { if (gen === panelTransitionGen) named.forEach(el => { el.style.viewTransitionName = ''; }); });
+  t.finished.finally(() => {
+    if (gen === panelTransitionGen) named.forEach(el => { el.style.viewTransitionName = ''; el.style.viewTransitionClass = ''; });
+  });
 }
 
 // Whether the panel is shown or on its way in: the classes change only when the

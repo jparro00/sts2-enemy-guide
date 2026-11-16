@@ -400,6 +400,8 @@
   color: var(--gold);
   text-decoration: underline;
 }
+/* Blocks, not lines split by a <br>: js/ui.js panelTransition moves each */
+.footer-credit, .footer-early { display: block; }
 .site-footer .credit-names {
   color: #777;
 }

@@ -28,6 +28,8 @@
   color: #88c0ff;
   text-decoration: underline;
 }
+/* (a block: js/ui.js panelTransition moves the text apart from the banner) */
+.banner-full { display: block; }
 .banner-short { display: none; }
 .stable-banner {
   background: #141a2a;

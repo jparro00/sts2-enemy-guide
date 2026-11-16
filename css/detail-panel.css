@@ -37,6 +37,25 @@
   animation-duration: 0.3s;
   animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
+/* Full-width rows (js/ui.js PANEL_SHIFTING): their snapshots keep their size
+   (centered, or from the start for left-aligned labels) and the row is clipped
+   to its animating width, so text never squeezes and a line shortens smoothly */
+::view-transition-image-pair(*.row),
+::view-transition-image-pair(*.row-start) { overflow: clip; }
+::view-transition-old(*.row), ::view-transition-new(*.row),
+::view-transition-old(*.row-start), ::view-transition-new(*.row-start) {
+  inline-size: auto;
+  block-size: auto;
+}
+::view-transition-old(*.row), ::view-transition-new(*.row) {
+  inset-inline-start: 50%;
+  translate: -50% 0;
+}
+/* Text that wraps differently after the reflow: one layout, then the other */
+::view-transition-old(*.reflow) { animation: vtFadeOut 0.12s ease-out both; }
+::view-transition-new(*.reflow) { animation: vtFadeIn 0.18s ease-in 0.12s both; }
+@keyframes vtFadeOut { to { opacity: 0; } }
+@keyframes vtFadeIn { from { opacity: 0; } }
 ::view-transition-group(detail-panel) { animation: none; }
 ::view-transition-new(detail-panel) { animation: panelIn 0.3s cubic-bezier(0.2, 0, 0, 1) both; }
 ::view-transition-old(detail-panel) { animation: panelOut 0.3s cubic-bezier(0.2, 0, 0, 1) both; }
