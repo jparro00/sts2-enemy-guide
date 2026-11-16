@@ -60,8 +60,10 @@ export function markupProblem(id, english, translation) {
 }
 
 // ── The game's names for things ──
-// Named things (not the intents' or the interface's words, which the site's English uses as plain verbs: Escape, Heal)
-const TERM_TABLES = ['acts', 'monsters', 'powers', 'cards', 'relics', 'potions', 'enchantments', 'card_keywords', 'static_hover_tips', 'afflictions'];
+// Named things, the ones a sentence names first (a keyword or power before a card of the same name), not the
+// intents' or the interface's words (the site's English uses those as plain verbs: Escape, Heal) and not monster
+// moves (the site shows those as the game's own text; as terms they shadow cards: Beckon, Dampen)
+const TERM_TABLES = ['card_keywords', 'static_hover_tips', 'powers', 'cards', 'relics', 'potions', 'enchantments', 'afflictions', 'monsters', 'acts'];
 
 // [{ en, key: "table:key", text }] for the game's titles and names (`game`: lib.mjs gameLoc), longest first; one
 // key per English name (the first table that has it)
@@ -70,7 +72,7 @@ export function termIndex(game, lang) {
   for (const t of TERM_TABLES) {
     const en = game.table('eng', t), xx = game.table(lang, t);
     for (const [k, v] of Object.entries(en)) {
-      if (!/\.(title|name)$|^CARD_(RARITY|TYPE)\./.test(k) || k.includes('.pages.') || typeof v !== 'string') continue;
+      if (!/\.(title|name)$|^CARD_(RARITY|TYPE)\./.test(k) || k.includes('.pages.') || k.includes('.moves.') || typeof v !== 'string') continue;
       if (v.length < 3 || v.length > 40 || /[{}[\]]/.test(v) || !/^\p{Lu}/u.test(v) || seen.has(v)) continue;
       const text = typeof xx[k] === 'string' && xx[k] ? xx[k] : null;
       if (!text) continue;
@@ -93,6 +95,37 @@ export function findTerms(english, index) {
     s = s.replace(new RegExp(re.source, 'gu'), ' ');
   }
   return found;
+}
+
+// What finding an item's terms needs, for one language: the named things (termIndex), and each event's game ids
+// so an item from an event's page can also match that event's own option titles
+export function termContext(site, game, lang) {
+  const eventIds = site.run('JSON.parse(JSON.stringify(Object.fromEntries(Object.values(eventsData).flat().map(ev => [ev.key, ev.gameIds]))))');
+  return { index: termIndex(game, lang), game, lang, eventIds, events: {} };
+}
+
+// An event's option titles as terms ("Energized" in Tinker Time): the site names them in that event's notes and
+// effects; elsewhere titles like "Leave" are plain words, so they're matched only on the event's own page
+function eventTermIndex(ctx, eventKey) {
+  if (ctx.events[eventKey]) return ctx.events[eventKey];
+  const en = ctx.game.table('eng', 'events'), xx = ctx.game.table(ctx.lang, 'events');
+  const out = [], seen = new Set();
+  for (const id of ctx.eventIds[eventKey] || []) {
+    for (const [k, v] of Object.entries(en)) {
+      if (!k.startsWith(`${id}.pages.`) || !/\.options\.[^.]+\.title$/.test(k) || typeof v !== 'string' || /[{}[\]]/.test(v) || v.length < 3 || seen.has(v)) continue;
+      if (typeof xx[k] !== 'string' || !xx[k]) continue;
+      seen.add(v);
+      out.push({ en: v, key: `events:${k}`, text: xx[k] });
+    }
+  }
+  return (ctx.events[eventKey] = out);
+}
+
+// The game's names an item's English uses (`page`: where it shows, "event <key>" for an event's): the event's
+// own option titles first, then the named things
+export function termsFor(english, page, ctx) {
+  const local = page && page.startsWith('event ') ? eventTermIndex(ctx, page.slice(6)) : [];
+  return findTerms(english, [...local, ...ctx.index].sort((a, b) => b.en.length - a.en.length));
 }
 
 // Whether a translation uses the game's name for a term: as written, or (languages that inflect nouns) each of

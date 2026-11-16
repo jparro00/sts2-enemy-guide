@@ -1,0 +1,727 @@
+{
+  "lang": "tha",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "ข้อมูลอ้างอิง"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "องก์ {n}: {name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "รูปแบบการโจมตี"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — หน้านี้แสดงการปรับสมดุลของ<strong>เบต้า v{version}</strong> <a href=\"../\">ดูเวอร์ชันเสถียร</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">ดูเวอร์ชันเสถียร</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "เว็บไซต์นี้มีเวอร์ชันสำหรับ<strong>แพตช์เบต้า v{version}</strong> ล่าสุดด้วย <a href=\"beta/\">สลับไปเบต้า</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">สลับไปเบต้า</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "เปลี่ยนแปลงในเบต้า {version}:"
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "แพตช์เบต้า"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "บอส:"
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "การต่อสู้ทั้งหมด"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "บอส"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "ง่าย"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "การต่อสู้ระดับง่าย"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "ยาก"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "การต่อสู้ระดับยาก"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "ตัวเลือก"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "ตัวเลือก"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "ผล"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "เจตนา"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "ท่า"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "ย่อ/ขยาย"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "องค์ประกอบ"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "Dominion"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "บอสองก์"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "การต่อสู้อื่นในองก์นี้"
+    },
+    "events": {
+      "en": "Events",
+      "text": "เหตุการณ์"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "เหตุการณ์ทั้งหมด"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "ส่งความคิดเห็นหรือรายงานปัญหา"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "ข้อมูลบนเว็บไซต์นี้เดิมมาจาก <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a> ซึ่งสร้างโดย <span class=\"credit-names\">dr0gulus, Aplet123 และ Redbeardy_Mcgee</span> &mdash; ขอขอบคุณอย่างยิ่งสำหรับผลงานที่ทำให้สิ่งนี้เกิดขึ้นได้"
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2 ยังอยู่ในช่วง Early Access ค่าสถานะ ท่า และรูปแบบของศัตรูจึงอาจเปลี่ยนแปลงได้ทุกแพตช์ ข้อมูลอัปเดตล่าสุดสำหรับ <span id=\"game-version\"></span>"
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "HP:"
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "เพิ่มการ์ดสถานะ"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "ผลกัดเซาะ"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "โจมตี"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "บล็อก"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "เสริมพลัง"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "เฮือกสุดท้าย"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "ผลผิดปกติ"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "หลบหนี"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "ฟื้นฟู"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "โจมตีหลายครั้ง"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "หลับอยู่"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "ติดสตัน"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "อัญเชิญ"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "ปริศนา"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": ", "
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — จะละทิ้งการต่อสู้เมื่อไม่มีหัวหน้า"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "ปิดอัตโนมัติ"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "ปิดแผงเมื่อคลิกด้านนอก"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "ปิดแผง"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "ปัจจุบัน"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "ยึดติด"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "อัตโนมัติ ({lang})"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "กดถูกใจเราบน Steam!"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "กำลังโหลดข้อมูล..."
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "ข้อมูล Spire Codex ไม่พร้อมใช้งาน"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "เปิด Spire Codex"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "แยกหน้าต่าง"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "มีอัปเดตม็อดใหม่"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "ข้อมูล v{data} · เกม v{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "ท่า"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "ไม่มีข้อมูล"
+    },
+    "players": {
+      "en": "Players:",
+      "text": "ผู้เล่น:"
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n} คน"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "คนเดียว"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "ไร้สี"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "การ์ด"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "คำอธิบาย"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "ข้อมูลอ้างอิงมนตร์"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "ชื่อ"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "ข้อมูลอ้างอิงขวดยา"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "พลัง"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "ข้อมูลอ้างอิงเครื่องราง"
+    },
+    "search": {
+      "en": "Search",
+      "text": "ค้นหา"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "ไม่พบผลลัพธ์"
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "ค้นหาศัตรูหรือการต่อสู้..."
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — เหตุการณ์"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "เริ่มต้นมี:"
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "ทั้งหมด"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "เบต้า v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "บอส {zone}"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "เหตุการณ์ {zone}"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}: "
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "ใช้ร่วมกัน"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "(N = {n1} + จำนวนครั้งที่ใช้ Multi-Claw)",
+    "(with random intent)": "(พร้อมเจตนาแบบสุ่ม)",
+    "A random card is removed from your [gold]Deck[/gold].": "การ์ด 1 ใบแบบสุ่มถูกกำจัดออกจาก[gold]กองการ์ด[/gold]",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "เพิ่ม[red]ความเคลือบแคลง[/red]เข้ากองการ์ด ได้รับรางวัลการ์ด {n1} ชุด (ชุดละ {n2} ใบ)",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "เพิ่ม[red]ความเคลือบแคลง[/red]เข้ากองการ์ด แปรสภาพการ์ด {n1} ใบ",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "เพิ่ม[red]เสียใจภายหลัง[/red]เข้ากองการ์ด ได้รับ {n1} ทอง",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "เพิ่ม[red]เสียใจภายหลัง[/red]เข้ากองการ์ด ได้รับเครื่องราง {n1} ชิ้นแบบสุ่ม",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "เพิ่ม[red]ความละอาย[/red]เข้ากองการ์ด พัฒนาการ์ด {n1} ใบ",
+    "Add {n1} Beckon to Hand": "เพิ่มเรียกหา {n1} ใบใส่มือ",
+    "Add {n1} Burns to Hand": "เพิ่มเผาไหม้ {n1} ใบใส่มือ",
+    "Add {n1} Dazed to Discard": "เพิ่มความมึนงง {n1} ใบเข้ากองทิ้ง",
+    "Add {n1} Dazed to Draw": "เพิ่มความมึนงง {n1} ใบเข้ากองจั่ว",
+    "Add {n1} Infection to Discard": "เพิ่มติดเชื้อ {n1} ใบเข้ากองทิ้ง",
+    "Add {n1} Slimed to Discard": "เพิ่มเมือกสไลม์ {n1} ใบเข้ากองทิ้ง",
+    "Add {n1} Slimed to discard": "เพิ่มเมือกสไลม์ {n1} ใบเข้ากองทิ้ง",
+    "Add {n1} Toxic to Hand": "เพิ่ม Toxic {n1} ใบใส่มือ",
+    "Add {n1} Wither to Discard": "เพิ่มเหี่ยวเฉา {n1} ใบเข้ากองทิ้ง",
+    "Add {n1} Wither to Draw Pile": "เพิ่มเหี่ยวเฉา {n1} ใบเข้ากองจั่ว",
+    "Add {n1} Wounds into discard": "เพิ่มบาดแผล {n1} ใบเข้ากองทิ้ง",
+    "Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": "เพิ่ม: ณกเจี๊ยบสามารถวิวัฒนาการเป็น Byrdine ที่จุดพักได้ หลังเล่นณกโฉบครบ {n1} ครั้ง",
+    "Added: Yellow option ({n1} Fool cards).": "เพิ่ม: ตัวเลือกเหลือง (การ์ด Fool {n1} ใบ)",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "หลัง Amalgam ตาย: วนใช้ {m1} → {m2} → {m3}",
+    "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "หลังเล่นณกโฉบครบ {n1} ครั้ง ณกเจี๊ยบจะวิวัฒนาการที่จุดพักเป็น Byrdine ได้ ซึ่งจะเปลี่ยนณกโฉบทุกใบเป็น God Byrd การวิวัฒนาการจะใช้สิทธิ์พักผ่อนที่จุดพักของคุณไป",
+    "After Turret Operator dies: Always uses {m1}.": "หลัง Turret Operator ตาย: ใช้ {m1} เสมอ",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "หลังตอบรับ จะสุ่มเลือกการไต่สวน 1 จาก {n1} แบบ (พ่อค้า, ขุนนาง หรือคนไร้จุดเด่น)",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "หลังลงไปดื่มด่ำ คุณสามารถเลือกอยู่ต่อ (ผลเหมือนเดิมแต่ความเสียหาย +{n1} ทุกครั้ง) หรือหยุดอาบได้",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "เมื่อมี Personal Hive ถึง {n1} แล้ว จะได้รับความแข็งแรงเพียง {n2} แทน",
+    "After stun: Repeats {m1} → {m2}.": "หลังติดสตัน: ใช้ {m1} → {m2} ซ้ำไปเรื่อยๆ",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "หลัง {m1} (ครั้งที่ {n1} ติดกัน): ใช้ {m2} เสมอ",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "หลัง {m1} (ครั้งที่ {n1} ติดกัน): {n2}% {m2}, {n3}% {m3}",
+    "After {m1}: Always uses {m2}.": "หลัง {m1}: ใช้ {m2} เสมอ",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "เมื่อมี Personal Hive ถึง {n1}: {m1} จะได้รับ {n2} ความแข็งแรงแทน",
+    "All enemies gain {n1} {p1}": "ศัตรูทั้งหมดได้รับ {n1} {p1}",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "ข้ามรางวัลทั้งหมดได้ แต่ความเคลือบแคลงจะถูกเพิ่มเข้ากองการ์ดทันทีที่ถูกเปิดเผย",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "หนูทั้ง {n1} ตัวเริ่มด้วย {m1}, {m2} และ {m3} กระจายเท่าๆ กัน",
+    "Allies gain {n1} {p1}": "พันธมิตรได้รับ {n1} {p1}",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "ใช้ {m1} → {m2} → {m3} → {m4} → {m5} ตามลำดับเสมอ",
+    "Always uses {m1}.": "ใช้ {m1} เสมอ",
+    "Apply -{n1} {p1}": "สร้าง -{n1} {p1}",
+    "Apply {n1} {p1}": "สร้าง {n1} {p1}",
+    "Apply {p1}": "สร้าง {p1}",
+    "Apply {p1} {n1}": "สร้าง {p1} {n1}",
+    "At the end of each turn, take damage equal to {n1} + the turn number": "ตอนจบแต่ละเทิร์น ได้รับความเสียหายเท่ากับ {n1} + ลำดับเทิร์น",
+    "At the end of your first turn, lose {n1} {p1} and {n2} {p2}": "ตอนจบเทิร์นแรก เสีย {n1} {p1} และ {n2} {p2}",
+    "At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": "ตอนเริ่มต้นเทิร์นที่ {n1} ได้รับ {n2} {p1}, {n3} {p2} และ {n4} {p3}",
+    "At the start of your turn, add {n1} Wither to the top of your Draw Pile": "ตอนเริ่มต้นเทิร์น เพิ่มเหี่ยวเฉา {n1} ใบไว้บนสุดของกองจั่ว",
+    "Attack — Deal {n1} damage, plus:": "โจมตี — สร้างความเสียหาย {n1} พร้อมกับ:",
+    "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, เสื้อคลุมขนสัตว์, กากเพชร, Jewelry Box, Signet Ring",
+    "Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": "ก่อนจั่วการ์ดครั้งแรกในแต่ละการต่อสู้ เลือก {n1} อย่าง: {p1} {n2} หรือ {p2}",
+    "Buffed: Below renamed From Below": "บัฟ: เปลี่ยนชื่อ Below เป็น From Below",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "สามารถนำไข่ณกยักษ์ไปแลกเป็นณกโฉบได้ที่จุดพัก การเลือกนี้จะใช้สิทธิ์พักผ่อนที่จุดพักของคุณไป",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมี HP ไม่เกิน {n1}% ของ HP สูงสุด",
+    "Can only appear if all players have a card with Exhaust in their deck.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดที่มีสลายอยู่ในกองการ์ด",
+    "Can only appear if all players have at least {n1} Gold.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีอย่างน้อย {n1} ทอง",
+    "Can only appear if all players have at least {n1} HP.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมี HP อย่างน้อย {n1}",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดที่ร่ายมนตร์เหมาะเหม็งได้อย่างน้อย {n1} ใบ",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดที่ร่ายมนตร์หมุนวนได้อย่างน้อย {n1} ใบ",
+    "Can only appear if all players have at least {n1} potion.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีขวดยาอย่างน้อย {n1} ขวด",
+    "Can only appear if all players have at least {n1} potions.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีขวดยาอย่างน้อย {n1} ขวด",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีจู่โจมเริ่มต้นที่กำจัดได้อย่างน้อย {n1} ใบ และป้องกันเริ่มต้นที่กำจัดได้อย่างน้อย {n2} ใบ",
+    "Can only appear if all players have at least {n1} removable Basic card.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดเริ่มต้นที่กำจัดได้อย่างน้อย {n1} ใบ",
+    "Can only appear if all players have at least {n1} removable card.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดที่กำจัดได้อย่างน้อย {n1} ใบ",
+    "Can only appear if all players have at least {n1} tradable relics.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีเครื่องรางที่แลกเปลี่ยนได้อย่างน้อย {n1} ชิ้น",
+    "Can only appear if all players have at least {n1} transformable cards.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีการ์ดที่แปรสภาพได้อย่างน้อย {n1} ใบ",
+    "Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมีมากกว่า {n1} ทอง และมี HP ไม่เกิน {n2}% ของ HP สูงสุด",
+    "Can only appear if all players have more than {n1} HP.": "ปรากฏได้เฉพาะเมื่อผู้เล่นทุกคนมี HP มากกว่า {n1}",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "ปรากฏได้เฉพาะเมื่อมีผู้เล่นอย่างน้อย {n1} คนที่มี {n2} ทองขึ้นไป, เครื่องรางที่แลกเปลี่ยนได้ และขวดยา",
+    "Can only appear if no player has an event pet.": "ปรากฏได้เฉพาะเมื่อไม่มีผู้เล่นคนใดมีสัตว์เลี้ยงจากเหตุการณ์",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "ปรากฏได้เฉพาะเมื่อคุณมีอย่างน้อย {n1} ทอง หรือมีน้ำยาเสีย",
+    "Can only appear in Act {n1} or Act {n2}.": "ปรากฏได้เฉพาะในองก์ {n1} หรือองก์ {n2}",
+    "Can only appear in Act {n1}.": "ปรากฏได้เฉพาะในองก์ {n1}",
+    "Can only appear on floor {n1}+.": "ปรากฏได้เฉพาะชั้นที่ {n1} ขึ้นไป",
+    "Can only be used once per rat. Requires {n1} turns before available.": "หนูแต่ละตัวใช้ได้เพียงครั้งเดียว ต้องผ่านไป {n1} เทิร์นก่อนจึงจะใช้ได้",
+    "Can only be used once.": "ใช้ได้เพียงครั้งเดียว",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "จะไม่ปรากฏหากเทพโบราณขององก์นี้คือ Nonupeipe",
+    "Cannot appear if this act's Ancient is Tanx.": "จะไม่ปรากฏหากเทพโบราณขององก์นี้คือแท็งซ์",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "ไม่ปรากฏตามปกติ จะปรากฏในช่องเครื่องหมายคำถามช่องแรกที่คุณพบในองก์ {n1} หากมีกุญแจตะเกียงอยู่ในกองการ์ด",
+    "Cannot repeat.": "ใช้ซ้ำติดกันไม่ได้",
+    "Cannot repeat. {n1}-turn cooldown.": "ใช้ซ้ำติดกันไม่ได้ คูลดาวน์ {n1} เทิร์น",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "ใช้ซ้ำติดกันไม่ได้ คูลดาวน์ {n1} เทิร์น หากไม่มีท่าใดใช้ได้ จะใช้ท่านี้แทน",
+    "Card type is random (Attack/Skill/Power).": "ประเภทการ์ดเป็นแบบสุ่ม (โจมตี/ทักษะ/พลัง)",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "ประเภทการ์ดเป็นแบบสุ่ม (โจมตี/ทักษะ/พลัง) คุณเลือกการ์ดที่พัฒนาแล้ว {n1} จาก {n2} ใบ",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "การ์ดจาก STS{n1}: ขวากหนาม, ประดาบ, เบนความสนใจ, จับดาบสองมือ, ขุดสนามเพลาะ, สวัสดีชาวโลก, ใช้เล่ห์ใช้กล, ดีดกลับ, ฉีกเป็นชิ้นๆ, ทับซ้อน",
+    "Cards are from your character's card pool.": "การ์ดมาจากกลุ่มการ์ดของตัวละครคุณ",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "ยังพัฒนาการ์ดระหว่างการต่อสู้ได้ แม้ Magi Knight จะสร้าง Dampen แล้ว",
+    "Caviar/+Max HP ({n1})": "ไข่ปลาคาเวียร์/+HP สูงสุด ({n1})",
+    "Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": "เปลี่ยนแปลง: ฝึกกำหนดลมหายใจใช้ {n1} ทอง (เดิม {n2}) และเพิ่มรู้แจ้งเห็นจริง {n3} ใบ (เดิม {n4})",
+    "Changed: HP is now a fixed value, {n1} → {n2}.": "เปลี่ยนแปลง: HP เป็นค่าคงที่แล้ว {n1} → {n2}",
+    "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "เปลี่ยนแปลง: ประตูแห่งแสงพัฒนาการ์ดที่คุณเลือก {n1} ใบ แทนการ์ดแบบสุ่ม {n2} ใบ",
+    "Changed: Radiate removed": "เปลี่ยนแปลง: นำแผ่รังสีออก",
+    "Changed: can no longer steal Quest cards.": "เปลี่ยนแปลง: ไม่สามารถขโมยการ์ดภารกิจได้อีกต่อไป",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "วุ่นวาย: เพิ่มการ์ด 1 ใบแบบสุ่มจากกลุ่มการ์ดของคุณใส่มือ การ์ดนั้นเล่นได้ฟรี",
+    "Choking: Apply {n1} Strangle": "ดับปราณ: สร้าง {n1} Strangle",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "สุ่มเลือกจาก {m1}, {m2} และ {m3}",
+    "Clam Roll/Heal ({n1})": "หอยโรล/ฟื้นฟู ({n1})",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "เผชิญหน้ากับความจริงจะถูกล็อกหากไม่มีการ์ดที่เข้าเงื่อนไขในกองการ์ด",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "สร้างการ์ดวิทยาศาสตร์สุดเพี้ยน (ค่าร่าย {n1} พลังงาน) เมื่อพัฒนาจะได้รับติดตัว",
+    "Curious: Powers cost {n1} Energy less": "ใคร่รู้: การ์ดพลังมีค่าร่ายลดลง {n1} พลังงาน",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "วนใช้ {m1} → {m2} หรือ {m3} ({n1}/{n2})",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "วนใช้ {m1} → {m2} → {m3} (มีโอกาส {n1}% ที่จะใช้ {m4} ซ้ำ 1 ครั้ง)",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "วนใช้ {m1} → {m2} → {m3} → {m4} (จนกว่าจะใช้ {m5} ครบ {n1} ครั้ง)",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "วนใช้ {m1} → {m2} → {m3} → {m4} → {m5}",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "วนใช้ {m1} → {m2} → {m3} → {m4}",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "วนใช้ {m1} → {m2} → {m3} โดยมีโอกาส {n1}% ที่จะข้าม {m4}",
+    "Cycles {m1} → {m2} → {m3}.": "วนใช้ {m1} → {m2} → {m3}",
+    "Cycles {m1} → {m2}.": "วนใช้ {m1} → {m2}",
+    "Damage {n1}": "ความเสียหาย {n1}",
+    "Damage {n1} + stolen {p1}": "ความเสียหาย {n1} + {p1} ที่ขโมยมา",
+    "Damage {n1} + {n2}*N": "ความเสียหาย {n1} + {n2}*N",
+    "Decision made as a group in co-op.": "ในโหมดโคออป จะตัดสินใจร่วมกันเป็นกลุ่ม",
+    "Dies": "ตาย",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "อาหารจะถูกเสนอแบบสุ่มจนกว่าคุณจะหมดเงินหรือเลือกจากไป อาหารจานก่อนหน้าจะไม่มาซ้ำ",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "ไม่คัดลอกโชคร้าย แต่มนตร์บนการ์ดจะถูกคัดลอกไปด้วย",
+    "Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": "Drink Bath Water ให้เครื่องราง {n1} ชิ้นแบบสุ่มจากของที่ Nonupeipe เสนอ ยกเว้น Looming Fruit:",
+    "Each combat shuffles {n1} Beckon into your Draw Pile": "ทุกการต่อสู้ สับเรียกหา {n1} ใบเข้ากองจั่ว",
+    "Each option is locked if you have no eligible cards of that type.": "แต่ละตัวเลือกจะถูกล็อกหากคุณไม่มีการ์ดประเภทนั้นที่เข้าเงื่อนไข",
+    "Each option names the random relic, so you know exactly what you are trading for.": "แต่ละตัวเลือกจะระบุชื่อเครื่องรางที่สุ่มได้ คุณจึงรู้แน่ชัดว่ากำลังแลกกับอะไร",
+    "Elites gain {n1} {p1}": "ลูกพี่ได้รับ {n1} {p1}",
+    "Enemies gain {p1}:": "ศัตรูได้รับ {p1}:",
+    "Enemies spawned mid-fight gain {n1} {p1}": "ศัตรูที่ปรากฏระหว่างการต่อสู้ได้รับ {n1} {p1}",
+    "Energized: Gain {n1} Energy": "ชาร์จพลัง: ได้รับ {n1} พลังงาน",
+    "Enlightenment no longer Exhausts.": "รู้แจ้งเห็นจริงไม่มีสลายอีกต่อไป",
+    "Enrage": "Enrage",
+    "Enter deeper. Lose HP.": "เข้าไปลึกขึ้นอีก เสีย HP",
+    "Escape from combat": "หนีจากการต่อสู้",
+    "Escape from the combat": "หนีออกจากการต่อสู้",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "ความช่ำชอง: ได้รับ {n1} ความแข็งแรง และ {n2} ความชำนาญ",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "การต่อสู้จะให้รางวัลทองตามปกติหาก Fat Gremlin ไม่หลบหนี",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "ต่อสู้กับจักรกลชกต่อย {n1} ตัวที่เริ่มต้นโดย HP หายไป {n2} ตัวหนึ่งจะเริ่มด้วยหมัดหนักเสมอ",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "ต่อสู้เป็น {n1} ส่วน — HP เป็นเลขคู่เสมอ และแต่ละส่วนมี HP สูงสุดต่างกัน",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "ออกแน่นอนทุกการหยิบครั้งที่ {n1} (ครั้งที่ {n2}, {n3} และต่อๆ ไป)",
+    "Free (no gold cost).": "ฟรี (ไม่เสียทอง)",
+    "Fried Eel/Colorless Card ({n1})": "ปลาไหลทอด/การ์ดไร้สี ({n1})",
+    "Front and back start with {m1}. Middle starts with {m2}.": "ตัวหน้าและตัวหลังเริ่มด้วย {m1} ตัวกลางเริ่มด้วย {m2}",
+    "Front starts {m1}, back starts {m2}.": "ตัวหน้าเริ่มด้วย {m1} ตัวหลังเริ่มด้วย {m2}",
+    "Gain [gold]Gold[/gold] based on depth.": "ได้รับ[gold]ทอง[/gold]ตามระดับความลึก",
+    "Gain {n1} {p1}": "ได้รับ {n1} {p1}",
+    "Gain {n1} {p1} and {n2} {p2}": "ได้รับ {n1} {p1} และ {n2} {p2}",
+    "Gain {n1} {p1} per respawn": "ได้รับ {n1} {p1} ทุกครั้งที่เกิดใหม่",
+    "Gain {n1}* Intangible": "ได้รับ {n1}* ไร้ตัวตน",
+    "Gain {n1}+ {p1}": "ได้รับ {n1}+ {p1}",
+    "Gain {p1}": "ได้รับ {p1}",
+    "Gain {p1} {n1}": "ได้รับ {p1} {n1}",
+    "Gains {n1} {p1}": "ได้รับ {n1} {p1}",
+    "Gains {n1} {p1} when stunned.": "ได้รับ {n1} {p1} เมื่อติดสตัน",
+    "Gains {p1} {n1}": "ได้รับ {p1} {n1}",
+    "Galvanic Burst": "Galvanic Burst",
+    "Give Potion": "ให้ขวดยา",
+    "Give Relic": "ให้เครื่องราง",
+    "Give allies {n1} {p1}": "มอบ {n1} {p1} ให้พันธมิตร",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "ให้รางวัลการต่อสู้ตามปกติ พร้อมขวดยาและเครื่องรางเพิ่มอีกอย่างละ 1 (อาจได้ขวดยา {n1} ขวด)",
+    "Gold-generating relics cannot appear as the Featured Item.": "เครื่องรางที่สร้างทองจะไม่ปรากฏเป็นสินค้าแนะนำ",
+    "Golden Fysh/Gold ({n1})": "ปฬาทองคำ/ทอง ({n1})",
+    "Hatches into Hatchling.": "ฟักออกมาเป็น Hatchling",
+    "Headbutt": "Headbutt",
+    "Heal [green]{n1}%[/green] Max HP.": "ฟื้นฟู [green]{n1}%[/green] ของ HP สูงสุด",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "ฟื้นฟู [green]{n1}%[/green] ของ HP สูงสุด และต่อสู้[red]ศัตรู[/red]กลุ่มหนึ่ง",
+    "Heal is multiplied by player count in co-op.": "ในโหมดโคออป ปริมาณการฟื้นฟูจะคูณด้วยจำนวนผู้เล่น",
+    "Heal {n1} HP.": "ฟื้นฟู {n1} HP",
+    "Heal {n1}*": "ฟื้นฟู {n1}*",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "เลือกจับไว้ซ้ำได้ ความเสียหายเริ่มที่ {n1} และเพิ่มขึ้น {n2} ทุกครั้ง",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "หาก Amalgam ตายระหว่างเทิร์นและเจตนาคือ {m1} จะเปลี่ยนเป็น {m2} แทน",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "หาก Fat Gremlin หลบหนีหลังขโมยทอง คุณจะไม่ได้รับรางวัลทอง แต่หากหลบหนีโดยยังไม่ได้ขโมยทอง คุณยังได้รับ {n1}% ของรางวัลทองตามปกติ",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "หากผู้เล่นถูกบ่อทรายกลืน ผลอย่างหางจิ้งจกจะไม่ชุบชีวิตคุณ",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "หากพันธมิตร < {n1} หลัง {m1}: {m2} → {m3} → {m4}",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "หากพันธมิตร ≥ {n1} หลัง {m1}: {m2} → {m3} → {m4}",
+    "If spawned from Phrog Parasite, starts stunned.": "หากเกิดจาก Phrog Parasite จะเริ่มต้นโดยติดสตัน",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "หากติดสตันก่อนเทิร์นที่ {n1} จะใช้ท่าถัดไปต่อ หากติดสตันในเทิร์นที่ {n2} จะพยายามใช้ {m1} อีกครั้ง",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "หากใช้ {m1} ได้ มีโอกาส {n1}% ที่จะใช้ท่านั้นแทน",
+    "Improvement: At the end of combat, Upgrade a random card": "การปรับปรุง: ตอนจบการต่อสู้ พัฒนาการ์ด 1 ใบแบบสุ่ม",
+    "In Blitz it steals no Gold.": "ในโหมด Blitz จะไม่ขโมยทอง",
+    "In X turns, instantly die.": "ตายทันทีในอีก X เทิร์น",
+    "In co-op, only appears if all players have more than {n1} HP.": "ในโหมดโคออป จะปรากฏเฉพาะเมื่อผู้เล่นทุกคนมี HP มากกว่า {n1}",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "หากต้องการพัฒนาการ์ดทั้งหมดและเหลือ HP สูงสุด {n1} คุณต้องเริ่มด้วย HP สูงสุดอย่างน้อย {n2}",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "ในการต่อสู้กับ Nibbit {n1} ตัว: ตัวหน้าเริ่มด้วย {m1} ตัวหลังเริ่มด้วย {m2}",
+    "Increases Wither damage by {n1} each use.": "เพิ่มความเสียหายของเหี่ยวเฉา {n1} ทุกครั้งที่ใช้",
+    "Initially excludes Basic rarity cards.": "ในช่วงแรกจะไม่รวมการ์ดที่มีความหายากระดับพื้นฐาน",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "เริ่มการต่อสู้กับอัศวินปริศนา ซึ่งให้รางวัลตามปกติ นอกเหนือจากกุญแจตะเกียง",
+    "Insert Potion": "ใส่ขวดยา",
+    "Jelly Liver/Transform ({n1})": "ตับเยลลี่/แปรสภาพ ({n1})",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "การฆ่าส่วนหนึ่งด้วยอายุขัยจะทำให้ส่วนอื่นที่ตายแล้วฟื้นขึ้นมาได้ แม้ทุกส่วนจะดูเหมือนตายพร้อมกันชั่วขณะก็ตาม",
+    "Laser → Rocket Claw.": "Laser → Rocket Claw",
+    "Leave the conveyor belt.": "ออกจากสายพาน",
+    "Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": "ถูกล็อกหากมีน้อยกว่า {n1} ทอง การ์ดมาจากกลุ่มการ์ดของตัวละครคุณและจะไม่ถูกพัฒนา",
+    "Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].": "เสีย[gold]ทอง[/gold][red]ทั้งหมด[/red] ได้รับ[gold]Bath Robes[/gold]",
+    "Lose [red]{n1}%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]{n2}[/green] HP.": "เสีย [red]{n1}%[/red] ของ HP ปัจจุบัน ได้รับ[gold]Wuppy[/gold]ที่มี [green]{n2}[/green] HP",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "เสีย [red]{n1}[/red] HP (เพิ่มขึ้น {n2} ทุกครั้ง) สุ่มการ์ดในตัวเลือกพิชิตใหม่",
+    "Lose [red]{n1}[/red] HP. Add [blue]{n2}[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.": "เสีย [red]{n1}[/red] HP เพิ่ม[red]มีความผิด[/red] [blue]{n2}[/blue] ใบเข้า[gold]กองการ์ด[/gold] ได้รับเครื่องรางของ Nonupeipe 1 ชิ้นแบบสุ่ม",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "เสีย [red]{n1}[/red] HP ได้รับ[gold]เห็ดหอมหวน[/gold] พัฒนาการ์ด [blue]{n2}[/blue] ใบแบบสุ่ม",
+    "Lose [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.": "เสีย [red]{n1}[/red] [gold]ทอง[/gold] ได้รับการ์ด[gold]หายาก[/gold] 1 ใบแบบสุ่ม",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "เสียขวดยา 1 ขวด เลือกการ์ดที่พัฒนาแล้วซึ่งมีความหายากตรงกัน {n1} จาก {n2} ใบ",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "เสีย[red]ขวดยา[/red] 1 ขวดแบบสุ่ม ได้รับ [blue]{n1}[/blue] HP สูงสุด",
+    "Lose {n1} {p1}": "เสีย {n1} {p1}",
+    "Lose {p1}": "เสีย {p1}",
+    "Max {n1} in a row.": "ใช้ติดกันได้สูงสุด {n1} ครั้ง",
+    "Minions that join mid-fight gain none": "ลูกน้องที่เข้าร่วมระหว่างการต่อสู้จะไม่ได้รับ",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "อัศวินปริศนาคือ Flail Knight ที่เริ่มต้นด้วย {n1} ความแข็งแรง และ {n2} เกราะโลหะ โดยมี {n3} HP",
+    "N = # of times this move was used": "N = จำนวนครั้งที่ใช้ท่านี้ไปแล้ว",
+    "Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": "เนิร์ฟ: ฟองน้ำหนามราคา {n1} ทอง (เดิม {n2})",
+    "New event.": "เหตุการณ์ใหม่",
+    "Normal enemies gain {n1} {p1}": "ศัตรูทั่วไปได้รับ {n1} {p1}",
+    "Obtain Forgotten Soul.": "ได้รับ Forgotten Soul",
+    "Obtain [gold]Big Mushroom[/gold].": "ได้รับ[gold]เห็ดใหญ่[/gold]",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "ได้รับ[gold]ชาไร้มารยาท[/gold]",
+    "Obtain the [gold]Sword of Stone[/gold].": "ได้รับ[gold]ดาบศิลา[/gold]",
+    "Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].": "ได้รับเครื่องรางที่จัดแสดงอยู่ เพิ่ม[red]คำสาป[/red] 1 ใบแบบสุ่มเข้า[gold]กองการ์ด[/gold]",
+    "Offered three random options that are not your character.": "มีตัวเลือกแบบสุ่ม 3 แบบที่ไม่ใช่ตัวละครของคุณ",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "เสนอประเภทแบบสุ่ม {n1} จาก {n2} แบบ (โจมตี/ทักษะ/พลัง) จากนั้นเสนอผลแบบสุ่ม {n3} จาก {n4} แบบสำหรับประเภทที่เลือก",
+    "On wakeup all Plating is removed.": "เมื่อตื่นขึ้น เกราะโลหะทั้งหมดจะหายไป",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "ไร้ตัวตน 1 จาก {n1} ที่ได้จาก {m1} จะลดลงทันที",
+    "Only {n1} rat can use {m1} per turn.": "ในแต่ละเทิร์น หนูใช้ {m1} ได้เพียง {n1} ตัว",
+    "Opens with {m1} or {m2}.": "เริ่มด้วย {m1} หรือ {m2}",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "เริ่มด้วย {m1} → {m2} → {m3} จากนั้นใช้ {m4} เสมอ",
+    "Opens with {m1} → {m2} → {m3}.": "เริ่มด้วย {m1} → {m2} → {m3}",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "เริ่มด้วย {m1} → {m2} จากนั้นใช้ {m3} เสมอ",
+    "Opens with {m1} → {m2}.": "เริ่มด้วย {m1} → {m2}",
+    "Opens with {m1}, then always uses {m2}.": "เริ่มด้วย {m1} จากนั้นใช้ {m2} เสมอ",
+    "Opens with {m1}.": "เริ่มด้วย {m1}",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "เริ่มด้วย {m1} จากนั้นสลับ {m2} ↔ {m3} (เริ่มด้วย {m4} เสมอ)",
+    "Options are locked if you don't have the required item.": "ตัวเลือกจะถูกล็อกหากคุณไม่มีไอเทมที่ต้องใช้",
+    "Pass Turn": "ข้ามเทิร์น",
+    "Pass turn": "ข้ามเทิร์น",
+    "Passes Turn": "ข้ามเทิร์น",
+    "Passes turn": "ข้ามเทิร์น",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].": "จ่าย [red]{n1}[/red] [gold]ทอง[/gold] ได้รับ[gold]Bath Towel[/gold]",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "จ่าย [red]{n1}[/red] [gold]ทอง[/gold] ได้รับ[gold]ชากระดูก[/gold]",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "จ่าย [red]{n1}[/red] [gold]ทอง[/gold] ได้รับ[gold]ชาถ่านคุกรุ่น[/gold]",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "จ่าย [red]{n1}[/red] [gold]ทอง[/gold] ได้รับ[gold]เครื่องรางหายาก[/gold] 1 ชิ้นแบบสุ่ม",
+    "Phase {n1} (after stun):": "ระยะที่ {n1} (หลังติดสตัน):",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "ระยะที่ {n1} (HP ต่ำกว่า {n2}% หลังใช้ {m1}):",
+    "Phase {n1} (stunned at {n2} HP):": "ระยะที่ {n1} (ติดสตันเมื่อเหลือ {n2} HP):",
+    "Phase {n1}:": "ระยะที่ {n1}:",
+    "Player must choose one of two debuffs:": "ผู้เล่นต้องเลือกผลผิดปกติ 1 จาก 2 อย่าง:",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "ตำแหน่งที่ {n1} และ {n2} เริ่มด้วย {m1} ตำแหน่งที่ {n3} และ {n4} เริ่มด้วย {m2}",
+    "Power:": "พลัง:",
+    "Precision Beam → Precise Smash": "Precision Beam → Precise Smash",
+    "Prep": "Prep",
+    "Probabilities are weighted and shift if any options are unavailable.": "ความน่าจะเป็นมีการถ่วงน้ำหนัก และจะเปลี่ยนไปหากมีตัวเลือกใดไม่พร้อมใช้งาน",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "เหตุการณ์ดวลหมัด: ตัวที่ {n1} เริ่มด้วย {m1} ตัวที่ {n2} เริ่มด้วย {m2}",
+    "Puppet Strings": "Puppet Strings",
+    "Rejecting is not allowed — double downing abandons the run.": "ไม่สามารถปฏิเสธได้ — การเลือกยืนยันคำเดิมจะเท่ากับละทิ้งการเดินทาง",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "เครื่องรางจาก STS{n1}: สร้อยศิลาแห่งความมืด, ตาข่ายดักฝันร้าย, สว่านมือ, กระปุกออมสินรูปมอว์, รองเท้าบูท",
+    "Renamed moves: Targeting Reticle → Calculating": "เปลี่ยนชื่อท่า: Targeting Reticle → Calculating",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "เลือกซ้ำได้สูงสุด {n1} ครั้ง ค่าใช้จ่ายเพิ่มขึ้นเรื่อยๆ: {n2}/{n3}/{n4}/{n5}/ทั้งหมดยกเว้น {n6} HP สูงสุด การถอดรหัสครั้งที่ {n7} จะพัฒนาการ์ดที่พัฒนาได้ทั้งหมด",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "เลือกซ้ำได้สูงสุด {n1} ครั้ง ความเสียหายเพิ่มขึ้นเรื่อยๆ: {n2}/{n3}/{n4} การเลือกครั้งที่ {n5} จะได้รับแกนละอองเรณู",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "เลือกซ้ำได้สูงสุด {n1} ครั้ง ทองเพิ่มขึ้นเรื่อยๆ: {n2}/{n3}/{n4}",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "เกิดใหม่ด้วย {m1} ผ่าน {p1} และได้รับ {n1} HP สูงสุดทุกครั้งที่เกิดใหม่",
+    "Retains Strength after reviving.": "ยังคงมีความแข็งแรงอยู่หลังฟื้นคืนชีพ",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "รางวัลประกอบด้วยรางวัลการ์ด 3 ชุด แต่ละชุดมีการ์ดธรรมดา/ไม่ธรรมดา/หายาก {n1} ใบ",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "ทอนกำลัง: สร้าง {n1} ความอ่อนแอ และ {n2} จุดอ่อน",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "แต่ละส่วนเริ่มด้วย {m1}, {m2} และ {m3} กระจายเท่าๆ กัน",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "การ์ดจากแบ่งปันความรู้มาจากกลุ่มการ์ดของตัวละครคุณ โดยใช้โอกาสความหายากเดียวกับรางวัลการต่อสู้ปกติ (นับรวมระบบการันตีการ์ดหายาก) การ์ดที่เสนอจะไม่เคยถูกพัฒนามาก่อน",
+    "Shuffle {n1} Beckon into discard": "สับเรียกหา {n1} ใบเข้ากองทิ้ง",
+    "Shuffle {n1} Beckon into draw": "สับเรียกหา {n1} ใบเข้ากองจั่ว",
+    "Shuffle {n1} Burns into discard": "สับเผาไหม้ {n1} ใบเข้ากองทิ้ง",
+    "Shuffle {n1} Frantic Escapes into discard": "สับ Frantic Escape {n1} ใบเข้ากองทิ้ง",
+    "Shuffle {n1} Frantic Escapes into draw": "สับ Frantic Escape {n1} ใบเข้ากองจั่ว",
+    "Single-player only.": "เฉพาะโหมดผู้เล่นคนเดียว",
+    "Skill — Gain {n1} Block, plus:": "ทักษะ — ได้รับ {n1} บล็อก พร้อมกับ:",
+    "Slash {n1}": "Slash {n1}",
+    "Sleeps for {n1} turns or until losing HP.": "หลับ {n1} เทิร์น หรือจนกว่าจะเสีย HP",
+    "Sleeps until awakened, then always uses {m1}.": "หลับจนกว่าจะถูกปลุก จากนั้นใช้ {m1} เสมอ",
+    "Slice": "Slice",
+    "Smother": "Smother",
+    "Spicy Snappy/Upgrade ({n1})": "เผ็ดกรอบทรงเครื่อง/พัฒนา ({n1})",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "แผนที่ลายแทงขุมทรัพย์จะทำให้ทุกเส้นทางในองก์ถัดไปมาบรรจบกันที่ช่องหีบสมบัติขององก์ ซึ่งจะมี {n1} ทอง เพิ่มจากรางวัลปกติ",
+    "Start each combat with {n1} {p1} and {n2} {p2}": "เริ่มต้นทุกการต่อสู้ด้วย {n1} {p1} และ {n2} {p2}",
+    "Steal {n1} card and gain {p1}": "ขโมยการ์ด {n1} ใบ และได้รับ {p1}",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "การ์ดที่ถูกขโมยจะมาจากกองจั่วหรือกองทิ้ง ลำดับความสำคัญ: {n1}. การ์ดไม่ธรรมดาที่ไม่มีมนตร์อัดฉีด {n2}. การ์ดธรรมดา/หายาก/เหตุการณ์ที่ไม่มีมนตร์อัดฉีด {n3}. การ์ดพื้นฐานที่ไม่มีมนตร์อัดฉีด {n4}. การ์ดที่มีมนตร์อัดฉีดหรือการ์ดเทพโบราณ {n5}. คำสาปหรืออื่นๆ การ์ดภารกิจจะไม่ถูกขโมย",
+    "Stolen gold is held by Fat Gremlin once summoned.": "เมื่อ Fat Gremlin ถูกอัญเชิญ ทองที่ถูกขโมยจะอยู่กับมัน",
+    "Stunned for one turn": "ติดสตัน 1 เทิร์น",
+    "Summon Two-Tailed Rat": "อัญเชิญ Two-Tailed Rat",
+    "Summon up to {n1} Tough Eggs": "อัญเชิญ Tough Egg สูงสุด {n1} ฟอง",
+    "Summon {n1} Aggro Bot": "อัญเชิญ Aggro Bot {n1} ตัว",
+    "Summon {n1} Eye with Teeth": "อัญเชิญ Eye with Teeth {n1} ตัว",
+    "Summon {n1} Gas Bomb": "อัญเชิญ Gas Bomb {n1} ลูก",
+    "Summon {n1} Parafright": "อัญเชิญ Parafright {n1} ตัว",
+    "Summons X Wrigglers after dying (they start stunned).": "อัญเชิญ Wriggler X ตัวหลังตาย (เริ่มต้นโดยติดสตัน)",
+    "Summons {n1} Aggro Bot": "อัญเชิญ Aggro Bot {n1} ตัว",
+    "Summons {n1} Defensive Bot": "อัญเชิญ Defensive Bot {n1} ตัว",
+    "Suspicious Condiment/Potion ({n1})": "เครื่องปรุงน่าสงสัย/ขวดยา ({n1})",
+    "Swing": "Swing",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "ดาบศิลาจะกลายเป็น Sword of Jade หลังผ่านการต่อสู้ {n1} ครั้ง",
+    "Tackle": "Tackle",
+    "Test Subject Stage {n1}": "Test Subject ร่างที่ {n1}",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "น้ำยาเสียที่ได้จากที่นี่สามารถขว้างใส่พ่อค้าปลอมเพื่อเริ่มการต่อสู้ได้",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "กุญแจตะเกียงจะบังคับให้เหตุการณ์ “เรปี นักประวัติศาสตร์สงคราม” ปรากฏที่ช่องเครื่องหมายคำถามถัดไปที่คุณพบในองก์ {n1}",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "การ์ดในตัวเลือกพิชิตจะถูกสุ่มใหม่ทุกครั้งที่เลือกจับไว้ โดยไม่ซ้ำกับการ์ดที่เคยเสนอแล้ว จนกว่าการ์ดอื่นทั้งหมดจะถูกเสนอครบ",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "ตัวเลือกพักผ่อนจะกระตุ้นผลทั้งหมดที่การพักผ่อนที่จุดพักจะกระตุ้น (หมอนหรู, ตาข่ายดักฝันร้าย ฯลฯ)",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "ทำนายใหญ่คลิกได้เฉพาะช่องที่ยังไม่ถูกคลิก และจะเปิดเผยช่องรอบข้าง {n1} ช่อง",
+    "The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": "เครื่องรางที่จัดแสดงคือ {n1} ชิ้นที่สุ่มจาก Obsidian Vice, Thumbscrew และ Tormentous Collar",
+    "The following items are guaranteed to be in the minigame:": "ไอเทมต่อไปนี้จะมีอยู่ในมินิเกมแน่นอน:",
+    "The specific potion is named in the option text.": "ข้อความตัวเลือกจะระบุชื่อขวดยา",
+    "The specific potion to be lost is shown in the option text.": "ข้อความตัวเลือกจะแสดงขวดยาที่จะเสียไป",
+    "Then chooses randomly from all moves.": "จากนั้นสุ่มเลือกจากทุกท่า",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "จากนั้นสุ่มเลือกจาก {m1}, {m2}, {m3}",
+    "Then chooses randomly from {m1}, {m2}.": "จากนั้นสุ่มเลือกจาก {m1}, {m2}",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "จากนั้นวนใช้ {m1} → {m2} → {m3} → {m4} → {m5}",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "จากนั้นวนใช้ {m1} → {m2} → {m3} → {m4}",
+    "Then cycles {m1} → {m2} → {m3}.": "จากนั้นวนใช้ {m1} → {m2} → {m3}",
+    "Then cycles {m1} → {m2}.": "จากนั้นวนใช้ {m1} → {m2}",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "มีตัวเลือกตุ๊กตา {n1} แบบ และคุณจะเห็นตุ๊กตาแบบสุ่มจำนวนหนึ่งตามตัวเลือกที่เลือก",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "การขว้างน้ำยาเสียจะเริ่มการต่อสู้ รางวัล: {n1} ทอง, เครื่องรางทั้ง {n2} ชิ้น, พรมของพ่อค้าของปลอมราคาถูก และรางวัลการ์ด",
+    "Total HP to reach Pollinous Core: {n1}.": "HP ทั้งหมดที่ต้องใช้เพื่อไปถึงแกนละอองเรณู: {n1}",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "แลก[gold]เครื่องราง[/gold] 1 ชิ้นของคุณเป็น[gold]เครื่องราง[/gold]แบบสุ่ม",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "เสนอขวดยาจากเข็มขัดของคุณได้สูงสุด {n1} ขวด ความหายากของขวดยาจะกำหนดความหายากของรางวัลการ์ด",
+    "Uses {m1} once, then restarts Phase {n1}.": "ใช้ {m1} 1 ครั้ง จากนั้นเริ่มระยะที่ {n1} ใหม่",
+    "Uses {m1}, then cycles {m2} → {m3}.": "ใช้ {m1} จากนั้นวนใช้ {m2} → {m3}",
+    "Violence: Hit {n1} times ({n2})": "รุนแรง: โจมตี {n1} ครั้ง ({n2})",
+    "Weak Tackle": "Weak Tackle",
+    "Weights:": "ค่าน้ำหนัก:",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "เมื่อพันธมิตร ≤ {n1}: สุ่มเลือกจาก {m1}, {m2}",
+    "When allies ≥ {n1}: Always uses {m1}.": "เมื่อพันธมิตร ≥ {n1}: ใช้ {m1} เสมอ",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "เมื่อถูกฆ่า จะอัญเชิญ Sneaky Gremlin {n1} ตัว และ Fat Gremlin {n2} ตัว (เริ่มต้นโดยติดสตัน)",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "เมื่อถูกฆ่า: ฟื้นคืนชีพหลังผ่านไป {n1} เทิร์นโดยมี {n2} HP และใช้ท่าถัดไปต่อ",
+    "When killed: Revives next turn in Stage {n1}.": "เมื่อถูกฆ่า: ฟื้นคืนชีพในเทิร์นถัดไปเป็นร่างที่ {n1}",
+    "While Amalgam alive: Always uses {m1}.": "ขณะที่ Amalgam ยังมีชีวิต: ใช้ {m1} เสมอ",
+    "While Burrowed: Always uses {m1}.": "ขณะมี Burrowed: ใช้ {m1} เสมอ",
+    "While Turret Operator alive: Always uses {m1}.": "ขณะที่ Turret Operator ยังมีชีวิต: ใช้ {m1} เสมอ",
+    "Wisdom: Draw {n1} cards": "ทรงภูมิ: จั่วการ์ด {n1} ใบ",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "ขณะยังมีชีวิต Wuppy จะรับความเสียหายจากการโจมตีทั้งหมดที่เล็งมาที่คุณ HP ของมันจะคงอยู่ข้ามการต่อสู้ และจุดพักจะมีตัวเลือกฟื้นพลังที่รักษามันจนเต็ม",
+    "[Merchant] Guilty": "[พ่อค้า] มีความผิด",
+    "[Merchant] Innocent": "[พ่อค้า] บริสุทธิ์",
+    "[Noble] Guilty": "[ขุนนาง] มีความผิด",
+    "[Noble] Innocent": "[ขุนนาง] บริสุทธิ์",
+    "[Nondescript] Guilty": "[คนไร้จุดเด่น] มีความผิด",
+    "[Nondescript] Innocent": "[คนไร้จุดเด่น] บริสุทธิ์",
+    "[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": "[gold]Wuppy[/gold]จะติดตามคุณและรับความเสียหายจากการโจมตีทั้งหมดในการต่อสู้ HP ของมันจะคงอยู่ข้ามการต่อสู้",
+    "a Torch Head Amalgam in play": "Torch Head Amalgam 1 ตัวในสนาม",
+    "damage {n1} → {n2}.": "ความเสียหาย {n1} → {n2}",
+    "pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": "รูปแบบเปลี่ยนเป็น Jab → Jab → พายุลมกรด → Pulsate แล้ว Pulsate จะสร้าง {n1} จุดอ่อน แทนการได้รับ {n2} บล็อก",
+    "{m1} {p1} gain increases by {n1} each use.": "{p1} ที่ได้รับจาก {m1} เพิ่มขึ้น {n1} ทุกครั้งที่ใช้",
+    "{n1} Big Gold/{n2}g ({n3})": "ทองก้อนใหญ่ {n1} ก้อน/{n2} ทอง ({n3})",
+    "{n1} Common Card ({n2})": "การ์ดธรรมดา {n1} ใบ ({n2})",
+    "{n1} Common Potions ({n2})": "ขวดยาธรรมดา {n1} ขวด ({n2})",
+    "{n1} Dazed to Discard": "ความมึนงง {n1} ใบเข้ากองทิ้ง",
+    "{n1} Doubt curse ({n2})": "คำสาปความเคลือบแคลง {n1} ใบ ({n2})",
+    "{n1} Rare Card ({n2})": "การ์ดหายาก {n1} ใบ ({n2})",
+    "{n1} Rare Potion ({n2})": "ขวดยาหายาก {n1} ขวด ({n2})",
+    "{n1} Relic ({n2})": "เครื่องราง {n1} ชิ้น ({n2})",
+    "{n1} Rock + {n2} random from Egg or Nectar": "Rock {n1} ตัว + สุ่มจาก Egg หรือ Nectar {n2} ตัว",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "Rock {n1} ตัว + ไม่ซ้ำกันจาก Egg / Silk / Nectar {n2} ตัว",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "Slithering Strangler {n1} ตัว + หนึ่งใน: Snapping Jaxfruit / Medium Slime แบบสุ่ม / Small Slime แบบสุ่ม {n2} ตัว",
+    "{n1} Small Gold/{n2}g ({n3})": "ทองก้อนเล็ก {n1} ก้อน/{n2} ทอง ({n3})",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "Small Twig Slime {n1} ตัว + Small Leaf Slime {n2} ตัว + Medium Slime แบบสุ่ม {n3} ตัว",
+    "{n1} Uncommon Card ({n2})": "การ์ดไม่ธรรมดา {n1} ใบ ({n2})",
+    "{n1} enemies": "ศัตรู {n1} ตัว",
+    "{n1} in easy fights": "{n1} ในการต่อสู้ระดับง่าย",
+    "{n1} in elite fights": "{n1} ในการต่อสู้กับลูกพี่",
+    "{n1} in hard fights": "{n1} ในการต่อสู้ระดับยาก",
+    "{n1} in multi-enemy fights": "{n1} ในการต่อสู้ที่มีศัตรูหลายตัว",
+    "{n1} of the {n2} cells are populated with items.": "มีไอเทมอยู่ {n1} จาก {n2} ช่อง",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "สุ่มเสนอเครื่องรางของปลอม {n1} จาก {n2} ชิ้น ราคาชิ้นละ {n3} ทอง",
+    "{n1} unique Raiders from pool": "Raider ที่ไม่ซ้ำกัน {n1} ตัวจากกลุ่มที่กำหนด",
+    "{n1}-turn cooldown.": "คูลดาวน์ {n1} เทิร์น",
+    "{n1}nd choice: {p1} {n2} or {p2}": "ตัวเลือกที่ {n1}: {p1} {n2} หรือ {p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "ตัวเลือกที่ {n1}: {p1} {n2} หรือ {p2}",
+    "{n1}rd follower opens with {m1}.": "ผู้ติดตามตัวที่ {n1} เริ่มด้วย {m1}",
+    "{n1}st choice: {p1} {n2} or {p2}": "ตัวเลือกที่ {n1}: {p1} {n2} หรือ {p2}",
+    "{n1}st follower opens with {m1}, {n2}nd with {m2}.": "ผู้ติดตามตัวที่ {n1} เริ่มด้วย {m1} ตัวที่ {n2} เริ่มด้วย {m2}",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "ตัวที่ {n1} เริ่มแบบสุ่ม ตัวถัดๆ ไปจะเริ่มที่ท่าถัดไปในรอบ",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "ตัวที่ {n1} เริ่มด้วย {m1}, ตัวที่ {n2} เริ่มด้วย {m2}, ตัวที่ {n3} เริ่มด้วย {m3}, ตัวที่ {n4} เริ่มแบบสุ่ม",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "ตัวที่ {n1} เริ่มด้วย {m1}, ตัวที่ {n2} เริ่มด้วย {m2}, ตัวที่ {n3} เริ่มด้วย {m3}, ตัวที่ {n4} เริ่มด้วย {m4}",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "ตัวที่ {n1} เริ่มด้วย {m1}, ตัวที่ {n2} เริ่มด้วย {m2}",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "ตัวที่ {n1}/{n2}/{n3} เริ่มด้วย {m1}, {m2}, {m3} กระจายเท่าๆ กัน ตัวที่ {n4} เริ่มด้วย {m4}",
+    "{p1} (immediately gives {n1} Intangible)": "{p1} (ได้รับ {n1} ไร้ตัวตนทันที)",
+    "{p1} and {p2} {n1}": "{p1} และ {p2} {n1}",
+    "{p1} {n1} and {p2}": "{p1} {n1} และ {p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1} {n1} และ {p2} {n2}",
+    "{p1} {n1} on Fabricator": "{p1} {n1} ให้ Fabricator",
+    "{p1}, {p2} {n1} and {p3} {n2}": "{p1}, {p2} {n1} และ {p3} {n2}",
+    "~{n1}% chance.": "โอกาส ~{n1}%",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "โอกาส ~{n1}% ฟรี (ไม่เสียทอง) ปรากฏหลังการหยิบครั้งแรกเท่านั้น",
+    "~{n1}% chance. Only appears if not at full HP.": "โอกาส ~{n1}% ปรากฏเฉพาะเมื่อ HP ไม่เต็ม",
+    "~{n1}% chance. Only appears if you have open potion slots.": "โอกาส ~{n1}% ปรากฏเฉพาะเมื่อคุณมีช่องขวดยาว่าง",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 ได้รับความแข็งแรงในจำนวนคงที่เมื่อโจมตีโดน แทนที่จะคิดตามจำนวนผู้เล่น"
+  }
+}

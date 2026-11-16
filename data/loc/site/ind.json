@@ -1,0 +1,727 @@
+{
+  "lang": "ind",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "Referensi"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "Babak {n}: {name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "Pola Serangan"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — Halaman ini menampilkan perubahan keseimbangan <strong>beta v{version}</strong>. <a href=\"../\">Lihat versi stabil</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">Lihat versi stabil</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "Situs ini juga tersedia untuk <strong>patch beta v{version}</strong> terbaru. <a href=\"beta/\">Beralih ke beta</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">Beralih ke beta</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "Perubahan di Beta {version}:"
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "Patch Beta"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "Bos:"
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "Semua Pertarungan"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "Bos"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "Mudah"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "Pertarungan Mudah"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "Sulit"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "Pertarungan Sulit"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "Pilihan"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "Pilihan"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "Efek"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "Niat"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "Gerakan"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "Ciutkan/Perluas"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "Komposisi"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "Kekuasaan"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "Bos babak"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "Pertarungan lain di babak ini"
+    },
+    "events": {
+      "en": "Events",
+      "text": "Event"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "Semua Event"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "Kirim masukan atau laporkan masalah"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "Data di situs ini awalnya bersumber dari <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, yang dibuat oleh <span class=\"credit-names\">dr0gulus, Aplet123, dan Redbeardy_Mcgee</span> &mdash; terima kasih banyak atas kerja keras mereka yang membuat semua ini mungkin."
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2 saat ini masih dalam early access, jadi statistik, gerakan, dan pola musuh dapat berubah di setiap patch. Data terakhir diperbarui untuk <span id=\"game-version\"></span>."
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "HP:"
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "tambah status"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "penyakit"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "serangan"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "blok"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "penguatan"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "ledakan kematian"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "pelemahan"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "kabur"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "sembuh"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "serangan beruntun"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "tidur"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "linglung"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "panggil"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "tak diketahui"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": ", "
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — meninggalkan perlawanan tanpa pemimpinnya"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "Tutup otomatis"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "Tutup panel saat mengeklik di luarnya"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "Tutup panel"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "Saat ini"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "Tambatkan"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "Otomatis ({lang})"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "Sukai Kami di Steam!"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "Memuat data..."
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "Data Spire Codex tidak tersedia"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "Buka Spire Codex"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "Lepaskan"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "Pembaruan mod tersedia"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "Data v{data} · Game v{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "Gerakan"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "Tidak ada data."
+    },
+    "players": {
+      "en": "Players:",
+      "text": "Pemain:"
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n}P"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "Solo"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "Tak-berwarna"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "Kartu"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "Deskripsi"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "Referensi Efek"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "Nama"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "Referensi Ramuan"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "Kuasa"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "Referensi Pusaka"
+    },
+    "search": {
+      "en": "Search",
+      "text": "Cari"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "Tidak ada hasil."
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "Cari musuh atau pertarungan..."
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — Event"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "MULAI DENGAN:"
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "Semua"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "beta v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "Bos {zone}"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "Event {zone}"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}: "
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "Bersama"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "(N = {n1} + berapa kali Cakar telah digunakan)",
+    "(with random intent)": "(dengan niat acak)",
+    "A random card is removed from your [gold]Deck[/gold].": "Sebuah kartu acak dibuang dari [gold]Dekmu[/gold].",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "Tambahkan [red]Keraguan[/red] ke Dekmu. Dapatkan {n1} hadiah kartu (masing-masing {n2} kartu).",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "Tambahkan [red]Keraguan[/red] ke Dekmu. Transformasikan {n1} kartu.",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "Tambahkan [red]Kesesalan[/red] ke Dekmu. Dapatkan {n1} Emas.",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "Tambahkan [red]Kesesalan[/red] ke Dekmu. Dapatkan {n1} Pusaka acak.",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "Tambahkan [red]Malu[/red] ke Dekmu. Tingkatkan {n1} kartu.",
+    "Add {n1} Beckon to Hand": "Tambahkan {n1} Hasut ke Tangan",
+    "Add {n1} Burns to Hand": "Tambahkan {n1} Bakar ke Tangan",
+    "Add {n1} Dazed to Discard": "Tambahkan {n1} Pusing ke Tumpukan Singkir",
+    "Add {n1} Dazed to Draw": "Tambahkan {n1} Pusing ke Tumpukan Ambil",
+    "Add {n1} Infection to Discard": "Tambahkan {n1} Infeksi ke Tumpukan Singkir",
+    "Add {n1} Slimed to Discard": "Tambahkan {n1} Slime ke Tumpukan Singkir",
+    "Add {n1} Slimed to discard": "Tambahkan {n1} Slime ke Tumpukan Singkir",
+    "Add {n1} Toxic to Hand": "Tambahkan {n1} Racun ke Tangan",
+    "Add {n1} Wither to Discard": "Tambahkan {n1} Layu ke Tumpukan Singkir",
+    "Add {n1} Wither to Draw Pile": "Tambahkan {n1} Layu ke Tumpukan Ambil",
+    "Add {n1} Wounds into discard": "Tambahkan {n1} Luka ke Tumpukan Singkir",
+    "Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": "Ditambahkan: Unggyas dapat berevolusi menjadi Byurung di Peristirahatan setelah {n1} kali Sambaran Byurung dimainkan.",
+    "Added: Yellow option ({n1} Fool cards).": "Ditambahkan: pilihan Kuning ({n1} kartu Fool).",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "Setelah Makhluk Kepala Obor mati: Bergiliran {m1} → {m2} → {m3}.",
+    "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "Setelah Sambaran Byurung dimainkan {n1} kali, Unggyas dapat Berevolusi di Peristirahatan menjadi Byurung, yang mengubah setiap Sambaran Byurung menjadi Dewa Byurung. Berevolusi menghabiskan pilihan Peristirahatanmu.",
+    "After Turret Operator dies: Always uses {m1}.": "Setelah Pengguna Turret mati: Selalu menggunakan {m1}.",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "Setelah menerima, salah satu dari {n1} peradilan acak dipilih (Pedagang, Bangsawan, atau Orang Biasa).",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "Setelah berendam kamu bisa Tetap Bertahan (efek yang sama dengan +{n1} kerusakan setiap kali) atau Keluar.",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "Setelah mencapai {n1} tumpukan Sarang Pribadi, hanya mendapat {n2} Kekuatan.",
+    "After stun: Repeats {m1} → {m2}.": "Setelah linglung: Mengulang {m1} → {m2}.",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "Setelah {m1} (ke-{n1} berturut-turut): Selalu menggunakan {m2}.",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "Setelah {m1} (ke-{n1} berturut-turut): {n2}% {m2}, {n3}% {m3}.",
+    "After {m1}: Always uses {m2}.": "Setelah {m1}: Selalu menggunakan {m2}.",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "Setelah {n1} tumpukan Sarang Pribadi: {m1} memberi {n2} Kekuatan sebagai gantinya.",
+    "All enemies gain {n1} {p1}": "Semua musuh mendapat {n1} {p1}",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "Semua hadiah bisa dilewati, tetapi Keraguan langsung ditambahkan ke dekmu saat terungkap.",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "Semua {n1} tikus mulai dengan gerakan yang terbagi rata antara {m1}, {m2}, dan {m3}.",
+    "Allies gain {n1} {p1}": "Sekutu mendapat {n1} {p1}",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "Selalu menggunakan {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Always uses {m1}.": "Selalu menggunakan {m1}.",
+    "Apply -{n1} {p1}": "Terapkan -{n1} {p1}",
+    "Apply {n1} {p1}": "Terapkan {n1} {p1}",
+    "Apply {p1}": "Terapkan {p1}",
+    "Apply {p1} {n1}": "Terapkan {p1} {n1}",
+    "At the end of each turn, take damage equal to {n1} + the turn number": "Pada akhir setiap giliran, terima kerusakan sebesar {n1} + nomor giliran",
+    "At the end of your first turn, lose {n1} {p1} and {n2} {p2}": "Pada akhir giliran pertamamu, kehilangan {n1} {p1} dan {n2} {p2}",
+    "At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": "Pada awal giliran ke-{n1}, dapatkan {n2} {p1}, {n3} {p2}, dan {n4} {p3}",
+    "At the start of your turn, add {n1} Wither to the top of your Draw Pile": "Pada awal giliranmu, tambahkan {n1} Layu ke atas Tumpukan Ambil kamu",
+    "Attack — Deal {n1} damage, plus:": "Serang — Lakukan {n1} kerusakan, ditambah:",
+    "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": "Gelang Indah, Tanduk Suci, Syal Memukau, Pakis Rapuh, Diadem Berlian, Mantel Bulu, Glitter, Kotak Perhiasan, Cincin Signet",
+    "Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": "Sebelum mengambil kartu pertama kali di setiap perlawanan, pilih {n1}: {p1} {n2} atau {p2}",
+    "Buffed: Below renamed From Below": "Diperkuat: Below berganti nama menjadi Dari Bawah",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "Telur Byurungis dapat ditukar dengan Sambaran Byurung di Peristirahatan. Memilih ini menghabiskan pilihan Peristirahatanmu.",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "Hanya bisa muncul jika HP semua pemain berada di {n1}% HP Maksimal atau kurang.",
+    "Can only appear if all players have a card with Exhaust in their deck.": "Hanya bisa muncul jika semua pemain memiliki kartu dengan Hangus di dek mereka.",
+    "Can only appear if all players have at least {n1} Gold.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} Emas.",
+    "Can only appear if all players have at least {n1} HP.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} HP.",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} kartu yang memenuhi syarat untuk efek Sangat Pas.",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} kartu yang memenuhi syarat untuk efek Spiral.",
+    "Can only appear if all players have at least {n1} potion.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} ramuan.",
+    "Can only appear if all players have at least {n1} potions.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} ramuan.",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} Tebas Dasar dan {n2} Tahan Dasar yang bisa dibuang.",
+    "Can only appear if all players have at least {n1} removable Basic card.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} kartu Dasar yang bisa dibuang.",
+    "Can only appear if all players have at least {n1} removable card.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} kartu yang bisa dibuang.",
+    "Can only appear if all players have at least {n1} tradable relics.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} pusaka yang bisa ditukar.",
+    "Can only appear if all players have at least {n1} transformable cards.": "Hanya bisa muncul jika semua pemain memiliki setidaknya {n1} kartu yang bisa ditransformasikan.",
+    "Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": "Hanya bisa muncul jika semua pemain memiliki lebih dari {n1} Emas dan HP paling banyak {n2}% dari HP Maksimal mereka.",
+    "Can only appear if all players have more than {n1} HP.": "Hanya bisa muncul jika semua pemain memiliki lebih dari {n1} HP.",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "Hanya bisa muncul jika setidaknya {n1} pemain memiliki {n2} Emas atau lebih, sebuah pusaka yang bisa ditukar, dan sebuah ramuan.",
+    "Can only appear if no player has an event pet.": "Hanya bisa muncul jika tidak ada pemain yang memiliki peliharaan event.",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "Hanya bisa muncul jika kamu memiliki setidaknya {n1} Emas atau sebuah Ramuan Busuk.",
+    "Can only appear in Act {n1} or Act {n2}.": "Hanya bisa muncul di Babak {n1} atau Babak {n2}.",
+    "Can only appear in Act {n1}.": "Hanya bisa muncul di Babak {n1}.",
+    "Can only appear on floor {n1}+.": "Hanya bisa muncul di lantai {n1}+.",
+    "Can only be used once per rat. Requires {n1} turns before available.": "Hanya bisa digunakan sekali per tikus. Membutuhkan {n1} giliran sebelum tersedia.",
+    "Can only be used once.": "Hanya bisa digunakan sekali.",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "Tidak bisa muncul jika Ancient babak ini adalah Nonupeipe.",
+    "Cannot appear if this act's Ancient is Tanx.": "Tidak bisa muncul jika Ancient babak ini adalah Tanx.",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "Tidak bisa muncul secara alami. Muncul di ruang tanda tanya pertama yang kamu temui di Babak {n1} jika Kunci Lentera ada di dekmu.",
+    "Cannot repeat.": "Tidak bisa diulang.",
+    "Cannot repeat. {n1}-turn cooldown.": "Tidak bisa diulang. Jeda {n1} giliran.",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "Tidak bisa diulang. Jeda {n1} giliran. Jika tidak ada gerakan yang diizinkan, gerakan ini yang digunakan.",
+    "Card type is random (Attack/Skill/Power).": "Jenis kartu acak (Serang/Teknik/Kuasa).",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "Jenis kartu acak (Serang/Teknik/Kuasa). Kamu memilih {n1} dari {n2} kartu yang sudah ditingkatkan.",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "Kartu dari STS{n1}: Ranjau, Bentrok, Alih Perhatian, Senjata Ganda, Parit, Halo Dunia, Akali, Pantul, Robek dan Sobek, Tumpuk.",
+    "Cards are from your character's card pool.": "Kartu berasal dari kumpulan kartu karaktermu.",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "Kartu tetap bisa ditingkatkan selama perlawanan setelah Kesatria Majus menerapkan Redam.",
+    "Caviar/+Max HP ({n1})": "Kaviar/+HP Maksimal ({n1})",
+    "Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": "Diubah: Teknik Bernafas berharga {n1} Emas (sebelumnya {n2}) dan menambahkan {n3} Pencerahan (sebelumnya {n4})",
+    "Changed: HP is now a fixed value, {n1} → {n2}.": "Diubah: HP kini bernilai tetap, {n1} → {n2}.",
+    "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "Diubah: Pintu Terang meningkatkan {n1} kartu pilihanmu, bukan {n2} kartu acak.",
+    "Changed: Radiate removed": "Diubah: Meradiasi dihapus",
+    "Changed: can no longer steal Quest cards.": "Diubah: tidak bisa lagi mencuri kartu Misi.",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "Kekacauan: Tambahkan sebuah kartu acak dari kumpulan kartumu ke Tangan. Kartu itu gratis dimainkan",
+    "Choking: Apply {n1} Strangle": "Mencekik: Terapkan {n1} Cekik",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "Memilih secara acak dari {m1}, {m2}, dan {m3}.",
+    "Clam Roll/Heal ({n1})": "Gulung Kerang/Sembuh ({n1})",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "Hadapi Kebenaran terkunci jika tidak ada kartu yang memenuhi syarat di Dekmu.",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "Membuat kartu Ilmu Gila ({n1} energi). Meningkatkannya memberi Bawaan.",
+    "Curious: Powers cost {n1} Energy less": "Ingin Tahu: Harga Kuasa berkurang {n1} Energi",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "Bergiliran {m1} → {m2} atau {m3} ({n1}/{n2}).",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "Bergiliran {m1} → {m2} → {m3} ({n1}% peluang mengulang {m4} sekali).",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "Bergiliran {m1} → {m2} → {m3} → {m4} (sampai {m5} digunakan {n1} kali).",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Bergiliran {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "Bergiliran {m1} → {m2} → {m3} → {m4}.",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "Bergiliran {m1} → {m2} → {m3}, dengan {n1}% peluang melewati {m4}.",
+    "Cycles {m1} → {m2} → {m3}.": "Bergiliran {m1} → {m2} → {m3}.",
+    "Cycles {m1} → {m2}.": "Bergiliran {m1} → {m2}.",
+    "Damage {n1}": "Kerusakan {n1}",
+    "Damage {n1} + stolen {p1}": "Kerusakan {n1} + {p1} yang dicuri",
+    "Damage {n1} + {n2}*N": "Kerusakan {n1} + {n2}*N",
+    "Decision made as a group in co-op.": "Keputusan dibuat bersama dalam co-op.",
+    "Dies": "Mati",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "Hidangan ditawarkan secara acak sampai uangmu habis atau kamu memutuskan pergi. Hidangan sebelumnya tidak bisa muncul lagi.",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "Tidak menyalin Kesialan. Efek pada kartu ikut tersalin",
+    "Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": "Minum Air Mandi memberi {n1} pusaka acak dari tawaran Nonupeipe kecuali Keranjang Buah:",
+    "Each combat shuffles {n1} Beckon into your Draw Pile": "Setiap perlawanan, kocok {n1} Hasut ke dalam Tumpukan Ambil kamu",
+    "Each option is locked if you have no eligible cards of that type.": "Setiap pilihan terkunci jika kamu tidak punya kartu yang memenuhi syarat dari jenis itu.",
+    "Each option names the random relic, so you know exactly what you are trading for.": "Setiap pilihan menyebutkan pusaka acaknya, jadi kamu tahu persis apa yang kamu dapatkan dari pertukaran.",
+    "Elites gain {n1} {p1}": "Elit mendapat {n1} {p1}",
+    "Enemies gain {p1}:": "Musuh mendapat {p1}:",
+    "Enemies spawned mid-fight gain {n1} {p1}": "Musuh yang muncul di tengah pertarungan mendapat {n1} {p1}",
+    "Energized: Gain {n1} Energy": "Penuh Energi: Dapatkan {n1} Energi",
+    "Enlightenment no longer Exhausts.": "Pencerahan tidak lagi Hangus.",
+    "Enrage": "Mengamuk",
+    "Enter deeper. Lose HP.": "Masuk lebih dalam. Kehilangan HP.",
+    "Escape from combat": "Kabur dari perlawanan",
+    "Escape from the combat": "Kabur dari perlawanan",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "Keahlian: Dapatkan {n1} Kekuatan dan {n2} Ketangkasan",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "Pertarungan memberi hadiah Emas normal jika Tuyul Gemuk tidak kabur.",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "Pertarungan melawan {n1} Mesin Tinju yang memulai dengan HP berkurang {n2}. Satu mesin selalu memulai dengan Tinju Kuat.",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "Bertarung sebagai {n1} segmen — HP selalu bernilai genap, dan setiap segmen memiliki HP maksimal yang berbeda.",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "Pasti muncul setiap pengambilan ke-{n1} (ke-{n2}, ke-{n3}, dst.).",
+    "Free (no gold cost).": "Gratis (tanpa biaya Emas).",
+    "Fried Eel/Colorless Card ({n1})": "Belut Goreng/Kartu Tak-berwarna ({n1})",
+    "Front and back start with {m1}. Middle starts with {m2}.": "Yang depan dan belakang mulai dengan {m1}. Yang tengah mulai dengan {m2}.",
+    "Front starts {m1}, back starts {m2}.": "Yang depan mulai dengan {m1}, yang belakang mulai dengan {m2}.",
+    "Gain [gold]Gold[/gold] based on depth.": "Dapatkan [gold]Emas[/gold] berdasarkan kedalaman.",
+    "Gain {n1} {p1}": "Mendapat {n1} {p1}",
+    "Gain {n1} {p1} and {n2} {p2}": "Mendapat {n1} {p1} dan {n2} {p2}",
+    "Gain {n1} {p1} per respawn": "Mendapat {n1} {p1} setiap muncul kembali",
+    "Gain {n1}* Intangible": "Mendapat {n1}* Tembus",
+    "Gain {n1}+ {p1}": "Mendapat {n1}+ {p1}",
+    "Gain {p1}": "Mendapat {p1}",
+    "Gain {p1} {n1}": "Mendapat {p1} {n1}",
+    "Gains {n1} {p1}": "Mendapat {n1} {p1}",
+    "Gains {n1} {p1} when stunned.": "Mendapat {n1} {p1} saat linglung.",
+    "Gains {p1} {n1}": "Mendapat {p1} {n1}",
+    "Galvanic Burst": "Letusan Setruman",
+    "Give Potion": "Beri Ramuan",
+    "Give Relic": "Berikan Pusaka",
+    "Give allies {n1} {p1}": "Beri sekutu {n1} {p1}",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "Memberi hadiah perlawanan normal ditambah sebuah ramuan dan sebuah pusaka (bisa mendapat {n1} ramuan).",
+    "Gold-generating relics cannot appear as the Featured Item.": "Pusaka penghasil Emas tidak bisa muncul sebagai Barang Pilihan.",
+    "Golden Fysh/Gold ({n1})": "Ykan Emas/Emas ({n1})",
+    "Hatches into Hatchling.": "Menetas menjadi Anakan.",
+    "Headbutt": "Sundul",
+    "Heal [green]{n1}%[/green] Max HP.": "Sembuh [green]{n1}%[/green] HP Maksimal.",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "Sembuh [green]{n1}%[/green] HP Maksimal. Lawan beberapa [red]musuh[/red].",
+    "Heal is multiplied by player count in co-op.": "Penyembuhan dikalikan dengan jumlah pemain dalam co-op.",
+    "Heal {n1} HP.": "Sembuh {n1} HP.",
+    "Heal {n1}*": "Sembuh {n1}*",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "Pegangan bisa diulang. Kerusakan dimulai dari {n1} dan bertambah {n2} setiap kali.",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "Jika Makhluk Kepala Obor mati di tengah giliran dan niatnya adalah {m1}, niat itu berubah menjadi {m2}.",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "Jika Tuyul Gemuk kabur setelah mencuri Emas, kamu tidak mendapat hadiah Emas; jika dia kabur tanpa mencuri Emas, kamu tetap mendapat {n1}% dari hadiah Emas normal.",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "Jika seorang pemain ditelan Lubang Pasir, efek seperti Ekor Cicak tidak akan menghidupkanmu kembali.",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "Jika sekutu < {n1} setelah {m1}: {m2} → {m3} → {m4}.",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "Jika sekutu ≥ {n1} setelah {m1}: {m2} → {m3} → {m4}.",
+    "If spawned from Phrog Parasite, starts stunned.": "Jika muncul dari Parasit Khodok, mulai dalam keadaan Linglung.",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "Jika linglung sebelum giliran ke-{n1}, lanjut dengan gerakan berikutnya. Jika linglung pada giliran ke-{n2}, mencoba {m1} lagi.",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "Jika {m1} diizinkan, {n1}% peluang menggunakannya sebagai gantinya.",
+    "Improvement: At the end of combat, Upgrade a random card": "Peningkatan: Pada akhir perlawanan, Tingkatkan sebuah kartu acak",
+    "In Blitz it steals no Gold.": "Dalam Blitz, tidak mencuri Emas.",
+    "In X turns, instantly die.": "Dalam X giliran, langsung mati.",
+    "In co-op, only appears if all players have more than {n1} HP.": "Dalam co-op, hanya muncul jika semua pemain memiliki lebih dari {n1} HP.",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "Untuk meningkatkan semua kartu dan turun ke {n1} HP Maksimal, kamu harus mulai dengan minimal {n2} HP Maksimal.",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "Dalam pertarungan {n1} Kadal Kelinci: yang depan mulai dengan {m1}, yang belakang mulai dengan {m2}.",
+    "Increases Wither damage by {n1} each use.": "Menambah kerusakan Layu sebesar {n1} setiap digunakan.",
+    "Initially excludes Basic rarity cards.": "Awalnya tidak menyertakan kartu berkelangkaan Dasar.",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "Memulai pertarungan melawan Kesatria Misterius yang memberi hadiah normal ditambah Kunci Lentera",
+    "Insert Potion": "Tuang Ramuan",
+    "Jelly Liver/Transform ({n1})": "Hati Jeli/Transformasi ({n1})",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "Membunuh sebuah segmen dengan Maut akan membuat segmen mati lainnya beregenerasi walaupun sesaat semuanya tampak mati bersamaan.",
+    "Laser → Rocket Claw.": "Laser → Capit Roket.",
+    "Leave the conveyor belt.": "Tinggalkan konveyor.",
+    "Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": "Terkunci jika Emas di bawah {n1}. Kartu berasal dari kumpulan kartu karaktermu dan tidak pernah ditingkatkan.",
+    "Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].": "[red]SEMUA[/red] [gold]Emas[/gold] milikmu hilang. Dapatkan [gold]Jubah Mandi[/gold].",
+    "Lose [red]{n1}%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]{n2}[/green] HP.": "[red]{n1}%[/red] dari HP-mu saat ini hilang. Dapatkan [gold]Wuppy[/gold] dengan [green]{n2}[/green] HP.",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "[red]{n1}[/red] HP hilang (bertambah {n2} setiap kali). Kartu pada pilihan Lewati diacak ulang.",
+    "Lose [red]{n1}[/red] HP. Add [blue]{n2}[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.": "[red]{n1}[/red] HP hilang. Tambahkan [blue]{n2}[/blue] [red]Bersalah[/red] ke [gold]Dekmu[/gold]. Dapatkan sebuah pusaka Nonupeipe acak.",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "[red]{n1}[/red] HP hilang. Dapatkan [gold]Jamur Wangi[/gold]. Tingkatkan [blue]{n2}[/blue] kartu acak.",
+    "Lose [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.": "[red]{n1}[/red] [gold]Emas[/gold] hilang. Dapatkan sebuah kartu [gold]Langka[/gold] acak.",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "Sebuah Ramuan hilang. Pilih {n1} dari {n2} kartu yang sudah ditingkatkan dengan kelangkaan yang sama.",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "Sebuah [red]Ramuan[/red] acak hilang. Dapatkan [blue]{n1}[/blue] HP Maksimal.",
+    "Lose {n1} {p1}": "Kehilangan {n1} {p1}",
+    "Lose {p1}": "Kehilangan {p1}",
+    "Max {n1} in a row.": "Maksimal {n1} kali berturut-turut.",
+    "Minions that join mid-fight gain none": "Pengikut yang bergabung di tengah pertarungan tidak mendapat apa pun",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "Kesatria Misterius adalah Kesatria Gada yang memulai dengan {n1} Kekuatan dan {n2} Lapisan serta memiliki {n3} HP.",
+    "N = # of times this move was used": "N = berapa kali gerakan ini telah digunakan",
+    "Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": "Dilemahkan: Spons Berduri berharga {n1} Emas (sebelumnya {n2}).",
+    "New event.": "Event baru.",
+    "Normal enemies gain {n1} {p1}": "Musuh biasa mendapat {n1} {p1}",
+    "Obtain Forgotten Soul.": "Dapatkan Jiwa Terlupakan.",
+    "Obtain [gold]Big Mushroom[/gold].": "Dapatkan [gold]Jamur Besar[/gold].",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "Dapatkan [gold]Teh Ketidaksopanan[/gold].",
+    "Obtain the [gold]Sword of Stone[/gold].": "Dapatkan [gold]Pedang Batu[/gold] itu.",
+    "Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].": "Dapatkan pusaka yang dipajang. Tambahkan sebuah [red]Kutukan[/red] acak ke [gold]Dekmu[/gold].",
+    "Offered three random options that are not your character.": "Ditawarkan tiga pilihan acak yang bukan karaktermu.",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "Ditawarkan {n1} dari {n2} jenis acak (Serang/Teknik/Kuasa), lalu {n3} dari {n4} efek acak untuk jenis yang dipilih.",
+    "On wakeup all Plating is removed.": "Saat bangun, semua Lapisan dihapus.",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "Salah satu dari {n1} Tembus dari {m1} langsung berkurang.",
+    "Only {n1} rat can use {m1} per turn.": "Hanya {n1} tikus yang bisa menggunakan {m1} per giliran.",
+    "Opens with {m1} or {m2}.": "Diawali dengan {m1} atau {m2}.",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "Diawali dengan {m1} → {m2} → {m3}, lalu selalu menggunakan {m4}.",
+    "Opens with {m1} → {m2} → {m3}.": "Diawali dengan {m1} → {m2} → {m3}.",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "Diawali dengan {m1} → {m2}, lalu selalu menggunakan {m3}.",
+    "Opens with {m1} → {m2}.": "Diawali dengan {m1} → {m2}.",
+    "Opens with {m1}, then always uses {m2}.": "Diawali dengan {m1}, lalu selalu menggunakan {m2}.",
+    "Opens with {m1}.": "Diawali dengan {m1}.",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "Diawali dengan {m1}; lalu bergantian {m2} ↔ {m3} (selalu dimulai dengan {m4}).",
+    "Options are locked if you don't have the required item.": "Pilihan terkunci jika kamu tidak memiliki barang yang dibutuhkan.",
+    "Pass Turn": "Lewati Giliran",
+    "Pass turn": "Lewati giliran",
+    "Passes Turn": "Melewati Giliran",
+    "Passes turn": "Melewati giliran",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].": "Bayar [red]{n1}[/red] [gold]Emas[/gold]. Dapatkan [gold]Handuk Mandi[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "Bayar [red]{n1}[/red] [gold]Emas[/gold]. Dapatkan [gold]Teh Tulang[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "Bayar [red]{n1}[/red] [gold]Emas[/gold]. Dapatkan [gold]Teh Membara[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "Bayar [red]{n1}[/red] [gold]Emas[/gold]. Dapatkan sebuah [gold]Pusaka Langka[/gold] acak.",
+    "Phase {n1} (after stun):": "Fase {n1} (setelah linglung):",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "Fase {n1} (HP di bawah {n2}% setelah menggunakan {m1}):",
+    "Phase {n1} (stunned at {n2} HP):": "Fase {n1} (linglung pada {n2} HP):",
+    "Phase {n1}:": "Fase {n1}:",
+    "Player must choose one of two debuffs:": "Pemain harus memilih satu dari dua pelemahan:",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "Posisi {n1} & {n2} mulai dengan {m1}, posisi {n3} & {n4} mulai dengan {m2}.",
+    "Power:": "Kuasa:",
+    "Precision Beam → Precise Smash": "Sinar Presisi → Pukulan Tepat",
+    "Prep": "Persiapan",
+    "Probabilities are weighted and shift if any options are unavailable.": "Peluang memiliki bobot dan bergeser jika ada pilihan yang tidak tersedia.",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "Event Pukul Pukulan: yang ke-{n1} mulai dengan {m1}, yang ke-{n2} mulai dengan {m2}.",
+    "Puppet Strings": "Tali Boneka",
+    "Rejecting is not allowed — double downing abandons the run.": "Menolak tidak diizinkan — memilih Tetap Tangguh akan mengakhiri perjalanan.",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "Pusaka dari STS{n1}: Jimat Batu Gelap, Penangkap Mimpi, Bor Manual, Bank Mengganga, Sepatu Bot.",
+    "Renamed moves: Targeting Reticle → Calculating": "Gerakan berganti nama: Targeting Reticle → Menghitung",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "Bisa diulang hingga {n1} kali. Biaya meningkat: {n2}/{n3}/{n4}/{n5}/semua-kecuali-{n6} HP Maksimal. Penafsiran ke-{n7} meningkatkan SEMUA kartu yang bisa ditingkatkan.",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "Bisa diulang hingga {n1} kali. Kerusakan meningkat: {n2}/{n3}/{n4}. Pilihan ke-{n5} memberi Inti Berserbuksari.",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "Bisa diulang hingga {n1} kali. Emas meningkat: {n2}/{n3}/{n4}.",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "Muncul kembali dengan {m1} melalui {p1}; mendapat {n1} HP Maksimal setiap muncul kembali.",
+    "Retains Strength after reviving.": "Mempertahankan Kekuatan setelah hidup kembali.",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "Hadiahnya berupa tiga hadiah kartu, masing-masing berisi {n1} kartu biasa/tidak biasa/langka.",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "Menghisap: Terapkan {n1} Lemah dan {n2} Rentan",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "Segmen mulai dengan gerakan yang terbagi rata antara {m1}, {m2}, dan {m3}.",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "Kartu dari Bagikan Pengetahuan berasal dari kumpulan kartu karaktermu dengan peluang kelangkaan pertarungan biasa (mengikuti penghitung jaminan kartu langka). Kartu tidak pernah ditawarkan dalam keadaan sudah ditingkatkan.",
+    "Shuffle {n1} Beckon into discard": "Kocok {n1} Hasut ke Tumpukan Singkir",
+    "Shuffle {n1} Beckon into draw": "Kocok {n1} Hasut ke Tumpukan Ambil",
+    "Shuffle {n1} Burns into discard": "Kocok {n1} Bakar ke Tumpukan Singkir",
+    "Shuffle {n1} Frantic Escapes into discard": "Kocok {n1} Lari Panik ke Tumpukan Singkir",
+    "Shuffle {n1} Frantic Escapes into draw": "Kocok {n1} Lari Panik ke Tumpukan Ambil",
+    "Single-player only.": "Hanya untuk pemain tunggal.",
+    "Skill — Gain {n1} Block, plus:": "Teknik — Dapatkan {n1} Blok, ditambah:",
+    "Slash {n1}": "Sayat {n1}",
+    "Sleeps for {n1} turns or until losing HP.": "Tidur selama {n1} giliran atau sampai kehilangan HP.",
+    "Sleeps until awakened, then always uses {m1}.": "Tidur sampai dibangunkan, lalu selalu menggunakan {m1}.",
+    "Slice": "Sayat",
+    "Smother": "Bekap",
+    "Spicy Snappy/Upgrade ({n1})": "Pedas Panas/Tingkatkan ({n1})",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Peta Jarahan membuat semua jalur di babak berikutnya menyatu ke ruang peti babak, yang akan berisi {n1} Emas selain hadiah normal.",
+    "Start each combat with {n1} {p1} and {n2} {p2}": "Mulai setiap perlawanan dengan {n1} {p1} dan {n2} {p2}",
+    "Steal {n1} card and gain {p1}": "Mencuri {n1} kartu dan mendapat {p1}",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "Kartu yang dicuri diambil dari tumpukan ambil atau tumpukan singkir. Prioritas: {n1}. tidak biasa tanpa Melekat {n2}. biasa/langka/event tanpa Melekat {n3}. dasar tanpa Melekat {n4}. Melekat atau ancient {n5}. kutukan atau lainnya. Kartu Misi tidak pernah dicuri.",
+    "Stolen gold is held by Fat Gremlin once summoned.": "Emas yang dicuri dipegang oleh Tuyul Gemuk setelah dia dipanggil.",
+    "Stunned for one turn": "Linglung selama satu giliran",
+    "Summon Two-Tailed Rat": "Panggil Tikus Berekor Dua",
+    "Summon up to {n1} Tough Eggs": "Panggil hingga {n1} Telur Keras",
+    "Summon {n1} Aggro Bot": "Panggil {n1} Mesin Agresif",
+    "Summon {n1} Eye with Teeth": "Panggil {n1} Mata Bergigi",
+    "Summon {n1} Gas Bomb": "Panggil {n1} Bom Gas",
+    "Summon {n1} Parafright": "Panggil {n1} Bayangan Teror",
+    "Summons X Wrigglers after dying (they start stunned).": "Memanggil X Penggeliat setelah mati (mereka mulai dalam keadaan Linglung).",
+    "Summons {n1} Aggro Bot": "Memanggil {n1} Mesin Agresif",
+    "Summons {n1} Defensive Bot": "Memanggil {n1} Mesin Bertahan",
+    "Suspicious Condiment/Potion ({n1})": "Bumbu Mencurigakan/Ramuan ({n1})",
+    "Swing": "Ayunan",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "Pedang Batu berubah menjadi Pedang Giok setelah {n1} pertarungan",
+    "Tackle": "Jegal",
+    "Test Subject Stage {n1}": "Subjek Eksperimen Tahap {n1}",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "Ramuan Busuk yang didapat di sini bisa dilempar ke Pedagang palsu untuk memicu pertarungan.",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "Kunci Lentera memaksa event Sejarawan Perang, Repy muncul di ruang tanda tanya berikutnya yang kamu temui di Babak {n1}.",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "Kartu pada pilihan Lewati diacak ulang setiap Pegangan, tanpa kartu yang sudah pernah ditawarkan sampai semua kartu lain sudah ditawarkan.",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "Pilihan Rehat memicu semua efek yang akan dipicu saat beristirahat di Peristirahatan (Bantal Bangsawan, Penangkap Mimpi, dll.)",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "Ramalan Besar hanya bisa dipakai pada sel yang belum diklik dan mengungkap {n1} sel di sekitarnya.",
+    "The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": "Pusaka yang dipajang adalah {n1} pilihan acak dari Penjepit Obsidian, Jepit Jari, dan Kekang Menyiksa.",
+    "The following items are guaranteed to be in the minigame:": "Barang-barang berikut dijamin ada dalam minigame:",
+    "The specific potion is named in the option text.": "Ramuan yang dimaksud disebutkan di teks pilihan.",
+    "The specific potion to be lost is shown in the option text.": "Ramuan yang akan hilang ditampilkan di teks pilihan.",
+    "Then chooses randomly from all moves.": "Lalu memilih secara acak dari semua gerakan.",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "Lalu memilih secara acak dari {m1}, {m2}, {m3}.",
+    "Then chooses randomly from {m1}, {m2}.": "Lalu memilih secara acak dari {m1}, {m2}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Lalu bergiliran {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "Lalu bergiliran {m1} → {m2} → {m3} → {m4}.",
+    "Then cycles {m1} → {m2} → {m3}.": "Lalu bergiliran {m1} → {m2} → {m3}.",
+    "Then cycles {m1} → {m2}.": "Lalu bergiliran {m1} → {m2}.",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "Ada {n1} pilihan boneka, dan kamu akan ditunjukkan sejumlah boneka acak berdasarkan pilihanmu.",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "Melempar Ramuan Busuk memicu pertarungan. Hadiah: {n1} Emas, semua {n2} pusaka, sebuah Karpet Si Pedagang??? tiruan, dan sebuah hadiah kartu.",
+    "Total HP to reach Pollinous Core: {n1}.": "Total HP untuk mencapai Inti Berserbuksari: {n1}.",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "Tukar salah satu [gold]Pusakamu[/gold] dengan sebuah [gold]Pusaka[/gold] acak.",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "Hingga {n1} ramuan dari sabukmu ditawarkan. Kelangkaan ramuan menentukan kelangkaan hadiah kartu.",
+    "Uses {m1} once, then restarts Phase {n1}.": "Menggunakan {m1} sekali, lalu memulai ulang Fase {n1}.",
+    "Uses {m1}, then cycles {m2} → {m3}.": "Menggunakan {m1}, lalu bergiliran {m2} → {m3}.",
+    "Violence: Hit {n1} times ({n2})": "Kekerasan: Serang {n1} kali ({n2})",
+    "Weak Tackle": "Jegal Lemah",
+    "Weights:": "Bobot:",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "Saat sekutu ≤ {n1}: Memilih secara acak dari {m1}, {m2}.",
+    "When allies ≥ {n1}: Always uses {m1}.": "Saat sekutu ≥ {n1}: Selalu menggunakan {m1}.",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "Saat dibunuh, memanggil {n1} Tuyul Cerdik dan {n2} Tuyul Gemuk (mereka mulai dalam keadaan Linglung).",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "Saat dibunuh: Hidup kembali setelah {n1} giliran dengan {n2} HP dan melanjutkan dari gerakan berikutnya.",
+    "When killed: Revives next turn in Stage {n1}.": "Saat dibunuh: Hidup kembali giliran berikutnya di Tahap {n1}.",
+    "While Amalgam alive: Always uses {m1}.": "Selama Makhluk Kepala Obor hidup: Selalu menggunakan {m1}.",
+    "While Burrowed: Always uses {m1}.": "Selama Terpendam: Selalu menggunakan {m1}.",
+    "While Turret Operator alive: Always uses {m1}.": "Selama Pengguna Turret hidup: Selalu menggunakan {m1}.",
+    "Wisdom: Draw {n1} cards": "Bijak: Ambil {n1} kartu",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "Wuppy menerima semua kerusakan serangan yang ditujukan kepadamu selama masih hidup. HP-nya terbawa antar perlawanan, dan Peristirahatan mendapat pilihan Pulihkan yang menyembuhkannya sepenuhnya.",
+    "[Merchant] Guilty": "[Pedagang] Bersalah",
+    "[Merchant] Innocent": "[Pedagang] Tidak Bersalah",
+    "[Noble] Guilty": "[Bangsawan] Bersalah",
+    "[Noble] Innocent": "[Bangsawan] Tidak Bersalah",
+    "[Nondescript] Guilty": "[Orang Biasa] Bersalah",
+    "[Nondescript] Innocent": "[Orang Biasa] Tidak Bersalah",
+    "[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": "[gold]Wuppy[/gold] menemanimu dan menyerap SEMUA kerusakan serangan dalam perlawanan. HP-nya terbawa antar perlawanan.",
+    "a Torch Head Amalgam in play": "sebuah Makhluk Kepala Obor di medan tempur",
+    "damage {n1} → {n2}.": "kerusakan {n1} → {n2}.",
+    "pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": "pola kini Tinju → Tinju → Pusaran → Denyut. Denyut menerapkan {n1} Rentan alih-alih mendapat {n2} Blok.",
+    "{m1} {p1} gain increases by {n1} each use.": "Perolehan {p1} dari {m1} bertambah {n1} setiap digunakan.",
+    "{n1} Big Gold/{n2}g ({n3})": "{n1} Emas Besar/{n2} Emas ({n3})",
+    "{n1} Common Card ({n2})": "{n1} Kartu Biasa ({n2})",
+    "{n1} Common Potions ({n2})": "{n1} Ramuan Biasa ({n2})",
+    "{n1} Dazed to Discard": "{n1} Pusing ke Tumpukan Singkir",
+    "{n1} Doubt curse ({n2})": "{n1} kutukan Keraguan ({n2})",
+    "{n1} Rare Card ({n2})": "{n1} Kartu Langka ({n2})",
+    "{n1} Rare Potion ({n2})": "{n1} Ramuan Langka ({n2})",
+    "{n1} Relic ({n2})": "{n1} Pusaka ({n2})",
+    "{n1} Rock + {n2} random from Egg or Nectar": "{n1} Batu + {n2} acak dari Telur atau Nektar",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "{n1} Batu + {n2} unik dari Telur / Sutra / Nektar",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "{n1} Perayap Pencekik + salah satu dari: Jaxfruit Penggigit / Slime Sedang acak / {n2} Slime Kecil acak",
+    "{n1} Small Gold/{n2}g ({n3})": "{n1} Emas Kecil/{n2} Emas ({n3})",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "{n1} Slime Ranting Kecil + {n2} Slime Daun Kecil + {n3} Slime Sedang acak",
+    "{n1} Uncommon Card ({n2})": "{n1} Kartu Tidak Biasa ({n2})",
+    "{n1} enemies": "{n1} musuh",
+    "{n1} in easy fights": "{n1} di pertarungan mudah",
+    "{n1} in elite fights": "{n1} di pertarungan elit",
+    "{n1} in hard fights": "{n1} di pertarungan sulit",
+    "{n1} in multi-enemy fights": "{n1} di pertarungan banyak musuh",
+    "{n1} of the {n2} cells are populated with items.": "{n1} dari {n2} sel berisi barang.",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "{n1} dari {n2} pusaka tiruan ditawarkan secara acak seharga {n3} Emas masing-masing.",
+    "{n1} unique Raiders from pool": "{n1} Penjarah unik dari kumpulan",
+    "{n1}-turn cooldown.": "Jeda {n1} giliran.",
+    "{n1}nd choice: {p1} {n2} or {p2}": "Pilihan ke-{n1}: {p1} {n2} atau {p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "Pilihan ke-{n1}: {p1} {n2} atau {p2}",
+    "{n1}rd follower opens with {m1}.": "Pengikut ke-{n1} diawali dengan {m1}.",
+    "{n1}st choice: {p1} {n2} or {p2}": "Pilihan ke-{n1}: {p1} {n2} atau {p2}",
+    "{n1}st follower opens with {m1}, {n2}nd with {m2}.": "Pengikut ke-{n1} diawali dengan {m1}, ke-{n2} dengan {m2}.",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "Yang ke-{n1} mulai secara acak, setiap yang berikutnya mulai di titik siklus selanjutnya.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "Yang ke-{n1} mulai dengan {m1}, ke-{n2} dengan {m2}, ke-{n3} dengan {m3}, ke-{n4} secara acak.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "Yang ke-{n1} mulai dengan {m1}, ke-{n2} dengan {m2}, ke-{n3} dengan {m3}, ke-{n4} dengan {m4}.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "Yang ke-{n1} mulai dengan {m1}, yang ke-{n2} mulai dengan {m2}.",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "Yang ke-{n1}/ke-{n2}/ke-{n3} terbagi rata antara {m1}, {m2}, {m3}. Yang ke-{n4} mulai dengan {m4}.",
+    "{p1} (immediately gives {n1} Intangible)": "{p1} (langsung memberi {n1} Tembus)",
+    "{p1} and {p2} {n1}": "{p1} dan {p2} {n1}",
+    "{p1} {n1} and {p2}": "{p1} {n1} dan {p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1} {n1} dan {p2} {n2}",
+    "{p1} {n1} on Fabricator": "{p1} {n1} pada Fabrikator",
+    "{p1}, {p2} {n1} and {p3} {n2}": "{p1}, {p2} {n1}, dan {p3} {n2}",
+    "~{n1}% chance.": "Peluang ~{n1}%.",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "Peluang ~{n1}%. Gratis (tanpa biaya Emas). Hanya muncul setelah pengambilan pertama.",
+    "~{n1}% chance. Only appears if not at full HP.": "Peluang ~{n1}%. Hanya muncul jika HP tidak penuh.",
+    "~{n1}% chance. Only appears if you have open potion slots.": "Peluang ~{n1}%. Hanya muncul jika kamu punya slot ramuan kosong.",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 Mendapat Kekuatan dalam jumlah tetap setiap kali mengenai, bukan per pemain."
+  }
+}

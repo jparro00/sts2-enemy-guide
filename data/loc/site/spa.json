@@ -437,7 +437,7 @@
     "Changed: HP is now a fixed value, {n1} → {n2}.": "Cambiado: los PV ahora son un valor fijo, {n1} → {n2}.",
     "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "Cambiado: Portal de Luz mejora {n1} carta a tu elección en lugar de {n2} cartas aleatorias.",
     "Changed: Radiate removed": "Cambiado: Irradiar eliminado",
-    "Changed: can no longer steal Quest cards.": "Cambiado: ya no puede robar cartas de Misión.",
+    "Changed: can no longer steal Quest cards.": "Cambiado: ya no puede robarte cartas de Misión.",
     "Chaos: Add a random card from your pool to hand. It is Free to Play": "Caos: añade a tu Mano una carta aleatoria de tu conjunto de cartas. Puedes jugarla gratis",
     "Choking: Apply {n1} Strangle": "Asfixia: aplica {n1} de Estrangular",
     "Chooses randomly from {m1}, {m2}, and {m3}.": "Elige al azar entre {m1}, {m2} y {m3}.",
@@ -615,7 +615,7 @@
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "El Mapa del tesoro hace que todos los caminos del siguiente acto converjan en la Sala del tesoro del acto, que contendrá {n1} de Oro además de las recompensas normales.",
     "Start each combat with {n1} {p1} and {n2} {p2}": "Comienza cada combate con {n1} de {p1} y {n2} de {p2}",
     "Steal {n1} card and gain {p1}": "Te roba {n1} carta y gana {p1}",
-    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "La carta robada se toma de la Pila de robo o de la Pila de descarte. Prioridades: {n1}. poco común sin Infusión {n2}. común/rara/de evento sin Infusión {n3}. básica sin Infusión {n4}. con Infusión o antigua {n5}. maldición o cualquier otra. Las cartas de Misión nunca se roban.",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "La carta que te roba se toma de la Pila de robo o de la Pila de descarte. Prioridades: {n1}. poco común sin Infusión {n2}. común/rara/de evento sin Infusión {n3}. básica sin Infusión {n4}. con Infusión o antigua {n5}. maldición o cualquier otra. Nunca te roba cartas de Misión.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Una vez invocado, el Gremlin regordete se queda con el oro robado.",
     "Stunned for one turn": "Aturdido durante un turno",
     "Summon Two-Tailed Rat": "Invoca una Rata de cola bífida",
@@ -667,13 +667,13 @@
     "While Burrowed: Always uses {m1}.": "Con Excavar: siempre usa {m1}.",
     "While Turret Operator alive: Always uses {m1}.": "Mientras el Ametrallador siga con vida: siempre usa {m1}.",
     "Wisdom: Draw {n1} cards": "Sabiduría: roba {n1} cartas",
-    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "Mientras sigue con vida, Wuppy recibe todo el daño de ataque dirigido a ti. Sus PV se mantienen entre combates y los Lugares de descanso ganan una opción Restaurar que lo cura por completo.",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "Mientras sigue con vida, Wuppy recibe todo el daño de ataque dirigido a ti. Sus PV se mantienen entre combates y los Lugares de descanso ganan la opción Curar, que le restaura todos los PV.",
     "[Merchant] Guilty": "[Comerciante] Culpable",
     "[Merchant] Innocent": "[Comerciante] Inocente",
     "[Noble] Guilty": "[Noble] Culpable",
     "[Noble] Innocent": "[Noble] Inocente",
-    "[Nondescript] Guilty": "[Anodino] Culpable",
-    "[Nondescript] Innocent": "[Anodino] Inocente",
+    "[Nondescript] Guilty": "[Anodina] Culpable",
+    "[Nondescript] Innocent": "[Anodina] Inocente",
     "[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": "[gold]Wuppy[/gold] te acompaña y absorbe TODO el daño de ataques en combate. Sus PV se mantienen entre combates.",
     "a Torch Head Amalgam in play": "una Amalgama de antorchas en juego",
     "damage {n1} → {n2}.": "daño {n1} → {n2}.",
@@ -722,6 +722,6 @@
     "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "~{n1} % de probabilidad. Gratis (no cuesta oro). Solo aparece después de coger el primer plato.",
     "~{n1}% chance. Only appears if not at full HP.": "~{n1} % de probabilidad. Solo aparece si no tienes los PV al máximo.",
     "~{n1}% chance. Only appears if you have open potion slots.": "~{n1} % de probabilidad. Solo aparece si tienes espacios de poción libres.",
-    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 Gana una cantidad fija de Fuerza al recibir un golpe, en lugar de una cantidad por jugador."
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 Gana una cantidad fija de Fuerza al asestar un golpe, en lugar de una cantidad por jugador."
   }
 }

@@ -16,7 +16,7 @@
 // tools/l10n/merge.mjs.
 import fs from 'node:fs';
 import { SITE, bootSite, gameLoc, readSite, isMain } from './lib.mjs';
-import { loadSite, loadMeta, siteText, termIndex, findTerms } from './translations.mjs';
+import { loadSite, loadMeta, siteText, termContext, termsFor } from './translations.mjs';
 
 export const BRIEF = [
   'Translate the English of a Slay the Spire 2 reference site (enemies, encounters, events) into the language named in "language". Players read it beside the game, in the game\'s language.',
@@ -35,7 +35,7 @@ export function pendingWork(lang, { all = false } = {}) {
   const ui = site.run('JSON.parse(JSON.stringify(siteUi))');
   const templates = site.run('JSON.parse(JSON.stringify(siteTemplates(true)))');
   const game = gameLoc(['eng', lang]);
-  const index = termIndex(game, lang);
+  const terms = termContext(site, game, lang);
   // The game's text for a template's field, in English and the language, formatted with the field's values
   site.run(`setLanguage(${JSON.stringify(lang)}, ${JSON.stringify({ game: readSite(`data/loc/game/${lang}.json`), site: readSite(`data/loc/site/${lang}.json`) })})`);
   // (not the game's generic "Stunned", a move name's last candidate)
@@ -61,14 +61,14 @@ export function pendingWork(lang, { all = false } = {}) {
     const id = `ui:${key}`, need = needs(id);
     if (!need) continue;
     items.push({ id, english: ui[key], kind: 'label', slots: [...new Set([...ui[key].matchAll(/\{(\w+)\}/g)].map(m => m[1]))],
-      terms: findTerms(ui[key], index).map(t => ({ english: t.en, game: t.text })), ...(need.previous ? { previous: need.previous } : {}) });
+      terms: termsFor(ui[key], '', terms).map(t => ({ english: t.en, game: t.text })), ...(need.previous ? { previous: need.previous } : {}) });
   }
   for (const x of templates) {
     const id = `text:${x.template}`, need = needs(id);
     if (!need) continue;
     const refs = x.game ? reference(x.game) : [];
     items.push({ id, english: x.template, kind: x.kind, page: x.page, ...(x.example !== x.template ? { example: x.example } : {}),
-      terms: findTerms(x.template, index).map(t => ({ english: t.en, game: t.text })),
+      terms: termsFor(x.template, x.page, terms).map(t => ({ english: t.en, game: t.text })),
       ...(refs.length ? { reference: refs } : {}), ...(need.previous ? { previous: need.previous } : {}) });
   }
   // Retired human translations, as a previous translation for the new English on the same page

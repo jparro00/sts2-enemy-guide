@@ -1,0 +1,727 @@
+{
+  "lang": "tur",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "Referans"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "{n}. Sahne: {name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "Saldırı Düzeni"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — Bu sayfa <strong>beta v{version}</strong> denge değişikliklerini yansıtır. <a href=\"../\">Kararlı sürümü gör</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">Kararlı sürümü gör</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "Bu site en son <strong>beta yaması v{version}</strong> için de mevcut. <a href=\"beta/\">Betaya geç</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">Betaya geç</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "Beta {version} ile değişti:"
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "Beta Yaması"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "Boss:"
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "Tüm Karşılaşmalar"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "Boss'lar"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "Kolay"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "Kolay Karşılaşmalar"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "Zor"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "Zor Karşılaşmalar"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "Seçenekler"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "Seçenek"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "Etki"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "Amaç"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "Hamle"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "Daralt/Genişlet"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "Dizilim"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "Hakimiyet"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "Sahne Boss'u"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "Bu sahnedeki diğer savaşlar"
+    },
+    "events": {
+      "en": "Events",
+      "text": "Etkinlikler"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "Tüm Etkinlikler"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "Geri bildirim gönder veya sorun bildir"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "Bu sitedeki veriler ilk olarak <span class=\"credit-names\">dr0gulus, Aplet123 ve Redbeardy_Mcgee</span> tarafından hazırlanan <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a> kaynağından alınmıştır &mdash; bunu mümkün kılan emekleri için çok teşekkürler."
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2 şu anda erken erişimde olduğundan düşman istatistikleri, hamleleri ve düzenleri her yamayla değişebilir. Veriler en son <span id=\"game-version\"></span> için güncellendi."
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "CP:"
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "durum kartı ekleme"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "olumsuz etki"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "saldırı"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "blok"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "güçlendirme"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "son darbe"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "güçsüzleştirme"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "kaçış"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "iyileştirme"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "çoklu saldırı"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "uyuyor"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "sersemleme"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "çağrı"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "bilinmeyen"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": ", "
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — lideri yoksa savaşı terk eder"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "Otomatik kapat"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "Dışına tıklanınca paneli kapat"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "Paneli kapat"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "Mevcut"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "Sabitle"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "Otomatik ({lang})"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "Steam'de Bizi Beğen!"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "Veriler yükleniyor..."
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "Spire Codex verileri kullanılamıyor"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "Spire Codex'i Aç"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "Ayır"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "Mod güncellemesi mevcut"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "Veri v{data} · Oyun v{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "Hamleler"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "Veri yok."
+    },
+    "players": {
+      "en": "Players:",
+      "text": "Oyuncular:"
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n}O"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "Tek"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "Renksiz"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "Kartlar"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "Açıklama"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "Büyü Referansı"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "İsim"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "İksir Referansı"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "Güçler"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "Kalıntı Referansı"
+    },
+    "search": {
+      "en": "Search",
+      "text": "Ara"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "Eşleşme bulunamadı."
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "Düşman veya karşılaşma ara..."
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — Etkinlikler"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "BAŞLANGIÇTA:"
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "Tümü"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "beta v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "{zone} Boss'u"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "{zone} Etkinlikleri"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}: "
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "Ortak"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "(N = {n1} + Çoklu Pençeleme'nin kullanılma sayısı)",
+    "(with random intent)": "(rastgele amaçla)",
+    "A random card is removed from your [gold]Deck[/gold].": "Rastgele bir kart [gold]Deste[/gold]'nden kaldırılır.",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "Deste'ne bir [red]Kuşku[/red] ekle. {n1} kart ödülü elde et (her birinde {n2} kart).",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "Deste'ne bir [red]Kuşku[/red] ekle. {n1} kartını Dönüştür.",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "Deste'ne bir [red]Pişmanlık[/red] ekle. {n1} Altın elde et.",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "Deste'ne bir [red]Pişmanlık[/red] ekle. Rastgele {n1} Kalıntı elde et.",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "Deste'ne bir [red]Utanç[/red] ekle. {n1} kartını Geliştir.",
+    "Add {n1} Beckon to Hand": "El'ine {n1} Çağrı ekler",
+    "Add {n1} Burns to Hand": "El'ine {n1} Yanık ekler",
+    "Add {n1} Dazed to Discard": "Atık Deste'ne {n1} Sersemlemiş ekler",
+    "Add {n1} Dazed to Draw": "Çekme Deste'ne {n1} Sersemlemiş ekler",
+    "Add {n1} Infection to Discard": "Atık Deste'ne {n1} Enfeksiyon ekler",
+    "Add {n1} Slimed to Discard": "Atık Deste'ne {n1} Yapış Yapış ekler",
+    "Add {n1} Slimed to discard": "Atık Deste'ne {n1} Yapış Yapış ekler",
+    "Add {n1} Toxic to Hand": "El'ine {n1} Toksik ekler",
+    "Add {n1} Wither to Discard": "Atık Deste'ne {n1} Solma ekler",
+    "Add {n1} Wither to Draw Pile": "Çekme Deste'ne {n1} Solma ekler",
+    "Add {n1} Wounds into discard": "Atık Deste'ne {n1} Yara ekler",
+    "Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": "Eklendi: {n1} Guş Dalışı oynandıktan sonra Guşçuk, bir Dinlenme Yeri'nde Guşçağız'a evrimleşebilir.",
+    "Added: Yellow option ({n1} Fool cards).": "Eklendi: Sarı seçeneği ({n1} Soytarı kartı).",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "Bileşim öldükten sonra: {m1} → {m2} → {m3} döngüsünü izler.",
+    "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "Guş Dalışı {n1} kez oynandıktan sonra Guşçuk, bir Dinlenme Yeri'nde Guşçağız'a evrimleşebilir; Guşçağız her Guş Dalışı'nı Ulu Guş'a dönüştürür. Evrimleştirmek dinlenme seçeneğini harcar.",
+    "After Turret Operator dies: Always uses {m1}.": "Taret Operatörü öldükten sonra: Her zaman {m1} hamlesini kullanır.",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "Kabul ettikten sonra {n1} davadan biri rastgele seçilir (Tüccar, Soylu veya Sıradan Kadın).",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "Girdikten sonra Biraz Daha Kal (aynı etki, her seferinde +{n1} hasar) veya Havuzlardan Ayrıl seçeneğini seçebilirsin.",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "{n1} Kişisel Kovan yığınına ulaştıktan sonra bunun yerine yalnızca {n2} Kuvvet elde eder.",
+    "After stun: Repeats {m1} → {m2}.": "Sersemledikten sonra: {m1} → {m2} sırasını tekrarlar.",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "{m1} sonrası (üst üste {n1}.): Her zaman {m2} hamlesini kullanır.",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "{m1} sonrası (üst üste {n1}.): %{n2} {m2}, %{n3} {m3}.",
+    "After {m1}: Always uses {m2}.": "{m1} sonrası: Her zaman {m2} hamlesini kullanır.",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "{n1} Kişisel Kovan yığınından sonra: {m1} hamlesi bunun yerine {n2} Kuvvet verir.",
+    "All enemies gain {n1} {p1}": "Tüm düşmanlar {n1} {p1} elde eder",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "Tüm ödüller atlanabilir, ancak Kuşku ortaya çıktığı anda Deste'ne eklenir.",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "{n1} farenin tümü {m1}, {m2} ve {m3} arasında eşit dağılımla başlar.",
+    "Allies gain {n1} {p1}": "Müttefikler {n1} {p1} elde eder",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "Her zaman {m1} → {m2} → {m3} → {m4} → {m5} sırasını izler.",
+    "Always uses {m1}.": "Her zaman {m1} hamlesini kullanır.",
+    "Apply -{n1} {p1}": "-{n1} {p1} uygular",
+    "Apply {n1} {p1}": "{n1} {p1} uygular",
+    "Apply {p1}": "{p1} uygular",
+    "Apply {p1} {n1}": "{p1} {n1} uygular",
+    "At the end of each turn, take damage equal to {n1} + the turn number": "Her turun sonunda {n1} + tur sayısı kadar hasar al",
+    "At the end of your first turn, lose {n1} {p1} and {n2} {p2}": "İlk turunun sonunda {n1} {p1} ve {n2} {p2} kaybet",
+    "At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": "{n1}. turunun başlangıcında {n2} {p1}, {n3} {p2} ve {n4} {p3} elde et",
+    "At the start of your turn, add {n1} Wither to the top of your Draw Pile": "Turunun başında Çekme Deste'nin en üstüne {n1} Solma ekle",
+    "Attack — Deal {n1} damage, plus:": "Atak — {n1} hasar ver, ayrıca:",
+    "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": "Zarif Bileklik, Kutsanmış Boynuz, Göz Alıcı Atkı, Narin Dal, Elmas Taç, Kürk Palto, Sim, Mücevher Kutusu, Mühür Yüzüğü",
+    "Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": "Her savaşta ilk kart çekişinden önce {n1} tanesini seç: {p1} {n2} veya {p2}",
+    "Buffed: Below renamed From Below": "Güçlendirildi: Below hamlesinin adı Alttan Saldırı olarak değiştirildi",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "Guşdeniz Yumurtası, bir Dinlenme Yeri'nde Guş Dalışı ile takas edilebilir. Bunu seçmek dinlenme seçeneğini harcar.",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "Yalnızca tüm oyuncuların CP'si Maksimum CP'lerinin %{n1} veya altındaysa çıkabilir.",
+    "Can only appear if all players have a card with Exhaust in their deck.": "Yalnızca tüm oyuncuların destesinde Tüket özellikli bir kart varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} Gold.": "Yalnızca tüm oyuncuların en az {n1} Altın'ı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} HP.": "Yalnızca tüm oyuncuların en az {n1} CP'si varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "Yalnızca tüm oyuncuların Cuk Oturdu büyüsüne uygun en az {n1} kartı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "Yalnızca tüm oyuncuların Sarmal büyüsüne uygun en az {n1} kartı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} potion.": "Yalnızca tüm oyuncuların en az {n1} iksiri varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} potions.": "Yalnızca tüm oyuncuların en az {n1} iksiri varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "Yalnızca tüm oyuncuların kaldırılabilir en az {n1} Temel Saldırı ve {n2} Temel Savunma kartı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} removable Basic card.": "Yalnızca tüm oyuncuların kaldırılabilir en az {n1} Temel kartı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} removable card.": "Yalnızca tüm oyuncuların kaldırılabilir en az {n1} kartı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} tradable relics.": "Yalnızca tüm oyuncuların takas edilebilir en az {n1} kalıntısı varsa çıkabilir.",
+    "Can only appear if all players have at least {n1} transformable cards.": "Yalnızca tüm oyuncuların dönüştürülebilir en az {n1} kartı varsa çıkabilir.",
+    "Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": "Yalnızca tüm oyuncuların {n1} Altın'dan fazlası varsa ve CP'leri Maksimum CP'lerinin %{n2} veya altındaysa çıkabilir.",
+    "Can only appear if all players have more than {n1} HP.": "Yalnızca tüm oyuncuların {n1} CP'den fazlası varsa çıkabilir.",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "Yalnızca en az {n1} oyuncunun {n2} veya daha fazla Altın'ı, takas edilebilir bir kalıntısı ve bir iksiri varsa çıkabilir.",
+    "Can only appear if no player has an event pet.": "Yalnızca hiçbir oyuncunun etkinlik evcil hayvanı yoksa çıkabilir.",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "Yalnızca en az {n1} Altın'ın veya bir İğrenç İksir'in varsa çıkabilir.",
+    "Can only appear in Act {n1} or Act {n2}.": "Yalnızca {n1}. Sahne veya {n2}. Sahne'de çıkabilir.",
+    "Can only appear in Act {n1}.": "Yalnızca {n1}. Sahne'de çıkabilir.",
+    "Can only appear on floor {n1}+.": "Yalnızca {n1}. kattan itibaren çıkabilir.",
+    "Can only be used once per rat. Requires {n1} turns before available.": "Her fare yalnızca bir kez kullanabilir. Kullanılabilir olması için {n1} tur geçmesi gerekir.",
+    "Can only be used once.": "Yalnızca bir kez kullanılabilir.",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "Bu sahnenin Kadim'i Nonupeipe ise çıkamaz.",
+    "Cannot appear if this act's Ancient is Tanx.": "Bu sahnenin Kadim'i Tanx ise çıkamaz.",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "Doğal olarak çıkamaz.  Deste'nde Fener Anahtar varsa {n1}. Sahne'de karşılaştığın ilk soru işareti noktasında çıkar.",
+    "Cannot repeat.": "Tekrarlanamaz.",
+    "Cannot repeat. {n1}-turn cooldown.": "Tekrarlanamaz. {n1} tur bekleme süresi.",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "Tekrarlanamaz. {n1} tur bekleme süresi. Hiçbir hamle mümkün değilse varsayılan olarak bunu kullanır.",
+    "Card type is random (Attack/Skill/Power).": "Kart türü rastgeledir (Atak/Beceri/Güç).",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "Kart türü rastgeledir (Atak/Beceri/Güç). {n2} geliştirilmiş karttan {n1} tanesini seçersin.",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "Kartlar STS{n1} oyunundan: Demir Dikenler, Çatışma, Dikkat Dağıtma, Çift El, Sağlamlaştır, Merhaba Dünya, Üstün Manevra, Geri Sekme, Parçalayıp Kopar, Yığın.",
+    "Cards are from your character's card pool.": "Kartlar karakterinin kart havuzundan gelir.",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "Büyücü Şövalye, Nemlendir hamlesiyle Güçsüz Kıl uyguladıktan sonra da kartlar savaş sırasında geliştirilebilir.",
+    "Caviar/+Max HP ({n1})": "Havyar/+Maksimum CP ({n1})",
+    "Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": "Değişti: Nefes Alma Teknikleri {n1} Altın tutar (önceden {n2}) ve {n3} Aydınlanma ekler (önceden {n4})",
+    "Changed: HP is now a fixed value, {n1} → {n2}.": "Değişti: CP artık sabit bir değer, {n1} → {n2}.",
+    "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "Değişti: Aydınlık Kapı, rastgele {n2} kart yerine seçtiğin {n1} kartı geliştirir.",
+    "Changed: Radiate removed": "Değişti: Işık Saç kaldırıldı",
+    "Changed: can no longer steal Quest cards.": "Değişti: artık Görev kartlarını çalamaz.",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "Kaos: Havuzundan rastgele bir kartı El'ine ekle. Oynaması ücretsizdir",
+    "Choking: Apply {n1} Strangle": "Boğucu: {n1} Boğ uygula",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "{m1}, {m2} ve {m3} arasından rastgele seçer.",
+    "Clam Roll/Heal ({n1})": "Midyeli Sandviç/İyileşme ({n1})",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "Deste'nde uygun kart yoksa Gerçekle Yüzleştir kilitlidir.",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "Bir Çılgın Bilim kartı oluşturur ({n1} enerji). Geliştirmek ona Yerleşik kazandırır.",
+    "Curious: Powers cost {n1} Energy less": "Meraklı: Güç kartlarının maliyeti {n1} Enerji azalır",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "{m1} → {m2} veya {m3} ({n1}/{n2}) döngüsünü izler.",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "{m1} → {m2} → {m3} döngüsünü izler (%{n1} ihtimalle {m4} bir kez tekrarlanır).",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "{m1} → {m2} → {m3} → {m4} döngüsünü izler ({m5} {n1} kez kullanılana kadar).",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "{m1} → {m2} → {m3} → {m4} → {m5} döngüsünü izler.",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "{m1} → {m2} → {m3} → {m4} döngüsünü izler.",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "{m1} → {m2} → {m3} döngüsünü izler; %{n1} ihtimalle {m4} atlanır.",
+    "Cycles {m1} → {m2} → {m3}.": "{m1} → {m2} → {m3} döngüsünü izler.",
+    "Cycles {m1} → {m2}.": "{m1} → {m2} döngüsünü izler.",
+    "Damage {n1}": "{n1} hasar",
+    "Damage {n1} + stolen {p1}": "{n1} hasar + çalınan {p1}",
+    "Damage {n1} + {n2}*N": "{n1} hasar + {n2}*N",
+    "Decision made as a group in co-op.": "Çok oyunculu modda karar grup olarak verilir.",
+    "Dies": "Ölür",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "Paran bitene ya da ayrılmaya karar verene kadar yemekler rastgele sunulur. Bir önceki yemek tekrar gelemez.",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "Kötü Şans kopyalanmaz. Kartlardaki büyüler ise kopyalanır",
+    "Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": "Hamam Suyunu İç, Nonupeipe'nin tekliflerinden Filizlenen Meyve hariç rastgele {n1} kalıntı verir:",
+    "Each combat shuffles {n1} Beckon into your Draw Pile": "Her savaşta Çekme Deste'ne {n1} Çağrı karıştırılır",
+    "Each option is locked if you have no eligible cards of that type.": "O türde uygun kartın yoksa ilgili seçenek kilitlidir.",
+    "Each option names the random relic, so you know exactly what you are trading for.": "Her seçenek rastgele kalıntının adını gösterir, böylece tam olarak neyle takas ettiğini bilirsin.",
+    "Elites gain {n1} {p1}": "Elitler {n1} {p1} elde eder",
+    "Enemies gain {p1}:": "Düşmanlar {p1} elde eder:",
+    "Enemies spawned mid-fight gain {n1} {p1}": "Savaşın ortasında ortaya çıkan düşmanlar {n1} {p1} elde eder",
+    "Energized: Gain {n1} Energy": "Enerji Yüklü: {n1} Enerji elde et",
+    "Enlightenment no longer Exhausts.": "Aydınlanma artık Tüketilmez.",
+    "Enrage": "Sinirlen",
+    "Enter deeper. Lose HP.": "Daha derine ilerle. CP kaybet.",
+    "Escape from combat": "Savaştan kaçar",
+    "Escape from the combat": "Savaştan kaçar",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "Uzmanlık: {n1} Kuvvet ve {n2} Beceriklilik elde et",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "Şişko Gremlin kaçmazsa savaş normal altın ödülü verir.",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "Savaş, {n2} eksik CP ile başlayan {n1} Yumruklayan Yapı'ya karşıdır. Yapılardan biri her zaman Güçlü Yumruk ile başlar.",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "{n1} parça halinde savaşır — CP her zaman çift sayıdır ve parçaların Maksimum CP'leri farklıdır.",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "Her {n1}. alımda zorunludur ({n2}., {n3}. vb.).",
+    "Free (no gold cost).": "Ücretsiz (altın gerektirmez).",
+    "Fried Eel/Colorless Card ({n1})": "Kızarmış Yılan Balığı/Renksiz Kart ({n1})",
+    "Front and back start with {m1}. Middle starts with {m2}.": "Öndeki ve arkadaki {m1} ile başlar. Ortadaki {m2} ile başlar.",
+    "Front starts {m1}, back starts {m2}.": "Öndeki {m1} ile, arkadaki {m2} ile başlar.",
+    "Gain [gold]Gold[/gold] based on depth.": "Derinliğe bağlı olarak [gold]Altın[/gold] elde et.",
+    "Gain {n1} {p1}": "{n1} {p1} elde eder",
+    "Gain {n1} {p1} and {n2} {p2}": "{n1} {p1} ve {n2} {p2} elde eder",
+    "Gain {n1} {p1} per respawn": "Her yeniden doğuşta {n1} {p1} elde eder",
+    "Gain {n1}* Intangible": "{n1}* Soyutluk elde eder",
+    "Gain {n1}+ {p1}": "{n1}+ {p1} elde eder",
+    "Gain {p1}": "{p1} elde eder",
+    "Gain {p1} {n1}": "{p1} {n1} elde eder",
+    "Gains {n1} {p1}": "{n1} {p1} elde eder",
+    "Gains {n1} {p1} when stunned.": "Sersemlediğinde {n1} {p1} elde eder.",
+    "Gains {p1} {n1}": "{p1} {n1} elde eder",
+    "Galvanic Burst": "Uyarıcı Patlama",
+    "Give Potion": "İksiri Ver",
+    "Give Relic": "Kalıntı'yı Ver",
+    "Give allies {n1} {p1}": "Müttefiklerine {n1} {p1} verir",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "Normal savaş ödüllerine ek olarak bir iksir ve bir kalıntı verir ({n1} iksir almak mümkündür).",
+    "Gold-generating relics cannot appear as the Featured Item.": "Altın üreten kalıntılar Öne Çıkan Ürün olarak çıkamaz.",
+    "Golden Fysh/Gold ({n1})": "Altın Baluk/Altın ({n1})",
+    "Hatches into Hatchling.": "Yumurtadan çıkarak Yavru'ya dönüşür.",
+    "Headbutt": "Kafa At",
+    "Heal [green]{n1}%[/green] Max HP.": "Maksimum CP'nin [green]%{n1}[/green] kadarını iyileştir.",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "Maksimum CP'nin [green]%{n1}[/green] kadarını iyileştir. Bazı [red]düşmanlarla[/red] savaş.",
+    "Heal is multiplied by player count in co-op.": "Çok oyunculu modda iyileşme oyuncu sayısıyla çarpılır.",
+    "Heal {n1} HP.": "{n1} CP iyileştir.",
+    "Heal {n1}*": "{n1}* CP iyileşir",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "Tutun tekrarlanabilir. Hasar {n1} ile başlar ve her seferinde {n2} artar.",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "Bileşim tur ortasında ölürse ve amacı {m1} ise, bunun yerine {m2} olur.",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "Şişko Gremlin altın çaldıktan sonra kaçarsa altın ödülü alamazsın; altın çalmadan kaçarsa yine de normal altın ödülünün %{n1} kadarını alırsın.",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "Bir oyuncu Kum Havuzu tarafından yutulursa Kertenkele Kuyruğu gibi etkiler seni diriltmez.",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1} sonrası müttefik sayısı < {n1} ise: {m2} → {m3} → {m4}.",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1} sonrası müttefik sayısı ≥ {n1} ise: {m2} → {m3} → {m4}.",
+    "If spawned from Phrog Parasite, starts stunned.": "Parazitli Gurbağa'dan çıktıysa sersemlemiş olarak başlar.",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "{n1}. turdan önce sersemlerse bir sonraki hamleyle devam eder. {n2}. turda sersemlerse {m1} hamlesini tekrar dener.",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "{m1} mümkünse, %{n1} ihtimalle bunun yerine onu kullanır.",
+    "Improvement: At the end of combat, Upgrade a random card": "Geliştirme: Savaşın sonunda rastgele bir kartı Geliştir",
+    "In Blitz it steals no Gold.": "Sürat modunda Altın çalmaz.",
+    "In X turns, instantly die.": "X tur sonra anında öl.",
+    "In co-op, only appears if all players have more than {n1} HP.": "Çok oyunculu modda yalnızca tüm oyuncuların {n1} CP'den fazlası varsa çıkar.",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "Tüm kartları geliştirip {n1} Maksimum CP'ye düşmek için en az {n2} Maksimum CP ile başlaman gerekir.",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "{n1} Kemirbağalı karşılaşmada: öndeki {m1} ile, arkadaki {m2} ile başlar.",
+    "Increases Wither damage by {n1} each use.": "Her kullanımda Solma hasarını {n1} artırır.",
+    "Initially excludes Basic rarity cards.": "Başlangıçta Temel nadirlikteki kartları hariç tutar.",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "Gizemli Şövalye ile, Fener Anahtar'a ek olarak normal ödüller de veren bir savaş başlatır",
+    "Insert Potion": "İksir Yerleştir",
+    "Jelly Liver/Transform ({n1})": "Deniz Anası Ciğeri/Dönüştür ({n1})",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "Bir parçayı Kader ile öldürmek, kısa bir an hepsi aynı anda ölü görünse bile diğer ölü parçaların yenilenmesine izin verir.",
+    "Laser → Rocket Claw.": "Lazer → Roket Kıskaç.",
+    "Leave the conveyor belt.": "Banttan ayrıl.",
+    "Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": "{n1} Altın'dan azsa kilitlidir. Kart, karakterinin havuzundan gelir ve asla geliştirilmiş olmaz.",
+    "Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].": "[red]TÜM[/red] [gold]Altın[/gold]'ını kaybet. [gold]Bornoz[/gold] elde et.",
+    "Lose [red]{n1}%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]{n2}[/green] HP.": "Mevcut CP'nin [red]%{n1}[/red] kadarını kaybet. [green]{n2}[/green] CP'ye sahip bir [gold]Wuppy[/gold] elde et.",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "[red]{n1}[/red] CP kaybet (her seferinde {n2} artar). Üstesinden Gel kartı yeniden rastgele belirlenir.",
+    "Lose [red]{n1}[/red] HP. Add [blue]{n2}[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.": "[red]{n1}[/red] CP kaybet. [gold]Deste[/gold]'ne [blue]{n2}[/blue] [red]Suçlu[/red] ekle. Rastgele bir Nonupeipe kalıntısı elde et.",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "[red]{n1}[/red] CP kaybet. [gold]Kokulu Mantar[/gold] elde et. Rastgele [blue]{n2}[/blue] kartı Geliştir.",
+    "Lose [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.": "[red]{n1}[/red] [gold]Altın[/gold] kaybet. Rastgele [gold]Nadir[/gold] bir kart elde et.",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "Bir İksir kaybet. Eşleşen nadirlikteki {n2} geliştirilmiş karttan {n1} tanesini seç.",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "Rastgele bir [red]İksir[/red] kaybet. [blue]{n1}[/blue] Maksimum CP elde et.",
+    "Lose {n1} {p1}": "{n1} {p1} kaybeder",
+    "Lose {p1}": "{p1} kaybeder",
+    "Max {n1} in a row.": "Üst üste en fazla {n1} kez.",
+    "Minions that join mid-fight gain none": "Savaşın ortasında katılan yancılar bunu elde etmez",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "Gizemli Şövalye, {n1} Kuvvet ve {n2} Zırh ile başlayan ve {n3} CP'si olan bir Gürzlü Şövalye'dir.",
+    "N = # of times this move was used": "N = bu hamlenin kullanılma sayısı",
+    "Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": "Zayıflatıldı: Dikenli Sünger {n1} Altın tutar (önceden {n2}).",
+    "New event.": "Yeni etkinlik.",
+    "Normal enemies gain {n1} {p1}": "Sıradan düşmanlar {n1} {p1} elde eder",
+    "Obtain Forgotten Soul.": "Unutulmuş Ruh elde et.",
+    "Obtain [gold]Big Mushroom[/gold].": "[gold]Büyük Mantar[/gold] elde et.",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "[gold]Nezaketsizlik Çayı[/gold] elde et.",
+    "Obtain the [gold]Sword of Stone[/gold].": "[gold]Taş Kılıç[/gold] elde et.",
+    "Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].": "Sergilenen kalıntıyı elde et. [gold]Deste[/gold]'ne rastgele bir [red]Lanet[/red] ekle.",
+    "Offered three random options that are not your character.": "Senin karakterine ait olmayan üç rastgele seçenek sunulur.",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "{n2} türden (Atak/Beceri/Güç) rastgele {n1} tanesi, ardından seçilen tür için {n4} etkiden rastgele {n3} tanesi sunulur.",
+    "On wakeup all Plating is removed.": "Uyandığında tüm Zırh kaldırılır.",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "{m1} hamlesinden gelen {n1} Soyutluk'tan biri hemen azalır.",
+    "Only {n1} rat can use {m1} per turn.": "Her turda yalnızca {n1} fare {m1} hamlesini kullanabilir.",
+    "Opens with {m1} or {m2}.": "{m1} veya {m2} ile başlar.",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "{m1} → {m2} → {m3} ile başlar, ardından her zaman {m4} hamlesini kullanır.",
+    "Opens with {m1} → {m2} → {m3}.": "{m1} → {m2} → {m3} ile başlar.",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "{m1} → {m2} ile başlar, ardından her zaman {m3} hamlesini kullanır.",
+    "Opens with {m1} → {m2}.": "{m1} → {m2} ile başlar.",
+    "Opens with {m1}, then always uses {m2}.": "{m1} ile başlar, ardından her zaman {m2} hamlesini kullanır.",
+    "Opens with {m1}.": "{m1} ile başlar.",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "{m1} ile başlar; ardından {m2} ↔ {m3} arasında gidip gelir (her zaman {m4} ile başlayarak).",
+    "Options are locked if you don't have the required item.": "Gerekli öğe sende yoksa seçenekler kilitlidir.",
+    "Pass Turn": "Turu Geçer",
+    "Pass turn": "Turu geçer",
+    "Passes Turn": "Turu Geçer",
+    "Passes turn": "Turu geçer",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].": "[red]{n1}[/red] [gold]Altın[/gold] öde. [gold]Hamam Havlusu[/gold] elde et.",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "[red]{n1}[/red] [gold]Altın[/gold] öde. [gold]Kemik Çayı[/gold] elde et.",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "[red]{n1}[/red] [gold]Altın[/gold] öde. [gold]Köz Çayı[/gold] elde et.",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "[red]{n1}[/red] [gold]Altın[/gold] öde. Rastgele bir [gold]Nadir Kalıntı[/gold] elde et.",
+    "Phase {n1} (after stun):": "{n1}. Aşama (sersemlemeden sonra):",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "{n1}. Aşama (CP %{n2} altındayken {m1} hamlesini kullandıktan sonra):",
+    "Phase {n1} (stunned at {n2} HP):": "{n1}. Aşama ({n2} CP'de sersemler):",
+    "Phase {n1}:": "{n1}. Aşama:",
+    "Player must choose one of two debuffs:": "Oyuncu iki güçsüzleştirmeden birini seçmek zorundadır:",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "{n1}. ve {n2}. sıradakiler {m1} ile, {n3}. ve {n4}. sıradakiler {m2} ile başlar.",
+    "Power:": "Güç:",
+    "Precision Beam → Precise Smash": "Hassas Işın → İsabetli Darbe",
+    "Prep": "Hazırlık",
+    "Probabilities are weighted and shift if any options are unavailable.": "Olasılıklar ağırlıklıdır ve herhangi bir seçenek kullanılamıyorsa değişir.",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "Yumruklaşma etkinliği: {n1}. yapı {m1} ile, {n2}. yapı {m2} ile başlar.",
+    "Puppet Strings": "Kukla İpleri",
+    "Rejecting is not allowed — double downing abandons the run.": "Reddetmeye izin verilmez — İnatla Reddet oyunu sonlandırır.",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "Kalıntılar STS{n1} oyunundan: Karataş Tılsımı, Rüya Kapanı, El Matkabı, Çene Kumbara, Çizme.",
+    "Renamed moves: Targeting Reticle → Calculating": "Yeniden adlandırılan hamleler: Hedef Nişangâhı → Hesaplanıyor",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "En fazla {n1} kez tekrarlanabilir. Bedeller artar: {n2}/{n3}/{n4}/{n5} Maksimum CP, son olarak {n6} hariç tüm Maksimum CP. {n7}. çözümleme geliştirilebilir TÜM kartları geliştirir.",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "En fazla {n1} kez tekrarlanabilir. Hasar artar: {n2}/{n3}/{n4}. {n5}. seçim Polenli Çekirdek verir.",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "En fazla {n1} kez tekrarlanabilir. Altın artar: {n2}/{n3}/{n4}.",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "{p1} sayesinde {m1} ile yeniden doğar; her yeniden doğuşta {n1} Maksimum CP kazanır.",
+    "Retains Strength after reviving.": "Dirildikten sonra Kuvvet'ini korur.",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "Ödül, her biri {n1} yaygın/az yaygın/nadir kart içeren üç kart ödülünden oluşur.",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "Zayıflatma: {n1} Zayıf ve {n2} Savunmasız uygula",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "Parçalar {m1}, {m2} ve {m3} arasında eşit dağılımla başlar.",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "Bilgiyi Paylaş kartları, normal karşılaşma nadirlik olasılıklarıyla karakterinin kart havuzundan gelir (nadir kart telafi sayacına uyar). Kartlar asla geliştirilmiş olarak sunulmaz.",
+    "Shuffle {n1} Beckon into discard": "Atık Deste'ne {n1} Çağrı karıştırır",
+    "Shuffle {n1} Beckon into draw": "Çekme Deste'ne {n1} Çağrı karıştırır",
+    "Shuffle {n1} Burns into discard": "Atık Deste'ne {n1} Yanık karıştırır",
+    "Shuffle {n1} Frantic Escapes into discard": "Atık Deste'ne {n1} Telaşlı Kaçış karıştırır",
+    "Shuffle {n1} Frantic Escapes into draw": "Çekme Deste'ne {n1} Telaşlı Kaçış karıştırır",
+    "Single-player only.": "Yalnızca tek oyunculu.",
+    "Skill — Gain {n1} Block, plus:": "Beceri — {n1} Blok elde et, ayrıca:",
+    "Slash {n1}": "Kes {n1}",
+    "Sleeps for {n1} turns or until losing HP.": "{n1} tur boyunca veya CP kaybedene kadar uyur.",
+    "Sleeps until awakened, then always uses {m1}.": "Uyandırılana kadar uyur, ardından her zaman {m1} hamlesini kullanır.",
+    "Slice": "Kesiş",
+    "Smother": "Boğma",
+    "Spicy Snappy/Upgrade ({n1})": "Acılı Isırgan Ot/Geliştir ({n1})",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Ganimet Haritası, sonraki sahnedeki tüm yolların sahne sandığı noktasında birleşmesini sağlar; bu sandık normal ödüllere ek olarak {n1} Altın içerir.",
+    "Start each combat with {n1} {p1} and {n2} {p2}": "Her savaşa {n1} {p1} ve {n2} {p2} ile başla",
+    "Steal {n1} card and gain {p1}": "{n1} kart çalar ve {p1} elde eder",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "Çalınan kart çekme veya atık destesinden alınır. Öncelik sırası: {n1}. işlenmemiş az yaygın {n2}. işlenmemiş yaygın/nadir/etkinlik {n3}. işlenmemiş temel {n4}. işlenmiş veya kadim {n5}. lanet veya diğer her şey. Görev kartları asla çalınmaz.",
+    "Stolen gold is held by Fat Gremlin once summoned.": "Şişko Gremlin çağrıldığında çalınan altını o taşır.",
+    "Stunned for one turn": "Bir tur boyunca sersemler",
+    "Summon Two-Tailed Rat": "İki Kuyruklu Fare çağırır",
+    "Summon up to {n1} Tough Eggs": "En fazla {n1} Dayanıklı Yumurta çağırır",
+    "Summon {n1} Aggro Bot": "{n1} Saldırgan Bot çağırır",
+    "Summon {n1} Eye with Teeth": "{n1} Dişli Göz çağırır",
+    "Summon {n1} Gas Bomb": "{n1} Gaz Bombası çağırır",
+    "Summon {n1} Parafright": "{n1} Korkuzit çağırır",
+    "Summons X Wrigglers after dying (they start stunned).": "Öldükten sonra X Kımıldak çağırır (sersemlemiş olarak başlarlar).",
+    "Summons {n1} Aggro Bot": "{n1} Saldırgan Bot çağırır",
+    "Summons {n1} Defensive Bot": "{n1} Savunma Botu çağırır",
+    "Suspicious Condiment/Potion ({n1})": "Şüpheli Çeşni/İksir ({n1})",
+    "Swing": "Savuruş",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "Taş Kılıç, {n1} savaştan sonra Zümrüt Kılıç'a dönüşür",
+    "Tackle": "Savuruş",
+    "Test Subject Stage {n1}": "Denek {n1}. Aşama",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "Burada elde edilen İğrenç İksir, bir savaş başlatmak için Sahte Tüccar'a atılabilir.",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "Fener Anahtar, {n1}. Sahne'de karşılaştığın bir sonraki soru işaretinde Savaş Tarihçisi Repy etkinliğinin çıkmasını sağlar.",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "Üstesinden Gel kartı her Tutun seçiminde yeniden rastgele belirlenir; diğerlerinin hepsi sunulana kadar önceden sunulan kartlar hariç tutulur.",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "Dinlen seçeneği, bir Dinlenme Yeri'nde dinlenmenin tetikleyeceği tüm etkileri tetikler (Kraliyet Yastığı, Rüya Kapanı vb.)",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "Büyük Kehanet yalnızca henüz tıklanmamış bir hücrede kullanılabilir ve {n1} komşu hücreyi ortaya çıkarır.",
+    "The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": "Sergilenen kalıntı, Obsidyen Mengene, Başparmak Vidası ve İşkence Tasması arasından rastgele seçilen {n1} kalıntıdır.",
+    "The following items are guaranteed to be in the minigame:": "Aşağıdaki öğelerin mini oyunda bulunması garantidir:",
+    "The specific potion is named in the option text.": "Belirli iksirin adı seçenek metninde yazar.",
+    "The specific potion to be lost is shown in the option text.": "Kaybedilecek iksir seçenek metninde gösterilir.",
+    "Then chooses randomly from all moves.": "Ardından tüm hamleler arasından rastgele seçer.",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "Ardından {m1}, {m2}, {m3} arasından rastgele seçer.",
+    "Then chooses randomly from {m1}, {m2}.": "Ardından {m1}, {m2} arasından rastgele seçer.",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Ardından {m1} → {m2} → {m3} → {m4} → {m5} döngüsünü izler.",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "Ardından {m1} → {m2} → {m3} → {m4} döngüsünü izler.",
+    "Then cycles {m1} → {m2} → {m3}.": "Ardından {m1} → {m2} → {m3} döngüsünü izler.",
+    "Then cycles {m1} → {m2}.": "Ardından {m1} → {m2} döngüsünü izler.",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "{n1} olası bebek seçeneği vardır ve seçimine göre belirli sayıda rastgele bebek gösterilir.",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "İğrenç İksir atmak bir savaş başlatır. Ödül: {n1} Altın, {n2} kalıntının tümü, bir Ucuz Taklit Tüccar'ın Halısı ve bir kart ödülü.",
+    "Total HP to reach Pollinous Core: {n1}.": "Polenli Çekirdek'e ulaşmak için toplam CP: {n1}.",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "[gold]Kalıntı[/gold]'larından birini rastgele bir [gold]Kalıntı[/gold] ile takas et.",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "Kemerindeki en fazla {n1} iksir sunulur. İksirin nadirliği kart ödülünün nadirliğini belirler.",
+    "Uses {m1} once, then restarts Phase {n1}.": "{m1} hamlesini bir kez kullanır, ardından {n1}. Aşama'ya baştan başlar.",
+    "Uses {m1}, then cycles {m2} → {m3}.": "{m1} hamlesini kullanır, ardından {m2} → {m3} döngüsünü izler.",
+    "Violence: Hit {n1} times ({n2})": "Şiddet: {n1} kez vur ({n2})",
+    "Weak Tackle": "Zayıf Savuruş",
+    "Weights:": "Ağırlıklar:",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "Müttefik sayısı ≤ {n1} iken: {m1}, {m2} arasından rastgele seçer.",
+    "When allies ≥ {n1}: Always uses {m1}.": "Müttefik sayısı ≥ {n1} iken: Her zaman {m1} hamlesini kullanır.",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "Öldürüldüğünde {n1} Sinsi Gremlin ve {n2} Şişko Gremlin çağırır (sersemlemiş olarak başlarlar).",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "Öldürüldüğünde: {n1} tur sonra {n2} CP ile dirilir ve sonraki hamleden devam eder.",
+    "When killed: Revives next turn in Stage {n1}.": "Öldürüldüğünde: Sonraki tur {n1}. Aşama'da dirilir.",
+    "While Amalgam alive: Always uses {m1}.": "Bileşim hayattayken: Her zaman {m1} hamlesini kullanır.",
+    "While Burrowed: Always uses {m1}.": "Gömülüyken: Her zaman {m1} hamlesini kullanır.",
+    "While Turret Operator alive: Always uses {m1}.": "Taret Operatörü hayattayken: Her zaman {m1} hamlesini kullanır.",
+    "Wisdom: Draw {n1} cards": "Bilgelik: {n1} kart çek",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "Wuppy hayattayken sana yönelik tüm saldırı hasarını üzerine alır. CP'si savaşlar arasında korunur ve Dinlenme Yerleri'ne onu tamamen iyileştiren bir İyileştir seçeneği eklenir.",
+    "[Merchant] Guilty": "[Tüccar] Suçlu",
+    "[Merchant] Innocent": "[Tüccar] Masum",
+    "[Noble] Guilty": "[Soylu] Suçlu",
+    "[Noble] Innocent": "[Soylu] Masum",
+    "[Nondescript] Guilty": "[Sıradan Kadın] Suçlu",
+    "[Nondescript] Innocent": "[Sıradan Kadın] Masum",
+    "[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": "[gold]Wuppy[/gold] sana eşlik eder ve savaşta TÜM saldırı hasarını üzerine alır. CP'si savaşlar arasında korunur.",
+    "a Torch Head Amalgam in play": "sahada bir Meşale Kafalı Bileşim",
+    "damage {n1} → {n2}.": "hasar {n1} → {n2}.",
+    "pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": "düzen artık Batır → Batır → Kasırga → Titreş. Titreş, {n2} Blok elde etmek yerine {n1} Savunmasız uygular.",
+    "{m1} {p1} gain increases by {n1} each use.": "{m1} hamlesinin {p1} kazancı her kullanımda {n1} artar.",
+    "{n1} Big Gold/{n2}g ({n3})": "{n1} Büyük Altın/{n2} Altın ({n3})",
+    "{n1} Common Card ({n2})": "{n1} Yaygın Kart ({n2})",
+    "{n1} Common Potions ({n2})": "{n1} Yaygın İksir ({n2})",
+    "{n1} Dazed to Discard": "Atık Deste'ne {n1} Sersemlemiş",
+    "{n1} Doubt curse ({n2})": "{n1} Kuşku laneti ({n2})",
+    "{n1} Rare Card ({n2})": "{n1} Nadir Kart ({n2})",
+    "{n1} Rare Potion ({n2})": "{n1} Nadir İksir ({n2})",
+    "{n1} Relic ({n2})": "{n1} Kalıntı ({n2})",
+    "{n1} Rock + {n2} random from Egg or Nectar": "{n1} Taş + Yumurta veya Nektar arasından rastgele {n2}",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "{n1} Taş + Yumurta / İpek / Nektar arasından birbirinden farklı {n2}",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "{n1} Dikenli Boğucu + şunlardan biri: Isıran Meyve / rastgele Orta Balçık / rastgele {n2} Küçük Balçık",
+    "{n1} Small Gold/{n2}g ({n3})": "{n1} Küçük Altın/{n2} Altın ({n3})",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "{n1} Küçük Dal Balçığı + {n2} Küçük Yaprak Balçık + rastgele {n3} Orta Balçık",
+    "{n1} Uncommon Card ({n2})": "{n1} Az Yaygın Kart ({n2})",
+    "{n1} enemies": "{n1} düşman",
+    "{n1} in easy fights": "Kolay savaşlarda {n1}",
+    "{n1} in elite fights": "Elit savaşlarda {n1}",
+    "{n1} in hard fights": "Zor savaşlarda {n1}",
+    "{n1} in multi-enemy fights": "Çok düşmanlı savaşlarda {n1}",
+    "{n1} of the {n2} cells are populated with items.": "{n2} hücrenin {n1} tanesinde öğe bulunur.",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "{n2} taklit kalıntıdan rastgele {n1} tanesi, her biri {n3} Altın'a sunulur.",
+    "{n1} unique Raiders from pool": "Havuzdan birbirinden farklı {n1} Yağmacı",
+    "{n1}-turn cooldown.": "{n1} tur bekleme süresi.",
+    "{n1}nd choice: {p1} {n2} or {p2}": "{n1}. seçim: {p1} {n2} veya {p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "{n1}. Seçim: {p1} {n2} veya {p2}",
+    "{n1}rd follower opens with {m1}.": "{n1}. Kabile Üyesi {m1} ile başlar.",
+    "{n1}st choice: {p1} {n2} or {p2}": "{n1}. seçim: {p1} {n2} veya {p2}",
+    "{n1}st follower opens with {m1}, {n2}nd with {m2}.": "{n1}. Kabile Üyesi {m1} ile, {n2}. üye {m2} ile başlar.",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "{n1}. düşman rastgele başlar, sonrakilerin her biri döngüde bir sonraki noktadan başlar.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "{n1}. düşman {m1} ile, {n2}. düşman {m2} ile, {n3}. düşman {m3} ile başlar; {n4}. düşman rastgele başlar.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "{n1}. düşman {m1} ile, {n2}. düşman {m2} ile, {n3}. düşman {m3} ile, {n4}. düşman {m4} ile başlar.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "{n1}. düşman {m1} ile, {n2}. düşman {m2} ile başlar.",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "{n1}./{n2}./{n3}. düşmanlar {m1}, {m2}, {m3} arasında eşit dağılır. {n4}. düşman {m4} ile başlar.",
+    "{p1} (immediately gives {n1} Intangible)": "{p1} (hemen {n1} Soyutluk verir)",
+    "{p1} and {p2} {n1}": "{p1} ve {p2} {n1}",
+    "{p1} {n1} and {p2}": "{p1} {n1} ve {p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1} {n1} ve {p2} {n2}",
+    "{p1} {n1} on Fabricator": "İmalatçı'ya {p1} {n1}",
+    "{p1}, {p2} {n1} and {p3} {n2}": "{p1}, {p2} {n1} ve {p3} {n2}",
+    "~{n1}% chance.": "~%{n1} ihtimal.",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "~%{n1} ihtimal. Ücretsiz (altın gerektirmez). Yalnızca ilk alımdan sonra çıkar.",
+    "~{n1}% chance. Only appears if not at full HP.": "~%{n1} ihtimal. Yalnızca CP'n tam değilse çıkar.",
+    "~{n1}% chance. Only appears if you have open potion slots.": "~%{n1} ihtimal. Yalnızca boş iksir yuvan varsa çıkar.",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 Vurduğunda oyuncu başına değil, sabit miktarda Kuvvet elde eder."
+  }
+}

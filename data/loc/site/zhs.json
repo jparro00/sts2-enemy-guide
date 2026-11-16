@@ -99,11 +99,11 @@
     },
     "dominion_act_boss": {
       "en": "Act boss",
-      "text": "本幕Boss"
+      "text": "本阶段Boss"
     },
     "dominion_other_fights": {
       "en": "Other fights this act",
-      "text": "本幕其他战斗"
+      "text": "本阶段其他战斗"
     },
     "events": {
       "en": "Events",
@@ -135,7 +135,7 @@
     },
     "intent_affliction": {
       "en": "affliction",
-      "text": "苦痛"
+      "text": "侵蚀"
     },
     "intent_attack": {
       "en": "attack",
@@ -151,7 +151,7 @@
     },
     "intent_deathblow": {
       "en": "deathblow",
-      "text": "致命一击"
+      "text": "濒死一击"
     },
     "intent_debuff": {
       "en": "debuff",
@@ -372,7 +372,7 @@
     "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "打出{n1}次异鸟扑击后，异鸟宝宝可以在休息处进化为小异鸟，所有异鸟扑击都会变为异鸟猛击。进化会占用你的休息选项。",
     "After Turret Operator dies: Always uses {m1}.": "高塔炮手死亡后：总是使用{m1}。",
     "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "接受后，会从{n1}种审判中随机选择一种（商人、贵族或普通人）。",
-    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "投身其中后，你可以选择流连（效果相同，但每次伤害+{n1}）或离开浴场。",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "投身其中后，你可以选择沉溺（效果相同，但每次伤害+{n1}）或离开浴场。",
     "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "人体蜂房达到{n1}层后，改为只获得{n2}点力量。",
     "After stun: Repeats {m1} → {m2}.": "被击晕后：重复使用{m1} → {m2}。",
     "After {m1} ({n1}nd in a row): Always uses {m2}.": "{m1}之后（连续第{n1}次）：总是使用{m2}。",
@@ -416,14 +416,14 @@
     "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "仅当至少{n1}名玩家拥有{n2}或更多金币、一件可交易的遗物和一瓶药水时才会出现。",
     "Can only appear if no player has an event pet.": "仅当没有玩家拥有事件宠物时才会出现。",
     "Can only appear if you have at least {n1} Gold or a Foul Potion.": "仅当你拥有至少{n1}金币或一瓶污浊药水时才会出现。",
-    "Can only appear in Act {n1} or Act {n2}.": "仅会在第{n1}幕或第{n2}幕出现。",
-    "Can only appear in Act {n1}.": "仅会在第{n1}幕出现。",
+    "Can only appear in Act {n1} or Act {n2}.": "仅会在阶段{n1}或阶段{n2}出现。",
+    "Can only appear in Act {n1}.": "仅会在阶段{n1}出现。",
     "Can only appear on floor {n1}+.": "仅会在第{n1}层及以上出现。",
     "Can only be used once per rat. Requires {n1} turns before available.": "每只老鼠只能使用一次。需经过{n1}回合后才可使用。",
     "Can only be used once.": "只能使用一次。",
-    "Cannot appear if this act's Ancient is Nonupeipe.": "若本幕的先古之民为诺奴佩普，则不会出现。",
-    "Cannot appear if this act's Ancient is Tanx.": "若本幕的先古之民为坦克斯，则不会出现。",
-    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "不会自然出现。若你的牌组中有灯火钥匙，则会出现在你于第{n1}幕遇到的第一个问号节点。",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "若本阶段的先古之民为诺奴佩普，则不会出现。",
+    "Cannot appear if this act's Ancient is Tanx.": "若本阶段的先古之民为坦克斯，则不会出现。",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "不会自然出现。若你的牌组中有灯火钥匙，则会出现在你于阶段{n1}遇到的第一个问号节点。",
     "Cannot repeat.": "不会连续使用。",
     "Cannot repeat. {n1}-turn cooldown.": "不会连续使用。冷却{n1}回合。",
     "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "不会连续使用。冷却{n1}回合。若没有可用的行动，则默认使用此行动。",
@@ -439,7 +439,7 @@
     "Changed: Radiate removed": "调整：移除辐射",
     "Changed: can no longer steal Quest cards.": "调整：不再能偷取任务牌。",
     "Chaos: Add a random card from your pool to hand. It is Free to Play": "混沌：将一张来自你卡池的随机牌加入手牌。它可以免费打出",
-    "Choking: Apply {n1} Strangle": "窒息：给予{n1}层紧勒",
+    "Choking: Apply {n1} Strangle": "扼杀：给予{n1}层紧勒",
     "Chooses randomly from {m1}, {m2}, and {m3}.": "从{m1}、{m2}和{m3}中随机选择。",
     "Clam Roll/Heal ({n1})": "蚌肉卷/回复（{n1}）",
     "Confront with Truth is locked if no eligible cards exist in your Deck.": "若你的牌组中没有符合条件的牌，则“让它直面真相”会被锁定。",
@@ -516,7 +516,7 @@
     "If spawned from Phrog Parasite, starts stunned.": "若由异蛙寄生虫生成，则开局处于击晕状态。",
     "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "若在第{n1}回合前被击晕，则继续使用下一个行动。若在第{n2}回合被击晕，则再次尝试{m1}。",
     "If {m1} is allowed, {n1}% chance to use it instead.": "若可以使用{m1}，则有{n1}%概率改为使用它。",
-    "Improvement: At the end of combat, Upgrade a random card": "改善：在战斗结束时，随机升级一张牌",
+    "Improvement: At the end of combat, Upgrade a random card": "精进：在战斗结束时，随机升级一张牌",
     "In Blitz it steals no Gold.": "在闪击模式中，它不会偷取金币。",
     "In X turns, instantly die.": "在X个回合后直接死亡。",
     "In co-op, only appears if all players have more than {n1} HP.": "多人模式中，仅当所有玩家的生命值都高于{n1}时才会出现。",
@@ -526,7 +526,7 @@
     "Initially excludes Basic rarity cards.": "初始时不包括基础稀有度的牌。",
     "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "与神秘骑士进行一场战斗，除灯火钥匙外还会获得常规奖励",
     "Insert Potion": "放入药水",
-    "Jelly Liver/Transform ({n1})": "水母肝/变化（{n1}）",
+    "Jelly Liver/Transform ({n1})": "果冻肝/变化（{n1}）",
     "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "用灾厄击杀一节体节时，即使所有体节短暂地同时显示为死亡，其他已死亡的体节仍会再生。",
     "Laser → Rocket Claw.": "激光 → 火箭钳。",
     "Leave the conveyor belt.": "离开传送带。",

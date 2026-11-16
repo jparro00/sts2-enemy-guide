@@ -1,0 +1,727 @@
+{
+  "lang": "rus",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "Справка"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "Акт {n}: {name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "Схема атак"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "БЕТА — на этой странице отражены изменения баланса <strong>бета-версии v{version}</strong>. <a href=\"../\">Открыть стабильную версию</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "БЕТА <strong>v{version}</strong> — <a href=\"../\">Стабильная версия</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "Сайт также доступен для последнего <strong>бета-патча v{version}</strong>. <a href=\"beta/\">Перейти на бету</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">Перейти на бету</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "Изменено в бете {version}:"
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "Бета-патч"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "Босс:"
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "Все бои"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "Боссы"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "Легкие"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "Легкие бои"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "Сложные"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "Сложные бои"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "Варианты"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "Вариант"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "Эффект"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "Намерение"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "Действие"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "Свернуть/развернуть"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "Состав"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "Всевластие"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "Босс акта"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "Другие бои акта"
+    },
+    "events": {
+      "en": "Events",
+      "text": "События"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "Все события"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "Оставить отзыв или сообщить о проблеме"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "Данные сайта изначально взяты из таблицы <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, созданной <span class=\"credit-names\">dr0gulus, Aplet123 и Redbeardy_Mcgee</span> &mdash; огромное спасибо им за работу, без которой этого сайта бы не было."
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2 сейчас в раннем доступе, поэтому характеристики, действия и схемы атак врагов могут меняться с каждым патчем. Данные актуальны для <span id=\"game-version\"></span>."
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "ОЗ:"
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "карты статусов"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "порча карт"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "атака"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "защита"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "положительный эффект"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "предсмертный рывок"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "отрицательный эффект"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "побег"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "лечение"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "серия атак"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "сон"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "оглушение"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "призыв"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "неизвестность"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": ", "
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — сбегает из боя, когда погибает лидер"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "Автозакрытие"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "Закрывать панель при щелчке за ее пределами"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "Закрыть панель"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "Текущее"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "Закрепить"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "Авто ({lang})"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "Оцените нас в Steam!"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "Загрузка данных…"
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "Данные Spire Codex недоступны"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "Открыть Spire Codex"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "Открепить"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "Доступно обновление мода"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "Данные v{data} · Игра v{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "Действия"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "Нет данных."
+    },
+    "players": {
+      "en": "Players:",
+      "text": "Игроки:"
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n} игр."
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "Соло"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "Бесцветные"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "Карты"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "Описание"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "Справка по чарам"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "Название"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "Справка по зельям"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "Эффекты"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "Справка по реликвиям"
+    },
+    "search": {
+      "en": "Search",
+      "text": "Поиск"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "Ничего не найдено."
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "Поиск врагов или боев…"
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — события"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "В НАЧАЛЕ БОЯ:"
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "Все"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "бета v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "Босс: {zone}"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "События: {zone}"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}: "
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "Общие"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "(N = {n1} + число использований «Когтеточки»)",
+    "(with random intent)": "(со случайным намерением)",
+    "A random card is removed from your [gold]Deck[/gold].": "Удалить случайную карту из [gold]колоды[/gold].",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "Добавить карту [red]«Сомнение»[/red] в колоду. Получить наградные наборы: {n1} (карт в каждом: {n2}).",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "Добавить карту [red]«Сомнение»[/red] в колоду. Преобразовать карты: {n1}.",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "Добавить карту [red]«Сожаление»[/red] в колоду. Получить {n1} золота.",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "Добавить карту [red]«Сожаление»[/red] в колоду. Получить случайные реликвии: {n1}.",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "Добавить карту [red]«Стыд»[/red] в колоду. Улучшить карты: {n1}.",
+    "Add {n1} Beckon to Hand": "Добавляет в руку «Приворот» ×{n1}",
+    "Add {n1} Burns to Hand": "Добавляет в руку «Ожог» ×{n1}",
+    "Add {n1} Dazed to Discard": "Добавляет в стопку сброса «Головокружение» ×{n1}",
+    "Add {n1} Dazed to Draw": "Добавляет в стопку добора «Головокружение» ×{n1}",
+    "Add {n1} Infection to Discard": "Добавляет в стопку сброса «Инфекция» ×{n1}",
+    "Add {n1} Slimed to Discard": "Добавляет в стопку сброса «Слизь» ×{n1}",
+    "Add {n1} Slimed to discard": "Добавляет в стопку сброса «Слизь» ×{n1}",
+    "Add {n1} Toxic to Hand": "Добавляет в руку «Токсины» ×{n1}",
+    "Add {n1} Wither to Discard": "Добавляет в стопку сброса «Усыхание» ×{n1}",
+    "Add {n1} Wither to Draw Pile": "Добавляет в стопку добора «Усыхание» ×{n1}",
+    "Add {n1} Wounds into discard": "Добавляет в стопку сброса «Рана» ×{n1}",
+    "Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": "Добавлено: после {n1}-го розыгрыша «Налета птаха» Птахоня может вырасти в Птахуна в лагере.",
+    "Added: Yellow option ({n1} Fool cards).": "Добавлено: вариант «Желтый» (карты Шута: {n1}).",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "После гибели Огненной фаланги: цикл {m1} → {m2} → {m3}.",
+    "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "После {n1}-го розыгрыша «Налета птаха» Птахоню можно подрастить в лагере до Птахуна, и каждый «Налет птаха» преобразуется в «Абсолютного птаха». На это уходит ваше действие в лагере.",
+    "After Turret Operator dies: Always uses {m1}.": "После гибели Наводчика: всегда {m1}.",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "После согласия случайно выбирается одно из дел (всего {n1}): Торговец, Дворянин или Неприметная.",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "Окунувшись, можно выбрать «Остаться» (тот же эффект, но урон каждый раз +{n1}) или «Выйти».",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "Когда «Личный улей» достигает {n1}, вместо этого получает только {n2} силы.",
+    "After stun: Repeats {m1} → {m2}.": "После оглушения: повторяет {m1} → {m2}.",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "После действия {m1} ({n1}-й раз подряд): всегда {m2}.",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "После действия {m1} ({n1}-й раз подряд): {n2}% {m2}, {n3}% {m3}.",
+    "After {m1}: Always uses {m2}.": "После действия {m1}: всегда {m2}.",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "Когда «Личный улей» достигает {n1}: {m1} вместо этого дает {n2} силы.",
+    "All enemies gain {n1} {p1}": "Все враги получают {p1}: {n1}",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "От любой награды можно отказаться, но «Сомнение» попадает в колоду сразу после раскрытия.",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "Первые действия всех крыс ({n1}) равномерно распределяются между действиями {m1}, {m2} и {m3}.",
+    "Allies gain {n1} {p1}": "Союзники получают {p1}: {n1}",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "Строго по порядку: {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Always uses {m1}.": "Всегда: {m1}.",
+    "Apply -{n1} {p1}": "Накладывает {p1}: -{n1}",
+    "Apply {n1} {p1}": "Накладывает {p1}: {n1}",
+    "Apply {p1}": "Накладывает эффект {p1}",
+    "Apply {p1} {n1}": "Накладывает {p1}: {n1}",
+    "At the end of each turn, take damage equal to {n1} + the turn number": "В конце каждого хода вы получаете урон, равный {n1} + номер хода",
+    "At the end of your first turn, lose {n1} {p1} and {n2} {p2}": "В конце первого хода вы теряете {p1}: {n1} и {p2}: {n2}",
+    "At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": "В начале {n1}-го хода вы получаете {p1}: {n2}, {p2}: {n3} и {p3}: {n4}",
+    "At the start of your turn, add {n1} Wither to the top of your Draw Pile": "В начале хода на верх стопки добора добавляется «Усыхание» ×{n1}",
+    "Attack — Deal {n1} damage, plus:": "Атака — наносит {n1} урона, а также:",
+    "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": "Красивый браслет, Благословленный рог, Изумительный шарф, Деликатный стебелек, Алмазная диадема, Шуба, Блестки, Шкатулка с украшениями, Перстень с печатью",
+    "Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": "В каждом бою перед первым добором вы выбираете {n1}: {p1} {n2} или {p2}",
+    "Buffed: Below renamed From Below": "Усилено: «Снизу» переименовано в «Подкоп»",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "«Яйцо птахоклюя» можно обменять в лагере на «Налет птаха». На это уходит ваше действие в лагере.",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "Появляется, только если у всех игроков не больше {n1}% макс. ОЗ.",
+    "Can only appear if all players have a card with Exhaust in their deck.": "Появляется, только если у всех игроков в колоде есть карта со свойством «Сжигается».",
+    "Can only appear if all players have at least {n1} Gold.": "Появляется, только если у всех игроков есть не меньше {n1} золота.",
+    "Can only appear if all players have at least {n1} HP.": "Появляется, только если у всех игроков есть не меньше {n1} ОЗ.",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "Появляется, только если у всех игроков есть карты, на которые можно наложить чары «Свое место» (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "Появляется, только если у всех игроков есть карты, на которые можно наложить чары «Спираль» (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} potion.": "Появляется, только если у всех игроков есть зелья (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} potions.": "Появляется, только если у всех игроков есть зелья (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "Появляется, только если у всех игроков есть начальные «Удары» и «Обороны», которые можно удалить (не меньше {n1} и {n2} соответственно).",
+    "Can only appear if all players have at least {n1} removable Basic card.": "Появляется, только если у всех игроков есть начальные карты, которые можно удалить (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} removable card.": "Появляется, только если у всех игроков есть карты, которые можно удалить (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} tradable relics.": "Появляется, только если у всех игроков есть реликвии, которые можно обменять (не меньше {n1}).",
+    "Can only appear if all players have at least {n1} transformable cards.": "Появляется, только если у всех игроков есть карты, которые можно преобразовать (не меньше {n1}).",
+    "Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": "Появляется, только если у всех игроков больше {n1} золота и не больше {n2}% макс. ОЗ.",
+    "Can only appear if all players have more than {n1} HP.": "Появляется, только если у всех игроков больше {n1} ОЗ.",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "Появляется, только если игроков, у которых есть не меньше {n2} золота, реликвия для обмена и зелье, не меньше {n1}.",
+    "Can only appear if no player has an event pet.": "Появляется, только если ни у одного игрока нет питомца из события.",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "Появляется, только если у вас есть не меньше {n1} золота или «Мерзкое зелье».",
+    "Can only appear in Act {n1} or Act {n2}.": "Появляется только в акте {n1} или в акте {n2}.",
+    "Can only appear in Act {n1}.": "Появляется только в акте {n1}.",
+    "Can only appear on floor {n1}+.": "Появляется только начиная с {n1}-го этажа.",
+    "Can only be used once per rat. Requires {n1} turns before available.": "Каждая крыса может использовать это действие только один раз. Перед первым использованием должно пройти ходов: {n1}.",
+    "Can only be used once.": "Можно использовать только один раз.",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "Не появляется, если Древний этого акта — Нонупейпе.",
+    "Cannot appear if this act's Ancient is Tanx.": "Не появляется, если Древний этого акта — Танкс.",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "Не появляется само по себе. Появляется в первой неизвестной комнате (?) в акте {n1}, если в колоде есть «Ключ-фонарь».",
+    "Cannot repeat.": "Не повторяется подряд.",
+    "Cannot repeat. {n1}-turn cooldown.": "Не повторяется подряд. Перезарядка в ходах: {n1}.",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "Не повторяется подряд. Перезарядка в ходах: {n1}. Если другие действия недоступны, используется это.",
+    "Card type is random (Attack/Skill/Power).": "Тип карты случаен (Атака/Навык/Талант).",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "Тип карты случаен (Атака/Навык/Талант). Вы выбираете {n1} из {n2} улучшенных карт.",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "Карты из STS{n1}: «Ежи», «Стычка», «Уловка», «Парное оружие», «Окоп», «Привет, мир», «Хитрость», «Откат», «Разрыв», «Стек».",
+    "Cards are from your character's card pool.": "Карты берутся из набора карт вашего персонажа.",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "Карты все еще можно улучшать в бою после того, как Маг-рыцарь наложит «Подавление».",
+    "Caviar/+Max HP ({n1})": "Икра/+макс. ОЗ ({n1})",
+    "Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": "Изменено: «Техника дыхания» стоит {n1} золота (было {n2}) и добавляет «Просветление» ×{n3} (было {n4})",
+    "Changed: HP is now a fixed value, {n1} → {n2}.": "Изменено: ОЗ теперь фиксированные, {n1} → {n2}.",
+    "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "Изменено: «Дверь света» улучшает выбранные вами карты ({n1}) вместо случайных ({n2}).",
+    "Changed: Radiate removed": "Изменено: «Лучезарность» удалена",
+    "Changed: can no longer steal Quest cards.": "Изменено: больше не может красть карты заданий.",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "Хаос: добавляет в руку случайную карту из вашего набора. Ее можно разыграть бесплатно",
+    "Choking: Apply {n1} Strangle": "Удушение: накладывает {n1} асфиксии",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "Выбирает случайно: {m1}, {m2} или {m3}.",
+    "Clam Roll/Heal ({n1})": "Рулет с устрицей/лечение ({n1})",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "Вариант «Сказать ему правду» недоступен, если в колоде нет подходящих карт.",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "Создает карту «Безумный гений» (стоимость {n1} энергии). Улучшение дает ей свойство «Начальная».",
+    "Curious: Powers cost {n1} Energy less": "Любопытство: Таланты стоят на {n1} энергии меньше",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "Цикл: {m1} → {m2} или {m3} ({n1}/{n2}).",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "Цикл: {m1} → {m2} → {m3} (шанс {n1}% повторить действие {m4} еще раз).",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "Цикл: {m1} → {m2} → {m3} → {m4} (до {n1}-го использования действия {m5}).",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Цикл: {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "Цикл: {m1} → {m2} → {m3} → {m4}.",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "Цикл: {m1} → {m2} → {m3}, с шансом {n1}% пропустить действие {m4}.",
+    "Cycles {m1} → {m2} → {m3}.": "Цикл: {m1} → {m2} → {m3}.",
+    "Cycles {m1} → {m2}.": "Цикл: {m1} → {m2}.",
+    "Damage {n1}": "Урон: {n1}",
+    "Damage {n1} + stolen {p1}": "Урон: {n1} + кража эффекта {p1}",
+    "Damage {n1} + {n2}*N": "Урон: {n1} + {n2}*N",
+    "Decision made as a group in co-op.": "В совместной игре решение принимается всей группой.",
+    "Dies": "Погибает",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "Блюда предлагаются случайно, пока у вас не кончатся деньги или вы не решите уйти. Предыдущее блюдо не повторяется.",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "«Черная полоса» не копируется. Чары на картах копируются",
+    "Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": "«Выпить воду из купальни» дает случайные реликвии из даров Нонупейпе (количество: {n1}), кроме «Увесистого фрукта»:",
+    "Each combat shuffles {n1} Beckon into your Draw Pile": "В каждом бою в стопку добора замешивается «Приворот» ×{n1}",
+    "Each option is locked if you have no eligible cards of that type.": "Каждый вариант недоступен, если у вас нет подходящих карт этого типа.",
+    "Each option names the random relic, so you know exactly what you are trading for.": "В каждом варианте указана случайная реликвия, так что вы точно знаете, на что меняетесь.",
+    "Elites gain {n1} {p1}": "Элитные враги получают {p1}: {n1}",
+    "Enemies gain {p1}:": "Враги получают эффект {p1}:",
+    "Enemies spawned mid-fight gain {n1} {p1}": "Враги, появившиеся во время боя, получают {p1}: {n1}",
+    "Energized: Gain {n1} Energy": "Энергия: дает {n1} энергии",
+    "Enlightenment no longer Exhausts.": "«Просветление» больше не сжигается.",
+    "Enrage": "Гнев",
+    "Enter deeper. Lose HP.": "Пробраться глубже и потерять ОЗ.",
+    "Escape from combat": "Сбегает из боя",
+    "Escape from the combat": "Сбегает из боя",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "Знания: дает {n1} силы и {n2} ловкости",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "Если Толстый гремлин не сбежит, за бой дают обычную награду золотом.",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "Бой против Бойких агрегатов (всего {n1}), у которых в начале не хватает {n2} ОЗ. Один агрегат всегда начинает с действия «Сильный удар».",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "Сражается сегментами (их {n1}) — ОЗ всегда четные, а максимальные ОЗ у сегментов разные.",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "Обязательно выпадает каждый {n1}-й заказ ({n2}-й, {n3}-й и т. д.).",
+    "Free (no gold cost).": "Бесплатно (без затрат золота).",
+    "Fried Eel/Colorless Card ({n1})": "Жареный угорь/бесцветная карта ({n1})",
+    "Front and back start with {m1}. Middle starts with {m2}.": "Передний и задний начинают с действия {m1}. Средний — с действия {m2}.",
+    "Front starts {m1}, back starts {m2}.": "Передний начинает с действия {m1}, задний — с действия {m2}.",
+    "Gain [gold]Gold[/gold] based on depth.": "Получить [gold]золото[/gold] в зависимости от глубины.",
+    "Gain {n1} {p1}": "Получает {p1}: {n1}",
+    "Gain {n1} {p1} and {n2} {p2}": "Получает {p1}: {n1} и {p2}: {n2}",
+    "Gain {n1} {p1} per respawn": "Получает {p1}: {n1} за каждое возрождение",
+    "Gain {n1}* Intangible": "Получает {n1}* неосязаемости",
+    "Gain {n1}+ {p1}": "Получает {p1}: {n1}+",
+    "Gain {p1}": "Получает эффект {p1}",
+    "Gain {p1} {n1}": "Получает {p1}: {n1}",
+    "Gains {n1} {p1}": "Получает {p1}: {n1}",
+    "Gains {n1} {p1} when stunned.": "Получает {p1}: {n1} при оглушении.",
+    "Gains {p1} {n1}": "Получает {p1}: {n1}",
+    "Galvanic Burst": "Гальванический разряд",
+    "Give Potion": "Отдать зелье",
+    "Give Relic": "Отдать реликвию",
+    "Give allies {n1} {p1}": "Дает союзникам {p1}: {n1}",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "Дает обычную награду за бой, а также зелье и реликвию (всего можно получить зелий: {n1}).",
+    "Gold-generating relics cannot appear as the Featured Item.": "Реликвии, приносящие золото, не выпадают в качестве акционного товара.",
+    "Golden Fysh/Gold ({n1})": "Золотой рыб/золото ({n1})",
+    "Hatches into Hatchling.": "Из яйца вылупляется Вылупленец.",
+    "Headbutt": "Удар головой",
+    "Heal [green]{n1}%[/green] Max HP.": "Восстановить [green]{n1}%[/green] макс. ОЗ.",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "Восстановить [green]{n1}%[/green] макс. ОЗ и сразиться с [red]врагами[/red].",
+    "Heal is multiplied by player count in co-op.": "В совместной игре лечение умножается на число игроков.",
+    "Heal {n1} HP.": "Восстановить {n1} ОЗ.",
+    "Heal {n1}*": "Лечение: {n1}*",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "Вариант «Удержать равновесие» можно выбирать повторно. Урон начинается с {n1} и каждый раз растет на {n2}.",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "Если Огненная фаланга погибает посреди хода, а намерение — {m1}, вместо него будет {m2}.",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "Если Толстый гремлин сбежит, украв золото, награды золотом не будет; если он сбежит, ничего не украв, вы все равно получите {n1}% обычной награды золотом.",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "Если игрока поглотят «Зыбучие пески», эффекты вроде «Хвоста ящерицы» вас не воскресят.",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "Если союзников < {n1} после действия {m1}: {m2} → {m3} → {m4}.",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "Если союзников ≥ {n1} после действия {m1}: {m2} → {m3} → {m4}.",
+    "If spawned from Phrog Parasite, starts stunned.": "Если его породил Лягуш-паразит, начинает бой оглушенным.",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "Если оглушен до {n1}-го хода, продолжает со следующего действия. Если оглушен на {n2}-м ходу, снова пытается выполнить действие {m1}.",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "Если действие {m1} доступно, с шансом {n1}% использует его вместо этого.",
+    "Improvement: At the end of combat, Upgrade a random card": "Улучшение: в конце боя улучшает случайную карту",
+    "In Blitz it steals no Gold.": "В режиме «Блиц» не крадет золото.",
+    "In X turns, instantly die.": "Через X ходов — мгновенная гибель.",
+    "In co-op, only appears if all players have more than {n1} HP.": "В совместной игре появляется, только если у всех игроков больше {n1} ОЗ.",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "Чтобы улучшить все карты и опуститься до {n1} макс. ОЗ, нужно начать как минимум с {n2} макс. ОЗ.",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "В бою с Кусаками ({n1}): передний начинает с действия {m1}, задний — с действия {m2}.",
+    "Increases Wither damage by {n1} each use.": "Каждое использование повышает урон «Усыхания» на {n1}.",
+    "Initially excludes Basic rarity cards.": "Изначально исключает начальные карты.",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "Начинает бой с Таинственным рыцарем; за победу — обычные награды, а также «Ключ-фонарь».",
+    "Insert Potion": "Здесь нужно зелье",
+    "Jelly Liver/Transform ({n1})": "Желе с печенью/преобразование ({n1})",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "Если сегмент убит эффектом «Злой рок», другие мертвые сегменты могут возродиться, даже если на мгновение все они кажутся мертвыми одновременно.",
+    "Laser → Rocket Claw.": "Лазер → Реактивный коготь.",
+    "Leave the conveyor belt.": "Уйти от конвейера.",
+    "Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": "Недоступно, если у вас меньше {n1} золота. Карта берется из набора вашего персонажа и никогда не бывает улучшенной.",
+    "Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].": "Потерять [red]ВСЕ[/red] [gold]золото[/gold]. Получить реликвию [gold]«Махровый халат»[/gold].",
+    "Lose [red]{n1}%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]{n2}[/green] HP.": "Потерять [red]{n1}%[/red] текущих ОЗ. Получить [gold]вопса[/gold] с [green]{n2}[/green] ОЗ.",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "Потерять [red]{n1}[/red] ОЗ (каждый раз на {n2} больше). Карта в варианте «Превозмочь» выбирается заново.",
+    "Lose [red]{n1}[/red] HP. Add [blue]{n2}[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.": "Потерять [red]{n1}[/red] ОЗ. Добавить в [gold]колоду[/gold] [red]«Угрызения совести»[/red] ×[blue]{n2}[/blue]. Получить случайную реликвию Нонупейпе.",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "Потерять [red]{n1}[/red] ОЗ. Получить реликвию [gold]«Ароматный гриб»[/gold]. Улучшить случайные карты: [blue]{n2}[/blue].",
+    "Lose [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.": "Потерять [red]{n1}[/red] [gold]золота[/gold] и получить случайную [gold]редкую[/gold] карту.",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "Потерять зелье. Выбрать {n1} из {n2} улучшенных карт той же редкости.",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "Потерять случайное [red]зелье[/red] и повысить макс. ОЗ на [blue]{n1}[/blue].",
+    "Lose {n1} {p1}": "Теряет {p1}: {n1}",
+    "Lose {p1}": "Теряет эффект {p1}",
+    "Max {n1} in a row.": "Максимум подряд: {n1}.",
+    "Minions that join mid-fight gain none": "Прислужники, присоединившиеся во время боя, не получают ничего",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "Таинственный рыцарь — это Цепной рыцарь, который начинает бой с {n1} силы и {n2} панциря и имеет {n3} ОЗ.",
+    "N = # of times this move was used": "N = сколько раз использовано это действие",
+    "Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": "Ослаблено: «Колючая губка» стоит {n1} золота (было {n2}).",
+    "New event.": "Новое событие.",
+    "Normal enemies gain {n1} {p1}": "Обычные враги получают {p1}: {n1}",
+    "Obtain Forgotten Soul.": "Получить реликвию «Позабытая душа».",
+    "Obtain [gold]Big Mushroom[/gold].": "Получить реликвию [gold]«Большой гриб»[/gold].",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "Получить реликвию [gold]«Грубый чай»[/gold].",
+    "Obtain the [gold]Sword of Stone[/gold].": "Получить реликвию [gold]«Окаменевший меч»[/gold].",
+    "Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].": "Получить выставленную реликвию и добавить в [gold]колоду[/gold] случайное [red]проклятие[/red].",
+    "Offered three random options that are not your character.": "Предлагаются три случайных варианта, не относящихся к вашему персонажу.",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "Предлагаются {n1} из {n2} случайных типов (Атака/Навык/Талант), затем {n3} из {n4} случайных эффектов для выбранного типа.",
+    "On wakeup all Plating is removed.": "При пробуждении весь панцирь снимается.",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "Один заряд неосязаемости (из {n1}) от действия {m1} сразу же снимается.",
+    "Only {n1} rat can use {m1} per turn.": "Лимит крыс, использующих {m1} за ход: {n1}.",
+    "Opens with {m1} or {m2}.": "Первый ход: {m1} или {m2}.",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "Начало: {m1} → {m2} → {m3}, затем всегда {m4}.",
+    "Opens with {m1} → {m2} → {m3}.": "Начало: {m1} → {m2} → {m3}.",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "Начало: {m1} → {m2}, затем всегда {m3}.",
+    "Opens with {m1} → {m2}.": "Начало: {m1} → {m2}.",
+    "Opens with {m1}, then always uses {m2}.": "Первый ход: {m1}, затем всегда {m2}.",
+    "Opens with {m1}.": "Первый ход: {m1}.",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "Первый ход: {m1}; затем чередует {m2} ↔ {m3} (всегда начиная с действия {m4}).",
+    "Options are locked if you don't have the required item.": "Варианты недоступны, если у вас нет нужного предмета.",
+    "Pass Turn": "Пропускает ход",
+    "Pass turn": "Пропускает ход",
+    "Passes Turn": "Пропускает ход",
+    "Passes turn": "Пропускает ход",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].": "Заплатить [red]{n1}[/red] [gold]золота[/gold]. Получить реликвию [gold]«Махровое полотенце»[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "Заплатить [red]{n1}[/red] [gold]золота[/gold]. Получить реликвию [gold]«Костный чай»[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "Заплатить [red]{n1}[/red] [gold]золота[/gold]. Получить реликвию [gold]«Янтарный чай»[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "Заплатить [red]{n1}[/red] [gold]золота[/gold] и получить случайную [gold]редкую реликвию[/gold].",
+    "Phase {n1} (after stun):": "Фаза {n1} (после оглушения):",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "Фаза {n1} (ниже {n2}% ОЗ после действия {m1}):",
+    "Phase {n1} (stunned at {n2} HP):": "Фаза {n1} (оглушение при {n2} ОЗ):",
+    "Phase {n1}:": "Фаза {n1}:",
+    "Player must choose one of two debuffs:": "Игрок должен выбрать один из двух отрицательных эффектов:",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "Позиции {n1} и {n2} начинают с действия {m1}, позиции {n3} и {n4} — с действия {m2}.",
+    "Power:": "Талант:",
+    "Precision Beam → Precise Smash": "Точный луч → Точный удар",
+    "Prep": "Подготовка",
+    "Probabilities are weighted and shift if any options are unavailable.": "Вероятности взвешены и смещаются, если какие-то варианты недоступны.",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "Событие «Кулачный бой»: {n1}-й начинает с действия {m1}, {n2}-й — с действия {m2}.",
+    "Puppet Strings": "Нити марионетки",
+    "Rejecting is not allowed — double downing abandons the run.": "Отказаться нельзя — вариант «Все равно отказаться» прерывает вылазку.",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "Реликвии из STS{n1}: «Амулет из темного камня», «Ловец снов», «Ручная дрель», «Пасть-копилка», «Могучий ботинок».",
+    "Renamed moves: Targeting Reticle → Calculating": "Переименованы действия: Прицельная сетка → Вычисления",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "Максимум повторов: {n1}. Стоимость растет: {n2}/{n3}/{n4}/{n5}/все, кроме {n6}, макс. ОЗ. {n7}-я расшифровка улучшает ВСЕ карты, которые можно улучшить.",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "Максимум повторов: {n1}. Урон растет: {n2}/{n3}/{n4}. {n5}-й выбор дает «Пыльцовую сердцевину».",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "Максимум повторов: {n1}. Золото растет: {n2}/{n3}/{n4}.",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "Возрождается действием {m1} за счет эффекта {p1}; каждое возрождение повышает макс. ОЗ на {n1}.",
+    "Retains Strength after reviving.": "Сохраняет силу после воскрешения.",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "Награда — три наградных набора, в каждом обычные/необычные/редкие карты (карт в наборе: {n1}).",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "Истощение: накладывает {n1} слабости и {n2} уязвимости",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "Первые действия сегментов равномерно распределяются между действиями {m1}, {m2} и {m3}.",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "Карты варианта «Поделиться знаниями» берутся из набора карт вашего персонажа с обычными шансами редкости, как после боя (с учетом счетчика гарантии редкой карты). Улучшенные карты не предлагаются никогда.",
+    "Shuffle {n1} Beckon into discard": "Замешивает в стопку сброса «Приворот» ×{n1}",
+    "Shuffle {n1} Beckon into draw": "Замешивает в стопку добора «Приворот» ×{n1}",
+    "Shuffle {n1} Burns into discard": "Замешивает в стопку сброса «Ожог» ×{n1}",
+    "Shuffle {n1} Frantic Escapes into discard": "Замешивает в стопку сброса «Отчаянное бегство» ×{n1}",
+    "Shuffle {n1} Frantic Escapes into draw": "Замешивает в стопку добора «Отчаянное бегство» ×{n1}",
+    "Single-player only.": "Только в одиночной игре.",
+    "Skill — Gain {n1} Block, plus:": "Навык — дает {n1} защиты, а также:",
+    "Slash {n1}": "Порез {n1}",
+    "Sleeps for {n1} turns or until losing HP.": "Спит, пока не потеряет ОЗ (максимум ходов: {n1}).",
+    "Sleeps until awakened, then always uses {m1}.": "Спит, пока не проснется, затем всегда {m1}.",
+    "Slice": "Разрез",
+    "Smother": "Удушение",
+    "Spicy Snappy/Upgrade ({n1})": "Острый окунь/улучшение ({n1})",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Из-за «Карты сокровищ» все пути следующего акта сойдутся к комнате с сокровищем, где помимо обычных наград будет {n1} золота.",
+    "Start each combat with {n1} {p1} and {n2} {p2}": "В начале каждого боя вы получаете {p1}: {n1} и {p2}: {n2}",
+    "Steal {n1} card and gain {p1}": "Крадет карты ({n1}) и получает эффект {p1}",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "Карта крадется из стопки добора или сброса. Приоритеты: {n1}. необычная без чар «Знаковая» {n2}. обычная/редкая/карта события без чар «Знаковая» {n3}. начальная без чар «Знаковая» {n4}. с чарами «Знаковая» или древняя {n5}. проклятие или что-то еще. Карты заданий не крадутся никогда.",
+    "Stolen gold is held by Fat Gremlin once summoned.": "Украденное золото переходит к Толстому гремлину, когда тот призван.",
+    "Stunned for one turn": "Оглушен на один ход",
+    "Summon Two-Tailed Rat": "Призыв: Двухвостая крыса",
+    "Summon up to {n1} Tough Eggs": "Призыв: Крепкие яйца (до {n1})",
+    "Summon {n1} Aggro Bot": "Призыв: атакующий бот ×{n1}",
+    "Summon {n1} Eye with Teeth": "Призыв: Зубастое око ×{n1}",
+    "Summon {n1} Gas Bomb": "Призыв: Газовая бомба ×{n1}",
+    "Summon {n1} Parafright": "Призыв: Параспуг ×{n1}",
+    "Summons X Wrigglers after dying (they start stunned).": "Когда погибает, призывает X Ерзунов (они начинают бой оглушенными).",
+    "Summons {n1} Aggro Bot": "Призыв: атакующий бот ×{n1}",
+    "Summons {n1} Defensive Bot": "Призыв: защитный бот ×{n1}",
+    "Suspicious Condiment/Potion ({n1})": "Подозрительная приправа/зелье ({n1})",
+    "Swing": "Замах",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "«Окаменевший меч» преобразуется в «Нефритовый меч» после {n1} боев",
+    "Tackle": "Толчок",
+    "Test Subject Stage {n1}": "Подопытный, стадия {n1}",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "Полученное здесь «Мерзкое зелье» можно бросить в Торговца-самозванца, чтобы начать бой.",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "«Ключ-фонарь» гарантирует, что событие «Военный историк Репи» появится в следующей неизвестной комнате (?) в акте {n1}.",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "Карта в варианте «Превозмочь» выбирается заново при каждом «Удержать равновесие»; уже предложенные карты исключаются, пока не будут предложены все остальные.",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "Вариант «Отдохнуть» запускает все эффекты, которые сработали бы при отдыхе в лагере («Королевская подушка», «Ловец снов» и т. д.)",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "Большое предсказание можно применить только к еще не открытой плитке, и оно открывает все соседние плитки (их {n1}).",
+    "The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": "Выставляется случайная реликвия (количество: {n1}) из: «Вулканические тиски», «Винт», «Ошейник истязателя».",
+    "The following items are guaranteed to be in the minigame:": "В мини-игре гарантированно есть следующие предметы:",
+    "The specific potion is named in the option text.": "Конкретное зелье указано в тексте варианта.",
+    "The specific potion to be lost is shown in the option text.": "Какое зелье будет потеряно, указано в тексте варианта.",
+    "Then chooses randomly from all moves.": "Затем выбирает случайно из всех действий.",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "Затем выбирает случайно: {m1}, {m2}, {m3}.",
+    "Then chooses randomly from {m1}, {m2}.": "Затем выбирает случайно: {m1}, {m2}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Затем цикл: {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "Затем цикл: {m1} → {m2} → {m3} → {m4}.",
+    "Then cycles {m1} → {m2} → {m3}.": "Затем цикл: {m1} → {m2} → {m3}.",
+    "Then cycles {m1} → {m2}.": "Затем цикл: {m1} → {m2}.",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "Есть варианты выбора куклы (всего {n1}); от выбранного зависит, сколько случайных кукол вам покажут.",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "Если бросить «Мерзкое зелье», начнется бой. Награда: {n1} золота, все реликвии ({n2}), дешевая подделка «Ковра Торговца» и наградной набор карт.",
+    "Total HP to reach Pollinous Core: {n1}.": "Всего ОЗ, чтобы добраться до «Пыльцовой сердцевины»: {n1}.",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "Обменять одну из своих [gold]реликвий[/gold] на случайную [gold]реликвию[/gold].",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "Предлагаются зелья с вашего пояса (не больше {n1}). От редкости зелья зависит редкость наградных карт.",
+    "Uses {m1} once, then restarts Phase {n1}.": "Один раз выполняет действие {m1}, затем фаза {n1} начинается заново.",
+    "Uses {m1}, then cycles {m2} → {m3}.": "Сначала {m1}, затем цикл: {m2} → {m3}.",
+    "Violence: Hit {n1} times ({n2})": "Насилие: число ударов {n1} ({n2})",
+    "Weak Tackle": "Слабый толчок",
+    "Weights:": "Веса:",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "Когда союзников ≤ {n1}: случайно {m1} или {m2}.",
+    "When allies ≥ {n1}: Always uses {m1}.": "Когда союзников ≥ {n1}: всегда {m1}.",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "После гибели призывает Коварного гремлина ×{n1} и Толстого гремлина ×{n2} (они начинают бой оглушенными).",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "После гибели: возрождается с {n2} ОЗ (ходов до возрождения: {n1}) и продолжает со следующего действия.",
+    "When killed: Revives next turn in Stage {n1}.": "После гибели: возрождается в следующем ходу на стадии {n1}.",
+    "While Amalgam alive: Always uses {m1}.": "Пока Огненная фаланга жива: всегда {m1}.",
+    "While Burrowed: Always uses {m1}.": "Пока под землей: всегда {m1}.",
+    "While Turret Operator alive: Always uses {m1}.": "Пока Наводчик жив: всегда {m1}.",
+    "Wisdom: Draw {n1} cards": "Мудрость: вы добираете карты ({n1})",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "Пока вопс жив, он перенимает весь урон от атак, направленных на вас. Его ОЗ сохраняются между боями, а в лагере появляется вариант «Излечить», который полностью восполняет его ОЗ.",
+    "[Merchant] Guilty": "[Торговец] Виновен!",
+    "[Merchant] Innocent": "[Торговец] Невиновен!",
+    "[Noble] Guilty": "[Дворянин] Виновен!",
+    "[Noble] Innocent": "[Дворянин] Невиновен!",
+    "[Nondescript] Guilty": "[Неприметная] Виновна!",
+    "[Nondescript] Innocent": "[Неприметная] Невиновна!",
+    "[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": "[gold]Вопс[/gold] сопровождает вас и перенимает ВЕСЬ урон от атак в бою. Его ОЗ сохраняются между боями.",
+    "a Torch Head Amalgam in play": "Огненная фаланга на поле боя",
+    "damage {n1} → {n2}.": "урон {n1} → {n2}.",
+    "pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": "схема теперь: Выпад → Выпад → Вихрь → Пульсация. «Пульсация» накладывает {n1} уязвимости вместо получения {n2} защиты.",
+    "{m1} {p1} gain increases by {n1} each use.": "Прирост эффекта {p1} от действия {m1} растет на {n1} с каждым использованием.",
+    "{n1} Big Gold/{n2}g ({n3})": "Крупное золото ×{n1}/{n2} зол. ({n3})",
+    "{n1} Common Card ({n2})": "Обычная карта ×{n1} ({n2})",
+    "{n1} Common Potions ({n2})": "Обычное зелье ×{n1} ({n2})",
+    "{n1} Dazed to Discard": "«Головокружение» ×{n1} в стопку сброса",
+    "{n1} Doubt curse ({n2})": "Проклятие «Сомнение» ×{n1} ({n2})",
+    "{n1} Rare Card ({n2})": "Редкая карта ×{n1} ({n2})",
+    "{n1} Rare Potion ({n2})": "Редкое зелье ×{n1} ({n2})",
+    "{n1} Relic ({n2})": "Реликвия ×{n1} ({n2})",
+    "{n1} Rock + {n2} random from Egg or Nectar": "Рогач с камнем ×{n1} + случайный рогач с яйцом или нектаром ×{n2}",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "Рогач с камнем ×{n1} + разные рогачи ×{n2} из: с яйцом / с шелком / с нектаром",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "Ползучий горлодав ×{n1} + одно из: Зрелый джаксфрут / случайный средний слизень / случайные маленькие слизни ×{n2}",
+    "{n1} Small Gold/{n2}g ({n3})": "Мелкое золото ×{n1}/{n2} зол. ({n3})",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "Сучковый слизень (маленький) ×{n1} + Лиственный слизень (маленький) ×{n2} + случайный средний слизень ×{n3}",
+    "{n1} Uncommon Card ({n2})": "Необычная карта ×{n1} ({n2})",
+    "{n1} enemies": "Врагов: {n1}",
+    "{n1} in easy fights": "{n1} в легких боях",
+    "{n1} in elite fights": "{n1} в боях с элитными врагами",
+    "{n1} in hard fights": "{n1} в сложных боях",
+    "{n1} in multi-enemy fights": "{n1} в боях с несколькими врагами",
+    "{n1} of the {n2} cells are populated with items.": "Предметы есть в {n1} из {n2} плиток.",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "Случайно предлагаются {n1} из {n2} поддельных реликвий по {n3} золота за каждую.",
+    "{n1} unique Raiders from pool": "Неповторяющиеся Мародеры из набора: {n1}",
+    "{n1}-turn cooldown.": "Перезарядка в ходах: {n1}.",
+    "{n1}nd choice: {p1} {n2} or {p2}": "{n1}-й выбор: {p1} {n2} или {p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "{n1}-й выбор: {p1} {n2} или {p2}",
+    "{n1}rd follower opens with {m1}.": "{n1}-й послужник начинает с действия {m1}.",
+    "{n1}st choice: {p1} {n2} or {p2}": "{n1}-й выбор: {p1} {n2} или {p2}",
+    "{n1}st follower opens with {m1}, {n2}nd with {m2}.": "{n1}-й послужник начинает с действия {m1}, {n2}-й — с действия {m2}.",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "{n1}-й начинает со случайного действия, каждый следующий — со следующего действия цикла.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "{n1}-й начинает с действия {m1}, {n2}-й — с действия {m2}, {n3}-й — с действия {m3}, {n4}-й — со случайного.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "{n1}-й начинает с действия {m1}, {n2}-й — с действия {m2}, {n3}-й — с действия {m3}, {n4}-й — с действия {m4}.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "{n1}-й начинает с действия {m1}, {n2}-й — с действия {m2}.",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "Первые действия {n1}-го/{n2}-го/{n3}-го равномерно распределяются между действиями {m1}, {m2}, {m3}. {n4}-й начинает с действия {m4}.",
+    "{p1} (immediately gives {n1} Intangible)": "{p1} (сразу дает {n1} неосязаемости)",
+    "{p1} and {p2} {n1}": "{p1} и {p2} {n1}",
+    "{p1} {n1} and {p2}": "{p1} {n1} и {p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1} {n1} и {p2} {n2}",
+    "{p1} {n1} on Fabricator": "{p1} {n1} Сборщику",
+    "{p1}, {p2} {n1} and {p3} {n2}": "{p1}, {p2} {n1} и {p3} {n2}",
+    "~{n1}% chance.": "Шанс ~{n1}%.",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "Шанс ~{n1}%. Бесплатно (без затрат золота). Появляется только после первого заказа.",
+    "~{n1}% chance. Only appears if not at full HP.": "Шанс ~{n1}%. Появляется, только если ОЗ не полные.",
+    "~{n1}% chance. Only appears if you have open potion slots.": "Шанс ~{n1}%. Появляется, только если есть свободные места для зелий.",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 При попадании получает фиксированное количество силы, не зависящее от числа игроков."
+  }
+}
