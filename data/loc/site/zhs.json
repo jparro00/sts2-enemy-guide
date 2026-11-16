@@ -713,7 +713,6 @@
     "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "被击杀时，召唤{n1}只卑鄙地精和{n2}只胖地精（它们开局处于击晕状态）。",
     "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "被击杀时：{n1}回合后以{n2}点生命复活，并从下一个行动继续。",
     "When killed: Revives next turn in Stage {n1}.": "被击杀时：下回合以第{n1}形态复活。",
-    "Whenever you are attacked,  deal {n1} damage back": "每当你被攻击时，对攻击者造成{n1}点伤害",
     "Whenever you enter a Rest Site, start the next combat with an additional energy. ({n1} Gold)": "到达休息处后的下一场战斗开始时额外获得1点能量。（{n1}金币）",
     "Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [blue]{n1}[/blue] Energy.": "到达[gold]休息处[/gold]后的下一场战斗开始时额外获得[blue]{n1}[/blue]点能量。",
     "Whenever you play a [gold]Power[/gold], deal [blue]{n1}[/blue] damage to ALL enemies.": "你每打出一张[gold]能力[/gold]牌，就对所有敌人造成[blue]{n1}[/blue]点伤害。",

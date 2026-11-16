@@ -713,7 +713,6 @@
     "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "Al morir, invoca {n1} Gremlin sigiloso y {n2} Gremlin regordete (empiezan aturdidos).",
     "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "Al morir: revive tras {n1} turno con {n2} PV y continúa con el siguiente movimiento.",
     "When killed: Revives next turn in Stage {n1}.": "Al morir: revive al siguiente turno en la Etapa {n1}.",
-    "Whenever you are attacked,  deal {n1} damage back": "Cuando te ataquen, inflige {n1} de daño al atacante.",
     "Whenever you enter a Rest Site, start the next combat with an additional energy. ({n1} Gold)": "Cuando llegas a un Lugar de descanso, comienzas el siguiente combate con 1 de Energía adicional. ({n1} de Oro)",
     "Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [blue]{n1}[/blue] Energy.": "Cuando llegas a un [gold]Lugar de descanso[/gold], comienzas el siguiente combate con [blue]{n1}[/blue] de Energía adicional.",
     "Whenever you play a [gold]Power[/gold], deal [blue]{n1}[/blue] damage to ALL enemies.": "Cuando juegues un [gold]Poder[/gold], inflige [blue]{n1}[/blue] de daño a TODOS los enemigos.",

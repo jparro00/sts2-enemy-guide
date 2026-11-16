@@ -5,7 +5,7 @@ corrupted,Corrupted,corrupted.webp,"Deal [blue]50%[/blue] more damage, but lose 
 glam,Glam,glam.webp,This card has [gold]Replay[/gold] once per combat.,GLAM,
 goopy,Goopy,goopy.webp,"This card gains [gold]Exhaust[/gold]. When played, permanently increase this card's [gold]Block[/gold] by [blue]1[/blue].",GOOPY,
 imbued,Imbued,imbued.webp,This card is played automatically at the start of each combat.,IMBUED,
-instinct,Instinct,instinct.webp,Decrease the cost of this card by [blue]1[/blue].,INSTINCT,
+instinct,Instinct,instinct.webp,This card's attack damage is doubled.,INSTINCT,
 momentum,Momentum,momentum.webp,Increase this card's attack damage by [blue]X[/blue] this combat when played.,MOMENTUM,Amount=X
 nimble,Nimble,nimble.webp,Increases [gold]Block[/gold] gained from this card by [blue]X[/blue].,NIMBLE,Amount=X
 perfect_fit,Perfect Fit,perfect_fit.webp,"Whenever this would be shuffled into your [gold]Draw Pile[/gold], place it on the top instead.",PERFECT_FIT,
@@ -18,5 +18,5 @@ sown,Sown,sown.webp,"The first time you play this card each combat, gain [blue]X
 spiral,Spiral,spiral.webp,This card gains [gold]Replay[/gold] [blue]1[/blue].,SPIRAL,
 steady,Steady,steady.webp,This card gains [gold]Retain[/gold].,STEADY,
 swift,Swift,swift.webp,"The first time you play this card, draw [blue]X[/blue] cards.",SWIFT,Amount=X
-tezcataras_ember,Tezcatara's Ember,tezcataras_ember.webp,Costs [blue]0[/blue] and gains [gold]Eternal[/gold].,TEZCATARAS_EMBER,
+tezcataras_ember,Tezcatara's Ember,tezcataras_ember.webp,"Costs [blue]0[/blue], deals [blue]3[/blue] additional damage, and gains [gold]Eternal[/gold].",TEZCATARAS_EMBER,Damage=3
 vigorous,Vigorous,vigorous.webp,"The first time this card is played, it deals [blue]X[/blue] additional damage.",VIGOROUS,Amount=X
