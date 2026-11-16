@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Chefe do ato"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Inimigos recebem {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Inimigos que entram durante o combate recebem {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Inimigos que entram durante o combate não recebem nada"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Lacaios que entram durante o combate recebem {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Lacaios que entram durante o combate não recebem nada"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Outros combates deste ato"

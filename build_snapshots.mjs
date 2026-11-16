@@ -444,7 +444,8 @@ const encounterTabsInner = inCtx('encounterTabsHtml()');
       const m = INDEX_HTML.match(new RegExp(`id="${id}"[^>]*${s.attr}="([^"]*)"|${s.attr}="([^"]*)"[^>]*id="${id}"`));
       found = m ? (m[1] ?? m[2]) : null;
     } else if (cls) {
-      const m = INDEX_HTML.match(new RegExp(`<span class="${cls[1]}">([\\s\\S]*?)</span>(?:<br>|\\s*<div)`));
+      // (a footer line ends where the next one or the feedback link starts)
+      const m = INDEX_HTML.match(new RegExp(`<span class="${cls[1]}">([\\s\\S]*?)</span>(?:<br>|\\s*<div|\\s*<span class="footer-)`));
       found = m ? textOf(m[1]) : null;
     } else continue;   // buttons and labels: checked by the fake-language test (tools/l10n)
     if (found !== want) drift.push(`${s.sel} ${s.attr}: index.html ${JSON.stringify(found)} vs eng.json ${s.key} ${JSON.stringify(want)}`);

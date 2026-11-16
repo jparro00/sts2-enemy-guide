@@ -9724,6 +9724,121 @@
     "at": "2026-11-16"
    }
   },
+  "ui:dominion_fight": {
+   "text": "敌人获得{power}",
+   "en": "Enemies gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "敌人获得{power}",
+    "back": "Enemies gain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners": {
+   "text": "战斗中途加入的敌人获得{power}",
+   "en": "Enemies that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "战斗中途加入的敌人获得{power}",
+    "back": "Enemies that join partway through combat gain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners_none": {
+   "text": "战斗中途加入的敌人不获得",
+   "en": "Enemies that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "战斗中途加入的敌人不获得",
+    "back": "Enemies that join partway through combat do not gain (it)",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions": {
+   "text": "战斗中途加入的爪牙获得{power}",
+   "en": "Minions that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "战斗中途加入的爪牙获得{power}",
+    "back": "Minions that join partway through combat gain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions_none": {
+   "text": "战斗中途加入的爪牙不获得",
+   "en": "Minions that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "战斗中途加入的爪牙不获得",
+    "back": "Minions that join partway through combat do not gain (it)",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
   "ui:dominion_other_fights": {
    "text": "本阶段其他战斗",
    "en": "Other fights this act",

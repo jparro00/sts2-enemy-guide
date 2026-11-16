@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "막 보스"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "적이 {power}을(를) 얻습니다"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "전투 도중 합류한 적이 {power}을(를) 얻습니다"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "전투 도중 합류한 적은 얻지 않습니다"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "전투 도중 합류한 하수인이 {power}을(를) 얻습니다"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "전투 도중 합류한 하수인은 얻지 않습니다"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "이번 막의 다른 전투"

@@ -9724,6 +9724,121 @@
     "at": "2026-11-16"
    }
   },
+  "ui:dominion_fight": {
+   "text": "Gegner erhalten {power}",
+   "en": "Enemies gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Gegner erhalten {power}",
+    "back": "Enemies receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners": {
+   "text": "Gegner, die mitten im Kampf dazukommen, erhalten {power}",
+   "en": "Enemies that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Gegner, die mitten im Kampf dazukommen, erhalten {power}",
+    "back": "Enemies that join in the middle of combat receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners_none": {
+   "text": "Gegner, die mitten im Kampf dazukommen, erhalten nichts",
+   "en": "Enemies that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Gegner, die mitten im Kampf dazukommen, erhalten nichts",
+    "back": "Enemies that join in the middle of combat receive nothing",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions": {
+   "text": "Untertanen, die mitten im Kampf dazukommen, erhalten {power}",
+   "en": "Minions that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Untertanen, die mitten im Kampf dazukommen, erhalten {power}",
+    "back": "Underlings/minions that join in the middle of combat receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions_none": {
+   "text": "Untertanen, die mitten im Kampf dazukommen, erhalten nichts",
+   "en": "Minions that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Untertanen, die mitten im Kampf dazukommen, erhalten nichts",
+    "back": "Underlings/minions that join in the middle of combat receive nothing",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
   "ui:dominion_other_fights": {
    "text": "Andere Kämpfe in diesem Akt",
    "en": "Other fights this act",

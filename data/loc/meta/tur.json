@@ -9724,6 +9724,121 @@
     "at": "2026-11-16"
    }
   },
+  "ui:dominion_fight": {
+   "text": "Düşmanlar {power} elde eder",
+   "en": "Enemies gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Düşmanlar {power} elde eder",
+    "back": "Enemies obtain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners": {
+   "text": "Savaşın ortasında katılan düşmanlar {power} elde eder",
+   "en": "Enemies that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Savaşın ortasında katılan düşmanlar {power} elde eder",
+    "back": "Enemies that join in the middle of combat obtain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners_none": {
+   "text": "Savaşın ortasında katılan düşmanlar bunu elde etmez",
+   "en": "Enemies that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Savaşın ortasında katılan düşmanlar bunu elde etmez",
+    "back": "Enemies that join in the middle of combat do not obtain it",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions": {
+   "text": "Savaşın ortasında katılan yancılar {power} elde eder",
+   "en": "Minions that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Savaşın ortasında katılan yancılar {power} elde eder",
+    "back": "Sidekicks/henchmen that join in the middle of combat obtain {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions_none": {
+   "text": "Savaşın ortasında katılan yancılar bunu elde etmez",
+   "en": "Minions that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Savaşın ortasında katılan yancılar bunu elde etmez",
+    "back": "Sidekicks/henchmen that join in the middle of combat do not obtain it",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
   "ui:dominion_other_fights": {
    "text": "Bu sahnedeki diğer savaşlar",
    "en": "Other fights this act",

@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Boss aktu"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Przeciwnicy zyskują {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Przeciwnicy, którzy dołączą w trakcie walki, zyskują {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Przeciwnicy, którzy dołączą w trakcie walki, nic nie zyskują"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Pomagierzy, którzy dołączą w trakcie walki, zyskują {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Pomagierzy, którzy dołączą w trakcie walki, nic nie zyskują"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Inne walki w tym akcie"

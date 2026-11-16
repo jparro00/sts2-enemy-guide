@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Jefe del acto"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Los enemigos obtienen {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Los enemigos que se unen a mitad del combate obtienen {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Los enemigos que se unen a mitad del combate no obtienen nada"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Los esbirros que se unen a mitad del combate obtienen {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Los esbirros que se unen a mitad del combate no obtienen nada"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Otros combates de este acto"

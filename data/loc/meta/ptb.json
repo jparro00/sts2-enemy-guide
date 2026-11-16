@@ -9724,6 +9724,121 @@
     "at": "2026-11-16"
    }
   },
+  "ui:dominion_fight": {
+   "text": "Inimigos recebem {power}",
+   "en": "Enemies gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Inimigos recebem {power}",
+    "back": "Enemies receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners": {
+   "text": "Inimigos que entram durante o combate recebem {power}",
+   "en": "Enemies that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Inimigos que entram durante o combate recebem {power}",
+    "back": "Enemies that enter during combat receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_joiners_none": {
+   "text": "Inimigos que entram durante o combate não recebem nada",
+   "en": "Enemies that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Inimigos que entram durante o combate não recebem nada",
+    "back": "Enemies that enter during combat receive nothing",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions": {
+   "text": "Lacaios que entram durante o combate recebem {power}",
+   "en": "Minions that join mid-fight gain {power}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Lacaios que entram durante o combate recebem {power}",
+    "back": "Lackeys that enter during combat receive {power}",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
+  "ui:dominion_minions_none": {
+   "text": "Lacaios que entram durante o combate não recebem nada",
+   "en": "Minions that join mid-fight gain none",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "review": {
+    "text": "Lacaios que entram durante o combate não recebem nada",
+    "back": "Lackeys that enter during combat receive nothing",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-16"
+   }
+  },
   "ui:dominion_other_fights": {
    "text": "Outros combates deste ato",
    "en": "Other fights this act",

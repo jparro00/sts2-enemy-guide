@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Sahne Boss'u"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Düşmanlar {power} elde eder"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Savaşın ortasında katılan düşmanlar {power} elde eder"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Savaşın ortasında katılan düşmanlar bunu elde etmez"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Savaşın ortasında katılan yancılar {power} elde eder"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Savaşın ortasında katılan yancılar bunu elde etmez"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Bu sahnedeki diğer savaşlar"

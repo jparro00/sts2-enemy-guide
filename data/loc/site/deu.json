@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Akt-Boss"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Gegner erhalten {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Gegner, die mitten im Kampf dazukommen, erhalten {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Gegner, die mitten im Kampf dazukommen, erhalten nichts"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Untertanen, die mitten im Kampf dazukommen, erhalten {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Untertanen, die mitten im Kampf dazukommen, erhalten nichts"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Andere Kämpfe in diesem Akt"

@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "บอสองก์"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "ศัตรูได้รับ {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "ศัตรูที่เข้าร่วมระหว่างการต่อสู้ได้รับ {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "ศัตรูที่เข้าร่วมระหว่างการต่อสู้จะไม่ได้รับ"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "ลูกน้องที่เข้าร่วมระหว่างการต่อสู้ได้รับ {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "ลูกน้องที่เข้าร่วมระหว่างการต่อสู้จะไม่ได้รับ"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "การต่อสู้อื่นในองก์นี้"

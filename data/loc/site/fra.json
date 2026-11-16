@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Boss de l'acte"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Les ennemis gagnent {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Les ennemis qui rejoignent le combat en cours de route gagnent {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Les ennemis qui rejoignent le combat en cours de route n'en gagnent pas"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Les sbires qui rejoignent le combat en cours de route gagnent {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Les sbires qui rejoignent le combat en cours de route n'en gagnent pas"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Autres combats de l'acte"

@@ -434,30 +434,58 @@ function dominionBlock(scope, bodyHtml) {
   return `<div class="dominion-section"><div class="dominion-header"><span class="dominion-title">${t('dominion')}</span><span class="dominion-scope">${scope}</span></div>${bodyHtml}</div>`;
 }
 
-function dominionRow(boss, withThumb) {
+// `enc`: the (non-boss) fight the row sits in. A Dominion that gives enemies a
+// power then says only what this fight's enemies get (dominionAmount), and the
+// enemies that join mid-fight only when the fight has some and they get
+// something else; without `enc` (a boss panel, an enemy's own panel) the row
+// shows the whole Dominion.
+function dominionRow(boss, withThumb, enc) {
   const name = encounterName(boss);
   const thumb = withThumb ? `<img class="dominion-thumb" src="${encounterThumb(boss)}" alt="${name}" onerror="this.style.visibility='hidden'">` : '';
+  const effect = enc && boss.dominionPower ? fightDominionLines(enc, boss.dominionPower).join('<br>')
+    : renderPowerRefs(txClauses(boss.dominion, 'Dread Dominion effect').replace(/;/g, '<br>'), null);
   return `
     <div class="dominion-row">
       ${thumb}
       <div class="dominion-info">
         <span class="dominion-boss">${name}</span>
-        <span class="dominion-effect">${renderPowerRefs(txClauses(boss.dominion, 'Dread Dominion effect').replace(/;/g, '<br>'), null)}</span>
+        <span class="dominion-effect">${effect}</span>
       </div>
     </div>`;
 }
 
-function renderZoneDominion(zone, scope) {
+// What DominionPower `dp` gives the enemies of fight `enc`: the starting
+// enemies (all the same amount: only joining mid-fight depends on the enemy),
+// then each different amount the joiners get, as "minions" when they all are
+function fightDominionLines(enc, dp) {
+  const keys = encounterEnemies(enc).filter((k, i, all) => all.indexOf(k) === i);
+  const gain = n => `<span class="dread-value">${renderPowerRefs(`{${dp.power}} ${n}`, null)}</span>`;
+  const starters = keys.filter(k => !enc.spawns.includes(k));
+  const base = starters.length ? dominionAmount(enc, starters[0], dp) : null;
+  const lines = base > 0 ? [t('dominion_fight', { power: gain(base) })] : [];
+  const joiners = {};
+  for (const k of keys.filter(k => enc.spawns.includes(k))) {
+    const n = dominionAmount(enc, k, dp);
+    if (n !== base) (joiners[n] = joiners[n] || []).push(k);
+  }
+  for (const [n, group] of Object.entries(joiners)) {
+    const who = group.every(k => enemyDatabase[k]?.powers.includes('minion')) ? 'minions' : 'joiners';
+    lines.push(Number(n) > 0 ? t(`dominion_${who}`, { power: gain(n) }) : t(`dominion_${who}_none`));
+  }
+  return lines;
+}
+
+function renderZoneDominion(zone, scope, enc) {
   const boss = selectedDominionBoss(zone);
   if (!dreadMode || !boss) return '';
   // Own row: three 56px buttons don't fit beside the title on phones
   const picker = zoneDominionBosses(zone).length > 1 && !knownDreadBosses[zone] ? `<div class="boss-picker-inline">${bossPickerButtons(zone)}</div>` : '';
-  return dominionBlock(scope, picker + dominionRow(boss, !picker));
+  return dominionBlock(scope, picker + dominionRow(boss, !picker, enc));
 }
 
 function renderDominionSection(enc) {
   if (!dreadMode || !enc) return '';
-  if (enc.cat !== 'boss') return renderZoneDominion(enc.zone, t('dominion_act_boss'));
+  if (enc.cat !== 'boss') return renderZoneDominion(enc.zone, t('dominion_act_boss'), enc);
   return enc.dominion ? dominionBlock(t('dominion_other_fights'), dominionRow(enc, true)) : '';
 }
 

@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "本幕頭目"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "敵人獲得{power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "戰鬥中途加入的敵人獲得{power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "戰鬥中途加入的敵人不會獲得"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "戰鬥中途加入的手下獲得{power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "戰鬥中途加入的手下不會獲得"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "本幕其他戰鬥"

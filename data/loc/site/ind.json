@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Bos babak"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Musuh mendapat {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Musuh yang bergabung di tengah pertarungan mendapat {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Musuh yang bergabung di tengah pertarungan tidak mendapat apa pun"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Pengikut yang bergabung di tengah pertarungan mendapat {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Pengikut yang bergabung di tengah pertarungan tidak mendapat apa pun"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Pertarungan lain di babak ini"

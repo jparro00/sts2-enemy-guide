@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "この層のボス"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "敵が{power}を得る"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "戦闘中に加わった敵が{power}を得る"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "戦闘中に加わった敵は得ない"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "戦闘中に加わったミニオンが{power}を得る"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "戦闘中に加わったミニオンは得ない"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "この層の他の戦闘"

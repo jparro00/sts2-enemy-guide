@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Босс акта"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Враги получают эффект {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Враги, присоединившиеся во время боя, получают эффект {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Враги, присоединившиеся во время боя, не получают ничего"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Прислужники, присоединившиеся во время боя, получают эффект {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Прислужники, присоединившиеся во время боя, не получают ничего"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Другие бои акта"

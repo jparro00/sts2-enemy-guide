@@ -101,6 +101,26 @@
       "en": "Act boss",
       "text": "Boss dell'atto"
     },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "I nemici ottengono {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "I nemici che si uniscono a combattimento iniziato ottengono {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "I nemici che si uniscono a combattimento iniziato non ottengono nulla"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "I seguaci che si uniscono a combattimento iniziato ottengono {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "I seguaci che si uniscono a combattimento iniziato non ottengono nulla"
+    },
     "dominion_other_fights": {
       "en": "Other fights this act",
       "text": "Altri combattimenti dell'atto"

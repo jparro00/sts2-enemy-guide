@@ -42,6 +42,11 @@
     "composition": "Composition",
     "dominion": "Dominion",
     "dominion_act_boss": "Act boss",
+    "dominion_fight": "Enemies gain {power}",
+    "dominion_joiners": "Enemies that join mid-fight gain {power}",
+    "dominion_joiners_none": "Enemies that join mid-fight gain none",
+    "dominion_minions": "Minions that join mid-fight gain {power}",
+    "dominion_minions_none": "Minions that join mid-fight gain none",
     "dominion_other_fights": "Other fights this act",
     "dread": {
       "text": "Dread",
