@@ -104,6 +104,7 @@ async function chooseSiteBase(gameVersion) {
   return LIVE_SITE;
 }
 
+// The site's data files; this checkout's when the site's predate the game id columns (not deployed yet)
 async function loadSite(gameVersion) {
   const base = await chooseSiteBase(gameVersion);
   if (site && site.base === base) return;
@@ -112,107 +113,68 @@ async function loadSite(gameVersion) {
     if (!res.ok) throw new Error(`${base}${p}: HTTP ${res.status}`);
     return res.text();
   };
-  const [enc, ev, mv] = await Promise.all([get('/data/encounters.csv'), get('/data/events.csv'), get('/data/monster_moves.csv')]);
-  const moves = new Map();
+  const files = ['monsters.csv', 'monster_moves.csv', 'encounters.csv', 'events.csv'];
+  let texts = await Promise.all(files.map(f => get(`/data/${f}`)));
+  let from = base;
+  if (!header(texts[0]).includes('GameIds')) {
+    const local = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'data');
+    texts = files.map(f => fs.readFileSync(path.join(local, f), 'utf8'));
+    from = `${local} (the site's data has no game ids yet)`;
+  }
+  const [mon, mv, enc, ev] = texts;
+  const ids = cell => (cell || '').split(';').map(s => s.trim()).filter(Boolean);
+  const monsterKeys = new Map(), moves = new Map(), encounters = new Map(), events = new Map();
+  for (const r of parseCsv(mon)) {
+    for (const id of ids(r.GameIds)) {
+      if (!monsterKeys.has(id)) monsterKeys.set(id, []);
+      monsterKeys.get(id).push(r.Key);
+    }
+  }
   for (const r of parseCsv(mv)) {
     if (!moves.has(r.Enemy)) moves.set(r.Enemy, []);
-    moves.get(r.Enemy).push(slugify(r.Move));
+    moves.get(r.Enemy).push({ slug: slugify(r.Move), states: ids(r.GameMoves) });
   }
-  site = {
-    base,
-    encounters: new Map(parseCsv(enc).map(r => [r.Key, r])),
-    // Event pages are addressed by their slugified name, not the Key
-    events: new Map(parseCsv(ev).map(r => [r.Key, slugify(r.Name)])),
-    moves,
-  };
-  say(`Site: ${base} (${site.encounters.size} encounters, ${site.events.size} events)`);
+  for (const r of parseCsv(enc)) for (const id of ids(r.GameIds)) if (!encounters.has(id)) encounters.set(id, r);
+  // Event pages are addressed by their slugified name, not the Key
+  for (const r of parseCsv(ev)) for (const id of ids(r.GameIds)) if (!events.has(id)) events.set(id, slugify(r.Name));
+  site = { base, monsterKeys, moves, encounters, events };
+  say(`Site: ${base} (${encounters.size} encounters, ${events.size} events; game ids from ${from})`);
+}
+
+function header(text) {
+  const end = text.search(/\r|\n/);
+  return (end < 0 ? text : text.slice(0, end)).split(',').map(h => h.trim().replace(/^﻿/, ''));
 }
 
 // ---------------------------------------------------------------------------
-// Game id -> site key. Site keys are slugs of display names, so most ids map by
-// rule; the overrides are the names that drifted.
+// Game id -> site rows: the data's GameIds / GameMoves columns say which game ids each row is, so a name
+// changed on the site needs no change here. (The mod reads the same columns: SpireCodexBridge's CodexData.)
 
-const CATEGORY = { WEAK: 'easy', NORMAL: 'hard', ELITE: 'elite', BOSS: 'boss' };
-const ENCOUNTER_OVERRIDES = {
-  INFESTED_PRISMS_ELITE: 'infested-prism',
-  NIBBITS_WEAK: 'nibbit',
-  OVERGROWTH_CRAWLERS: 'overgrowth-crawlers',
-};
-const MONSTER_OVERRIDES = {
-  LEAF_SLIME_S: 'leaf-slime-small', LEAF_SLIME_M: 'leaf-slime-medium',
-  TWIG_SLIME_S: 'twig-slime-small', TWIG_SLIME_M: 'twig-slime-medium',
-};
-const slug = s => s.toLowerCase().replace(/_/g, '-');
 const bare = id => (id || '').replace(/^[A-Z]+\./, '');
 
-function siteEncounter(gameId) {
+const siteEncounter = gameId => site.encounters.get(bare(gameId)) || null;
+
+// The site enemies a game monster is, in file order (the Test Subject is one per stage); a monster the
+// site doesn't have keeps the key the site would give it
+function monsterKeys(gameId) {
   const id = bare(gameId);
-  if (ENCOUNTER_OVERRIDES[id]) return site.encounters.get(ENCOUNTER_OVERRIDES[id]) || null;
-  const m = id.match(/^(.*)_(WEAK|NORMAL|ELITE|BOSS)$/);
-  if (!m) return null;   // *_EVENT_ENCOUNTER fights belong to their event's page
-  const name = slug(m[1]), cat = CATEGORY[m[2]];
-  for (const key of [`${name}-${cat}`, name]) {
-    const row = site.encounters.get(key);
-    if (row && row.Category === cat) return row;
-  }
-  return site.encounters.get(name) || null;   // e.g. TUNNELER_NORMAL: the site lists one Tunneler
+  return site.monsterKeys.get(id) || [id.toLowerCase().replace(/_/g, '-')];
 }
 
-function monsterKey(gameId) {
-  const id = bare(gameId);
-  if (MONSTER_OVERRIDES[id]) return MONSTER_OVERRIDES[id];
-  const raider = id.match(/^(.*)_RUBY_RAIDER$/);
-  if (raider) return `ruby-raider-${slug(raider[1])}`;
-  return slug(id);
-}
-
-const siteEventSlug = gameId => site.events.get(bare(gameId).toLowerCase()) || null;
+const siteEventSlug = gameId => site.events.get(bare(gameId)) || null;
 const zoneOf = actId => (actId ? bare(actId).toLowerCase() : null);
 
-// A move the bridge reports (state id like WHIP_SLAP_MOVE or THRASH_MOVE_2, plus
-// the game's display title) -> "enemy:move-slug" for ?moves=, or null when the
-// site has no such row. The site names moves by their in-game title, so the
-// title usually matches; the id forms cover repeat states (SWING_1 -> swing)
-// and the aliases cover rows the site names differently from the game.
-const MOVE_ALIASES = {
-  'corpse-slug:GOOP': 'gloop',
-  'cubex-construct:EXPEL': 'expel-blast',
-  'exoskeleton:MANDIBLES': 'mandible',
-  'fogmog:SWIPE_RANDOM': 'swipe',                  // Swipe at a random target
-  'fuzzy-wurm-crawler:FIRST_ACID_GOOP': 'acid-goop', // its opening Acid Goop
-  'mawler:RIP_AND_TEAR': 'rip-tear',
-  'torch-head-amalgam:BEAM': 'soul-beam',
-};
-// Monsters the site splits or merges differently: the Decimillipede's segments
-// are one site enemy, and the Test Subject is one monster per phase on the site.
-const MOVE_SITE_KEYS = {
-  'decimillipede-segment': ['decimillipede'],
-  'decimillipede-segment-front': ['decimillipede'],
-  'decimillipede-segment-middle': ['decimillipede'],
-  'decimillipede-segment-back': ['decimillipede'],
-  'test-subject': ['test-subject-stage-1', 'test-subject-stage-2', 'test-subject-stage-3'],
-};
-function siteMoveMark(monsterId, stateId, title) {
+// A move the bridge reports (its state id, like SWING_1) -> "enemy:move-slug" for ?moves=, or null when no
+// site row lists that state
+function siteMoveMark(monsterId, stateId) {
   if (!stateId) return null;
-  const own = monsterKey(monsterId);
-  const base = stateId.replace(/_MOVE/g, '');
-  for (const key of MOVE_SITE_KEYS[own] || [own]) {
-    const rows = site.moves.get(key);
-    if (!rows) continue;
-    const tries = [
-      MOVE_ALIASES[`${key}:${base}`],
-      title && slugify(title),
-      slugify(base),                                   // WHIP_SLAP -> whip-slap
-      slugify(base.replace(/(\D)(\d+)$/, '$1_$2')),    // SLASH2 -> slash-2
-      slugify(base.replace(/_?\d+$/, '')),             // SWING_1 -> swing
-    ];
-    const hit = tries.find(s => s && rows.includes(s));
-    if (hit) return `${key}:${hit}`;
+  for (const key of monsterKeys(monsterId)) {
+    const hit = (site.moves.get(key) || []).find(r => r.states.includes(stateId));
+    if (hit) return `${key}:${hit.slug}`;
   }
   return null;
 }
 
-// ---------------------------------------------------------------------------
 // The game's encounter RNG, ported from the decompiled source:
 //  EncounterModel.GenerateMonstersWithSlots seeds new Rng(runSeed + TotalFloor
 //  + XxHash64(encounter id)); runSeed is XxHash64 of the seed string
@@ -447,7 +409,7 @@ function bossKeys(ctx) {
   const keys = [];
   for (const id of ctx.bosses) {
     const b = bare(id);
-    const row = siteEncounter(b) || siteEncounter(`THE_${b}`);
+    const row = siteEncounter(b);
     if (row) keys.push(row.Key);
   }
   return keys;
@@ -548,7 +510,7 @@ function combatMarks(combat) {
   const marks = [];
   for (const e of combat.enemies || []) {
     if (!e.alive || !e.move) continue;
-    const mark = siteMoveMark(e.monster, e.move, e.title);
+    const mark = siteMoveMark(e.monster, e.move);
     if (mark) marks.push(mark);
     else if (!bridge.unmatched.has(`${e.monster}:${e.move}`)) {
       bridge.unmatched.add(`${e.monster}:${e.move}`);
@@ -818,4 +780,4 @@ if (process.argv[1] && path.resolve(process.argv[1]).toLowerCase() === fileURLTo
   main().catch(e => { console.error(e); process.exit(1); });
 }
 
-export { ROLLS, encounterRng, predictEvent, parseCsv, siteEncounter, monsterKey, siteMoveMark, loadSite, handleLine, run };
+export { ROLLS, encounterRng, predictEvent, parseCsv, siteEncounter, monsterKeys, siteMoveMark, loadSite, handleLine, run };
