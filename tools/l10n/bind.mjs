@@ -88,12 +88,23 @@ function findVars(template, english, refs = new Map()) {
     .filter(n => !(n in vars) && !(n in DEFAULTS));
   const tries = selectors.reduce((acc, n) => acc.flatMap(a => [0, 1, 2, 3, true, false].map(x => ({ ...a, [n]: x }))), [vars]);
   for (const v of tries.slice(0, 2000)) {
-    if (format(template, v) === english) {
-      for (const [k, x] of Object.entries(v)) if (typeof x === 'string' && refs.has(x)) v[k] = `@${refs.get(x)}`;
-      return v;
+    if (format(template, v) !== english) continue;
+    // A text value must read the same in every language: a number, a range, X, or another game string (the
+    // name of a relic, card, potion, power or one of the event's own); English words would show untranslated
+    for (const [k, x] of Object.entries(v)) {
+      if (typeof x !== 'string' || /^(-?\d+(\s*-\s*\d+)?|X)$/.test(x)) continue;
+      if (!refs.has(x)) return null;
+      v[k] = `@${refs.get(x)}`;
     }
+    return v;
   }
   return null;
+}
+
+// English game names a text value may be (-> @table:KEY): relics, cards, potions, enchantments, powers
+const NAMES = new Map();
+for (const t of ['relics', 'cards', 'potions', 'enchantments', 'powers', 'card_keywords']) {
+  for (const [k, v] of Object.entries(eng(t))) if (k.endsWith('.title') && typeof v === 'string' && !NAMES.has(v)) NAMES.set(v, `${t}:${k}`);
 }
 
 const serialize = (vars, before = [], after = []) => [
@@ -129,7 +140,7 @@ function bindRefs(file, candidates) {
     const template = eng(table)[`${key}.description`];
     if (typeof template !== 'string' || !r.Description) return '';
     const kw = file === 'cards' ? splitKeywords(r.Description) : { before: [], after: [], body: r.Description };
-    const vars = findVars(template, kw.body);
+    const vars = findVars(template, kw.body, NAMES);
     if (vars === null) return '';
     withText++;
     return serialize(vars, kw.before, kw.after);
@@ -194,7 +205,7 @@ choicesText = setCsvColumn(choicesText, 'GameVars', (r) => {
   const base = r.GameOption.includes(':') ? null : `${id}.pages.${r.GameOption.split('.')[0]}.options.${r.GameOption.split('.')[1]}`;
   if (!base) return '';
   // String values that are game strings of this event (its dishes, its cards) are kept as references
-  const refs = new Map(Object.entries(ev).filter(([k, v]) => k.startsWith(`${id}.`) && !k.includes('.pages.') && typeof v === 'string').map(([k, v]) => [v, `events:${k}`]));
+  const refs = new Map([...NAMES, ...Object.entries(ev).filter(([k, v]) => k.startsWith(`${id}.`) && !k.includes('.pages.') && typeof v === 'string').map(([k, v]) => [v, `events:${k}`])]);
   const vars = {};
   for (const [field, english] of [['title', r.Choice], ['description', r.Effect]]) {
     const template = ev[`${base}.${field}`];

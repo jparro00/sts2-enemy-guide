@@ -26,7 +26,8 @@ const english = site.run('JSON.parse(JSON.stringify(siteUi))');
 
 const tokens = (s, re) => [...s.matchAll(re)].map(m => m[0]).sort().join('\u0001');
 const SLOT = /\{\w+\}/g;
-const MARKS = /\{[mpn]\d+\}|\[\/?[a-z_]+(?:[^\]]*)?\]|<\/?[a-z]+\b[^>]*>/gi;
+// Markup a translation must keep: placeholders, the tags renderLore knows (a bracketed word like [Merchant] is text) and HTML
+const MARKS = /\{[mpn]\d+\}|\[\/?(?:b|green|aqua|blue|red|gold|orange|purple|pink|rainbow|jitter|sine|fade_in|thinky_dots|img|font_size)\b[^\]]*\]|<\/?[a-z]+\b[^>]*>/gi;
 const rejected = [];
 let added = 0;
 for (const [key, t] of Object.entries(uiIn)) {
@@ -37,6 +38,8 @@ for (const [key, t] of Object.entries(uiIn)) {
 }
 for (const [template, t] of Object.entries(textIn)) {
   if (tokens(t, MARKS) !== tokens(template, MARKS)) { rejected.push(`text ${JSON.stringify(template)}: placeholders or tags differ: ${JSON.stringify(t)}`); continue; }
+  // A brace the English doesn't have would show as written (a game variable copied in: {EntrantNumber})
+  if (tokens(t, /\{[^{}]*\}/g) !== tokens(template, /\{[^{}]*\}/g)) { rejected.push(`text ${JSON.stringify(template)}: braces differ: ${JSON.stringify(t)}`); continue; }
   text[template] = t;
   added++;
 }

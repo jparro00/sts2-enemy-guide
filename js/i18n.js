@@ -54,6 +54,13 @@ function languageFiles(lang) {
   return lang === 'eng' ? [] : [`data/loc/game/${lang}.json`, `data/loc/site/${lang}.json`];
 }
 
+// The site language for one of the game's (LocManager's three-letter codes): the same one, the nearest one
+// (gameLanguages), or English
+function siteLanguageForGame(code) {
+  if (LANGS.some(l => l.code === code)) return code;
+  return gameLanguages[code] || 'eng';
+}
+
 function currentLangInfo() {
   return LANGS.find(l => l.code === siteLang) || LANGS[0];
 }

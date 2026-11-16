@@ -1231,6 +1231,7 @@
       "FAKE_STRIKE_DUMMY.title": "¿Muñeco de entrenamiento?",
       "FAKE_VENERABLE_TEA_SET.description": "Cuando llegas a un [gold]Lugar de descanso[/gold], comienzas el siguiente combate con {Energy:energyIcons()} más.",
       "FAKE_VENERABLE_TEA_SET.title": "¿Set de té venerable?",
+      "FORGOTTEN_SOUL.title": "Alma olvidada",
       "FRAGRANT_MUSHROOM.description": "Al recoger esta reliquia, pierde [blue]{HpLoss}[/blue] PV y [gold]Mejora[/gold] [blue]{Cards}[/blue] {Cards:plural:carta|cartas}.",
       "FRAGRANT_MUSHROOM.title": "Seta aromática",
       "FRESNEL_LENS.description": "Cuando añadas una carta que otorgue [gold]Bloqueo[/gold] a tu [gold]Mazo[/gold], [gold]Encántala[/gold] con [purple]Agilidad[/purple] [blue]{NimbleAmount}[/blue].",

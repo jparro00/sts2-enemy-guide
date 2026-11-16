@@ -1231,6 +1231,7 @@
       "FAKE_STRIKE_DUMMY.title": "Strike Dummy???",
       "FAKE_VENERABLE_TEA_SET.description": "Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional {Energy:energyIcons()}.",
       "FAKE_VENERABLE_TEA_SET.title": "Venerable Tea Set???",
+      "FORGOTTEN_SOUL.title": "Forgotten Soul",
       "FRAGRANT_MUSHROOM.description": "Upon pickup, lose [blue]{HpLoss}[/blue] HP and [gold]Upgrade[/gold] [blue]{Cards}[/blue] random {Cards:plural:card|cards}.",
       "FRAGRANT_MUSHROOM.title": "Fragrant Mushroom",
       "FRESNEL_LENS.description": "Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]{NimbleAmount}[/blue].",

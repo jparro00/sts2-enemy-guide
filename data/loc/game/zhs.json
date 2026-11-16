@@ -1231,6 +1231,7 @@
       "FAKE_STRIKE_DUMMY.title": "打击木偶？？？",
       "FAKE_VENERABLE_TEA_SET.description": "到达[gold]休息处[/gold]后的下一场战斗开始时额外获得{Energy:energyIcons()}。",
       "FAKE_VENERABLE_TEA_SET.title": "古茶具套装？？？",
+      "FORGOTTEN_SOUL.title": "遗忘之魂",
       "FRAGRANT_MUSHROOM.description": "拾起时，失去[blue]{HpLoss}[/blue]点生命，然后随机[gold]升级[/gold][blue]{Cards}[/blue]张牌。",
       "FRAGRANT_MUSHROOM.title": "芳香蘑菇",
       "FRESNEL_LENS.description": "每当你将一张带有[gold]格挡[/gold]的牌加入你的[gold]牌组[/gold]时，为那张牌[gold]附魔[/gold]：[purple]灵巧[/purple][blue]{NimbleAmount}[/blue]",

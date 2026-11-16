@@ -425,3 +425,26 @@
 .feedback-link a:hover {
   color: var(--gold);
 }
+
+/* ── Language picker (header: top right; on phones top left, the search button has the right) ── */
+header { position: relative; }
+.lang-select {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--panel-border);
+  color: #888;
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.lang-select:hover, .lang-select:focus { border-color: #555; color: #ccc; outline: none; }
+.lang-select option { background: #12121c; color: #e0ddd4; }
+/* Keep in sync with the 600px mobile breakpoint in css/base.css + css/responsive.css */
+@media (max-width: 600px) {
+  .lang-select { top: 50%; right: auto; left: 16px; transform: translateY(-50%); padding: 6px 6px; }
+  header.search-open .lang-select { display: none; }
+}
