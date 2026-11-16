@@ -427,13 +427,30 @@ function navigateToPanel(state, url, opts) {
 }
 
 // Shows or hides the panel inside a view transition: the panel slides in or
-// out (css/detail-panel.css, view-transition-name detail-panel) while the page
-// crossfades its reflow. The change must happen inside the transition's
-// callback: one made before it is already in the "before" snapshot, so
-// nothing animates. A transition skipped by a newer one still runs its update.
+// out (css/detail-panel.css, view-transition-name detail-panel). The change
+// must happen inside the transition's callback: one made before it is already
+// in the "before" snapshot, so nothing animates. A transition skipped by a
+// newer one still runs its update.
+//
+// Where the side panel narrows the page (css/detail-panel.css, body.panel-open
+// padding; keep the range in sync), what the reflow moves glides to its new
+// place instead of jumping: each element gets its own transition name for the
+// transition's length. Only elements that stay one box: an inline element that
+// wraps onto two lines aborts the transition, so the banner and footer text
+// stay in the page's crossfade.
+const PANEL_SHIFTING = 'header h1, header .search-bar, .lang-select, .act-card, .cat-tab, .player-count-bar > *, .enemy-card';
+let panelTransitionGen = 0;
+
 function panelTransition(update) {
   if (!document.startViewTransition) { update(); return; }
-  document.startViewTransition(update).ready.catch(() => { /* skipped */ });
+  const gen = ++panelTransitionGen;
+  const named = window.matchMedia('(min-width: 1100px) and (max-width: 2040px)').matches
+    ? [...document.querySelectorAll(PANEL_SHIFTING)] : [];
+  named.forEach((el, i) => { el.style.viewTransitionName = `shift-${i}`; });
+  const t = document.startViewTransition(update);
+  t.ready.catch(() => { /* skipped */ });
+  // (a newer transition has named the same elements: leave its names)
+  t.finished.finally(() => { if (gen === panelTransitionGen) named.forEach(el => { el.style.viewTransitionName = ''; }); });
 }
 
 // Whether the panel is shown or on its way in: the classes change only when the
