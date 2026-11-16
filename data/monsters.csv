@@ -60,7 +60,7 @@ ovicopter,Ovicopter,124 - 130 (126 - 132),"Opens with <Lay Eggs> → <Smash> →
 If allies ≥ 3 after <Tenderizer>: <Nutritional Paste> → <Smash> → <Tenderizer>.
 If allies < 3 after <Tenderizer>: <Lay Eggs> → <Smash> → <Tenderizer>.",,,,,,,,,,OVICOPTER
 tough-egg,Tough Egg,14 - 18 (15 - 19),Always uses <Hatch>.,,hatch; minion,{hatch} 1,,,,,,,TOUGH_EGG
-hatchling,Hatchling,19 - 22 (20 - 23),Always uses <Nibble>.,,minion,,,,,,,,
+hatchling,Hatchling,19 - 22 (20 - 23),Always uses <Nibble>.,,minion,,,,,,,,TOUGH_EGG
 owl-magistrate,Owl Magistrate,231 (247),Cycles <Magistrate Scrutiny> → <Peck Assault> → <Judicial Flight> → <Verdict>.,,soar,,,,,,,,OWL_MAGISTRATE
 punch-construct,Punch Construct,55 (60),Cycles <Ready> → <Fast Punch> → <Strong Punch>.,"[info] Punch-Off event: 1st starts <Fast Punch>, 2nd starts <Ready>.",artifact,{artifact} 1,,,,,,,PUNCH_CONSTRUCT
 ruby-raider-assassin,Ruby Raider (Assassin),18 - 23 (19 - 24),Always uses <Killshot>.,,,,,,,,,,ASSASSIN_RUBY_RAIDER

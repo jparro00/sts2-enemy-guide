@@ -6,7 +6,7 @@ bowlbug-egg,Bite,Damage 7 (8); {block} 7 (8),,"attack, block",,,,BITE_MOVE
 bowlbug-nectar,Thrash,Damage 3,,attack,,,,THRASH_MOVE;THRASH2_MOVE
 bowlbug-nectar,Buff,Gain 15 (16) {strength},,buff,,,,BUFF_MOVE
 bowlbug-rock,Headbutt,Damage 15 (16),,attack,,,,HEADBUTT_MOVE
-bowlbug-rock,Stunned,Passes turn,,sleeping,,,,
+bowlbug-rock,Stunned,Passes turn,,sleeping,,,,DIZZY_MOVE
 bowlbug-silk,Toxic Spit,Apply 1 {weak},,debuff,,,,TOXIC_SPIT_MOVE
 bowlbug-silk,Thrash,Damage 4x2 (5x2),,multi_attack,,,,THRASH_MOVE
 calcified-cultist,Incantation,Gain {ritual} 2,,buff,,,,INCANTATION_MOVE
@@ -56,9 +56,9 @@ globe-head,Galvanic Burst,Damage 16 (17); Gain 2 {strength},,"attack, buff",,,,G
 gremlin-merc,Gimme,Damage 7x2 (A8 8x2),,multi_attack,,,,GIMME_MOVE
 gremlin-merc,Double Smash,Damage 6x2 (A8 7x2); Apply 2 {weak},,"multi_attack, debuff",,,,DOUBLE_SMASH_MOVE
 gremlin-merc,Hehe,Damage 8 (A8 9); Gain 2 {strength},,"attack, buff",,,,HEHE_MOVE
-fat-gremlin,Stunned,Stunned for one turn,,stun,,,,
+fat-gremlin,Stunned,Stunned for one turn,,stun,,,,SPAWNED_MOVE
 fat-gremlin,Flee,Escape from combat,,escape,,,,FLEE_MOVE
-sneaky-gremlin,Stunned,Stunned for one turn,,stun,,,,
+sneaky-gremlin,Stunned,Stunned for one turn,,stun,,,,SPAWNED_MOVE
 sneaky-gremlin,Tackle,Damage 9 (10),,attack,,,,TACKLE_MOVE
 haunted-ship,Haunt,Apply 3 {weak}; Add 5 Dazed to Discard,dazed,"debuff, add_statuses",,,,HAUNT_MOVE
 haunted-ship,Swipe,Damage 13 (14),,attack,,,,SWIPE_MOVE
@@ -96,7 +96,7 @@ ovicopter,Smash,Damage 16 (17),,attack,,,,SMASH_MOVE
 ovicopter,Tenderizer,Damage 7 (8); Apply 2 {vulnerable},,"attack, debuff",,,,TENDERIZER_MOVE
 ovicopter,Nutritional Paste,Gain 3 (4) {strength},,buff,,,,NUTRITIONAL_PASTE_MOVE
 tough-egg,Hatch,Hatches into Hatchling.,,buff,,,,HATCH_MOVE
-hatchling,Nibble,Damage 4 (5),,attack,,,,
+hatchling,Nibble,Damage 4 (5),,attack,,,,NIBBLE_MOVE
 owl-magistrate,Magistrate Scrutiny,Damage 16 (17),,attack,,,,MAGISTRATE_SCRUTINY
 owl-magistrate,Peck Assault,Damage 4x6,,multi_attack,,,,PECK_ASSAULT
 owl-magistrate,Judicial Flight,Gain {soar},,buff,,,,JUDICIAL_FLIGHT
@@ -134,7 +134,7 @@ slithering-strangler,Lash,Damage 12 (13),,attack,,,,LASH
 sludge-spinner,Oil Spray,Damage 8 (9); {weak} 1,,"attack, debuff",Cannot repeat.,,,OIL_SPRAY_MOVE
 sludge-spinner,Slam,Damage 11 (12),,attack,Cannot repeat.,,,SLAM_MOVE
 sludge-spinner,Rage,Damage 6 (7); {strength} 3,,"attack, buff",Cannot repeat.,,,RAGE_MOVE
-slumbering-beetle,Sleep,Passes Turn,,sleeping,,,,
+slumbering-beetle,Sleep,Passes Turn,,sleeping,,,,SNORE_MOVE
 slumbering-beetle,Roll Out,Damage 16 (18); Gain 2 {strength},,"attack, buff",,,,ROLL_OUT_MOVE
 snapping-jaxfruit,Energy Orb,Damage 3 (4); Gain 2 {strength},,"attack, buff",,,,ENERGY_ORB_MOVE
 spiny-toad,Protruding Spikes,Gain 5 {thorns},,buff,,,,PROTRUDING_SPIKES_MOVE
@@ -146,7 +146,7 @@ the-forgotten,Miasma,Apply -2 {dexterity}; {block} 8; Gain 2 {dexterity},,"block
 the-forgotten,Dread,Damage 13 (15) + stolen {dexterity},,attack,,,,DREAD
 the-obscura,Illusion,Summon 1 Parafright,,summon,,,,ILLUSION_MOVE
 the-obscura,Piercing Gaze,Damage 10 (11),,attack,Cannot repeat.,,,PIERCING_GAZE_MOVE
-the-obscura,Wail,Allies gain 3 {strength},,buff,Cannot repeat.,,,
+the-obscura,Wail,Allies gain 3 {strength},,buff,Cannot repeat.,,,SAIL_MOVE
 the-obscura,Hardening Strike,Damage 6 (7); {block} 6 (7),,"attack, block",Cannot repeat.,,,HARDENING_STRIKE_MOVE
 parafright,Slam,Damage 16 (17),,attack,,,,SLAM_MOVE
 thieving-hopper,Thievery,Damage 17 (19); Steal 1 card and gain {swipe},,"attack, affliction",,,,THIEVERY_MOVE
@@ -164,7 +164,7 @@ turret-operator,Unload,Damage 3x5 (4x5),,multi_attack,,,,UNLOAD_MOVE;UNLOAD_MOVE
 turret-operator,Reload,Gain 1 {strength},,buff,,,,RELOAD_MOVE
 twig-slime-small,Tackle,Damage 4 (5),,attack,,,,TACKLE_MOVE
 twig-slime-medium,Sticky Shot,Add 1 Slimed to Discard,slimed,add_statuses,Cannot repeat.,,,STICKY_SHOT_MOVE
-twig-slime-medium,Clump Shot,Damage 11 (12),,attack,Max 2 in a row.,,,
+twig-slime-medium,Clump Shot,Damage 11 (12),,attack,Max 2 in a row.,,,POKEY_POUNCE_MOVE
 two-tailed-rat,Scratch,Damage 8 (9),,attack,Cannot repeat.,,,SCRATCH_MOVE
 two-tailed-rat,Disease Bite,Damage 6 (7),,attack,Cannot repeat.,,,DISEASE_BITE_MOVE
 two-tailed-rat,Screech,Apply 1 {frail},,debuff,3-turn cooldown.,,,SCREECH_MOVE
@@ -176,7 +176,7 @@ wriggler,Nasty Bite,Damage 6 (7),,attack,,,,NASTY_BITE_MOVE
 wriggler,Wriggle,Add 1 Infection to Discard; Gain 2 {strength},infection,"buff, add_statuses",,,,WRIGGLE_MOVE
 bygone-effigy,Sleep,Pass Turn,,sleeping,,,,SLEEP_MOVE;SLEEP_MOVE_2
 bygone-effigy,Wake,Gain 10 {strength},,buff,,,,WAKE_MOVE
-bygone-effigy,Slash,Damage 13 (15),,attack,,,,
+bygone-effigy,Slash,Damage 13 (15),,attack,,,,SLASHES_MOVE
 byrdonis,Swoop,Damage 17 (19),,attack,,,,SWOOP_MOVE
 byrdonis,Peck,Damage 3x3 (4x3),,multi_attack,,,,PECK_MOVE
 decimillipede,Constrict,Damage 8 (9); Apply 1 {weak},,"attack, debuff",,,,CONSTRICT_MOVE
@@ -196,7 +196,7 @@ spectral-knight,Soul Slash,Damage 15 (17),,attack,Max 2 in a row.,,,SOUL_SLASH
 spectral-knight,Soul Flame,Damage 3x3 (4x3),,multi_attack,Cannot repeat.,,,SOUL_FLAME
 magi-knight,Power Shield,Damage 6 (7); {block} 5 (A8 9),,"attack, block",,,,POWER_SHIELD_MOVE
 magi-knight,Dampen,Apply {dampen},,debuff,,,,DAMPEN_MOVE
-magi-knight,Spear,Damage 10 (11),,attack,,,,
+magi-knight,Spear,Damage 10 (11),,attack,,,,RAM_MOVE
 magi-knight,Prep,{block} 5 (A8 9),,block,,,,PREP_MOVE
 magi-knight,Magic Bomb,Damage 35 (40),,attack,,,,MAGIC_BOMB
 mecha-knight,Charge,Damage 25 (30),,attack,,,,CHARGE_MOVE
@@ -240,9 +240,9 @@ knowledge-demon,Curse of Knowledge,Player must choose one of two debuffs:; 1st c
 knowledge-demon,Slap,Damage 17 (18),,attack,,,,SLAP_MOVE
 knowledge-demon,Knowledge Overwhelming,Damage 8x3 (9x3),,multi_attack,,,,KNOWLEDGE_OVERWHELMING_MOVE
 knowledge-demon,Ponder,Damage 11 (13); Heal 30*; Gain 2 (3) {strength},,"attack, heal, buff",,,,PONDER_MOVE
-lagavulin-matriarch,Slash,Damage 19 (21),,attack,,,,SLASH_MOVE;SLASH2_MOVE
+lagavulin-matriarch,Slash,Damage 19 (21),,attack,,,,SLASH_MOVE
 lagavulin-matriarch,Disembowel,Damage 9x2 (10x2),,multi_attack,,,,DISEMBOWEL_MOVE
-lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (A8 14),,"attack, block",,Damage 16; {block} 16,,
+lagavulin-matriarch,Slash 2,Damage 12 (14); {block} 12 (A8 14),,"attack, block",,Damage 16; {block} 16,,SLASH2_MOVE
 lagavulin-matriarch,Soul Siphon,Apply -2 {strength}; Apply -2 {dexterity}; Gain 2 {strength},,"buff, debuff",,Apply -3 {strength}; Apply -3 {dexterity}; Gain 2 {strength},,SOUL_SIPHON_MOVE
 queen,Puppet Strings,Apply {chains_of_binding} 3,,affliction,,,no-dread,PUPPET_STRINGS_MOVE
 queen,You Are Mine!,Apply 99 {frail}; Apply 99 {weak}; Apply 99 {vulnerable},,debuff,,,no-dread,YOU_ARE_MINE_MOVE
@@ -252,9 +252,9 @@ queen,Off With Your Head,Damage 3x5 (4x5),,multi_attack,,,,OFF_WITH_YOUR_HEAD_MO
 queen,Execution,Damage 15 (18),,attack,,,,EXECUTION_MOVE
 queen,Enrage,Gain 2 {strength},,buff,,,,ENRAGE_MOVE
 torch-head-amalgam,Strong Tackle,Damage 26 (32),,attack,,Damage 37,,STRONG_TACKLE_MOVE
-torch-head-amalgam,Tackle,Damage 18 (22),,attack,,,,TACKLE_2_MOVE;TACKLE_3_MOVE;TACKLE_4_MOVE
+torch-head-amalgam,Tackle,Damage 18 (22),,attack,,,,TACKLE_2_MOVE
 torch-head-amalgam,Soul Beam,Damage 8x3,,multi_attack,,,,BEAM_MOVE
-torch-head-amalgam,Weak Tackle,Damage 14 (16),,attack,,,,
+torch-head-amalgam,Weak Tackle,Damage 14 (16),,attack,,,,TACKLE_3_MOVE;TACKLE_4_MOVE
 soul-fysh,Beckon,Shuffle 1 Beckon into draw; Shuffle 1 Beckon into discard,beckon,add_statuses,,Shuffle 1 Beckon into draw; Add 1 Beckon to Hand; Shuffle 1 Beckon into discard,,BECKON_MOVE
 soul-fysh,De-Gas,Damage 16 (18),,attack,,,,DE_GAS_MOVE
 soul-fysh,Gaze,Damage 7 (8); Shuffle 1 Beckon into discard,beckon,"attack, add_statuses",,,,GAZE_MOVE
