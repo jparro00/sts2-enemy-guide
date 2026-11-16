@@ -1,20 +1,27 @@
 // What a language needs translated, as a work file for a translator (a person, or an engine: tools/l10n/engines),
 // with what the translator needs to name things the way the game does.
 //
-// Usage: node tools/l10n/pending.mjs <lang> <out.json> [--all] [--loc=...] [--pck=...]
+// Usage: node tools/l10n/pending.mjs <lang> <out.json> [--all] [--cross] [--loc=...] [--pck=...]
 //   --all   every string but the human translations, not just the ones that need it
+//   --cross the fix round: also every string the review flagged in ANY language, with every language's note. The
+//           same English tends to hide the same mistake (an option or intent that isn't the game's name) where this
+//           language's judge missed it; the translator answers it unchanged when it's right here (merge.mjs then
+//           keeps its record and review)
 // Picks: strings with no translation, labels whose English changed, and translations the review flagged (drift,
 // with its note). Human translations are left out (merge.mjs keeps them).
-// Output: { lang, language, brief, engine: "", model: "", items: [...] }, each item
+// Output: { lang, language, brief, gameText, engine: "", model: "", items: [...] }, each item
 //   { id, english, kind, page, example, slots (labels), terms: [{ english, game }], reference: [{ english, game }],
 //     previous: { translation, why, note } }
 //   terms      the game's names in the English, and the game's own for them in the language
 //   reference  the game's own text for the same thing (a choice's effect as the game words it), in English and in
 //              the language: the site says something else on purpose, but the game's terms and style apply
-//   previous   an earlier translation: of older English (a label), or one the review flagged (why: drift, note)
+//   previous   an earlier translation: of older English (a label), or one the review flagged (why: drift, note;
+//              with --cross, notes: [{ lang, note }] from every language that flagged it)
+// gameText is the folder of the game's own text in the language (<table>.json), to look up how the game says things.
 // Fill in "translation" on each item (or use fill.mjs), set engine and model (or translator), and merge it:
 // tools/l10n/merge.mjs.
 import fs from 'node:fs';
+import path from 'node:path';
 import { SITE, bootSite, gameLoc, readSite, isMain } from './lib.mjs';
 import { loadSite, loadMeta, siteText, termContext, termsFor } from './translations.mjs';
 
@@ -25,9 +32,24 @@ export const BRIEF = [
   '"reference" is the game\'s own text for the same thing. The site\'s English says more or less than it on purpose: translate the site\'s English, but follow the reference for terms, tone, form of address and punctuation.',
   'Match how the game writes this language: its register, its form of address to the player, its punctuation (full-width in Chinese and Japanese).',
   'Labels ("kind": "label") are buttons and headings: keep them as short as the English. "previous" is an earlier translation: of older English, or one a review flagged (fix what its note says).',
+  '"gameText" is the folder of the game\'s own text in this language (<table>.json: events.json <EVENT>.pages.<PAGE>.options.<OPTION>.title for event options, intents.json, card_library.json / gameplay_ui.json for rarities). Check a game name there when "terms" doesn\'t list it.',
 ];
+export const CROSS_BRIEF = 'This is a fix round. Items with "previous.notes" were flagged by a review, in this language or another ("lang" + "note"). Answer every item: the corrected translation, or the current one ("previous.translation") unchanged if it is right for this language. A game name must be this language\'s game text, which differs between languages.';
 
-export function pendingWork(lang, { all = false } = {}) {
+// Every translation the review flagged and nobody has redone, in any language: id -> [{ lang, note }]
+export function flaggedEverywhere(site) {
+  const out = {};
+  for (const lang of site.run('LANGS.map(l => l.code)').filter(l => l !== 'eng')) {
+    for (const [id, m] of Object.entries(loadMeta(lang).items)) {
+      if (m.by !== 'human' && m.review && m.review.verdict === 'drift' && m.review.text === m.text) (out[id] ||= []).push({ lang, note: m.review.note || '' });
+    }
+  }
+  return out;
+}
+
+// cross: true (every string flagged now, flaggedEverywhere) or { id: [{ lang, note }] } (translate.mjs passes the
+// strings flagged during its run, including ones already redone where they were flagged)
+export function pendingWork(lang, { all = false, cross = false } = {}) {
   const site = bootSite(SITE);
   const info = site.run(`JSON.parse(JSON.stringify(LANGS.find(l => l.code === ${JSON.stringify(lang)}) || null))`);
   if (!info || lang === 'eng') throw new Error(`${lang}: not a non-English language in js/config.js LANGS`);
@@ -47,13 +69,16 @@ export function pendingWork(lang, { all = false } = {}) {
     return { english: fmt(en, 'eng'), game: local ? fmt(local, ${JSON.stringify(lang)}) : null };
   }).filter(r => r && r.game)`);
 
+  const flagged = cross === true ? flaggedEverywhere(site) : cross || {};
   const needs = id => {
     const m = meta.items[id];
     if (m && m.by === 'human') return null;
     const current = siteText(tr, id);
     if (!current) return { why: 'missing' };
     if (id.startsWith('ui:') && tr.ui[id.slice(3)].en !== ui[id.slice(3)]) return { why: 'stale', previous: { translation: current, why: `made from older English: ${JSON.stringify(tr.ui[id.slice(3)].en)}` } };
-    if (m && m.review && m.review.verdict === 'drift' && m.review.text === current) return { why: 'drift', previous: { translation: current, why: 'drift', note: m.review.note || '' } };
+    const notes = flagged[id] ? { notes: flagged[id] } : {};
+    if (m && m.review && m.review.verdict === 'drift' && m.review.text === current) return { why: 'drift', previous: { translation: current, why: 'drift', note: m.review.note || '', ...notes } };
+    if (flagged[id]) return { why: 'check', previous: { translation: current, why: 'flagged in other languages: check it here', ...notes } };
     return all ? { why: 'all', previous: { translation: current, why: 'current' } } : null;
   };
   const items = [];
@@ -77,14 +102,16 @@ export function pendingWork(lang, { all = false } = {}) {
     if (item) item.previous = { translation: r.text, why: `a person's translation of earlier English: ${JSON.stringify(id.slice(5))}` };
   }
   items.forEach((item, i) => { item.n = i + 1; });
-  return { lang, language: info.name, step: 'translation', brief: BRIEF, engine: '', model: '', translator: '', items };
+  return { lang, language: info.name, step: 'translation', brief: cross ? [...BRIEF, CROSS_BRIEF] : BRIEF, gameText: path.join(game.dir, lang),
+    engine: '', model: '', translator: '', items };
 }
 
 if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}` || process.argv[1].endsWith('pending.mjs')) {
   const [lang, outFile] = process.argv.slice(2).filter(a => !a.startsWith('--'));
-  if (!lang || !outFile) { console.error('usage: pending.mjs <lang> <out.json> [--all]'); process.exit(2); }
-  const work = pendingWork(lang, { all: process.argv.includes('--all') });
+  if (!lang || !outFile) { console.error('usage: pending.mjs <lang> <out.json> [--all] [--cross]'); process.exit(2); }
+  const work = pendingWork(lang, { all: process.argv.includes('--all'), cross: process.argv.includes('--cross') });
   fs.writeFileSync(outFile, JSON.stringify(work, null, 1) + '\n');
   const n = k => work.items.filter(i => i.id.startsWith(k)).length;
-  console.log(`pending ${lang}: ${n('ui:')} labels, ${n('text:')} templates (${work.items.filter(i => i.reference).length} with the game's text for the same thing) -> ${outFile}`);
+  const checks = work.items.filter(i => i.previous && i.previous.why.startsWith('flagged in other')).length;
+  console.log(`pending ${lang}: ${n('ui:')} labels, ${n('text:')} templates (${work.items.filter(i => i.reference).length} with the game's text for the same thing${checks ? `, ${checks} flagged in other languages to check` : ''}) -> ${outFile}`);
 }

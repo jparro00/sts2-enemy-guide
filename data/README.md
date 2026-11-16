@@ -133,7 +133,7 @@ A cell's translation is keyed by its **template**: the English with `<Move>` ref
 
 English pages render the data as written, with no lookups. Game text is formatted the game's way: `js/i18n.js` copies its formatter (SmartFormat: per-language plural rules, numbers as the game's .NET cultures write them), and `check.mjs formatter` holds that copy to the game's own DLL (`tools/l10n/oracle`) in every language.
 
-**Translations** come from a pluggable engine (any command that fills a work file: `tools/l10n/translate.mjs`, `tools/l10n/engines/`) or a person, and each is recorded in `loc/meta`. A person's translation is never overwritten by an engine's (`merge.mjs` keeps it; a translation edited outside `merge.mjs` fails the strict check). An engine's translation is reviewed by a separate back-translation without the English (`review.mjs`), then judged against the English; a flagged one is retranslated with the judge's note. A translator gets each string's game terms (the game's name in the language for every game name the English uses) and, for site wording on a bound field, the game's own text for the same thing as a reference.
+**Translations** come from a pluggable engine (any command that fills a work file: `tools/l10n/translate.mjs`, `tools/l10n/engines/`) or a person, and each is recorded in `loc/meta`. A person's translation is never overwritten by an engine's (`merge.mjs` keeps it; a translation edited outside `merge.mjs` fails the strict check). An engine's translation is reviewed by a separate back-translation without the English (`review.mjs`), then judged against the English; a flagged one is retranslated with the judge's note, and every string flagged in one language is checked in all of them (the fix round, `pending.mjs --cross`). A translator gets each string's game terms (the game's name in the language for every game name the English uses) and, for site wording on a bound field, the game's own text for the same thing as a reference.
 
 **Checks** (`tools/l10n`):
 - `render-pages.mjs` + `check.mjs same`: English identical before and after a code change
@@ -142,5 +142,7 @@ English pages render the data as written, with no lookups. Game text is formatte
 - `check.mjs rewording [--adopt]`: after an extract, the fields that were the game's text and aren't (the game reworded them)
 - `check.mjs formatter`: the formatter against the game's
 - `build_snapshots.mjs` (the deploy): the game text's version stamps against the branch's version, every game key the data uses extracted; missing translations only warn
+
+The process (what to run when, from Claude Code with agents or with an engine command, lessons from earlier runs): **`tools/l10n/README.md`**.
 
 Adding a language: an entry in `LANGS` (`js/config.js`) and in `FORMAT_CULTURES` (`js/i18n.js`: the game's culture, its plural rule, its separators; `check.mjs formatter` confirms them), `node tools/l10n/extract.mjs`, then translate and review it (`/beta-pipeline` Step 8). The mod carries the languages in `CodexEngine.OtherLanguages` (its build checks they match `LANGS`).

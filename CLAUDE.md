@@ -6,7 +6,7 @@ Unofficial Slay the Spire 2 reference site. Static GitHub Pages deploy — **no 
 
 - **Runtime SPA**: `index.html` loads `js/*.js` (plain scripts, global state — load order in `index.html` matters). `js/data.js` fetches `data/*.csv` + `site-config.json` at page load; `js/renderers.js` + `js/panels.js` build the HTML strings, `js/ui.js` wires them to the DOM.
 - **Build-time SEO snapshots**: `build_snapshots.mjs` (Node) renders every enemy/encounter/event into static pages under `enemy/`, `encounter/`, `event/` + `sitemap.xml`. It loads the *actual browser scripts* via `node:vm`, so there is exactly **one rendering implementation** — a change to `js/renderers.js`/`js/panels.js`/`js/data.js` automatically applies to both the live SPA and the snapshots. Keep panel/renderer code DOM-free (strings in, strings out); DOM access belongs in `js/ui.js` only, which the snapshot build never loads.
-- **Localization** (`js/i18n.js`, `data/loc/`): every shown string is game text (the game's own string for a bound game key) or site text (CSV cells and `data/loc/site/eng.json`, translations in `data/loc/site/<lang>.json`). English renders the data as written. Don't type visible English into the JS: add a key to `eng.json` and use `t()`. Details and checks: `data/README.md` § Localization.
+- **Localization** (`js/i18n.js`, `data/loc/`): every shown string is game text (the game's own string for a bound game key) or site text (CSV cells and `data/loc/site/eng.json`, translations in `data/loc/site/<lang>.json`). English renders the data as written. Don't type visible English into the JS: add a key to `eng.json` and use `t()`. Changing visible English (CSV wording, new rows, labels) leaves the other languages showing English there until it's translated and reviewed. Data model: `data/README.md` § Localization; **the process and tools: `tools/l10n/README.md`**.
 - **Deploy** (`.github/workflows/deploy.yml`) is the real build entry point: `python build_thumbs.py` → `node build_snapshots.mjs`. Dependencies: Pillow + Node (both preinstalled on the runner).
 
 > **If `tools/ROLLOUT.md` exists, an unfinished cross-branch rollout is pending — read it before touching any branch.**
@@ -51,11 +51,15 @@ CSV schemas and the micro-syntax used inside cells (`{power_key}` refs, `<Move N
 | Promote a beta to live | "Promotion" section of the `/beta-pipeline` skill (data+media checkout to master, config fixup, reset beta_changes.csv). |
 | Preview work publicly | Merge/commit onto `test` and push — always allowed, deploys to `/test/` (noindexed). |
 | Preview locally | `serve.bat`, then http://localhost:8080. User prefers to test UI changes themselves — don't screenshot/preview-verify UI on their behalf. |
+| Change visible English (CSV wording, new rows, `eng.json` labels) | Then translate + review it in every language: `tools/l10n/README.md` ("When you need what"). Gate before committing: `node tools/l10n/check.mjs report --strict=all` + `node build_snapshots.mjs`. |
+| Change rendering code (`js/`) | English unchanged + fake-language checks (`tools/l10n/README.md` → Gates); a change the mod ships also goes through the mod's pipeline (site vs mod, every language). |
+| Add human translations | `node tools/l10n/merge.mjs <lang> <work.json> --human --translator=<who>` (engines never overwrite them). |
 | Rebuild snapshots locally (rarely needed) | `rebuild.bat`, or `python build_thumbs.py` + `node build_snapshots.mjs` — expect `index.html`/`404.html` to get cosmetic diffs (see fact 3). |
 
 ## Machine prerequisites (this machine only — paths are not portable)
 
 - Python 3.x + Pillow (`build_thumbs.py`), Node 18+ (`build_snapshots.mjs`)
+- .NET 9 SDK (`tools/l10n/oracle`, for `check.mjs formatter`); Python `anthropic` package + `ANTHROPIC_API_KEY` only for the API translation engine
 - GDRE tools: `C:/Users/jparr/Downloads/GDRE_tools/gdre_tools.exe` (decompilation)
 - Godot 4.6.1: `C:/Users/jparr/Downloads/Godot_v4.6.1-stable_win64.exe/` (sprite rendering)
 - Game PCK: `D:/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.pck`

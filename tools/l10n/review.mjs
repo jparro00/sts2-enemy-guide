@@ -15,6 +15,7 @@
 // Human translations aren't reviewed (they're the reference). Each file says which engine / model filled it
 // (its "engine" and "model" fields); the record keeps both passes' names.
 import fs from 'node:fs';
+import path from 'node:path';
 import crypto from 'node:crypto';
 import { SITE, bootSite, gameLoc, opt, isMain } from './lib.mjs';
 import { loadSite, loadMeta, saveMeta, siteText, termContext, termsFor, usesTerm, today } from './translations.mjs';
@@ -28,6 +29,7 @@ export const JUDGE_BRIEF = [
   'Each item has the site\'s English, its translation, and "back": what a separate translator, not shown the English, read the translation as.',
   'verdict "ok" when the translation says what the English says: the same facts, conditions, who does what, placeholders in the right roles. Style and word order may differ.',
   'verdict "drift" with a short note when it doesn\'t: meaning changed or missing, a placeholder in the wrong role, a game name not the game\'s (see "terms": the game\'s name in this language for each one the English uses; "used": false when the translation doesn\'t seem to have it), or grammar a native reader would stumble on.',
+  'Names "terms" doesn\'t list (event options, intents, rarities) are still the game\'s: check them in "gameText", the folder of the game\'s own text in this language. Judge every item on its own: a review that finds nothing in hundreds of items is rarely right.',
 ];
 
 // A blind item's handle: its id is its English, which the back-translator mustn't see
@@ -56,7 +58,8 @@ export function pairsWork(lang, blind) {
   const missing = blind.items.filter(i => !i.back || !i.back.trim());
   if (missing.length) throw new Error(`${missing.length} items have no back-translation yet (e.g. ${missing[0].id})`);
   if (!blind.engine && !blind.translator) throw new Error('the back-translation file doesn\'t say who made it (engine / model or translator)');
-  const ctx = termContext(site, gameLoc(['eng', lang]), lang);
+  const game = gameLoc(['eng', lang]);
+  const ctx = termContext(site, game, lang);
   const pages = Object.fromEntries(site.run('JSON.parse(JSON.stringify(siteTemplates(true)))').map(x => [`text:${x.template}`, x.page]));
   const byRef = new Map(Object.keys(loadMeta(lang).items).map(id => [ref(id), id]));
   const items = blind.items.map(b => {
@@ -67,7 +70,7 @@ export function pairsWork(lang, blind) {
     const terms = termsFor(english, pages[i.id] || '', ctx).map(t => ({ english: t.en, game: t.text, used: usesTerm(i.translation, t, lang) }));
     return { n: i.n, id: i.id, english, translation: i.translation, back: i.back, ...(terms.length ? { terms } : {}), verdict: '', note: '' };
   });
-  return { ...work(lang, site), step: 'judge', brief: JUDGE_BRIEF, back: { engine: blind.engine || '', model: blind.model || '', translator: blind.translator || '' }, engine: '', model: '', items };
+  return { ...work(lang, site), step: 'judge', brief: JUDGE_BRIEF, gameText: path.join(game.dir, lang), back: { engine: blind.engine || '', model: blind.model || '', translator: blind.translator || '' }, engine: '', model: '', items };
 }
 
 export function recordReview(lang, judged) {
