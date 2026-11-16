@@ -26,7 +26,7 @@ toric_toughness,Toric Toughness,Event,,2,Gain 5 [gold]Block[/gold]. Gain 5 [gold
 ultimate_defend,Ultimate Defend,Colorless,,1,Gain 11 [gold]Block[/gold].
 ultimate_strike,Ultimate Strike,Colorless,,1,Deal 14 damage.
 writhe,Writhe,Curse,,Unplayable,[gold]Unplayable[/gold]. [gold]Innate[/gold].
-caltrops,Caltrops,Event,,1,"Whenever you are attacked,  deal 3 damage back"
+caltrops,Caltrops,Event,,1,"Whenever you are attacked, deal 3 damage back."
 clash,Clash,Event,,0,Can only be played if every card in your [gold]Hand[/gold] is an Attack. Deal 14 damage.
 distraction,Distraction,Event,,1,Add a random Skill into your [gold]Hand[/gold]. It's free to play this turn. [gold]Exhaust[/gold].
 dual_wield,Dual Wield,Event,,1,Choose an Attack or Power card. Add a copy of that card into your [gold]Hand[/gold].
