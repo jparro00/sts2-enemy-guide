@@ -36,9 +36,11 @@ jobs:
           ref: master
           path: main-site
 
+      # dataTime: the deployed commit's time, so the in-game panel (SpireCodexBridge) can tell which copy of the
+      # data is newer, the site's or the one built into the mod (its build pipeline stamps the same way)
       - name: Force isBeta false on master
         run: |
-          jq '.isBeta = false | .siteBase = "" | .noindex = false' main-site/site-config.json > tmp.json && mv tmp.json main-site/site-config.json
+          jq --argjson t "$(git -C main-site log -1 --format=%ct)" '.isBeta = false | .siteBase = "" | .noindex = false | .dataTime = $t' main-site/site-config.json > tmp.json && mv tmp.json main-site/site-config.json
 
       - name: Validate master config
         run: |
@@ -105,9 +107,10 @@ jobs:
             else
               NOINDEX="true"
             fi
-            # Set branch-specific config: isBeta, noindex, siteBase
+            # Set branch-specific config: isBeta, noindex, siteBase, dataTime (the branch's commit time, as on master)
             if [ -f "checkout-${FOLDER}/site-config.json" ]; then
-              jq --arg base "/${FOLDER}" --argjson noindex "$NOINDEX" '.isBeta = true | .noindex = $noindex | .siteBase = $base' \
+              DATA_TIME=$(git -C "checkout-${FOLDER}" log -1 --format=%ct)
+              jq --arg base "/${FOLDER}" --argjson noindex "$NOINDEX" --argjson t "$DATA_TIME" '.isBeta = true | .noindex = $noindex | .siteBase = $base | .dataTime = $t' \
                 "checkout-${FOLDER}/site-config.json" > tmp.json && mv tmp.json "checkout-${FOLDER}/site-config.json"
             fi
             # Copy master's data/ into the beta checkout as master-data/ so the snapshot

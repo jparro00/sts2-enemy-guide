@@ -190,6 +190,35 @@ const allEvents = inCtx(`(() => {
     if (!ok) errors.push(`beta_changes.csv: ${r.Type}:${r.Name} does not resolve to an entity Key`);
   }
 
+  // Game ids (GameIds / GameMoves, data/README.md): the in-game panel and the game watcher place the fight and
+  // event by them alone. Well formed, and no game id on two encounter or event rows or two moves of one enemy;
+  // whether they are the game's is checked against the game by the mod's build pipeline (Abyssal tools/build-bridge).
+  const GAME_ID_RE = /^[A-Z0-9_]+$/;
+  const gameIds = (cell) => (cell || '').split(';').map((s) => s.trim()).filter(Boolean);
+  const checkGameIds = (owner, cell) => {
+    for (const id of gameIds(cell)) if (!GAME_ID_RE.test(id)) errors.push(`${owner}: ${JSON.stringify(id)} is not a game id (capitals, digits and _ only)`);
+  };
+  for (const r of mRows) checkGameIds(`monsters.csv ${r.Key} GameIds`, r.GameIds);
+  const stateRow = {};
+  for (const r of mvRows) {
+    checkGameIds(`monster_moves.csv ${r.Enemy}/${r.Move} GameMoves`, r.GameMoves);
+    for (const s of gameIds(r.GameMoves)) {
+      const k = `${r.Enemy}:${s}`;
+      if (stateRow[k]) errors.push(`monster_moves.csv: ${s} is on both ${r.Enemy}/${stateRow[k]} and ${r.Enemy}/${r.Move}`);
+      else stateRow[k] = r.Move;
+    }
+  }
+  for (const [file, rows] of [['encounters.csv', encRows], ['events.csv', evRows]]) {
+    const idRow = {};
+    for (const r of rows) {
+      checkGameIds(`${file} ${r.Key} GameIds`, r.GameIds);
+      for (const id of gameIds(r.GameIds)) {
+        if (idRow[id]) errors.push(`${file}: ${id} is on both ${idRow[id]} and ${r.Key}`);
+        else idRow[id] = r.Key;
+      }
+    }
+  }
+
   // Soft checks: unresolved {power} and <Move> references render as plain text
   const checkRefs = (owner, enemyKey, text) => {
     if (!text) return;

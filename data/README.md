@@ -17,6 +17,7 @@ Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the heade
 | `cards.csv`, `relics.csv`, `potions.csv`, `enchantments.csv` | `Key` | unified `itemsRef` reference tables |
 | `beta_changes.csv` | `Type:Name` where Type ∈ `monster` \| `encounter` \| `event` and Name is that entity's **Key** | "Beta Patch" badges |
 | `multiplayer-scaling.json` | — | act HP/effect multipliers, counter-power keys |
+| `game_gaps.csv` | `Type,GameId` | game ids the data knowingly doesn't cover (see [Game ids](#game-ids-gameids-gamemoves)); read only by the mod's build pipeline |
 
 **Keys are stable identifiers**: renaming an entity's display `Name`/`Encounter` is safe; changing a `Key` changes its live URL, image path, and every join — don't. New monsters get `Key` = slugified Name; new encounters get slugified name plus `-<category>` only if the name collides with another encounter.
 
@@ -72,6 +73,23 @@ With Dread on, every `N (M)` pair renders as its ascension value `M` (it overrid
 | `encounters.csv` | `Spawns` | Monster Keys from `Enemies` that join mid-fight rather than starting it (`;`-separated), from the encounter's `GenerateMonsters()` vs. `AllPossibleMonsters`. Used by `DominionPower` scopes |
 
 The columns are trailing and optional: rows without Dread data can stop at the last regular column (the parser fills missing fields with `''`). Write power amounts in Dominion text as `7 {plating}` (number first) so multiplayer scaling, which only rewrites `{power} N`, leaves them alone. `build_snapshots.mjs` validates `{power}`/`<Move>` refs in these columns, `DreadEnemies` keys, `Mode` values, the `DominionPower` format, and that every `Spawns` key is in the encounter's enemy list.
+
+## Game ids (`GameIds`, `GameMoves`)
+
+Which game ids each row is. The in-game panel (SpireCodexBridge) and `tools/game-watcher.mjs` place the current fight and event with these columns only, so names, descriptions, values and move lists can change freely: only these columns tie a row to the game.
+
+| File | Column | Values |
+|---|---|---|
+| `monsters.csv` | `GameIds` | the game's monster ids (`AXE_RUBY_RAIDER`). Several when the site merges monsters (Decimillipede: its three segments); one id on several rows when the site splits one (`TEST_SUBJECT` on each stage, in stage order) |
+| `monster_moves.csv` | `GameMoves` | the move state ids the game reports for this row (`SWING_1;SWING_2`), from the monster's `new MoveState("…")` calls. A move left empty is never marked as the enemy's current move in a fight |
+| `encounters.csv` | `GameIds` | the game's encounter ids (`RUBY_RAIDERS_NORMAL`) |
+| `events.csv` | `GameIds` | the game's event id (`ABYSSAL_BATHS`) |
+
+Ids are `;`-separated, capitals, digits and `_` (a model's id is its class name in that form: `AxeRubyRaider` → `AXE_RUBY_RAIDER`). The columns are the last ones in each file. A new monster, move, encounter or event needs its ids filled in.
+
+`game_gaps.csv` lists the game's ids the site doesn't cover on purpose (test monsters, event fights, Ancients, moves with no row): `Type` (`monster` | `move` | `encounter` | `event`), `GameId` (`MONSTER:STATE` for a move), `Note`.
+
+The mod's build pipeline (Abyssal `tools/build-bridge`) checks both against the installed game and stops on: an id on a row that the game doesn't have, a game id on two encounter or event rows (or a move state on two moves of one enemy), and a game id that is on no row and not in `game_gaps.csv`. `build_snapshots.mjs` checks the format.
 
 ## Images
 

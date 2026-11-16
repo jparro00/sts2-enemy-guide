@@ -119,6 +119,14 @@ Update the relevant CSVs based on verified changes (see `data/README.md` for sch
 - `data/event_choices.csv` — Effect, Notes, References
 - `data/powers.csv` — if new powers or description changes
 
+### Game ids (`GameIds`, `GameMoves`)
+The in-game panel and the game watcher find the current fight's rows by these columns only (schema in `data/README.md` → "Game ids"). For every new or changed row:
+- `monsters.csv` `GameIds`: the monster's class name in id form (`AxeRubyRaider` → `AXE_RUBY_RAIDER`).
+- `monster_moves.csv` `GameMoves`: the `new MoveState("…")` ids in the monster's `.cs` that this row is (`SWING_1;SWING_2`). Re-check when a patch renames or splits a monster's states.
+- `encounters.csv` / `events.csv` `GameIds`: the encounter's / event's class name in id form.
+- Game content the site deliberately leaves out goes in `data/game_gaps.csv`.
+The mod's build pipeline (Abyssal `powershell -File tools\build-bridge\build-bridge.ps1`) then checks every id against the installed game and lists anything missing.
+
 ### Dread mode data (bosses and Dominions)
 Dread values live in optional trailing columns (`DreadHP`, `DreadPattern`, `DreadStartsWith`, `DreadNotes`, `DreadEffects`, `Mode`, `DreadEnemies`, `DreadMulti`, `Dominion`) — schema in `data/README.md` → "Dread mode columns". Every patch:
 - `grep -n "IsDread" raw/src/Core/Models/Monsters/*.cs raw/src/Core/Models/Encounters/*.cs` and re-check each boss's Dread-only values (they are written as the ascension value + the Dread bonus, as a single number).
