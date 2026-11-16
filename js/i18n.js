@@ -12,6 +12,7 @@
 let siteLang = 'eng';
 let pseudoLang = false;     // tools/l10n: every string wrapped in ⟦ ⟧, so text typed in code shows up unmarked
 let siteUi = {};            // data/loc/site/eng.json "ui": key -> English
+let siteUiGame = {};        // key -> [table, key] for a label that is also a game string ({ text, game } in eng.json)
 let langUi = {};            // the language's "ui": key -> { en: the English it was made from, text }
 let langText = {};          // the language's "text": English template (see txTemplate) -> translation
 let gameEng = {};           // data/loc/game/eng.json "text": table -> key -> English
@@ -20,7 +21,14 @@ const locMisses = new Set();  // lookups that fell back to English (tools/l10n r
 
 function loadLocTables(gameJson, siteJson) {
   gameEng = gameJson ? (JSON.parse(gameJson).text || {}) : {};
-  siteUi = siteJson ? (JSON.parse(siteJson).ui || {}) : {};
+  siteUi = {};
+  siteUiGame = {};
+  for (const [key, v] of Object.entries(siteJson ? (JSON.parse(siteJson).ui || {}) : {})) {
+    if (typeof v === 'string') { siteUi[key] = v; continue; }
+    siteUi[key] = v.text;
+    const i = v.game.indexOf(':');
+    siteUiGame[key] = [v.game.slice(0, i), v.game.slice(i + 1)];
+  }
 }
 
 // `files`: the language's { game, site } JSON texts (data/loc/game/<lang>.json, data/loc/site/<lang>.json)
@@ -54,14 +62,22 @@ function currentLangInfo() {
 function t(key, vals) {
   const en = siteUi[key];
   let s = en === undefined ? key : en;
+  const game = siteUiGame[key];
   if (pseudoLang) s = `⟦${s}⟧`;
-  else if (siteLang !== 'eng') {
+  else if (siteLang === 'eng') { /* as written */ }
+  else if (game && gameEnglish(game[0], game[1]) === en) s = gameString(game[0], game[1]);
+  else {
     const tr = langUi[key];
     // A translation stands only for the English it was made from
     if (tr && tr.en === en && tr.text) s = tr.text;
     else locMisses.add(`ui:${key}`);
   }
   return vals ? s.replace(/\{(\w+)\}/g, (m, name) => (name in vals ? vals[name] : m)) : s;
+}
+
+// Labels a language must translate: all but those that are game strings (their English the game's)
+function uiKeysToTranslate() {
+  return Object.keys(siteUi).filter(k => !(siteUiGame[k] && gameEnglish(siteUiGame[k][0], siteUiGame[k][1]) === siteUi[k]));
 }
 
 // ── Game text ──
@@ -82,14 +98,235 @@ function gameString(table, key) {
   return en;
 }
 
+// ── The game's formatting (SmartFormat.NET with the game's own formatters, LocManager.LoadLocFormatters) ──
+// The part of it the game's text uses: placeholders, plural (per-language rules), cond, choose, show (upgraded),
+// diff / inverseDiff / abs / percentMore / percentLess, energyIcons / starIcons and locale numbers.
+// tools/l10n checks it against the game's own formatter (the oracle).
+const FORMAT_CULTURES = {
+  eng: { plural: 'one-other', group: ',' },
+  zhs: { plural: 'single', group: ',' },
+  spa: { plural: 'one-other', group: '.' },
+};
+// What the site's text describes: a solo run, outside combat, cards not upgraded, colorless energy
+const GAME_VAR_DEFAULTS = { IsMultiplayer: false, InCombat: false, IfUpgraded: 'normal', energyPrefix: 'colorless' };
+const SF_FORMATTERS = new Set(['plural', 'cond', 'choose', 'show', 'diff', 'inverseDiff', 'abs', 'percentMore', 'percentLess', 'energyIcons', 'starIcons', 'n']);
+
+// Splits at the top-level occurrences of `ch` (not inside a nested placeholder)
+function sfSplit(s, ch) {
+  const out = [];
+  let depth = 0, cur = '';
+  for (const c of s) {
+    if (c === '{') depth++;
+    else if (c === '}') depth--;
+    if (c === ch && depth === 0) { out.push(cur); cur = ''; } else cur += c;
+  }
+  out.push(cur);
+  return out;
+}
+
+function sfNumber(v, culture) {
+  if (typeof v !== 'number') return String(v);
+  const n = Math.round(v);   // N0
+  const s = String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g, culture.group);
+  return n < 0 ? `-${s}` : s;
+}
+
+function sfPluralIndex(n, count, culture) {
+  if (count <= 1 || culture.plural === 'single') return 0;
+  if (count === 2) return n === 1 ? 0 : 1;
+  return n === 0 ? 0 : n === 1 ? 1 : Math.min(2, count - 1);
+}
+
+function sfCondition(cond, n) {
+  // "<0", "==1", ">=5&<10", "<0/>9" (& and, / or)
+  return cond.split('/').some(any => any.split('&').every(c => {
+    const m = c.match(/^(<=|>=|==|!=|<|>|=)(-?[\d.]+)$/);
+    if (!m) throw new Error(`condition ${c}`);
+    const x = parseFloat(m[2]);
+    return { '<': n < x, '<=': n <= x, '>': n > x, '>=': n >= x, '=': n === x, '==': n === x, '!=': n !== x }[m[1]];
+  }));
+}
+
+function sfResolve(sel, vars, current) {
+  if (sel === '') return current;
+  if (sel in vars) return vars[sel];
+  let v = vars;
+  for (const part of sel.split('.')) {
+    if (v === null || v === undefined || !(part in Object(v))) throw new Error(`no value for ${sel}`);
+    v = v[part];
+  }
+  return v;
+}
+
+function sfFormat(s, vars, current, culture) {
+  let out = '';
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== '{') { out += s[i]; continue; }
+    let depth = 1, j = i + 1;
+    while (j < s.length && depth) { if (s[j] === '{') depth++; else if (s[j] === '}') depth--; j++; }
+    if (depth) throw new Error('unclosed placeholder');
+    out += sfPlaceholder(s.slice(i + 1, j - 1), vars, current, culture);
+    i = j - 1;
+  }
+  return out;
+}
+
+function sfPlaceholder(body, vars, current, culture) {
+  const colon = body.indexOf(':');
+  const sel = colon < 0 ? body : body.slice(0, colon);
+  const rest = colon < 0 ? null : body.slice(colon + 1);
+  let name = null, opts = null, format = rest;
+  if (rest !== null) {
+    const m = rest.match(/^([a-zA-Z]+)(?:\(([^)]*)\))?(:|$)/);
+    if (m && SF_FORMATTERS.has(m[1])) { name = m[1]; opts = m[2] ?? null; format = m[3] === ':' ? rest.slice(m[0].length) : null; }
+  }
+  const v = sfResolve(sel, vars, current);
+  const sub = f => sfFormat(f, vars, v, culture);
+  const icon = file => `[img]res://images/packed/sprite_fonts/${file}.png[/img]`;
+  if (name === null) {
+    if (format === null) {
+      if (v === undefined) throw new Error(`no value for ${sel}`);
+      return typeof v === 'boolean' ? (v ? 'True' : 'False') : sfNumber(v, culture);
+    }
+    name = typeof v === 'number' && sfSplit(format, '|').length > 1 ? 'plural' : 'cond';
+  }
+  switch (name) {
+    case 'plural': {
+      const words = sfSplit(format, '|');
+      return sub(words[Math.min(sfPluralIndex(Number(v), words.length, culture), words.length - 1)]);
+    }
+    case 'cond': {
+      const params = sfSplit(format, '|');
+      const conditional = params.map(p => p.match(/^((?:[&/]?(?:<=|>=|==|!=|<|>|=)-?[\d.]+)+)\?([\s\S]*)$/));
+      if (conditional.some(Boolean)) {
+        for (let k = 0; k < params.length; k++) {
+          if (!conditional[k]) return sub(params[k]);   // the first plain parameter is the "else"
+          if (sfCondition(conditional[k][1], Number(v))) return sub(conditional[k][2]);
+        }
+        return '';
+      }
+      if (typeof v === 'boolean') return v ? sub(params[0]) : (params.length > 1 ? sub(params[1]) : '');
+      if (v === null || v === undefined) return sub(params[params.length - 1]);
+      if (typeof v === 'string') return v !== '' ? sub(params[0]) : (params.length > 1 ? sub(params[1]) : '');
+      const n = Number(v);
+      return sub(params[n < 0 ? params.length - 1 : Math.min(Math.floor(n), params.length - 1)]);
+    }
+    case 'choose': {
+      const options = (opts || '').split('|'), params = sfSplit(format, '|');
+      const k = options.indexOf(typeof v === 'boolean' ? (v ? 'True' : 'False') : String(v));
+      if (k >= 0) return sub(params[k]);
+      if (params.length > options.length) return sub(params[params.length - 1]);
+      throw new Error(`choose: no option for ${v}`);
+    }
+    case 'show': {
+      const params = sfSplit(format || '', '|');
+      return v === 'upgraded' ? sub(params[0]) : (params.length > 1 ? sub(params[1]) : '');
+    }
+    case 'diff': case 'inverseDiff':
+      return typeof v === 'number' ? String(Math.trunc(v)) : String(v);
+    case 'abs':
+      return String(Math.abs(Number(v)));
+    case 'percentMore': return String(Math.round((Number(v) - 1) * 100));
+    case 'percentLess': return String(Math.round((1 - Number(v)) * 100));
+    case 'energyIcons': case 'starIcons': {
+      let n, file;
+      if (name === 'energyIcons') {
+        const prefix = typeof v === 'string' ? v : (vars.energyPrefix || 'colorless');
+        n = typeof v === 'string' ? parseInt(opts, 10) : Math.trunc(Number(v));
+        file = `${prefix}_energy_icon`;
+      } else { n = Math.trunc(Number(v)); file = 'star_icon'; }
+      if (Number.isNaN(n)) throw new Error(`${name}: no count`);
+      return n > 0 && n < 5 ? icon(file).repeat(n) : `${n}${icon(file)}`;
+    }
+    case 'n': return sfNumber(Number(v), culture);
+  }
+  throw new Error(`formatter ${name}`);
+}
+
+// The game's template filled with `vars` (plus GAME_VAR_DEFAULTS), formatted for `lang`; null when it can't be
+// (a value it needs is missing, or something outside the part of SmartFormat above)
+function formatGameText(template, vars, lang) {
+  try {
+    return sfFormat(template, { ...GAME_VAR_DEFAULTS, ...vars }, undefined, FORMAT_CULTURES[lang] || FORMAT_CULTURES.eng);
+  } catch (e) {
+    return null;
+  }
+}
+
+// GameVars cells: "Name=value;Name=value" (numbers stay numbers, true/false booleans, @table:KEY another game
+// string, shown in the language: a dish's name) and card keywords the game shows around the description:
+// ^KEYWORD before it, $KEYWORD after it (card_keywords table)
+function parseGameVars(cell) {
+  const vars = {}, before = [], after = [];
+  for (const part of (cell || '').split(';').map(s => s.trim()).filter(Boolean)) {
+    if (part[0] === '^') before.push(part.slice(1));
+    else if (part[0] === '$') after.push(part.slice(1));
+    else {
+      const i = part.indexOf('=');
+      const raw = part.slice(i + 1);
+      vars[part.slice(0, i)] = /^-?\d+(\.\d+)?$/.test(raw) ? parseFloat(raw) : raw === 'true' ? true : raw === 'false' ? false : raw;
+    }
+  }
+  return { vars, before, after };
+}
+
+// A game description in `lang`: the template formatted, with the card's keywords around it as the game shows
+// them ("[gold]Unplayable[/gold]. … [gold]Eternal[/gold].")
+function gameDescription(template, gv, lang, keyword) {
+  const vars = {};
+  for (const [k, v] of Object.entries(gv.vars)) {
+    if (typeof v !== 'string' || v[0] !== '@') { vars[k] = v; continue; }
+    const i = v.indexOf(':'), table = v.slice(1, i), key = v.slice(i + 1);
+    const local = lang === 'eng' ? gameEnglish(table, key) : ((gameLang[table] && gameLang[table][key]) || gameEnglish(table, key));
+    if (local === null) return null;
+    vars[k] = local;
+  }
+  const body = formatGameText(template, vars, lang);
+  if (body === null) return null;
+  const kw = k => { const title = keyword(`${k}.title`); return title === null ? null : `[gold]${title}[/gold]${keyword('PERIOD') ?? '.'}`; };
+  const before = gv.before.map(kw), after = gv.after.map(kw);
+  if (before.includes(null) || after.includes(null)) return null;
+  return [...before, body, ...after].join(' ');
+}
+
+// A bound field with values: game text when the game's English template, formatted with the row's GameVars,
+// is the site's English; else site text. `candidates`: [[table, key], ...]
+// The candidate key whose English, formatted with the GameVars, is `english` (null: the site's own wording)
+function gameKeyFor(english, candidates, gameVarsCell) {
+  const gv = parseGameVars(gameVarsCell);
+  return candidates.find(([table, key]) => {
+    const en = gameEnglish(table, key);
+    return en !== null && gameDescription(en, gv, 'eng', k => gameEnglish('card_keywords', k)) === english;
+  }) || null;
+}
+
+function boundFormatted(english, candidates, gameVarsCell, kind, splitParts) {
+  if (!english || (siteLang === 'eng' && !pseudoLang)) return english;
+  const gv = parseGameVars(gameVarsCell);
+  const hit = gameKeyFor(english, candidates, gameVarsCell);
+  if (hit) {
+    const [table, key] = hit;
+    if (pseudoLang) return `⟦${english}⟧`;
+    const tbl = gameLang[table];
+    const local = tbl && typeof tbl[key] === 'string' && tbl[key] !== '' ? tbl[key] : null;
+    // A string the language lacks shows in English with English rules, as in the game
+    const text = local === null ? null : gameDescription(local, gv, siteLang, k => (gameLang.card_keywords && gameLang.card_keywords[k]) ?? gameEnglish('card_keywords', k));
+    if (text !== null) return text;
+    locMisses.add(`game:${table}:${key}`);
+    return english;
+  }
+  return splitParts ? splitParts(english, kind) : tx(english, kind);
+}
+
 // A bound field: game text when its English is one of the candidate keys' English, else site text.
 // `candidates`: [[table, key], ...]
-function boundText(english, candidates) {
+// `kind`: what the field is (a translator's context; siteTemplates records it)
+function boundText(english, candidates, kind) {
   if (!english || (siteLang === 'eng' && !pseudoLang)) return english;
   for (const [table, key] of candidates) {
     if (gameEnglish(table, key) === english) return gameString(table, key);
   }
-  return tx(english);
+  return tx(english, kind);
 }
 
 // ── Site text in data cells ──
@@ -118,12 +355,13 @@ function txHasWords(template) {
   return /\p{L}/u.test(template.replace(/\{[mpn]\d+\}/g, ''));
 }
 
-let txCollect = null;   // siteTemplates: a Set gathering every template rendered
+let txCollect = null;   // siteTemplates: template -> { kind, example: a cell it came from, page }
+let txPage = '';
 
-function tx(text) {
+function tx(text, kind) {
   if (!text || (siteLang === 'eng' && !pseudoLang)) return text;
   const { template, args } = txTemplate(text);
-  if (txCollect && txHasWords(template)) txCollect.add(template);
+  if (txCollect && txHasWords(template) && !txCollect.has(template)) txCollect.set(template, { kind: kind || 'text', example: text, page: txPage });
   let tr;
   if (pseudoLang) tr = `⟦${template}⟧`;
   else {
@@ -138,28 +376,28 @@ function tx(text) {
 
 // tx on each part of a cell between separators (`re` must capture them), keeping the separators and the
 // spaces around each part as they are
-function txParts(text, re) {
+function txParts(text, re, kind) {
   if (!text || (siteLang === 'eng' && !pseudoLang)) return text;
   return text.split(re).map((part, i) => {
     if (i % 2) return part;
     const m = part.match(/^(\s*)([\s\S]*?)(\s*)$/);
-    return m[2] ? m[1] + tx(m[2]) + m[3] : part;
+    return m[2] ? m[1] + tx(m[2], kind) + m[3] : part;
   }).join('');
 }
 
 // Effects, Dominion and beta-change text: one translation per ;-separated clause
-function txClauses(text) {
-  return txParts(text, /(;)/);
+function txClauses(text, kind) {
+  return txParts(text, /(;)/, kind);
 }
 
 // Patterns and lore-free multi-line cells: one translation per line
-function txLines(text) {
-  return txParts(text, /(\r?\n)/);
+function txLines(text, kind) {
+  return txParts(text, /(\r?\n)/, kind);
 }
 
 // Lore-style cells (renderLore): one translation per |-separated paragraph
-function txLore(text) {
-  return txParts(text, /(\|)/);
+function txLore(text, kind) {
+  return txParts(text, /(\|)/, kind);
 }
 
 // ── Names and descriptions bound to game keys ──
@@ -171,7 +409,7 @@ function enemyNameKeys(data) {
 
 function enemyName(key) {
   const data = enemyDatabase[key];
-  return data ? boundText(data.name, enemyNameKeys(data)) : key;
+  return data ? boundText(data.name, enemyNameKeys(data), 'monster name') : key;
 }
 
 function moveNameKeys(enemyKey, move) {
@@ -184,7 +422,7 @@ function moveNameKeys(enemyKey, move) {
 }
 
 function moveName(enemyKey, move) {
-  return boundText(move.name, moveNameKeys(enemyKey, move));
+  return boundText(move.name, moveNameKeys(enemyKey, move), 'move name');
 }
 
 function encounterNameKeys(enc) {
@@ -192,7 +430,7 @@ function encounterNameKeys(enc) {
 }
 
 function encounterName(enc) {
-  return boundText(enc.name, encounterNameKeys(enc));
+  return boundText(enc.name, encounterNameKeys(enc), 'encounter name');
 }
 
 // The panel title of an encounter (an unknown key shows as itself, as before)
@@ -205,26 +443,26 @@ function eventNameKeys(ev) {
 }
 
 function eventName(ev) {
-  return boundText(ev.name, eventNameKeys(ev));
+  return boundText(ev.name, eventNameKeys(ev), 'event name');
 }
 
 // event_choices.GameOption: "PAGE.OPTION" of the event's game id (INITIAL.DIVE_INTO_WATER)
 function choiceKeys(ev, choice, field) {
   if (!choice.gameOption) return [];
+  // table:KEY: a choice titled with another game string (the Fake Merchant's fake relics: relics:FAKE_ANCHOR)
+  const t = choice.gameOption.indexOf(':');
+  if (t >= 0) return [[choice.gameOption.slice(0, t), `${choice.gameOption.slice(t + 1)}.${field}`]];
   const [page, option] = choice.gameOption.split('.');
   return ev.gameIds.map(id => ['events', `${id}.pages.${page}.options.${option}.${field}`]);
 }
 
+// Choices: the option's title and description take the same values (event_choices.GameVars)
 function choiceName(ev, choice) {
-  return boundText(choice.choice, choiceKeys(ev, choice, 'title'));
+  return boundFormatted(choice.choice, choiceKeys(ev, choice, 'title'), choice.gameVars, 'event choice');
 }
 
 function choiceEffect(ev, choice) {
-  if (!choice.effect || (siteLang === 'eng' && !pseudoLang)) return choice.effect;
-  for (const [table, key] of choiceKeys(ev, choice, 'description')) {
-    if (gameEnglish(table, key) === choice.effect) return gameString(table, key);
-  }
-  return txLore(choice.effect);
+  return boundFormatted(choice.effect, choiceKeys(ev, choice, 'description'), choice.gameVars, 'event choice effect', txLore);
 }
 
 function eventLoreKeys(ev) {
@@ -240,9 +478,15 @@ function eventLore(ev) {
   if (!ev.lore || (siteLang === 'eng' && !pseudoLang)) return ev.lore;
   for (const [table, key] of eventLoreKeys(ev)) {
     const en = gameEnglish(table, key);
-    if (en !== null && loreFromGame(en) === ev.lore) return loreFromGame(gameString(table, key));
+    if (en === null || loreFromGame(formatGameText(en, {}, 'eng') ?? '') !== ev.lore) continue;
+    if (pseudoLang) return `⟦${ev.lore}⟧`;
+    const local = gameLang.events && gameLang.events[key];
+    const text = local ? formatGameText(local, {}, siteLang) : null;
+    if (text !== null) return loreFromGame(text);
+    locMisses.add(`game:${table}:${key}`);
+    return ev.lore;
   }
-  return txLore(ev.lore);
+  return txLore(ev.lore, 'event lore');
 }
 
 // GameIds of a reference row: the key prefix in the file's game table (ARTIFACT_POWER), or table:prefix for
@@ -258,20 +502,20 @@ const REF_TABLES = { card: 'cards', relic: 'relics', potion: 'potions', enchantm
 
 function powerName(key) {
   const ref = powersRef[key];
-  return ref ? boundText(ref.name, refKeys('powers', ref.gameIds, 'title')) : key;
+  return ref ? boundText(ref.name, refKeys('powers', ref.gameIds, 'title'), 'power name') : key;
 }
 
 function powerDesc(key) {
   const ref = powersRef[key];
-  return ref ? boundText(ref.desc, refKeys('powers', ref.gameIds, 'description')) : '';
+  return ref ? boundFormatted(ref.desc, refKeys('powers', ref.gameIds, 'description'), ref.gameVars, 'power description') : '';
 }
 
 function itemName(item) {
-  return boundText(item.name, refKeys(REF_TABLES[item.category], item.gameIds || [], 'title'));
+  return boundText(item.name, refKeys(REF_TABLES[item.category], item.gameIds || [], 'title'), `${item.category} name`);
 }
 
 function itemDesc(item) {
-  return boundText(item.desc, refKeys(REF_TABLES[item.category], item.gameIds || [], 'description'));
+  return boundFormatted(item.desc, refKeys(REF_TABLES[item.category], item.gameIds || [], 'description'), item.gameVars, `${item.category} description`, txLore);
 }
 
 function actName(zone) {
@@ -295,6 +539,7 @@ function eventSearchZoneName(zone) { return zone === SHARED_ZONE.key ? t('zone_s
 function gameKeysUsed() {
   const keys = [];
   for (const a of ACTS) keys.push(['acts', `${a.gameId}.title`]);
+  for (const k in siteUiGame) keys.push(siteUiGame[k]);
   for (const key in enemyDatabase) {
     const d = enemyDatabase[key];
     keys.push(...enemyNameKeys(d));
@@ -307,17 +552,26 @@ function gameKeysUsed() {
   }
   for (const key in itemsRef) {
     const item = itemsRef[key];
-    for (const field of ['title', 'description', 'smartDescription']) keys.push(...refKeys(REF_TABLES[item.category], item.gameIds || [], field));
+    for (const field of ['title', 'description']) keys.push(...refKeys(REF_TABLES[item.category], item.gameIds || [], field));
+  }
+  // Card keywords around card descriptions, and the game strings GameVars point at
+  const cells = [...Object.values(itemsRef).map(i => i.gameVars), ...Object.values(eventChoices).flat().map(c => c.gameVars)];
+  for (const cell of cells) {
+    const gv = parseGameVars(cell);
+    for (const k of [...gv.before, ...gv.after]) keys.push(['card_keywords', `${k}.title`]);
+    if (gv.before.length || gv.after.length) keys.push(['card_keywords', 'PERIOD']);
+    for (const v of Object.values(gv.vars)) if (typeof v === 'string' && v[0] === '@') { const i = v.indexOf(':'); keys.push([v.slice(1, i), v.slice(i + 1)]); }
   }
   const seen = new Set();
   return keys.filter(([table, key]) => { const id = `${table}\u0000${key}`; if (seen.has(id)) return false; seen.add(id); return true; });
 }
 
 // Every site-text template the pages can show, sorted (what a language's "text" must cover): every page the
-// site and the panel build, with and without Dread, rendered with the templates gathered instead of translated
-function siteTemplates() {
+// site and the panel build, with and without Dread, rendered with the templates gathered instead of translated.
+// `withContext`: [{ template, example, page }] instead of the templates alone.
+function siteTemplates(withContext) {
   const saved = [siteLang, pseudoLang, dreadMode, ascensionLevel, playerCount, openPanelInfo, hiddenZones, knownDreadBosses, dreadBosses];
-  txCollect = new Set();
+  txCollect = new Map();
   pseudoLang = true;
   try {
     ascensionLevel = null; playerCount = 1; hiddenZones = []; knownDreadBosses = {}; dreadBosses = {};
@@ -325,21 +579,26 @@ function siteTemplates() {
       dreadMode = dread;
       for (const zone in encounters) for (const cat in encounters[zone]) for (const enc of encounters[zone][cat]) {
         openPanelInfo = { type: 'encounter', key: enc.key, act: zone, cat, enemies: [], moves: [] };
+        txPage = `encounter ${enc.key}`;
         encounterTitle(enc, enc.key); renderBetaBadge('encounter', enc.key); buildEncounterPanelBody(enc, enc.key, [], []);
         if (enc.dominion) dominionRow(enc, true);
       }
       for (const key in enemyDatabase) {
         openPanelInfo = { type: 'enemy', key, ...enemyScalingContext(key, ACTS[0].key), moves: [] };
+        txPage = `enemy ${key}`;
         enemyName(key); buildEnemyPanelBody(key, []);
       }
       for (const zone in eventsData) for (const ev of eventsData[zone]) {
         openPanelInfo = { type: 'event', key: ev.key };
+        txPage = `event ${ev.key}`;
         eventName(ev); renderBetaBadge('event', ev.key); buildEventPanelBody(ev, eventChoices[ev.key] || []);
       }
       openPanelInfo = null;
+      txPage = 'grid';
       for (const zone of [...zoneOrder, 'events']) for (const cat of zone === 'events' ? ['all', ...eventZoneOrder.map(z => `ev_${z}`)] : ['all', ...encounterCatKeys, 'events']) buildGridHtml(zone, cat);
     }
-    return [...txCollect].sort();
+    const keys = [...txCollect.keys()].sort();
+    return withContext ? keys.map(k => ({ template: k, ...txCollect.get(k) })) : keys;
   } finally {
     txCollect = null;
     [siteLang, pseudoLang, dreadMode, ascensionLevel, playerCount, openPanelInfo, hiddenZones, knownDreadBosses, dreadBosses] = saved;

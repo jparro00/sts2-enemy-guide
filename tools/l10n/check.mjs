@@ -79,11 +79,11 @@ if (mode === 'report') {
   // Classification: bound fields whose English is the game's vs the site's own
   const split = site.run(`(() => {
     const out = {};
-    const tally = (table, english, candidates) => {
+    const tally = (table, english, candidates, cell) => {
       if (!english) return;
       const o = out[table] = out[table] || { game: 0, site: 0, unbound: 0 };
       if (!candidates.length) o.unbound++;
-      else if (candidates.some(([t, k]) => gameEnglish(t, k) === english)) o.game++;
+      else if (gameKeyFor(english, candidates, cell || '')) o.game++;
       else o.site++;
     };
     for (const key in enemyDatabase) {
@@ -96,16 +96,16 @@ if (mode === 'report') {
       tally('event names', ev.name, eventNameKeys(ev));
       const lore = eventLoreKeys(ev).map(([t, k]) => [t, k]);
       const o = out['event lore'] = out['event lore'] || { game: 0, site: 0, unbound: 0 };
-      if (ev.lore) { if (!lore.length) o.unbound++; else if (lore.some(([t, k]) => loreFromGame(gameEnglish(t, k) || '') === ev.lore)) o.game++; else o.site++; }
+      if (ev.lore) { if (!lore.length) o.unbound++; else if (lore.some(([t, k]) => loreFromGame(formatGameText(gameEnglish(t, k) || '', {}, 'eng') || '') === ev.lore)) o.game++; else o.site++; }
       for (const c of eventChoices[ev.key] || []) {
-        tally('choice names', c.choice, choiceKeys(ev, c, 'title'));
-        tally('choice effects', c.effect, choiceKeys(ev, c, 'description'));
+        tally('choice names', c.choice, choiceKeys(ev, c, 'title'), c.gameVars);
+        tally('choice effects', c.effect, choiceKeys(ev, c, 'description'), c.gameVars);
       }
     }
     for (const key in itemsRef) {
       const it = itemsRef[key];
       tally(it.category + ' names', it.name, refKeys(REF_TABLES[it.category], it.gameIds || [], 'title'));
-      tally(it.category + ' descriptions', it.desc, refKeys(REF_TABLES[it.category], it.gameIds || [], 'description'));
+      tally(it.category + ' descriptions', it.desc, refKeys(REF_TABLES[it.category], it.gameIds || [], 'description'), it.gameVars);
     }
     return out;
   })()`);
@@ -119,13 +119,14 @@ if (mode === 'report') {
     const file = path.join(SITE, 'data', 'loc', 'site', `${lang}.json`);
     const tr = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : { ui: {}, text: {} };
     const ui = site.run('JSON.parse(JSON.stringify(siteUi))');
-    const missingUi = Object.keys(ui).filter(k => !tr.ui?.[k]?.text);
-    const staleUi = Object.keys(ui).filter(k => tr.ui?.[k]?.text && tr.ui[k].en !== ui[k]);
+    const uiKeys = site.run('uiKeysToTranslate()');
+    const missingUi = uiKeys.filter(k => !tr.ui?.[k]?.text);
+    const staleUi = uiKeys.filter(k => tr.ui?.[k]?.text && tr.ui[k].en !== ui[k]);
     const needed = JSON.parse(site.run('JSON.stringify(siteTemplates())'));
     const missingText = needed.filter(t => !tr.text?.[t]);
     const unused = Object.keys(tr.text || {}).filter(t => !needed.includes(t));
     const bad = missingUi.length + staleUi.length + missingText.length;
-    console.log(`${lang}: ui ${Object.keys(ui).length - missingUi.length - staleUi.length}/${Object.keys(ui).length} (${staleUi.length} stale), text ${needed.length - missingText.length}/${needed.length}${unused.length ? `, ${unused.length} no longer used` : ''}`);
+    console.log(`${lang}: ui ${uiKeys.length - missingUi.length - staleUi.length}/${uiKeys.length} (${staleUi.length} stale; ${Object.keys(ui).length - uiKeys.length} more are game text), text ${needed.length - missingText.length}/${needed.length}${unused.length ? `, ${unused.length} no longer used` : ''}`);
     if (bad && strict.includes(lang)) failed = true;
   }
   process.exit(failed ? 1 : 0);

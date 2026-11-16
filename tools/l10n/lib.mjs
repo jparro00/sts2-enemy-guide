@@ -18,18 +18,17 @@ export const DATA_FILES = [
   ['potions', 'potions'], ['relics', 'relics'], ['beta', 'beta_changes'],
 ];
 
-// The scripts index.html loads, minus the DOM-bound ones, booted over the site's data (and its English game and
-// site text unless `noLoc`)
+// The scripts index.html loads, minus the DOM-bound ones, booted over the site's data and its English game and
+// site text
 export function bootSite(dir = SITE, { noLoc = false } = {}) {
   const scripts = [...readSite('index.html', dir).matchAll(/<script src="js\/([^"]+)"><\/script>/g)].map(m => m[1])
     .filter(s => s !== 'ui.js' && s !== 'search.js');
   const ctx = vm.createContext({ console });
   for (const f of scripts) new vm.Script(readSite(`js/${f}`, dir), { filename: `js/${f}` }).runInContext(ctx);
   ctx.__texts = Object.fromEntries(DATA_FILES.map(([k, f]) => [k, readSite(`data/${f}.csv`, dir)]));
-  if (!noLoc) {
-    ctx.__texts.gameText = readSite('data/loc/game/eng.json', dir);
-    ctx.__texts.siteText = readSite('data/loc/site/eng.json', dir);
-  }
+  // noLoc: without the game's text (the extract step, which writes it)
+  if (!noLoc) ctx.__texts.gameText = readSite('data/loc/game/eng.json', dir);
+  ctx.__texts.siteText = readSite('data/loc/site/eng.json', dir);
   ctx.__cfg = JSON.parse(readSite('site-config.json', dir) || '{}');
   ctx.__sc = JSON.parse(readSite('data/multiplayer-scaling.json', dir) || '{}');
   vm.runInContext('siteConfig = __cfg; multiplayerScaling = __sc; buildDataStructures(__texts)', ctx);

@@ -1,0 +1,620 @@
+{
+  "lang": "zhs",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "参考"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "阶段{n}：{name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "行动模式"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — 本页面反映<strong>测试版v{version}</strong>的平衡性改动。<a href=\"../\">查看正式版</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">查看正式版</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "本站同时提供最新<strong>测试版补丁v{version}</strong>的数据。<a href=\"beta/\">切换到测试版</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">切换到测试版</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "测试版{version}改动："
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "测试版补丁"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "Boss："
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "全部遭遇战"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "Boss"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "简单"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "简单遭遇战"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "困难"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "困难遭遇战"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "选项"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "选项"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "效果"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "意图"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "行动"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "折叠/展开"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "敌人组成"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "支配"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "本幕Boss"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "本幕其他战斗"
+    },
+    "events": {
+      "en": "Events",
+      "text": "事件"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "全部事件"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "提交反馈或报告问题"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "本站数据最初来源于<a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>，由<span class=\"credit-names\">dr0gulus、Aplet123和Redbeardy_Mcgee</span>创建——衷心感谢他们的付出让这一切成为可能。"
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "《杀戮尖塔2》目前处于抢先体验阶段，敌人的数值、行动和模式可能会随每次补丁而改变。数据最近更新于<span id=\"game-version\"></span>。"
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "生命值："
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "添加状态牌"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "苦痛"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "攻击"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "格挡"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "增益"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "致命一击"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "减益"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "逃跑"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "回复"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "多段攻击"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "睡眠"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "晕眩"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "召唤"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "未知"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": "、"
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name}——失去首领后会脱离战斗"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "行动"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "暂无数据。"
+    },
+    "players": {
+      "en": "Players:",
+      "text": "玩家人数："
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n}人"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "单人"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "无色"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "卡牌"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "描述"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "附魔参考"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "名称"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "药水参考"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "能力"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "遗物参考"
+    },
+    "search": {
+      "en": "Search",
+      "text": "搜索"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "未找到匹配结果。"
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "搜索敌人或遭遇战……"
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone}——事件"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "初始拥有："
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "全部"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "测试版v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "{zone}Boss"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "{zone}事件"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}："
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "通用"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "（N = {n1} + 多次爪击已使用的次数）",
+    "(with random intent)": "（意图随机）",
+    "Add {n1} Beckon to Hand": "将{n1}张呼唤加入手牌",
+    "Add {n1} Burns to Hand": "将{n1}张灼伤加入手牌",
+    "Add {n1} Dazed to Discard": "将{n1}张晕眩加入弃牌堆",
+    "Add {n1} Dazed to Draw": "将{n1}张晕眩加入抽牌堆",
+    "Add {n1} Infection to Discard": "将{n1}张感染加入弃牌堆",
+    "Add {n1} Slimed to Discard": "将{n1}张黏液加入弃牌堆",
+    "Add {n1} Slimed to discard": "将{n1}张黏液加入弃牌堆",
+    "Add {n1} Toxic to Hand": "将{n1}张毒素加入手牌",
+    "Add {n1} Wither to Discard": "将{n1}张凋萎加入弃牌堆",
+    "Add {n1} Wither to Draw Pile": "将{n1}张凋萎加入抽牌堆",
+    "Add {n1} Wounds into discard": "将{n1}张伤口加入弃牌堆",
+    "Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": "新增：打出{n1}次异鸟扑击后，异鸟宝宝可以在休息处进化为小异鸟。",
+    "Added: Yellow option ({n1} Fool cards).": "新增：黄色选项（{n1}张愚者的卡牌）。",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "火炬头聚合体死亡后：循环使用{m1} → {m2} → {m3}。",
+    "After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": "打出{n1}次异鸟扑击后，异鸟宝宝可以在休息处进化为小异鸟，所有异鸟扑击都会变为异鸟猛击。进化会占用你的休息选项。",
+    "After Turret Operator dies: Always uses {m1}.": "高塔炮手死亡后：总是使用{m1}。",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "接受后，会从{n1}种审判中随机选择一种（商人、贵族或普通人）。",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "投身其中后，你可以选择流连（效果相同，但每次伤害+{n1}）或离开浴场。",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "人体蜂房达到{n1}层后，改为只获得{n2}点力量。",
+    "After stun: Repeats {m1} → {m2}.": "被击晕后：重复使用{m1} → {m2}。",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "{m1}之后（连续第{n1}次）：总是使用{m2}。",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "{m1}之后（连续第{n1}次）：{n2}%概率使用{m2}，{n3}%概率使用{m3}。",
+    "After {m1}: Always uses {m2}.": "{m1}之后：总是使用{m2}。",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "人体蜂房达到{n1}层后：{m1}改为获得{n2}点力量。",
+    "All enemies gain {n1} {p1}": "所有敌人获得{n1}{p1}",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "所有奖励都可以跳过，但疑虑会在被揭示时立即加入你的牌组。",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "全部{n1}只老鼠的初始行动平均分配为{m1}、{m2}和{m3}。",
+    "Allies gain {n1} {p1}": "友方获得{n1}{p1}",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "总是使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+    "Always uses {m1}.": "总是使用{m1}。",
+    "Apply -{n1} {p1}": "给予-{n1}{p1}",
+    "Apply {n1} {p1}": "给予{n1}{p1}",
+    "Apply {p1}": "给予{p1}",
+    "Apply {p1} {n1}": "给予{p1}{n1}",
+    "As of v{n1}.{n2}.{n3} {m1} is never used in the cycle.": "截至v{n1}.{n2}.{n3}，{m1}在循环中从不会被使用。",
+    "At the end of each turn, take damage equal to {n1} + the turn number": "每个回合结束时，受到等同于{n1}+当前回合数的伤害",
+    "At the end of your first turn, lose {n1} {p1} and {n2} {p2}": "在你的第一个回合结束时，失去{n1}{p1}和{n2}{p2}",
+    "At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": "在第{n1}回合开始时，获得{n2}{p1}、{n3}{p2}和{n4}{p3}",
+    "At the start of your turn, add {n1} Wither to the top of your Draw Pile": "在你的回合开始时，将{n1}张凋萎放置到你的抽牌堆顶部",
+    "Attack — Deal {n1} damage, plus:": "攻击——造成{n1}点伤害，并附加：",
+    "Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": "华美手镯、赐福鹿角、艳丽围巾、娇嫩蕨草、钻石头冠、皮草大衣、亮片、珠宝盒、图章戒指",
+    "Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": "每场战斗首次抽牌前，选择{n1}项：{p1}{n2}或{p2}",
+    "Buffed: Below renamed From Below": "增强：Below更名为潜伏攻击",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "可以在休息处用多尼斯异鸟蛋换取异鸟扑击。选择此项会占用你的休息选项。",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "仅当所有玩家的生命值不高于最大生命值的{n1}%时才会出现。",
+    "Can only appear if all players have a card with Exhaust in their deck.": "仅当所有玩家的牌组中都有带消耗的牌时才会出现。",
+    "Can only appear if all players have at least {n1} Gold.": "仅当所有玩家都拥有至少{n1}金币时才会出现。",
+    "Can only appear if all players have at least {n1} HP.": "仅当所有玩家都拥有至少{n1}点生命时才会出现。",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "仅当所有玩家都拥有至少{n1}张可附魔完美契合的牌时才会出现。",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "仅当所有玩家都拥有至少{n1}张可附魔涡旋的牌时才会出现。",
+    "Can only appear if all players have at least {n1} potion.": "仅当所有玩家都拥有至少{n1}瓶药水时才会出现。",
+    "Can only appear if all players have at least {n1} potions.": "仅当所有玩家都拥有至少{n1}瓶药水时才会出现。",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "仅当所有玩家都拥有至少{n1}张可移除的基础打击和{n2}张可移除的基础防御时才会出现。",
+    "Can only appear if all players have at least {n1} removable Basic card.": "仅当所有玩家都拥有至少{n1}张可移除的基础牌时才会出现。",
+    "Can only appear if all players have at least {n1} removable card.": "仅当所有玩家都拥有至少{n1}张可移除的牌时才会出现。",
+    "Can only appear if all players have at least {n1} tradable relics.": "仅当所有玩家都拥有至少{n1}件可交易的遗物时才会出现。",
+    "Can only appear if all players have at least {n1} transformable cards.": "仅当所有玩家都拥有至少{n1}张可变化的牌时才会出现。",
+    "Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": "仅当所有玩家的金币都多于{n1}且生命值不高于最大生命值的{n2}%时才会出现。",
+    "Can only appear if all players have more than {n1} HP.": "仅当所有玩家的生命值都高于{n1}时才会出现。",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "仅当至少{n1}名玩家拥有{n2}或更多金币、一件可交易的遗物和一瓶药水时才会出现。",
+    "Can only appear if no player has an event pet.": "仅当没有玩家拥有事件宠物时才会出现。",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "仅当你拥有至少{n1}金币或一瓶污浊药水时才会出现。",
+    "Can only appear in Act {n1} or Act {n2}.": "仅会在第{n1}幕或第{n2}幕出现。",
+    "Can only appear in Act {n1}.": "仅会在第{n1}幕出现。",
+    "Can only appear on floor {n1}+.": "仅会在第{n1}层及以上出现。",
+    "Can only be used once per rat. Requires {n1} turns before available.": "每只老鼠只能使用一次。需经过{n1}回合后才可使用。",
+    "Can only be used once.": "只能使用一次。",
+    "Cannot appear if this act's Ancient is Nonupeipe.": "若本幕的先古之民为诺奴佩普，则不会出现。",
+    "Cannot appear if this act's Ancient is Tanx.": "若本幕的先古之民为坦克斯，则不会出现。",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "不会自然出现。若你的牌组中有灯火钥匙，则会出现在你于第{n1}幕遇到的第一个问号节点。",
+    "Cannot repeat.": "不会连续使用。",
+    "Cannot repeat. {n1}-turn cooldown.": "不会连续使用。冷却{n1}回合。",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "不会连续使用。冷却{n1}回合。若没有可用的行动，则默认使用此行动。",
+    "Card type is random (Attack/Skill/Power).": "卡牌类型随机（攻击/技能/能力）。",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "卡牌类型随机（攻击/技能/能力）。你从{n2}张已升级的牌中选择{n1}张。",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "这些牌来自STS{n1}：铁蒺藜、交锋、声东击西、双持、巩固、你好世界、抢占先机、弹回、狂乱撕扯、堆栈。",
+    "Cards are from your character's card pool.": "卡牌来自你角色的卡池。",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "魔法骑士施加抑制后，卡牌在战斗中仍然可以被升级。",
+    "Caviar/+Max HP ({n1})": "鱼子酱/+最大生命值（{n1}）",
+    "Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": "调整：呼吸技法花费{n1}金币（原为{n2}），加入{n3}张开悟（原为{n4}）",
+    "Changed: HP is now a fixed value, {n1} → {n2}.": "调整：生命值改为固定值，{n1} → {n2}。",
+    "Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": "调整：光之门改为升级{n1}张你选择的牌，而非{n2}张随机牌。",
+    "Changed: Radiate removed": "调整：移除辐射",
+    "Changed: can no longer steal Quest cards.": "调整：不再能偷取任务牌。",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "混沌：将一张来自你卡池的随机牌加入手牌。它可以免费打出",
+    "Choking: Apply {n1} Strangle": "窒息：给予{n1}层紧勒",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "从{m1}、{m2}和{m3}中随机选择。",
+    "Clam Roll/Heal ({n1})": "蚌肉卷/回复（{n1}）",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "若你的牌组中没有符合条件的牌，则“让它直面真相”会被锁定。",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "制作一张疯狂科学卡牌（{n1}点能量）。升级后会获得固有。",
+    "Curious: Powers cost {n1} Energy less": "好奇：能力牌的耗能减少{n1}点能量",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "循环使用{m1} → {m2}或{m3}（{n1}/{n2}）。",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "循环使用{m1} → {m2} → {m3}（{n1}%概率重复使用{m4}一次）。",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "循环使用{m1} → {m2} → {m3} → {m4}（直到{m5}已使用{n1}次）。",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "循环使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "循环使用{m1} → {m2} → {m3} → {m4}。",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "循环使用{m1} → {m2} → {m3}，有{n1}%概率跳过{m4}。",
+    "Cycles {m1} → {m2} → {m3}.": "循环使用{m1} → {m2} → {m3}。",
+    "Cycles {m1} → {m2}.": "循环使用{m1} → {m2}。",
+    "Damage {n1}": "伤害{n1}",
+    "Damage {n1} + stolen {p1}": "伤害{n1} + 偷取的{p1}",
+    "Damage {n1} + {n2}*N": "伤害{n1} + {n2}*N",
+    "Decision made as a group in co-op.": "多人模式中由全体玩家共同决定。",
+    "Dies": "死亡",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "菜品会随机供应，直到你花光金币或选择离开为止。上一道菜不会重复出现。",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "不会复制霉运。卡牌上的附魔会被复制",
+    "Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": "喝浴池里的水会从诺奴佩普提供的遗物中（布质果实除外）随机给予{n1}件：",
+    "Each combat shuffles {n1} Beckon into your Draw Pile": "每场战斗将{n1}张呼唤洗入你的抽牌堆",
+    "Each option is locked if you have no eligible cards of that type.": "若你没有该类型的符合条件的牌，则对应选项会被锁定。",
+    "Each option names the random relic, so you know exactly what you are trading for.": "每个选项都会写明随机遗物的名称，因此你能确切知道自己换到的是什么。",
+    "Elites gain {n1} {p1}": "精英获得{n1}{p1}",
+    "Enemies gain {p1}:": "敌人获得{p1}：",
+    "Enemies spawned mid-fight gain {n1} {p1}": "战斗中途生成的敌人获得{n1}{p1}",
+    "Energized: Gain {n1} Energy": "充能：获得{n1}点能量",
+    "Enlightenment no longer Exhausts.": "开悟不再消耗。",
+    "Escape from combat": "逃离战斗",
+    "Escape from the combat": "逃离战斗",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "独门技术：获得{n1}点力量和{n2}点敏捷",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "若胖地精没有逃跑，战斗会给予正常的金币奖励。",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "对手为{n1}个拳击构装体，开局时已损失{n2}点生命。其中一个构装体总是首回合使用强力拳。",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "分为{n1}节进行战斗——生命值总是偶数，且各节的最大生命值不同。",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "每第{n1}次拿取时必定出现（第{n2}次、第{n3}次，以此类推）。",
+    "Free (no gold cost).": "免费（无需花费金币）。",
+    "Fried Eel/Colorless Card ({n1})": "炸鳗鱼/无色牌（{n1}）",
+    "Front and back start with {m1}. Middle starts with {m2}.": "前后两只首回合使用{m1}。中间一只首回合使用{m2}。",
+    "Front starts {m1}, back starts {m2}.": "前方首回合使用{m1}，后方首回合使用{m2}。",
+    "Gain {n1} {p1}": "获得{n1}{p1}",
+    "Gain {n1} {p1} and {n2} {p2}": "获得{n1}{p1}和{n2}{p2}",
+    "Gain {n1} {p1} per respawn": "每次重生获得{n1}{p1}",
+    "Gain {n1}* Intangible": "获得{n1}*层无实体",
+    "Gain {n1}+ {p1}": "获得{n1}+{p1}",
+    "Gain {p1}": "获得{p1}",
+    "Gain {p1} {n1}": "获得{p1}{n1}",
+    "Gains {n1} {p1}": "获得{n1}{p1}",
+    "Gains {n1} {p1} when stunned.": "被击晕时获得{n1}{p1}。",
+    "Gains {p1} {n1}": "获得{p1}{n1}",
+    "Give allies {n1} {p1}": "给予友方{n1}{p1}",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "给予正常的战斗奖励，并额外给予一瓶药水和一件遗物（可能获得{n1}瓶药水）。",
+    "Gold-generating relics cannot appear as the Featured Item.": "能产生金币的遗物不会作为特选商品出现。",
+    "Golden Fysh/Gold ({n1})": "金色异鱼/金币（{n1}）",
+    "Hatches into Hatchling.": "孵化为幼虫。",
+    "Heal is multiplied by player count in co-op.": "多人模式中，回复量会乘以玩家人数。",
+    "Heal {n1}*": "回复{n1}*",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "“再撑一会”可以重复选择。伤害从{n1}开始，每次增加{n2}。",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "若火炬头聚合体在回合中途死亡且意图为{m1}，则改为{m2}。",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "若胖地精在偷取金币后逃跑，你将得不到金币奖励；若它在未偷取金币的情况下逃跑，你仍能获得正常金币奖励的{n1}%。",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "若玩家被沙坑吞噬，蜥蜴尾巴等效果无法使你复活。",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1}之后，若友方数量<{n1}：{m2} → {m3} → {m4}。",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1}之后，若友方数量≥{n1}：{m2} → {m3} → {m4}。",
+    "If spawned from Phrog Parasite, starts stunned.": "若由异蛙寄生虫生成，则开局处于击晕状态。",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "若在第{n1}回合前被击晕，则继续使用下一个行动。若在第{n2}回合被击晕，则再次尝试{m1}。",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "若可以使用{m1}，则有{n1}%概率改为使用它。",
+    "Improvement: At the end of combat, Upgrade a random card": "改善：在战斗结束时，随机升级一张牌",
+    "In Blitz it steals no Gold.": "在闪击模式中，它不会偷取金币。",
+    "In co-op, only appears if all players have more than {n1} HP.": "多人模式中，仅当所有玩家的生命值都高于{n1}时才会出现。",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "若要升级所有牌并使最大生命值降至{n1}，你的初始最大生命值至少需要为{n2}。",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "{n1}只小啃兽的遭遇战中：前方首回合使用{m1}，后方首回合使用{m2}。",
+    "Increases Wither damage by {n1} each use.": "每次使用会使凋萎的伤害增加{n1}。",
+    "Initially excludes Basic rarity cards.": "初始时不包括基础稀有度的牌。",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "与神秘骑士进行一场战斗，除灯火钥匙外还会获得常规奖励",
+    "Jelly Liver/Transform ({n1})": "水母肝/变化（{n1}）",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "用灾厄击杀一节体节时，即使所有体节短暂地同时显示为死亡，其他已死亡的体节仍会再生。",
+    "Laser → Rocket Claw.": "激光 → 火箭钳。",
+    "Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": "金币少于{n1}时锁定。该牌来自你角色的卡池，且一定未升级。",
+    "Lose {n1} {p1}": "失去{n1}层{p1}",
+    "Lose {p1}": "失去{p1}",
+    "Max {n1} in a row.": "最多连续使用{n1}次。",
+    "Minions that join mid-fight gain none": "战斗中途加入的爪牙不获得",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "神秘骑士是一名连枷骑士，初始拥有{n1}点力量和{n2}层覆甲，生命值为{n3}。",
+    "N = # of times this move was used": "N = 此行动已使用的次数",
+    "Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": "削弱：扎手海绵花费{n1}金币（原为{n2}）。",
+    "New event.": "新事件。",
+    "Normal enemies gain {n1} {p1}": "普通敌人获得{n1}层{p1}",
+    "Offered three random options that are not your character.": "随机提供三个选项，均非你当前的角色。",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "从{n2}种随机类型（攻击/技能/能力）中提供{n1}种，然后为所选类型从{n4}种随机效果中提供{n3}种。",
+    "On wakeup all Plating is removed.": "苏醒时移除所有覆甲。",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "{m1}带来的{n1}层无实体中，有一层会立即减少。",
+    "Only {n1} rat can use {m1} per turn.": "每回合只能有{n1}只老鼠使用{m1}。",
+    "Opens with {m1} or {m2}.": "首回合使用{m1}或{m2}。",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "开局依次使用{m1} → {m2} → {m3}，之后总是使用{m4}。",
+    "Opens with {m1} → {m2} → {m3}.": "开局依次使用{m1} → {m2} → {m3}。",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "开局依次使用{m1} → {m2}，之后总是使用{m3}。",
+    "Opens with {m1} → {m2}.": "开局依次使用{m1} → {m2}。",
+    "Opens with {m1}, then always uses {m2}.": "首回合使用{m1}，之后总是使用{m2}。",
+    "Opens with {m1}.": "首回合使用{m1}。",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "首回合使用{m1}；之后交替使用{m2} ↔ {m3}（总是从{m4}开始）。",
+    "Options are locked if you don't have the required item.": "如果你没有所需的物品，对应选项会被锁定。",
+    "Pass Turn": "跳过回合",
+    "Pass turn": "跳过回合",
+    "Passes Turn": "跳过回合",
+    "Passes turn": "跳过回合",
+    "Phase {n1} (after stun):": "第{n1}阶段（被击晕后）：",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "第{n1}阶段（生命值低于{n2}%并使用{m1}后）：",
+    "Phase {n1} (stunned at {n2} HP):": "第{n1}阶段（生命值降至{n2}时被击晕）：",
+    "Phase {n1}:": "第{n1}阶段：",
+    "Player must choose one of two debuffs:": "玩家必须从两种负面效果中选择一种：",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "第{n1}、{n2}位首回合使用{m1}，第{n3}、{n4}位首回合使用{m2}。",
+    "Power:": "能力：",
+    "Precision Beam → Precise Smash": "精准光束 → 精准猛击",
+    "Probabilities are weighted and shift if any options are unavailable.": "概率按权重计算，若有选项不可用，概率会相应变化。",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "重拳出击事件：第{n1}个首回合使用{m1}，第{n2}个首回合使用{m2}。",
+    "Rejecting is not allowed — double downing abandons the run.": "不允许拒绝——选择坚持到底会直接放弃本局游戏。",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "这些遗物来自《杀戮尖塔{n1}》：黑石护符、捕梦网、手钻、巨口储蓄罐、发条靴。",
+    "Renamed moves: Targeting Reticle → Calculating": "行动改名：瞄准准星 → 计算",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "最多可重复{n1}次。代价依次递增：{n2}/{n3}/{n4}/{n5}/全部（保留{n6}点）最大生命值。第{n7}次解读会升级所有可升级的牌。",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "最多可重复{n1}次。伤害依次递增：{n2}/{n3}/{n4}。第{n5}次选择会获得花粉核心。",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "最多可重复{n1}次。金币依次递增：{n2}/{n3}/{n4}。",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "通过{p1}重生并使用{m1}；每次重生获得{n1}点最大生命值。",
+    "Retains Strength after reviving.": "复活后保留力量。",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "奖励包含三次卡牌奖励，每次包含{n1}张普通/罕见/稀有牌。",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "削弱：给予{n1}层虚弱和{n2}层易伤",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "各体节的首个行动在{m1}、{m2}和{m3}之间平均分配。",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "分享知识提供的牌来自你角色的卡池，按普通战斗的稀有度概率生成（遵循稀有牌保底机制）。提供的牌永远不会是升级过的。",
+    "Shuffle {n1} Beckon into discard": "将{n1}张呼唤洗入弃牌堆",
+    "Shuffle {n1} Beckon into draw": "将{n1}张呼唤洗入抽牌堆",
+    "Shuffle {n1} Burns into discard": "将{n1}张灼伤洗入弃牌堆",
+    "Shuffle {n1} Frantic Escapes into discard": "将{n1}张狂乱逃离洗入弃牌堆",
+    "Shuffle {n1} Frantic Escapes into draw": "将{n1}张狂乱逃离洗入抽牌堆",
+    "Single-player only.": "仅限单人游戏。",
+    "Skill — Gain {n1} Block, plus:": "技能——获得{n1}点格挡，外加：",
+    "Sleeps until awakened, then always uses {m1}.": "沉睡直到被唤醒，之后总是使用{m1}。",
+    "Spicy Snappy/Upgrade ({n1})": "香辣薄脆/升级（{n1}）",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "藏宝图会使下一阶段的所有路径汇聚到该阶段的宝箱节点，宝箱中除常规奖励外还有{n1}金币。",
+    "Start each combat with {n1} {p1} and {n2} {p2}": "每场战斗开始时拥有{n1}层{p1}和{n2}层{p2}",
+    "Steal {n1} card and gain {p1}": "偷走{n1}张牌并获得{p1}",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "被偷的牌取自抽牌堆或弃牌堆。优先级：{n1}.未注能的罕见牌；{n2}.未注能的普通/稀有/事件牌；{n3}.未注能的基础牌；{n4}.已注能或先古牌；{n5}.诅咒牌或其他任何牌。任务牌永远不会被偷。",
+    "Stolen gold is held by Fat Gremlin once summoned.": "胖地精被召唤后，被偷走的金币由它持有。",
+    "Stunned for one turn": "被击晕一回合",
+    "Summon Two-Tailed Rat": "召唤双尾鼠",
+    "Summon up to {n1} Tough Eggs": "召唤至多{n1}个结实的卵",
+    "Summon {n1} Aggro Bot": "召唤{n1}个攻击型机器人",
+    "Summon {n1} Eye with Teeth": "召唤{n1}个利齿之眼",
+    "Summon {n1} Gas Bomb": "召唤{n1}个气态炸弹",
+    "Summon {n1} Parafright": "召唤{n1}只寄生惧魔",
+    "Summons {n1} Aggro Bot": "召唤{n1}个攻击型机器人",
+    "Summons {n1} Defensive Bot": "召唤{n1}个防御型机器人",
+    "Suspicious Condiment/Potion ({n1})": "可疑调味料/药水（{n1}）",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "石之剑在{n1}场战斗后会变为玉之剑",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "在此获得的污浊药水可以投向假商人以触发战斗。",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "灯火钥匙会使战史学家 付袭事件出现在你于阶段{n1}遇到的下一个问号房间。",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "每次选择再撑一会时，跨越选项中的牌都会重新随机；在其他牌都出现过之前，不会出现之前已提供过的牌。",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "休息选项会触发在休息处休息时会触发的所有效果（皇家枕头、捕梦网等）",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "大幅占卜只能点击尚未点击过的图块，并揭开其周围的{n1}个图块。",
+    "The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": "展示的遗物是从黑曜石钳子、拇指夹和苦痛项圈中随机选出的{n1}件。",
+    "The following items are guaranteed to be in the minigame:": "小游戏中必定会出现以下物品：",
+    "The specific potion is named in the option text.": "选项文本中会写明具体是哪瓶药水。",
+    "The specific potion to be lost is shown in the option text.": "选项文本中会显示将要失去的具体药水。",
+    "Then chooses randomly from all moves.": "之后从所有行动中随机选择。",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "之后从{m1}、{m2}、{m3}中随机选择。",
+    "Then chooses randomly from {m1}, {m2}.": "之后从{m1}、{m2}中随机选择。",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "之后循环使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "之后循环使用{m1} → {m2} → {m3} → {m4}。",
+    "Then cycles {m1} → {m2} → {m3}.": "之后循环使用{m1} → {m2} → {m3}。",
+    "Then cycles {m1} → {m2}.": "之后循环使用{m1} → {m2}。",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "共有{n1}种玩偶选项，你会根据所选选项看到一定数量的随机玩偶。",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "投掷污浊药水会触发战斗。奖励：{n1}金币、全部{n2}件遗物、一件商人的地毯？？？以及一次卡牌奖励。",
+    "Total HP to reach Pollinous Core: {n1}.": "抵达花粉核心共需失去生命：{n1}。",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "最多提供你药水栏中的{n1}瓶药水。药水的稀有度决定卡牌奖励的稀有度。",
+    "Uses {m1} once, then restarts Phase {n1}.": "使用一次{m1}，然后重新开始第{n1}阶段。",
+    "Uses {m1}, then cycles {m2} → {m3}.": "使用{m1}，之后循环使用{m2} → {m3}。",
+    "Violence: Hit {n1} times ({n2})": "暴力：命中{n1}次（{n2}）",
+    "Weights:": "权重：",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "盟友数≤{n1}时：从{m1}、{m2}中随机选择。",
+    "When allies ≥ {n1}: Always uses {m1}.": "盟友数≥{n1}时：总是使用{m1}。",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "被击杀时：{n1}回合后以{n2}点生命复活，并从下一个行动继续。",
+    "When killed: Revives next turn in Stage {n1}.": "被击杀时：下回合以第{n1}形态复活。",
+    "While Amalgam alive: Always uses {m1}.": "聚合体存活时：总是使用{m1}。",
+    "While Burrowed: Always uses {m1}.": "埋地时：总是使用{m1}。",
+    "While Turret Operator alive: Always uses {m1}.": "高塔炮手存活时：总是使用{m1}。",
+    "Wisdom: Draw {n1} cards": "智慧：抽{n1}张牌",
+    "Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": "瓦皮存活时会承受所有针对你的攻击伤害。它的生命值会在战斗之间保留，并且休息处会新增“回复”选项，可将它的生命值回满。",
+    "a Torch Head Amalgam in play": "场上有一个火炬头聚合体",
+    "damage {n1} → {n2}.": "伤害{n1} → {n2}。",
+    "pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": "行动模式现为刺击 → 刺击 → 旋风 → 脉动。脉动改为给予{n1}层易伤，而不是获得{n2}点格挡。",
+    "{m1} {p1} gain increases by {n1} each use.": "{m1}获得的{p1}每次使用后增加{n1}点。",
+    "{n1} Big Gold/{n2}g ({n3})": "{n1}堆大金币/{n2}金币（{n3}）",
+    "{n1} Common Card ({n2})": "{n1}张普通牌（{n2}）",
+    "{n1} Common Potions ({n2})": "{n1}瓶普通药水（{n2}）",
+    "{n1} Dazed to Discard": "将{n1}张晕眩放入弃牌堆",
+    "{n1} Doubt curse ({n2})": "{n1}张疑虑诅咒（{n2}）",
+    "{n1} Rare Card ({n2})": "{n1}张稀有牌（{n2}）",
+    "{n1} Rare Potion ({n2})": "{n1}瓶稀有药水（{n2}）",
+    "{n1} Relic ({n2})": "{n1}件遗物（{n2}）",
+    "{n1} Rock + {n2} random from Egg or Nectar": "{n1}只石 + 从卵或蜜中随机{n2}只",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "{n1}只石 + 从卵/丝/蜜中选出{n2}只不同的",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "{n1}只蛇行扼杀者 + 以下之一：闪光贾克斯果/随机中型史莱姆/{n2}只随机小型史莱姆",
+    "{n1} Small Gold/{n2}g ({n3})": "{n1}堆小金币/{n2}金币（{n3}）",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "{n1}只树枝史莱姆（小）+ {n2}只树叶史莱姆（小）+ {n3}只随机中型史莱姆",
+    "{n1} Uncommon Card ({n2})": "{n1}张罕见牌（{n2}）",
+    "{n1} enemies": "{n1}名敌人",
+    "{n1} in easy fights": "简单战斗中为{n1}",
+    "{n1} in elite fights": "精英战斗中为{n1}",
+    "{n1} in hard fights": "困难战斗中为{n1}",
+    "{n1} in multi-enemy fights": "多敌人战斗中为{n1}",
+    "{n1} of the {n2} cells are populated with items.": "{n2}个图块中有{n1}个放有物品。",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "从{n2}件仿冒遗物中随机提供{n1}件，每件售价{n3}金币。",
+    "{n1} unique Raiders from pool": "从池中选出{n1}名不同的劫掠者",
+    "{n1}-turn cooldown.": "冷却{n1}回合。",
+    "{n1}nd choice: {p1} {n2} or {p2}": "第{n1}次选择：{n2}层{p1}或{p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "第{n1}次选择：{n2}层{p1}或{p2}",
+    "{n1}rd follower opens with {m1}.": "第{n1}名信徒首回合使用{m1}。",
+    "{n1}st choice: {p1} {n2} or {p2}": "第{n1}次选择：{n2}层{p1}或{p2}",
+    "{n1}st follower opens with {m1}, {n2}nd with {m2}.": "第{n1}名信徒首回合使用{m1}，第{n2}名使用{m2}。",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "第{n1}只从循环中的随机位置开始，之后每只从循环中的下一个位置开始。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}，第{n3}只首回合使用{m3}，第{n4}只随机开始。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}，第{n3}只首回合使用{m3}，第{n4}只首回合使用{m4}。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}。",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "第{n1}/{n2}/{n3}个的首个行动在{m1}、{m2}、{m3}之间平均分配。第{n4}个首回合使用{m4}。",
+    "{p1} (immediately gives {n1} Intangible)": "{p1}（立即获得{n1}层无实体）",
+    "{p1} and {p2} {n1}": "{p1}和{n1}层{p2}",
+    "{p1} {n1} and {p2}": "{n1}层{p1}和{p2}",
+    "{p1} {n1} and {p2} {n2}": "{n1}层{p1}和{n2}层{p2}",
+    "{p1} {n1} on Fabricator": "为组装师提供{n1}点{p1}",
+    "{p1}, {p2} {n1} and {p3} {n2}": "{p1}、{n1}层{p2}和{n2}层{p3}",
+    "~{n1}% chance.": "约{n1}%概率。",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "约{n1}%概率。免费（不花费金币）。仅在第一次拿取后出现。",
+    "~{n1}% chance. Only appears if not at full HP.": "约{n1}%概率。仅在生命值未满时出现。",
+    "~{n1}% chance. Only appears if you have open potion slots.": "约{n1}%概率。仅在你有空药水栏位时出现。",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 命中时获得固定数量的力量，而不是按玩家人数计算。"
+  }
+}

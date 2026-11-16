@@ -17,7 +17,7 @@ function buildActBarHtml(selectedAct) {
   const actCards = ACTS.filter(a => !hiddenZones.includes(a.key)).map(a => `
   <div class="act-card act-${a.key}${a.key === selectedAct ? ' selected' : ''}" data-act="${a.key}" onclick="selectAct('${a.key}')">
     <img src="${a.image}" alt="${actName(a.key)}">
-    <div class="act-text"><div class="act-label">${t('act_label', { n: a.actNumber })}</div><div class="act-name">${actName(a.key)}</div></div>
+    <div class="act-text"><div class="act-label">${t('act_label', { actNumber: a.actNumber })}</div><div class="act-name">${actName(a.key)}</div></div>
   </div>`).join('');
   const eventsCard = `
   <div class="act-card act-events${selectedAct === 'events' ? ' selected' : ''}" data-act="events" onclick="selectAct('events')">
@@ -119,7 +119,7 @@ function renderCards(encs, cat, act) {
     <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${e.key}', '${act}', '${cat}')">
       <div class="${thumbClass}">
         ${img.html}
-        ${encounterMulti(e) ? `<span class="multi-badge">${tx(encounterMulti(e))}</span>` : ''}
+        ${encounterMulti(e) ? `<span class="multi-badge">${tx(encounterMulti(e), 'enemy count')}</span>` : ''}
       </div>
       <div class="enemy-name">${encounterName(e)}</div>
     </div>`;
@@ -257,7 +257,7 @@ function buildSearchResultsHtml(q) {
         <div class="enemy-card" data-cat="${cat}" onclick="openEncounter('${enc.key}', '${zone}', '${cat}')">
           <div class="${thumbClass}">
             ${img.html}
-            ${encounterMulti(enc) ? `<span class="multi-badge">${tx(encounterMulti(enc))}</span>` : ''}
+            ${encounterMulti(enc) ? `<span class="multi-badge">${tx(encounterMulti(enc), 'enemy count')}</span>` : ''}
           </div>
           <div class="enemy-name">${encounterName(enc)}</div>
         </div>`;
@@ -313,7 +313,7 @@ function renderEnemySection(key, collapsible, enc, current) {
     <tr${rowClass ? ` class="${rowClass}"` : ''}>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${moveName(key, m)}</strong>${times > 1 ? `<span class="move-count">×${times}</span>` : ''}</td>
-      <td>${markDread(renderPowerRefs(txClauses(scaleEffects(fx.text)).replace(/;/g, '<br>'), key), fx.dread)}${note ? `<br><span class="move-note">${renderPowerRefs(txLines(note), key)}</span>` : ''}</td>
+      <td>${markDread(renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), key), fx.dread)}${note ? `<br><span class="move-note">${renderPowerRefs(txLines(note, 'move note'), key)}</span>` : ''}</td>
     </tr>
   `;
   }).join('');
@@ -344,7 +344,7 @@ function renderEnemySection(key, collapsible, enc, current) {
 
       <div class="enemy-section-body">
         <h3>${t('attack_pattern')}</h3>
-        <div class="pattern-text">${markDread(renderPowerRefs(txLines(pattern.text).replace(/\n/g, '<br>'), key, marks), pattern.dread)}</div>
+        <div class="pattern-text">${markDread(renderPowerRefs(txLines(pattern.text, 'attack pattern').replace(/\n/g, '<br>'), key, marks), pattern.dread)}</div>
 
         ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key, labelZones))}
 
@@ -379,7 +379,7 @@ function buildEncounterPanelBody(enc, encounterKey, picks, current) {
     // A Composition means only some of the listed enemies show up (a pool),
     // so it carries the picker for which ones you're facing
     const picker = uniqueEnemies.length > 1 ? enemyPickerHtml(uniqueEnemies, picked) : '';
-    compositionHtml = `<div class="encounter-composition"><span class="composition-label">${t('composition')}</span><span class="composition-text">${tx(enc.composition)}</span>${picker}</div>`;
+    compositionHtml = `<div class="encounter-composition"><span class="composition-label">${t('composition')}</span><span class="composition-text">${tx(enc.composition, 'encounter composition')}</span>${picker}</div>`;
   }
   compositionHtml += renderDominionSection(enc);
 
@@ -442,7 +442,7 @@ function dominionRow(boss, withThumb) {
       ${thumb}
       <div class="dominion-info">
         <span class="dominion-boss">${name}</span>
-        <span class="dominion-effect">${renderPowerRefs(txClauses(boss.dominion).replace(/;/g, '<br>'), null)}</span>
+        <span class="dominion-effect">${renderPowerRefs(txClauses(boss.dominion, 'Dread Dominion effect').replace(/;/g, '<br>'), null)}</span>
       </div>
     </div>`;
 }
@@ -470,7 +470,7 @@ function buildEventPanelBody(ev, choices) {
       ${choices.map(c => `
         <tr>
           <td><strong>${choiceName(ev, c)}</strong></td>
-          <td>${renderLore(choiceEffect(ev, c))}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${renderLore(txLore(c.notes))}</span>` : ''}</td>
+          <td>${renderLore(choiceEffect(ev, c))}${c.notes ? `<br><span style="color:#f0c040;font-size:0.85em;">${renderLore(txLore(c.notes, 'event choice note'))}</span>` : ''}</td>
         </tr>
       `).join('')}
     </table>

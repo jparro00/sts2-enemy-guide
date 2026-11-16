@@ -213,7 +213,7 @@ const allEvents = inCtx(`(() => {
     }
   }
   // Reference rows: GameIds is the row's key prefix in its game table (ARTIFACT_POWER), or table:prefix for text
-  // kept in another table (static_hover_tips:BLOCK); event choices: GameOption is PAGE.OPTION of the event's id
+  // kept in another table (static_hover_tips:BLOCK); event choices: GameOption is PAGE.OPTION of the event's id, or table:KEY
   const REF_ID_RE = /^(?:[a-z_]+:)?[A-Z0-9_]+$/;
   for (const file of ['powers', 'cards', 'relics', 'potions', 'enchantments']) {
     for (const r of parseCSV(readData(`${file}.csv`))) {
@@ -221,7 +221,7 @@ const allEvents = inCtx(`(() => {
     }
   }
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
-    if (r.GameOption && !/^[A-Z0-9_]+\.[A-Z0-9_]+$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION`);
+    if (r.GameOption && !/^(?:[A-Z0-9_]+\.[A-Z0-9_]+|[a-z_]+:[A-Z0-9_]+)$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION or table:KEY`);
   }
   for (const [file, rows] of [['encounters.csv', encRows], ['events.csv', evRows]]) {
     const idRow = {};

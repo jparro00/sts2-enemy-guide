@@ -244,10 +244,10 @@ function renderMoveRefs(text, enemyKey, marked) {
       const name = moveName(enemyKey, move);
       const intents = renderIntents(move.intent);
       const fx = moveEffectsText(move);
-      const effect = markDread(renderPowerRefs(txClauses(scaleEffects(fx.text)).replace(/;/g, '<br>'), null), fx.dread);
+      const effect = markDread(renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), null), fx.dread);
       return `<span class="${cls}">${name}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${name}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
-    return `<span class="${cls}">${tx(ref)}</span>`;
+    return `<span class="${cls}">${tx(ref, 'move name')}</span>`;
   });
 }
 
@@ -258,7 +258,7 @@ function renderPowerRefs(text, enemyKey, marked) {
     const ref = powersRef[key];
     if (!ref) return match;
     const name = powerName(key);
-    const tooltip = ref.desc ? `<span class="power-tooltip">${powerDesc(key)}</span>` : '';
+    const tooltip = ref.desc ? `<span class="power-tooltip">${renderInline(powerDesc(key))}</span>` : '';
     return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${name}" onerror="this.style.display='none'"><span class="starts-with-power">${name}</span>${tooltip}</span>`;
   });
   return result;
@@ -285,9 +285,29 @@ function wrapCharsWithDelay(content, cssClass, baseDelay) {
   });
 }
 
+// The game's inline images in its text ([img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img]):
+// the site's copy in media/ui/
+function renderGameImages(text) {
+  return text.replace(/\[img\]res:\/\/images\/packed\/sprite_fonts\/(\w+)\.png\[\/img\]/g,
+    (m, file) => `<img class="power-icon-inline" src="media/ui/${file}.webp" alt="${t(/energy_icon$/.test(file) ? 'energy' : 'star')}">`);
+}
+
+// Colors, bold and images in one line of game-style text (power descriptions): renderLore without paragraphs
+// or animation. Text with none of them comes out as it went in.
+function renderInline(text) {
+  if (!text) return text;
+  let html = renderGameImages(text).replace(/\[b\](.*?)\[\/b\]/gs, (m, c) => `<strong>${c}</strong>`);
+  // Nested tags ([gold][sine]…[/sine][/gold]) come off one level per pass
+  for (let prev = ''; prev !== html;) {
+    prev = html;
+    html = html.replace(/\[(\w+)\]((?:(?!\[\1\]).)*?)\[\/\1\]/gs, (m, tag, c) => { const color = loreColors[tag.toLowerCase()]; return color ? `<span style="color:${color}">${c}</span>` : c; });
+  }
+  return html;
+}
+
 function renderLore(text) {
   if (!text) return '';
-  let html = text;
+  let html = renderGameImages(text);
 
   // Helper: render color tags (skip effect/structural tags)
   function renderColors(t) {
@@ -340,7 +360,7 @@ function renderLore(text) {
 function renderBetaBadge(type, name) {
   const entry = betaChanges[`${type}:${name}`];
   if (!entry) return '';
-  const escaped = txClauses(entry.change).replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const escaped = txClauses(entry.change, 'beta change').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const patchLabel = entry.patch ? `v${entry.patch}` : `v${siteConfig.betaVersion || '?'}`;
   return ` <span class="beta-badge" data-patch="${entry.patch || ''}">${t('beta_patch')}<span class="beta-tooltip"><strong>${t('beta_changed', { version: patchLabel })}</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
@@ -349,7 +369,7 @@ function renderBetaBadge(type, name) {
 // monster's own StartsWith — used for Dominion grants.
 function renderStartsWith(text, enemyKey, isDread, extraHtml) {
   if (!text && !extraHtml) return '';
-  const own = text ? markDread(renderPowerRefs(tx(scaleEffects(text)), enemyKey), isDread) : '';
+  const own = text ? markDread(renderPowerRefs(tx(scaleEffects(text), 'starts with'), enemyKey), isDread) : '';
   const body = [own, extraHtml].filter(Boolean).join(t('list_separator'));
   return `<div class="starts-with-section"><strong>${t('starts_with')}</strong> ${body}</div>`;
 }
@@ -439,7 +459,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
         <img class="power-icon" src="${iconSrc}" alt="${name}" onerror="this.style.display='none'">
         <div class="power-info">
           <span class="power-name">${name}</span>
-          <span class="power-desc">${powerDesc(p.key)}</span>
+          <span class="power-desc">${renderInline(powerDesc(p.key))}</span>
         </div>
       </div>`;
     }).join('');
@@ -468,13 +488,13 @@ function renderNotes(notes, enemyKey) {
     if (part.startsWith('    ') || part.startsWith('\t')) {
       const lastArr = infos.length > 0 ? infos : bugs.length > 0 ? bugs : reqs;
       if (lastArr.length > 0) {
-        lastArr[lastArr.length - 1] += `<div class="note-sub">${tx(trimmed)}</div>`;
+        lastArr[lastArr.length - 1] += `<div class="note-sub">${tx(trimmed, 'note')}</div>`;
       }
-    } else if (trimmed.startsWith('[coop]')) coop.push(tx(trimmed.replace('[coop]', '').trim()));
-    else if (trimmed.startsWith('[req]')) reqs.push(tx(trimmed.replace('[req]', '').trim()));
-    else if (trimmed.startsWith('[info]')) infos.push(tx(trimmed.replace('[info]', '').trim()));
-    else if (trimmed.startsWith('[bug]')) bugs.push(tx(trimmed.replace('[bug]', '').trim()));
-    else infos.push(tx(trimmed)); // default to info
+    } else if (trimmed.startsWith('[coop]')) coop.push(tx(trimmed.replace('[coop]', '').trim(), 'note (co-op)'));
+    else if (trimmed.startsWith('[req]')) reqs.push(tx(trimmed.replace('[req]', '').trim(), 'note (requirement)'));
+    else if (trimmed.startsWith('[info]')) infos.push(tx(trimmed.replace('[info]', '').trim(), 'note'));
+    else if (trimmed.startsWith('[bug]')) bugs.push(tx(trimmed.replace('[bug]', '').trim(), 'note (bug)'));
+    else infos.push(tx(trimmed, 'note')); // default to info
   }
 
   let html = '';

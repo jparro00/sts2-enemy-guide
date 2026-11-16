@@ -39,7 +39,8 @@ function buildDataStructures(texts) {
       image: p.Image,
       desc: p.Description,
       scalesInMultiplayer: p.ScalesInMultiplayer === 'true',
-      gameIds: gameIdList(p.GameIds)
+      gameIds: gameIdList(p.GameIds),
+      gameVars: p.GameVars || ''
     };
   }
 
@@ -144,29 +145,30 @@ function buildDataStructures(texts) {
       effect: ch.Effect,
       notes: ch.Notes || '',
       references: ch.References || '',
-      gameOption: ch.GameOption || ''
+      gameOption: ch.GameOption || '',
+      gameVars: ch.GameVars || ''
     });
   }
 
   // Build unified itemsRef from all reference CSVs
   const eventCardsRaw = parseCSV(texts.cards);
   for (const c of eventCardsRaw) {
-    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '', gameIds: gameIdList(c.GameIds) };
+    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '', gameIds: gameIdList(c.GameIds), gameVars: c.GameVars || '' };
   }
 
   const enchantmentsRaw = parseCSV(texts.enchantments);
   for (const e of enchantmentsRaw) {
-    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description, gameIds: gameIdList(e.GameIds) };
+    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description, gameIds: gameIdList(e.GameIds), gameVars: e.GameVars || '' };
   }
 
   const potionsRaw = parseCSV(texts.potions);
   for (const p of potionsRaw) {
-    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description, gameIds: gameIdList(p.GameIds) };
+    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description, gameIds: gameIdList(p.GameIds), gameVars: p.GameVars || '' };
   }
 
   const relicsRaw = parseCSV(texts.relics);
   for (const r of relicsRaw) {
-    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description, gameIds: gameIdList(r.GameIds) };
+    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description, gameIds: gameIdList(r.GameIds), gameVars: r.GameVars || '' };
   }
 
   // Also add powers to itemsRef

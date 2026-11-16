@@ -1,23 +1,23 @@
-Key,Name,Image,Description,GameIds
-adroit,Adroit,adroit.webp,Gain [blue]X[/blue] [gold]Block[/gold].,ADROIT
-clone,Clone,clone.webp,This card can be duplicated at [gold]Rest Sites[/gold].,CLONE
-corrupted,Corrupted,corrupted.webp,"Deal [blue]50%[/blue] more damage, but lose [blue]2[/blue] HP.",CORRUPTED
-favored,Favored,favored.webp,This card's attack damage is doubled.,
-glam,Glam,glam.webp,This card has [gold]Replay[/gold] once per combat.,GLAM
-goopy,Goopy,goopy.webp,"This card gains [gold]Exhaust[/gold]. When played, permanently increase this card's [gold]Block[/gold] by [blue]1[/blue].",GOOPY
-imbued,Imbued,imbued.webp,This card is played automatically at the start of each combat.,IMBUED
-instinct,Instinct,instinct.webp,Decrease the cost of this card by [blue]1[/blue].,INSTINCT
-momentum,Momentum,momentum.webp,Increase this card's attack damage by [blue]X[/blue] this combat when played.,MOMENTUM
-nimble,Nimble,nimble.webp,Increases [gold]Block[/gold] gained from this card by [blue]X[/blue].,NIMBLE
-perfect_fit,Perfect Fit,perfect_fit.webp,"Whenever this would be shuffled into your [gold]Draw Pile[/gold], place it on the top instead.",PERFECT_FIT
-royally_approved,Royally Approved,royally_approved.webp,This card has [gold]Innate[/gold] and [gold]Retain[/gold].,ROYALLY_APPROVED
-sharp,Sharp,sharp.webp,Increases damage on this card by [blue]X[/blue].,SHARP
-slither,Slither,slither.webp,"When you draw this card, randomize its cost from [blue]0[/blue] to [blue]3[/blue].",SLITHER
-slumbering_essence,Slumbering Essence,slumbering_essence.webp,"If this card is in your hand at the end of turn, reduce its cost by [blue]1[/blue] until it is played.",SLUMBERING_ESSENCE
-souls_power,Soul's Power,souls_power.webp,This card loses [gold]Exhaust[/gold].,SOULS_POWER
-sown,Sown,sown.webp,"The first time you play this card each combat, gain [blue]X[/blue] Energy.",SOWN
-spiral,Spiral,spiral.webp,This card gains [gold]Replay[/gold] [blue]1[/blue].,SPIRAL
-steady,Steady,steady.webp,This card gains [gold]Retain[/gold].,STEADY
-swift,Swift,swift.webp,"The first time you play this card, draw [blue]X[/blue] cards.",SWIFT
-tezcataras_ember,Tezcatara's Ember,tezcataras_ember.webp,Costs [blue]0[/blue] and gains [gold]Eternal[/gold].,TEZCATARAS_EMBER
-vigorous,Vigorous,vigorous.webp,"The first time this card is played, it deals [blue]X[/blue] additional damage.",VIGOROUS
+Key,Name,Image,Description,GameIds,GameVars
+adroit,Adroit,adroit.webp,Gain [blue]X[/blue] [gold]Block[/gold].,ADROIT,Block=X
+clone,Clone,clone.webp,This card can be duplicated at [gold]Rest Sites[/gold].,CLONE,
+corrupted,Corrupted,corrupted.webp,"Deal [blue]50%[/blue] more damage, but lose [blue]2[/blue] HP.",CORRUPTED,
+favored,Favored,favored.webp,This card's attack damage is doubled.,,
+glam,Glam,glam.webp,This card has [gold]Replay[/gold] once per combat.,GLAM,
+goopy,Goopy,goopy.webp,"This card gains [gold]Exhaust[/gold]. When played, permanently increase this card's [gold]Block[/gold] by [blue]1[/blue].",GOOPY,
+imbued,Imbued,imbued.webp,This card is played automatically at the start of each combat.,IMBUED,
+instinct,Instinct,instinct.webp,Decrease the cost of this card by [blue]1[/blue].,INSTINCT,
+momentum,Momentum,momentum.webp,Increase this card's attack damage by [blue]X[/blue] this combat when played.,MOMENTUM,Amount=X
+nimble,Nimble,nimble.webp,Increases [gold]Block[/gold] gained from this card by [blue]X[/blue].,NIMBLE,Amount=X
+perfect_fit,Perfect Fit,perfect_fit.webp,"Whenever this would be shuffled into your [gold]Draw Pile[/gold], place it on the top instead.",PERFECT_FIT,
+royally_approved,Royally Approved,royally_approved.webp,This card has [gold]Innate[/gold] and [gold]Retain[/gold].,ROYALLY_APPROVED,
+sharp,Sharp,sharp.webp,Increases damage on this card by [blue]X[/blue].,SHARP,Amount=X
+slither,Slither,slither.webp,"When you draw this card, randomize its cost from [blue]0[/blue] to [blue]3[/blue].",SLITHER,
+slumbering_essence,Slumbering Essence,slumbering_essence.webp,"If this card is in your hand at the end of turn, reduce its cost by [blue]1[/blue] until it is played.",SLUMBERING_ESSENCE,
+souls_power,Soul's Power,souls_power.webp,This card loses [gold]Exhaust[/gold].,SOULS_POWER,
+sown,Sown,sown.webp,"The first time you play this card each combat, gain [blue]X[/blue] Energy.",SOWN,
+spiral,Spiral,spiral.webp,This card gains [gold]Replay[/gold] [blue]1[/blue].,SPIRAL,
+steady,Steady,steady.webp,This card gains [gold]Retain[/gold].,STEADY,
+swift,Swift,swift.webp,"The first time you play this card, draw [blue]X[/blue] cards.",SWIFT,Amount=X
+tezcataras_ember,Tezcatara's Ember,tezcataras_ember.webp,Costs [blue]0[/blue] and gains [gold]Eternal[/gold].,TEZCATARAS_EMBER,
+vigorous,Vigorous,vigorous.webp,"The first time this card is played, it deals [blue]X[/blue] additional damage.",VIGOROUS,Amount=X
