@@ -101,6 +101,7 @@ const buildEnemyPanelBody = inCtx('buildEnemyPanelBody');
 const buildEncounterPanelBody = inCtx('buildEncounterPanelBody');
 const buildEventPanelBody = inCtx('buildEventPanelBody');
 const renderBetaBadge = inCtx('renderBetaBadge');
+const eventName = inCtx('eventName');
 const getChoices = inCtx('(key) => eventChoices[key] || []');
 
 const enemies = inCtx('Object.entries(enemyDatabase).map(([key, d]) => ({ key, name: d.name, pattern: d.pattern }))');
@@ -229,8 +230,8 @@ const allEvents = inCtx(`(() => {
   // Event lore: GameLore lists the event's game pages the lore is (INITIAL;ENTER)
   for (const r of evRows) {
     checkGameIds(`events.csv ${r.Key} GameLore`, r.GameLore);
-    // NameInOtherLanguages: 'game' (the other languages show the game's title) or empty
-    if (r.NameInOtherLanguages && r.NameInOtherLanguages !== 'game') errors.push(`events.csv ${r.Key} NameInOtherLanguages: ${JSON.stringify(r.NameInOtherLanguages)} is not "game" or empty`);
+    // PanelName: a display name like Name (the panel's title where it shows more than the name)
+    if (NAME_BAD.test(r.PanelName || '')) errors.push(`events.csv ${r.Key} PanelName: ${JSON.stringify(r.PanelName)} contains < > " or &`);
   }
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     if (r.GameOption && !/^(?:[A-Z0-9_]+\.[A-Z0-9_]+|[a-z_]+:[A-Z0-9_]+)$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION or table:KEY`);
@@ -568,7 +569,7 @@ for (const ev of allEvents) {
   const page = buildPage({
     title, description, ogImage: image, canonical,
     jsonLd: jsonldFor(ev.name, description, canonical, image),
-    panelName: ev.name,
+    panelName: eventName(ev),
     panelBadgeHtml: renderBetaBadge('event', ev.key),
     panelHtml: buildEventPanelBody(ev, getChoices(ev.key)),
   });

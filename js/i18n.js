@@ -466,16 +466,36 @@ function eventNameKeys(ev) {
   return ev.gameIds.map(id => ['events', `${id}.title`]);
 }
 
+// The event's title on its panel: events.csv PanelName where the panel shows more than the name (Reflections:
+// the game's whole title, "Reflections snoitcelfeR"), else the name. Its card and search show eventCardName.
 function eventName(ev) {
-  // events.csv NameInOtherLanguages "game": the other languages show the game's title though the English is the
-  // site's own (Reflections: the game's title is mirrored in every language, "Reflections snoitcelfeR")
-  if (ev.nameInOtherLanguages === 'game' && !(siteLang === 'eng' && !pseudoLang)) {
-    for (const [table, key] of eventNameKeys(ev)) {
-      const s = gameString(table, key);
-      if (s !== null) return s;
-    }
+  return boundText(ev.panelName || ev.name, eventNameKeys(ev), 'event name');
+}
+
+// A title written as a name and then its mirror image ("Reflections snoitcelfeR", "镜中倒影  影倒中镜"): the name
+function mirrorHalf(title) {
+  if (typeof title !== 'string') return null;
+  for (const gap of title.matchAll(/\s+/g)) {
+    const first = title.slice(0, gap.index);
+    if (first && [...first].reverse().join('') === title.slice(gap.index + gap[0].length)) return first;
   }
-  return boundText(ev.name, eventNameKeys(ev), 'event name');
+  return null;
+}
+
+// The game title key whose English is the event's name and its mirror image, or null
+function eventMirrorKey(ev) {
+  return eventNameKeys(ev).find(([table, key]) => mirrorHalf(gameEnglish(table, key)) === ev.name) || null;
+}
+
+// The event's name on its card and in search. A mirrored game title shows its first half, the game's own in
+// each language (镜中倒影, Reflejos); the panel shows the whole title (eventName).
+function eventCardName(ev) {
+  if (siteLang === 'eng' && !pseudoLang) return ev.name;
+  const mirror = eventMirrorKey(ev);
+  if (!mirror) return boundText(ev.name, eventNameKeys(ev), 'event name');
+  if (pseudoLang) return `⟦${ev.name}⟧`;
+  const title = gameString(...mirror);
+  return mirrorHalf(title) || title;
 }
 
 // event_choices.GameOption: "PAGE.OPTION" of the event's game id (INITIAL.DIVE_INTO_WATER)
@@ -652,7 +672,7 @@ function siteTemplates(withContext) {
       for (const zone in eventsData) for (const ev of eventsData[zone]) {
         openPanelInfo = { type: 'event', key: ev.key };
         txPage = `event ${ev.key}`;
-        eventName(ev); renderBetaBadge('event', ev.key); buildEventPanelBody(ev, eventChoices[ev.key] || []);
+        eventName(ev); eventCardName(ev); renderBetaBadge('event', ev.key); buildEventPanelBody(ev, eventChoices[ev.key] || []);
       }
       openPanelInfo = null;
       txPage = 'grid';

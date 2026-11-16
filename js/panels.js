@@ -130,14 +130,14 @@ function renderEventCards(events) {
   return events.map(ev => {
     const imgSrc = ev.image ? `media/events/${ev.image}` : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${eventName(ev)}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`
+      ? `<img src="${imgSrc}" alt="${eventCardName(ev)}" ${imgLoading()} decoding="async" onerror="this.style.display='none'">`
       : '';
     return `
     <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
       <div class="enemy-thumb">
         ${imgHtml}
       </div>
-      <div class="enemy-name">${eventName(ev)}</div>
+      <div class="enemy-name">${eventCardName(ev)}</div>
     </div>`;
   }).join('');
 }
@@ -227,7 +227,7 @@ function buildSearchResultsHtml(q) {
   for (const act in eventsData) {
     if (hiddenZones.includes(act)) continue;
     for (const ev of eventsData[act]) {
-      if (nameMatches(ev.name, eventName(ev), q)) {
+      if (nameMatches(ev.name, eventCardName(ev), q)) {
         eventMatches.push({ ev, zone: act });
       }
     }
@@ -278,11 +278,11 @@ function buildSearchResultsHtml(q) {
       html += '<div class="search-grid">';
       for (const ev of eventGrouped[zone]) {
         const imgSrc = ev.image ? `media/events/${ev.image}` : '';
-        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${eventName(ev)}" loading="lazy" onerror="this.style.display='none'">` : '';
+        const imgHtml = imgSrc ? `<img src="${imgSrc}" alt="${eventCardName(ev)}" loading="lazy" onerror="this.style.display='none'">` : '';
         html += `
           <div class="enemy-card" data-cat="events" onclick="openEvent('${ev.key}')">
             <div class="enemy-thumb">${imgHtml}</div>
-            <div class="enemy-name">${eventName(ev)}</div>
+            <div class="enemy-name">${eventCardName(ev)}</div>
           </div>`;
       }
       html += '</div>';

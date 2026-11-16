@@ -93,8 +93,10 @@ if (mode === 'report') {
     }
     for (const z in encounters) for (const c in encounters[z]) for (const e of encounters[z][c]) tally('encounter names', e.name, encounterNameKeys(e));
     for (const z in eventsData) for (const ev of eventsData[z]) {
-      if (ev.nameInOtherLanguages === 'game' && eventNameKeys(ev).length) (out['event names'] = out['event names'] || { game: 0, site: 0, unbound: 0 }).game++;
+      // A mirrored game title: the card shows its first half (eventCardName)
+      if (eventMirrorKey(ev)) (out['event names'] = out['event names'] || { game: 0, site: 0, unbound: 0 }).game++;
       else tally('event names', ev.name, eventNameKeys(ev));
+      tally('event names', ev.panelName, eventNameKeys(ev));
       const o = out['event lore'] = out['event lore'] || { game: 0, site: 0, unbound: 0 };
       if (ev.lore) { if (!ev.gameIds.length) o.unbound++; else if (eventLoreGameKeys(ev)) o.game++; else o.site++; }
       for (const c of eventChoices[ev.key] || []) {
