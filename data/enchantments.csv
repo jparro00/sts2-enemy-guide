@@ -14,7 +14,7 @@ sharp,Sharp,sharp.webp,Increases damage on this card by [blue]X[/blue].,SHARP,Am
 slither,Slither,slither.webp,"When you draw this card, randomize its cost from [blue]0[/blue] to [blue]3[/blue].",SLITHER,
 slumbering_essence,Slumbering Essence,slumbering_essence.webp,"If this card is in your hand at the end of turn, reduce its cost by [blue]1[/blue] until it is played.",SLUMBERING_ESSENCE,
 souls_power,Soul's Power,souls_power.webp,This card loses [gold]Exhaust[/gold].,SOULS_POWER,
-sown,Sown,sown.webp,"The first time you play this card each combat, gain [blue]X[/blue] Energy.",SOWN,
+sown,Sown,sown.webp,"The first time you play this card each combat, gain [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img].",SOWN,Amount=1
 spiral,Spiral,spiral.webp,This card gains [gold]Replay[/gold] [blue]1[/blue].,SPIRAL,
 steady,Steady,steady.webp,This card gains [gold]Retain[/gold].,STEADY,
 swift,Swift,swift.webp,"The first time you play this card, draw [blue]X[/blue] cards.",SWIFT,Amount=X

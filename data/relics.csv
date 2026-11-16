@@ -13,19 +13,19 @@ dream_catcher,Dream Catcher,dream_catcher.webp,"Whenever you [gold]Rest[/gold], 
 ember_tea,Ember Tea,ember_tea.webp,"At the start of the next [blue]5[/blue] combats, gain [blue]2[/blue] [gold]Strength[/gold].",EMBER_TEA,Combats=5;StrengthPower=2
 fake_anchor,Anchor???,fake_anchor.webp,Start each combat with [blue]4[/blue] [gold]Block[/gold].,FAKE_ANCHOR,Block=4
 fake_blood_vial,Blood Vial???,fake_blood_vial.webp,"At the start of each combat, heal [green]1[/green] HP.",FAKE_BLOOD_VIAL,Heal=1
-fake_happy_flower,Happy Flower???,fake_happy_flower.webp,"Every [blue]5[/blue] turns, gain [blue]1[/blue] Energy.",FAKE_HAPPY_FLOWER,
+fake_happy_flower,Happy Flower???,fake_happy_flower.webp,"Every [blue]5[/blue] turns, gain [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img].",FAKE_HAPPY_FLOWER,Turns=5;Energy=1
 fake_lees_waffle,Lee's Waffle???,fake_lees_waffle.webp,"Upon pickup, heal [green]10%[/green] of your HP.",FAKE_LEES_WAFFLE,Heal=10
 fake_mango,Mango???,fake_mango.webp,"Upon pickup, raise your Max HP by [blue]3[/blue].",FAKE_MANGO,MaxHp=3
 fake_merchants_rug,The Merchant's Rug???,fake_merchants_rug.webp,Poor imitation. Does nothing.,FAKE_MERCHANTS_RUG,
 fake_orichalcum,Orichalcum???,fake_orichalcum.webp,"If you end your turn without [gold]Block[/gold], gain [blue]3[/blue] [gold]Block[/gold].",FAKE_ORICHALCUM,Block=3
 fake_snecko_eye,Snecko Eye???,fake_snecko_eye.webp,Start each combat [red]Confused[/red].,FAKE_SNECKO_EYE,
 fake_strike_dummy,Strike Dummy???,fake_strike_dummy.webp,Cards containing “Strike” deal [blue]1[/blue] additional damage.,FAKE_STRIKE_DUMMY,ExtraDamage=1
-fake_venerable_tea_set,Venerable Tea Set???,fake_venerable_tea_set.webp,"Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [blue]1[/blue] Energy.",FAKE_VENERABLE_TEA_SET,
-fragrant_mushroom,Fragrant Mushroom,fragrant_mushroom.webp,"Upon pickup, lose [red]15[/red] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards.",FRAGRANT_MUSHROOM,
+fake_venerable_tea_set,Venerable Tea Set???,fake_venerable_tea_set.webp,"Whenever you enter a [gold]Rest Site[/gold], start the next combat with an additional [img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img].",FAKE_VENERABLE_TEA_SET,Energy=1
+fragrant_mushroom,Fragrant Mushroom,fragrant_mushroom.webp,"Upon pickup, lose [blue]15[/blue] HP and [gold]Upgrade[/gold] [blue]3[/blue] random cards.",FRAGRANT_MUSHROOM,HpLoss=15;Cards=3
 fresnel_lens,Fresnel Lens,fresnel_lens.webp,"Whenever you add a card that gains [gold]Block[/gold] to your [gold]Deck[/gold], [gold]Enchant[/gold] it with [purple]Nimble[/purple] [blue]2[/blue].",FRESNEL_LENS,NimbleAmount=2
 hand_drill,Hand Drill,hand_drill.webp,"Whenever you break an enemy's [gold]Block[/gold], apply [blue]2[/blue] [gold]Vulnerable[/gold].",HAND_DRILL,VulnerablePower=2
 history_course,History Course,history_course.webp,"At the start of your turn, play a copy of your last played Attack.",HISTORY_COURSE,
-lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a [gold]Power[/gold], deal [blue]8[/blue] damage to ALL enemies.",LOST_WISP,
+lost_wisp,Lost Wisp,lost_wisp.webp,"Whenever you play a Power, deal [blue]8[/blue] damage to ALL enemies.",LOST_WISP,Damage=8
 maw_bank,Maw Bank,maw_bank.webp,"Whenever you climb a floor, gain [blue]12[/blue] [gold]Gold[/gold]. No longer works when you spend any [gold]Gold[/gold] at the shop.",MAW_BANK,Gold=12
 mighty_wings,Mighty Wings,,"Whenever you deal [blue]30[/blue] or more attack damage in a single hit, gain [blue]2[/blue] [gold]Strength[/gold].",MIGHTY_WINGS,DamageThreshold=30;StrengthPower=2
 pollinous_core,Pollinous Core,pollinous_core.webp,"Every [blue]4[/blue] turns, draw [blue]2[/blue] additional cards.",POLLINOUS_CORE,Cards=2;Turns=4

@@ -50,6 +50,7 @@ Lines split on `\n` or at each tag. Tags: `[coop]` (🤝 badge), `[req]` (✦ re
 - `[b]…[/b]` — bold
 - Color tags: `[green] [aqua] [blue] [red] [gold] [orange] [purple] [pink]`
 - Animated effects (per-character): `[rainbow freq=…]`, `[jitter]`, `[sine]`, `[fade_in]`, `[thinky_dots]` — colors/bold may nest inside
+- The game's inline icons, as its text writes them: `[img]res://images/packed/sprite_fonts/colorless_energy_icon.png[/img]` (one per energy, as the game shows 1–4) and `star_icon.png`; shown from `media/ui/<name>.webp`. Descriptions that are the game's text keep them so they stay word for word the game's (Outmaneuver, Sown)
 - Snapshot builds (`build_snapshots.mjs`, via the `STATIC_RENDER` flag) render animated text as plain colored text — expected divergence from the live page.
 
 ## Dread mode columns (optional)
