@@ -264,6 +264,14 @@ function renderPowerRefs(text, enemyKey, marked) {
   return result;
 }
 
+// A word's characters as the reader sees them (grapheme clusters): a combining mark stays with its letter (Thai
+// vowel and tone marks would otherwise float off on their own animation). Engines without Intl.Segmenter split
+// by code point; Jint, the in-game panel's, iterates strings by cluster either way.
+const graphemeSegmenter = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+function graphemes(text) {
+  return graphemeSegmenter ? Array.from(graphemeSegmenter.segment(text), s => s.segment) : [...text];
+}
+
 function wrapCharsWithDelay(content, cssClass, baseDelay) {
   // Static snapshot builds skip the per-char animation spans — plain content
   // (colors/bold already processed) keeps the SEO pages lean.
@@ -280,7 +288,7 @@ function wrapCharsWithDelay(content, cssClass, baseDelay) {
     if (tag) return tag;
     if (m === ' ') return ' '; // normal space allows line break between words
     // Wrap each char in the word, group in a nowrap span
-    const chars = [...m].map(ch => wrapChar(ch)).join('');
+    const chars = graphemes(m).map(ch => wrapChar(ch)).join('');
     return `<span style="white-space:nowrap">${chars}</span>`;
   });
 }
