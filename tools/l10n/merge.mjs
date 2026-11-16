@@ -3,20 +3,22 @@
 // English has them. A translation that fails is left out and listed. The file is written sorted, so the same
 // translations give the same file.
 //
-// Usage: node tools/l10n/merge.mjs <lang> <translations.json> [--check]
+// Usage: node tools/l10n/merge.mjs <lang> [<translations.json>] [--check] [--prune]
 //   translations.json: { ui: { key: text } | [{ key, translation }], text: { template: text } | [{ template, translation }] }
 //   --check   only check the translations (nothing is written)
+//   --prune   also drop the templates no page shows any more (data now worded as the game's, or rewritten)
 import fs from 'node:fs';
 import path from 'node:path';
 import { SITE, bootSite } from './lib.mjs';
 
 const [lang, inFile] = process.argv.slice(2).filter(a => !a.startsWith('--'));
 const checkOnly = process.argv.includes('--check');
+const prune = process.argv.includes('--prune');
 const site = bootSite(SITE);
-if (!lang || lang === 'eng' || !site.run('LANGS.map(l => l.code)').includes(lang) || !inFile) { console.error('usage: merge.mjs <lang> <translations.json>'); process.exit(2); }
+if (!lang || lang === 'eng' || !site.run('LANGS.map(l => l.code)').includes(lang) || (!inFile && !prune)) { console.error('usage: merge.mjs <lang> [<translations.json>] [--check] [--prune]'); process.exit(2); }
 
 const asMap = (v, k) => Array.isArray(v) ? Object.fromEntries(v.filter(x => x && x.translation).map(x => [x[k], x.translation])) : (v || {});
-const input = JSON.parse(fs.readFileSync(inFile, 'utf8'));
+const input = inFile ? JSON.parse(fs.readFileSync(inFile, 'utf8')) : {};
 const uiIn = asMap(input.ui, 'key'), textIn = asMap(input.text, 'template');
 
 const file = path.join(SITE, 'data', 'loc', 'site', `${lang}.json`);
@@ -43,8 +45,13 @@ for (const [template, t] of Object.entries(textIn)) {
   text[template] = t;
   added++;
 }
+let pruned = 0;
+if (prune) {
+  const needed = new Set(site.run('siteTemplates()'));
+  for (const template of Object.keys(text)) if (!needed.has(template)) { delete text[template]; pruned++; }
+}
 const sorted = o => Object.fromEntries(Object.keys(o).sort().map(k => [k, o[k]]));
 if (!checkOnly) fs.writeFileSync(file, JSON.stringify({ lang, ui: sorted(ui), text: sorted(text) }, null, 2) + '\n');
-console.log(`merge ${lang}${checkOnly ? ' (check only)' : ''}: ${added} ${checkOnly ? 'pass' : 'added or replaced'}, ${rejected.length} rejected${checkOnly ? '' : ` -> ${path.relative(SITE, file)}`}`);
+console.log(`merge ${lang}${checkOnly ? ' (check only)' : ''}: ${added} ${checkOnly ? 'pass' : 'added or replaced'}, ${rejected.length} rejected${prune ? `, ${pruned} no longer used ${checkOnly ? 'would be ' : ''}dropped` : ''}${checkOnly ? '' : ` -> ${path.relative(SITE, file)}`}`);
 for (const r of rejected) console.log(`  ${r}`);
 process.exit(rejected.length ? 1 : 0);

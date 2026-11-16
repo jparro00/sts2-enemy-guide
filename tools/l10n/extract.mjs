@@ -29,7 +29,10 @@ for (const lang of langs) {
     const src = game.table(lang, t), eng = game.table('eng', t);
     const out = {};
     for (const k of [...byTable[t]].sort()) {
-      if (typeof eng[k] !== 'string' || eng[k] === '') continue;   // a candidate key the game doesn't have (or has empty)
+      if (typeof eng[k] !== 'string') continue;   // a candidate key the game doesn't have
+      // Empty English stays empty (a card that is only its keywords: Clumsy); the other languages' tables leave
+      // such keys out, and the game falls back to the English, so they are empty there too
+      if (eng[k] === '') { out[k] = ''; n++; continue; }
       if (typeof src[k] === 'string' && src[k] !== '') { out[k] = src[k]; n++; } else missing++;
     }
     if (Object.keys(out).length) text[t] = out;

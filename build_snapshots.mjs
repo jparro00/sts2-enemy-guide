@@ -202,7 +202,11 @@ const allEvents = inCtx(`(() => {
   const checkGameIds = (owner, cell) => {
     for (const id of gameIds(cell)) if (!GAME_ID_RE.test(id)) errors.push(`${owner}: ${JSON.stringify(id)} is not a game id (capitals, digits and _ only)`);
   };
-  for (const r of mRows) checkGameIds(`monsters.csv ${r.Key} GameIds`, r.GameIds);
+  for (const r of mRows) {
+    checkGameIds(`monsters.csv ${r.Key} GameIds`, r.GameIds);
+    // GameEntry: the game entry the monster's text is under when not its id (one id, no list)
+    if (r.GameEntry && !GAME_ID_RE.test(r.GameEntry)) errors.push(`monsters.csv ${r.Key} GameEntry: ${JSON.stringify(r.GameEntry)} is not a game id`);
+  }
   const stateRow = {};
   for (const r of mvRows) {
     checkGameIds(`monster_moves.csv ${r.Enemy}/${r.Move} GameMoves`, r.GameMoves);
@@ -218,8 +222,12 @@ const allEvents = inCtx(`(() => {
   for (const file of ['powers', 'cards', 'relics', 'potions', 'enchantments']) {
     for (const r of parseCSV(readData(`${file}.csv`))) {
       for (const id of gameIds(r.GameIds)) if (!REF_ID_RE.test(id)) errors.push(`${file}.csv ${r.Key} GameIds: ${JSON.stringify(id)} is not a game key prefix (ID or table:ID)`);
+      // GameTitle: the title key the game's code picks for the row (DINGY_DAGGER.title.dingy)
+      if (r.GameTitle && !/^[A-Z0-9_]+\.title\.[A-Za-z0-9_]+$/.test(r.GameTitle)) errors.push(`${file}.csv ${r.Key} GameTitle: ${JSON.stringify(r.GameTitle)} is not ID.title.variant`);
     }
   }
+  // Event lore: GameLore lists the event's game pages the lore is (INITIAL;ENTER)
+  for (const r of evRows) checkGameIds(`events.csv ${r.Key} GameLore`, r.GameLore);
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     if (r.GameOption && !/^(?:[A-Z0-9_]+\.[A-Z0-9_]+|[a-z_]+:[A-Z0-9_]+)$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION or table:KEY`);
   }

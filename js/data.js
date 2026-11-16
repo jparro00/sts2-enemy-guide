@@ -69,6 +69,7 @@ function buildDataStructures(texts) {
       dreadStartsWith: e.DreadStartsWith || '',
       dreadNotes: e.DreadNotes || '',
       gameIds: gameIdList(e.GameIds),
+      gameEntry: e.GameEntry || '',   // the game entry its text is under when not its id (js/i18n.js enemyEntries)
       moves: []
     };
     if (e.DreadHP || e.DreadPattern || e.DreadStartsWith || e.DreadNotes) hasDreadData = true;
@@ -134,7 +135,9 @@ function buildDataStructures(texts) {
       acts: ev.Acts ? ev.Acts.split(',').map(s => s.trim()) : [],
       image: ev.Image || '',
       lore: ev.Lore || '',
-      gameIds: gameIdList(ev.GameIds)
+      gameIds: gameIdList(ev.GameIds),
+      gameLore: gameIdList(ev.GameLore),   // the game pages the lore is (js/i18n.js eventLorePages)
+      gameVars: ev.GameVars || ''
     });
   }
 
@@ -153,22 +156,22 @@ function buildDataStructures(texts) {
   // Build unified itemsRef from all reference CSVs
   const eventCardsRaw = parseCSV(texts.cards);
   for (const c of eventCardsRaw) {
-    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '', gameIds: gameIdList(c.GameIds), gameVars: c.GameVars || '' };
+    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '', gameIds: gameIdList(c.GameIds), gameTitle: c.GameTitle || '', gameVars: c.GameVars || '' };
   }
 
   const enchantmentsRaw = parseCSV(texts.enchantments);
   for (const e of enchantmentsRaw) {
-    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description, gameIds: gameIdList(e.GameIds), gameVars: e.GameVars || '' };
+    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description, gameIds: gameIdList(e.GameIds), gameTitle: e.GameTitle || '', gameVars: e.GameVars || '' };
   }
 
   const potionsRaw = parseCSV(texts.potions);
   for (const p of potionsRaw) {
-    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description, gameIds: gameIdList(p.GameIds), gameVars: p.GameVars || '' };
+    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description, gameIds: gameIdList(p.GameIds), gameTitle: p.GameTitle || '', gameVars: p.GameVars || '' };
   }
 
   const relicsRaw = parseCSV(texts.relics);
   for (const r of relicsRaw) {
-    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description, gameIds: gameIdList(r.GameIds), gameVars: r.GameVars || '' };
+    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description, gameIds: gameIdList(r.GameIds), gameTitle: r.GameTitle || '', gameVars: r.GameVars || '' };
   }
 
   // Also add powers to itemsRef

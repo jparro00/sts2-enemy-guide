@@ -93,10 +93,12 @@ const ENCOUNTER_CATS = [{ key: 'easy' }, { key: 'hard' }, { key: 'elite' }, { ke
 
 // Languages the site and the in-game panel can show: the game's language code (its localization folder),
 // the name shown in the picker (in the language itself) and the HTML lang. The game's other Spanish (esp,
-// Latin America) and Traditional Chinese read the nearest one here (gameLanguages).
+// Latin America) and Traditional Chinese read the nearest one here (gameLanguages). lineJoin: what stands for a
+// line break of the game's when a description is shown on one line (a space unless given; none between Chinese
+// sentences).
 const LANGS = [
   { code: 'eng', name: 'English', html: 'en' },
-  { code: 'zhs', name: '简体中文', html: 'zh-Hans' },
+  { code: 'zhs', name: '简体中文', html: 'zh-Hans', lineJoin: '' },
   { code: 'spa', name: 'Español', html: 'es' },
 ];
 const gameLanguages = { esp: 'spa', zht: 'zhs' };

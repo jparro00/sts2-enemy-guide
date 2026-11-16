@@ -87,8 +87,16 @@ Which game ids each row is. The in-game panel (SpireCodexBridge) and `tools/game
 
 Ids are `;`-separated, capitals, digits and `_` (a model's id is its class name in that form: `AxeRubyRaider` → `AXE_RUBY_RAIDER`). The columns are the last ones in each file. A new monster, move, encounter or event needs its ids filled in.
 
+Game text keys (localization only; `tools/l10n/bind.mjs` fills them from the game's text and leaves a filled cell alone):
+
+| File | Column | Values |
+|---|---|---|
 | `powers.csv`, `cards.csv`, `relics.csv`, `potions.csv`, `enchantments.csv` | `GameIds` | the row's key prefix in its game text table (`ARTIFACT_POWER`, `BAD_LUCK`), or `table:prefix` for text the game keeps in another table (`static_hover_tips:BLOCK`, `card_keywords:INNATE`); empty for things the game doesn't have |
+| `cards.csv` | `GameTitle` | the title key the game's code picks when it isn't `<ID>.title` (`DINGY_DAGGER.title.dingy`: the Dingy Dagger is named by its upgrades) |
+| `monsters.csv` | `GameEntry` | the game entry the monster's name and move titles are under when the game's code names it from another one than its id (`DECIMILLIPEDE_SEGMENT` for the segments, `HATCHLING` for the hatched Tough Egg) |
 | `event_choices.csv` | `GameOption` | `PAGE.OPTION` of the event's game id (`INITIAL.DIVE_INTO_WATER`): the option whose title the Choice is |
+| `events.csv` | `GameLore` | the event's game pages the Lore is, in order, when not the opening page alone (`INITIAL;ENTER`: the site shows the page after the opening one in the same passage) |
+| `event_choices.csv`, `events.csv`, the reference files | `GameVars` | the values that make the game's text the site's English (`Gold=40`, `EntrantNumber=101-998`, `@relics:KEY` for a game string, `^KEYWORD` / `$KEYWORD` a card's keywords) |
 
 `game_gaps.csv` lists the game's ids the site doesn't cover on purpose (test monsters, event fights, Ancients, moves with no row): `Type` (`monster` | `move` | `encounter` | `event`), `GameId` (`MONSTER:STATE` for a move), `Note`.
 

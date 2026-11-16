@@ -277,8 +277,9 @@ function parseGameVars(cell) {
   return { vars, before, after };
 }
 
-// A game description in `lang`: the template formatted, with the card's keywords around it as the game shows
-// them ("[gold]Unplayable[/gold]. … [gold]Eternal[/gold].")
+// A game description in `lang`, as the game builds it (CardModel.GetDescriptionForPile): the card's keywords
+// before and after the formatted template ("[gold]Unplayable[/gold]." … "[gold]Eternal[/gold]."), one line each,
+// empty lines left out, joined with line breaks
 function gameDescription(template, gv, lang, keyword) {
   const vars = {};
   for (const [k, v] of Object.entries(gv.vars)) {
@@ -293,7 +294,15 @@ function gameDescription(template, gv, lang, keyword) {
   const kw = k => { const title = keyword(`${k}.title`); return title === null ? null : `[gold]${title}[/gold]${keyword('PERIOD') ?? '.'}`; };
   const before = gv.before.map(kw), after = gv.after.map(kw);
   if (before.includes(null) || after.includes(null)) return null;
-  return [...before, body, ...after].join(' ');
+  return [...before, body, ...after].filter(line => line !== '').join('\n');
+}
+
+// A description on one line, the way the site shows it: the game's line breaks as the language's lineJoin
+// (js/config.js LANGS)
+function oneLine(text, lang) {
+  if (text === null) return null;
+  const info = LANGS.find(l => l.code === lang);
+  return text.replace(/\n+/g, info && typeof info.lineJoin === 'string' ? info.lineJoin : ' ');
 }
 
 // A bound field with values: game text when the game's English template, formatted with the row's GameVars,
@@ -303,7 +312,7 @@ function gameKeyFor(english, candidates, gameVarsCell) {
   const gv = parseGameVars(gameVarsCell);
   return candidates.find(([table, key]) => {
     const en = gameEnglish(table, key);
-    return en !== null && gameDescription(en, gv, 'eng', k => gameEnglish('card_keywords', k)) === english;
+    return en !== null && oneLine(gameDescription(en, gv, 'eng', k => gameEnglish('card_keywords', k)), 'eng') === english;
   }) || null;
 }
 
@@ -315,9 +324,10 @@ function boundFormatted(english, candidates, gameVarsCell, kind, splitParts) {
     const [table, key] = hit;
     if (pseudoLang) return `⟦${english}⟧`;
     const tbl = gameLang[table];
-    const local = tbl && typeof tbl[key] === 'string' && tbl[key] !== '' ? tbl[key] : null;
+    // Empty counts where the English is empty too (a card that is only its keywords)
+    const local = tbl && typeof tbl[key] === 'string' && (tbl[key] !== '' || gameEnglish(table, key) === '') ? tbl[key] : null;
     // A string the language lacks shows in English with English rules, as in the game
-    const text = local === null ? null : gameDescription(local, gv, siteLang, k => (gameLang.card_keywords && gameLang.card_keywords[k]) ?? gameEnglish('card_keywords', k));
+    const text = local === null ? null : oneLine(gameDescription(local, gv, siteLang, k => (gameLang.card_keywords && gameLang.card_keywords[k]) ?? gameEnglish('card_keywords', k)), siteLang);
     if (text !== null) return text;
     locMisses.add(`game:${table}:${key}`);
     return english;
@@ -410,8 +420,15 @@ function txLore(text, kind) {
 // ── Names and descriptions bound to game keys ──
 const stateTitleKey = (monsterId, state) => `${monsterId}.moves.${state.replace(/_MOVE$/, '')}.title`;
 
+// The game entries a monster's text is under: its game ids (<ID>.name, <ID>.moves.<STATE>.title), after
+// monsters.csv GameEntry where the game's code names it from another entry (the Decimillipede's segments read
+// DECIMILLIPEDE_SEGMENT; the Tough Egg once hatched reads HATCHLING)
+function enemyEntries(data) {
+  return data.gameEntry ? [data.gameEntry, ...data.gameIds] : data.gameIds;
+}
+
 function enemyNameKeys(data) {
-  return data.gameIds.map(id => ['monsters', `${id}.name`]);
+  return enemyEntries(data).map(id => ['monsters', `${id}.name`]);
 }
 
 function enemyName(key) {
@@ -420,7 +437,7 @@ function enemyName(key) {
 }
 
 function moveNameKeys(enemyKey, move) {
-  const ids = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].gameIds : [];
+  const ids = enemyDatabase[enemyKey] ? enemyEntries(enemyDatabase[enemyKey]) : [];
   const keys = [];
   for (const id of ids) for (const s of move.gameMoves) keys.push(['monsters', stateTitleKey(id, s)]);
   // The game's own title for a skipped turn (its Bestiary shows it for stuns)
@@ -472,8 +489,15 @@ function choiceEffect(ev, choice) {
   return boundFormatted(choice.effect, choiceKeys(ev, choice, 'description'), choice.gameVars, 'event choice effect', txLore);
 }
 
+// The game pages an event's lore is, in order, per game id: events.csv GameLore ("INITIAL;ENTER": the site shows
+// the opening page and the one after it as one passage), the opening page when empty
+function eventLorePages(ev) {
+  const pages = ev.gameLore.length ? ev.gameLore : ['INITIAL'];
+  return ev.gameIds.map(id => pages.map(p => ['events', `${id}.pages.${p}.description`]));
+}
+
 function eventLoreKeys(ev) {
-  return ev.gameIds.map(id => ['events', `${id}.pages.INITIAL.description`]);
+  return eventLorePages(ev).flat();
 }
 
 // Lore is written with | where the game breaks the line (a blank line or a single one)
@@ -481,19 +505,32 @@ function loreFromGame(text) {
   return text.replace(/\n\n?/g, '|');
 }
 
+// The pages in `lang`, formatted with the event's GameVars and joined the site's way; null if one is missing
+// (a page the language lacks shows the English, as in the game)
+function gameLore(keys, gv, lang) {
+  const parts = keys.map(([table, key]) => {
+    const en = gameEnglish(table, key);
+    if (en === null) return null;
+    const local = lang === 'eng' ? en : ((gameLang[table] && gameLang[table][key]) || null);
+    if (local === null) locMisses.add(`game:${table}:${key}`);
+    const text = gameDescription(local ?? en, gv, local === null ? 'eng' : lang, () => null);
+    return text === null ? null : loreFromGame(text);
+  });
+  return parts.includes(null) ? null : parts.join('|');
+}
+
+// The lore's game pages when they are, formatted with the GameVars, the site's lore; else null (site wording)
+function eventLoreGameKeys(ev) {
+  const gv = parseGameVars(ev.gameVars);
+  return eventLorePages(ev).find(keys => gameLore(keys, gv, 'eng') === ev.lore) || null;
+}
+
 function eventLore(ev) {
   if (!ev.lore || (siteLang === 'eng' && !pseudoLang)) return ev.lore;
-  for (const [table, key] of eventLoreKeys(ev)) {
-    const en = gameEnglish(table, key);
-    if (en === null || loreFromGame(formatGameText(en, {}, 'eng') ?? '') !== ev.lore) continue;
-    if (pseudoLang) return `⟦${ev.lore}⟧`;
-    const local = gameLang.events && gameLang.events[key];
-    const text = local ? formatGameText(local, {}, siteLang) : null;
-    if (text !== null) return loreFromGame(text);
-    locMisses.add(`game:${table}:${key}`);
-    return ev.lore;
-  }
-  return txLore(ev.lore, 'event lore');
+  const keys = eventLoreGameKeys(ev);
+  if (!keys) return txLore(ev.lore, 'event lore');
+  if (pseudoLang) return `⟦${ev.lore}⟧`;
+  return gameLore(keys, parseGameVars(ev.gameVars), siteLang) ?? ev.lore;
 }
 
 // GameIds of a reference row: the key prefix in the file's game table (ARTIFACT_POWER), or table:prefix for
@@ -517,8 +554,16 @@ function powerDesc(key) {
   return ref ? boundFormatted(ref.desc, refKeys('powers', ref.gameIds, 'description'), ref.gameVars, 'power description') : '';
 }
 
+// A row's name keys: GameTitle first, the title the game's code picks for it when not <ID>.title (the Dingy
+// Dagger, named by its upgrades: DINGY_DAGGER.title.dingy), then <ID>.title
+function itemNameKeys(item) {
+  const table = REF_TABLES[item.category];
+  const keys = refKeys(table, item.gameIds || [], 'title');
+  return item.gameTitle ? [[table, item.gameTitle], ...keys] : keys;
+}
+
 function itemName(item) {
-  return boundText(item.name, refKeys(REF_TABLES[item.category], item.gameIds || [], 'title'), `${item.category} name`);
+  return boundText(item.name, itemNameKeys(item), `${item.category} name`);
 }
 
 function itemDesc(item) {
@@ -559,10 +604,11 @@ function gameKeysUsed() {
   }
   for (const key in itemsRef) {
     const item = itemsRef[key];
-    for (const field of ['title', 'description']) keys.push(...refKeys(REF_TABLES[item.category], item.gameIds || [], field));
+    keys.push(...itemNameKeys(item), ...refKeys(REF_TABLES[item.category], item.gameIds || [], 'description'));
   }
   // Card keywords around card descriptions, and the game strings GameVars point at
-  const cells = [...Object.values(itemsRef).map(i => i.gameVars), ...Object.values(eventChoices).flat().map(c => c.gameVars)];
+  const cells = [...Object.values(itemsRef).map(i => i.gameVars), ...Object.values(eventChoices).flat().map(c => c.gameVars),
+    ...Object.values(eventsData).flat().map(ev => ev.gameVars)];
   for (const cell of cells) {
     const gv = parseGameVars(cell);
     for (const k of [...gv.before, ...gv.after]) keys.push(['card_keywords', `${k}.title`]);

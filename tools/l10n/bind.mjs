@@ -1,7 +1,11 @@
 // Fills the game-key columns the localization reads, where the game has the row's thing under the same English:
 //   powers / cards / relics / potions / enchantments GameIds: the row's key prefix in its game table
 //     (ARTIFACT_POWER, BAD_LUCK), or table:prefix for text the game keeps elsewhere (static_hover_tips:BLOCK,
-//     card_keywords:INNATE); bound only when that title is the row's Name
+//     card_keywords:INNATE); bound only when that title is the row's Name, or one of the prefix's title variants
+//     (cards GameTitle: DINGY_DAGGER.title.dingy)
+//   monsters GameEntry: the entry the game's code names a monster from when no game id's name is its Name
+//     (DECIMILLIPEDE_SEGMENT, HATCHLING): the one monsters-table entry with that name
+//   events GameLore / GameVars: the event's pages its Lore is (the opening one, or it and one more) and their values
 //   event_choices GameOption: PAGE.OPTION of the event's game id whose title is the Choice, word for word or as
 //     the option's template with values filled in ("Give {Gold} Gold" for "Give 100 Gold"); or table:KEY for a
 //     choice titled with another game string (relics:FAKE_ANCHOR)
@@ -111,34 +115,49 @@ const serialize = (vars, before = [], after = []) => [
   ...Object.keys(vars).sort().map(k => `${k}=${vars[k]}`), ...before.map(k => `^${k}`), ...after.map(k => `$${k}`),
 ].join(';');
 
-// A card's keywords as the game shows them around its text: "[gold]Unplayable[/gold]. … [gold]Eternal[/gold]."
+// A card's keywords as the game shows them around its text, a line each ("[gold]Unplayable[/gold]." …
+// "[gold]Eternal[/gold]."), which the site writes on one line: the game's CardKeywordOrder puts these before
+// the description and these after it
+const KEYWORDS_BEFORE = new Set(['ETHEREAL', 'SLY', 'RETAIN', 'INNATE', 'UNPLAYABLE']);
+const KEYWORDS_AFTER = new Set(['EXHAUST', 'ETERNAL']);
 const keywordByTitle = new Map(Object.entries(eng('card_keywords')).filter(([k]) => k.endsWith('.title')).map(([k, v]) => [v, k.replace(/\.title$/, '')]));
 function splitKeywords(text) {
   const before = [], after = [];
   let body = text, m;
-  while ((m = body.match(/^\[gold\]([^[]+)\[\/gold\]\. /)) && keywordByTitle.has(m[1])) { before.push(keywordByTitle.get(m[1])); body = body.slice(m[0].length); }
-  while ((m = body.match(/ \[gold\]([^[]+)\[\/gold\]\.$/)) && keywordByTitle.has(m[1])) { after.unshift(keywordByTitle.get(m[1])); body = body.slice(0, -m[0].length); }
+  while ((m = body.match(/^\[gold\]([^[]+)\[\/gold\]\.(?: |$)/)) && KEYWORDS_BEFORE.has(keywordByTitle.get(m[1]))) { before.push(keywordByTitle.get(m[1])); body = body.slice(m[0].length); }
+  while ((m = body.match(/(?:^| )\[gold\]([^[]+)\[\/gold\]\.$/)) && KEYWORDS_AFTER.has(keywordByTitle.get(m[1]))) { after.unshift(keywordByTitle.get(m[1])); body = body.slice(0, -m[0].length); }
   return { before, after, body };
 }
 
 // ── Reference rows ──
 const counts = {};
+// A title the game's code picks for the row other than <ID>.title: one of <ID>.title.<variant> (the Dingy Dagger,
+// named by its upgrades: DINGY_DAGGER.title.dingy)
+const titleVariant = (table, id, name) => Object.keys(eng(table)).find(k => k.startsWith(`${id}.title.`) && eng(table)[k] === name);
 function bindRefs(file, candidates) {
   let bound = 0, withText = 0;
+  const titles = new Map();   // row key -> GameTitle
   let text = setCsvColumn(fs.readFileSync(csvPath(file), 'utf8'), 'GameIds', (r) => {
     if (r.GameIds) { bound++; return undefined; }
     for (const [table, id] of candidates(r.Key.toUpperCase())) {
       if (eng(table)[`${id}.title`] === r.Name) { bound++; return table === file ? id : `${table}:${id}`; }
+      const variant = table === file && titleVariant(table, id, r.Name);
+      if (variant) { bound++; titles.set(r.Key, variant); return id; }
     }
     unbound.push(`${file}: ${r.Key} (${r.Name})`);
     return '';
   });
+  // GameTitle: written where a row needs one (a file whose rows all read <ID>.title has no such column)
+  if (titles.size || /^[^\r\n]*\bGameTitle\b/.test(text)) {
+    text = setCsvColumn(text, 'GameTitle', (r) => (r.GameTitle ? undefined : (titles.get(r.Key) || '')));
+  }
   text = setCsvColumn(text, 'GameVars', (r) => {
     const id = (r.GameIds || '').split(';')[0];
     if (!id) return '';
     const [table, key] = id.includes(':') ? id.split(':') : [file, id];
-    const template = eng(table)[`${key}.description`];
-    if (typeof template !== 'string' || !r.Description) return '';
+    // The game's line breaks read as the site's spaces (js/i18n.js oneLine)
+    const template = typeof eng(table)[`${key}.description`] === 'string' ? eng(table)[`${key}.description`].replace(/\n+/g, ' ') : null;
+    if (template === null || !r.Description) return '';
     const kw = file === 'cards' ? splitKeywords(r.Description) : { before: [], after: [], body: r.Description };
     const vars = findVars(template, kw.body, NAMES);
     if (vars === null) return '';
@@ -218,5 +237,60 @@ choicesText = setCsvColumn(choicesText, 'GameVars', (r) => {
 });
 fs.writeFileSync(csvPath('event_choices'), choicesText);
 
-console.log(`bind (game v${game.version}): ${Object.entries(counts).map(([f, n]) => `${f} ${n}`).join('; ')}; event choices ${choicesBound} bound, ${choicesVars} with values`);
+// ── Event lore: GameLore, the event's pages whose text, joined the site's way, is the Lore (the opening page, or
+// it and the page after it, which the site shows as one passage); GameVars, the values those pages take ──
+const lorePages = id => Object.keys(ev).filter(k => k.startsWith(`${id}.pages.`) && /^[^.]+\.pages\.[A-Z0-9_]+\.description$/.test(k))
+  .map(k => k.split('.pages.')[1].split('.')[0]).filter(p => p !== 'INITIAL');
+const loreTemplate = (id, pages) => pages.map(p => ev[`${id}.pages.${p}.description`]).every(t => typeof t === 'string')
+  ? pages.map(p => ev[`${id}.pages.${p}.description`].replace(/\n\n?/g, '|')).join('|') : null;
+const loreFound = new Map();   // event key -> { pages, vars }
+let loreBound = 0, loreVars = 0;
+setCsvColumn(fs.readFileSync(csvPath('events'), 'utf8'), 'Lore', (r) => {
+  const id = (r.GameIds || '').split(';')[0].trim();
+  if (!id || !r.Lore) return undefined;
+  const refs = new Map([...NAMES, ...Object.entries(ev).filter(([k, v]) => k.startsWith(`${id}.`) && !k.includes('.pages.') && typeof v === 'string').map(([k, v]) => [v, `events:${k}`])]);
+  for (const pages of [['INITIAL'], ...lorePages(id).map(p => ['INITIAL', p])]) {
+    const template = loreTemplate(id, pages);
+    const vars = template === null ? null : findVars(template, r.Lore, refs);
+    if (vars) { loreFound.set(r.Key, { pages, vars }); return undefined; }
+  }
+  unbound.push(`events lore: ${r.Key} (${r.Name})`);
+  return undefined;
+});
+let eventsText = setCsvColumn(fs.readFileSync(csvPath('events'), 'utf8'), 'GameLore', (r) => {
+  const f = loreFound.get(r.Key);
+  if (!f) return '';
+  loreBound++;
+  return f.pages.length === 1 ? '' : f.pages.join(';');
+});
+eventsText = setCsvColumn(eventsText, 'GameVars', (r) => {
+  const f = loreFound.get(r.Key);
+  if (!f || !Object.keys(f.vars).length) return '';
+  loreVars++;
+  return serialize(f.vars);
+});
+fs.writeFileSync(csvPath('events'), eventsText);
+
+// ── Monsters: GameEntry, the entry the game's code names a monster from when no game id's name is its Name (the
+// Decimillipede's segments: DECIMILLIPEDE_SEGMENT; the hatched Tough Egg: HATCHLING): the one monsters-table entry
+// whose name is the Name ──
+const mon = eng('monsters');
+const entryByName = new Map();
+for (const [k, v] of Object.entries(mon)) {
+  if (!/^[A-Z0-9_]+\.name$/.test(k) || typeof v !== 'string') continue;
+  entryByName.set(v, entryByName.has(v) ? null : k.slice(0, -5));   // null: two entries, not one
+}
+let entries = 0;
+const monstersText = setCsvColumn(fs.readFileSync(csvPath('monsters'), 'utf8'), 'GameEntry', (r) => {
+  if (r.GameEntry) { entries++; return undefined; }
+  const ids = (r.GameIds || '').split(';').map(s => s.trim()).filter(Boolean);
+  if (!ids.length || ids.some(id => mon[`${id}.name`] === r.Name)) return '';
+  const entry = entryByName.get(r.Name);
+  if (entry) { entries++; return entry; }
+  unbound.push(`monsters name: ${r.Key} (${r.Name})`);
+  return '';
+});
+fs.writeFileSync(csvPath('monsters'), monstersText);
+
+console.log(`bind (game v${game.version}): ${Object.entries(counts).map(([f, n]) => `${f} ${n}`).join('; ')}; event choices ${choicesBound} bound, ${choicesVars} with values; event lore ${loreBound} game text, ${loreVars} with values; monsters ${entries} named from another entry`);
 for (const u of unbound) console.log(`  no game key: ${u}`);

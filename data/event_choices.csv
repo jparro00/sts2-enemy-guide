@@ -117,7 +117,7 @@ potion_courier,Grab Potions,Procure [blue]3[/blue] [gold]Foul Potions[/gold].,,f
 potion_courier,Ransack,Procure [blue]1[/blue] random [gold]Uncommon Potion[/gold].,,,INITIAL.RANSACK,
 ranwid_the_elder,Give 100 Gold,Obtain a random Relic.,,,INITIAL.GOLD,Gold=100
 ranwid_the_elder,Give Potion,Obtain a random Relic.,,,INITIAL.POTION,
-ranwid_the_elder,Give Relic,Obtain 2 random Relics.,,,INITIAL.POTION,
+ranwid_the_elder,Give Relic,Obtain 2 random Relics.,,,INITIAL.RELIC,
 relic_trader,Take the Bottom One,Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].,,,INITIAL.BOTTOM,
 relic_trader,Take the Middle One,Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].,,,INITIAL.MIDDLE,
 relic_trader,Take the Top One,Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].,,,INITIAL.TOP,

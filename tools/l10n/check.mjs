@@ -94,9 +94,8 @@ if (mode === 'report') {
     for (const z in encounters) for (const c in encounters[z]) for (const e of encounters[z][c]) tally('encounter names', e.name, encounterNameKeys(e));
     for (const z in eventsData) for (const ev of eventsData[z]) {
       tally('event names', ev.name, eventNameKeys(ev));
-      const lore = eventLoreKeys(ev).map(([t, k]) => [t, k]);
       const o = out['event lore'] = out['event lore'] || { game: 0, site: 0, unbound: 0 };
-      if (ev.lore) { if (!lore.length) o.unbound++; else if (lore.some(([t, k]) => loreFromGame(formatGameText(gameEnglish(t, k) || '', {}, 'eng') || '') === ev.lore)) o.game++; else o.site++; }
+      if (ev.lore) { if (!ev.gameIds.length) o.unbound++; else if (eventLoreGameKeys(ev)) o.game++; else o.site++; }
       for (const c of eventChoices[ev.key] || []) {
         tally('choice names', c.choice, choiceKeys(ev, c, 'title'), c.gameVars);
         tally('choice effects', c.effect, choiceKeys(ev, c, 'description'), c.gameVars);
@@ -104,7 +103,7 @@ if (mode === 'report') {
     }
     for (const key in itemsRef) {
       const it = itemsRef[key];
-      tally(it.category + ' names', it.name, refKeys(REF_TABLES[it.category], it.gameIds || [], 'title'));
+      tally(it.category + ' names', it.name, itemNameKeys(it));
       tally(it.category + ' descriptions', it.desc, refKeys(REF_TABLES[it.category], it.gameIds || [], 'description'), it.gameVars);
     }
     return out;
