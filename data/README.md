@@ -87,6 +87,9 @@ Which game ids each row is. The in-game panel (SpireCodexBridge) and `tools/game
 
 Ids are `;`-separated, capitals, digits and `_` (a model's id is its class name in that form: `AxeRubyRaider` → `AXE_RUBY_RAIDER`). The columns are the last ones in each file. A new monster, move, encounter or event needs its ids filled in.
 
+| `powers.csv`, `cards.csv`, `relics.csv`, `potions.csv`, `enchantments.csv` | `GameIds` | the row's key prefix in its game text table (`ARTIFACT_POWER`, `BAD_LUCK`), or `table:prefix` for text the game keeps in another table (`static_hover_tips:BLOCK`, `card_keywords:INNATE`); empty for things the game doesn't have |
+| `event_choices.csv` | `GameOption` | `PAGE.OPTION` of the event's game id (`INITIAL.DIVE_INTO_WATER`): the option whose title the Choice is |
+
 `game_gaps.csv` lists the game's ids the site doesn't cover on purpose (test monsters, event fights, Ancients, moves with no row): `Type` (`monster` | `move` | `encounter` | `event`), `GameId` (`MONSTER:STATE` for a move), `Note`.
 
 The mod's build pipeline (Abyssal `tools/build-bridge`) checks both against the installed game and stops on: an id on a row that the game doesn't have, a game id on two encounter or event rows (or a move state on two moves of one enemy), and a game id that is on no row and not in `game_gaps.csv`. `build_snapshots.mjs` checks the format.
@@ -101,3 +104,22 @@ The mod's build pipeline (Abyssal `tools/build-bridge`) checks both against the 
 ## Intents (`monster_moves.Intent`)
 
 Comma-separated keys from: `attack, multi_attack, block, buff, debuff, add_statuses, affliction, summon, sleeping, deathblow, escape, heal, stun, unknown`. Icons live in `media/intents/<key>.webp`; unrecognized keys render the `unknown` icon.
+
+## Localization (`data/loc/`)
+
+Every string the site and the in-game panel show is either **game text** or **site text** (`js/i18n.js`):
+
+- **Game text**: the game's own string, looked up by the game key a row is bound to (the columns above, and `gameId` in `ACTS`). A bound field whose English is the game's English shows the game's string in other languages; one that differs is the site's own wording.
+- **Site text**: the site's own wording. English lives where it always has: the CSV cells (names, notes, patterns, effects, compositions, Dominions, beta changes) and `data/loc/site/eng.json` (labels and phrases the code shows, `{slot}`s filled by the code).
+
+| File | What |
+|---|---|
+| `loc/game/<lang>.json` | the game's text the bindings use, per language, with the game version. Written by `node tools/l10n/extract.mjs` (reads the game's pack); never edited by hand |
+| `loc/site/eng.json` | the site's labels and phrases in English (`ui`) |
+| `loc/site/<lang>.json` | a language's translations: `ui` (key → `{ en, text }`, `en` being the English it was made from) and `text` (template → translation) |
+
+A cell's translation is keyed by its **template**: the English with `<Move>` refs, `{power}` refs and values taken out (`{m1}`, `{p1}`, `{n1}`): `Apply 2 {weak}` and `Apply 3 {frail}` are both `Apply {n1} {p1}`. Effects, Dominions and beta changes are translated per `;` clause, patterns per line, lore and choice text per `|` paragraph, notes per line. A translation stands only for the English it was made from: change a cell's wording and its old translation stops applying (the page shows English there) until it's redone.
+
+English pages render the data as written, with no lookups. Checks (`tools/l10n`): `render-pages.mjs` + `check.mjs same` (English identical before and after a code change), `render-pages.mjs --pseudo` + `check.mjs pseudo` (every shown string comes from a table), `check.mjs report` (game text vs site wording per table; translations missing or made from other English, per language).
+
+Adding a language: an entry in `LANGS` (`js/config.js`), `node tools/l10n/extract.mjs`, then `data/loc/site/<lang>.json`.

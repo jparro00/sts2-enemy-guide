@@ -52,7 +52,7 @@ const SITE_PREFIX = SITE_ORIGIN + SITE_BASE; // e.g. https://spirecodex.com/test
 
 // ─── Boot the browser renderers in a VM context ────────────────────────
 const ctx = vm.createContext({ console, STATIC_RENDER: true });
-for (const f of ['csv-parser.js', 'config.js', 'renderers.js', 'panels.js', 'data.js']) {
+for (const f of ['csv-parser.js', 'config.js', 'i18n.js', 'renderers.js', 'panels.js', 'data.js']) {
   const code = fs.readFileSync(path.join(BASE, 'js', f), 'utf8');
   new vm.Script(code, { filename: `js/${f}` }).runInContext(ctx);
 }
@@ -75,12 +75,16 @@ ctx.__texts = {
   potions: readData('potions.csv'),
   relics: readData('relics.csv'),
   beta: readData('beta_changes.csv'),
+  // English game and site text (js/i18n.js); the pages are English, so no other language is loaded
+  gameText: readData('loc/game/eng.json'),
+  siteText: readData('loc/site/eng.json'),
 };
 // Every core CSV is required — a missing/empty file would silently generate
 // pages full of "No data available" while staying above the page-count guard.
+const TEXT_FILES = { moves: 'monster_moves.csv', gameText: 'loc/game/eng.json', siteText: 'loc/site/eng.json' };
 for (const [name, text] of Object.entries(ctx.__texts)) {
   if (name !== 'beta' && !text.trim()) {
-    console.error(`ERROR: data/${name === 'moves' ? 'monster_moves' : name}.csv missing or empty`);
+    console.error(`ERROR: data/${TEXT_FILES[name] || name + '.csv'} missing or empty`);
     process.exit(1);
   }
 }
@@ -207,6 +211,17 @@ const allEvents = inCtx(`(() => {
       if (stateRow[k]) errors.push(`monster_moves.csv: ${s} is on both ${r.Enemy}/${stateRow[k]} and ${r.Enemy}/${r.Move}`);
       else stateRow[k] = r.Move;
     }
+  }
+  // Reference rows: GameIds is the row's key prefix in its game table (ARTIFACT_POWER), or table:prefix for text
+  // kept in another table (static_hover_tips:BLOCK); event choices: GameOption is PAGE.OPTION of the event's id
+  const REF_ID_RE = /^(?:[a-z_]+:)?[A-Z0-9_]+$/;
+  for (const file of ['powers', 'cards', 'relics', 'potions', 'enchantments']) {
+    for (const r of parseCSV(readData(`${file}.csv`))) {
+      for (const id of gameIds(r.GameIds)) if (!REF_ID_RE.test(id)) errors.push(`${file}.csv ${r.Key} GameIds: ${JSON.stringify(id)} is not a game key prefix (ID or table:ID)`);
+    }
+  }
+  for (const r of parseCSV(ctx.__texts.eventChoices)) {
+    if (r.GameOption && !/^[A-Z0-9_]+\.[A-Z0-9_]+$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION`);
   }
   for (const [file, rows] of [['encounters.csv', encRows], ['events.csv', evRows]]) {
     const idRow = {};
@@ -369,7 +384,32 @@ if (/<base\s[^>]*>/.test(INDEX_HTML)) {
 // checked-in markup is refreshed on every build, so adding an act never
 // requires editing index.html by hand. Idempotent on re-runs.
 const actBarInner = inCtx('buildActBarHtml')('overgrowth');
-const encounterTabsInner = inCtx('encounterTabsHtml');
+const encounterTabsInner = inCtx('encounterTabsHtml()');
+
+// index.html's own text is the English of data/loc/site/eng.json (js/i18n.js chromeStrings, which ui.js applies
+// in other languages): the two must not drift apart
+{
+  const textOf = (html) => html.replace(/<span id="game-version">[^<]*<\/span>/, '<span id="game-version"></span>').replace(/\s+/g, ' ').trim();
+  const drift = [];
+  for (const s of inCtx('chromeStrings()')) {
+    const cls = s.sel.match(/^\.site-footer \.(footer-\w+)$/);
+    const want = textOf(s.text);
+    let found = null;
+    if (s.attr === 'placeholder' || s.attr === 'aria-label') {
+      const id = s.sel.slice(1);
+      const m = INDEX_HTML.match(new RegExp(`id="${id}"[^>]*${s.attr}="([^"]*)"|${s.attr}="([^"]*)"[^>]*id="${id}"`));
+      found = m ? (m[1] ?? m[2]) : null;
+    } else if (cls) {
+      const m = INDEX_HTML.match(new RegExp(`<span class="${cls[1]}">([\\s\\S]*?)</span>(?:<br>|\\s*<div)`));
+      found = m ? textOf(m[1]) : null;
+    } else continue;   // buttons and labels: checked by the fake-language test (tools/l10n)
+    if (found !== want) drift.push(`${s.sel} ${s.attr}: index.html ${JSON.stringify(found)} vs eng.json ${s.key} ${JSON.stringify(want)}`);
+  }
+  if (drift.length) {
+    for (const d of drift) console.error(`ERROR: ${d}`);
+    process.exit(1);
+  }
+}
 INDEX_HTML = mustReplace(
   INDEX_HTML,
   /<div class="act-bar">[\s\S]*?<\/div>\s*<div class="category-tabs" id="category-tabs">[\s\S]*?<\/div>\s*(<div class="player-count-bar">)/,

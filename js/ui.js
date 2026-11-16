@@ -33,8 +33,9 @@ function setPlayerCount(count) {
 // grows a query string. `enemies` belongs to one encounter page rather than the
 // visit (routeFromURL reads it, it's dropped on leaving the page), but it
 // counts as a settings link all the same. `asc` (the run's Ascension, 0–10) has
-// no control on the page: links from the in-game panel set it.
-const URL_SETTING_KEYS = ['players', 'act', 'asc', 'dread', 'boss', 'enemies', 'moves'];
+// no control on the page: links from the in-game panel set it. `lang` is read
+// before the data loads (initialLanguage) and, like the rest, isn't saved.
+const URL_SETTING_KEYS = ['players', 'act', 'asc', 'dread', 'boss', 'enemies', 'moves', 'lang'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
@@ -85,6 +86,7 @@ function settingsQuery() {
   if (openPanelInfo && openPanelInfo.moves && openPanelInfo.moves.length) {
     q += `&moves=${openPanelInfo.moves.join(',')}`;
   }
+  if (siteLang !== 'eng') q += `&lang=${siteLang}`;
   return q;
 }
 
@@ -124,6 +126,97 @@ function rerenderOpenPanel() {
   }
 }
 
+// ── Language ──
+// The language is ?lang= (this visit only), else the one picked last, else the
+// first of the browser's languages the site has (English when none). The page
+// itself (index.html and the snapshots) is English; the scripts redraw it in the
+// language once the data is in.
+const LANG_STORAGE_KEY = 'spirecodex.lang';
+let siteIsBeta = false;          // data.js sets it from site-config.json / the path
+const langFileCache = {};        // url -> text, so switching back costs nothing
+
+function knownLang(code) {
+  return LANGS.some(l => l.code === code) ? code : null;
+}
+
+// A browser language tag ("zh-CN", "es-419") -> a site language, by the game's language families
+function browserLang(tag) {
+  const base = (tag || '').toLowerCase().split('-')[0];
+  return LANGS.find(l => l.html.toLowerCase().split('-')[0] === base)?.code || null;
+}
+
+function initialLanguage() {
+  const fromUrl = knownLang(new URLSearchParams(window.location.search).get('lang'));
+  if (fromUrl) return fromUrl;
+  try {
+    const saved = knownLang(localStorage.getItem(LANG_STORAGE_KEY));
+    if (saved) return saved;
+  } catch (e) { /* storage blocked */ }
+  for (const tag of navigator.languages || [navigator.language]) {
+    const code = browserLang(tag);
+    if (code) return code;
+  }
+  return 'eng';
+}
+
+// Sets the language's tables and redraws the page's own text (not the grid or panel: callers redraw those)
+function applyLanguage(lang, files) {
+  setLanguage(lang, files);
+  document.documentElement.lang = currentLangInfo().html;
+  for (const s of chromeStrings()) {
+    for (const el of document.querySelectorAll(s.sel)) {
+      if (s.attr === 'textContent') el.textContent = s.text;
+      else if (s.attr === 'innerHTML') el.innerHTML = s.text;
+      else el.setAttribute(s.attr, s.text);
+    }
+  }
+  showDataVersion();
+  renderLanguagePicker();
+}
+
+function showDataVersion() {
+  const el = document.getElementById('game-version');
+  if (el) el.textContent = siteIsBeta ? t('version_beta', { version: siteConfig.betaVersion }) : t('version_live', { version: siteConfig.gameVersion });
+}
+
+function showVersionBanner() {
+  const banner = document.getElementById('version-banner');
+  const content = buildVersionBanner(siteConfig, siteIsBeta);  // shared with build_snapshots.mjs
+  if (banner && content) {
+    banner.className = content.className;
+    banner.innerHTML = content.html;
+  }
+}
+
+function renderLanguagePicker() {
+  const el = document.getElementById('lang-select');
+  if (!el) return;
+  el.setAttribute('aria-label', t('language'));
+  el.innerHTML = LANGS.map(l => `<option value="${l.code}"${l.code === siteLang ? ' selected' : ''}>${l.name}</option>`).join('');
+}
+
+async function selectLanguage(code) {
+  const lang = knownLang(code) || 'eng';
+  try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) { /* storage blocked */ }
+  const fetchText = url => langFileCache[url] !== undefined ? Promise.resolve(langFileCache[url])
+    : fetch(url).then(r => r.ok ? r.text() : '').catch(() => '').then(text => (langFileCache[url] = text));
+  const [game, site] = await Promise.all(languageFiles(lang).map(fetchText));
+  applyLanguage(lang, { game: game || '', site: site || '' });
+  showVersionBanner();
+  const actBar = document.querySelector('.act-bar');
+  if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
+  const tabs = document.getElementById('category-tabs');
+  if (tabs) {
+    tabs.innerHTML = categoryTabsHtml(currentAct);
+    tabs.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
+  }
+  render();
+  rerenderOpenPanel();
+  const input = document.getElementById('search-input');
+  if (input && input.value.trim()) onSearch(input.value);
+  syncSettingsUrl();
+}
+
 // ── Dread toggle ──
 // Only shown when the loaded data has Dread values (beta branches carrying a
 // Dread-mode patch); the choice persists across visits.
@@ -154,7 +247,7 @@ function renderBossPicker() {
   if (!el) return;
   const show = dreadMode && zoneDominionBosses(currentAct).length > 1;
   el.hidden = !show;
-  el.innerHTML = show ? `<span class="player-count-label">Boss:</span>${bossPickerButtons(currentAct)}` : '';
+  el.innerHTML = show ? `<span class="player-count-label">${t('boss_label')}</span>${bossPickerButtons(currentAct)}` : '';
 }
 
 function selectDreadBoss(zone, key) {
@@ -356,7 +449,7 @@ function openEncounter(encounterKey, act, cat, opts) {
   const moves = moveMarksFor(opts && opts.moves, enc ? listed : [encounterKey]);
   openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat, enemies, moves };
 
-  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
+  document.getElementById('detail-name').innerHTML = encounterTitle(enc, encounterKey) + renderBetaBadge('encounter', encounterKey);
   document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey, enemies, moves);
 
   presentPanel(
@@ -380,8 +473,7 @@ function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
   const moves = moveMarksFor(opts && opts.moves, [enemyKey]);
   openPanelInfo = { type: 'enemy', key: enemyKey, ...enemyScalingContext(enemyKey, currentAct), moves };
-  const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
-  document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
+  document.getElementById('detail-name').innerHTML = enemyName(enemyKey) + renderBetaBadge('monster', enemyKey);
   document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey, moves);
 
   presentPanel(
@@ -402,7 +494,7 @@ function openEvent(eventKey, opts) {
   }
   if (!ev) return;
 
-  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.key);
+  document.getElementById('detail-name').innerHTML = eventName(ev) + renderBetaBadge('event', ev.key);
   document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 
   presentPanel(

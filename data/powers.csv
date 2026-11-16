@@ -1,79 +1,79 @@
-Key,Name,Image,Description,ScalesInMultiplayer
-artifact,Artifact,artifact_power.webp,Negates the next X debuffs applied.,true
-block,Block,block.webp,Until next turn prevents damage.,true
-strength,Strength,strength_power.webp,Increases attack damage by X.,
-vulnerable,Vulnerable,vulnerable_power.webp,Take 50% more damage from attacks.,
-weak,Weak,weak_power.webp,Deal 25% less attack damage.,
-asleep,Asleep,asleep_power.webp,Sleeps for 3 turns or until losing HP.,
-back_attack_left,Back Attack,back_attack_left_power.webp,Deals 50% more damage if attacking you from behind.,
-burrowed,Burrowed,burrowed_power.webp,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.,
-chains_of_binding,Chains of Binding,chains_of_binding_power.webp,The first 3 cards drawn each turn are Afflicted with Bound.,
-constrict,Constrict,constrict_power.webp,"While alive, take X damage at the end of your turn.",
-crab_rage,Crab Rage,crab_rage_power.webp,"When an ally dies, gains 5 Strength and 99 Block.",
-curl_up,Curl Up,curl_up_power.webp,Gain Block upon first being hit.,true
-dampen,Dampen,dampen_power.webp,"While alive, all your upgraded cards are downgraded.",
-disintegration,Disintegration,disintegration_power.webp,Take X damage at the end of your turn.,
-enrage,Enrage,enrage_power.webp,"Whenever you play a Skill, gain X Strength.",
-escape_artist,Escape Artist,escape_artist_power.webp,Tries to escape the combat after X turns.,
-flutter,Flutter,flutter_power.webp,Receives 50% less attack damage. Deal attack damage X times to remove and stun it.,true
-galvanic,Galvanic,galvanic_power.webp,You take X damage when a Power is played.,
-hard_to_kill,Hard to Kill,hard_to_kill_power.webp,Reduce all damage taken and HP loss to X.,
-hardened_shell,Hardened Shell,hardened_shell_power.webp,Cannot lose more than X HP per turn.,true
-hatch,Hatch,hatch_power.webp,Hatches after X turns.,
-haunt,Haunt,haunt_power.webp,Haunts the player.,
-hex,Hex,hex_power.webp,"While alive, all your cards are ethereal.",
-high_voltage,High Voltage,high_voltage_power.webp,"At the end of its turn, gains X Strength.",
-illusion,Illusion,illusion_power.webp,"When this dies, revives next turn at full HP.",
-imbalanced,Imbalanced,imbalanced_power.webp,Becomes stunned if its attack is fully blocked.,
-infested,Infested,infested_power.webp,Summons X Wrigglers after dying (they start stunned).,
-mind_rot,Mind Rot,mind_rot_power.webp,Draw 1 fewer card at the start of your turn.,
-nemesis,Nemesis,nemesis_power.webp,"At the end of every other turn, gain 1 Intangible.",
-painful_stabs,Painful Stabs,painful_stabs_power.webp,Shuffle X Wounds into discard when inflicting unblocked damage.,
-paper_cuts,Paper Cuts,paper_cuts_power.webp,"Whenever you take unblocked attack damage from this enemy, lose X Max HP.",
-personal_hive,Personal Hive,personal_hive_power.webp,Add X Dazed to the draw pile whenever hit by an attack.,
-plating,Plating,plating_power.webp,"At the end of your turn, gain x block. Plating is reduced by 1 at the start of your turn.",true
-plow,Plow,plow_power.webp,"First time HP reaches X or below, becomes stunned and loses all Strength.",true
-rampart,Rampart,rampart_power.webp,Gives Turret Operator X Block at the start of the player's turn.,true
-ravenous,Ravenous,ravenous_power.webp,"When an enemy dies, become stunned and gain X Strength.",
-reattach,Reattach,reattach_power.webp,"If other segments are still alive, revives after 2 turns with 25 HP.",true
-ringing,Ringing,ringing_power.webp,You can only play 1 card this turn.,
-sandpit,Sandpit,sandpit_power.webp,"In X turns, instantly die.",
-shriek,Shriek,shriek_power.webp,Becomes stunned after reaching X HP or below.,true
-shrink,Shrink,shrink_power.webp,Deal 30% reduced damage.,
-skittish,Skittish,skittish_power.webp,"First time hit each turn, gain X Block.",true
-slippery,Slippery,slippery_power.webp,"The next X times this loses HP, it loses 1 HP instead.",true
-sloth,Sloth,sloth_power.webp,You cannot play more than 3 cards per turn.,
-slow,Slow,slow_power.webp,Attacks deal 10% extra damage for every card played this turn.,
-slumber,Slumber,slumber_power.webp,Counter decreases after taking a turn or losing HP. Awakens at 0.,
-smoggy,Smoggy,smoggy_power.webp,You can only play 1 Skill per turn.,
-soar,Soar,soar_power.webp,Receives 50% less attack damage until it lands.,
-steam_eruption,Steam Eruption,steam_eruption_power.webp,"After dying, wait 1 turn, then attack for X damage.",
-stock,Stock,stock_power.webp,"When killed, a new Axebot is summoned in its place (with Stock X-1).",
-suck,Suck,suck_power.webp,"Whenever this deals unblocked attack damage, it gains X Strength.",
-surprise,Surprise,surprise_power.webp,"When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned).",
-swipe,Swipe,swipe_power.webp,"Upon killing this enemy, the stolen card is returned.",
-tangled,Tangled,tangled_power.webp,Attacks cost 1 additional energy for X turns.,
-tender,Tender,tender_power.webp,"Whenever you play a card, lose 1 Strength and 1 Dexterity this turn.",
-territorial,Territorial,territorial_power.webp,"At the end of its turn, gains X Strength.",
-thievery,Thievery,thievery_power.webp,Steals X gold when attacking.,
-vital_spark,Vital Spark,vital_spark_power.webp,ALL Skills are {tainted} X.,
-waste_away,Waste Away,waste_away_power.webp,Gain 1 less energy at the start of your turn.,
-strangle,Strangle,strangle_power.webp,"At the end of your turn, lose X HP.",
-curious,Curious,curious_power.webp,Powers cost 1 Energy less.,
-improvement,Improvement,improvement_power.webp,"At the end of combat, Upgrade a random card.",
-dexterity,Dexterity,dexterity_power.webp,Increases Block gained from cards by X.,
-frail,Frail,frail_power.webp,Gain 25% less Block from cards.,
-innate,Innate,innate_power.webp,This card is always drawn in your opening hand.,
-minion,Minion,minion_power.webp,Minions abandon combat without their leader.,
-thorns,Thorns,thorns_power.webp,When hit by an attack deal X damage back.,
-ritual,Ritual,ritual_power.webp,"At the end of its turn, gains X Strength.",
-vigor,Vigor,vigor_power.webp,Your next Attack deals X additional damage.,
-hunger,Hunger,hunger_power.webp,"Whenever you play an Attack or Skill, it is Exhausted.",
-scrutiny,Scrutiny,scrutiny_power.webp,You cannot draw additional cards during your turn.,
-grasp,Grasp,grasp_power.webp,"Whenever you play a card, lose 1 energy.",
-infinite,Infinite,infinite.webp,HP cannot be reduced.,
-ebb,Ebb,ebb_power.webp,"Lose 3 Strength and 3 Dexterity this turn.",
-withering_presence,Withering Presence,withering_presence_power.webp,"Every 6 cards you play, add a Wither to your Hand.",
-tainted,Tainted,tainted_power.webp,Take X additional damage from Attacks this turn.,
-explosive,Explosive,explosive_power.webp,"When this creature dies, it explodes, dealing X damage to all players.",
-amnesia,Amnesia,amnesia_power.webp,"This turn, draw 2 fewer cards and lose 1 Energy.",
+Key,Name,Image,Description,ScalesInMultiplayer,GameIds
+artifact,Artifact,artifact_power.webp,Negates the next X debuffs applied.,true,ARTIFACT_POWER
+block,Block,block.webp,Until next turn prevents damage.,true,static_hover_tips:BLOCK
+strength,Strength,strength_power.webp,Increases attack damage by X.,,STRENGTH_POWER
+vulnerable,Vulnerable,vulnerable_power.webp,Take 50% more damage from attacks.,,VULNERABLE_POWER
+weak,Weak,weak_power.webp,Deal 25% less attack damage.,,WEAK_POWER
+asleep,Asleep,asleep_power.webp,Sleeps for 3 turns or until losing HP.,,ASLEEP_POWER
+back_attack_left,Back Attack,back_attack_left_power.webp,Deals 50% more damage if attacking you from behind.,,BACK_ATTACK_LEFT_POWER
+burrowed,Burrowed,burrowed_power.webp,Block is not removed at the start of its turn. Becomes stunned if all Block is removed.,,BURROWED_POWER
+chains_of_binding,Chains of Binding,chains_of_binding_power.webp,The first 3 cards drawn each turn are Afflicted with Bound.,,CHAINS_OF_BINDING_POWER
+constrict,Constrict,constrict_power.webp,"While alive, take X damage at the end of your turn.",,CONSTRICT_POWER
+crab_rage,Crab Rage,crab_rage_power.webp,"When an ally dies, gains 5 Strength and 99 Block.",,CRAB_RAGE_POWER
+curl_up,Curl Up,curl_up_power.webp,Gain Block upon first being hit.,true,CURL_UP_POWER
+dampen,Dampen,dampen_power.webp,"While alive, all your upgraded cards are downgraded.",,DAMPEN_POWER
+disintegration,Disintegration,disintegration_power.webp,Take X damage at the end of your turn.,,DISINTEGRATION_POWER
+enrage,Enrage,enrage_power.webp,"Whenever you play a Skill, gain X Strength.",,ENRAGE_POWER
+escape_artist,Escape Artist,escape_artist_power.webp,Tries to escape the combat after X turns.,,ESCAPE_ARTIST_POWER
+flutter,Flutter,flutter_power.webp,Receives 50% less attack damage. Deal attack damage X times to remove and stun it.,true,FLUTTER_POWER
+galvanic,Galvanic,galvanic_power.webp,You take X damage when a Power is played.,,GALVANIC_POWER
+hard_to_kill,Hard to Kill,hard_to_kill_power.webp,Reduce all damage taken and HP loss to X.,,HARD_TO_KILL_POWER
+hardened_shell,Hardened Shell,hardened_shell_power.webp,Cannot lose more than X HP per turn.,true,HARDENED_SHELL_POWER
+hatch,Hatch,hatch_power.webp,Hatches after X turns.,,HATCH_POWER
+haunt,Haunt,haunt_power.webp,Haunts the player.,,HAUNT_POWER
+hex,Hex,hex_power.webp,"While alive, all your cards are ethereal.",,HEX_POWER
+high_voltage,High Voltage,high_voltage_power.webp,"At the end of its turn, gains X Strength.",,HIGH_VOLTAGE_POWER
+illusion,Illusion,illusion_power.webp,"When this dies, revives next turn at full HP.",,ILLUSION_POWER
+imbalanced,Imbalanced,imbalanced_power.webp,Becomes stunned if its attack is fully blocked.,,IMBALANCED_POWER
+infested,Infested,infested_power.webp,Summons X Wrigglers after dying (they start stunned).,,INFESTED_POWER
+mind_rot,Mind Rot,mind_rot_power.webp,Draw 1 fewer card at the start of your turn.,,MIND_ROT_POWER
+nemesis,Nemesis,nemesis_power.webp,"At the end of every other turn, gain 1 Intangible.",,NEMESIS_POWER
+painful_stabs,Painful Stabs,painful_stabs_power.webp,Shuffle X Wounds into discard when inflicting unblocked damage.,,PAINFUL_STABS_POWER
+paper_cuts,Paper Cuts,paper_cuts_power.webp,"Whenever you take unblocked attack damage from this enemy, lose X Max HP.",,PAPER_CUTS_POWER
+personal_hive,Personal Hive,personal_hive_power.webp,Add X Dazed to the draw pile whenever hit by an attack.,,PERSONAL_HIVE_POWER
+plating,Plating,plating_power.webp,"At the end of your turn, gain x block. Plating is reduced by 1 at the start of your turn.",true,PLATING_POWER
+plow,Plow,plow_power.webp,"First time HP reaches X or below, becomes stunned and loses all Strength.",true,PLOW_POWER
+rampart,Rampart,rampart_power.webp,Gives Turret Operator X Block at the start of the player's turn.,true,RAMPART_POWER
+ravenous,Ravenous,ravenous_power.webp,"When an enemy dies, become stunned and gain X Strength.",,RAVENOUS_POWER
+reattach,Reattach,reattach_power.webp,"If other segments are still alive, revives after 2 turns with 25 HP.",true,REATTACH_POWER
+ringing,Ringing,ringing_power.webp,You can only play 1 card this turn.,,RINGING_POWER
+sandpit,Sandpit,sandpit_power.webp,"In X turns, instantly die.",,SANDPIT_POWER
+shriek,Shriek,shriek_power.webp,Becomes stunned after reaching X HP or below.,true,SHRIEK_POWER
+shrink,Shrink,shrink_power.webp,Deal 30% reduced damage.,,SHRINK_POWER
+skittish,Skittish,skittish_power.webp,"First time hit each turn, gain X Block.",true,SKITTISH_POWER
+slippery,Slippery,slippery_power.webp,"The next X times this loses HP, it loses 1 HP instead.",true,SLIPPERY_POWER
+sloth,Sloth,sloth_power.webp,You cannot play more than 3 cards per turn.,,SLOTH_POWER
+slow,Slow,slow_power.webp,Attacks deal 10% extra damage for every card played this turn.,,SLOW_POWER
+slumber,Slumber,slumber_power.webp,Counter decreases after taking a turn or losing HP. Awakens at 0.,,SLUMBER_POWER
+smoggy,Smoggy,smoggy_power.webp,You can only play 1 Skill per turn.,,SMOGGY_POWER
+soar,Soar,soar_power.webp,Receives 50% less attack damage until it lands.,,SOAR_POWER
+steam_eruption,Steam Eruption,steam_eruption_power.webp,"After dying, wait 1 turn, then attack for X damage.",,STEAM_ERUPTION_POWER
+stock,Stock,stock_power.webp,"When killed, a new Axebot is summoned in its place (with Stock X-1).",,STOCK_POWER
+suck,Suck,suck_power.webp,"Whenever this deals unblocked attack damage, it gains X Strength.",,SUCK_POWER
+surprise,Surprise,surprise_power.webp,"When killed, summons 1 Sneaky Gremlin and 1 Fat Gremlin (they start stunned).",,SURPRISE_POWER
+swipe,Swipe,swipe_power.webp,"Upon killing this enemy, the stolen card is returned.",,SWIPE_POWER
+tangled,Tangled,tangled_power.webp,Attacks cost 1 additional energy for X turns.,,TANGLED_POWER
+tender,Tender,tender_power.webp,"Whenever you play a card, lose 1 Strength and 1 Dexterity this turn.",,TENDER_POWER
+territorial,Territorial,territorial_power.webp,"At the end of its turn, gains X Strength.",,TERRITORIAL_POWER
+thievery,Thievery,thievery_power.webp,Steals X gold when attacking.,,THIEVERY_POWER
+vital_spark,Vital Spark,vital_spark_power.webp,ALL Skills are {tainted} X.,,VITAL_SPARK_POWER
+waste_away,Waste Away,waste_away_power.webp,Gain 1 less energy at the start of your turn.,,WASTE_AWAY_POWER
+strangle,Strangle,strangle_power.webp,"At the end of your turn, lose X HP.",,STRANGLE_POWER
+curious,Curious,curious_power.webp,Powers cost 1 Energy less.,,CURIOUS_POWER
+improvement,Improvement,improvement_power.webp,"At the end of combat, Upgrade a random card.",,IMPROVEMENT_POWER
+dexterity,Dexterity,dexterity_power.webp,Increases Block gained from cards by X.,,DEXTERITY_POWER
+frail,Frail,frail_power.webp,Gain 25% less Block from cards.,,FRAIL_POWER
+innate,Innate,innate_power.webp,This card is always drawn in your opening hand.,,card_keywords:INNATE
+minion,Minion,minion_power.webp,Minions abandon combat without their leader.,,MINION_POWER
+thorns,Thorns,thorns_power.webp,When hit by an attack deal X damage back.,,THORNS_POWER
+ritual,Ritual,ritual_power.webp,"At the end of its turn, gains X Strength.",,RITUAL_POWER
+vigor,Vigor,vigor_power.webp,Your next Attack deals X additional damage.,,VIGOR_POWER
+hunger,Hunger,hunger_power.webp,"Whenever you play an Attack or Skill, it is Exhausted.",,
+scrutiny,Scrutiny,scrutiny_power.webp,You cannot draw additional cards during your turn.,,
+grasp,Grasp,grasp_power.webp,"Whenever you play a card, lose 1 energy.",,
+infinite,Infinite,infinite.webp,HP cannot be reduced.,,
+ebb,Ebb,ebb_power.webp,"Lose 3 Strength and 3 Dexterity this turn.",,
+withering_presence,Withering Presence,withering_presence_power.webp,"Every 6 cards you play, add a Wither to your Hand.",,WITHERING_PRESENCE_POWER
+tainted,Tainted,tainted_power.webp,Take X additional damage from Attacks this turn.,,TAINTED_POWER
+explosive,Explosive,explosive_power.webp,"When this creature dies, it explodes, dealing X damage to all players.",,EXPLOSIVE_POWER
+amnesia,Amnesia,amnesia_power.webp,"This turn, draw 2 fewer cards and lose 1 Energy.",,AMNESIA_POWER
