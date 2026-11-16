@@ -114,6 +114,12 @@ for (const t of ['relics', 'cards', 'potions', 'enchantments', 'powers', 'card_k
 const serialize = (vars, before = [], after = []) => [
   ...Object.keys(vars).sort().map(k => `${k}=${vars[k]}`), ...before.map(k => `^${k}`), ...after.map(k => `$${k}`),
 ].join(';');
+// A GameVars cell that already holds these values (in any order; keyword order counts) stays as written, so a
+// re-run changes nothing
+const keepVars = (old, next) => {
+  const norm = s => { const p = (s || '').split(';').filter(Boolean); return [...p.filter(x => !/^[$^]/.test(x)).sort(), ...p.filter(x => /^[$^]/.test(x))].join(';'); };
+  return old && norm(old) === norm(next) ? undefined : next;
+};
 
 // A card's keywords as the game shows them around its text, a line each ("[gold]Unplayable[/gold]." …
 // "[gold]Eternal[/gold]."), which the site writes on one line: the game's CardKeywordOrder puts these before
@@ -162,7 +168,7 @@ function bindRefs(file, candidates) {
     const vars = findVars(template, kw.body, NAMES);
     if (vars === null) return '';
     withText++;
-    return serialize(vars, kw.before, kw.after);
+    return keepVars(r.GameVars, serialize(vars, kw.before, kw.after));
   });
   fs.writeFileSync(csvPath(file), text);
   counts[file] = `${bound} bound, ${withText} descriptions are game text`;
@@ -221,8 +227,15 @@ let choicesText = setCsvColumn(fs.readFileSync(csvPath('event_choices'), 'utf8')
 choicesText = setCsvColumn(choicesText, 'GameVars', (r) => {
   const id = events.get(r.Event);
   if (!id || !r.GameOption) return '';
-  const base = r.GameOption.includes(':') ? null : `${id}.pages.${r.GameOption.split('.')[0]}.options.${r.GameOption.split('.')[1]}`;
-  if (!base) return '';
+  // A choice titled with another game string (relics:FAKE_ANCHOR): its values are that string's description's
+  if (r.GameOption.includes(':')) {
+    const [table, key] = r.GameOption.split(':');
+    const template = eng(table)[`${key}.description`];
+    const v = typeof template === 'string' && r.Effect ? findVars(template.replace(/\n+/g, ' '), r.Effect, NAMES) : null;
+    if (v && Object.keys(v).length) choicesVars++;
+    return keepVars(r.GameVars, v ? serialize(v) : '');
+  }
+  const base = `${id}.pages.${r.GameOption.split('.')[0]}.options.${r.GameOption.split('.')[1]}`;
   // String values that are game strings of this event (its dishes, its cards) are kept as references
   const refs = new Map([...NAMES, ...Object.entries(ev).filter(([k, v]) => k.startsWith(`${id}.`) && !k.includes('.pages.') && typeof v === 'string').map(([k, v]) => [v, `events:${k}`])]);
   const vars = {};
@@ -233,7 +246,7 @@ choicesText = setCsvColumn(choicesText, 'GameVars', (r) => {
     if (v) Object.assign(vars, v);
   }
   if (Object.keys(vars).length) choicesVars++;
-  return serialize(vars);
+  return keepVars(r.GameVars, serialize(vars));
 });
 fs.writeFileSync(csvPath('event_choices'), choicesText);
 
@@ -267,7 +280,7 @@ eventsText = setCsvColumn(eventsText, 'GameVars', (r) => {
   const f = loreFound.get(r.Key);
   if (!f || !Object.keys(f.vars).length) return '';
   loreVars++;
-  return serialize(f.vars);
+  return keepVars(r.GameVars, serialize(f.vars));
 });
 fs.writeFileSync(csvPath('events'), eventsText);
 
