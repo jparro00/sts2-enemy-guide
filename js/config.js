@@ -96,24 +96,25 @@ const ENCOUNTER_CATS = [{ key: 'easy' }, { key: 'hard' }, { key: 'elite' }, { ke
 // shows (NLanguageDropdown), the HTML lang, and browser language tags it stands for besides its HTML lang
 // (ui.js browserLang: "es-*" is Spanish with any region but its own). lineJoin: what stands for a line break of
 // the game's when a description is shown on one line (a space unless given; none between Chinese or Japanese
-// sentences).
+// sentences). short: the language picker's label on phones (ui.js renderLanguagePicker), the two Chinese and the
+// two Spanish told apart.
 const LANGS = [
-  { code: 'eng', name: 'English', html: 'en' },
-  { code: 'zhs', name: '中文', html: 'zh-Hans', browser: ['zh', 'zh-cn', 'zh-sg'], lineJoin: '' },
-  { code: 'zht', name: '繁體中文', html: 'zh-Hant', browser: ['zh-tw', 'zh-hk', 'zh-mo'], lineJoin: '' },
-  { code: 'deu', name: 'Deutsch', html: 'de' },
-  { code: 'esp', name: 'Español (Latinoamérica)', html: 'es-419', browser: ['es-*'] },
-  { code: 'fra', name: 'Français', html: 'fr' },
-  { code: 'ind', name: 'Bahasa Indonesia', html: 'id' },
-  { code: 'ita', name: 'Italiano', html: 'it' },
-  { code: 'jpn', name: '日本語', html: 'ja', lineJoin: '' },
-  { code: 'kor', name: '한국어', html: 'ko' },
-  { code: 'pol', name: 'Polski', html: 'pl' },
-  { code: 'ptb', name: 'Português Brasileiro', html: 'pt-BR', browser: ['pt'] },
-  { code: 'rus', name: 'Русский', html: 'ru' },
-  { code: 'spa', name: 'Español (Castellano)', html: 'es-ES', browser: ['es'] },
-  { code: 'tha', name: 'ไทย', html: 'th' },
-  { code: 'tur', name: 'Türkçe', html: 'tr' },
+  { code: 'eng', name: 'English', html: 'en', short: 'EN' },
+  { code: 'zhs', name: '中文', html: 'zh-Hans', short: '简', browser: ['zh', 'zh-cn', 'zh-sg'], lineJoin: '' },
+  { code: 'zht', name: '繁體中文', html: 'zh-Hant', short: '繁', browser: ['zh-tw', 'zh-hk', 'zh-mo'], lineJoin: '' },
+  { code: 'deu', name: 'Deutsch', html: 'de', short: 'DE' },
+  { code: 'esp', name: 'Español (Latinoamérica)', html: 'es-419', short: 'ES-LA', browser: ['es-*'] },
+  { code: 'fra', name: 'Français', html: 'fr', short: 'FR' },
+  { code: 'ind', name: 'Bahasa Indonesia', html: 'id', short: 'ID' },
+  { code: 'ita', name: 'Italiano', html: 'it', short: 'IT' },
+  { code: 'jpn', name: '日本語', html: 'ja', short: 'JA', lineJoin: '' },
+  { code: 'kor', name: '한국어', html: 'ko', short: 'KO' },
+  { code: 'pol', name: 'Polski', html: 'pl', short: 'PL' },
+  { code: 'ptb', name: 'Português Brasileiro', html: 'pt-BR', short: 'PT', browser: ['pt'] },
+  { code: 'rus', name: 'Русский', html: 'ru', short: 'RU' },
+  { code: 'spa', name: 'Español (Castellano)', html: 'es-ES', short: 'ES', browser: ['es'] },
+  { code: 'tha', name: 'ไทย', html: 'th', short: 'TH' },
+  { code: 'tur', name: 'Türkçe', html: 'tr', short: 'TR' },
 ];
 // The game's languages the site doesn't have, and the one shown for them (English when not listed)
 const gameLanguages = {};

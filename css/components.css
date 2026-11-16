@@ -430,10 +430,15 @@
 
 /* ── Language picker (header: top right; on phones top left, the search button has the right) ── */
 header { position: relative; }
-.lang-select {
+.lang-picker {
   position: absolute;
   top: 12px;
   right: 16px;
+  z-index: 60;   /* above the open panel's backdrop (50), like the page's other controls */
+}
+.lang-code { display: none; }
+.lang-select {
+  display: block;
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--panel-border);
   color: #888;
@@ -442,12 +447,30 @@ header { position: relative; }
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
-  z-index: 60;   /* above the open panel's backdrop (50), like the page's other controls */
 }
 .lang-select:hover, .lang-select:focus { border-color: #555; color: #ccc; outline: none; }
 .lang-select option { background: #12121c; color: #e0ddd4; }
 /* Keep in sync with the 600px mobile breakpoint in css/base.css + css/responsive.css */
+/* Phones: a button like the search button with the language's short code; the select lies over it, unseen,
+   so a tap still opens the system's own list */
 @media (max-width: 600px) {
-  .lang-select { top: 50%; right: auto; left: 16px; transform: translateY(-50%); padding: 6px 6px; }
-  header.search-open .lang-select { display: none; }
+  .lang-picker { top: 50%; right: auto; left: 16px; transform: translateY(-50%); }
+  .lang-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 6px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    color: #aaa;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .lang-select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; padding: 0; }
+  .lang-picker:hover .lang-code, .lang-picker:focus-within .lang-code { color: var(--gold); border-color: var(--gold); }
+  header.search-open .lang-picker { display: none; }
 }

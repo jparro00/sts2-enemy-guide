@@ -201,6 +201,8 @@ function renderLanguagePicker() {
   if (!el) return;
   el.setAttribute('aria-label', t('language'));
   el.innerHTML = LANGS.map(l => `<option value="${l.code}"${l.code === siteLang ? ' selected' : ''}>${l.name}</option>`).join('');
+  const code = document.getElementById('lang-code');   // the phone layout's button face
+  if (code) code.textContent = currentLangInfo().short || currentLangInfo().html;
 }
 
 async function selectLanguage(code) {
@@ -448,7 +450,7 @@ function navigateToPanel(state, url, opts) {
 // that wraps onto two lines aborts the transition (the footer's feedback link
 // is one short line). Nothing in the panel: it slides as one.
 const PANEL_SHIFTING = [
-  ['header .search-bar, .lang-select, .act-card, .cat-tab, .player-count-bar > *, .enemy-card, .footer-feedback a', ''],
+  ['header .search-bar, .lang-picker, .act-card, .cat-tab, .player-count-bar > *, .enemy-card, .footer-feedback a', ''],
   ['header h1, .banner-full, #section-label, .footer-credit, .footer-early', 'row'],
   ['#version-banner, header, #category-tabs, .cat-group-label, .search-zone-label, .site-footer, .footer-feedback', 'row-start'],
 ];
