@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <!-- The game's own text formatter (SmartFormat, the version and DLL the game ships), set up the way the game
+         sets it up (LocManager.LoadLocFormatters), so tools/l10n/check.mjs formatter can hold js/i18n.js's copy
+         to it in every language. Needs the game installed: GameDir is its managed folder. -->
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GameDir Condition="'$(GameDir)' == ''">D:\Steam\steamapps\common\Slay the Spire 2\data_sts2_windows_x86_64</GameDir>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="SmartFormat">
+            <HintPath>$(GameDir)\SmartFormat.dll</HintPath>
+            <Private>true</Private>
+        </Reference>
+        <Reference Include="SmartFormat.ZString">
+            <HintPath>$(GameDir)\SmartFormat.ZString.dll</HintPath>
+            <Private>true</Private>
+        </Reference>
+    </ItemGroup>
+</Project>

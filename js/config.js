@@ -91,17 +91,32 @@ const ACTS = [
 const SHARED_ZONE = { key: 'shared', csvName: 'Shared' };
 const ENCOUNTER_CATS = [{ key: 'easy' }, { key: 'hard' }, { key: 'elite' }, { key: 'boss' }];
 
-// Languages the site and the in-game panel can show: the game's language code (its localization folder),
-// the name shown in the picker (in the language itself) and the HTML lang. The game's other Spanish (esp,
-// Latin America) and Traditional Chinese read the nearest one here (gameLanguages). lineJoin: what stands for a
-// line break of the game's when a description is shown on one line (a space unless given; none between Chinese
+// Languages the site and the in-game panel can show: the game's languages (LocManager), in its order, but Arabic
+// (right to left, not laid out for): the game's code (its localization folder), the name its language picker
+// shows (NLanguageDropdown), the HTML lang, and browser language tags it stands for besides its HTML lang
+// (ui.js browserLang: "es-*" is Spanish with any region but its own). lineJoin: what stands for a line break of
+// the game's when a description is shown on one line (a space unless given; none between Chinese or Japanese
 // sentences).
 const LANGS = [
   { code: 'eng', name: 'English', html: 'en' },
-  { code: 'zhs', name: '简体中文', html: 'zh-Hans', lineJoin: '' },
-  { code: 'spa', name: 'Español', html: 'es' },
+  { code: 'zhs', name: '中文', html: 'zh-Hans', browser: ['zh', 'zh-cn', 'zh-sg'], lineJoin: '' },
+  { code: 'zht', name: '繁體中文', html: 'zh-Hant', browser: ['zh-tw', 'zh-hk', 'zh-mo'], lineJoin: '' },
+  { code: 'deu', name: 'Deutsch', html: 'de' },
+  { code: 'esp', name: 'Español (Latinoamérica)', html: 'es-419', browser: ['es-*'] },
+  { code: 'fra', name: 'Français', html: 'fr' },
+  { code: 'ind', name: 'Bahasa Indonesia', html: 'id' },
+  { code: 'ita', name: 'Italiano', html: 'it' },
+  { code: 'jpn', name: '日本語', html: 'ja', lineJoin: '' },
+  { code: 'kor', name: '한국어', html: 'ko' },
+  { code: 'pol', name: 'Polski', html: 'pl' },
+  { code: 'ptb', name: 'Português Brasileiro', html: 'pt-BR', browser: ['pt'] },
+  { code: 'rus', name: 'Русский', html: 'ru' },
+  { code: 'spa', name: 'Español (Castellano)', html: 'es-ES', browser: ['es'] },
+  { code: 'tha', name: 'ไทย', html: 'th' },
+  { code: 'tur', name: 'Türkçe', html: 'tr' },
 ];
-const gameLanguages = { esp: 'spa', zht: 'zhs' };
+// The game's languages the site doesn't have, and the one shown for them (English when not listed)
+const gameLanguages = {};
 
 // ── Derived lookups (do not hand-edit — change ACTS/ENCOUNTER_CATS above) ──
 // Names and labels follow the language: js/i18n.js actName, actTitle, catLabel, catTitle, zoneLabel.

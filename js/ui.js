@@ -139,10 +139,18 @@ function knownLang(code) {
   return LANGS.some(l => l.code === code) ? code : null;
 }
 
-// A browser language tag ("zh-CN", "es-419") -> a site language, by the game's language families
+// A browser language tag ("zh-TW", "es-MX") -> a site language: the longest leading part of the tag that is a
+// language's HTML lang or one of its browser tags ("es-*": that language with any other region), else none
 function browserLang(tag) {
-  const base = (tag || '').toLowerCase().split('-')[0];
-  return LANGS.find(l => l.html.toLowerCase().split('-')[0] === base)?.code || null;
+  const parts = (tag || '').toLowerCase().split('-');
+  for (let n = parts.length; n > 0; n--) {
+    const prefix = parts.slice(0, n).join('-');
+    const exact = LANGS.find(l => l.html.toLowerCase() === prefix || (l.browser || []).includes(prefix));
+    if (exact) return exact.code;
+    const region = n > 1 && LANGS.find(l => (l.browser || []).includes(`${parts[0]}-*`));
+    if (region) return region.code;
+  }
+  return null;
 }
 
 function initialLanguage() {

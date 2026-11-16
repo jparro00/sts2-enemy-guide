@@ -124,12 +124,23 @@ Every string the site and the in-game panel show is either **game text** or **si
 
 | File | What |
 |---|---|
-| `loc/game/<lang>.json` | the game's text the bindings use, per language, with the game version. Written by `node tools/l10n/extract.mjs` (reads the game's pack); never edited by hand |
+| `loc/game/<lang>.json` | the game's text the bindings use, per language, with the game version (English also lists the keys looked for that the game doesn't have, `absent`). Written by `node tools/l10n/extract.mjs` (reads the game's pack); never edited by hand |
 | `loc/site/eng.json` | the site's labels and phrases in English (`ui`) |
-| `loc/site/<lang>.json` | a language's translations: `ui` (key → `{ en, text }`, `en` being the English it was made from) and `text` (template → translation) |
+| `loc/site/<lang>.json` | a language's translations: `ui` (key → `{ en, text }`, `en` being the English it was made from) and `text` (template → translation). Written by `tools/l10n/merge.mjs` only |
+| `loc/meta/<lang>.json` | the record behind each translation (not loaded by the site or the mod): who made it (`by`: engine + model, or human + translator), when, the game's names it used, and its back-translation review (`tools/l10n/translations.mjs` documents the fields) |
 
 A cell's translation is keyed by its **template**: the English with `<Move>` refs, `{power}` refs and values taken out (`{m1}`, `{p1}`, `{n1}`): `Apply 2 {weak}` and `Apply 3 {frail}` are both `Apply {n1} {p1}`. Effects, Dominions and beta changes are translated per `;` clause, patterns per line, lore and choice text per `|` paragraph, notes per line. A translation stands only for the English it was made from: change a cell's wording and its old translation stops applying (the page shows English there) until it's redone.
 
-English pages render the data as written, with no lookups. Checks (`tools/l10n`): `render-pages.mjs` + `check.mjs same` (English identical before and after a code change), `render-pages.mjs --pseudo` + `check.mjs pseudo` (every shown string comes from a table), `check.mjs report` (game text vs site wording per table; translations missing or made from other English, per language).
+English pages render the data as written, with no lookups. Game text is formatted the game's way: `js/i18n.js` copies its formatter (SmartFormat: per-language plural rules, numbers as the game's .NET cultures write them), and `check.mjs formatter` holds that copy to the game's own DLL (`tools/l10n/oracle`) in every language.
 
-Adding a language: an entry in `LANGS` (`js/config.js`), `node tools/l10n/extract.mjs`, then `data/loc/site/<lang>.json`.
+**Translations** come from a pluggable engine (any command that fills a work file: `tools/l10n/translate.mjs`, `tools/l10n/engines/`) or a person, and each is recorded in `loc/meta`. A person's translation is never overwritten by an engine's (`merge.mjs` keeps it; a translation edited outside `merge.mjs` fails the strict check). An engine's translation is reviewed by a separate back-translation without the English (`review.mjs`), then judged against the English; a flagged one is retranslated with the judge's note. A translator gets each string's game terms (the game's name in the language for every game name the English uses) and, for site wording on a bound field, the game's own text for the same thing as a reference.
+
+**Checks** (`tools/l10n`):
+- `render-pages.mjs` + `check.mjs same`: English identical before and after a code change
+- `render-pages.mjs --pseudo` + `check.mjs pseudo`: every shown string comes from a table
+- `check.mjs report [--strict=all]`: game text vs site wording per table; per language: missing or stale, untracked, not reviewed, flagged, or made with a game name the game has since renamed
+- `check.mjs rewording [--adopt]`: after an extract, the fields that were the game's text and aren't (the game reworded them)
+- `check.mjs formatter`: the formatter against the game's
+- `build_snapshots.mjs` (the deploy): the game text's version stamps against the branch's version, every game key the data uses extracted; missing translations only warn
+
+Adding a language: an entry in `LANGS` (`js/config.js`) and in `FORMAT_CULTURES` (`js/i18n.js`: the game's culture, its plural rule, its separators; `check.mjs formatter` confirms them), `node tools/l10n/extract.mjs`, then translate and review it (`/beta-pipeline` Step 8). The mod carries the languages in `CodexEngine.OtherLanguages` (its build checks they match `LANGS`).

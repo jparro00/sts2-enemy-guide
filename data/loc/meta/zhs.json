@@ -1,0 +1,4205 @@
+{
+ "lang": "zhs",
+ "items": {
+  "text:(N = {n1} + # times Multi-Claw has been used)": {
+   "text": "（N = {n1} + 多次爪击已使用的次数）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter test-subject",
+   "terms": {
+    "monsters:TEST_SUBJECT.moves.MULTI_CLAW.title": "多次爪击"
+   }
+  },
+  "text:(with random intent)": {
+   "text": "（意图随机）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:A random card is removed from your [gold]Deck[/gold].": {
+   "text": "一张随机牌将从你的[gold]牌组[/gold]中被移除。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": {
+   "text": "将一张[red]疑虑[/red]加入你的牌组。获得{n1}次卡牌奖励（每次{n2}张牌）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:DOUBT.title": "疑虑"
+   }
+  },
+  "text:Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": {
+   "text": "将一张[red]疑虑[/red]加入你的牌组。变化{n1}张牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "static_hover_tips:TRANSFORM.title": "变化",
+    "cards:DOUBT.title": "疑虑"
+   }
+  },
+  "text:Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": {
+   "text": "将一张[red]悔恨[/red]加入你的牌组。获得{n1}金币。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:REGRET.title": "悔恨",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": {
+   "text": "将一张[red]悔恨[/red]加入你的牌组。获得{n1}件随机遗物。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:REGRET.title": "悔恨"
+   }
+  },
+  "text:Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": {
+   "text": "将一张[red]羞耻[/red]加入你的牌组。升级{n1}张牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:SHAME.title": "羞耻"
+   }
+  },
+  "text:Add {n1} Beckon to Hand": {
+   "text": "将{n1}张呼唤加入手牌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "monsters:SOUL_FYSH.moves.BECKON.title": "呼唤"
+   }
+  },
+  "text:Add {n1} Burns to Hand": {
+   "text": "将{n1}张灼伤加入手牌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter mecha-knight"
+  },
+  "text:Add {n1} Dazed to Discard": {
+   "text": "将{n1}张晕眩加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter haunted-ship",
+   "terms": {
+    "cards:DAZED.title": "晕眩"
+   }
+  },
+  "text:Add {n1} Dazed to Draw": {
+   "text": "将{n1}张晕眩加入抽牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator",
+   "terms": {
+    "cards:DAZED.title": "晕眩"
+   }
+  },
+  "text:Add {n1} Infection to Discard": {
+   "text": "将{n1}张感染加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter phrog-parasite",
+   "terms": {
+    "cards:INFECTION.title": "感染"
+   }
+  },
+  "text:Add {n1} Slimed to Discard": {
+   "text": "将{n1}张黏液加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy",
+   "terms": {
+    "cards:SLIMED.title": "黏液"
+   }
+  },
+  "text:Add {n1} Slimed to discard": {
+   "text": "将{n1}张黏液加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimed-berserker",
+   "terms": {
+    "cards:SLIMED.title": "黏液"
+   }
+  },
+  "text:Add {n1} Toxic to Hand": {
+   "text": "将{n1}张毒素加入手牌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter mytes",
+   "terms": {
+    "cards:TOXIC.title": "毒素"
+   }
+  },
+  "text:Add {n1} Wither to Discard": {
+   "text": "将{n1}张凋萎加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass",
+   "terms": {
+    "cards:WITHER.title": "凋萎"
+   }
+  },
+  "text:Add {n1} Wither to Draw Pile": {
+   "text": "将{n1}张凋萎加入抽牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass",
+   "terms": {
+    "cards:WITHER.title": "凋萎"
+   }
+  },
+  "text:Add {n1} Wounds into discard": {
+   "text": "将{n1}张伤口加入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter vantom"
+  },
+  "text:Added: Byrdpip can evolve into Byrdine at a rest site after {n1} Byrd Swoops.": {
+   "text": "新增：打出{n1}次异鸟扑击后，异鸟宝宝可以在休息处进化为小异鸟。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event byrdonis_nest",
+   "terms": {
+    "monsters:BYRDINE_MONSTER.name": "小异鸟",
+    "monsters:BYRDPIP.name": "异鸟宝宝"
+   }
+  },
+  "text:Added: Yellow option ({n1} Fool cards).": {
+   "text": "新增：黄色选项（{n1}张愚者的卡牌）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colorful_philosophers"
+  },
+  "text:After Amalgam dies: Cycles {m1} → {m2} → {m3}.": {
+   "text": "火炬头聚合体死亡后：循环使用{m1} → {m2} → {m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:After Byrd Swoop has been played {n1} times, Byrdpip can Evolve at a rest site into Byrdine, which turns every Byrd Swoop into God Byrd. Evolving consumes your rest option.": {
+   "text": "打出{n1}次异鸟扑击后，异鸟宝宝可以在休息处进化为小异鸟，所有异鸟扑击都会变为异鸟猛击。进化会占用你的休息选项。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event byrdonis_nest",
+   "terms": {
+    "cards:BYRD_SWOOP.title": "异鸟扑击",
+    "powers:GOD_BYRD_POWER.title": "异鸟猛击",
+    "monsters:BYRDINE_MONSTER.name": "小异鸟",
+    "monsters:BYRDPIP.name": "异鸟宝宝"
+   }
+  },
+  "text:After Turret Operator dies: Always uses {m1}.": {
+   "text": "高塔炮手死亡后：总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter turret-operator",
+   "terms": {
+    "monsters:TURRET_OPERATOR.name": "高塔炮手"
+   }
+  },
+  "text:After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": {
+   "text": "接受后，会从{n1}种审判中随机选择一种（商人、贵族或普通人）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": {
+   "text": "投身其中后，你可以选择流连（效果相同，但每次伤害+{n1}）或离开浴场。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event abyssal_baths"
+  },
+  "text:After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": {
+   "text": "人体蜂房达到{n1}层后，改为只获得{n2}点力量。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter entomancer",
+   "terms": {
+    "powers:PERSONAL_HIVE_POWER.title": "人体蜂房"
+   }
+  },
+  "text:After stun: Repeats {m1} → {m2}.": {
+   "text": "被击晕后：重复使用{m1} → {m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter tunneler"
+  },
+  "text:After {m1} ({n1}nd in a row): Always uses {m2}.": {
+   "text": "{m1}之后（连续第{n1}次）：总是使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog"
+  },
+  "text:After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": {
+   "text": "{m1}之后（连续第{n1}次）：{n2}%概率使用{m2}，{n3}%概率使用{m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog"
+  },
+  "text:After {m1}: Always uses {m2}.": {
+   "text": "{m1}之后：总是使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog"
+  },
+  "text:After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": {
+   "text": "人体蜂房达到{n1}层后：{m1}改为获得{n2}点力量。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter entomancer",
+   "terms": {
+    "powers:PERSONAL_HIVE_POWER.title": "人体蜂房",
+    "powers:STRENGTH_POWER.title": "力量"
+   }
+  },
+  "text:All enemies gain {n1} {p1}": {
+   "text": "所有敌人获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": {
+   "text": "所有奖励都可以跳过，但疑虑会在被揭示时立即加入你的牌组。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere",
+   "terms": {
+    "cards:DOUBT.title": "疑虑"
+   }
+  },
+  "text:All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": {
+   "text": "全部{n1}只老鼠的初始行动平均分配为{m1}、{m2}和{m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:Allies gain {n1} {p1}": {
+   "text": "友方获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-obscura"
+  },
+  "text:Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": {
+   "text": "总是使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper"
+  },
+  "text:Always uses {m1}.": {
+   "text": "总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Apply -{n1} {p1}": {
+   "text": "给予-{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch"
+  },
+  "text:Apply {n1} {p1}": {
+   "text": "给予{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter flyconid"
+  },
+  "text:Apply {p1}": {
+   "text": "给予{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter shrinker-beetle"
+  },
+  "text:Apply {p1} {n1}": {
+   "text": "给予{p1}{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:At the end of each turn, take damage equal to {n1} + the turn number": {
+   "text": "每个回合结束时，受到等同于{n1}+当前回合数的伤害",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable"
+  },
+  "text:At the end of your first turn, lose {n1} {p1} and {n2} {p2}": {
+   "text": "在你的第一个回合结束时，失去{n1}{p1}和{n2}{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch"
+  },
+  "text:At the start of turn {n1}, gain {n2} {p1}, {n3} {p2} and {n4} {p3}": {
+   "text": "在第{n1}回合开始时，获得{n2}{p1}、{n3}{p2}和{n4}{p3}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:At the start of your turn, add {n1} Wither to the top of your Draw Pile": {
+   "text": "在你的回合开始时，将{n1}张凋萎放置到你的抽牌堆顶部",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass",
+   "terms": {
+    "cards:WITHER.title": "凋萎"
+   }
+  },
+  "text:Attack — Deal {n1} damage, plus:": {
+   "text": "攻击——造成{n1}点伤害，并附加：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "monsters:MOCK_ATTACK_MONSTER.moves.ATTACK.title": "攻击"
+   }
+  },
+  "text:Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": {
+   "text": "华美手镯、赐福鹿角、艳丽围巾、娇嫩蕨草、钻石头冠、皮草大衣、亮片、珠宝盒、图章戒指",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "relics:BEAUTIFUL_BRACELET.title": "华美手镯",
+    "relics:BRILLIANT_SCARF.title": "艳丽围巾",
+    "relics:BLESSED_ANTLER.title": "赐福鹿角",
+    "relics:DELICATE_FROND.title": "娇嫩蕨草",
+    "relics:DIAMOND_DIADEM.title": "钻石头冠",
+    "relics:JEWELRY_BOX.title": "珠宝盒",
+    "relics:SIGNET_RING.title": "图章戒指",
+    "relics:FUR_COAT.title": "皮草大衣",
+    "relics:GLITTER.title": "亮片"
+   }
+  },
+  "text:Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": {
+   "text": "每场战斗首次抽牌前，选择{n1}项：{p1}{n2}或{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:Buffed: Below renamed From Below": {
+   "text": "增强：Below更名为潜伏攻击",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter tunneler",
+   "terms": {
+    "monsters:TUNNELER.moves.FROM_BELOW.title": "潜伏攻击"
+   }
+  },
+  "text:Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": {
+   "text": "可以在休息处用多尼斯异鸟蛋换取异鸟扑击。选择此项会占用你的休息选项。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event byrdonis_nest",
+   "terms": {
+    "cards:BYRDONIS_EGG.title": "多尼斯异鸟蛋",
+    "cards:BYRD_SWOOP.title": "异鸟扑击"
+   }
+  },
+  "text:Can only appear if all players are at or below {n1}% of Max HP.": {
+   "text": "仅当所有玩家的生命值不高于最大生命值的{n1}%时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event unrest_site"
+  },
+  "text:Can only appear if all players have a card with Exhaust in their deck.": {
+   "text": "仅当所有玩家的牌组中都有带消耗的牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event grave_of_the_forgotten",
+   "terms": {
+    "card_keywords:EXHAUST.title": "消耗"
+   }
+  },
+  "text:Can only appear if all players have at least {n1} Gold.": {
+   "text": "仅当所有玩家都拥有至少{n1}金币时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event luminous_choir",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Can only appear if all players have at least {n1} HP.": {
+   "text": "仅当所有玩家都拥有至少{n1}点生命时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower"
+  },
+  "text:Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可附魔完美契合的牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event field_of_man_sized_holes",
+   "terms": {
+    "enchantments:PERFECT_FIT.title": "完美契合"
+   }
+  },
+  "text:Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可附魔涡旋的牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event spiraling_whirlpool",
+   "terms": {
+    "enchantments:SPIRAL.title": "涡旋"
+   }
+  },
+  "text:Can only appear if all players have at least {n1} potion.": {
+   "text": "仅当所有玩家都拥有至少{n1}瓶药水时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event stone_of_all_time"
+  },
+  "text:Can only appear if all players have at least {n1} potions.": {
+   "text": "仅当所有玩家都拥有至少{n1}瓶药水时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions"
+  },
+  "text:Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可移除的基础打击和{n2}张可移除的基础防御时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event amalgamator"
+  },
+  "text:Can only appear if all players have at least {n1} removable Basic card.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可移除的基础牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event wood_carvings"
+  },
+  "text:Can only appear if all players have at least {n1} removable card.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可移除的牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:Can only appear if all players have at least {n1} tradable relics.": {
+   "text": "仅当所有玩家都拥有至少{n1}件可交易的遗物时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event relic_trader"
+  },
+  "text:Can only appear if all players have at least {n1} transformable cards.": {
+   "text": "仅当所有玩家都拥有至少{n1}张可变化的牌时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event morphic_grove"
+  },
+  "text:Can only appear if all players have more than {n1} Gold and at most {n2}% of their Max HP.": {
+   "text": "仅当所有玩家的金币都多于{n1}且生命值不高于最大生命值的{n2}%时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Can only appear if all players have more than {n1} HP.": {
+   "text": "仅当所有玩家的生命值都高于{n1}时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trash_heap"
+  },
+  "text:Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": {
+   "text": "仅当至少{n1}名玩家拥有{n2}或更多金币、一件可交易的遗物和一瓶药水时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event ranwid_the_elder",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Can only appear if no player has an event pet.": {
+   "text": "仅当没有玩家拥有事件宠物时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event byrdonis_nest"
+  },
+  "text:Can only appear if you have at least {n1} Gold or a Foul Potion.": {
+   "text": "仅当你拥有至少{n1}金币或一瓶污浊药水时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event fake_merchant",
+   "terms": {
+    "potions:FOUL_POTION.title": "污浊药水",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Can only appear in Act {n1} or Act {n2}.": {
+   "text": "仅会在第{n1}幕或第{n2}幕出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event brain_leech"
+  },
+  "text:Can only appear in Act {n1}.": {
+   "text": "仅会在第{n1}幕出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event doll_room"
+  },
+  "text:Can only appear on floor {n1}+.": {
+   "text": "仅会在第{n1}层及以上出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event punch_off"
+  },
+  "text:Can only be used once per rat. Requires {n1} turns before available.": {
+   "text": "每只老鼠只能使用一次。需经过{n1}回合后才可使用。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:Can only be used once.": {
+   "text": "只能使用一次。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter mawler"
+  },
+  "text:Cannot appear if this act's Ancient is Nonupeipe.": {
+   "text": "若本幕的先古之民为诺奴佩普，则不会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "static_hover_tips:ROOM_ANCIENT.title": "先古之民"
+   }
+  },
+  "text:Cannot appear if this act's Ancient is Tanx.": {
+   "text": "若本幕的先古之民为坦克斯，则不会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event shrine_of_the_warlord",
+   "terms": {
+    "static_hover_tips:ROOM_ANCIENT.title": "先古之民"
+   }
+  },
+  "text:Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": {
+   "text": "不会自然出现。若你的牌组中有灯火钥匙，则会出现在你于第{n1}幕遇到的第一个问号节点。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event war_historian_repy",
+   "terms": {
+    "cards:LANTERN_KEY.title": "灯火钥匙"
+   }
+  },
+  "text:Cannot repeat.": {
+   "text": "不会连续使用。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Cannot repeat. {n1}-turn cooldown.": {
+   "text": "不会连续使用。冷却{n1}回合。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter flyconid"
+  },
+  "text:Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": {
+   "text": "不会连续使用。冷却{n1}回合。若没有可用的行动，则默认使用此行动。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter flyconid"
+  },
+  "text:Card type is random (Attack/Skill/Power).": {
+   "text": "卡牌类型随机（攻击/技能/能力）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions",
+   "terms": {
+    "monsters:MOCK_ATTACK_MONSTER.moves.ATTACK.title": "攻击"
+   }
+  },
+  "text:Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": {
+   "text": "卡牌类型随机（攻击/技能/能力）。你从{n2}张已升级的牌中选择{n1}张。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions",
+   "terms": {
+    "monsters:MOCK_ATTACK_MONSTER.moves.ATTACK.title": "攻击"
+   }
+  },
+  "text:Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": {
+   "text": "这些牌来自STS{n1}：铁蒺藜、交锋、声东击西、双持、巩固、你好世界、抢占先机、弹回、狂乱撕扯、堆栈。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trash_heap",
+   "terms": {
+    "monsters:MAWLER.moves.RIP_AND_TEAR.title": "狂乱撕扯",
+    "powers:HELLO_WORLD_POWER.title": "你好世界",
+    "cards:DISTRACTION.title": "声东击西",
+    "cards:OUTMANEUVER.title": "抢占先机",
+    "cards:DUAL_WIELD.title": "双持",
+    "cards:CALTROPS.title": "铁蒺藜",
+    "cards:ENTRENCH.title": "巩固",
+    "powers:REBOUND_POWER.title": "弹回",
+    "cards:CLASH.title": "交锋",
+    "cards:STACK.title": "堆栈"
+   }
+  },
+  "text:Cards are from your character's card pool.": {
+   "text": "卡牌来自你角色的卡池。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event infested_automaton"
+  },
+  "text:Cards can still be upgraded during combat after Magi Knight applies Dampen.": {
+   "text": "魔法骑士施加抑制后，卡牌在战斗中仍然可以被升级。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knights",
+   "terms": {
+    "monsters:MAGI_KNIGHT.name": "魔法骑士",
+    "monsters:MAGI_KNIGHT.moves.DAMPEN.title": "抑制"
+   }
+  },
+  "text:Caviar/+Max HP ({n1})": {
+   "text": "鱼子酱/+最大生命值（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Changed: Breathing Techniques costs {n1} Gold (was {n2}) and adds {n3} Enlightenment (was {n4})": {
+   "text": "调整：呼吸技法花费{n1}金币（原为{n2}），加入{n3}张开悟（原为{n4}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event zen_weaver",
+   "terms": {
+    "cards:ENLIGHTENMENT.title": "开悟",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
+   "text": "调整：生命值改为固定值，{n1} → {n2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter axebots"
+  },
+  "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {
+   "text": "调整：光之门改为升级{n1}张你选择的牌，而非{n2}张随机牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event doors_of_light_and_dark"
+  },
+  "text:Changed: Radiate removed": {
+   "text": "调整：移除辐射",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter infested-prism",
+   "terms": {
+    "cards:RADIATE.title": "辐射"
+   }
+  },
+  "text:Changed: can no longer steal Quest cards.": {
+   "text": "调整：不再能偷取任务牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper"
+  },
+  "text:Chaos: Add a random card from your pool to hand. It is Free to Play": {
+   "text": "混沌：将一张来自你卡池的随机牌加入手牌。它可以免费打出",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "cards:CHAOS.title": "混沌"
+   }
+  },
+  "text:Choking: Apply {n1} Strangle": {
+   "text": "窒息：给予{n1}层紧勒",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "powers:STRANGLE_POWER.title": "紧勒"
+   }
+  },
+  "text:Chooses randomly from {m1}, {m2}, and {m3}.": {
+   "text": "从{m1}、{m2}和{m3}中随机选择。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:Clam Roll/Heal ({n1})": {
+   "text": "蚌肉卷/回复（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Confront with Truth is locked if no eligible cards exist in your Deck.": {
+   "text": "若你的牌组中没有符合条件的牌，则“让它直面真相”会被锁定。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event grave_of_the_forgotten"
+  },
+  "text:Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": {
+   "text": "制作一张疯狂科学卡牌（{n1}点能量）。升级后会获得固有。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "cards:MAD_SCIENCE.title": "疯狂科学",
+    "card_keywords:INNATE.title": "固有"
+   }
+  },
+  "text:Curious: Powers cost {n1} Energy less": {
+   "text": "好奇：能力牌的耗能减少{n1}点能量",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "powers:CURIOUS_POWER.title": "好奇",
+    "static_hover_tips:ENERGY.title": "能量"
+   }
+  },
+  "text:Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": {
+   "text": "循环使用{m1} → {m2}或{m3}（{n1}/{n2}）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter inklets"
+  },
+  "text:Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": {
+   "text": "循环使用{m1} → {m2} → {m3}（{n1}%概率重复使用{m4}一次）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter scrolls-of-biting-easy"
+  },
+  "text:Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": {
+   "text": "循环使用{m1} → {m2} → {m3} → {m4}（直到{m5}已使用{n1}次）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": {
+   "text": "循环使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh"
+  },
+  "text:Cycles {m1} → {m2} → {m3} → {m4}.": {
+   "text": "循环使用{m1} → {m2} → {m3} → {m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-kin"
+  },
+  "text:Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": {
+   "text": "循环使用{m1} → {m2} → {m3}，有{n1}%概率跳过{m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter exoskeletons-easy"
+  },
+  "text:Cycles {m1} → {m2} → {m3}.": {
+   "text": "循环使用{m1} → {m2} → {m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter nibbit"
+  },
+  "text:Cycles {m1} → {m2}.": {
+   "text": "循环使用{m1} → {m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ruby-raiders"
+  },
+  "text:Damage {n1}": {
+   "text": "伤害{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fuzzy-wurm-crawler"
+  },
+  "text:Damage {n1} + stolen {p1}": {
+   "text": "伤害{n1} + 偷取的{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-lost-and-forgotten"
+  },
+  "text:Damage {n1} + {n2}*N": {
+   "text": "伤害{n1} + {n2}*N",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Decision made as a group in co-op.": {
+   "text": "多人模式中由全体玩家共同决定。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event dense_vegetation"
+  },
+  "text:Dies": {
+   "text": "死亡",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter living-fog"
+  },
+  "text:Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": {
+   "text": "菜品会随机供应，直到你花光金币或选择离开为止。上一道菜不会重复出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Does not copy the Bad Luck. Enchantments on cards do get copied": {
+   "text": "不会复制霉运。卡牌上的附魔会被复制",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event reflections",
+   "terms": {
+    "cards:BAD_LUCK.title": "霉运"
+   }
+  },
+  "text:Drink Bath Water gives {n1} random relic from Nonupeipe's offers except Looming Fruit:": {
+   "text": "喝浴池里的水会从诺奴佩普提供的遗物中（布质果实除外）随机给予{n1}件：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "relics:LOOMING_FRUIT.title": "布质果实"
+   }
+  },
+  "text:Each combat shuffles {n1} Beckon into your Draw Pile": {
+   "text": "每场战斗将{n1}张呼唤洗入你的抽牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "monsters:SOUL_FYSH.moves.BECKON.title": "呼唤"
+   }
+  },
+  "text:Each option is locked if you have no eligible cards of that type.": {
+   "text": "若你没有该类型的符合条件的牌，则对应选项会被锁定。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event self_help_book"
+  },
+  "text:Each option names the random relic, so you know exactly what you are trading for.": {
+   "text": "每个选项都会写明随机遗物的名称，因此你能确切知道自己换到的是什么。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event relic_trader"
+  },
+  "text:Elites gain {n1} {p1}": {
+   "text": "精英获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter vantom"
+  },
+  "text:Enemies gain {p1}:": {
+   "text": "敌人获得{p1}：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Enemies spawned mid-fight gain {n1} {p1}": {
+   "text": "战斗中途生成的敌人获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter vantom"
+  },
+  "text:Energized: Gain {n1} Energy": {
+   "text": "充能：获得{n1}点能量",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "static_hover_tips:ENERGY.title": "能量"
+   }
+  },
+  "text:Enlightenment no longer Exhausts.": {
+   "text": "开悟不再消耗。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event zen_weaver",
+   "terms": {
+    "cards:ENLIGHTENMENT.title": "开悟"
+   }
+  },
+  "text:Enrage": {
+   "text": "激怒",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen",
+   "terms": {
+    "monsters:EXOSKELETON.moves.ENRAGE.title": "激怒"
+   }
+  },
+  "text:Enter deeper. Lose HP.": {
+   "text": "深入。失去生命。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower"
+  },
+  "text:Escape from combat": {
+   "text": "逃离战斗",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:THIEVING_HOPPER.moves.ESCAPE.title": "逃跑"
+   }
+  },
+  "text:Escape from the combat": {
+   "text": "逃离战斗",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper",
+   "terms": {
+    "monsters:THIEVING_HOPPER.moves.ESCAPE.title": "逃跑"
+   }
+  },
+  "text:Expertise: Gain {n1} Strength and {n2} Dexterity": {
+   "text": "独门技术：获得{n1}点力量和{n2}点敏捷",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "powers:DEXTERITY_POWER.title": "敏捷",
+    "cards:EXPERTISE.title": "独门技术",
+    "powers:STRENGTH_POWER.title": "力量"
+   }
+  },
+  "text:Fight has normal gold reward if Fat Gremlin doesn't escape.": {
+   "text": "若胖地精没有逃跑，战斗会给予正常的金币奖励。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:FAT_GREMLIN.name": "胖地精"
+   }
+  },
+  "text:Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": {
+   "text": "对手为{n1}个拳击构装体，开局时已损失{n2}点生命。其中一个构装体总是首回合使用强力拳。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event punch_off",
+   "terms": {
+    "monsters:PUNCH_CONSTRUCT.moves.STRONG_PUNCH.title": "强力拳",
+    "monsters:THE_ARM.moves.PUNCH.title": "拳击"
+   }
+  },
+  "text:Fights as {n1} segments — HP is always an even number, and segments have different max HP.": {
+   "text": "分为{n1}节进行战斗——生命值总是偶数，且各节的最大生命值不同。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter decimillipede"
+  },
+  "text:Forced every {n1}th grab ({n2}th, {n3}th, etc.).": {
+   "text": "每第{n1}次拿取时必定出现（第{n2}次、第{n3}次，以此类推）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Free (no gold cost).": {
+   "text": "免费（无需花费金币）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tea_master"
+  },
+  "text:Fried Eel/Colorless Card ({n1})": {
+   "text": "炸鳗鱼/无色牌（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Front and back start with {m1}. Middle starts with {m2}.": {
+   "text": "前后两只首回合使用{m1}。中间一只首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter inklets"
+  },
+  "text:Front starts {m1}, back starts {m2}.": {
+   "text": "前方首回合使用{m1}，后方首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter toadpoles-easy"
+  },
+  "text:Gain [gold]Gold[/gold] based on depth.": {
+   "text": "根据深入程度获得[gold]金币[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Gain {n1} {p1}": {
+   "text": "获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fuzzy-wurm-crawler"
+  },
+  "text:Gain {n1} {p1} and {n2} {p2}": {
+   "text": "获得{n1}{p1}和{n2}{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter entomancer"
+  },
+  "text:Gain {n1} {p1} per respawn": {
+   "text": "每次重生获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter axebots"
+  },
+  "text:Gain {n1}* Intangible": {
+   "text": "获得{n1}*层无实体",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "powers:INTANGIBLE_POWER.title": "无实体"
+   }
+  },
+  "text:Gain {n1}+ {p1}": {
+   "text": "获得{n1}+{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass"
+  },
+  "text:Gain {p1}": {
+   "text": "获得{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter tunneler"
+  },
+  "text:Gain {p1} {n1}": {
+   "text": "获得{p1}{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter cultists"
+  },
+  "text:Gains {n1} {p1}": {
+   "text": "获得{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:Gains {n1} {p1} when stunned.": {
+   "text": "被击晕时获得{n1}{p1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:Gains {p1} {n1}": {
+   "text": "获得{p1}{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:Galvanic Burst": {
+   "text": "流电爆发",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter globe-head",
+   "terms": {
+    "powers:GALVANIC_POWER.title": "流电",
+    "powers:BURST_POWER.title": "爆发"
+   }
+  },
+  "text:Give Potion": {
+   "text": "给他药水",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event ranwid_the_elder"
+  },
+  "text:Give Relic": {
+   "text": "给他遗物",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event ranwid_the_elder"
+  },
+  "text:Give allies {n1} {p1}": {
+   "text": "给予友方{n1}{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": {
+   "text": "给予正常的战斗奖励，并额外给予一瓶药水和一件遗物（可能获得{n1}瓶药水）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event punch_off"
+  },
+  "text:Gold-generating relics cannot appear as the Featured Item.": {
+   "text": "能产生金币的遗物不会作为特选商品出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event welcome_to_wongos",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Golden Fysh/Gold ({n1})": {
+   "text": "金色异鱼/金币（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Hatches into Hatchling.": {
+   "text": "孵化为幼虫。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ovicopter",
+   "terms": {
+    "monsters:HATCHLING.name": "幼虫"
+   }
+  },
+  "text:Headbutt": {
+   "text": "头槌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog",
+   "terms": {
+    "monsters:BOWLBUG_ROCK.moves.HEADBUTT.title": "头槌"
+   }
+  },
+  "text:Heal [green]{n1}%[/green] Max HP.": {
+   "text": "回复最大生命值的[green]{n1}%[/green]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event spiraling_whirlpool"
+  },
+  "text:Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": {
+   "text": "回复最大生命值的[green]{n1}%[/green]。[red]进入战斗[/red]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event dense_vegetation"
+  },
+  "text:Heal is multiplied by player count in co-op.": {
+   "text": "多人模式中，回复量会乘以玩家人数。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Heal {n1} HP.": {
+   "text": "回复{n1}点生命。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:Heal {n1}*": {
+   "text": "回复{n1}*",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": {
+   "text": "“再撑一会”可以重复选择。伤害从{n1}开始，每次增加{n2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": {
+   "text": "若火炬头聚合体在回合中途死亡且意图为{m1}，则改为{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": {
+   "text": "若胖地精在偷取金币后逃跑，你将得不到金币奖励；若它在未偷取金币的情况下逃跑，你仍能获得正常金币奖励的{n1}%。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:FAT_GREMLIN.name": "胖地精"
+   }
+  },
+  "text:If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": {
+   "text": "若玩家被沙坑吞噬，蜥蜴尾巴等效果无法使你复活。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable",
+   "terms": {
+    "relics:LIZARD_TAIL.title": "蜥蜴尾巴",
+    "powers:SANDPIT_POWER.title": "沙坑"
+   }
+  },
+  "text:If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": {
+   "text": "{m1}之后，若友方数量<{n1}：{m2} → {m3} → {m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ovicopter"
+  },
+  "text:If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": {
+   "text": "{m1}之后，若友方数量≥{n1}：{m2} → {m3} → {m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ovicopter"
+  },
+  "text:If spawned from Phrog Parasite, starts stunned.": {
+   "text": "若由异蛙寄生虫生成，则开局处于击晕状态。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter phrog-parasite",
+   "terms": {
+    "monsters:PHROG_PARASITE.name": "异蛙寄生虫"
+   }
+  },
+  "text:If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": {
+   "text": "若在第{n1}回合前被击晕，则继续使用下一个行动。若在第{n2}回合被击晕，则再次尝试{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper"
+  },
+  "text:If {m1} is allowed, {n1}% chance to use it instead.": {
+   "text": "若可以使用{m1}，则有{n1}%概率改为使用它。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:Improvement: At the end of combat, Upgrade a random card": {
+   "text": "改善：在战斗结束时，随机升级一张牌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "powers:IMPROVEMENT_POWER.title": "改善"
+   }
+  },
+  "text:In Blitz it steals no Gold.": {
+   "text": "在闪击模式中，它不会偷取金币。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:In X turns, instantly die.": {
+   "text": "在X个回合后直接死亡。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable"
+  },
+  "text:In co-op, only appears if all players have more than {n1} HP.": {
+   "text": "多人模式中，仅当所有玩家的生命值都高于{n1}时才会出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event jungle_maze_adventure"
+  },
+  "text:In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": {
+   "text": "若要升级所有牌并使最大生命值降至{n1}，你的初始最大生命值至少需要为{n2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tablet_of_truth"
+  },
+  "text:In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": {
+   "text": "{n1}只小啃兽的遭遇战中：前方首回合使用{m1}，后方首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter nibbit",
+   "terms": {
+    "monsters:NIBBIT.name": "小啃兽"
+   }
+  },
+  "text:Increases Wither damage by {n1} each use.": {
+   "text": "每次使用会使凋萎的伤害增加{n1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass",
+   "terms": {
+    "cards:WITHER.title": "凋萎"
+   }
+  },
+  "text:Initially excludes Basic rarity cards.": {
+   "text": "初始时不包括基础稀有度的牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": {
+   "text": "与神秘骑士进行一场战斗，除灯火钥匙外还会获得常规奖励",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_lantern_key",
+   "terms": {
+    "monsters:MYSTERIOUS_KNIGHT.name": "神秘骑士",
+    "cards:LANTERN_KEY.title": "灯火钥匙"
+   }
+  },
+  "text:Insert Potion": {
+   "text": "放入药水",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions"
+  },
+  "text:Jelly Liver/Transform ({n1})": {
+   "text": "水母肝/变化（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor",
+   "terms": {
+    "static_hover_tips:TRANSFORM.title": "变化"
+   }
+  },
+  "text:Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": {
+   "text": "用灾厄击杀一节体节时，即使所有体节短暂地同时显示为死亡，其他已死亡的体节仍会再生。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter decimillipede",
+   "terms": {
+    "powers:DOOM_POWER.title": "灾厄"
+   }
+  },
+  "text:Laser → Rocket Claw.": {
+   "text": "激光 → 火箭钳。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter kaiser-crab",
+   "terms": {
+    "monsters:ROCKET.moves.ROCKET_CLAW.title": "火箭钳"
+   }
+  },
+  "text:Leave the conveyor belt.": {
+   "text": "离开传送带。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Locked below {n1} Gold. The card comes from your character's pool and is never upgraded.": {
+   "text": "金币少于{n1}时锁定。该牌来自你角色的卡池，且一定未升级。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event waterfall_of_obvious_secrets",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Lose [red]ALL[/red] your [gold]Gold[/gold]. Obtain [gold]Bath Robes[/gold].": {
+   "text": "失去[red]所有[/red][gold]金币[/gold]。获得[gold]浴袍[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "relics:BATH_ROBES.title": "浴袍",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Lose [red]{n1}%[/red] of your current HP. Obtain [gold]Wuppy[/gold] with [green]{n2}[/green] HP.": {
+   "text": "失去当前生命值的[red]{n1}%[/red]。获得一只拥有[green]{n2}[/green]点生命的[gold]瓦皮[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event wuppy_in_trouble",
+   "terms": {
+    "monsters:WUPPY.name": "瓦皮"
+   }
+  },
+  "text:Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": {
+   "text": "失去[red]{n1}[/red]点生命（每次增加{n2}点）。重新随机跨越选项中的卡牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:Lose [red]{n1}[/red] HP. Add [blue]{n2}[/blue] [red]Guilty[/red] to your [gold]Deck[/gold]. Obtain a random Nonupeipe relic.": {
+   "text": "失去[red]{n1}[/red]点生命。将[blue]{n2}[/blue]张[red]愧疚[/red]加入你的[gold]牌组[/gold]。获得一件随机诺奴佩普遗物。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "cards:GUILTY.title": "愧疚"
+   }
+  },
+  "text:Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": {
+   "text": "失去[red]{n1}[/red]点生命。获得[gold]芳香蘑菇[/gold]。随机升级[blue]{n2}[/blue]张牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event hungry_for_mushrooms",
+   "terms": {
+    "relics:FRAGRANT_MUSHROOM.title": "芳香蘑菇"
+   }
+  },
+  "text:Lose [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare[/gold] card.": {
+   "text": "失去[red]{n1}[/red][gold]金币[/gold]，获得一张随机[gold]稀有[/gold]牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event waterfall_of_obvious_secrets",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": {
+   "text": "失去一瓶药水。从{n2}张稀有度相同的已升级牌中选择{n1}张。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions"
+  },
+  "text:Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": {
+   "text": "失去一瓶随机[red]药水[/red]。获得[blue]{n1}[/blue]点最大生命值。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event stone_of_all_time"
+  },
+  "text:Lose {n1} {p1}": {
+   "text": "失去{n1}层{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter toadpoles-easy"
+  },
+  "text:Lose {p1}": {
+   "text": "失去{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter owl-magistrate"
+  },
+  "text:Max {n1} in a row.": {
+   "text": "最多连续使用{n1}次。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Minions that join mid-fight gain none": {
+   "text": "战斗中途加入的爪牙不获得",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": {
+   "text": "神秘骑士是一名连枷骑士，初始拥有{n1}点力量和{n2}层覆甲，生命值为{n3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_lantern_key",
+   "terms": {
+    "monsters:MYSTERIOUS_KNIGHT.name": "神秘骑士",
+    "monsters:FLAIL_KNIGHT.name": "连枷骑士",
+    "powers:PLATING_POWER.title": "覆甲"
+   }
+  },
+  "text:N = # of times this move was used": {
+   "text": "N = 此行动已使用的次数",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Nerfed: Prickly Sponge costs {n1} Gold (was {n2}).": {
+   "text": "削弱：扎手海绵花费{n1}金币（原为{n2}）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event waterlogged_scriptorium",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:New event.": {
+   "text": "新事件。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event waterfall_of_obvious_secrets"
+  },
+  "text:Normal enemies gain {n1} {p1}": {
+   "text": "普通敌人获得{n1}层{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter vantom"
+  },
+  "text:Obtain Forgotten Soul.": {
+   "text": "获得遗忘之魂。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event grave_of_the_forgotten",
+   "terms": {
+    "relics:FORGOTTEN_SOUL.title": "遗忘之魂"
+   }
+  },
+  "text:Obtain [gold]Big Mushroom[/gold].": {
+   "text": "获得[gold]大蘑菇[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event hungry_for_mushrooms",
+   "terms": {
+    "relics:BIG_MUSHROOM.title": "大蘑菇"
+   }
+  },
+  "text:Obtain [gold]Tea of Discourtesy[/gold].": {
+   "text": "获得[gold]无礼之茶[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tea_master",
+   "terms": {
+    "relics:TEA_OF_DISCOURTESY.title": "无礼之茶"
+   }
+  },
+  "text:Obtain the [gold]Sword of Stone[/gold].": {
+   "text": "获得[gold]石之剑[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event sunken_statue",
+   "terms": {
+    "relics:SWORD_OF_STONE.title": "石之剑"
+   }
+  },
+  "text:Obtain the displayed relic. Add a random [red]Curse[/red] to your [gold]Deck[/gold].": {
+   "text": "获得展出的遗物。将一张随机[red]诅咒[/red]牌加入你的[gold]牌组[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event museum_of_torture"
+  },
+  "text:Offered three random options that are not your character.": {
+   "text": "随机提供三个选项，均非你当前的角色。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colorful_philosophers"
+  },
+  "text:Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": {
+   "text": "从{n2}种随机类型（攻击/技能/能力）中提供{n1}种，然后为所选类型从{n4}种随机效果中提供{n3}种。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "monsters:MOCK_ATTACK_MONSTER.moves.ATTACK.title": "攻击"
+   }
+  },
+  "text:On wakeup all Plating is removed.": {
+   "text": "苏醒时移除所有覆甲。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch",
+   "terms": {
+    "powers:PLATING_POWER.title": "覆甲"
+   }
+  },
+  "text:One of the {n1} Intangible from {m1} ticks down immediately.": {
+   "text": "{m1}带来的{n1}层无实体中，有一层会立即减少。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "powers:INTANGIBLE_POWER.title": "无实体"
+   }
+  },
+  "text:Only {n1} rat can use {m1} per turn.": {
+   "text": "每回合只能有{n1}只老鼠使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:Opens with {m1} or {m2}.": {
+   "text": "首回合使用{m1}或{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Opens with {m1} → {m2} → {m3}, then always uses {m4}.": {
+   "text": "开局依次使用{m1} → {m2} → {m3}，之后总是使用{m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bygone-effigy"
+  },
+  "text:Opens with {m1} → {m2} → {m3}.": {
+   "text": "开局依次使用{m1} → {m2} → {m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ovicopter"
+  },
+  "text:Opens with {m1} → {m2}, then always uses {m3}.": {
+   "text": "开局依次使用{m1} → {m2}，之后总是使用{m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bowlbugs-easy"
+  },
+  "text:Opens with {m1} → {m2}.": {
+   "text": "开局依次使用{m1} → {m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Opens with {m1}, then always uses {m2}.": {
+   "text": "首回合使用{m1}，之后总是使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ruby-raiders"
+  },
+  "text:Opens with {m1}.": {
+   "text": "首回合使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fuzzy-wurm-crawler"
+  },
+  "text:Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": {
+   "text": "首回合使用{m1}；之后交替使用{m2} ↔ {m3}（总是从{m4}开始）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter haunted-ship"
+  },
+  "text:Options are locked if you don't have the required item.": {
+   "text": "如果你没有所需的物品，对应选项会被锁定。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event ranwid_the_elder"
+  },
+  "text:Pass Turn": {
+   "text": "跳过回合",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bygone-effigy"
+  },
+  "text:Pass turn": {
+   "text": "跳过回合",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter kaiser-crab"
+  },
+  "text:Passes Turn": {
+   "text": "跳过回合",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slumbering-beetle"
+  },
+  "text:Passes turn": {
+   "text": "跳过回合",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bowlbugs-easy"
+  },
+  "text:Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bath Towel[/gold].": {
+   "text": "支付[red]{n1}[/red][gold]金币[/gold]。获得[gold]浴巾[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event thermae_nonupeipe",
+   "terms": {
+    "relics:BATH_TOWEL.title": "浴巾",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": {
+   "text": "支付[red]{n1}[/red][gold]金币[/gold]。获得[gold]骨茶[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tea_master",
+   "terms": {
+    "relics:BONE_TEA.title": "骨茶",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": {
+   "text": "支付[red]{n1}[/red][gold]金币[/gold]。获得[gold]余烬茶[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tea_master",
+   "terms": {
+    "relics:EMBER_TEA.title": "余烬茶",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": {
+   "text": "支付[red]{n1}[/red][gold]金币[/gold]。获得一件随机[gold]稀有遗物[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event welcome_to_wongos",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Phase {n1} (after stun):": {
+   "text": "第{n1}阶段（被击晕后）：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:Phase {n1} (below {n2}% HP after using {m1}):": {
+   "text": "第{n1}阶段（生命值低于{n2}%并使用{m1}后）：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter frog-knight"
+  },
+  "text:Phase {n1} (stunned at {n2} HP):": {
+   "text": "第{n1}阶段（生命值降至{n2}时被击晕）：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter terror-eel"
+  },
+  "text:Phase {n1}:": {
+   "text": "第{n1}阶段：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ceremonial-beast"
+  },
+  "text:Player must choose one of two debuffs:": {
+   "text": "玩家必须从两种负面效果中选择一种：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": {
+   "text": "第{n1}、{n2}位首回合使用{m1}，第{n3}、{n4}位首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter phrog-parasite"
+  },
+  "text:Power:": {
+   "text": "能力：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time"
+  },
+  "text:Precision Beam → Precise Smash": {
+   "text": "精准光束 → 精准猛击",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter kaiser-crab",
+   "terms": {
+    "monsters:ROCKET.moves.PRECISE_SMASH.title": "精准猛击",
+    "monsters:THE_ADVERSARY_MK_ONE.moves.BEAM.title": "光束"
+   }
+  },
+  "text:Prep": {
+   "text": "准备",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knights"
+  },
+  "text:Probabilities are weighted and shift if any options are unavailable.": {
+   "text": "概率按权重计算，若有选项不可用，概率会相应变化。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": {
+   "text": "重拳出击事件：第{n1}个首回合使用{m1}，第{n2}个首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter punch-construct",
+   "terms": {
+    "monsters:THE_ARM.moves.PUNCH.title": "拳击"
+   }
+  },
+  "text:Puppet Strings": {
+   "text": "傀儡丝线",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:Rejecting is not allowed — double downing abandons the run.": {
+   "text": "不允许拒绝——选择坚持到底会直接放弃本局游戏。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": {
+   "text": "这些遗物来自《杀戮尖塔{n1}》：黑石护符、捕梦网、手钻、巨口储蓄罐、发条靴。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trash_heap",
+   "terms": {
+    "relics:DARKSTONE_PERIAPT.title": "黑石护符",
+    "relics:DREAM_CATCHER.title": "捕梦网",
+    "relics:HAND_DRILL.title": "手钻",
+    "relics:MAW_BANK.title": "巨口储蓄罐",
+    "relics:THE_BOOT.title": "发条靴"
+   }
+  },
+  "text:Renamed moves: Targeting Reticle → Calculating": {
+   "text": "行动改名：瞄准准星 → 计算",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter kaiser-crab",
+   "terms": {
+    "monsters:ROCKET.moves.CALCULATING.title": "计算"
+   }
+  },
+  "text:Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": {
+   "text": "最多可重复{n1}次。代价依次递增：{n2}/{n3}/{n4}/{n5}/全部（保留{n6}点）最大生命值。第{n7}次解读会升级所有可升级的牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tablet_of_truth"
+  },
+  "text:Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": {
+   "text": "最多可重复{n1}次。伤害依次递增：{n2}/{n3}/{n4}。第{n5}次选择会获得花粉核心。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower",
+   "terms": {
+    "relics:POLLINOUS_CORE.title": "花粉核心"
+   }
+  },
+  "text:Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": {
+   "text": "最多可重复{n1}次。金币依次递增：{n2}/{n3}/{n4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": {
+   "text": "通过{p1}重生并使用{m1}；每次重生获得{n1}点最大生命值。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter axebots"
+  },
+  "text:Retains Strength after reviving.": {
+   "text": "复活后保留力量。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-obscura",
+   "terms": {
+    "powers:STRENGTH_POWER.title": "力量"
+   }
+  },
+  "text:Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": {
+   "text": "奖励包含三次卡牌奖励，每次包含{n1}张普通/罕见/稀有牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colorful_philosophers"
+  },
+  "text:Sapping: Apply {n1} Weak and {n2} Vulnerable": {
+   "text": "削弱：给予{n1}层虚弱和{n2}层易伤",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "powers:VULNERABLE_POWER.title": "易伤",
+    "powers:WEAK_POWER.title": "虚弱"
+   }
+  },
+  "text:Segments start evenly distributed between {m1}, {m2}, and {m3}.": {
+   "text": "各体节的首个行动在{m1}、{m2}和{m3}之间平均分配。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter decimillipede"
+  },
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "分享知识提供的牌来自你角色的卡池，按普通战斗的稀有度概率生成（遵循稀有牌保底机制）。提供的牌永远不会是升级过的。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event brain_leech"
+  },
+  "text:Shuffle {n1} Beckon into discard": {
+   "text": "将{n1}张呼唤洗入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "monsters:SOUL_FYSH.moves.BECKON.title": "呼唤"
+   }
+  },
+  "text:Shuffle {n1} Beckon into draw": {
+   "text": "将{n1}张呼唤洗入抽牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter soul-fysh",
+   "terms": {
+    "monsters:SOUL_FYSH.moves.BECKON.title": "呼唤"
+   }
+  },
+  "text:Shuffle {n1} Burns into discard": {
+   "text": "将{n1}张灼伤洗入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter test-subject"
+  },
+  "text:Shuffle {n1} Frantic Escapes into discard": {
+   "text": "将{n1}张狂乱逃离洗入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable"
+  },
+  "text:Shuffle {n1} Frantic Escapes into draw": {
+   "text": "将{n1}张狂乱逃离洗入抽牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable"
+  },
+  "text:Single-player only.": {
+   "text": "仅限单人游戏。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event fake_merchant"
+  },
+  "text:Skill — Gain {n1} Block, plus:": {
+   "text": "技能——获得{n1}点格挡，外加：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time",
+   "terms": {
+    "static_hover_tips:BLOCK.title": "格挡"
+   }
+  },
+  "text:Slash {n1}": {
+   "text": "斩击{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch",
+   "terms": {
+    "monsters:LAGAVULIN_MATRIARCH.moves.SLASH.title": "斩击"
+   }
+  },
+  "text:Sleeps for {n1} turns or until losing HP.": {
+   "text": "沉睡{n1}个回合，或直到失去生命为止。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch"
+  },
+  "text:Sleeps until awakened, then always uses {m1}.": {
+   "text": "沉睡直到被唤醒，之后总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slumbering-beetle"
+  },
+  "text:Slice": {
+   "text": "切割",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter nibbit",
+   "terms": {
+    "cards:SLICE.title": "切割"
+   }
+  },
+  "text:Smother": {
+   "text": "闷压",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimed-berserker"
+  },
+  "text:Spicy Snappy/Upgrade ({n1})": {
+   "text": "香辣薄脆/升级（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": {
+   "text": "藏宝图会使下一阶段的所有路径汇聚到该阶段的宝箱节点，宝箱中除常规奖励外还有{n1}金币。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_legends_were_true",
+   "terms": {
+    "cards:SPOILS_MAP.title": "藏宝图",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Start each combat with {n1} {p1} and {n2} {p2}": {
+   "text": "每场战斗开始时拥有{n1}层{p1}和{n2}层{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-kin"
+  },
+  "text:Steal {n1} card and gain {p1}": {
+   "text": "偷走{n1}张牌并获得{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper"
+  },
+  "text:Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": {
+   "text": "被偷的牌取自抽牌堆或弃牌堆。优先级：{n1}.未注能的罕见牌；{n2}.未注能的普通/稀有/事件牌；{n3}.未注能的基础牌；{n4}.已注能或先古牌；{n5}.诅咒牌或其他任何牌。任务牌永远不会被偷。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter thieving-hopper"
+  },
+  "text:Stolen gold is held by Fat Gremlin once summoned.": {
+   "text": "胖地精被召唤后，被偷走的金币由它持有。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:FAT_GREMLIN.name": "胖地精"
+   }
+  },
+  "text:Stunned for one turn": {
+   "text": "被击晕一回合",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:GENERIC.moves.STUNNED.title": "晕眩"
+   }
+  },
+  "text:Summon Two-Tailed Rat": {
+   "text": "召唤双尾鼠",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats",
+   "terms": {
+    "monsters:TWO_TAILED_RAT.name": "双尾鼠",
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summon up to {n1} Tough Eggs": {
+   "text": "召唤至多{n1}个结实的卵",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ovicopter",
+   "terms": {
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summon {n1} Aggro Bot": {
+   "text": "召唤{n1}个攻击型机器人",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator",
+   "terms": {
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summon {n1} Eye with Teeth": {
+   "text": "召唤{n1}个利齿之眼",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog",
+   "terms": {
+    "monsters:EYE_WITH_TEETH.name": "利齿之眼",
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summon {n1} Gas Bomb": {
+   "text": "召唤{n1}个气态炸弹",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter living-fog",
+   "terms": {
+    "monsters:GAS_BOMB.name": "气态炸弹",
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summon {n1} Parafright": {
+   "text": "召唤{n1}只寄生惧魔",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-obscura",
+   "terms": {
+    "monsters:PARAFRIGHT.name": "寄生惧魔",
+    "monsters:QUEEN.moves.SUMMON_1.title": "召唤"
+   }
+  },
+  "text:Summons X Wrigglers after dying (they start stunned).": {
+   "text": "死亡后召唤X只扭动虫（它们开局处于击晕状态）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter phrog-parasite"
+  },
+  "text:Summons {n1} Aggro Bot": {
+   "text": "召唤{n1}个攻击型机器人",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator"
+  },
+  "text:Summons {n1} Defensive Bot": {
+   "text": "召唤{n1}个防御型机器人",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator"
+  },
+  "text:Suspicious Condiment/Potion ({n1})": {
+   "text": "可疑调味料/药水（{n1}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:Swing": {
+   "text": "挥舞",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ruby-raiders"
+  },
+  "text:Sword of Stone transforms into Sword of Jade after {n1} fights": {
+   "text": "石之剑在{n1}场战斗后会变为玉之剑",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event sunken_statue",
+   "terms": {
+    "relics:SWORD_OF_STONE.title": "石之剑",
+    "relics:SWORD_OF_JADE.title": "玉之剑"
+   }
+  },
+  "text:Tackle": {
+   "text": "冲撞",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen",
+   "terms": {
+    "monsters:CORPSE_SLUG.moves.TACKLE.title": "冲撞"
+   }
+  },
+  "text:Test Subject Stage {n1}": {
+   "text": "实验体（第{n1}形态）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter test-subject"
+  },
+  "text:The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": {
+   "text": "在此获得的污浊药水可以投向假商人以触发战斗。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event potion_courier",
+   "terms": {
+    "potions:FOUL_POTION.title": "污浊药水"
+   }
+  },
+  "text:The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": {
+   "text": "灯火钥匙会使战史学家 付袭事件出现在你于阶段{n1}遇到的下一个问号房间。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_lantern_key",
+   "terms": {
+    "cards:LANTERN_KEY.title": "灯火钥匙"
+   }
+  },
+  "text:The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": {
+   "text": "每次选择再撑一会时，跨越选项中的牌都会重新随机；在其他牌都出现过之前，不会出现之前已提供过的牌。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event slippery_bridge"
+  },
+  "text:The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": {
+   "text": "休息选项会触发在休息处休息时会触发的所有效果（皇家枕头、捕梦网等）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event dense_vegetation",
+   "terms": {
+    "relics:DREAM_CATCHER.title": "捕梦网",
+    "relics:REGAL_PILLOW.title": "皇家枕头"
+   }
+  },
+  "text:The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": {
+   "text": "大幅占卜只能点击尚未点击过的图块，并揭开其周围的{n1}个图块。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": {
+   "text": "展示的遗物是从黑曜石钳子、拇指夹和苦痛项圈中随机选出的{n1}件。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event museum_of_torture",
+   "terms": {
+    "relics:TORMENTOUS_COLLAR.title": "苦痛项圈",
+    "relics:OBSIDIAN_VICE.title": "黑曜石钳子",
+    "relics:THUMBSCREW.title": "拇指夹"
+   }
+  },
+  "text:The following items are guaranteed to be in the minigame:": {
+   "text": "小游戏中必定会出现以下物品：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:The specific potion is named in the option text.": {
+   "text": "选项文本中会写明具体是哪瓶药水。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event stone_of_all_time"
+  },
+  "text:The specific potion to be lost is shown in the option text.": {
+   "text": "选项文本中会显示将要失去的具体药水。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event stone_of_all_time"
+  },
+  "text:Then chooses randomly from all moves.": {
+   "text": "之后从所有行动中随机选择。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter sludge-spinner"
+  },
+  "text:Then chooses randomly from {m1}, {m2}, {m3}.": {
+   "text": "之后从{m1}、{m2}、{m3}中随机选择。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter flyconid"
+  },
+  "text:Then chooses randomly from {m1}, {m2}.": {
+   "text": "之后从{m1}、{m2}中随机选择。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": {
+   "text": "之后循环使用{m1} → {m2} → {m3} → {m4} → {m5}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:Then cycles {m1} → {m2} → {m3} → {m4}.": {
+   "text": "之后循环使用{m1} → {m2} → {m3} → {m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-insatiable"
+  },
+  "text:Then cycles {m1} → {m2} → {m3}.": {
+   "text": "之后循环使用{m1} → {m2} → {m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fuzzy-wurm-crawler"
+  },
+  "text:Then cycles {m1} → {m2}.": {
+   "text": "之后循环使用{m1} → {m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter shrinker-beetle"
+  },
+  "text:There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": {
+   "text": "共有{n1}种玩偶选项，你会根据所选选项看到一定数量的随机玩偶。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event doll_room"
+  },
+  "text:Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": {
+   "text": "投掷污浊药水会触发战斗。奖励：{n1}金币、全部{n2}件遗物、一件商人的地毯？？？以及一次卡牌奖励。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event fake_merchant",
+   "terms": {
+    "potions:FOUL_POTION.title": "污浊药水",
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:Total HP to reach Pollinous Core: {n1}.": {
+   "text": "抵达花粉核心共需失去生命：{n1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event colossal_flower",
+   "terms": {
+    "relics:POLLINOUS_CORE.title": "花粉核心"
+   }
+  },
+  "text:Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": {
+   "text": "用你的一件[gold]遗物[/gold]换取一件随机[gold]遗物[/gold]。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event relic_trader"
+  },
+  "text:Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": {
+   "text": "最多提供你药水栏中的{n1}瓶药水。药水的稀有度决定卡牌奖励的稀有度。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event the_future_of_potions"
+  },
+  "text:Uses {m1} once, then restarts Phase {n1}.": {
+   "text": "使用一次{m1}，然后重新开始第{n1}阶段。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter frog-knight"
+  },
+  "text:Uses {m1}, then cycles {m2} → {m3}.": {
+   "text": "使用{m1}，之后循环使用{m2} → {m3}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter terror-eel"
+  },
+  "text:Violence: Hit {n1} times ({n2})": {
+   "text": "暴力：命中{n1}次（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time"
+  },
+  "text:Weak Tackle": {
+   "text": "弱力冲撞",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen",
+   "terms": {
+    "monsters:CORPSE_SLUG.moves.TACKLE.title": "冲撞",
+    "powers:WEAK_POWER.title": "虚弱"
+   }
+  },
+  "text:Weights:": {
+   "text": "权重：",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": {
+   "text": "盟友数≤{n1}时：从{m1}、{m2}中随机选择。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator"
+  },
+  "text:When allies ≥ {n1}: Always uses {m1}.": {
+   "text": "盟友数≥{n1}时：总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator"
+  },
+  "text:When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": {
+   "text": "被击杀时，召唤{n1}只卑鄙地精和{n2}只胖地精（它们开局处于击晕状态）。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc",
+   "terms": {
+    "monsters:SNEAKY_GREMLIN.name": "卑鄙地精",
+    "monsters:FAT_GREMLIN.name": "胖地精"
+   }
+  },
+  "text:When killed: Revives after {n1} turn with {n2} HP and continues from next move.": {
+   "text": "被击杀时：{n1}回合后以{n2}点生命复活，并从下一个行动继续。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter decimillipede"
+  },
+  "text:When killed: Revives next turn in Stage {n1}.": {
+   "text": "被击杀时：下回合以第{n1}形态复活。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter test-subject"
+  },
+  "text:While Amalgam alive: Always uses {m1}.": {
+   "text": "聚合体存活时：总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen"
+  },
+  "text:While Burrowed: Always uses {m1}.": {
+   "text": "埋地时：总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter tunneler",
+   "terms": {
+    "powers:BURROWED_POWER.title": "埋地"
+   }
+  },
+  "text:While Turret Operator alive: Always uses {m1}.": {
+   "text": "高塔炮手存活时：总是使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter turret-operator",
+   "terms": {
+    "monsters:TURRET_OPERATOR.name": "高塔炮手"
+   }
+  },
+  "text:Wisdom: Draw {n1} cards": {
+   "text": "智慧：抽{n1}张牌",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event tinker_time"
+  },
+  "text:Wuppy takes all attack damage aimed at you while alive. Its HP carries between combats, and rest sites gain a Restore option that heals it to full.": {
+   "text": "瓦皮存活时会承受所有针对你的攻击伤害。它的生命值会在战斗之间保留，并且休息处会新增“回复”选项，可将它的生命值回满。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event wuppy_in_trouble",
+   "terms": {
+    "monsters:WUPPY.name": "瓦皮"
+   }
+  },
+  "text:[Merchant] Guilty": {
+   "text": "[商人] 有罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:GUILTY.title": "愧疚"
+   }
+  },
+  "text:[Merchant] Innocent": {
+   "text": "[商人] 无罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:[Noble] Guilty": {
+   "text": "[贵族] 有罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:GUILTY.title": "愧疚"
+   }
+  },
+  "text:[Noble] Innocent": {
+   "text": "[贵族] 无罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:[Nondescript] Guilty": {
+   "text": "[普通人] 有罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial",
+   "terms": {
+    "cards:GUILTY.title": "愧疚"
+   }
+  },
+  "text:[Nondescript] Innocent": {
+   "text": "[普通人] 无罪",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event trial"
+  },
+  "text:[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": {
+   "text": "[gold]瓦皮[/gold]会在战斗中陪伴你并吸收所有攻击伤害。它的生命值会在战斗之间保留。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event wuppy_in_trouble",
+   "terms": {
+    "monsters:WUPPY.name": "瓦皮"
+   }
+  },
+  "text:a Torch Head Amalgam in play": {
+   "text": "场上有一个火炬头聚合体",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter queen",
+   "terms": {
+    "monsters:TORCH_HEAD_AMALGAM.name": "火炬头聚合体"
+   }
+  },
+  "text:damage {n1} → {n2}.": {
+   "text": "伤害{n1} → {n2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter tunneler"
+  },
+  "text:pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies {n1} Vulnerable instead of gaining {n2} Block.": {
+   "text": "行动模式现为刺击 → 刺击 → 旋风 → 脉动。脉动改为给予{n1}层易伤，而不是获得{n2}点格挡。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter infested-prism",
+   "terms": {
+    "powers:VULNERABLE_POWER.title": "易伤",
+    "monsters:INFESTED_PRISM.moves.WHIRLWIND.title": "旋风",
+    "monsters:INFESTED_PRISM.moves.PULSATE.title": "脉动",
+    "static_hover_tips:BLOCK.title": "格挡",
+    "monsters:INFESTED_PRISM.moves.JAB.title": "刺击"
+   }
+  },
+  "text:{m1} {p1} gain increases by {n1} each use.": {
+   "text": "{m1}获得的{p1}每次使用后增加{n1}点。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter aeonglass"
+  },
+  "text:{n1} Big Gold/{n2}g ({n3})": {
+   "text": "{n1}堆大金币/{n2}金币（{n3}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:{n1} Common Card ({n2})": {
+   "text": "{n1}张普通牌（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} Common Potions ({n2})": {
+   "text": "{n1}瓶普通药水（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} Dazed to Discard": {
+   "text": "将{n1}张晕眩放入弃牌堆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fogmog",
+   "terms": {
+    "cards:DAZED.title": "晕眩"
+   }
+  },
+  "text:{n1} Doubt curse ({n2})": {
+   "text": "{n1}张疑虑诅咒（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere",
+   "terms": {
+    "cards:DOUBT.title": "疑虑"
+   }
+  },
+  "text:{n1} Rare Card ({n2})": {
+   "text": "{n1}张稀有牌（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} Rare Potion ({n2})": {
+   "text": "{n1}瓶稀有药水（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} Relic ({n2})": {
+   "text": "{n1}件遗物（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} Rock + {n2} random from Egg or Nectar": {
+   "text": "{n1}只石 + 从卵或蜜中随机{n2}只",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bowlbugs-easy"
+  },
+  "text:{n1} Rock + {n2} unique from Egg / Silk / Nectar": {
+   "text": "{n1}只石 + 从卵/丝/蜜中选出{n2}只不同的",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter bowlbugs"
+  },
+  "text:{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": {
+   "text": "{n1}只蛇行扼杀者 + 以下之一：闪光贾克斯果/随机中型史莱姆/{n2}只随机小型史莱姆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slithering-strangler",
+   "terms": {
+    "monsters:SLITHERING_STRANGLER.name": "蛇行扼杀者",
+    "monsters:SNAPPING_JAXFRUIT.name": "闪光贾克斯果"
+   }
+  },
+  "text:{n1} Small Gold/{n2}g ({n3})": {
+   "text": "{n1}堆小金币/{n2}金币（{n3}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": {
+   "text": "{n1}只树枝史莱姆（小）+ {n2}只树叶史莱姆（小）+ {n3}只随机中型史莱姆",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slimes-easy"
+  },
+  "text:{n1} Uncommon Card ({n2})": {
+   "text": "{n1}张罕见牌（{n2}）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} enemies": {
+   "text": "{n1}名敌人",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "grid"
+  },
+  "text:{n1} in easy fights": {
+   "text": "简单战斗中为{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:{n1} in elite fights": {
+   "text": "精英战斗中为{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:{n1} in hard fights": {
+   "text": "困难战斗中为{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:{n1} in multi-enemy fights": {
+   "text": "多敌人战斗中为{n1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter waterfall-giant"
+  },
+  "text:{n1} of the {n2} cells are populated with items.": {
+   "text": "{n2}个图块中有{n1}个放有物品。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event crystal_sphere"
+  },
+  "text:{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": {
+   "text": "从{n2}件仿冒遗物中随机提供{n1}件，每件售价{n3}金币。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event fake_merchant",
+   "terms": {
+    "static_hover_tips:MONEY_POUCH.title": "金币"
+   }
+  },
+  "text:{n1} unique Raiders from pool": {
+   "text": "从池中选出{n1}名不同的劫掠者",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter ruby-raiders"
+  },
+  "text:{n1}-turn cooldown.": {
+   "text": "冷却{n1}回合。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter two-tailed-rats"
+  },
+  "text:{n1}nd choice: {p1} {n2} or {p2}": {
+   "text": "第{n1}次选择：{n2}层{p1}或{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:{n1}rd Choice: {p1} {n2} or {p2}": {
+   "text": "第{n1}次选择：{n2}层{p1}或{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:{n1}rd follower opens with {m1}.": {
+   "text": "第{n1}名信徒首回合使用{m1}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-kin"
+  },
+  "text:{n1}st choice: {p1} {n2} or {p2}": {
+   "text": "第{n1}次选择：{n2}层{p1}或{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter knowledge-demon"
+  },
+  "text:{n1}st follower opens with {m1}, {n2}nd with {m2}.": {
+   "text": "第{n1}名信徒首回合使用{m1}，第{n2}名使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter the-kin"
+  },
+  "text:{n1}st starts randomly, each subsequent starts at the next point in the cycle.": {
+   "text": "第{n1}只从循环中的随机位置开始，之后每只从循环中的下一个位置开始。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter corpse-slugs-easy"
+  },
+  "text:{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": {
+   "text": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}，第{n3}只首回合使用{m3}，第{n4}只随机开始。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter exoskeletons-easy"
+  },
+  "text:{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": {
+   "text": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}，第{n3}只首回合使用{m3}，第{n4}只首回合使用{m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter phantasmal-gardeners"
+  },
+  "text:{n1}st starts {m1}, {n2}nd starts {m2}.": {
+   "text": "第{n1}只首回合使用{m1}，第{n2}只首回合使用{m2}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter chompers"
+  },
+  "text:{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": {
+   "text": "第{n1}/{n2}/{n3}个的首个行动在{m1}、{m2}、{m3}之间平均分配。第{n4}个首回合使用{m4}。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter scrolls-of-biting-easy"
+  },
+  "text:{p1} (immediately gives {n1} Intangible)": {
+   "text": "{p1}（立即获得{n1}层无实体）",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter test-subject",
+   "terms": {
+    "powers:INTANGIBLE_POWER.title": "无实体"
+   }
+  },
+  "text:{p1} and {p2} {n1}": {
+   "text": "{p1}和{n1}层{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter gremlin-merc"
+  },
+  "text:{p1} {n1} and {p2}": {
+   "text": "{n1}层{p1}和{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter lagavulin-matriarch"
+  },
+  "text:{p1} {n1} and {p2} {n2}": {
+   "text": "{n1}层{p1}和{n2}层{p2}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter slumbering-beetle"
+  },
+  "text:{p1} {n1} on Fabricator": {
+   "text": "为组装师提供{n1}点{p1}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fabricator",
+   "terms": {
+    "monsters:FABRICATOR.name": "组装师"
+   }
+  },
+  "text:{p1}, {p2} {n1} and {p3} {n2}": {
+   "text": "{p1}、{n1}层{p2}和{n2}层{p3}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter kaiser-crab"
+  },
+  "text:~{n1}% chance.": {
+   "text": "约{n1}%概率。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:~{n1}% chance. Free (no gold cost). Only appears after first grab.": {
+   "text": "约{n1}%概率。免费（不花费金币）。仅在第一次拿取后出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:~{n1}% chance. Only appears if not at full HP.": {
+   "text": "约{n1}%概率。仅在生命值未满时出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:~{n1}% chance. Only appears if you have open potion slots.": {
+   "text": "约{n1}%概率。仅在你有空药水栏位时出现。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "event endless_conveyor"
+  },
+  "text:🤝 Gains a set amount of Strength on hit instead of per-player.": {
+   "text": "🤝 命中时获得固定数量的力量，而不是按玩家人数计算。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "page": "encounter fossil-stalker",
+   "terms": {
+    "powers:STRENGTH_POWER.title": "力量"
+   }
+  },
+  "ui:act_reference": {
+   "text": "参考",
+   "en": "Reference",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:act_title": {
+   "text": "阶段{n}：{name}",
+   "en": "Act {n}: {name}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:attack_pattern": {
+   "text": "行动模式",
+   "en": "Attack Pattern",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "terms": {
+    "monsters:MOCK_ATTACK_MONSTER.moves.ATTACK.title": "攻击"
+   }
+  },
+  "ui:banner_beta": {
+   "text": "BETA — 本页面反映<strong>测试版v{version}</strong>的平衡性改动。<a href=\"../\">查看正式版</a>",
+   "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:banner_beta_short": {
+   "text": "BETA <strong>v{version}</strong> — <a href=\"../\">查看正式版</a>",
+   "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:banner_stable": {
+   "text": "本站同时提供最新<strong>测试版补丁v{version}</strong>的数据。<a href=\"beta/\">切换到测试版</a>",
+   "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:banner_stable_short": {
+   "text": "v{live} · <a href=\"beta/\">切换到测试版</a>",
+   "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:beta_changed": {
+   "text": "测试版{version}改动：",
+   "en": "Changed in Beta {version}:",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:beta_patch": {
+   "text": "测试版补丁",
+   "en": "Beta Patch",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:boss_label": {
+   "text": "Boss：",
+   "en": "Boss:",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16",
+   "terms": {
+    "static_hover_tips:ROOM_BOSS.title": "Boss"
+   }
+  },
+  "ui:cat_all_title": {
+   "text": "全部遭遇战",
+   "en": "All Encounters",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:cat_boss_title": {
+   "text": "Boss",
+   "en": "Bosses",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:cat_easy": {
+   "text": "简单",
+   "en": "Easy",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:cat_easy_title": {
+   "text": "简单遭遇战",
+   "en": "Easy Encounters",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:cat_hard": {
+   "text": "困难",
+   "en": "Hard",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:cat_hard_title": {
+   "text": "困难遭遇战",
+   "en": "Hard Encounters",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:choices": {
+   "text": "选项",
+   "en": "Choices",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:col_choice": {
+   "text": "选项",
+   "en": "Choice",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:col_effect": {
+   "text": "效果",
+   "en": "Effect",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:col_intent": {
+   "text": "意图",
+   "en": "Intent",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:col_move": {
+   "text": "行动",
+   "en": "Move",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:collapse": {
+   "text": "折叠/展开",
+   "en": "Collapse/Expand",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:composition": {
+   "text": "敌人组成",
+   "en": "Composition",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:dominion": {
+   "text": "支配",
+   "en": "Dominion",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:dominion_act_boss": {
+   "text": "本幕Boss",
+   "en": "Act boss",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:dominion_other_fights": {
+   "text": "本幕其他战斗",
+   "en": "Other fights this act",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:events": {
+   "text": "事件",
+   "en": "Events",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:events_all": {
+   "text": "全部事件",
+   "en": "All Events",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:feedback": {
+   "text": "提交反馈或报告问题",
+   "en": "Submit feedback or report an issue",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:footer_credit": {
+   "text": "本站数据最初来源于<a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>，由<span class=\"credit-names\">dr0gulus、Aplet123和Redbeardy_Mcgee</span>创建——衷心感谢他们的付出让这一切成为可能。",
+   "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:footer_early": {
+   "text": "《杀戮尖塔2》目前处于抢先体验阶段，敌人的数值、行动和模式可能会随每次补丁而改变。数据最近更新于<span id=\"game-version\"></span>。",
+   "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:hp": {
+   "text": "生命值：",
+   "en": "HP:",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_add_statuses": {
+   "text": "添加状态牌",
+   "en": "add_statuses",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_affliction": {
+   "text": "苦痛",
+   "en": "affliction",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_attack": {
+   "text": "攻击",
+   "en": "attack",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_block": {
+   "text": "格挡",
+   "en": "block",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_buff": {
+   "text": "增益",
+   "en": "buff",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_deathblow": {
+   "text": "致命一击",
+   "en": "deathblow",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_debuff": {
+   "text": "减益",
+   "en": "debuff",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_escape": {
+   "text": "逃跑",
+   "en": "escape",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_heal": {
+   "text": "回复",
+   "en": "heal",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_multi_attack": {
+   "text": "多段攻击",
+   "en": "multi_attack",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_sleeping": {
+   "text": "睡眠",
+   "en": "sleeping",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_stun": {
+   "text": "晕眩",
+   "en": "stun",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_summon": {
+   "text": "召唤",
+   "en": "summon",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:intent_unknown": {
+   "text": "未知",
+   "en": "unknown",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:list_separator": {
+   "text": "、",
+   "en": ", ",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:minion_badge": {
+   "text": "{name}——失去首领后会脱离战斗",
+   "en": "{name} — abandons combat without their leader",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_auto_close": {
+   "text": "自动关闭",
+   "en": "Auto-close",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_auto_close_tip": {
+   "text": "点击面板外部时关闭面板",
+   "en": "Close the panel on a click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_close_panel": {
+   "text": "关闭面板",
+   "en": "Close panel",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_current": {
+   "text": "当前",
+   "en": "Current",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_dock": {
+   "text": "停靠",
+   "en": "Dock",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_lang_auto": {
+   "text": "自动（{lang}）",
+   "en": "Auto ({lang})",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_like_steam": {
+   "text": "在Steam上给我们点赞！",
+   "en": "Like Us On Steam!",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_loading": {
+   "text": "正在加载数据……",
+   "en": "Loading data...",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_offline": {
+   "text": "无法获取Spire Codex数据",
+   "en": "Spire Codex data unavailable",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_open_codex": {
+   "text": "打开Spire Codex",
+   "en": "Open Spire Codex",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_pop_out": {
+   "text": "弹出",
+   "en": "Pop out",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_update": {
+   "text": "模组有可用更新",
+   "en": "Mod update available",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:mod_versions": {
+   "text": "数据v{data} · 游戏v{game}",
+   "en": "Data v{data} · Game v{game}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:moves": {
+   "text": "行动",
+   "en": "Moves",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:no_data": {
+   "text": "暂无数据。",
+   "en": "No data available.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:players": {
+   "text": "玩家人数：",
+   "en": "Players:",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:players_n": {
+   "text": "{n}人",
+   "en": "{n}P",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:players_solo": {
+   "text": "单人",
+   "en": "Solo",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:rarity_Colorless": {
+   "text": "无色",
+   "en": "Colorless",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_cards": {
+   "text": "卡牌",
+   "en": "Cards",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_description": {
+   "text": "描述",
+   "en": "Description",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_enchantments": {
+   "text": "附魔参考",
+   "en": "Enchantment Reference",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_name": {
+   "text": "名称",
+   "en": "Name",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_potions": {
+   "text": "药水参考",
+   "en": "Potion Reference",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_powers": {
+   "text": "能力",
+   "en": "Powers",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:ref_relics": {
+   "text": "遗物参考",
+   "en": "Relic Reference",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:search": {
+   "text": "搜索",
+   "en": "Search",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:search_none": {
+   "text": "未找到匹配结果。",
+   "en": "No matches found.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:search_placeholder": {
+   "text": "搜索敌人或遭遇战……",
+   "en": "Search enemies or encounters...",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:search_zone_events": {
+   "text": "{zone}——事件",
+   "en": "{zone} — Events",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:starts_with": {
+   "text": "初始拥有：",
+   "en": "STARTS WITH:",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:tab_all": {
+   "text": "全部",
+   "en": "All",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:version_beta": {
+   "text": "测试版v{version}",
+   "en": "beta v{version}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:version_live": {
+   "text": "v{version}",
+   "en": "v{version}",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:zone_boss": {
+   "text": "{zone}Boss",
+   "en": "{zone} boss",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:zone_events": {
+   "text": "{zone}事件",
+   "en": "{zone} Events",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:zone_prefix": {
+   "text": "{zone}：",
+   "en": "{zone}: ",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  },
+  "ui:zone_shared": {
+   "text": "通用",
+   "en": "Shared",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-16"
+  }
+ },
+ "retired": {}
+}

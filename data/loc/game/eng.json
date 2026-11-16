@@ -1300,5 +1300,55 @@
       "ENERGY.title": "Energy",
       "STAR_COUNT.title": "Stars"
     }
+  },
+  "absent": {
+    "card_library": [
+      "CARD_LIBRARY_SEARCH"
+    ],
+    "cards": [
+      "DINGY_DAGGER.title"
+    ],
+    "events": [
+      "HUNGRY_FOR_MUSHROOMS.pages.INITIAL.options.BIG_MUSHROOM.description",
+      "HUNGRY_FOR_MUSHROOMS.pages.INITIAL.options.FRAGRANT_MUSHROOM.description"
+    ],
+    "monsters": [
+      "AXE_RUBY_RAIDER.moves.SWING_1.title",
+      "AXE_RUBY_RAIDER.moves.SWING_2.title",
+      "BOWLBUG_NECTAR.moves.THRASH2.title",
+      "BYGONE_EFFIGY.moves.SLEEP_MOVE_2.title",
+      "CUBEX_CONSTRUCT.moves.REPEATER_BLAST_MOVE_2.title",
+      "DECIMILLIPEDE_SEGMENT_BACK.moves.BULK.title",
+      "DECIMILLIPEDE_SEGMENT_BACK.moves.CONSTRICT.title",
+      "DECIMILLIPEDE_SEGMENT_BACK.moves.WRITHE.title",
+      "DECIMILLIPEDE_SEGMENT_BACK.name",
+      "DECIMILLIPEDE_SEGMENT_FRONT.moves.BULK.title",
+      "DECIMILLIPEDE_SEGMENT_FRONT.moves.CONSTRICT.title",
+      "DECIMILLIPEDE_SEGMENT_FRONT.moves.WRITHE.title",
+      "DECIMILLIPEDE_SEGMENT_FRONT.name",
+      "DECIMILLIPEDE_SEGMENT_MIDDLE.moves.BULK.title",
+      "DECIMILLIPEDE_SEGMENT_MIDDLE.moves.CONSTRICT.title",
+      "DECIMILLIPEDE_SEGMENT_MIDDLE.moves.WRITHE.title",
+      "DECIMILLIPEDE_SEGMENT_MIDDLE.name",
+      "FOGMOG.moves.HEADBUTT.title",
+      "FOGMOG.moves.SWIPE_RANDOM.title",
+      "FUZZY_WURM_CRAWLER.moves.FIRST_ACID_GOOP.title",
+      "GLOBE_HEAD.moves.GALVANIC_BURST.title",
+      "HATCHLING.moves.NIBBLE.title",
+      "INFESTED_PRISM.moves.JAB_MOVE_2.title",
+      "LAGAVULIN_MATRIARCH.moves.SLASH2.title",
+      "MAGI_KNIGHT.moves.PREP.title",
+      "NIBBIT.moves.SLICE.title",
+      "QUEEN.moves.ENRAGE.title",
+      "QUEEN.moves.PUPPET_STRINGS.title",
+      "ROCKET.moves.PRECISE_SMASH_MOVE_2.title",
+      "SKULKING_COLONY.moves.ZOOM_MOVE_2.title",
+      "SLIMED_BERSERKER.moves.SMOTHER.title",
+      "THE_INSATIABLE.moves.THRASH_MOVE_2.title",
+      "TORCH_HEAD_AMALGAM.moves.TACKLE_2.title",
+      "TORCH_HEAD_AMALGAM.moves.TACKLE_3.title",
+      "TORCH_HEAD_AMALGAM.moves.TACKLE_4.title",
+      "TURRET_OPERATOR.moves.UNLOAD_MOVE_2.title"
+    ]
   }
 }

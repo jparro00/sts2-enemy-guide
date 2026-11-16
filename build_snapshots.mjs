@@ -290,6 +290,37 @@ const allEvents = inCtx(`(() => {
     }
   }
 
+  // Localization (tools/l10n): the game text must come from the game build the data is for, and hold every key
+  // the data looks up; missing translations only warn (that text shows in English), so an urgent data fix
+  // never waits on one. The patch pipeline holds translations to the strict check (check.mjs report --strict).
+  {
+    const langs = inCtx('LANGS.map(l => l.code)');
+    const stamp = {};
+    for (const lang of langs) {
+      const text = readData(`loc/game/${lang}.json`);
+      if (!text) { errors.push(`data/loc/game/${lang}.json missing (js/config.js LANGS lists ${lang}): run tools/l10n/extract.mjs`); continue; }
+      stamp[lang] = JSON.parse(text).game || '';
+    }
+    const eng = stamp.eng || '';
+    for (const lang of langs) if (lang in stamp && stamp[lang] !== eng) errors.push(`data/loc/game/${lang}.json is from game v${stamp[lang]}, English from v${eng}: run tools/l10n/extract.mjs`);
+    const target = (CONFIG.isBeta ? CONFIG.betaVersion : CONFIG.gameVersion) || '';
+    const ver = v => v.split('.').map(n => parseInt(n, 10) || 0);
+    const cmp = (a, b) => { const x = ver(a), y = ver(b); for (let i = 0; i < 3; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); return 0; };
+    if (eng && target) {
+      if (cmp(eng, target) < 0) errors.push(`game text is from game v${eng}, the data is for v${target}: run tools/l10n/extract.mjs on that game`);
+      else if (ver(eng).slice(0, 2).join('.') !== ver(target).slice(0, 2).join('.')) warnings.push(`game text is from game v${eng}, the data is for v${target}`);
+    }
+    for (const k of inCtx('unextractedGameKeys()')) errors.push(`the data looks up game key ${k}, which tools/l10n/extract.mjs hasn't looked for: run it`);
+    const templates = inCtx('siteTemplates()');
+    const ui = inCtx('JSON.parse(JSON.stringify(siteUi))');
+    const uiKeys = inCtx('uiKeysToTranslate()');
+    for (const lang of langs.filter(l => l !== 'eng')) {
+      const site = JSON.parse(readData(`loc/site/${lang}.json`) || '{}');
+      const missing = templates.filter(t => !site.text?.[t]).length + uiKeys.filter(k => site.ui?.[k]?.en !== ui[k] || !site.ui?.[k]?.text).length;
+      if (missing) warnings.push(`data/loc/site/${lang}.json: ${missing} strings untranslated or out of date (shown in English): tools/l10n/pending.mjs ${lang}`);
+    }
+  }
+
   for (const w of warnings) console.warn(`WARN: ${w}`);
   if (warnings.length) console.warn(`(${warnings.length} data warnings)`);
   if (errors.length) {

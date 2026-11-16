@@ -1,6 +1,7 @@
 // Extracts the game's text the site uses into data/loc/game/<lang>.json, one file per language in js/config.js
 // LANGS: the keys the data's bindings can look up (js/i18n.js gameKeysUsed: GameIds, GameMoves, GameOption, act
-// ids), sorted, with the game version they come from. The files are committed, so the site's deploy (which has
+// ids), sorted, with the game version they come from; English also lists the keys looked for that the game
+// doesn't have ("absent"). The files are committed, so the site's deploy (which has
 // no game) and the in-game panel's built-in copy have them. Run it after a game update or a data change that
 // adds or changes a binding; the same game and data give the same files.
 //
@@ -22,6 +23,14 @@ const sortedTables = Object.keys(byTable).sort();
 const outDir = path.join(SITE, 'data', 'loc', 'game');
 fs.mkdirSync(outDir, { recursive: true });
 const report = [];
+// The keys looked for that the game doesn't have (English: absent there means absent from the game), so a
+// check can tell them from keys the data started using after this ran (js/i18n.js unextractedGameKeys)
+const absent = {};
+for (const t of sortedTables) {
+  const eng = game.table('eng', t);
+  const keys = [...byTable[t]].filter(k => typeof eng[k] !== 'string').sort();
+  if (keys.length) absent[t] = keys;
+}
 for (const lang of langs) {
   const text = {};
   let n = 0, missing = 0;
@@ -37,7 +46,7 @@ for (const lang of langs) {
     }
     if (Object.keys(out).length) text[t] = out;
   }
-  fs.writeFileSync(path.join(outDir, `${lang}.json`), JSON.stringify({ game: game.version, lang, text }, null, 2) + '\n');
+  fs.writeFileSync(path.join(outDir, `${lang}.json`), JSON.stringify({ game: game.version, lang, text, ...(lang === 'eng' ? { absent } : {}) }, null, 2) + '\n');
   report.push(`${lang}: ${n} strings${missing ? `, ${missing} missing (English shows, as in the game)` : ''}`);
 }
 console.log(`extract: game v${game.version}, ${keys.length} candidate keys in ${sortedTables.length} tables -> data/loc/game/`);

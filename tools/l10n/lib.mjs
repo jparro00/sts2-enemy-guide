@@ -10,6 +10,8 @@ import { fileURLToPath } from 'node:url';
 
 export const SITE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const opt = (name, def) => (process.argv.find(a => a.startsWith(`--${name}=`)) || '').slice(name.length + 3) || def;
+// Whether the module at `url` is the script node was started with (not imported by another)
+export const isMain = url => Boolean(process.argv[1]) && path.resolve(process.argv[1]) === fileURLToPath(url);
 export const readSite = (f, dir = SITE) => { const p = path.join(dir, f); return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : ''; };
 
 export const DATA_FILES = [
@@ -60,6 +62,20 @@ export function gameLoc(langs) {
     return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {};
   })());
   return { dir, version, table };
+}
+
+// The game's own formatter (tools/l10n/oracle: its SmartFormat DLL, set up as the game sets it up), run on
+// `input`: "probe" takes culture names, "format" [{ culture, template, vars }]. Needs the .NET 9 SDK and the game.
+export function runOracle(mode, input) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'spirecodex-oracle-'));
+  const inFile = path.join(dir, 'in.json'), outFile = path.join(dir, 'out.json');
+  fs.writeFileSync(inFile, JSON.stringify(input));
+  const project = path.join(SITE, 'tools', 'l10n', 'oracle');
+  const gameDir = path.join(path.dirname(opt('pck', 'D:/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.pck')), 'data_sts2_windows_x86_64');
+  execFileSync('dotnet', ['run', '--project', project, '-c', 'Release', `-p:GameDir=${gameDir}`, '--', mode, inFile, outFile], { stdio: ['ignore', 'ignore', 'inherit'] });
+  const out = JSON.parse(fs.readFileSync(outFile, 'utf8'));
+  fs.rmSync(dir, { recursive: true, force: true });
+  return out;
 }
 
 // ── CSV: raw logical lines and fields, so a column can be written without touching the rest ──

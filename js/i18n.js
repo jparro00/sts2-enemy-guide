@@ -16,11 +16,14 @@ let siteUiGame = {};        // key -> [table, key] for a label that is also a ga
 let langUi = {};            // the language's "ui": key -> { en: the English it was made from, text }
 let langText = {};          // the language's "text": English template (see txTemplate) -> translation
 let gameEng = {};           // data/loc/game/eng.json "text": table -> key -> English
+let gameAbsent = {};        // its "absent": table -> keys the extract step looked for and the game didn't have
 let gameLang = {};          // the language's game text, same shape
 const locMisses = new Set();  // lookups that fell back to English (tools/l10n reads it)
 
 function loadLocTables(gameJson, siteJson) {
-  gameEng = gameJson ? (JSON.parse(gameJson).text || {}) : {};
+  const game = gameJson ? JSON.parse(gameJson) : {};
+  gameEng = game.text || {};
+  gameAbsent = game.absent || {};
   siteUi = {};
   siteUiGame = {};
   for (const [key, v] of Object.entries(siteJson ? (JSON.parse(siteJson).ui || {}) : {})) {
@@ -108,11 +111,42 @@ function gameString(table, key) {
 // ── The game's formatting (SmartFormat.NET with the game's own formatters, LocManager.LoadLocFormatters) ──
 // The part of it the game's text uses: placeholders, plural (per-language rules), cond, choose, show (upgraded),
 // diff / inverseDiff / abs / percentMore / percentLess, energyIcons / starIcons and locale numbers.
-// tools/l10n checks it against the game's own formatter (the oracle).
+// tools/l10n/check.mjs formatter holds it to the game's own (its SmartFormat DLL, tools/l10n/oracle).
+// Per language: the game's culture (LocManager), SmartFormat's plural rule for it (PLURAL_RULES), and how that
+// culture writes a decimal point and groups thousands (.NET; "n" only: the game's plain numbers aren't grouped).
 const FORMAT_CULTURES = {
-  eng: { plural: 'one-other', group: ',' },
-  zhs: { plural: 'single', group: ',' },
-  spa: { plural: 'one-other', group: '.' },
+  eng: { culture: 'en', plural: 'english', decimal: '.', group: ',' },
+  zhs: { culture: 'zh-hans', plural: 'singular', decimal: '.', group: ',' },
+  zht: { culture: 'zh-hant', plural: 'singular', decimal: '.', group: ',' },
+  deu: { culture: 'de', plural: 'english', decimal: ',', group: '.' },
+  esp: { culture: 'es-419', plural: 'english', decimal: '.', group: ',' },
+  fra: { culture: 'fr', plural: 'french', decimal: ',', group: ' ' },
+  ind: { culture: 'id', plural: 'singular', decimal: ',', group: '.' },
+  ita: { culture: 'it', plural: 'english', decimal: ',', group: '.' },
+  jpn: { culture: 'ja', plural: 'singular', decimal: '.', group: ',' },
+  kor: { culture: 'ko', plural: 'singular', decimal: '.', group: ',' },
+  pol: { culture: 'pl', plural: 'polish', decimal: ',', group: ' ' },
+  ptb: { culture: 'pt-br', plural: 'english', decimal: ',', group: '.' },
+  rus: { culture: 'ru', plural: 'russian', decimal: ',', group: ' ' },
+  spa: { culture: 'es-ES', plural: 'english', decimal: ',', group: '.' },
+  tha: { culture: 'th', plural: 'singular', decimal: '.', group: ',' },
+  tur: { culture: 'tr', plural: 'english', decimal: ',', group: '.' },
+};
+// SmartFormat's plural rules as the game's copy applies them: the form for n out of c forms, -1 where the game
+// fails to format (it then shows the raw template; the site shows the English). Measured from the game's DLL
+// for -10..200 and fractions, and checked against it there (check.mjs formatter).
+// Whole last digits only (2.5 doesn't end in 2)
+const lastDigits = (n, lo, hi) => Number.isInteger(n % 10) && n % 10 >= lo && n % 10 <= hi;
+const teen = n => Number.isInteger(n % 100) && n % 100 >= 12 && n % 100 <= 14;
+const PLURAL_RULES = {
+  english: (n, c) => c === 2 ? (n === 1 ? 0 : 1) : c === 3 ? (n === 0 ? 0 : n === 1 ? 1 : 2) : c === 4 ? (n < 0 ? 0 : n === 0 ? 1 : n === 1 ? 2 : 3) : -1,
+  singular: () => 0,
+  french: (n, c) => c === 2 ? (n < 2 ? 0 : 1)
+    : c === 3 ? (n === 0 ? 0 : n > 0 && n < 2 ? 1 : n > 2 ? 2 : -1)
+    : c === 4 ? (n < 0 ? 0 : n === 0 ? 1 : n > 0 && n < 2 ? 2 : n > 2 ? 3 : -1) : -1,
+  russian: n => n % 10 === 1 && n % 100 !== 11 ? 0 : lastDigits(n, 2, 4) && !teen(n) ? 1 : 2,
+  polish: n => !Number.isInteger(n) ? 3 : n === 1 ? 0 : lastDigits(n, 2, 4) && !teen(n) ? 1
+    : lastDigits(n, 0, 1) || lastDigits(n, 5, 9) || teen(n) ? 2 : 3,
 };
 // What the site's text describes: a solo run, outside combat, cards not upgraded, the Ironclad's energy icon
 const GAME_VAR_DEFAULTS = { IsMultiplayer: false, InCombat: false, IfUpgraded: 'normal', energyPrefix: 'ironclad' };
@@ -131,17 +165,30 @@ function sfSplit(s, ch) {
   return out;
 }
 
+// A plain {Value}: SmartFormat's DefaultFormatter, the number as .NET writes it (no grouping)
+function sfPlain(v, culture) {
+  return typeof v === 'number' ? String(v).replace('.', culture.decimal) : String(v);
+}
+
+// The "n" formatter: N0 (rounded half away from zero, thousands grouped)
 function sfNumber(v, culture) {
   if (typeof v !== 'number') return String(v);
-  const n = Math.round(v);   // N0
+  const n = Math.sign(v) * Math.round(Math.abs(v));
   const s = String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g, culture.group);
   return n < 0 ? `-${s}` : s;
 }
 
+// Convert.ToInt32 on a decimal: half to even
+function roundHalfEven(x) {
+  const r = Math.round(x);
+  return Math.abs(x % 1) === 0.5 && r % 2 !== 0 ? r - 1 : r;
+}
+
 function sfPluralIndex(n, count, culture) {
-  if (count <= 1 || culture.plural === 'single') return 0;
-  if (count === 2) return n === 1 ? 0 : 1;
-  return n === 0 ? 0 : n === 1 ? 1 : Math.min(2, count - 1);
+  if (count <= 1) return 0;
+  const i = PLURAL_RULES[culture.plural](n, count);
+  if (i < 0 || i >= count) throw new Error(`plural: no form for ${n} of ${count}`);
+  return i;
 }
 
 function sfCondition(cond, n) {
@@ -185,7 +232,8 @@ function sfPlaceholder(body, vars, current, culture) {
   let name = null, opts = null, format = rest;
   if (rest !== null) {
     const m = rest.match(/^([a-zA-Z]+)(?:\(([^)]*)\))?(:|$)/);
-    if (m && SF_FORMATTERS.has(m[1])) { name = m[1]; opts = m[2] ?? null; format = m[3] === ':' ? rest.slice(m[0].length) : null; }
+    // A formatter is named with options or a format after it ({X:abs()}, {X:plural:a|b}); a bare word is a format
+    if (m && SF_FORMATTERS.has(m[1]) && (m[2] !== undefined || m[3] === ':')) { name = m[1]; opts = m[2] ?? null; format = m[3] === ':' ? rest.slice(m[0].length) : null; }
   }
   const v = sfResolve(sel, vars, current);
   const sub = f => sfFormat(f, vars, v, culture);
@@ -193,14 +241,14 @@ function sfPlaceholder(body, vars, current, culture) {
   if (name === null) {
     if (format === null) {
       if (v === undefined) throw new Error(`no value for ${sel}`);
-      return typeof v === 'boolean' ? (v ? 'True' : 'False') : sfNumber(v, culture);
+      return typeof v === 'boolean' ? (v ? 'True' : 'False') : sfPlain(v, culture);
     }
     name = typeof v === 'number' && sfSplit(format, '|').length > 1 ? 'plural' : 'cond';
   }
   switch (name) {
     case 'plural': {
       const words = sfSplit(format, '|');
-      return sub(words[Math.min(sfPluralIndex(Number(v), words.length, culture), words.length - 1)]);
+      return sub(words[sfPluralIndex(Number(v), words.length, culture)]);
     }
     case 'cond': {
       const params = sfSplit(format, '|');
@@ -232,9 +280,9 @@ function sfPlaceholder(body, vars, current, culture) {
     case 'diff': case 'inverseDiff':
       return typeof v === 'number' ? String(Math.trunc(v)) : String(v);
     case 'abs':
-      return String(Math.abs(Number(v)));
-    case 'percentMore': return String(Math.round((Number(v) - 1) * 100));
-    case 'percentLess': return String(Math.round((1 - Number(v)) * 100));
+      return sfPlain(Math.abs(Number(v)), culture);
+    case 'percentMore': return String(roundHalfEven((Number(v) - 1) * 100));
+    case 'percentLess': return String(roundHalfEven((1 - Number(v)) * 100));
     case 'energyIcons': case 'starIcons': {
       let n, file;
       if (name === 'energyIcons') {
@@ -332,7 +380,7 @@ function boundFormatted(english, candidates, gameVarsCell, kind, splitParts) {
     locMisses.add(`game:${table}:${key}`);
     return english;
   }
-  return splitParts ? splitParts(english, kind) : tx(english, kind);
+  return withTxSource({ candidates, cell: gameVarsCell }, () => splitParts ? splitParts(english, kind) : tx(english, kind));
 }
 
 // A bound field: game text when its English is one of the candidate keys' English, else site text.
@@ -343,7 +391,16 @@ function boundText(english, candidates, kind) {
   for (const [table, key] of candidates) {
     if (gameEnglish(table, key) === english) return gameString(table, key);
   }
-  return tx(english, kind);
+  return withTxSource({ candidates, cell: '' }, () => tx(english, kind));
+}
+
+// The game keys of the field a site text belongs to, while it is translated (siteTemplates records them: a
+// translator sees the game's own text for the same thing in the language)
+let txSource = null;
+function withTxSource(source, draw) {
+  const outer = txSource;
+  txSource = source;
+  try { return draw(); } finally { txSource = outer; }
 }
 
 // ── Site text in data cells ──
@@ -372,13 +429,13 @@ function txHasWords(template) {
   return /\p{L}/u.test(template.replace(/\{[mpn]\d+\}/g, ''));
 }
 
-let txCollect = null;   // siteTemplates: template -> { kind, example: a cell it came from, page }
+let txCollect = null;   // siteTemplates: template -> { kind, example: a cell it came from, page, game: its field's keys }
 let txPage = '';
 
 function tx(text, kind) {
   if (!text || (siteLang === 'eng' && !pseudoLang)) return text;
   const { template, args } = txTemplate(text);
-  if (txCollect && txHasWords(template) && !txCollect.has(template)) txCollect.set(template, { kind: kind || 'text', example: text, page: txPage });
+  if (txCollect && txHasWords(template) && !txCollect.has(template)) txCollect.set(template, { kind: kind || 'text', example: text, page: txPage, ...(txSource && txSource.candidates.length ? { game: txSource } : {}) });
   let tr;
   if (pseudoLang) tr = `⟦${template}⟧`;
   else {
@@ -645,6 +702,47 @@ function gameKeysUsed() {
   }
   const seen = new Set();
   return keys.filter(([table, key]) => { const id = `${table}\u0000${key}`; if (seen.has(id)) return false; seen.add(id); return true; });
+}
+
+// Every field bound to game keys, with where its English lives: [{ field, english, candidates, cell, csv: { file,
+// where: { column: value }, column }, adopt }] (adopt: a description, safe to rewrite as the game's wording; names
+// are referenced elsewhere and stay as they are). tools/l10n/check.mjs rewording reads it.
+function boundFields() {
+  const out = [];
+  const add = (field, english, candidates, cell, csv, adopt) => { if (english && candidates.length) out.push({ field, english, candidates, cell: cell || '', csv, adopt: Boolean(adopt) }); };
+  const FILES = { card: 'cards', relic: 'relics', potion: 'potions', enchantment: 'enchantments', power: 'powers' };
+  for (const key in enemyDatabase) {
+    const d = enemyDatabase[key];
+    add(`monster ${key} name`, d.name, enemyNameKeys(d), '', { file: 'monsters', where: { Key: key }, column: 'Name' });
+    for (const m of d.moves) if (d.gameIds.length && m.gameMoves.length) add(`monster ${key} move ${m.name}`, m.name, moveNameKeys(key, m), '', { file: 'monster_moves', where: { Enemy: key, Move: m.name }, column: 'Move' });
+  }
+  for (const zone in encounters) for (const cat in encounters[zone]) for (const enc of encounters[zone][cat]) add(`encounter ${enc.key} name`, enc.name, encounterNameKeys(enc), '', { file: 'encounters', where: { Key: enc.key }, column: 'Encounter' });
+  for (const zone in eventsData) for (const ev of eventsData[zone]) {
+    add(`event ${ev.key} name`, ev.panelName || ev.name, eventNameKeys(ev), '', { file: 'events', where: { Key: ev.key }, column: ev.panelName ? 'PanelName' : 'Name' });
+    for (const c of eventChoices[ev.key] || []) {
+      add(`event ${ev.key} choice ${c.choice}`, c.choice, choiceKeys(ev, c, 'title'), c.gameVars, { file: 'event_choices', where: { Event: ev.key, Choice: c.choice }, column: 'Choice' });
+      add(`event ${ev.key} choice ${c.choice} effect`, c.effect, choiceKeys(ev, c, 'description'), c.gameVars, { file: 'event_choices', where: { Event: ev.key, Choice: c.choice }, column: 'Effect' }, true);
+    }
+  }
+  for (const key in itemsRef) {
+    const it = itemsRef[key], file = FILES[it.category];
+    add(`${it.category} ${key} name`, it.name, itemNameKeys(it), '', { file, where: { Key: key }, column: 'Name' });
+    add(`${it.category} ${key} description`, it.desc, refKeys(REF_TABLES[it.category], it.gameIds || [], 'description'), it.gameVars, { file, where: { Key: key }, column: 'Description' }, true);
+  }
+  return out;
+}
+
+// The English a bound field's game key gives, formatted with its values on one line (null: it doesn't format)
+function gameFieldEnglish(table, key, cell) {
+  const en = gameEnglish(table, key);
+  return en === null ? null : oneLine(gameDescription(en, parseGameVars(cell), 'eng', k => gameEnglish('card_keywords', k)), 'eng');
+}
+
+// Game keys the data can look up that the extract step never looked for (data/loc/game/eng.json has neither the
+// text nor the key under "absent", the keys the game didn't have): a binding added or changed since the last
+// extract. ["table:key", ...]
+function unextractedGameKeys() {
+  return gameKeysUsed().filter(([t, k]) => gameEnglish(t, k) === null && !(gameAbsent[t] && gameAbsent[t].includes(k))).map(([t, k]) => `${t}:${k}`);
 }
 
 // Every site-text template the pages can show, sorted (what a language's "text" must cover): every page the

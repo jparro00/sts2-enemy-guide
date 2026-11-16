@@ -18,3 +18,7 @@ media/social-template.png
 /encounter/
 /event/
 /sitemap.xml
+
+# The formatter oracle's .NET build output (tools/l10n/oracle)
+tools/l10n/oracle/bin/
+tools/l10n/oracle/obj/

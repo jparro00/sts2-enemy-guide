@@ -1,57 +1,119 @@
-// Merges translations into data/loc/site/<lang>.json after checking each keeps its English's markup: every
-// {slot} of a label; every {m1}/{p1}/{n1}, [tag] / [/tag] and HTML tag of a template, as many times as the
-// English has them. A translation that fails is left out and listed. The file is written sorted, so the same
-// translations give the same file.
+// Merges a filled work file (pending.mjs) into data/loc/site/<lang>.json and records each translation in
+// data/loc/meta/<lang>.json (translations.mjs): who made it, the game's names it used, and no review yet.
 //
-// Usage: node tools/l10n/merge.mjs <lang> [<translations.json>] [--check] [--prune]
-//   translations.json: { ui: { key: text } | [{ key, translation }], text: { template: text } | [{ template, translation }] }
-//   --check   only check the translations (nothing is written)
-//   --prune   also drop the templates no page shows any more (data now worded as the game's, or rewritten)
+// Usage: node tools/l10n/merge.mjs <lang> [<work.json>] [--engine=... --model=... | --human --translator=...]
+//          [--replace-human] [--check] [--prune] [--record-existing]
+//   work.json         items [{ id, translation }] (pending.mjs's file, filled); its engine / model / translator
+//                     fields name who made them unless the options do
+//   --human           a person's translations: kept from then on (an engine's merge leaves them)
+//   --replace-human   let this merge overwrite human translations (each is listed, and kept in the record)
+//   --check           only check (nothing is written)
+//   --prune           also drop the translations no page shows any more (a human one is kept as "retired")
+//   --record-existing record translations already in the site file that have no record, as made by --engine /
+//                     --model (once, for files from before the record)
+// Each translation must keep its English's markup (translations.mjs markupProblem); one that doesn't is left
+// out and listed. Exit 1 when any is left out.
 import fs from 'node:fs';
-import path from 'node:path';
-import { SITE, bootSite } from './lib.mjs';
+import { SITE, bootSite, gameLoc, opt, isMain } from './lib.mjs';
+import { loadSite, loadMeta, saveSite, saveMeta, siteText, markupProblem, termIndex, findTerms, usesTerm, today } from './translations.mjs';
 
-const [lang, inFile] = process.argv.slice(2).filter(a => !a.startsWith('--'));
-const checkOnly = process.argv.includes('--check');
-const prune = process.argv.includes('--prune');
-const site = bootSite(SITE);
-if (!lang || lang === 'eng' || !site.run('LANGS.map(l => l.code)').includes(lang) || (!inFile && !prune)) { console.error('usage: merge.mjs <lang> [<translations.json>] [--check] [--prune]'); process.exit(2); }
+export function mergeWork(lang, work, o = {}) {
+  const site = bootSite(SITE);
+  if (!lang || lang === 'eng' || !site.run('LANGS.map(l => l.code)').includes(lang)) throw new Error(`${lang}: not a non-English language in js/config.js LANGS`);
+  const tr = loadSite(lang), meta = loadMeta(lang);
+  const ui = site.run('JSON.parse(JSON.stringify(siteUi))');
+  const by = o.human ? 'human' : 'engine';
+  const who = by === 'human'
+    ? { translator: o.translator || work?.translator || '' }
+    : { engine: o.engine || work?.engine || '', model: o.model || work?.model || '' };
+  if (by === 'human' && !who.translator) throw new Error('--human needs --translator=<who>');
+  if (by === 'engine' && !who.engine) throw new Error('name the engine: --engine=<name> (and --model=), or the work file\'s "engine"');
+  let index = null;
+  const terms = english => {
+    index ??= termIndex(gameLoc(['eng', lang]), lang);
+    return findTerms(english, index);
+  };
+  const rejected = [], keptHuman = [], replaced = [], termWarnings = [];
+  let added = 0;
+  const record = (id, text, english, extra) => {
+    const used = terms(english);
+    const missing = used.filter(t => !usesTerm(text, t, lang));
+    if (missing.length) termWarnings.push(`${id}: ${missing.map(t => `${t.en} -> ${t.text}`).join(', ')}`);
+    const prev = meta.items[id];
+    meta.items[id] = {
+      text, ...(id.startsWith('ui:') ? { en: english } : {}), by, ...who, at: today(), ...extra,
+      ...(used.length ? { terms: Object.fromEntries(used.map(t => [t.key, t.text])) } : {}),
+      ...(prev && prev.by === 'human' && by !== 'human' ? { replaced: [...(prev.replaced || []), { text: prev.text, translator: prev.translator, at: prev.at }] } : prev?.replaced ? { replaced: prev.replaced } : {}),
+    };
+  };
 
-const asMap = (v, k) => Array.isArray(v) ? Object.fromEntries(v.filter(x => x && x.translation).map(x => [x[k], x.translation])) : (v || {});
-const input = inFile ? JSON.parse(fs.readFileSync(inFile, 'utf8')) : {};
-const uiIn = asMap(input.ui, 'key'), textIn = asMap(input.text, 'template');
+  for (const item of (work?.items || [])) {
+    const { id, translation } = item;
+    if (!translation) continue;
+    const isUi = id.startsWith('ui:'), key = id.slice(isUi ? 3 : 5);
+    const english = isUi ? ui[key] : key;
+    if (isUi && !(key in ui)) { rejected.push(`${id}: no such label`); continue; }
+    const problem = markupProblem(id, english, translation);
+    if (problem) { rejected.push(`${id}: ${problem}: ${JSON.stringify(translation)}`); continue; }
+    const prev = meta.items[id];
+    if (prev && prev.by === 'human' && by !== 'human' && siteText(tr, id) === prev.text) {
+      if (!o.replaceHuman) { keptHuman.push(id); continue; }
+      replaced.push(`${id}: ${JSON.stringify(prev.text)} -> ${JSON.stringify(translation)}`);
+    }
+    if (isUi) tr.ui[key] = { en: english, text: translation };
+    else tr.text[key] = translation;
+    record(id, translation, english, item.page ? { page: item.page } : {});
+    added++;
+  }
 
-const file = path.join(SITE, 'data', 'loc', 'site', `${lang}.json`);
-const cur = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
-const ui = cur.ui || {}, text = cur.text || {};
-const english = site.run('JSON.parse(JSON.stringify(siteUi))');
+  let recorded = 0;
+  if (o.recordExisting) {
+    for (const [key, v] of Object.entries(tr.ui)) if (v.text && !meta.items[`ui:${key}`]) { record(`ui:${key}`, v.text, v.en, {}); recorded++; }
+    const pages = Object.fromEntries(site.run('JSON.parse(JSON.stringify(siteTemplates(true)))').map(x => [x.template, x.page]));
+    for (const [key, text] of Object.entries(tr.text)) if (!meta.items[`text:${key}`]) { record(`text:${key}`, text, key, pages[key] ? { page: pages[key] } : {}); recorded++; }
+  }
 
-const tokens = (s, re) => [...s.matchAll(re)].map(m => m[0]).sort().join('\u0001');
-const SLOT = /\{\w+\}/g;
-// Markup a translation must keep: placeholders, the tags renderLore knows (a bracketed word like [Merchant] is text) and HTML
-const MARKS = /\{[mpn]\d+\}|\[\/?(?:b|green|aqua|blue|red|gold|orange|purple|pink|rainbow|jitter|sine|fade_in|thinky_dots|img|font_size)\b[^\]]*\]|<\/?[a-z]+\b[^>]*>/gi;
-const rejected = [];
-let added = 0;
-for (const [key, t] of Object.entries(uiIn)) {
-  if (!(key in english)) { rejected.push(`ui ${key}: no such label`); continue; }
-  if (tokens(t, SLOT) !== tokens(english[key], SLOT) || tokens(t, /<\/?[a-z]+\b[^>]*>/gi) !== tokens(english[key], /<\/?[a-z]+\b[^>]*>/gi)) { rejected.push(`ui ${key}: slots or tags differ: ${JSON.stringify(t)}`); continue; }
-  ui[key] = { en: english[key], text: t };
-  added++;
+  let pruned = 0;
+  const retired = [];
+  if (o.prune) {
+    const needed = new Set(site.run('siteTemplates()'));
+    for (const key of Object.keys(tr.text)) {
+      if (needed.has(key)) continue;
+      const id = `text:${key}`, m = meta.items[id];
+      if (m && m.by === 'human') { meta.retired[id] = { ...m, retired: today() }; retired.push(id); }
+      delete tr.text[key];
+      delete meta.items[id];
+      pruned++;
+    }
+    for (const id of Object.keys(meta.items)) {
+      if (id.startsWith('ui:') ? !(id.slice(3) in tr.ui) : !(id.slice(5) in tr.text)) delete meta.items[id];
+    }
+  }
+  if (!o.check) { saveSite(tr); saveMeta(meta); }
+  return { added, recorded, pruned, retired, rejected, keptHuman, replaced, termWarnings };
 }
-for (const [template, t] of Object.entries(textIn)) {
-  if (tokens(t, MARKS) !== tokens(template, MARKS)) { rejected.push(`text ${JSON.stringify(template)}: placeholders or tags differ: ${JSON.stringify(t)}`); continue; }
-  // A brace the English doesn't have would show as written (a game variable copied in: {EntrantNumber})
-  if (tokens(t, /\{[^{}]*\}/g) !== tokens(template, /\{[^{}]*\}/g)) { rejected.push(`text ${JSON.stringify(template)}: braces differ: ${JSON.stringify(t)}`); continue; }
-  text[template] = t;
-  added++;
+
+if (isMain(import.meta.url)) {
+  const [lang, inFile] = process.argv.slice(2).filter(a => !a.startsWith('--'));
+  const flag = f => process.argv.includes(`--${f}`);
+  const o = { human: flag('human'), translator: opt('translator', ''), engine: opt('engine', ''), model: opt('model', ''),
+    replaceHuman: flag('replace-human'), check: flag('check'), prune: flag('prune'), recordExisting: flag('record-existing') };
+  if (!lang || (!inFile && !o.prune && !o.recordExisting)) {
+    console.error('usage: merge.mjs <lang> [<work.json>] [--engine= --model= | --human --translator=] [--replace-human] [--check] [--prune] [--record-existing]');
+    process.exit(2);
+  }
+  const work = inFile ? JSON.parse(fs.readFileSync(inFile, 'utf8')) : null;
+  let r;
+  try { r = mergeWork(lang, work, o); } catch (e) { console.error(`merge ${lang}: ${e.message}`); process.exit(2); }
+  console.log(`merge ${lang}${o.check ? ' (check only)' : ''}: ${r.added} ${o.check ? 'pass' : 'added or replaced'}, ${r.rejected.length} rejected`
+    + `${r.keptHuman.length ? `, ${r.keptHuman.length} human translations kept` : ''}${r.recorded ? `, ${r.recorded} existing recorded` : ''}`
+    + `${o.prune ? `, ${r.pruned} no longer used dropped${r.retired.length ? ` (${r.retired.length} human, kept as retired)` : ''}` : ''}`);
+  for (const x of r.rejected) console.log(`  rejected ${x}`);
+  for (const x of r.keptHuman) console.log(`  kept human ${x}`);
+  for (const x of r.replaced) console.log(`  REPLACED HUMAN ${x}`);
+  if (r.termWarnings.length) {
+    console.log(`  ${r.termWarnings.length} without the game's name for a term they mention (the review checks them):`);
+    for (const x of r.termWarnings.slice(0, 30)) console.log(`    ${x}`);
+  }
+  process.exit(r.rejected.length ? 1 : 0);
 }
-let pruned = 0;
-if (prune) {
-  const needed = new Set(site.run('siteTemplates()'));
-  for (const template of Object.keys(text)) if (!needed.has(template)) { delete text[template]; pruned++; }
-}
-const sorted = o => Object.fromEntries(Object.keys(o).sort().map(k => [k, o[k]]));
-if (!checkOnly) fs.writeFileSync(file, JSON.stringify({ lang, ui: sorted(ui), text: sorted(text) }, null, 2) + '\n');
-console.log(`merge ${lang}${checkOnly ? ' (check only)' : ''}: ${added} ${checkOnly ? 'pass' : 'added or replaced'}, ${rejected.length} rejected${prune ? `, ${pruned} no longer used ${checkOnly ? 'would be ' : ''}dropped` : ''}${checkOnly ? '' : ` -> ${path.relative(SITE, file)}`}`);
-for (const r of rejected) console.log(`  ${r}`);
-process.exit(rejected.length ? 1 : 0);
