@@ -19,7 +19,6 @@ corpse-slug,Goop,Apply 2 {frail},,debuff,,,,GOOP_MOVE
 cubex-construct,Charge Up,Gain 2 {strength},,buff,,,,CHARGE_UP_MOVE
 cubex-construct,Repeater Blast,Damage 7 (8); Gain 2 {strength},,"attack, buff",,,,REPEATER_BLAST_MOVE;REPEATER_BLAST_MOVE_2
 cubex-construct,Expel,Damage 5x2 (6x2),,multi_attack,,,,EXPEL_MOVE
-cubex-construct,Submerge,{block} 15,,block,,,,
 damp-cultist,Incantation,Gain {ritual} 5 (6),,buff,,,,INCANTATION_MOVE
 damp-cultist,Dark Strike,Damage 1 (3),,attack,,,,DARK_STRIKE_MOVE
 devoted-sculptor,Forbidden Incantation,Gain 9 {ritual},,buff,,,,FORBIDDEN_INCANTATION_MOVE
