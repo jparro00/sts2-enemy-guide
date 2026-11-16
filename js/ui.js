@@ -416,27 +416,46 @@ function navigateToPanel(state, url, opts) {
   if (opts.replace) {
     history.replaceState(state, '', url);
   } else {
+    // The panel's entry and the one under it don't restore scroll: closing goes
+    // back to the entry under it, and the page should stay where it was scrolled
+    // to with the panel open, not jump to where the panel was opened. (The mode
+    // belongs to the current entry and is copied to the one pushed.)
+    history.scrollRestoration = 'manual';
     history.pushState(state, '', url);
     panelPushedState = true;
   }
+}
+
+// Shows or hides the panel inside a view transition: the panel slides in or
+// out (css/detail-panel.css, view-transition-name detail-panel) while the page
+// crossfades its reflow. The change must happen inside the transition's
+// callback: one made before it is already in the "before" snapshot, so
+// nothing animates. A transition skipped by a newer one still runs its update.
+function panelTransition(update) {
+  if (!document.startViewTransition) { update(); return; }
+  document.startViewTransition(update).ready.catch(() => { /* skipped */ });
+}
+
+// Whether the panel is shown or on its way in: the classes change only when the
+// transition runs its update, a frame later, and closing calls closeDetail
+// twice (the button, then the popstate its history.back() fires)
+let panelShown = false;
+
+function setPanelShown(shown) {
+  document.getElementById('detail-panel').classList.toggle('open', shown);
+  document.getElementById('backdrop').classList.toggle('open', shown);
+  document.body.classList.toggle('panel-open', shown);
 }
 
 // Shared tail of every open*: reveal the panel (with view transition) and
 // update the URL/history. `wasOpen` makes panel→panel navigation replace the
 // history entry instead of stacking one.
 function presentPanel(state, url, opts, wasOpen) {
-  document.getElementById('detail-panel').classList.add('open');
-  document.getElementById('backdrop').classList.add('open');
   // Only opening needs the transition. Re-rendering an open panel (picker taps,
   // setting toggles) would start one per tap, and each new one aborts the last
-  // (an uncaught AbortError) while the running one can swallow the next tap.
-  if (document.body.classList.contains('panel-open')) {
-    // already open
-  } else if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
+  // while the running one can swallow the next tap.
+  if (panelShown) setPanelShown(true);
+  else { panelShown = true; panelTransition(() => setPanelShown(true)); }
   navigateToPanel(state, url, { ...opts, replace: wasOpen });
 }
 
@@ -520,17 +539,13 @@ function isMobilePanel() {
 
 let panelPushedState = false;
 
-function closeDetail(fromPopstate) {
+// instant: no slide (the swipe has already moved the panel off screen)
+function closeDetail(fromPopstate, instant) {
   openPanelInfo = null;
-  const panel = document.getElementById('detail-panel');
-  if (!panel.classList.contains('open')) return;
-  panel.classList.remove('open');
-  document.getElementById('backdrop').classList.remove('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.remove('panel-open'));
-  } else {
-    document.body.classList.remove('panel-open');
-  }
+  if (!panelShown) return;
+  panelShown = false;
+  if (instant) setPanelShown(false);
+  else panelTransition(() => setPanelShown(false));
   if (!fromPopstate) {
     if (panelPushedState) {
       history.back();
@@ -584,8 +599,8 @@ window.addEventListener('popstate', e => {
     if (swiping && dx > 80) {
       panel.style.transform = 'translateX(100%)';
       panel.addEventListener('transitionend', () => {
+        closeDetail(false, true);   // hidden first, so clearing the transform doesn't show it again
         panel.style.transform = '';
-        closeDetail();
       }, { once: true });
     } else {
       panel.style.transform = '';

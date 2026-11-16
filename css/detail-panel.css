@@ -24,9 +24,22 @@
 ::view-transition-new(root) {
   animation-duration: 0.15s;
 }
+/* With view transitions (js/ui.js panelTransition) the panel is its own layer:
+   it slides in on open and out on close while the page crossfades its reflow.
+   Without them it only slides in (its own animation above). */
+@supports (view-transition-name: none) {
+  .detail-overlay { animation: none; view-transition-name: detail-panel; }
+}
+::view-transition-group(detail-panel) { animation: none; }
+::view-transition-new(detail-panel) { animation: slideIn 0.2s ease-out both; }
+::view-transition-old(detail-panel) { animation: slideOut 0.2s ease-in both; }
 @keyframes slideIn {
   from { transform: translateX(40px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(40px); opacity: 0; }
 }
 .detail-header {
   display: flex;

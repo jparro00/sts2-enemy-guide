@@ -440,6 +440,7 @@ header { position: relative; }
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
+  z-index: 60;   /* above the open panel's backdrop (50), like the page's other controls */
 }
 .lang-select:hover, .lang-select:focus { border-color: #555; color: #ccc; outline: none; }
 .lang-select option { background: #12121c; color: #e0ddd4; }
