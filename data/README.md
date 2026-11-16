@@ -95,6 +95,7 @@ Game text keys (localization only; `tools/l10n/bind.mjs` fills them from the gam
 | `cards.csv` | `GameTitle` | the title key the game's code picks when it isn't `<ID>.title` (`DINGY_DAGGER.title.dingy`: the Dingy Dagger is named by its upgrades) |
 | `monsters.csv` | `GameEntry` | the game entry the monster's name and move titles are under when the game's code names it from another one than its id (`DECIMILLIPEDE_SEGMENT` for the segments, `HATCHLING` for the hatched Tough Egg) |
 | `event_choices.csv` | `GameOption` | `PAGE.OPTION` of the event's game id (`INITIAL.DIVE_INTO_WATER`): the option whose title the Choice is |
+| `events.csv` | `NameInOtherLanguages` | `game`: the other languages show the game's title though the English Name is the site's own (Reflections: the game's title is mirrored, "Reflections snoitcelfeR"); set by hand |
 | `events.csv` | `GameLore` | the event's game pages the Lore is, in order, when not the opening page alone (`INITIAL;ENTER`: the site shows the page after the opening one in the same passage) |
 | `event_choices.csv`, `events.csv`, the reference files | `GameVars` | the values that make the game's text the site's English (`Gold=40`, `EntrantNumber=101-998`, `@relics:KEY` for a game string, `^KEYWORD` / `$KEYWORD` a card's keywords) |
 

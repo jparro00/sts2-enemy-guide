@@ -227,7 +227,11 @@ const allEvents = inCtx(`(() => {
     }
   }
   // Event lore: GameLore lists the event's game pages the lore is (INITIAL;ENTER)
-  for (const r of evRows) checkGameIds(`events.csv ${r.Key} GameLore`, r.GameLore);
+  for (const r of evRows) {
+    checkGameIds(`events.csv ${r.Key} GameLore`, r.GameLore);
+    // NameInOtherLanguages: 'game' (the other languages show the game's title) or empty
+    if (r.NameInOtherLanguages && r.NameInOtherLanguages !== 'game') errors.push(`events.csv ${r.Key} NameInOtherLanguages: ${JSON.stringify(r.NameInOtherLanguages)} is not "game" or empty`);
+  }
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     if (r.GameOption && !/^(?:[A-Z0-9_]+\.[A-Z0-9_]+|[a-z_]+:[A-Z0-9_]+)$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION or table:KEY`);
   }

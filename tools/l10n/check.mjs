@@ -93,7 +93,8 @@ if (mode === 'report') {
     }
     for (const z in encounters) for (const c in encounters[z]) for (const e of encounters[z][c]) tally('encounter names', e.name, encounterNameKeys(e));
     for (const z in eventsData) for (const ev of eventsData[z]) {
-      tally('event names', ev.name, eventNameKeys(ev));
+      if (ev.nameInOtherLanguages === 'game' && eventNameKeys(ev).length) (out['event names'] = out['event names'] || { game: 0, site: 0, unbound: 0 }).game++;
+      else tally('event names', ev.name, eventNameKeys(ev));
       const o = out['event lore'] = out['event lore'] || { game: 0, site: 0, unbound: 0 };
       if (ev.lore) { if (!ev.gameIds.length) o.unbound++; else if (eventLoreGameKeys(ev)) o.game++; else o.site++; }
       for (const c of eventChoices[ev.key] || []) {

@@ -467,6 +467,14 @@ function eventNameKeys(ev) {
 }
 
 function eventName(ev) {
+  // events.csv NameInOtherLanguages "game": the other languages show the game's title though the English is the
+  // site's own (Reflections: the game's title is mirrored in every language, "Reflections snoitcelfeR")
+  if (ev.nameInOtherLanguages === 'game' && !(siteLang === 'eng' && !pseudoLang)) {
+    for (const [table, key] of eventNameKeys(ev)) {
+      const s = gameString(table, key);
+      if (s !== null) return s;
+    }
+  }
   return boundText(ev.name, eventNameKeys(ev), 'event name');
 }
 

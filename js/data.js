@@ -137,6 +137,7 @@ function buildDataStructures(texts) {
       lore: ev.Lore || '',
       gameIds: gameIdList(ev.GameIds),
       gameLore: gameIdList(ev.GameLore),   // the game pages the lore is (js/i18n.js eventLorePages)
+      nameInOtherLanguages: ev.NameInOtherLanguages || '',   // 'game': js/i18n.js eventName
       gameVars: ev.GameVars || ''
     });
   }
