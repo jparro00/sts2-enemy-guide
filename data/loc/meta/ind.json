@@ -10598,6 +10598,52 @@
     "at": "2026-11-16"
    }
   },
+  "ui:mod_pin_open": {
+   "text": "Sematkan",
+   "en": "Pin open",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Sematkan",
+    "back": "Pin",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
+  "ui:mod_pin_open_tip": {
+   "text": "Biarkan panel terbuka saat mengeklik di luarnya",
+   "en": "Keep the panel open when you click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Biarkan panel terbuka saat mengeklik di luarnya",
+    "back": "Let the panel stay open when clicking outside it",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
   "ui:mod_pop_out": {
    "text": "Lepaskan",
    "en": "Pop out",

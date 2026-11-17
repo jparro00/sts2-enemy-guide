@@ -253,6 +253,14 @@
       "en": "Open Spire Codex",
       "text": "Spire Codex 열기"
     },
+    "mod_pin_open": {
+      "en": "Pin open",
+      "text": "고정"
+    },
+    "mod_pin_open_tip": {
+      "en": "Keep the panel open when you click outside it",
+      "text": "패널 바깥을 클릭해도 패널 열어 두기"
+    },
     "mod_pop_out": {
       "en": "Pop out",
       "text": "창 분리"

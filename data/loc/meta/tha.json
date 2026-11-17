@@ -10505,6 +10505,52 @@
     "at": "2026-11-16"
    }
   },
+  "ui:mod_pin_open": {
+   "text": "ปักหมุด",
+   "en": "Pin open",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "ปักหมุด",
+    "back": "Pin",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
+  "ui:mod_pin_open_tip": {
+   "text": "ให้แผงเปิดค้างไว้เมื่อคลิกด้านนอก",
+   "en": "Keep the panel open when you click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "ให้แผงเปิดค้างไว้เมื่อคลิกด้านนอก",
+    "back": "Let the panel stay open when clicking outside",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
   "ui:mod_pop_out": {
    "text": "แยกหน้าต่าง",
    "en": "Pop out",

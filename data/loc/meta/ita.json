@@ -10598,6 +10598,52 @@
     "at": "2026-11-16"
    }
   },
+  "ui:mod_pin_open": {
+   "text": "Mantieni aperto",
+   "en": "Pin open",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Mantieni aperto",
+    "back": "Keep open",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
+  "ui:mod_pin_open_tip": {
+   "text": "Mantiene aperto il pannello anche con un clic all'esterno",
+   "en": "Keep the panel open when you click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Mantiene aperto il pannello anche con un clic all'esterno",
+    "back": "Keeps the panel open even with a click outside",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
   "ui:mod_pop_out": {
    "text": "Sgancia",
    "en": "Pop out",
