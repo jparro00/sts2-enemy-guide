@@ -636,7 +636,12 @@ function powerName(key) {
 
 function powerDesc(key) {
   const ref = powersRef[key];
-  return ref ? boundFormatted(ref.desc, refKeys('powers', ref.gameIds, 'description'), ref.gameVars, 'power description') : '';
+  if (!ref) return '';
+  const desc = boundFormatted(ref.desc, refKeys('powers', ref.gameIds, 'description'), ref.gameVars, 'power description');
+  // multiplayer-scaling.json playerCountDecrement: powers whose general description's one number is the game's
+  // Decrement, which on an enemy is the player count (PlatingPower: its combat text says "reduced by {Decrement}")
+  return playerCount > 1 && (multiplayerScaling.playerCountDecrement || []).includes(key)
+    ? desc.replace('[blue]1[/blue]', `[blue]${playerCount}[/blue]`) : desc;
 }
 
 // A row's name keys: GameTitle first, the title the game's code picks for it when not <ID>.title (the Dingy
