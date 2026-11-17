@@ -103,7 +103,7 @@ Game text keys (localization only; `tools/l10n/bind.mjs` fills them from the gam
 
 `game_gaps.csv` lists the game's ids the site doesn't cover on purpose (test monsters, event fights, Ancients, moves with no row): `Type` (`monster` | `move` | `encounter` | `event`), `GameId` (`MONSTER:STATE` for a move), `Note`.
 
-The mod's build pipeline (Abyssal `tools/build-bridge`) checks both against the installed game and stops on: an id on a row that the game doesn't have, a game id on two encounter or event rows (or a move state on two moves of one enemy), and a game id that is on no row and not in `game_gaps.csv`. `build_snapshots.mjs` checks the format.
+The mod's build pipeline (SpireCodexBridge repo, `tools/build-bridge`) checks both against the installed game and stops on: an id on a row that the game doesn't have, a game id on two encounter or event rows (or a move state on two moves of one enemy), and a game id that is on no row and not in `game_gaps.csv`. `build_snapshots.mjs` checks the format.
 
 ## Images
 
