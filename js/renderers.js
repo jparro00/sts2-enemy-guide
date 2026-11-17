@@ -111,14 +111,29 @@ function ascensionText(text, hp) {
 }
 
 // Text to show for a field with an optional Dread override.
-// Returns { text, dread } — dread is true when the override is in effect.
+// Returns { text, dread, base } — dread is true when the override is in effect; base is the field's own text at
+// the ascension in effect (every modifier, in Dread), what the override changes.
 function dreadText(base, override, hp) {
-  if (dreadMode && override) return { text: override, dread: true };
-  return { text: ascensionText(base, hp), dread: false };
+  const own = ascensionText(base, hp);
+  if (dreadMode && override) return { text: override, dread: true, base: own };
+  return { text: own, dread: false, base: own };
 }
 
 function markDread(html, isDread) {
   return isDread ? `<span class="dread-value">${html}</span>` : html;
+}
+
+// A Dread override highlighted part by part (a move's ;-clauses, a pattern's lines): only the parts that aren't in
+// the field's own text get the Dread color (a changed number, an added clause), so what Dread keeps reads plain.
+// render(part) is one part's HTML; the parts are joined with <br>.
+function markDreadParts(fx, sep, render) {
+  const left = (fx.base || '').split(sep).map(s => s.trim());
+  return fx.text.split(sep).map(part => {
+    const i = left.indexOf(part.trim());
+    if (i < 0) return markDread(render(part), true);
+    left.splice(i, 1);
+    return render(part);
+  }).join('<br>');
 }
 
 function moveEffectsText(move) {

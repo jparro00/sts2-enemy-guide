@@ -313,7 +313,9 @@ function renderEnemySection(key, collapsible, enc, current) {
     <tr${rowClass ? ` class="${rowClass}"` : ''}>
       <td><span class="intent-icons">${renderIntents(m.intent)}</span></td>
       <td><strong>${moveName(key, m)}</strong>${times > 1 ? `<span class="move-count">×${times}</span>` : ''}</td>
-      <td>${markDread(renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), key), fx.dread)}${note ? `<br><span class="move-note">${renderPowerRefs(txLines(note, 'move note'), key)}</span>` : ''}</td>
+      <td>${fx.dread
+        ? markDreadParts(fx, ';', part => renderPowerRefs(txClauses(scaleEffects(part), 'move effect'), key))
+        : renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), key)}${note ? `<br><span class="move-note">${renderPowerRefs(txLines(note, 'move note'), key)}</span>` : ''}</td>
     </tr>
   `;
   }).join('');
@@ -344,7 +346,9 @@ function renderEnemySection(key, collapsible, enc, current) {
 
       <div class="enemy-section-body">
         <h3>${t('attack_pattern')}</h3>
-        <div class="pattern-text">${markDread(renderPowerRefs(txLines(pattern.text, 'attack pattern').replace(/\n/g, '<br>'), key, marks), pattern.dread)}</div>
+        <div class="pattern-text">${pattern.dread
+          ? markDreadParts(pattern, /\r?\n/, line => renderPowerRefs(txLines(line, 'attack pattern'), key, marks))
+          : renderPowerRefs(txLines(pattern.text, 'attack pattern').replace(/\n/g, '<br>'), key, marks)}</div>
 
         ${renderStartsWith(startsWith.text, key, startsWith.dread, dominionGrantsHtml(grants, key, labelZones))}
 
