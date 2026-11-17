@@ -35,6 +35,7 @@ Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the heade
 
 - `{power_key}` — power reference → icon + name + tooltip from `powers.csv`. Unknown keys render as literal text.
 - `<Move Name>` — move reference with tooltip. **Must start with a capital letter** (that's how the regex avoids HTML tags). Only resolves for moves of the same enemy.
+  - `<Move Name|plain>` — the move's name (translated) as plain text: a mention rather than a reference, no highlight or tooltip (a pattern's condition line: "After 3 stacks of Personal Hive: `<Pheromone Spit|plain>` gains 2 Strength instead."). It translates as the same `{m1}` template as `<Move Name>`.
 - `N (M)` — base value with Ascension value in parens, e.g. `Deal 8 (10) damage`. Multiplayer scaling rewrites both numbers; scalable `{power} N (M)` values scale only when the power's `ScalesInMultiplayer` is true.
   - Which Ascension raises `M`: **A8** (Tough Enemies, `AscensionLevel.ToughEnemies` in the game code) for HP, **A9** (Deadly Enemies) for everything else. A value outside `HP` that the game raises at A8 is written `N (A8 M)`, e.g. `{block} 5 (A8 9)`; the `A8 ` doesn't show on the page. Check the `GetValueIfAscension` call's level when adding a pair.
   - With a known Ascension (`?asc=0`–`10`, which the in-game panel's links set, or Dread) each pair renders as the one value for that level.
