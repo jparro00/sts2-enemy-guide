@@ -254,7 +254,9 @@ const allEvents = inCtx(`(() => {
       if (!powerKeySet.has(k)) warnings.push(`${owner}: unresolved power ref {${k}}`);
     }
     if (enemyKey) {
-      for (const [, mv] of text.matchAll(/<([A-Z][^>]*)>/g)) {
+      for (const [, full] of text.matchAll(/<([A-Z][^>]*)>/g)) {
+        const [mv, option] = full.split('|');
+        if (option !== undefined && option !== 'plain') warnings.push(`${owner}: <${full}>: unknown option "${option}" (only |plain)`);
         if (!(movesByEnemy[enemyKey] || new Set()).has(mv)) warnings.push(`${owner}: <${mv}> does not match a move of ${enemyKey}`);
       }
     }

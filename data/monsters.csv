@@ -104,7 +104,7 @@ byrdonis,Byrdonis,81 - 84 (90),Cycles <Swoop> → <Peck>.,,territorial,{territor
 decimillipede,Decimillipede,40 - 46 (46 - 52),"Cycles <Constrict> → <Bulk> → <Writhe>.
 When killed: Revives after 1 turn with 25 HP and continues from next move.","[info] Fights as 3 segments — HP is always an even number, and segments have different max HP.[info] Segments start evenly distributed between <Writhe>, <Bulk>, and <Constrict>.[bug] Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.",reattach,{reattach},,,DECIMILLIPEDE_SEGMENT_BACK;DECIMILLIPEDE_SEGMENT_FRONT;DECIMILLIPEDE_SEGMENT_MIDDLE,DECIMILLIPEDE_SEGMENT
 entomancer,Entomancer,145 (165),"Cycles <Beeeees!> → <Spear!> → <Pheromone Spit>.
-After 3 stacks of Personal Hive: <Pheromone Spit> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,,,ENTOMANCER,
+After 3 stacks of Personal Hive: <Pheromone Spit|plain> gains 2 Strength instead.",,personal_hive,{personal_hive} 1,,,ENTOMANCER,
 infested-prism,Infested Prism,161 (171),Cycles <Jab> → <Radiate> → <Whirlwind> → <Pulsate>.,,vital_spark,{vital_spark} 2 (3),,,INFESTED_PRISM,
 flail-knight,Flail Knight,101 (108),"Opens with <Ram>.
 Then chooses randomly from <War Chant>, <Flail>, <Ram>.",,,,,,FLAIL_KNIGHT,

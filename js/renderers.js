@@ -262,15 +262,20 @@ function dominionGrantsHtml(grants, enemyKey, labelZones) {
 function renderMoveRefs(text, enemyKey, marked) {
   // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags). The ref is
   // the move's English name (its key among the enemy's moves); the span shows the language's name.
-  return text.replace(/<([A-Z][^>]*)>/g, (match, ref) => {
+  // <Move Name|plain>: the move's name as plain text (a mention, not a reference: no highlight, no tooltip)
+  return text.replace(/<([A-Z][^>]*)>/g, (match, full) => {
+    const [ref, option] = full.split('|');
     const moves = enemyKey && enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].moves : [];
     const move = moves.find(m => m.name === ref);
+    if (option === 'plain') return move ? moveName(enemyKey, move) : tx(ref, 'move name');
     const cls = marked && marked.includes(slugify(ref)) ? 'move-ref move-ref-current' : 'move-ref';
     if (move) {
       const name = moveName(enemyKey, move);
       const intents = renderIntents(move.intent);
       const fx = moveEffectsText(move);
-      const effect = markDread(renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), null), fx.dread);
+      const effect = fx.dread
+        ? markDreadParts(fx, ';', part => renderPowerRefs(txClauses(scaleEffects(part), 'move effect'), null))
+        : renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), null);
       return `<span class="${cls}">${name}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${name}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
     return `<span class="${cls}">${tx(ref, 'move name')}</span>`;
