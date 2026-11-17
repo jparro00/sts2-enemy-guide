@@ -12,5 +12,8 @@
     "plating": "counter",
     "buffer": "counter",
     "block": "block_multiplicative"
-  }
+  },
+  "playerCountDecrement": [
+    "plating"
+  ]
 }

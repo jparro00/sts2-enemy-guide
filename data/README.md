@@ -16,7 +16,7 @@ Parsing is a hand-rolled CSV parser (`js/csv-parser.js`): first row is the heade
 | `powers.csv` | `Key` — the `{power_key}` reference target | power tooltips/reference |
 | `cards.csv`, `relics.csv`, `potions.csv`, `enchantments.csv` | `Key` | unified `itemsRef` reference tables |
 | `beta_changes.csv` | `Type:Name` where Type ∈ `monster` \| `encounter` \| `event` and Name is that entity's **Key** | "Beta Patch" badges |
-| `multiplayer-scaling.json` | — | act HP/effect multipliers, counter-power keys |
+| `multiplayer-scaling.json` | — | act HP/effect multipliers, counter-power keys, powers whose description shows the player count (playerCountDecrement) |
 | `game_gaps.csv` | `Type,GameId` | game ids the data knowingly doesn't cover (see [Game ids](#game-ids-gameids-gamemoves)); read only by the mod's build pipeline |
 
 **Keys are stable identifiers**: renaming an entity's display `Name`/`Encounter` is safe; changing a `Key` changes its live URL, image path, and every join — don't. New monsters get `Key` = slugified Name; new encounters get slugified name plus `-<category>` only if the name collides with another encounter.
