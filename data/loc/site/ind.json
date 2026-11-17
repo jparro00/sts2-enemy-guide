@@ -253,6 +253,14 @@
       "en": "Open Spire Codex",
       "text": "Buka Spire Codex"
     },
+    "mod_pin_open": {
+      "en": "Pin open",
+      "text": "Sematkan"
+    },
+    "mod_pin_open_tip": {
+      "en": "Keep the panel open when you click outside it",
+      "text": "Biarkan panel terbuka saat mengeklik di luarnya"
+    },
     "mod_pop_out": {
       "en": "Pop out",
       "text": "Lepaskan"

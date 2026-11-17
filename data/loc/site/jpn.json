@@ -253,6 +253,14 @@
       "en": "Open Spire Codex",
       "text": "Spire Codexを開く"
     },
+    "mod_pin_open": {
+      "en": "Pin open",
+      "text": "ピン留め"
+    },
+    "mod_pin_open_tip": {
+      "en": "Keep the panel open when you click outside it",
+      "text": "パネルの外をクリックしても開いたままにする"
+    },
     "mod_pop_out": {
       "en": "Pop out",
       "text": "ポップアウト"

@@ -9436,6 +9436,52 @@
     "at": "2026-11-16"
    }
   },
+  "ui:mod_pin_open": {
+   "text": "Épingler",
+   "en": "Pin open",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Épingler",
+    "back": "Pin",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
+  "ui:mod_pin_open_tip": {
+   "text": "Garder le panneau ouvert en cas de clic à l'extérieur",
+   "en": "Keep the panel open when you click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "Garder le panneau ouvert en cas de clic à l'extérieur",
+    "back": "Keep the panel open in case of a click outside",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
   "ui:mod_pop_out": {
    "text": "Détacher",
    "en": "Pop out",

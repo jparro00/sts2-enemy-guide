@@ -92,6 +92,8 @@
     "mod_loading": "Loading data...",
     "mod_offline": "Spire Codex data unavailable",
     "mod_open_codex": "Open Spire Codex",
+    "mod_pin_open": "Pin open",
+    "mod_pin_open_tip": "Keep the panel open when you click outside it",
     "mod_pop_out": "Pop out",
     "mod_update": "Mod update available",
     "mod_versions": "Data v{data} · Game v{game}",

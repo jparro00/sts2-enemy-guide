@@ -9436,6 +9436,52 @@
     "at": "2026-11-16"
    }
   },
+  "ui:mod_pin_open": {
+   "text": "固定面板",
+   "en": "Pin open",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "固定面板",
+    "back": "Pin panel",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
+  "ui:mod_pin_open_tip": {
+   "text": "點擊面板外部時保持面板開啟",
+   "en": "Keep the panel open when you click outside it",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-17",
+   "review": {
+    "text": "點擊面板外部時保持面板開啟",
+    "back": "Keep the panel open when clicking outside the panel",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-17"
+   }
+  },
   "ui:mod_pop_out": {
    "text": "彈出",
    "en": "Pop out",

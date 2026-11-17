@@ -253,6 +253,14 @@
       "en": "Open Spire Codex",
       "text": "Otwórz Spire Codex"
     },
+    "mod_pin_open": {
+      "en": "Pin open",
+      "text": "Zostaw otwarty"
+    },
+    "mod_pin_open_tip": {
+      "en": "Keep the panel open when you click outside it",
+      "text": "Zostawiaj panel otwarty po kliknięciu poza nim"
+    },
     "mod_pop_out": {
       "en": "Pop out",
       "text": "Odepnij"
