@@ -463,7 +463,8 @@ function dominionRow(boss, withThumb, enc) {
 // then each different amount the joiners get, as "minions" when they all are
 function fightDominionLines(enc, dp) {
   const keys = encounterEnemies(enc).filter((k, i, all) => all.indexOf(k) === i);
-  const gain = n => `<span class="dread-value">${renderPowerRefs(`{${dp.power}} ${n}`, null)}</span>`;
+  // (scaled in multiplayer like any power the game applies to enemies)
+  const gain = n => `<span class="dread-value">${renderPowerRefs(`{${dp.power}} ${scalePowerAmount(dp.power, n)}`, null)}</span>`;
   const starters = keys.filter(k => !enc.spawns.includes(k));
   const base = starters.length ? dominionAmount(enc, starters[0], dp) : null;
   const lines = base > 0 ? [t('dominion_fight', { power: gain(base) })] : [];

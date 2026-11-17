@@ -61,18 +61,28 @@ function scaleEffects(text) {
   if (playerCount <= 1) return text;
   const scalableKeys = Object.keys(powersRef).filter(k => powersRef[k].scalesInMultiplayer);
   if (scalableKeys.length === 0) return text;
-  const formulas = multiplayerScaling.powerFormulas || {};
   const keyPattern = scalableKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
   const re = new RegExp(`(\\{(${keyPattern})\\})\\s*(\\d+(?:\\s*\\(\\d+\\))?)`, 'g');
   return text.replace(re, (match, tag, key, nums) => {
-    const formulaName = formulas[key];
-    let scaleFn;
-    if (formulaName === 'block_multiplicative') scaleFn = scaleBlock;
-    else if (POWER_SCALE_FORMULAS[formulaName]) scaleFn = n => Math.floor(POWER_SCALE_FORMULAS[formulaName](n, playerCount));
-    else scaleFn = scaleNum;
+    const scaleFn = powerScaleFn(key);
     const scaled = nums.replace(/\d+/g, n => scaleFn(parseInt(n, 10)));
     return `${tag} ${scaled}`;
   });
+}
+
+// How the game scales an amount of power `key` given to an enemy in multiplayer (PowerCmd.Apply calls the power's
+// GetScaledAmountForMultiplayer when it scales), or null for a power that doesn't scale / one player
+function powerScaleFn(key) {
+  if (playerCount <= 1 || !powersRef[key]?.scalesInMultiplayer) return null;
+  const formulaName = (multiplayerScaling.powerFormulas || {})[key];
+  if (formulaName === 'block_multiplicative') return scaleBlock;
+  if (POWER_SCALE_FORMULAS[formulaName]) return n => Math.floor(POWER_SCALE_FORMULAS[formulaName](n, playerCount));
+  return scaleNum;
+}
+
+function scalePowerAmount(key, n) {
+  const fn = powerScaleFn(key);
+  return fn ? fn(Number(n)) : n;
 }
 
 // ══════════════════════════════════════════
@@ -235,12 +245,13 @@ function enemyDominionGrants(enemyKey, enc) {
     .filter(g => g.max > 0);
 }
 
-// Grants rendered for the STARTS WITH line. Fixed amounts: Dominions don't
-// scale with player count, so this bypasses scaleEffects. `labelZones` names
-// the act on each grant (standalone panels of enemies fought in several acts).
+// Grants rendered for the STARTS WITH line. A Dominion gives its power with PowerCmd.Apply, so a power that scales
+// in multiplayer scales here too (Kaiser Crab's Plating 7 is 35 for three players). `labelZones` names the act on
+// each grant (standalone panels of enemies fought in several acts).
 function dominionGrantsHtml(grants, enemyKey, labelZones) {
   return grants.map(g => {
-    const amount = g.min === g.max ? `${g.max}` : `${g.min}–${g.max}`;
+    const min = scalePowerAmount(g.power, g.min), max = scalePowerAmount(g.power, g.max);
+    const amount = min === max ? `${max}` : `${min}–${max}`;
     const zone = labelZones ? t('zone_prefix', { zone: zoneLabel(g.zone) }) : '';
     return `<span class="dread-value">${zone}${renderPowerRefs(`{${g.power}} ${amount}`, enemyKey)}</span>`;
   }).join(', ');
