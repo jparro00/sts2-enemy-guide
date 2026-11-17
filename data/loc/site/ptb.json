@@ -1,0 +1,701 @@
+{
+  "lang": "ptb",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "Referência"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "Ato {n}: {name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "Padrão de Ataque"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — Esta página reflete as mudanças de balanceamento da <strong>beta v{version}</strong>. <a href=\"../\">Ver versão estável</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">Ver versão estável</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "Este site também está disponível para o <strong>patch beta v{version}</strong> mais recente. <a href=\"beta/\">Mudar para a beta</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">Mudar para a beta</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "Mudanças na beta {version}:"
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "Patch Beta"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "Chefe:"
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "Todos os Encontros"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "Chefes"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "Fáceis"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "Encontros Fáceis"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "Difíceis"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "Encontros Difíceis"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "Opções"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "Opção"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "Efeito"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "Intenção"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "Movimento"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "Recolher/Expandir"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "Composição"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "Domínio"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "Chefe do ato"
+    },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "Inimigos recebem {power}"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "Inimigos que entram durante o combate recebem {power}"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "Inimigos que entram durante o combate não recebem nada"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "Lacaios que entram durante o combate recebem {power}"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "Lacaios que entram durante o combate não recebem nada"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "Outros combates deste ato"
+    },
+    "events": {
+      "en": "Events",
+      "text": "Eventos"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "Todos os Eventos"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "Enviar feedback ou relatar um problema"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "Os dados deste site vieram originalmente da <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, criada por <span class=\"credit-names\">dr0gulus, Aplet123 e Redbeardy_Mcgee</span> &mdash; muito obrigado pelo trabalho que tornou isto possível."
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2 está em acesso antecipado, então os atributos, movimentos e padrões dos inimigos podem mudar a cada patch. Dados atualizados pela última vez para <span id=\"game-version\"></span>."
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "PV:"
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "adiciona condições"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "aflição"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "ataque"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "proteção"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "efeito positivo"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "golpe mortal"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "efeito negativo"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "fuga"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "cura"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "ataque múltiplo"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "dormindo"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "atordoamento"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "invocação"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "desconhecido"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": ", "
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — abandona o combate sem seu líder"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "Fechar automaticamente"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "Fecha o painel ao clicar fora dele"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "Fechar painel"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "Atual"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "Acoplar"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "Automático ({lang})"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "Curta a gente na Steam!"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "Carregando dados..."
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "Dados do Spire Codex indisponíveis"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "Abrir o Spire Codex"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "Desacoplar"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "Atualização do mod disponível"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "Dados v{data} · Jogo v{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "Movimentos"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "Nenhum dado disponível."
+    },
+    "players": {
+      "en": "Players:",
+      "text": "Jogadores:"
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n}J"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "Solo"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "Incolor"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "Cartas"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "Descrição"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "Referência de Encantamentos"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "Nome"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "Referência de Poções"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "Poderes"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "Referência de Relíquias"
+    },
+    "search": {
+      "en": "Search",
+      "text": "Buscar"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "Nenhum resultado encontrado."
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "Buscar inimigos ou encontros..."
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — Eventos"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "COMEÇA COM:"
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "Todos"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "beta v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "Chefe de {zone}"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "Eventos de {zone}"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}: "
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "Compartilhados"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "(N = {n1} + nº de usos de Múltiplas Garras)",
+    "(with random intent)": "(com intenção aleatória)",
+    "A random card is removed from your [gold]Deck[/gold].": "Uma carta aleatória é removida do seu [gold]Baralho[/gold].",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "Adicione [red]Dúvida[/red] ao seu Baralho. Receba {n1} recompensas de cartas ({n2} cartas cada).",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "Adicione [red]Dúvida[/red] ao seu Baralho. Transforme {n1} cartas.",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "Adicione [red]Arrependimento[/red] ao seu Baralho. Receba {n1} de Ouro.",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "Adicione [red]Arrependimento[/red] ao seu Baralho. Receba {n1} Relíquias aleatórias.",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "Adicione [red]Vergonha[/red] ao seu Baralho. Aprimore {n1} cartas.",
+    "Add {n1} Burns to Hand": "Adiciona {n1} Queimaduras na sua Mão",
+    "Add {n1} Dazed to Discard": "Adiciona {n1} Desorientação na sua Pilha de Descarte",
+    "Add {n1} Dazed to Draw": "Adiciona {n1} Desorientação na sua Pilha de Compra",
+    "Add {n1} Infection to Discard": "Adiciona {n1} Infestação na sua Pilha de Descarte",
+    "Add {n1} Slimed to Discard": "Adiciona {n1} Gosma na sua Pilha de Descarte",
+    "Add {n1} Slimed to discard": "Adiciona {n1} Gosma na sua Pilha de Descarte",
+    "Add {n1} Toxic to Hand": "Adiciona {n1} Toxina na sua Mão",
+    "Add {n1} Wither to Discard": "Adiciona {n1} Definhar na sua Pilha de Descarte",
+    "Add {n1} Wounds into discard": "Adiciona {n1} Ferimentos na sua Pilha de Descarte",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "Após a morte da Amálgama: segue o ciclo {m1} → {m2} → {m3}.",
+    "After Turret Operator dies: Always uses {m1}.": "Após a morte do Operador de Artilharia: sempre usa {m1}.",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "Após aceitar, um de {n1} julgamentos aleatórios é escolhido (Mercador, Nobre ou Anônimo).",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "Após submergir, você pode Permanecer (mesmo efeito com +{n1} de dano a cada vez) ou Sair das Termas.",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "Após atingir {n1} acúmulos de Colmeia Pessoal, passa a receber apenas {n2} de Força.",
+    "After stun: Repeats {m1} → {m2}.": "Após o atordoamento: repete {m1} → {m2}.",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "Após {m1} ({n1}ª vez seguida): sempre usa {m2}.",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "Após {m1} ({n1}ª vez seguida): {n2}% {m2}, {n3}% {m3}.",
+    "After {m1}: Always uses {m2}.": "Após {m1}: sempre usa {m2}.",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "Após {n1} acúmulos de Colmeia Pessoal: {m1} passa a conceder {n2} de Força.",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "Todas as recompensas podem ser ignoradas, mas Dúvida é adicionada ao seu Baralho assim que revelada.",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "Os {n1} ratos começam distribuídos igualmente entre {m1}, {m2} e {m3}.",
+    "Allies gain {n1} {p1}": "Aliados recebem {n1} de {p1}",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "Sempre usa {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Always uses {m1}.": "Sempre usa {m1}.",
+    "Apply -{n1} {p1}": "Aplica -{n1} de {p1}",
+    "Apply {n1} {p1}": "Aplica {n1} de {p1}",
+    "Apply {p1}": "Aplica {p1}",
+    "Apply {p1} {n1}": "Aplica {p1} {n1}",
+    "As of v{n1}.{n2}.{n3} {m1} is never used in the cycle.": "Desde a v{n1}.{n2}.{n3}, {m1} nunca aparece no ciclo.",
+    "Attack — Deal {n1} damage, plus:": "Ataque — Cause {n1} de dano, além de:",
+    "Below": "Nas Profundezas",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "O Ovo de Avestriz Alfa pode ser trocado por Rasante de Avestriz em um Local de Descanso. Escolher isso consome sua opção de descanso.",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "Só pode aparecer se todos os jogadores estiverem com {n1}% ou menos dos PV Máximos.",
+    "Can only appear if all players have a card with Exhaust in their deck.": "Só pode aparecer se todos os jogadores tiverem uma carta com Exaurir no Baralho.",
+    "Can only appear if all players have at least {n1} Gold.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} de Ouro.",
+    "Can only appear if all players have at least {n1} HP.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} PV.",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} carta elegível para o encantamento Encaixe Perfeito.",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} carta elegível para o encantamento Espiral.",
+    "Can only appear if all players have at least {n1} potion.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} poção.",
+    "Can only appear if all players have at least {n1} potions.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} poções.",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} Golpes e {n2} Defesas iniciais removíveis.",
+    "Can only appear if all players have at least {n1} removable Basic card.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} carta inicial removível.",
+    "Can only appear if all players have at least {n1} removable card.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} carta removível.",
+    "Can only appear if all players have at least {n1} tradable relics.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} relíquias trocáveis.",
+    "Can only appear if all players have at least {n1} transformable cards.": "Só pode aparecer se todos os jogadores tiverem pelo menos {n1} cartas transformáveis.",
+    "Can only appear if all players have more than {n1} HP.": "Só pode aparecer se todos os jogadores tiverem mais de {n1} PV.",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "Só pode aparecer se pelo menos {n1} jogador tiver {n2} de Ouro ou mais, uma relíquia trocável e uma poção.",
+    "Can only appear if no player has an event pet.": "Só pode aparecer se nenhum jogador tiver um mascote de evento.",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "Só pode aparecer se você tiver pelo menos {n1} de Ouro ou uma Poção Nefasta.",
+    "Can only appear in Act {n1} or Act {n2}.": "Só pode aparecer no Ato {n1} ou no Ato {n2}.",
+    "Can only appear in Act {n1}.": "Só pode aparecer no Ato {n1}.",
+    "Can only appear on floor {n1}+.": "Só pode aparecer a partir do andar {n1}.",
+    "Can only be used once per rat. Requires {n1} turns before available.": "Só pode ser usado uma vez por rato. Exige {n1} turnos antes de ficar disponível.",
+    "Can only be used once.": "Só pode ser usado uma vez.",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "Não aparece naturalmente. Aparece no primeiro local desconhecido (?) que você encontrar no Ato {n1} se a Chave Lamparina estiver no seu Baralho.",
+    "Cannot repeat.": "Não pode se repetir.",
+    "Cannot repeat. {n1}-turn cooldown.": "Não pode se repetir. Recarga de {n1} turnos.",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "Não pode se repetir. Recarga de {n1} turnos. Se nenhum movimento for permitido, usa este por padrão.",
+    "Card type is random (Attack/Skill/Power).": "O tipo de carta é aleatório (Ataque/Técnica/Poder).",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "O tipo de carta é aleatório (Ataque/Técnica/Poder). Você escolhe {n1} de {n2} cartas aprimoradas.",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "As cartas são do STS{n1}: Estrepes, Embate, Distração, Dupla Empunhadura, Entrincheirar, Olá Mundo, Vantagem Estratégica, Rebote, Rasgar e Retalhar, Empilhar.",
+    "Cards are from your character's card pool.": "As cartas vêm do conjunto de cartas do seu personagem.",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "As cartas ainda podem ser aprimoradas durante o combate depois que o Cavaleiro Mago aplica Reprimir.",
+    "Caviar/+Max HP ({n1})": "Caviar/+PV Máximos ({n1})",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "Caos: adicione à sua Mão uma carta aleatória do seu conjunto. Ela não tem custo",
+    "Choking: Apply {n1} Strangle": "Asfixia: aplique {n1} de Estrangular",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "Escolhe aleatoriamente entre {m1}, {m2} e {m3}.",
+    "Clam Roll/Heal ({n1})": "Rolinho de Mariscos/Cura ({n1})",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "Confrontar com a Verdade fica bloqueado se não houver cartas elegíveis no seu Baralho.",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "Cria uma carta Ciência Profana ({n1} de Energia). Aprimorá-la concede Inata.",
+    "Curious: Powers cost {n1} Energy less": "Curiosidade: Poderes custam {n1} de Energia a menos",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "Segue o ciclo {m1} → {m2} ou {m3} ({n1}/{n2}).",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "Segue o ciclo {m1} → {m2} → {m3} ({n1}% de chance de repetir {m4} uma vez).",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "Segue o ciclo {m1} → {m2} → {m3} → {m4} (até usar {m5} {n1} vezes).",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Segue o ciclo {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "Segue o ciclo {m1} → {m2} → {m3} → {m4}.",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "Segue o ciclo {m1} → {m2} → {m3}, com {n1}% de chance de pular {m4}.",
+    "Cycles {m1} → {m2} → {m3}.": "Segue o ciclo {m1} → {m2} → {m3}.",
+    "Cycles {m1} → {m2}.": "Segue o ciclo {m1} → {m2}.",
+    "Damage {n1}": "Dano {n1}",
+    "Damage {n1} + stolen {p1}": "Dano {n1} + roubo de {p1}",
+    "Damage {n1} + {n2}*N": "Dano {n1} + {n2}*N",
+    "Decision made as a group in co-op.": "No modo cooperativo, a decisão é tomada em grupo.",
+    "Dies": "Morre",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "Os pratos são oferecidos aleatoriamente até você ficar sem dinheiro ou decidir sair. O prato anterior não pode se repetir.",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "Não copia o Azar. Os encantamentos das cartas são copiados",
+    "Each option is locked if you have no eligible cards of that type.": "Cada opção fica bloqueada se você não tiver cartas elegíveis daquele tipo.",
+    "Each option names the random relic, so you know exactly what you are trading for.": "Cada opção mostra o nome da relíquia aleatória, então você sabe exatamente pelo que está trocando.",
+    "Energized: Gain {n1} Energy": "Estimular: receba {n1} de Energia",
+    "Enrage": "Enfurecer",
+    "Enter deeper. Lose HP.": "Adentre mais fundo. Perca PV.",
+    "Escape from combat": "Escapa do combate",
+    "Escape from the combat": "Escapa do combate",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "Perícia: receba {n1} de Força e {n2} de Destreza",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "O combate dá a recompensa normal de Ouro se o Gremlin Avarento não escapar.",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "O combate é contra {n1} Constructos Pugilistas que começam com {n2} PV a menos. Um constructo sempre começa com Soco Potente.",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "Luta como {n1} segmentos — os PV são sempre um número par, e os segmentos têm PV máximos diferentes.",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "Garantido a cada {n1} pratos pegos ({n2}º, {n3}º etc.).",
+    "Free (no gold cost).": "Grátis (sem custo de Ouro).",
+    "Fried Eel/Colorless Card ({n1})": "Enguia Frita/Carta Incolor ({n1})",
+    "Front and back start with {m1}. Middle starts with {m2}.": "Os da frente e de trás começam com {m1}. O do meio começa com {m2}.",
+    "Front starts {m1}, back starts {m2}.": "O da frente começa com {m1}, o de trás com {m2}.",
+    "Gain [gold]Gold[/gold] based on depth.": "Receba [gold]Ouro[/gold] de acordo com a profundidade.",
+    "Gain {n1} {p1}": "Recebe {n1} de {p1}",
+    "Gain {n1} {p1} and {n2} {p2}": "Recebe {n1} de {p1} e {n2} de {p2}",
+    "Gain {n1} {p1} per respawn": "Recebe {n1} de {p1} a cada reaparecimento",
+    "Gain {n1}* Intangible": "Recebe {n1}* de Intangível",
+    "Gain {n1}+ {p1}": "Recebe {n1}+ de {p1}",
+    "Gain {p1}": "Recebe {p1}",
+    "Gain {p1} {n1}": "Recebe {p1} {n1}",
+    "Gains {n1} {p1}": "Recebe {n1} de {p1}",
+    "Gains {p1} {n1}": "Recebe {p1} {n1}",
+    "Galvanic Burst": "Explosão Galvânica",
+    "Give Potion": "Doar Poção",
+    "Give Relic": "Doar Relíquia",
+    "Give allies {n1} {p1}": "Concede {n1} de {p1} aos aliados",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "Concede as recompensas normais de combate com uma poção e uma relíquia adicionais (é possível receber {n1} poções).",
+    "Gold-generating relics cannot appear as the Featured Item.": "Relíquias que geram Ouro não podem aparecer como Destaque.",
+    "Golden Fysh/Gold ({n1})": "Peyxe Dourado/Ouro ({n1})",
+    "Hatches into Hatchling.": "Eclode, gerando uma Prole.",
+    "Headbutt": "Cabeçada",
+    "Heal [green]{n1}%[/green] Max HP.": "Cure [green]{n1}%[/green] dos PV Máximos.",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "Cure [green]{n1}%[/green] dos PV Máximos. Lute contra alguns [red]inimigos[/red].",
+    "Heal is multiplied by player count in co-op.": "No modo cooperativo, a cura é multiplicada pelo número de jogadores.",
+    "Heal {n1} HP.": "Cure {n1} PV.",
+    "Heal {n1}*": "Cura {n1}*",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "Manter o Equilíbrio pode ser repetido. O dano começa em {n1} e aumenta {n2} a cada vez.",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "Se a Amálgama morrer no meio do turno e a intenção for {m1}, ela passa a ser {m2}.",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "Se o Gremlin Avarento escapar depois de roubar Ouro, você não recebe recompensa de Ouro; se ele escapar sem ter roubado Ouro, você ainda recebe {n1}% da recompensa normal de Ouro.",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "Se um jogador for engolido pelo Fosso Arenoso, efeitos como Cauda de Lagarto não o revivem.",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "Se houver menos de {n1} aliados após {m1}: {m2} → {m3} → {m4}.",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "Se houver {n1} aliados ou mais após {m1}: {m2} → {m3} → {m4}.",
+    "If spawned from Phrog Parasite, starts stunned.": "Se surgir de um Sapo Parasitado, começa atordoado.",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "Se for atordoado antes do turno {n1}, retoma com o próximo movimento. Se for atordoado no turno {n2}, tenta {m1} novamente.",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "Se {m1} for permitido, {n1}% de chance de usá-lo no lugar.",
+    "Improvement: At the end of combat, Upgrade a random card": "Otimização: no final do combate, Aprimore uma carta aleatória",
+    "In X turns, instantly die.": "Em X turnos, você morre instantaneamente.",
+    "In co-op, only appears if all players have more than {n1} HP.": "No modo cooperativo, só aparece se todos os jogadores tiverem mais de {n1} PV.",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "Para aprimorar todas as cartas e ficar com {n1} PV Máximos, você precisa começar com no mínimo {n2} PV Máximos.",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "No encontro com {n1} Lagartiscos: o da frente começa com {m1}, o de trás com {m2}.",
+    "Increases Wither damage by {n1} each use.": "Aumenta o dano de Definhar em {n1} a cada uso.",
+    "Initially excludes Basic rarity cards.": "A princípio, exclui cartas de raridade Básica.",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "Inicia um combate contra o Cavaleiro Misterioso que concede as recompensas normais além da Chave Lamparina",
+    "Insert Potion": "Inserir Poção",
+    "Jelly Liver/Transform ({n1})": "Fígado de Água-viva/Transformar ({n1})",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "Matar um segmento com Ruína permite que os outros segmentos mortos se regenerem, mesmo que por um instante todos pareçam mortos ao mesmo tempo.",
+    "Laser": "Laser",
+    "Leave the conveyor belt.": "Saia da esteira.",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "Perca [red]{n1}[/red] PV (aumenta {n2} a cada vez). A carta de Atravessar é sorteada novamente.",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "Perca [red]{n1}[/red] PV. Receba [gold]Cogumelo Aromático[/gold]. Aprimore [blue]{n2}[/blue] cartas aleatórias.",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "Perca uma Poção. Escolha {n1} de {n2} cartas aprimoradas da mesma raridade.",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "Perca uma [red]Poção[/red] aleatória. Receba [blue]{n1}[/blue] PV Máximos.",
+    "Lose {n1} {p1}": "Perde {n1} de {p1}",
+    "Lose {p1}": "Perde {p1}",
+    "Max {n1} in a row.": "Máximo de {n1} vezes seguidas.",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "O Cavaleiro Misterioso é um Cavaleiro Flagelador que começa com {n1} de Força e {n2} de Blindagem e tem {n3} PV.",
+    "N = # of times this move was used": "N = nº de vezes que este movimento foi usado",
+    "Obtain Forgotten Soul.": "Receba Alma Esquecida.",
+    "Obtain [gold]Big Mushroom[/gold].": "Receba [gold]Cogumelo Robusto[/gold].",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "Receba [gold]Chá da Descortesia[/gold].",
+    "Obtain the [gold]Sword of Stone[/gold].": "Receba a [gold]Espada de Pedra[/gold].",
+    "Offered three random options that are not your character.": "São oferecidas três opções aleatórias que não são do seu personagem.",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "São oferecidos {n1} de {n2} tipos aleatórios (Ataque/Técnica/Poder) e depois {n3} de {n4} efeitos aleatórios para o tipo escolhido.",
+    "On wakeup all Plating is removed.": "Ao despertar, toda a Blindagem é removida.",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "Um dos {n1} acúmulos de Intangível de {m1} se esgota imediatamente.",
+    "Only {n1} rat can use {m1} per turn.": "Apenas {n1} rato pode usar {m1} por turno.",
+    "Opens with {m1} or {m2}.": "Começa com {m1} ou {m2}.",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "Começa com {m1} → {m2} → {m3} e depois sempre usa {m4}.",
+    "Opens with {m1} → {m2} → {m3}.": "Começa com {m1} → {m2} → {m3}.",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "Começa com {m1} → {m2} e depois sempre usa {m3}.",
+    "Opens with {m1} → {m2}.": "Começa com {m1} → {m2}.",
+    "Opens with {m1}, then always uses {m2}.": "Começa com {m1} e depois sempre usa {m2}.",
+    "Opens with {m1}.": "Começa com {m1}.",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "Começa com {m1}; depois alterna {m2} ↔ {m3} (sempre começando com {m4}).",
+    "Options are locked if you don't have the required item.": "As opções ficam bloqueadas se você não tiver o item necessário.",
+    "Pass Turn": "Passa o Turno",
+    "Pass turn": "Passa o turno",
+    "Passes Turn": "Passa o Turno",
+    "Passes turn": "Passa o turno",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Add [blue]{n2}[/blue] [gold]Enlightenment[/gold] to your [gold]Deck[/gold].": "Pague [red]{n1}[/red] de [gold]Ouro[/gold]. Adicione [blue]{n2}[/blue] [gold]Iluminações[/gold] ao seu [gold]Baralho[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "Pague [red]{n1}[/red] de [gold]Ouro[/gold]. Receba [gold]Chá de Ossos[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "Pague [red]{n1}[/red] de [gold]Ouro[/gold]. Receba [gold]Chá Ígneo[/gold].",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "Pague [red]{n1}[/red] de [gold]Ouro[/gold]. Receba uma [gold]Relíquia Rara[/gold] aleatória.",
+    "Phase {n1} (after stun):": "Fase {n1} (após o atordoamento):",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "Fase {n1} (abaixo de {n2}% dos PV após usar {m1}):",
+    "Phase {n1} (stunned at {n2} HP):": "Fase {n1} (atordoado ao chegar a {n2} PV):",
+    "Phase {n1}:": "Fase {n1}:",
+    "Player must choose one of two debuffs:": "O jogador deve escolher um de dois efeitos negativos:",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "As posições {n1} e {n2} começam com {m1}; as posições {n3} e {n4}, com {m2}.",
+    "Power:": "Poder:",
+    "Precision Beam": "Feixe de Precisão",
+    "Prep": "Preparação",
+    "Probabilities are weighted and shift if any options are unavailable.": "As probabilidades são ponderadas e mudam se alguma opção estiver indisponível.",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "Evento Troca de Socos: o {n1}º começa com {m1}, o {n2}º com {m2}.",
+    "Puppet Strings": "Fios de Marionete",
+    "Radiate": "Irradiar",
+    "Rejecting is not allowed — double downing abandons the run.": "Rejeitar não é permitido — escolher Manter-se Firme abandona a partida.",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "As relíquias são do STS{n1}: Amuleto de Pedra Sombria, Filtro dos Sonhos, Broca Manual, Cofrinho Abocanhador, A Bota.",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "Pode ser repetido até {n1} vezes. Os custos aumentam: {n2}/{n3}/{n4}/{n5}/todos menos {n6} PV Máximos. A {n7}ª decifração aprimora TODAS as cartas aprimoráveis.",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "Pode ser repetido até {n1} vezes. O dano aumenta: {n2}/{n3}/{n4}. A {n5}ª escolha concede o Núcleo Polinoso.",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "Pode ser repetido até {n1} vezes. O Ouro aumenta: {n2}/{n3}/{n4}.",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "Reaparece com {m1} por meio de {p1}; recebe {n1} PV Máximos a cada reaparecimento.",
+    "Retains Strength after reviving.": "Mantém a Força após reviver.",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "A recompensa inclui três recompensas de cartas, cada uma com {n1} cartas comuns/incomuns/raras.",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "Desgaste: aplique {n1} de Fraqueza e {n2} de Vulnerável",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "Os segmentos começam distribuídos igualmente entre {m1}, {m2} e {m3}.",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "As cartas de Compartilhar Conhecimento vêm do conjunto de cartas do seu personagem, com as chances de raridade de um encontro normal (respeita o aumento progressivo de chance de cartas raras). As cartas nunca são oferecidas aprimoradas.",
+    "Shuffle {n1} Beckon into discard": "Embaralha {n1} Instigar na sua Pilha de Descarte",
+    "Shuffle {n1} Beckon into draw": "Embaralha {n1} Instigar na sua Pilha de Compra",
+    "Shuffle {n1} Burns into discard": "Embaralha {n1} Queimaduras na sua Pilha de Descarte",
+    "Shuffle {n1} Frantic Escapes into discard": "Embaralha {n1} Fugas Frenéticas na sua Pilha de Descarte",
+    "Shuffle {n1} Frantic Escapes into draw": "Embaralha {n1} Fugas Frenéticas na sua Pilha de Compra",
+    "Single-player only.": "Somente no modo solo.",
+    "Skill — Gain {n1} Block, plus:": "Técnica — Receba {n1} de Proteção, além de:",
+    "Slash {n1}": "Corte {n1}",
+    "Sleeps for {n1} turns or until losing HP.": "Dorme por {n1} turnos ou até perder PV.",
+    "Sleeps until awakened, then always uses {m1}.": "Dorme até ser despertado e depois sempre usa {m1}.",
+    "Slice": "Fatiar",
+    "Smother": "Sufocar",
+    "Spicy Snappy/Upgrade ({n1})": "Petisco Picante/Aprimorar ({n1})",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "O Mapa de Espólios faz todos os caminhos do próximo ato convergirem para o nó do baú do ato, que conterá {n1} de Ouro além das recompensas normais.",
+    "Steal {n1} card and gain {p1}": "Rouba {n1} carta e recebe {p1}",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "A carta roubada é tirada da Pilha de Compra ou da Pilha de Descarte. Prioridades: {n1}. incomum não Imbuída {n2}. comum/rara/de evento não Imbuída {n3}. básica/de Missão não Imbuída {n4}. Imbuída ou ancestral {n5}. maldição ou qualquer outra.",
+    "Stolen gold is held by Fat Gremlin once summoned.": "Uma vez invocado, o Gremlin Avarento fica com o Ouro roubado.",
+    "Stunned for one turn": "Atordoamento por um turno",
+    "Submerge": "Submergir",
+    "Summon Two-Tailed Rat": "Invoca um Rato Duas-Caudas",
+    "Summon up to {n1} Tough Eggs": "Invoca até {n1} Ovos Resistentes",
+    "Summon {n1} Aggro Bot": "Invoca {n1} Robô Agressivo",
+    "Summon {n1} Eye with Teeth": "Invoca {n1} Olho Dentado",
+    "Summon {n1} Gas Bomb": "Invoca {n1} Bomba Gasosa",
+    "Summon {n1} Parafright": "Invoca {n1} Aterrorizante",
+    "Summons X Wrigglers after dying (they start stunned).": "Quando derrotado, invoca X Parasitários (eles começam atordoados).",
+    "Summons {n1} Aggro Bot": "Invoca {n1} Robô Agressivo",
+    "Summons {n1} Defensive Bot": "Invoca {n1} Robô Defensivo",
+    "Suspicious Condiment/Potion ({n1})": "Condimento Suspeito/Poção ({n1})",
+    "Swing": "Golpe",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "Espada de Pedra se transforma em Espada de Jade após {n1} combates",
+    "Tackle": "Investida",
+    "Targeting Reticle": "Retícula de Mira",
+    "Test Subject Stage {n1}": "Cobaia (Estágio {n1})",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "A Poção Nefasta obtida aqui pode ser arremessada no Mercador Falso para iniciar um combate.",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "A Chave Lamparina faz o evento Repy, Historiador de Guerra aparecer no próximo local desconhecido (?) que você encontrar no Ato {n1}.",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "A carta de Atravessar é sorteada novamente a cada Manter o Equilíbrio, excluindo cartas já oferecidas até que todas as outras tenham sido oferecidas.",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "A opção Descansar ativa todos os efeitos que Descansar em um Local de Descanso ativaria (Almofada Majestosa, Filtro dos Sonhos etc.)",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "A Grande Adivinhação só pode ser usada em uma célula que ainda não foi clicada e revela as {n1} células vizinhas.",
+    "The following items are guaranteed to be in the minigame:": "Os seguintes itens aparecem garantidamente no minijogo:",
+    "The specific potion is named in the option text.": "A poção específica é indicada no texto da opção.",
+    "The specific potion to be lost is shown in the option text.": "A poção específica que será perdida é mostrada no texto da opção.",
+    "Then chooses randomly from all moves.": "Depois, escolhe aleatoriamente entre todos os movimentos.",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "Depois, escolhe aleatoriamente entre {m1}, {m2} e {m3}.",
+    "Then chooses randomly from {m1}, {m2}.": "Depois, escolhe aleatoriamente entre {m1} e {m2}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "Depois, segue o ciclo {m1} → {m2} → {m3} → {m4} → {m5}.",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "Depois, segue o ciclo {m1} → {m2} → {m3} → {m4}.",
+    "Then cycles {m1} → {m2} → {m3}.": "Depois, segue o ciclo {m1} → {m2} → {m3}.",
+    "Then cycles {m1} → {m2}.": "Depois, segue o ciclo {m1} → {m2}.",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "Há {n1} opções de bonecos possíveis, e você verá um número de bonecos aleatórios de acordo com a sua escolha.",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "Arremessar uma Poção Nefasta inicia um combate. Recompensa: {n1} de Ouro, todas as {n2} relíquias, uma imitação barata do Tapete do Mercador e uma recompensa de cartas.",
+    "Total HP to reach Pollinous Core: {n1}.": "PV totais para chegar ao Núcleo Polinoso: {n1}.",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "Troque uma das suas [gold]Relíquias[/gold] por uma [gold]Relíquia[/gold] aleatória.",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "São oferecidas até {n1} poções do seu cinto. A raridade da poção determina a raridade da recompensa de cartas.",
+    "Uses {m1} once, then restarts Phase {n1}.": "Usa {m1} uma vez e depois reinicia a Fase {n1}.",
+    "Uses {m1}, then cycles {m2} → {m3}.": "Usa {m1} e depois segue o ciclo {m2} → {m3}.",
+    "Violence: Hit {n1} times ({n2})": "Violência: golpeie {n1} vezes ({n2})",
+    "Weak Tackle": "Investida Fraca",
+    "Weights:": "Pesos:",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "Com {n1} aliados ou menos: escolhe aleatoriamente entre {m1} e {m2}.",
+    "When allies ≥ {n1}: Always uses {m1}.": "Com {n1} aliados ou mais: sempre usa {m1}.",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "Quando derrotado, invoca {n1} Gremlin Trapaceiro e {n2} Gremlin Avarento (eles começam atordoados).",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "Ao ser derrotado: revive após {n1} turno com {n2} PV e continua a partir do próximo movimento.",
+    "When killed: Revives next turn in Stage {n1}.": "Ao ser derrotado: revive no próximo turno no Estágio {n1}.",
+    "Whenever you are attacked,  deal {n1} damage back": "Sempre que você for atacado, cause {n1} de dano em retaliação.",
+    "While Amalgam alive: Always uses {m1}.": "Enquanto a Amálgama estiver viva: sempre usa {m1}.",
+    "While Burrowed: Always uses {m1}.": "Enquanto estiver Enterrado: sempre usa {m1}.",
+    "While Turret Operator alive: Always uses {m1}.": "Enquanto o Operador de Artilharia estiver vivo: sempre usa {m1}.",
+    "Wisdom: Draw {n1} cards": "Sabedoria: compre {n1} cartas",
+    "[Merchant] Guilty": "[Mercador] Culpado",
+    "[Merchant] Innocent": "[Mercador] Inocente",
+    "[Noble] Guilty": "[Nobre] Culpado",
+    "[Noble] Innocent": "[Nobre] Inocente",
+    "[Nondescript] Guilty": "[Anônimo] Culpado",
+    "[Nondescript] Innocent": "[Anônimo] Inocente",
+    "[gold]Upgrade[/gold] [blue]{n1}[/blue] random cards.": "[gold]Aprimore[/gold] [blue]{n1}[/blue] cartas aleatórias.",
+    "a Torch Head Amalgam in play": "uma Amálgama Lamparínea em jogo",
+    "{m1} {p1} gain increases by {n1} each use.": "O ganho de {p1} de {m1} aumenta {n1} a cada uso.",
+    "{n1} Big Gold/{n2}g ({n3})": "{n1} Ouro Grande/{n2} de Ouro ({n3})",
+    "{n1} Common Card ({n2})": "{n1} Carta Comum ({n2})",
+    "{n1} Common Potions ({n2})": "{n1} Poções Comuns ({n2})",
+    "{n1} Dazed to Discard": "{n1} Desorientação na Pilha de Descarte",
+    "{n1} Doubt curse ({n2})": "{n1} maldição Dúvida ({n2})",
+    "{n1} Rare Card ({n2})": "{n1} Carta Rara ({n2})",
+    "{n1} Rare Potion ({n2})": "{n1} Poção Rara ({n2})",
+    "{n1} Relic ({n2})": "{n1} Relíquia ({n2})",
+    "{n1} Rock + {n2} random from Egg or Nectar": "{n1} Pedra + {n2} aleatório entre Ovo e Néctar",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "{n1} Pedra + {n2} distintos entre Ovo / Seda / Néctar",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "{n1} Estrangulador Rastejante + um entre: Bulbo Mordiscador / Gosma (M) aleatória / {n2} Gosmas (P) aleatórias",
+    "{n1} Small Gold/{n2}g ({n3})": "{n1} Ouro Pequeno/{n2} de Ouro ({n3})",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "{n1} Gosma de Gravetos (P) + {n2} Gosma de Folhas (P) + {n3} Gosma (M) aleatória",
+    "{n1} Uncommon Card ({n2})": "{n1} Carta Incomum ({n2})",
+    "{n1} enemies": "{n1} inimigos",
+    "{n1} of the {n2} cells are populated with items.": "{n1} das {n2} células contêm itens.",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "{n1} de {n2} relíquias falsificadas oferecidas aleatoriamente por {n3} de Ouro cada.",
+    "{n1} unique Raiders from pool": "{n1} Guerreiros Saqueadores distintos do conjunto",
+    "{n1}-turn cooldown.": "Recarga de {n1} turnos.",
+    "{n1}nd choice: {p1} {n2} or {p2}": "{n1}ª escolha: {p1} {n2} ou {p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "{n1}ª Escolha: {p1} {n2} ou {p2}",
+    "{n1}st choice: {p1} {n2} or {p2}": "{n1}ª escolha: {p1} {n2} ou {p2}",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "O {n1}º começa aleatoriamente, e cada um dos seguintes começa no próximo ponto do ciclo.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "O {n1}º começa com {m1}, o {n2}º com {m2}, o {n3}º com {m3} e o {n4}º aleatoriamente.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "O {n1}º começa com {m1}, o {n2}º com {m2}, o {n3}º com {m3} e o {n4}º com {m4}.",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "O {n1}º começa com {m1}, o {n2}º com {m2}.",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "Os {n1}º/{n2}º/{n3}º são distribuídos igualmente entre {m1}, {m2} e {m3}. O {n4}º começa com {m4}.",
+    "{p1} (immediately gives {n1} Intangible)": "{p1} (concede imediatamente {n1} de Intangível)",
+    "{p1} and {p2} {n1}": "{p1} e {p2} {n1}",
+    "{p1} {n1} and {p2}": "{p1} {n1} e {p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1} {n1} e {p2} {n2}",
+    "{p1} {n1} on Fabricator": "{p1} {n1} no Engenheiro",
+    "~{n1}% chance.": "~{n1}% de chance.",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "~{n1}% de chance. Grátis (sem custo de Ouro). Só aparece após o primeiro prato.",
+    "~{n1}% chance. Only appears if not at full HP.": "~{n1}% de chance. Só aparece se você não estiver com os PV cheios.",
+    "~{n1}% chance. Only appears if you have open potion slots.": "~{n1}% de chance. Só aparece se você tiver espaços de poção livres.",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 Recebe uma quantidade fixa de Força ao acertar um golpe, em vez de uma quantidade por jogador."
+  }
+}

@@ -21,7 +21,12 @@ function parseDominionPower(cell) {
   return { power: head[1], amount: parseInt(head[2], 10), scopes };
 }
 
+const gameIdList = cell => (cell || '').split(';').map(s => s.trim()).filter(Boolean);
+
 function buildDataStructures(texts) {
+  // Game and site text (js/i18n.js); English needs only the English tables
+  loadLocTables(texts.gameText, texts.siteText);
+
   const enemiesRaw = parseCSV(texts.monsters);
   const movesRaw = parseCSV(texts.moves);
   const encountersRaw = parseCSV(texts.encounters);
@@ -33,7 +38,9 @@ function buildDataStructures(texts) {
       name: p.Name,
       image: p.Image,
       desc: p.Description,
-      scalesInMultiplayer: p.ScalesInMultiplayer === 'true'
+      scalesInMultiplayer: p.ScalesInMultiplayer === 'true',
+      gameIds: gameIdList(p.GameIds),
+      gameVars: p.GameVars || ''
     };
   }
 
@@ -61,6 +68,8 @@ function buildDataStructures(texts) {
       dreadPattern: e.DreadPattern || '',
       dreadStartsWith: e.DreadStartsWith || '',
       dreadNotes: e.DreadNotes || '',
+      gameIds: gameIdList(e.GameIds),
+      gameEntry: e.GameEntry || '',   // the game entry its text is under when not its id (js/i18n.js enemyEntries)
       moves: []
     };
     if (e.DreadHP || e.DreadPattern || e.DreadStartsWith || e.DreadNotes) hasDreadData = true;
@@ -75,7 +84,8 @@ function buildDataStructures(texts) {
         intent: m.Intent,
         notes: m.Notes || '',
         dreadEffects: m.DreadEffects || '',
-        mode: m.Mode || ''   // '' = always, 'dread' = Dread only, 'no-dread' = hidden in Dread
+        mode: m.Mode || '',   // '' = always, 'dread' = Dread only, 'no-dread' = hidden in Dread
+        gameMoves: gameIdList(m.GameMoves)
       });
       if (m.DreadEffects || m.Mode) hasDreadData = true;
     }
@@ -104,7 +114,8 @@ function buildDataStructures(texts) {
       dreadMulti: enc.DreadMulti || '',
       dominion: enc.Dominion || '',   // boss encounters: effect on the act's other fights in Dread
       dominionPower: parseDominionPower(enc.DominionPower || ''),
-      spawns: enc.Spawns ? enc.Spawns.split(';').map(e => e.trim()).filter(Boolean) : []  // Enemies that join mid-fight
+      spawns: enc.Spawns ? enc.Spawns.split(';').map(e => e.trim()).filter(Boolean) : [],  // Enemies that join mid-fight
+      gameIds: gameIdList(enc.GameIds)
     });
     if (enc.DreadEnemies || enc.DreadMulti || enc.Dominion || enc.DominionPower) hasDreadData = true;
   }
@@ -123,7 +134,11 @@ function buildDataStructures(texts) {
       notes: ev.Notes || '',
       acts: ev.Acts ? ev.Acts.split(',').map(s => s.trim()) : [],
       image: ev.Image || '',
-      lore: ev.Lore || ''
+      lore: ev.Lore || '',
+      gameIds: gameIdList(ev.GameIds),
+      gameLore: gameIdList(ev.GameLore),   // the game pages the lore is (js/i18n.js eventLorePages)
+      panelName: ev.PanelName || '',   // the panel's title where it shows more than Name: js/i18n.js eventName
+      gameVars: ev.GameVars || ''
     });
   }
 
@@ -133,29 +148,31 @@ function buildDataStructures(texts) {
       choice: ch.Choice,
       effect: ch.Effect,
       notes: ch.Notes || '',
-      references: ch.References || ''
+      references: ch.References || '',
+      gameOption: ch.GameOption || '',
+      gameVars: ch.GameVars || ''
     });
   }
 
   // Build unified itemsRef from all reference CSVs
   const eventCardsRaw = parseCSV(texts.cards);
   for (const c of eventCardsRaw) {
-    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '' };
+    itemsRef[c.Key] = { category: 'card', key: c.Key, name: c.Name, rarity: c.Rarity, type: c.Type || '', cost: c.Cost, desc: c.Description || '', gameIds: gameIdList(c.GameIds), gameTitle: c.GameTitle || '', gameVars: c.GameVars || '' };
   }
 
   const enchantmentsRaw = parseCSV(texts.enchantments);
   for (const e of enchantmentsRaw) {
-    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description };
+    itemsRef[e.Key] = { category: 'enchantment', key: e.Key, name: e.Name, image: e.Image, desc: e.Description, gameIds: gameIdList(e.GameIds), gameTitle: e.GameTitle || '', gameVars: e.GameVars || '' };
   }
 
   const potionsRaw = parseCSV(texts.potions);
   for (const p of potionsRaw) {
-    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description };
+    itemsRef[p.Key] = { category: 'potion', key: p.Key, name: p.Name, image: p.Image, desc: p.Description, gameIds: gameIdList(p.GameIds), gameTitle: p.GameTitle || '', gameVars: p.GameVars || '' };
   }
 
   const relicsRaw = parseCSV(texts.relics);
   for (const r of relicsRaw) {
-    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description };
+    itemsRef[r.Key] = { category: 'relic', key: r.Key, name: r.Name, image: r.Image, desc: r.Description, gameIds: gameIdList(r.GameIds), gameTitle: r.GameTitle || '', gameVars: r.GameVars || '' };
   }
 
   // Also add powers to itemsRef
@@ -179,7 +196,9 @@ function buildDataStructures(texts) {
 }
 
 async function loadData() {
-  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, cardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData] = await Promise.all([
+  const lang = initialLanguage();   // ui.js: ?lang=, the saved choice, or the browser's
+  const fetchText = url => fetch(url).then(r => r.ok ? r.text() : '').catch(() => '');
+  const [enemiesText, movesText, encountersText, powersText, eventsText, eventChoicesText, cardsText, enchantmentsText, potionsText, relicsText, betaText, configData, scalingData, gameText, siteText, ...langTexts] = await Promise.all([
     fetch('data/monsters.csv').then(r => r.text()),
     fetch('data/monster_moves.csv').then(r => r.text()),
     fetch('data/encounters.csv').then(r => r.text()),
@@ -193,23 +212,15 @@ async function loadData() {
     fetch('data/beta_changes.csv').then(r => r.ok ? r.text() : '').catch(() => ''),
     fetch('site-config.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
     fetch('data/multiplayer-scaling.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    fetchText('data/loc/game/eng.json'),
+    fetchText('data/loc/site/eng.json'),
+    ...languageFiles(lang).map(fetchText),
   ]);
 
   // Load site config and render version banner
   siteConfig = configData;
   multiplayerScaling = scalingData;
-  const isBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
-  const banner = document.getElementById('version-banner');
-  const bannerContent = buildVersionBanner(siteConfig, isBeta);  // shared with build_snapshots.mjs
-  if (banner && bannerContent) {
-    banner.className = bannerContent.className;
-    banner.innerHTML = bannerContent.html;
-  }
-  // Update footer game version
-  const versionEl = document.getElementById('game-version');
-  if (versionEl) {
-    versionEl.textContent = isBeta ? `beta v${siteConfig.betaVersion}` : `v${siteConfig.gameVersion}`;
-  }
+  siteIsBeta = siteConfig.isBeta || window.location.pathname.startsWith('/beta');
 
   buildDataStructures({
     monsters: enemiesText,
@@ -223,7 +234,10 @@ async function loadData() {
     potions: potionsText,
     relics: relicsText,
     beta: betaText,
+    gameText,
+    siteText,
   });
+  applyLanguage(lang, { game: langTexts[0] || '', site: langTexts[1] || '' });   // ui.js
 
   // Reveal the Dread toggle only when this branch's data carries Dread values,
   // then let a link's ?players=&act=&dread=&boss= override the saved choices
@@ -251,6 +265,7 @@ async function loadData() {
     document.head.appendChild(m);
   }
 
+  showVersionBanner();   // ui.js (after the language: its text is the language's)
   render();
   preloadRemainingImages();
   routeFromURL(true);  // open matching panel if URL points to one

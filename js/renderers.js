@@ -226,7 +226,7 @@ function enemyDominionGrants(enemyKey, enc) {
 function dominionGrantsHtml(grants, enemyKey, labelZones) {
   return grants.map(g => {
     const amount = g.min === g.max ? `${g.max}` : `${g.min}–${g.max}`;
-    const zone = labelZones ? `${zoneLabels[g.zone]}: ` : '';
+    const zone = labelZones ? t('zone_prefix', { zone: zoneLabel(g.zone) }) : '';
     return `<span class="dread-value">${zone}${renderPowerRefs(`{${g.power}} ${amount}`, enemyKey)}</span>`;
   }).join(', ');
 }
@@ -234,18 +234,20 @@ function dominionGrantsHtml(grants, enemyKey, labelZones) {
 // `marked`: move-name slugs to underline, i.e. the moves a ?moves= link marks
 // as current (passed for the attack pattern only)
 function renderMoveRefs(text, enemyKey, marked) {
-  // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags)
-  return text.replace(/<([A-Z][^>]*)>/g, (match, moveName) => {
+  // Convert <Move Name> to styled span with tooltip (uppercase start avoids matching HTML tags). The ref is
+  // the move's English name (its key among the enemy's moves); the span shows the language's name.
+  return text.replace(/<([A-Z][^>]*)>/g, (match, ref) => {
     const moves = enemyKey && enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].moves : [];
-    const move = moves.find(m => m.name === moveName);
-    const cls = marked && marked.includes(slugify(moveName)) ? 'move-ref move-ref-current' : 'move-ref';
+    const move = moves.find(m => m.name === ref);
+    const cls = marked && marked.includes(slugify(ref)) ? 'move-ref move-ref-current' : 'move-ref';
     if (move) {
+      const name = moveName(enemyKey, move);
       const intents = renderIntents(move.intent);
       const fx = moveEffectsText(move);
-      const effect = markDread(renderPowerRefs(scaleEffects(fx.text).replace(/;/g, '<br>'), null), fx.dread);
-      return `<span class="${cls}">${moveName}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${moveName}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
+      const effect = markDread(renderPowerRefs(txClauses(scaleEffects(fx.text), 'move effect').replace(/;/g, '<br>'), null), fx.dread);
+      return `<span class="${cls}">${name}<span class="move-tooltip"><span class="move-tooltip-header"><span class="intent-icons">${intents}</span><strong>${name}</strong></span><span class="move-tooltip-effect">${effect}</span></span></span>`;
     }
-    return `<span class="${cls}">${moveName}</span>`;
+    return `<span class="${cls}">${tx(ref, 'move name')}</span>`;
   });
 }
 
@@ -255,10 +257,19 @@ function renderPowerRefs(text, enemyKey, marked) {
   result = result.replace(/\{(\w+)\}/g, (match, key) => {
     const ref = powersRef[key];
     if (!ref) return match;
-    const tooltip = ref.desc ? `<span class="power-tooltip">${ref.desc}</span>` : '';
-    return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${ref.name}" onerror="this.style.display='none'"><span class="starts-with-power">${ref.name}</span>${tooltip}</span>`;
+    const name = powerName(key);
+    const tooltip = ref.desc ? `<span class="power-tooltip">${renderInline(powerDesc(key))}</span>` : '';
+    return `<span class="power-ref"><img class="power-icon-inline" src="media/powers/${ref.image}" alt="${name}" onerror="this.style.display='none'"><span class="starts-with-power">${name}</span>${tooltip}</span>`;
   });
   return result;
+}
+
+// A word's characters as the reader sees them (grapheme clusters): a combining mark stays with its letter (Thai
+// vowel and tone marks would otherwise float off on their own animation). Engines without Intl.Segmenter split
+// by code point; Jint, the in-game panel's, iterates strings by cluster either way.
+const graphemeSegmenter = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+function graphemes(text) {
+  return graphemeSegmenter ? Array.from(graphemeSegmenter.segment(text), s => s.segment) : [...text];
 }
 
 function wrapCharsWithDelay(content, cssClass, baseDelay) {
@@ -277,14 +288,34 @@ function wrapCharsWithDelay(content, cssClass, baseDelay) {
     if (tag) return tag;
     if (m === ' ') return ' '; // normal space allows line break between words
     // Wrap each char in the word, group in a nowrap span
-    const chars = [...m].map(ch => wrapChar(ch)).join('');
+    const chars = graphemes(m).map(ch => wrapChar(ch)).join('');
     return `<span style="white-space:nowrap">${chars}</span>`;
   });
 }
 
+// The game's inline images in its text ([img]res://images/packed/sprite_fonts/ironclad_energy_icon.png[/img]):
+// the site's copy in media/ui/
+function renderGameImages(text) {
+  return text.replace(/\[img\]res:\/\/images\/packed\/sprite_fonts\/(\w+)\.png\[\/img\]/g,
+    (m, file) => `<img class="power-icon-inline" src="media/ui/${file}.webp" alt="${t(/energy_icon$/.test(file) ? 'energy' : 'star')}">`);
+}
+
+// Colors, bold and images in one line of game-style text (power descriptions): renderLore without paragraphs
+// or animation. Text with none of them comes out as it went in.
+function renderInline(text) {
+  if (!text) return text;
+  let html = renderGameImages(text).replace(/\[b\](.*?)\[\/b\]/gs, (m, c) => `<strong>${c}</strong>`);
+  // Nested tags ([gold][sine]…[/sine][/gold]) come off one level per pass
+  for (let prev = ''; prev !== html;) {
+    prev = html;
+    html = html.replace(/\[(\w+)\]((?:(?!\[\1\]).)*?)\[\/\1\]/gs, (m, tag, c) => { const color = loreColors[tag.toLowerCase()]; return color ? `<span style="color:${color}">${c}</span>` : c; });
+  }
+  return html;
+}
+
 function renderLore(text) {
   if (!text) return '';
-  let html = text;
+  let html = renderGameImages(text);
 
   // Helper: render color tags (skip effect/structural tags)
   function renderColors(t) {
@@ -337,18 +368,18 @@ function renderLore(text) {
 function renderBetaBadge(type, name) {
   const entry = betaChanges[`${type}:${name}`];
   if (!entry) return '';
-  const escaped = entry.change.replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const escaped = txClauses(entry.change, 'beta change').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const patchLabel = entry.patch ? `v${entry.patch}` : `v${siteConfig.betaVersion || '?'}`;
-  return ` <span class="beta-badge" data-patch="${entry.patch || ''}">Beta Patch<span class="beta-tooltip"><strong>Changed in Beta ${patchLabel}:</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
+  return ` <span class="beta-badge" data-patch="${entry.patch || ''}">${t('beta_patch')}<span class="beta-tooltip"><strong>${t('beta_changed', { version: patchLabel })}</strong><br>${escaped.replace(/;/g, '<br>')}</span></span>`;
 }
 
 // `extraHtml` is already-rendered (unscaled) content appended after the
 // monster's own StartsWith — used for Dominion grants.
-function renderStartsWith(text, enemyName, isDread, extraHtml) {
+function renderStartsWith(text, enemyKey, isDread, extraHtml) {
   if (!text && !extraHtml) return '';
-  const own = text ? markDread(renderPowerRefs(scaleEffects(text), enemyName), isDread) : '';
-  const body = [own, extraHtml].filter(Boolean).join(', ');
-  return `<div class="starts-with-section"><strong>STARTS WITH:</strong> ${body}</div>`;
+  const own = text ? markDread(renderPowerRefs(tx(scaleEffects(text), 'starts with'), enemyKey), isDread) : '';
+  const body = [own, extraHtml].filter(Boolean).join(t('list_separator'));
+  return `<div class="starts-with-section"><strong>${t('starts_with')}</strong> ${body}</div>`;
 }
 
 function renderEnemyReferences(powers, moves, references) {
@@ -359,6 +390,11 @@ function renderEnemyReferences(powers, moves, references) {
   ];
   if (allKeys.length === 0) return '';
   return renderReferenceSections(allKeys);
+}
+
+// A card's rarity (cards.csv Rarity): the icon's alt and title
+function rarityLabel(rarity) {
+  return `rarity_${rarity}` in siteUi ? t(`rarity_${rarity}`) : rarity;
 }
 
 function renderReferenceSections(keys, excludeKeys = []) {
@@ -379,61 +415,63 @@ function renderReferenceSections(keys, excludeKeys = []) {
   if (groups.card.length > 0) {
     const rows = groups.card.map(card => {
       const iconSrc = cardRarityIcons[card.rarity] || '';
-      const iconHtml = iconSrc ? `<img class="ref-icon-sm" src="${iconSrc}" alt="${card.rarity}" title="${card.rarity}">` : card.rarity;
+      const rarity = rarityLabel(card.rarity);
+      const iconHtml = iconSrc ? `<img class="ref-icon-sm" src="${iconSrc}" alt="${rarity}" title="${rarity}">` : rarity;
       const costDisplay = card.cost === 'Unplayable' ? '-' : card.cost;
       return `<tr>
         <td style="text-align:center">${iconHtml}</td>
-        <td><strong>${card.name}</strong></td>
+        <td><strong>${itemName(card)}</strong></td>
         <td style="text-align:center">${costDisplay}</td>
-        <td>${renderLore(card.desc)}</td>
+        <td>${renderLore(itemDesc(card))}</td>
       </tr>`;
     }).join('');
-    html += `<h3>Cards</h3><table>${rows}</table>`;
+    html += `<h3>${t('ref_cards')}</h3><table>${rows}</table>`;
   }
 
   // Relics table
   if (groups.relic.length > 0) {
     const rows = groups.relic.map(r => `<tr>
-      <td style="text-align:center">${r.image ? `<img class="ref-icon" src="${categoryImagePaths.relic}${r.image}" alt="${r.name}">` : ''}</td>
-      <td><strong>${r.name}</strong></td>
-      <td>${renderLore(r.desc)}</td>
+      <td style="text-align:center">${r.image ? `<img class="ref-icon" src="${categoryImagePaths.relic}${r.image}" alt="${itemName(r)}">` : ''}</td>
+      <td><strong>${itemName(r)}</strong></td>
+      <td>${renderLore(itemDesc(r))}</td>
     </tr>`).join('');
-    html += `<h3>Relic Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+    html += `<h3>${t('ref_relics')}</h3><table><tr><th style="width:36px"></th><th>${t('ref_name')}</th><th>${t('ref_description')}</th></tr>${rows}</table>`;
   }
 
   // Potions table
   if (groups.potion.length > 0) {
     const rows = groups.potion.map(p => `<tr>
-      <td style="text-align:center">${p.image ? `<img class="ref-icon" src="${categoryImagePaths.potion}${p.image}" alt="${p.name}">` : ''}</td>
-      <td><strong>${p.name}</strong></td>
-      <td>${renderLore(p.desc)}</td>
+      <td style="text-align:center">${p.image ? `<img class="ref-icon" src="${categoryImagePaths.potion}${p.image}" alt="${itemName(p)}">` : ''}</td>
+      <td><strong>${itemName(p)}</strong></td>
+      <td>${renderLore(itemDesc(p))}</td>
     </tr>`).join('');
-    html += `<h3>Potion Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+    html += `<h3>${t('ref_potions')}</h3><table><tr><th style="width:36px"></th><th>${t('ref_name')}</th><th>${t('ref_description')}</th></tr>${rows}</table>`;
   }
 
   // Enchantments table
   if (groups.enchantment.length > 0) {
     const rows = groups.enchantment.map(e => `<tr>
-      <td style="text-align:center">${e.image ? `<img class="ref-icon" src="${categoryImagePaths.enchantment}${e.image}" alt="${e.name}">` : ''}</td>
-      <td><strong>${e.name}</strong></td>
-      <td>${renderLore(e.desc)}</td>
+      <td style="text-align:center">${e.image ? `<img class="ref-icon" src="${categoryImagePaths.enchantment}${e.image}" alt="${itemName(e)}">` : ''}</td>
+      <td><strong>${itemName(e)}</strong></td>
+      <td>${renderLore(itemDesc(e))}</td>
     </tr>`).join('');
-    html += `<h3>Enchantment Reference</h3><table><tr><th style="width:36px"></th><th>Name</th><th>Description</th></tr>${rows}</table>`;
+    html += `<h3>${t('ref_enchantments')}</h3><table><tr><th style="width:36px"></th><th>${t('ref_name')}</th><th>${t('ref_description')}</th></tr>${rows}</table>`;
   }
 
   // Powers
   if (groups.power.length > 0) {
     const rows = groups.power.map(p => {
       const iconSrc = `${categoryImagePaths.power}${p.image}`;
+      const name = powerName(p.key);
       return `<div class="power-row">
-        <img class="power-icon" src="${iconSrc}" alt="${p.name}" onerror="this.style.display='none'">
+        <img class="power-icon" src="${iconSrc}" alt="${name}" onerror="this.style.display='none'">
         <div class="power-info">
-          <span class="power-name">${p.name}</span>
-          <span class="power-desc">${p.desc}</span>
+          <span class="power-name">${name}</span>
+          <span class="power-desc">${renderInline(powerDesc(p.key))}</span>
         </div>
       </div>`;
     }).join('');
-    html += `<div class="powers-section"><h3>Powers</h3>${rows}</div>`;
+    html += `<div class="powers-section"><h3>${t('ref_powers')}</h3>${rows}</div>`;
   }
 
   return html;
@@ -443,7 +481,7 @@ function renderReferenceSections(keys, excludeKeys = []) {
 // NOTES RENDERING
 // ══════════════════════════════════════════
 
-function renderNotes(notes, enemyName) {
+function renderNotes(notes, enemyKey) {
   // Split on literal \n, [info], [bug], [req], [coop] — each tag starts a new line automatically
   const parts = notes.split(/(?=\[info\])|(?=\[bug\])|(?=\[req\])|(?=\[coop\])|\n/);
   const coop = [];
@@ -458,35 +496,35 @@ function renderNotes(notes, enemyName) {
     if (part.startsWith('    ') || part.startsWith('\t')) {
       const lastArr = infos.length > 0 ? infos : bugs.length > 0 ? bugs : reqs;
       if (lastArr.length > 0) {
-        lastArr[lastArr.length - 1] += `<div class="note-sub">${trimmed}</div>`;
+        lastArr[lastArr.length - 1] += `<div class="note-sub">${tx(trimmed, 'note')}</div>`;
       }
-    } else if (trimmed.startsWith('[coop]')) coop.push(trimmed.replace('[coop]', '').trim());
-    else if (trimmed.startsWith('[req]')) reqs.push(trimmed.replace('[req]', '').trim());
-    else if (trimmed.startsWith('[info]')) infos.push(trimmed.replace('[info]', '').trim());
-    else if (trimmed.startsWith('[bug]')) bugs.push(trimmed.replace('[bug]', '').trim());
-    else infos.push(trimmed); // default to info
+    } else if (trimmed.startsWith('[coop]')) coop.push(tx(trimmed.replace('[coop]', '').trim(), 'note (co-op)'));
+    else if (trimmed.startsWith('[req]')) reqs.push(tx(trimmed.replace('[req]', '').trim(), 'note (requirement)'));
+    else if (trimmed.startsWith('[info]')) infos.push(tx(trimmed.replace('[info]', '').trim(), 'note'));
+    else if (trimmed.startsWith('[bug]')) bugs.push(tx(trimmed.replace('[bug]', '').trim(), 'note (bug)'));
+    else infos.push(tx(trimmed, 'note')); // default to info
   }
 
   let html = '';
 
   // Co-op badges
   if (coop.length > 0) {
-    html += `<div class="note-badges">${coop.map(c => `<span class="note-badge note-coop">\u{1F91D} ${renderPowerRefs(c, enemyName)}</span>`).join('')}</div>`;
+    html += `<div class="note-badges">${coop.map(c => `<span class="note-badge note-coop">\u{1F91D} ${renderPowerRefs(c, enemyKey)}</span>`).join('')}</div>`;
   }
 
   // Requirements
   if (reqs.length > 0) {
-    html += `<div class="note-reqs">${reqs.map(r => `<div class="note-req">\u2726 ${renderPowerRefs(r, enemyName)}</div>`).join('')}</div>`;
+    html += `<div class="note-reqs">${reqs.map(r => `<div class="note-req">\u2726 ${renderPowerRefs(r, enemyKey)}</div>`).join('')}</div>`;
   }
 
   // Info lines
   if (infos.length > 0) {
-    html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${renderPowerRefs(i, enemyName)}</div>`).join('')}</div>`;
+    html += `<div class="note-infos">${infos.map(i => `<div class="note-info">\u{1F4A1} ${renderPowerRefs(i, enemyKey)}</div>`).join('')}</div>`;
   }
 
   // Bug lines
   if (bugs.length > 0) {
-    html += `<div class="note-bugs">${bugs.map(b => `<div class="note-bug">\u26A0\uFE0F ${renderPowerRefs(b, enemyName)}</div>`).join('')}</div>`;
+    html += `<div class="note-bugs">${bugs.map(b => `<div class="note-bug">\u26A0\uFE0F ${renderPowerRefs(b, enemyKey)}</div>`).join('')}</div>`;
   }
 
   return html;
@@ -496,9 +534,16 @@ function renderNotes(notes, enemyName) {
 // INTENT ICONS
 // ══════════════════════════════════════════
 
+// An intent's label: in English the key itself (what the icons have always been titled); a key the table doesn't
+// know (a data typo, which the build warns about) shows as written
+function intentLabel(key) {
+  return `intent_${key}` in siteUi ? t(`intent_${key}`) : key;
+}
+
 function intentImg(key) {
   const src = `media/intents/${key}.webp`;
-  return `<img src="${src}" alt="${key}" title="${key}">`;
+  const label = intentLabel(key);
+  return `<img src="${src}" alt="${label}" title="${label}">`;
 }
 
 function renderIntents(intentStr) {
@@ -513,6 +558,6 @@ function renderIntents(intentStr) {
     } else {
       inner = intentImg('unknown');
     }
-    return `<span class="intent-icon intent-${key}" title="${key}">${inner}</span>`;
+    return `<span class="intent-icon intent-${key}" title="${intentLabel(key)}">${inner}</span>`;
   }).join('');
 }

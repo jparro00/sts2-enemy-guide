@@ -52,7 +52,7 @@ const SITE_PREFIX = SITE_ORIGIN + SITE_BASE; // e.g. https://spirecodex.com/test
 
 // ─── Boot the browser renderers in a VM context ────────────────────────
 const ctx = vm.createContext({ console, STATIC_RENDER: true });
-for (const f of ['csv-parser.js', 'config.js', 'renderers.js', 'panels.js', 'data.js']) {
+for (const f of ['csv-parser.js', 'config.js', 'i18n.js', 'renderers.js', 'panels.js', 'data.js']) {
   const code = fs.readFileSync(path.join(BASE, 'js', f), 'utf8');
   new vm.Script(code, { filename: `js/${f}` }).runInContext(ctx);
 }
@@ -75,12 +75,16 @@ ctx.__texts = {
   potions: readData('potions.csv'),
   relics: readData('relics.csv'),
   beta: readData('beta_changes.csv'),
+  // English game and site text (js/i18n.js); the pages are English, so no other language is loaded
+  gameText: readData('loc/game/eng.json'),
+  siteText: readData('loc/site/eng.json'),
 };
 // Every core CSV is required — a missing/empty file would silently generate
 // pages full of "No data available" while staying above the page-count guard.
+const TEXT_FILES = { moves: 'monster_moves.csv', gameText: 'loc/game/eng.json', siteText: 'loc/site/eng.json' };
 for (const [name, text] of Object.entries(ctx.__texts)) {
   if (name !== 'beta' && !text.trim()) {
-    console.error(`ERROR: data/${name === 'moves' ? 'monster_moves' : name}.csv missing or empty`);
+    console.error(`ERROR: data/${TEXT_FILES[name] || name + '.csv'} missing or empty`);
     process.exit(1);
   }
 }
@@ -97,6 +101,7 @@ const buildEnemyPanelBody = inCtx('buildEnemyPanelBody');
 const buildEncounterPanelBody = inCtx('buildEncounterPanelBody');
 const buildEventPanelBody = inCtx('buildEventPanelBody');
 const renderBetaBadge = inCtx('renderBetaBadge');
+const eventName = inCtx('eventName');
 const getChoices = inCtx('(key) => eventChoices[key] || []');
 
 const enemies = inCtx('Object.entries(enemyDatabase).map(([key, d]) => ({ key, name: d.name, pattern: d.pattern }))');
@@ -198,7 +203,11 @@ const allEvents = inCtx(`(() => {
   const checkGameIds = (owner, cell) => {
     for (const id of gameIds(cell)) if (!GAME_ID_RE.test(id)) errors.push(`${owner}: ${JSON.stringify(id)} is not a game id (capitals, digits and _ only)`);
   };
-  for (const r of mRows) checkGameIds(`monsters.csv ${r.Key} GameIds`, r.GameIds);
+  for (const r of mRows) {
+    checkGameIds(`monsters.csv ${r.Key} GameIds`, r.GameIds);
+    // GameEntry: the game entry the monster's text is under when not its id (one id, no list)
+    if (r.GameEntry && !GAME_ID_RE.test(r.GameEntry)) errors.push(`monsters.csv ${r.Key} GameEntry: ${JSON.stringify(r.GameEntry)} is not a game id`);
+  }
   const stateRow = {};
   for (const r of mvRows) {
     checkGameIds(`monster_moves.csv ${r.Enemy}/${r.Move} GameMoves`, r.GameMoves);
@@ -207,6 +216,25 @@ const allEvents = inCtx(`(() => {
       if (stateRow[k]) errors.push(`monster_moves.csv: ${s} is on both ${r.Enemy}/${stateRow[k]} and ${r.Enemy}/${r.Move}`);
       else stateRow[k] = r.Move;
     }
+  }
+  // Reference rows: GameIds is the row's key prefix in its game table (ARTIFACT_POWER), or table:prefix for text
+  // kept in another table (static_hover_tips:BLOCK); event choices: GameOption is PAGE.OPTION of the event's id, or table:KEY
+  const REF_ID_RE = /^(?:[a-z_]+:)?[A-Z0-9_]+$/;
+  for (const file of ['powers', 'cards', 'relics', 'potions', 'enchantments']) {
+    for (const r of parseCSV(readData(`${file}.csv`))) {
+      for (const id of gameIds(r.GameIds)) if (!REF_ID_RE.test(id)) errors.push(`${file}.csv ${r.Key} GameIds: ${JSON.stringify(id)} is not a game key prefix (ID or table:ID)`);
+      // GameTitle: the title key the game's code picks for the row (DINGY_DAGGER.title.dingy)
+      if (r.GameTitle && !/^[A-Z0-9_]+\.title\.[A-Za-z0-9_]+$/.test(r.GameTitle)) errors.push(`${file}.csv ${r.Key} GameTitle: ${JSON.stringify(r.GameTitle)} is not ID.title.variant`);
+    }
+  }
+  // Event lore: GameLore lists the event's game pages the lore is (INITIAL;ENTER)
+  for (const r of evRows) {
+    checkGameIds(`events.csv ${r.Key} GameLore`, r.GameLore);
+    // PanelName: a display name like Name (the panel's title where it shows more than the name)
+    if (NAME_BAD.test(r.PanelName || '')) errors.push(`events.csv ${r.Key} PanelName: ${JSON.stringify(r.PanelName)} contains < > " or &`);
+  }
+  for (const r of parseCSV(ctx.__texts.eventChoices)) {
+    if (r.GameOption && !/^(?:[A-Z0-9_]+\.[A-Z0-9_]+|[a-z_]+:[A-Z0-9_]+)$/.test(r.GameOption)) errors.push(`event_choices.csv ${r.Event}/${r.Choice} GameOption: ${JSON.stringify(r.GameOption)} is not PAGE.OPTION or table:KEY`);
   }
   for (const [file, rows] of [['encounters.csv', encRows], ['events.csv', evRows]]) {
     const idRow = {};
@@ -259,6 +287,37 @@ const allEvents = inCtx(`(() => {
   for (const r of parseCSV(ctx.__texts.eventChoices)) {
     for (const k of (r.References || '').split(',').map((s) => s.trim()).filter(Boolean)) {
       if (!itemKeySet.has(k)) warnings.push(`event_choices.csv ${r.Event}: References key ${JSON.stringify(k)} unknown`);
+    }
+  }
+
+  // Localization (tools/l10n): the game text must come from the game build the data is for, and hold every key
+  // the data looks up; missing translations only warn (that text shows in English), so an urgent data fix
+  // never waits on one. The patch pipeline holds translations to the strict check (check.mjs report --strict).
+  {
+    const langs = inCtx('LANGS.map(l => l.code)');
+    const stamp = {};
+    for (const lang of langs) {
+      const text = readData(`loc/game/${lang}.json`);
+      if (!text) { errors.push(`data/loc/game/${lang}.json missing (js/config.js LANGS lists ${lang}): run tools/l10n/extract.mjs`); continue; }
+      stamp[lang] = JSON.parse(text).game || '';
+    }
+    const eng = stamp.eng || '';
+    for (const lang of langs) if (lang in stamp && stamp[lang] !== eng) errors.push(`data/loc/game/${lang}.json is from game v${stamp[lang]}, English from v${eng}: run tools/l10n/extract.mjs`);
+    const target = (CONFIG.isBeta ? CONFIG.betaVersion : CONFIG.gameVersion) || '';
+    const ver = v => v.split('.').map(n => parseInt(n, 10) || 0);
+    const cmp = (a, b) => { const x = ver(a), y = ver(b); for (let i = 0; i < 3; i++) if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); return 0; };
+    if (eng && target) {
+      if (cmp(eng, target) < 0) errors.push(`game text is from game v${eng}, the data is for v${target}: run tools/l10n/extract.mjs on that game`);
+      else if (ver(eng).slice(0, 2).join('.') !== ver(target).slice(0, 2).join('.')) warnings.push(`game text is from game v${eng}, the data is for v${target}`);
+    }
+    for (const k of inCtx('unextractedGameKeys()')) errors.push(`the data looks up game key ${k}, which tools/l10n/extract.mjs hasn't looked for: run it`);
+    const templates = inCtx('siteTemplates()');
+    const ui = inCtx('JSON.parse(JSON.stringify(siteUi))');
+    const uiKeys = inCtx('uiKeysToTranslate()');
+    for (const lang of langs.filter(l => l !== 'eng')) {
+      const site = JSON.parse(readData(`loc/site/${lang}.json`) || '{}');
+      const missing = templates.filter(t => !site.text?.[t]).length + uiKeys.filter(k => site.ui?.[k]?.en !== ui[k] || !site.ui?.[k]?.text).length;
+      if (missing) warnings.push(`data/loc/site/${lang}.json: ${missing} strings untranslated or out of date (shown in English): tools/l10n/pending.mjs ${lang}`);
     }
   }
 
@@ -369,7 +428,33 @@ if (/<base\s[^>]*>/.test(INDEX_HTML)) {
 // checked-in markup is refreshed on every build, so adding an act never
 // requires editing index.html by hand. Idempotent on re-runs.
 const actBarInner = inCtx('buildActBarHtml')('overgrowth');
-const encounterTabsInner = inCtx('encounterTabsHtml');
+const encounterTabsInner = inCtx('encounterTabsHtml()');
+
+// index.html's own text is the English of data/loc/site/eng.json (js/i18n.js chromeStrings, which ui.js applies
+// in other languages): the two must not drift apart
+{
+  const textOf = (html) => html.replace(/<span id="game-version">[^<]*<\/span>/, '<span id="game-version"></span>').replace(/\s+/g, ' ').trim();
+  const drift = [];
+  for (const s of inCtx('chromeStrings()')) {
+    const cls = s.sel.match(/^\.site-footer \.(footer-\w+)$/);
+    const want = textOf(s.text);
+    let found = null;
+    if (s.attr === 'placeholder' || s.attr === 'aria-label') {
+      const id = s.sel.slice(1);
+      const m = INDEX_HTML.match(new RegExp(`id="${id}"[^>]*${s.attr}="([^"]*)"|${s.attr}="([^"]*)"[^>]*id="${id}"`));
+      found = m ? (m[1] ?? m[2]) : null;
+    } else if (cls) {
+      // (a footer line ends where the next one or the feedback link starts)
+      const m = INDEX_HTML.match(new RegExp(`<span class="${cls[1]}">([\\s\\S]*?)</span>(?:<br>|\\s*<div|\\s*<span class="footer-)`));
+      found = m ? textOf(m[1]) : null;
+    } else continue;   // buttons and labels: checked by the fake-language test (tools/l10n)
+    if (found !== want) drift.push(`${s.sel} ${s.attr}: index.html ${JSON.stringify(found)} vs eng.json ${s.key} ${JSON.stringify(want)}`);
+  }
+  if (drift.length) {
+    for (const d of drift) console.error(`ERROR: ${d}`);
+    process.exit(1);
+  }
+}
 INDEX_HTML = mustReplace(
   INDEX_HTML,
   /<div class="act-bar">[\s\S]*?<\/div>\s*<div class="category-tabs" id="category-tabs">[\s\S]*?<\/div>\s*(<div class="player-count-bar">)/,
@@ -516,7 +601,7 @@ for (const ev of allEvents) {
   const page = buildPage({
     title, description, ogImage: image, canonical,
     jsonLd: jsonldFor(ev.name, description, canonical, image),
-    panelName: ev.name,
+    panelName: eventName(ev),
     panelBadgeHtml: renderBetaBadge('event', ev.key),
     panelHtml: buildEventPanelBody(ev, getChoices(ev.key)),
   });

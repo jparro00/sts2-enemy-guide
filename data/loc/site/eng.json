@@ -1,0 +1,147 @@
+{
+  "about": "The site's own labels and phrases in English (js/i18n.js t): \"English\", or { \"text\": English, \"game\": \"table:KEY\" } for a label that is also a game string (other languages then show the game's). {slot}s are filled by the code; HTML is allowed. Translations: data/loc/site/<lang>.json. Data cells (names, notes, patterns, effects) are English in data/*.csv.",
+  "ui": {
+    "act_label": {
+      "text": "Act {actNumber}",
+      "game": "gameplay_ui:ACT_NUMBER"
+    },
+    "act_reference": "Reference",
+    "act_title": "Act {n}: {name}",
+    "attack_pattern": "Attack Pattern",
+    "banner_beta": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+    "banner_beta_short": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+    "banner_stable": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+    "banner_stable_short": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+    "beta_changed": "Changed in Beta {version}:",
+    "beta_patch": "Beta Patch",
+    "boss_label": "Boss:",
+    "cat_all_title": "All Encounters",
+    "cat_boss": {
+      "text": "Boss",
+      "game": "map:LEGEND_BOSS.title"
+    },
+    "cat_boss_title": "Bosses",
+    "cat_easy": "Easy",
+    "cat_easy_title": "Easy Encounters",
+    "cat_elite": {
+      "text": "Elite",
+      "game": "map:LEGEND_ELITE.title"
+    },
+    "cat_elite_title": {
+      "text": "Elites",
+      "game": "map:LEGEND_ELITE.hoverTip.title"
+    },
+    "cat_hard": "Hard",
+    "cat_hard_title": "Hard Encounters",
+    "choices": "Choices",
+    "col_choice": "Choice",
+    "col_effect": "Effect",
+    "col_intent": "Intent",
+    "col_move": "Move",
+    "collapse": "Collapse/Expand",
+    "composition": "Composition",
+    "dominion": "Dominion",
+    "dominion_act_boss": "Act boss",
+    "dominion_fight": "Enemies gain {power}",
+    "dominion_joiners": "Enemies that join mid-fight gain {power}",
+    "dominion_joiners_none": "Enemies that join mid-fight gain none",
+    "dominion_minions": "Minions that join mid-fight gain {power}",
+    "dominion_minions_none": "Minions that join mid-fight gain none",
+    "dominion_other_fights": "Other fights this act",
+    "dread": {
+      "text": "Dread",
+      "game": "main_menu_ui:DREAD.title"
+    },
+    "energy": {
+      "text": "Energy",
+      "game": "static_hover_tips:ENERGY.title"
+    },
+    "events": "Events",
+    "events_all": "All Events",
+    "feedback": "Submit feedback or report an issue",
+    "footer_credit": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+    "footer_early": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+    "hp": "HP:",
+    "intent_add_statuses": "add_statuses",
+    "intent_affliction": "affliction",
+    "intent_attack": "attack",
+    "intent_block": "block",
+    "intent_buff": "buff",
+    "intent_deathblow": "deathblow",
+    "intent_debuff": "debuff",
+    "intent_escape": "escape",
+    "intent_heal": "heal",
+    "intent_multi_attack": "multi_attack",
+    "intent_sleeping": "sleeping",
+    "intent_stun": "stun",
+    "intent_summon": "summon",
+    "intent_unknown": "unknown",
+    "language": {
+      "text": "Language",
+      "game": "settings_ui:LANGUAGE"
+    },
+    "list_separator": ", ",
+    "minion_badge": "{name} — abandons combat without their leader",
+    "mod_auto_close": "Auto-close",
+    "mod_auto_close_tip": "Close the panel on a click outside it",
+    "mod_close_panel": "Close panel",
+    "mod_current": "Current",
+    "mod_dock": "Dock",
+    "mod_lang_auto": "Auto ({lang})",
+    "mod_like_steam": "Like Us On Steam!",
+    "mod_loading": "Loading data...",
+    "mod_offline": "Spire Codex data unavailable",
+    "mod_open_codex": "Open Spire Codex",
+    "mod_pop_out": "Pop out",
+    "mod_update": "Mod update available",
+    "mod_versions": "Data v{data} · Game v{game}",
+    "moves": "Moves",
+    "no_data": "No data available.",
+    "players": "Players:",
+    "players_n": "{n}P",
+    "players_solo": "Solo",
+    "rarity_Colorless": "Colorless",
+    "rarity_Curse": {
+      "text": "Curse",
+      "game": "gameplay_ui:CARD_RARITY.CURSE"
+    },
+    "rarity_Event": {
+      "text": "Event",
+      "game": "gameplay_ui:CARD_RARITY.EVENT"
+    },
+    "rarity_Quest": {
+      "text": "Quest",
+      "game": "gameplay_ui:CARD_RARITY.QUEST"
+    },
+    "rarity_Status": {
+      "text": "Status",
+      "game": "gameplay_ui:CARD_RARITY.STATUS"
+    },
+    "ref_cards": "Cards",
+    "ref_description": "Description",
+    "ref_enchantments": "Enchantment Reference",
+    "ref_name": "Name",
+    "ref_potions": "Potion Reference",
+    "ref_powers": "Powers",
+    "ref_relics": "Relic Reference",
+    "search": {
+      "text": "Search",
+      "game": "card_library:CARD_LIBRARY_SEARCH"
+    },
+    "search_none": "No matches found.",
+    "search_placeholder": "Search enemies or encounters...",
+    "search_zone_events": "{zone} — Events",
+    "star": {
+      "text": "Stars",
+      "game": "static_hover_tips:STAR_COUNT.title"
+    },
+    "starts_with": "STARTS WITH:",
+    "tab_all": "All",
+    "version_beta": "beta v{version}",
+    "version_live": "v{version}",
+    "zone_boss": "{zone} boss",
+    "zone_events": "{zone} Events",
+    "zone_prefix": "{zone}: ",
+    "zone_shared": "Shared"
+  }
+}

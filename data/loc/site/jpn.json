@@ -1,0 +1,701 @@
+{
+  "lang": "jpn",
+  "ui": {
+    "act_reference": {
+      "en": "Reference",
+      "text": "資料"
+    },
+    "act_title": {
+      "en": "Act {n}: {name}",
+      "text": "第{n}層：{name}"
+    },
+    "attack_pattern": {
+      "en": "Attack Pattern",
+      "text": "行動パターン"
+    },
+    "banner_beta": {
+      "en": "BETA — This page reflects <strong>beta v{version}</strong> balance changes. <a href=\"../\">View stable version</a>",
+      "text": "BETA — このページは<strong>ベータ版v{version}</strong>のバランス調整を反映しています。<a href=\"../\">通常版を見る</a>"
+    },
+    "banner_beta_short": {
+      "en": "BETA <strong>v{version}</strong> — <a href=\"../\">View stable version</a>",
+      "text": "BETA <strong>v{version}</strong> — <a href=\"../\">通常版を見る</a>"
+    },
+    "banner_stable": {
+      "en": "This site is also available for the latest <strong>beta patch v{version}</strong>. <a href=\"beta/\">Switch to beta</a>",
+      "text": "このサイトには最新の<strong>ベータパッチv{version}</strong>に対応した版もあります。<a href=\"beta/\">ベータ版に切り替える</a>"
+    },
+    "banner_stable_short": {
+      "en": "v{live} · <a href=\"beta/\">Switch to beta</a>",
+      "text": "v{live} · <a href=\"beta/\">ベータ版に切り替える</a>"
+    },
+    "beta_changed": {
+      "en": "Changed in Beta {version}:",
+      "text": "ベータ{version}での変更点："
+    },
+    "beta_patch": {
+      "en": "Beta Patch",
+      "text": "ベータパッチ"
+    },
+    "boss_label": {
+      "en": "Boss:",
+      "text": "ボス："
+    },
+    "cat_all_title": {
+      "en": "All Encounters",
+      "text": "全エンカウント"
+    },
+    "cat_boss_title": {
+      "en": "Bosses",
+      "text": "ボス"
+    },
+    "cat_easy": {
+      "en": "Easy",
+      "text": "イージー"
+    },
+    "cat_easy_title": {
+      "en": "Easy Encounters",
+      "text": "イージーエンカウント"
+    },
+    "cat_hard": {
+      "en": "Hard",
+      "text": "ハード"
+    },
+    "cat_hard_title": {
+      "en": "Hard Encounters",
+      "text": "ハードエンカウント"
+    },
+    "choices": {
+      "en": "Choices",
+      "text": "選択肢"
+    },
+    "col_choice": {
+      "en": "Choice",
+      "text": "選択肢"
+    },
+    "col_effect": {
+      "en": "Effect",
+      "text": "効果"
+    },
+    "col_intent": {
+      "en": "Intent",
+      "text": "行動予定"
+    },
+    "col_move": {
+      "en": "Move",
+      "text": "行動"
+    },
+    "collapse": {
+      "en": "Collapse/Expand",
+      "text": "折りたたみ／展開"
+    },
+    "composition": {
+      "en": "Composition",
+      "text": "敵の構成"
+    },
+    "dominion": {
+      "en": "Dominion",
+      "text": "権能"
+    },
+    "dominion_act_boss": {
+      "en": "Act boss",
+      "text": "この層のボス"
+    },
+    "dominion_fight": {
+      "en": "Enemies gain {power}",
+      "text": "敵が{power}を得る"
+    },
+    "dominion_joiners": {
+      "en": "Enemies that join mid-fight gain {power}",
+      "text": "戦闘中に加わった敵が{power}を得る"
+    },
+    "dominion_joiners_none": {
+      "en": "Enemies that join mid-fight gain none",
+      "text": "戦闘中に加わった敵は得ない"
+    },
+    "dominion_minions": {
+      "en": "Minions that join mid-fight gain {power}",
+      "text": "戦闘中に加わったミニオンが{power}を得る"
+    },
+    "dominion_minions_none": {
+      "en": "Minions that join mid-fight gain none",
+      "text": "戦闘中に加わったミニオンは得ない"
+    },
+    "dominion_other_fights": {
+      "en": "Other fights this act",
+      "text": "この層の他の戦闘"
+    },
+    "events": {
+      "en": "Events",
+      "text": "イベント"
+    },
+    "events_all": {
+      "en": "All Events",
+      "text": "全イベント"
+    },
+    "feedback": {
+      "en": "Submit feedback or report an issue",
+      "text": "フィードバック・不具合の報告"
+    },
+    "footer_credit": {
+      "en": "The data on this site was originally sourced from the <a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>, created by <span class=\"credit-names\">dr0gulus, Aplet123, and Redbeardy_Mcgee</span> &mdash; huge thanks for their work making this possible.",
+      "text": "このサイトのデータは、<span class=\"credit-names\">dr0gulus、Aplet123、Redbeardy_Mcgee</span>の各氏が作成した<a href=\"https://docs.google.com/spreadsheets/d/1wlhrYjH8JwfPrPd0VaekzJrdKuOXCT23UwxHcQBayVc/\" target=\"_blank\">STS2 Community Reference Sheet</a>を元にしています。このサイトを実現可能にしてくれた皆さんの尽力に、心から感謝します。"
+    },
+    "footer_early": {
+      "en": "Slay the Spire 2 is currently in early access, so enemy stats, moves, and patterns are subject to change with each patch. Data last updated for <span id=\"game-version\"></span>.",
+      "text": "Slay the Spire 2は現在早期アクセス中のため、敵のステータス、行動、パターンはパッチごとに変更される可能性があります。データは<span id=\"game-version\"></span>時点のものです。"
+    },
+    "hp": {
+      "en": "HP:",
+      "text": "HP："
+    },
+    "intent_add_statuses": {
+      "en": "add_statuses",
+      "text": "状態異常追加"
+    },
+    "intent_affliction": {
+      "en": "affliction",
+      "text": "災禍"
+    },
+    "intent_attack": {
+      "en": "attack",
+      "text": "アタック"
+    },
+    "intent_block": {
+      "en": "block",
+      "text": "ブロック"
+    },
+    "intent_buff": {
+      "en": "buff",
+      "text": "バフ"
+    },
+    "intent_deathblow": {
+      "en": "deathblow",
+      "text": "死に際の一撃"
+    },
+    "intent_debuff": {
+      "en": "debuff",
+      "text": "デバフ"
+    },
+    "intent_escape": {
+      "en": "escape",
+      "text": "逃走"
+    },
+    "intent_heal": {
+      "en": "heal",
+      "text": "回復"
+    },
+    "intent_multi_attack": {
+      "en": "multi_attack",
+      "text": "連続アタック"
+    },
+    "intent_sleeping": {
+      "en": "sleeping",
+      "text": "睡眠"
+    },
+    "intent_stun": {
+      "en": "stun",
+      "text": "スタン"
+    },
+    "intent_summon": {
+      "en": "summon",
+      "text": "召喚"
+    },
+    "intent_unknown": {
+      "en": "unknown",
+      "text": "不明"
+    },
+    "list_separator": {
+      "en": ", ",
+      "text": "、"
+    },
+    "minion_badge": {
+      "en": "{name} — abandons combat without their leader",
+      "text": "{name} — リーダーがいなくなると戦闘から逃走する"
+    },
+    "mod_auto_close": {
+      "en": "Auto-close",
+      "text": "自動で閉じる"
+    },
+    "mod_auto_close_tip": {
+      "en": "Close the panel on a click outside it",
+      "text": "パネルの外をクリックすると閉じる"
+    },
+    "mod_close_panel": {
+      "en": "Close panel",
+      "text": "パネルを閉じる"
+    },
+    "mod_current": {
+      "en": "Current",
+      "text": "現在"
+    },
+    "mod_dock": {
+      "en": "Dock",
+      "text": "ドッキング"
+    },
+    "mod_lang_auto": {
+      "en": "Auto ({lang})",
+      "text": "自動（{lang}）"
+    },
+    "mod_like_steam": {
+      "en": "Like Us On Steam!",
+      "text": "Steamで高評価をお願いします！"
+    },
+    "mod_loading": {
+      "en": "Loading data...",
+      "text": "データを読み込み中……"
+    },
+    "mod_offline": {
+      "en": "Spire Codex data unavailable",
+      "text": "Spire Codexのデータを取得できません"
+    },
+    "mod_open_codex": {
+      "en": "Open Spire Codex",
+      "text": "Spire Codexを開く"
+    },
+    "mod_pop_out": {
+      "en": "Pop out",
+      "text": "ポップアウト"
+    },
+    "mod_update": {
+      "en": "Mod update available",
+      "text": "Modのアップデートがあります"
+    },
+    "mod_versions": {
+      "en": "Data v{data} · Game v{game}",
+      "text": "データv{data} · ゲームv{game}"
+    },
+    "moves": {
+      "en": "Moves",
+      "text": "行動"
+    },
+    "no_data": {
+      "en": "No data available.",
+      "text": "データがありません。"
+    },
+    "players": {
+      "en": "Players:",
+      "text": "プレイヤー数："
+    },
+    "players_n": {
+      "en": "{n}P",
+      "text": "{n}人"
+    },
+    "players_solo": {
+      "en": "Solo",
+      "text": "ソロ"
+    },
+    "rarity_Colorless": {
+      "en": "Colorless",
+      "text": "無色"
+    },
+    "ref_cards": {
+      "en": "Cards",
+      "text": "カード"
+    },
+    "ref_description": {
+      "en": "Description",
+      "text": "説明"
+    },
+    "ref_enchantments": {
+      "en": "Enchantment Reference",
+      "text": "エンチャント一覧"
+    },
+    "ref_name": {
+      "en": "Name",
+      "text": "名前"
+    },
+    "ref_potions": {
+      "en": "Potion Reference",
+      "text": "ポーション一覧"
+    },
+    "ref_powers": {
+      "en": "Powers",
+      "text": "パワー"
+    },
+    "ref_relics": {
+      "en": "Relic Reference",
+      "text": "レリック一覧"
+    },
+    "search": {
+      "en": "Search",
+      "text": "検索"
+    },
+    "search_none": {
+      "en": "No matches found.",
+      "text": "一致する結果はありません。"
+    },
+    "search_placeholder": {
+      "en": "Search enemies or encounters...",
+      "text": "敵やエンカウントを検索……"
+    },
+    "search_zone_events": {
+      "en": "{zone} — Events",
+      "text": "{zone} — イベント"
+    },
+    "starts_with": {
+      "en": "STARTS WITH:",
+      "text": "初期状態："
+    },
+    "tab_all": {
+      "en": "All",
+      "text": "すべて"
+    },
+    "version_beta": {
+      "en": "beta v{version}",
+      "text": "ベータ版v{version}"
+    },
+    "version_live": {
+      "en": "v{version}",
+      "text": "v{version}"
+    },
+    "zone_boss": {
+      "en": "{zone} boss",
+      "text": "{zone}のボス"
+    },
+    "zone_events": {
+      "en": "{zone} Events",
+      "text": "{zone}のイベント"
+    },
+    "zone_prefix": {
+      "en": "{zone}: ",
+      "text": "{zone}："
+    },
+    "zone_shared": {
+      "en": "Shared",
+      "text": "共通"
+    }
+  },
+  "text": {
+    "(N = {n1} + # times Multi-Claw has been used)": "（N = {n1} + 連続引っかきの使用回数）",
+    "(with random intent)": "（行動予定はランダム）",
+    "A random card is removed from your [gold]Deck[/gold].": "[gold]デッキ[/gold]からランダムなカードが1枚失われる。",
+    "Add [red]Doubt[/red] to your Deck. Get {n1} card rewards ({n2} cards each).": "[red]疑念[/red]をデッキに追加。カード報酬を{n1}回獲得（各{n2}枚）。",
+    "Add [red]Doubt[/red] to your Deck. Transform {n1} cards.": "[red]疑念[/red]をデッキに追加。カードを{n1}枚変化させる。",
+    "Add [red]Regret[/red] to your Deck. Gain {n1} Gold.": "[red]後悔[/red]をデッキに追加。{n1}ゴールドを入手。",
+    "Add [red]Regret[/red] to your Deck. Obtain {n1} random Relics.": "[red]後悔[/red]をデッキに追加。ランダムなレリックを{n1}個獲得。",
+    "Add [red]Shame[/red] to your Deck. Upgrade {n1} cards.": "[red]羞恥[/red]をデッキに追加。カードを{n1}枚アップグレードする。",
+    "Add {n1} Burns to Hand": "火傷を{n1}枚手札に加える",
+    "Add {n1} Dazed to Discard": "めまいを{n1}枚捨て札に加える",
+    "Add {n1} Dazed to Draw": "めまいを{n1}枚山札に加える",
+    "Add {n1} Infection to Discard": "感染を{n1}枚捨て札に加える",
+    "Add {n1} Slimed to Discard": "粘液を{n1}枚捨て札に加える",
+    "Add {n1} Slimed to discard": "粘液を{n1}枚捨て札に加える",
+    "Add {n1} Toxic to Hand": "毒素を{n1}枚手札に加える",
+    "Add {n1} Wither to Discard": "衰微を{n1}枚捨て札に加える",
+    "Add {n1} Wounds into discard": "負傷を{n1}枚捨て札に加える",
+    "After Amalgam dies: Cycles {m1} → {m2} → {m3}.": "アマルガムの死亡後：{m1} → {m2} → {m3}を繰り返す。",
+    "After Turret Operator dies: Always uses {m1}.": "タレットオペレーターの死亡後：常に{m1}を使う。",
+    "After accepting, one of {n1} random trials is chosen (Merchant, Noble, or Nondescript).": "受諾すると、{n1}種類の裁判（商人、貴族、特徴のない女性）からランダムに1つが選ばれる。",
+    "After immersing you can Linger (same effect with +{n1} damage each time) or Exit Baths.": "入浴後は「長風呂する」（同じ効果で、毎回ダメージ+{n1}）か「浴場を出る」を選べる。",
+    "After reaching {n1} stacks of Personal Hive, instead only gains {n2} strength.": "パーソナルハイヴが{n1}に達した後は、代わりに筋力{n2}のみを得る。",
+    "After stun: Repeats {m1} → {m2}.": "スタン後：{m1} → {m2}を繰り返す。",
+    "After {m1} ({n1}nd in a row): Always uses {m2}.": "{m1}の後（{n1}回連続）：常に{m2}を使う。",
+    "After {m1} ({n1}st in a row): {n2}% {m2}, {n3}% {m3}.": "{m1}の後（{n1}回連続）：{n2}%で{m2}、{n3}%で{m3}。",
+    "After {m1}: Always uses {m2}.": "{m1}の後：常に{m2}を使う。",
+    "After {n1} stacks of Personal Hive: {m1} gains {n2} Strength instead.": "パーソナルハイヴが{n1}に達した後：{m1}では代わりに筋力{n2}を得る。",
+    "All rewards can be skipped, but Doubt is added to your deck immediately when revealed.": "報酬はすべてスキップできるが、疑念はめくった時点で即座にデッキに追加される。",
+    "All {n1} rats start evenly distributed between {m1}, {m2}, and {m3}.": "{n1}匹のネズミの最初の行動は、{m1}、{m2}、{m3}に均等に割り振られる。",
+    "Allies gain {n1} {p1}": "味方が{p1}{n1}を得る",
+    "Always uses {m1} → {m2} → {m3} → {m4} → {m5}.": "常に{m1} → {m2} → {m3} → {m4} → {m5}の順に使う。",
+    "Always uses {m1}.": "常に{m1}を使う。",
+    "Apply -{n1} {p1}": "{p1}-{n1}を付与",
+    "Apply {n1} {p1}": "{p1}{n1}を付与",
+    "Apply {p1}": "{p1}を付与",
+    "Apply {p1} {n1}": "{p1}{n1}を付与",
+    "As of v{n1}.{n2}.{n3} {m1} is never used in the cycle.": "v{n1}.{n2}.{n3}時点で、{m1}はサイクル中に一度も使用されない。",
+    "Attack — Deal {n1} damage, plus:": "アタック — {n1}ダメージを与え、さらに：",
+    "Below": "下方",
+    "Byrdonis Egg can be traded for Byrd Swoop at a rest site. Choosing this consumes your rest option.": "休憩所でビャードニスの卵をビャードの急襲と交換できる。これを選ぶと、その休憩所では他の行動を選べない。",
+    "Can only appear if all players are at or below {n1}% of Max HP.": "全プレイヤーのHPが最大HPの{n1}%以下の場合にのみ出現する。",
+    "Can only appear if all players have a card with Exhaust in their deck.": "全プレイヤーのデッキに廃棄を持つカードがある場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} Gold.": "全プレイヤーが{n1}ゴールド以上を所持している場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} HP.": "全プレイヤーのHPが{n1}以上の場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} card eligible for the Perfect Fit enchantment.": "全プレイヤーが完璧な適合をエンチャントできるカードを{n1}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} card eligible for the Spiral enchantment.": "全プレイヤーがらせんをエンチャントできるカードを{n1}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} potion.": "全プレイヤーがポーションを{n1}個以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} potions.": "全プレイヤーがポーションを{n1}個以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} removable Basic Strikes and {n2} removable Basic Defends.": "全プレイヤーが削除可能なベーシックのストライクを{n1}枚以上、削除可能なベーシックの防御を{n2}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} removable Basic card.": "全プレイヤーが削除可能なベーシックカードを{n1}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} removable card.": "全プレイヤーが削除可能なカードを{n1}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} tradable relics.": "全プレイヤーが交換可能なレリックを{n1}個以上持っている場合にのみ出現する。",
+    "Can only appear if all players have at least {n1} transformable cards.": "全プレイヤーが変化可能なカードを{n1}枚以上持っている場合にのみ出現する。",
+    "Can only appear if all players have more than {n1} HP.": "全プレイヤーのHPが{n1}より多い場合にのみ出現する。",
+    "Can only appear if at least {n1} player has {n2} or more Gold, a tradable relic, and a potion.": "{n2}ゴールド以上、交換可能なレリック、ポーションをすべて持つプレイヤーが{n1}人以上いる場合にのみ出現する。",
+    "Can only appear if no player has an event pet.": "どのプレイヤーもイベントのペットを連れていない場合にのみ出現する。",
+    "Can only appear if you have at least {n1} Gold or a Foul Potion.": "{n1}ゴールド以上か悪臭ポーションを持っている場合にのみ出現する。",
+    "Can only appear in Act {n1} or Act {n2}.": "第{n1}層か第{n2}層でのみ出現する。",
+    "Can only appear in Act {n1}.": "第{n1}層でのみ出現する。",
+    "Can only appear on floor {n1}+.": "{n1}階以降でのみ出現する。",
+    "Can only be used once per rat. Requires {n1} turns before available.": "ネズミ1匹につき1回のみ使用可能。使用可能になるまで{n1}ターンかかる。",
+    "Can only be used once.": "1回のみ使用可能。",
+    "Cannot appear naturally.  Appears in the first question mark node you encounter in Act {n1} if The Lantern Key is in your deck.": "通常は出現しない。デッキにランタンの鍵がある場合、第{n1}層で最初に訪れる「？」マスに出現する。",
+    "Cannot repeat.": "連続使用不可。",
+    "Cannot repeat. {n1}-turn cooldown.": "連続使用不可。クールダウン{n1}ターン。",
+    "Cannot repeat. {n1}-turn cooldown. If no moves are allowed defaults to this.": "連続使用不可。クールダウン{n1}ターン。使える行動がない場合はこれを使う。",
+    "Card type is random (Attack/Skill/Power).": "カードタイプはランダム（アタック／スキル／パワー）。",
+    "Card type is random (Attack/Skill/Power). You choose {n1} of {n2} upgraded cards.": "カードタイプはランダム（アタック／スキル／パワー）。アップグレード済みのカード{n2}枚から{n1}枚を選ぶ。",
+    "Cards are from STS{n1}: Caltrops, Clash, Distraction, Dual Wield, Entrench, Hello World, Outmaneuver, Rebound, Rip and Tear, Stack.": "STS{n1}のカード：まきびし、クラッシュ、動揺、二刀流、塹壕、ハロー・ワールド、先読み、リバウンド、狂奔、スタック。",
+    "Cards are from your character's card pool.": "カードは自分のキャラクターのカードプールから出る。",
+    "Cards can still be upgraded during combat after Magi Knight applies Dampen.": "マギナイトが減衰を付与した後でも、戦闘中にカードをアップグレードできる。",
+    "Caviar/+Max HP ({n1})": "キャビア／最大HP増加（{n1}）",
+    "Chaos: Add a random card from your pool to hand. It is Free to Play": "混沌：自分のカードプールからランダムなカードを1枚手札に加える。このターン、それはコストを支払わずにプレイできる",
+    "Choking: Apply {n1} Strangle": "窒息：絞殺{n1}を付与",
+    "Chooses randomly from {m1}, {m2}, and {m3}.": "{m1}、{m2}、{m3}からランダムに選ぶ。",
+    "Clam Roll/Heal ({n1})": "クラムロール／回復（{n1}）",
+    "Confront with Truth is locked if no eligible cards exist in your Deck.": "デッキに対象となるカードがない場合、「真実を突き付ける」は選べない。",
+    "Creates a Mad Science card ({n1} energy). Upgrading gives it Innate.": "マッド・サイエンスのカード（{n1}エナジー）を作成する。アップグレードすると天賦が付く。",
+    "Curious: Powers cost {n1} Energy less": "好奇心：パワーのコストが{n1}エナジー減少する",
+    "Cycles {m1} → {m2} or {m3} ({n1}/{n2}).": "{m1} → {m2}または{m3}（{n1}/{n2}）を繰り返す。",
+    "Cycles {m1} → {m2} → {m3} ({n1}% chance to repeat {m4} once).": "{m1} → {m2} → {m3}を繰り返す（{n1}%の確率で{m4}をもう1回使う）。",
+    "Cycles {m1} → {m2} → {m3} → {m4} (until {m5} used {n1} times).": "{m1} → {m2} → {m3} → {m4}を繰り返す（{m5}を{n1}回使うまで）。",
+    "Cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "{m1} → {m2} → {m3} → {m4} → {m5}を繰り返す。",
+    "Cycles {m1} → {m2} → {m3} → {m4}.": "{m1} → {m2} → {m3} → {m4}を繰り返す。",
+    "Cycles {m1} → {m2} → {m3}, with {n1}% chance to skip {m4}.": "{m1} → {m2} → {m3}を繰り返す。{n1}%の確率で{m4}を飛ばす。",
+    "Cycles {m1} → {m2} → {m3}.": "{m1} → {m2} → {m3}を繰り返す。",
+    "Cycles {m1} → {m2}.": "{m1} → {m2}を繰り返す。",
+    "Damage {n1}": "{n1}ダメージ",
+    "Damage {n1} + stolen {p1}": "{n1}ダメージ+{p1}を奪う",
+    "Damage {n1} + {n2}*N": "{n1}+{n2}*Nダメージ",
+    "Decision made as a group in co-op.": "マルチプレイでは全員で決定する。",
+    "Dies": "死亡する",
+    "Dishes are offered randomly until you run out of money or decide to leave. The previous dish cannot repeat.": "ゴールドが尽きるか立ち去るまで、料理がランダムに出てくる。直前と同じ料理は連続しない。",
+    "Does not copy the Bad Luck. Enchantments on cards do get copied": "不運はコピーされない。カードのエンチャントはコピーされる",
+    "Each option is locked if you have no eligible cards of that type.": "該当するタイプのカードがない場合、その選択肢は選べない。",
+    "Each option names the random relic, so you know exactly what you are trading for.": "各選択肢にはランダムなレリックの名前が表示されるため、何と交換するかが事前にわかる。",
+    "Energized: Gain {n1} Energy": "活性化：{n1}エナジーを得る",
+    "Enrage": "激怒",
+    "Enter deeper. Lose HP.": "奥へと進む。HPを失う。",
+    "Escape from combat": "戦闘から逃走",
+    "Escape from the combat": "戦闘から逃走する",
+    "Expertise: Gain {n1} Strength and {n2} Dexterity": "熟練：筋力{n1}と敏捷{n2}を得る",
+    "Fight has normal gold reward if Fat Gremlin doesn't escape.": "太っちょグレムリンが逃走しなければ、通常どおりゴールド報酬を得られる。",
+    "Fight is against {n1} Punch Constructs starting with {n2} missing HP. One construct always starts with Strong Punch.": "ボクシングロボ{n1}体と戦闘になり、それぞれHPが{n2}減った状態で開始する。うち1体は必ずストロングパンチから開始する。",
+    "Fights as {n1} segments — HP is always an even number, and segments have different max HP.": "{n1}つの節に分かれて戦う — HPは常に偶数で、節ごとに最大HPが異なる。",
+    "Forced every {n1}th grab ({n2}th, {n3}th, etc.).": "{n1}回取るごとに必ず出る（{n2}回目、{n3}回目など）。",
+    "Free (no gold cost).": "無料（ゴールド不要）。",
+    "Fried Eel/Colorless Card ({n1})": "うなぎのフライ／無色カード（{n1}）",
+    "Front and back start with {m1}. Middle starts with {m2}.": "前と後ろは{m1}から、真ん中は{m2}から開始する。",
+    "Front starts {m1}, back starts {m2}.": "前は{m1}から、後ろは{m2}から開始する。",
+    "Gain [gold]Gold[/gold] based on depth.": "深さに応じた[gold]ゴールド[/gold]を入手。",
+    "Gain {n1} {p1}": "{p1}{n1}を得る",
+    "Gain {n1} {p1} and {n2} {p2}": "{p1}{n1}と{p2}{n2}を得る",
+    "Gain {n1} {p1} per respawn": "再出現するたびに{p1}{n1}を得る",
+    "Gain {n1}* Intangible": "霊体{n1}*を得る",
+    "Gain {n1}+ {p1}": "{p1}{n1}+を得る",
+    "Gain {p1}": "{p1}を得る",
+    "Gain {p1} {n1}": "{p1}{n1}を得る",
+    "Gains {n1} {p1}": "{p1}{n1}を得る",
+    "Gains {p1} {n1}": "{p1}{n1}を得る",
+    "Galvanic Burst": "ガルバニックバースト",
+    "Give Potion": "ポーションを渡す",
+    "Give Relic": "レリックを渡す",
+    "Give allies {n1} {p1}": "味方に{p1}{n1}を与える",
+    "Gives normal combat rewards with an additional potion and a relic (possible to receive {n1} potions).": "通常の戦闘報酬に加えて、ポーション1個とレリック1個を獲得する（ポーションを{n1}個得られる場合もある）。",
+    "Gold-generating relics cannot appear as the Featured Item.": "ゴールドを生み出すレリックは、ウォンゴのおすすめ商品には出現しない。",
+    "Golden Fysh/Gold ({n1})": "黄金魚／ゴールド（{n1}）",
+    "Hatches into Hatchling.": "ふ化してハッチリングになる。",
+    "Headbutt": "頭突き",
+    "Heal [green]{n1}%[/green] Max HP.": "最大HPの[green]{n1}%[/green]を回復する。",
+    "Heal [green]{n1}%[/green] Max HP. Fight some [red]enemies[/red].": "最大HPの[green]{n1}%[/green]を回復する。[red]敵[/red]と戦う。",
+    "Heal is multiplied by player count in co-op.": "マルチプレイでは、回復量がプレイヤー数倍になる。",
+    "Heal {n1} HP.": "HPを{n1}回復する。",
+    "Heal {n1}*": "HPを{n1}*回復",
+    "Hold On is repeatable. Damage starts at {n1} and increases by {n2} each time.": "「しがみつく」は繰り返し選べる。ダメージは{n1}から始まり、毎回{n2}ずつ増加する。",
+    "If Amalgam dies mid-turn and intent is {m1}, it becomes {m2} instead.": "ターンの途中でアマルガムが死亡し、行動予定が{m1}の場合、代わりに{m2}になる。",
+    "If Fat Gremlin escapes after stealing gold, you get no gold reward; if he escapes without having stolen gold, you still get {n1}% of the normal gold reward.": "太っちょグレムリンがゴールドを盗んだ後に逃走すると、ゴールド報酬は得られない。ゴールドを盗まずに逃走した場合は、通常のゴールド報酬の{n1}%を得られる。",
+    "If a player is swallowed by the Sandpit effects such as Lizard Tail will not revive you.": "プレイヤーが蟻地獄に飲み込まれた場合、トカゲのしっぽなどの効果では復活できない。",
+    "If allies < {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1}の後、味方が{n1}体未満の場合：{m2} → {m3} → {m4}。",
+    "If allies ≥ {n1} after {m1}: {m2} → {m3} → {m4}.": "{m1}の後、味方が{n1}体以上の場合：{m2} → {m3} → {m4}。",
+    "If spawned from Phrog Parasite, starts stunned.": "寄生キャエルから出現した場合、スタン状態で開始する。",
+    "If stunned before turn {n1}, resumes with next move. If stunned on turn {n2}, tries {m1} again.": "{n1}ターン目より前にスタンした場合、次の行動から再開する。{n2}ターン目にスタンした場合、再び{m1}を試みる。",
+    "If {m1} is allowed, {n1}% chance to use it instead.": "{m1}が使用可能なら、{n1}%の確率で代わりにそれを使う。",
+    "Improvement: At the end of combat, Upgrade a random card": "改良：戦闘終了時、ランダムなカードを1枚アップグレードする",
+    "In X turns, instantly die.": "Xターン後、即死する。",
+    "In co-op, only appears if all players have more than {n1} HP.": "マルチプレイでは、全プレイヤーのHPが{n1}より多い場合にのみ出現する。",
+    "In order to upgrade all cards and go to {n1} Max HP, you need to start with a minimum of {n2} Max HP.": "すべてのカードをアップグレードして最大HPを{n1}にするには、開始時に最大HPが{n2}以上必要。",
+    "In {n1}-Nibbit encounter: front starts {m1}, back starts {m2}.": "ニビット{n1}体のエンカウントでは、前は{m1}から、後ろは{m2}から開始する。",
+    "Increases Wither damage by {n1} each use.": "使用するたびに衰微のダメージが{n1}増加する。",
+    "Initially excludes Basic rarity cards.": "最初はレアリティがベーシックのカードを対象外とする。",
+    "Initiates a fight with Mysterious Knight that gives normal rewards in addition to the Lantern Key": "謎の騎士との戦闘になる。ランタンの鍵に加えて通常の報酬を得られる",
+    "Insert Potion": "ポーションを投入",
+    "Jelly Liver/Transform ({n1})": "ゼリーレバー／変化（{n1}）",
+    "Killing a segment with Doom will allow other dead segments to regenerate even if they briefly all appear dead at the same time.": "破滅で節を倒すと、一瞬すべての節が同時に倒れたように見えても、倒れた他の節が再生してしまう。",
+    "Laser": "レーザー",
+    "Leave the conveyor belt.": "コンベアから立ち去る。",
+    "Lose [red]{n1}[/red] HP (increases by {n2} each time). The Overcome card is re-randomized.": "HPを[red]{n1}[/red]失う（毎回{n2}ずつ増加）。「乗り越える」のカードがランダムに変わる。",
+    "Lose [red]{n1}[/red] HP. Obtain [gold]Fragrant Mushroom[/gold]. Upgrade [blue]{n2}[/blue] random cards.": "HPを[red]{n1}[/red]失う。[gold]芳醇なキノコ[/gold]を獲得。ランダムなカードを[blue]{n2}[/blue]枚アップグレード。",
+    "Lose a Potion. Choose {n1} of {n2} upgraded cards of matching rarity.": "ポーションを1個失う。同じレアリティのアップグレード済みカード{n2}枚から{n1}枚を選ぶ。",
+    "Lose a random [red]Potion[/red]. Gain [blue]{n1}[/blue] Max HP.": "ランダムな[red]ポーション[/red]を1個失う。最大HPが[blue]{n1}[/blue]増加。",
+    "Lose {n1} {p1}": "{p1}{n1}を失う",
+    "Lose {p1}": "{p1}を失う",
+    "Max {n1} in a row.": "連続使用は最大{n1}回。",
+    "Mysterious Knight is a Flail Knight that starts with {n1} Stregnth and {n2} Plating and has {n3} HP.": "謎の騎士は、筋力{n1}とプレート{n2}を持った状態で開始する、HP{n3}のフレイルナイトである。",
+    "N = # of times this move was used": "N = この行動の使用回数",
+    "Obtain Forgotten Soul.": "忘れ去られし魂を獲得。",
+    "Obtain [gold]Big Mushroom[/gold].": "[gold]大きなキノコ[/gold]を獲得。",
+    "Obtain [gold]Tea of Discourtesy[/gold].": "[gold]無作法茶[/gold]を獲得。",
+    "Obtain the [gold]Sword of Stone[/gold].": "[gold]石の剣[/gold]を獲得。",
+    "Offered three random options that are not your character.": "自分以外のキャラクターからランダムに3つの選択肢が提示される。",
+    "Offered {n1} of {n2} random types (Attack/Skill/Power) then {n3} of {n4} random effects for the chosen type.": "{n2}種類のタイプ（アタック／スキル／パワー）からランダムに{n1}つが提示され、次に選んだタイプの効果{n4}種類からランダムに{n3}つが提示される。",
+    "On wakeup all Plating is removed.": "目覚めるとプレートがすべて取り除かれる。",
+    "One of the {n1} Intangible from {m1} ticks down immediately.": "{m1}で得た霊体{n1}のうち1は即座に減少する。",
+    "Only {n1} rat can use {m1} per turn.": "1ターンに{m1}を使えるネズミは{n1}匹のみ。",
+    "Opens with {m1} or {m2}.": "最初は{m1}か{m2}を使う。",
+    "Opens with {m1} → {m2} → {m3}, then always uses {m4}.": "最初に{m1} → {m2} → {m3}を使い、その後は常に{m4}を使う。",
+    "Opens with {m1} → {m2} → {m3}.": "最初に{m1} → {m2} → {m3}を使う。",
+    "Opens with {m1} → {m2}, then always uses {m3}.": "最初に{m1} → {m2}を使い、その後は常に{m3}を使う。",
+    "Opens with {m1} → {m2}.": "最初に{m1} → {m2}を使う。",
+    "Opens with {m1}, then always uses {m2}.": "最初に{m1}を使い、その後は常に{m2}を使う。",
+    "Opens with {m1}.": "最初に{m1}を使う。",
+    "Opens with {m1}; then alternates {m2} ↔ {m3} (always starting with {m4}).": "最初に{m1}を使い、その後は{m2} ↔ {m3}を交互に使う（必ず{m4}から）。",
+    "Options are locked if you don't have the required item.": "必要なアイテムを持っていない場合、その選択肢は選べない。",
+    "Pass Turn": "ターンをパス",
+    "Pass turn": "ターンをパス",
+    "Passes Turn": "ターンをパスする",
+    "Passes turn": "ターンをパスする",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Add [blue]{n2}[/blue] [gold]Enlightenment[/gold] to your [gold]Deck[/gold].": "[red]{n1}[/red][gold]ゴールド[/gold]を支払う。 [gold]啓発[/gold]を[blue]{n2}[/blue]枚[gold]デッキ[/gold]に追加。",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Bone Tea[/gold].": "[red]{n1}[/red][gold]ゴールド[/gold]を支払う。[gold]骨茶[/gold]を獲得。",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain [gold]Ember Tea[/gold].": "[red]{n1}[/red][gold]ゴールド[/gold]を支払う。[gold]燃え殻茶[/gold]を獲得。",
+    "Pay [red]{n1}[/red] [gold]Gold[/gold]. Obtain a random [gold]Rare Relic[/gold].": "[red]{n1}[/red][gold]ゴールド[/gold]を支払う。ランダムな[gold]レリック（レア）[/gold]を獲得。",
+    "Phase {n1} (after stun):": "フェーズ{n1}（スタン後）：",
+    "Phase {n1} (below {n2}% HP after using {m1}):": "フェーズ{n1}（HP{n2}%未満で{m1}を使った後）：",
+    "Phase {n1} (stunned at {n2} HP):": "フェーズ{n1}（HP{n2}でスタン）：",
+    "Phase {n1}:": "フェーズ{n1}：",
+    "Player must choose one of two debuffs:": "プレイヤーは2つのデバフから1つを選ばなければならない：",
+    "Positions {n1} & {n2} start {m1}, positions {n3} & {n4} start {m2}.": "{n1}番目と{n2}番目は{m1}から、{n3}番目と{n4}番目は{m2}から開始する。",
+    "Power:": "パワー：",
+    "Precision Beam": "プレシジョンビーム",
+    "Prep": "準備",
+    "Probabilities are weighted and shift if any options are unavailable.": "確率には重みがあり、選べない選択肢があると変動する。",
+    "Punch-Off event: {n1}st starts {m1}, {n2}nd starts {m2}.": "パンチ対決イベント：{n1}体目は{m1}から、{n2}体目は{m2}から開始する。",
+    "Puppet Strings": "操り糸",
+    "Radiate": "輝きの奔流",
+    "Rejecting is not allowed — double downing abandons the run.": "拒否はできない — 「徹底的に抗う」を選ぶと冒険が終了する。",
+    "Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": "STS{n1}のレリック：闇石の護符、ドリームキャッチャー、ハンドドリル、モーの貯金箱、ザ・ブーツ。",
+    "Repeatable up to {n1} times. Costs escalate: {n2}/{n3}/{n4}/{n5}/all-but-{n6} Max HP. The {n7}th decipher upgrades ALL upgradable cards.": "最大{n1}回まで繰り返せる。コストは最大HP{n2}/{n3}/{n4}/{n5}と増加し、最後は最大HPを{n6}だけ残してすべて失う。{n7}回目の解読では、アップグレード可能なカードをすべてアップグレードする。",
+    "Repeatable up to {n1} times. Damage escalates: {n2}/{n3}/{n4}. The {n5}rd selection grants Pollinous Core.": "最大{n1}回まで繰り返せる。ダメージは{n2}/{n3}/{n4}と増加する。{n5}回目に選ぶと花粉の核を獲得する。",
+    "Repeatable up to {n1} times. Gold escalates: {n2}/{n3}/{n4}.": "最大{n1}回まで繰り返せる。ゴールドは{n2}/{n3}/{n4}と増加する。",
+    "Respawns with {m1} via {p1}; gains {n1} Max HP each respawn.": "{p1}により{m1}で再出現する。再出現するたびに最大HPが{n1}増加する。",
+    "Retains Strength after reviving.": "復活後も筋力を保持する。",
+    "Reward includes three card rewards, each containing {n1} common/uncommon/rare cards.": "報酬にはカード報酬が3回含まれ、それぞれコモン／アンコモン／レアのカード{n1}枚で構成される。",
+    "Sapping: Apply {n1} Weak and {n2} Vulnerable": "虚弱：脱力{n1}と弱体{n2}を付与",
+    "Segments start evenly distributed between {m1}, {m2}, and {m3}.": "各節の最初の行動は、{m1}、{m2}、{m3}に均等に割り振られる。",
+    "Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": "「知識を共有する」のカードは、通常の戦闘と同じレアリティ確率で自分のキャラクターのカードプールから出る（レアの救済補正も適用される）。アップグレード済みのカードが提示されることはない。",
+    "Shuffle {n1} Beckon into discard": "誘いを{n1}枚捨て札に混ぜる",
+    "Shuffle {n1} Beckon into draw": "誘いを{n1}枚山札に混ぜる",
+    "Shuffle {n1} Burns into discard": "火傷を{n1}枚捨て札に混ぜる",
+    "Shuffle {n1} Frantic Escapes into discard": "決死の逃亡を{n1}枚捨て札に混ぜる",
+    "Shuffle {n1} Frantic Escapes into draw": "決死の逃亡を{n1}枚山札に混ぜる",
+    "Single-player only.": "シングルプレイ限定。",
+    "Skill — Gain {n1} Block, plus:": "スキル — {n1}ブロックを得て、さらに：",
+    "Slash {n1}": "切り裂き{n1}",
+    "Sleeps for {n1} turns or until losing HP.": "{n1}ターンの間、またはHPを失うまで眠る。",
+    "Sleeps until awakened, then always uses {m1}.": "目覚めるまで眠り、その後は常に{m1}を使う。",
+    "Slice": "スライス",
+    "Smother": "のしかかり",
+    "Spicy Snappy/Upgrade ({n1})": "スパイシー・スナッピー／アップグレード（{n1}）",
+    "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "戦利品の地図を持っていると、次の層のすべてのルートが層の宝箱マスに合流し、そこでは通常の報酬に加えて{n1}ゴールドを得られる。",
+    "Steal {n1} card and gain {p1}": "カードを{n1}枚盗み、{p1}を得る",
+    "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "盗まれるカードは山札か捨て札から選ばれる。優先順位：{n1}.刻印なしのアンコモン、{n2}.刻印なしのコモン／レア／イベント、{n3}.刻印なしのベーシック／クエスト、{n4}.刻印ありまたはエンシェント、{n5}.呪いまたはその他。",
+    "Stolen gold is held by Fat Gremlin once summoned.": "太っちょグレムリンの召喚後は、盗まれたゴールドを太っちょグレムリンが持つ。",
+    "Stunned for one turn": "1ターンの間スタン",
+    "Submerge": "潜水",
+    "Summon Two-Tailed Rat": "双尾のネズミを召喚",
+    "Summon up to {n1} Tough Eggs": "固い卵を最大{n1}体召喚",
+    "Summon {n1} Aggro Bot": "攻撃型ボットを{n1}体召喚",
+    "Summon {n1} Eye with Teeth": "牙むく眼を{n1}体召喚",
+    "Summon {n1} Gas Bomb": "ガス爆弾を{n1}体召喚",
+    "Summon {n1} Parafright": "パラフライトを{n1}体召喚",
+    "Summons X Wrigglers after dying (they start stunned).": "倒された時、リグラーをX体召喚する（スタン状態で出現）。",
+    "Summons {n1} Aggro Bot": "攻撃型ボットを{n1}体召喚する",
+    "Summons {n1} Defensive Bot": "防御型ボットを{n1}体召喚する",
+    "Suspicious Condiment/Potion ({n1})": "怪しい調味料／ポーション（{n1}）",
+    "Swing": "スイング",
+    "Sword of Stone transforms into Sword of Jade after {n1} fights": "石の剣は{n1}回の戦闘後に翡翠の剣に変化する",
+    "Tackle": "タックル",
+    "Targeting Reticle": "照準器",
+    "Test Subject Stage {n1}": "実験体（第{n1}段階）",
+    "The Foul Potion obtained here can be thrown at the Fake Merchant to trigger a fight.": "ここで手に入る悪臭ポーションを偽の商人に投げつけると、戦闘になる。",
+    "The Lantern Key forces the War Historian, Repy event to appear at the next question mark you encounter in Act {n1}.": "ランタンの鍵を持っていると、第{n1}層で次に訪れる「？」マスに必ずイベント「戦史家、レピー」が出現する。",
+    "The Overcome card is re-randomized each Hold On, excluding previously-offered cards until all others have been offered.": "「しがみつく」を選ぶたびに「乗り越える」のカードがランダムに変わる。他のすべてのカードが提示されるまで、一度提示されたカードは除外される。",
+    "The Rest option triggers all effects that Resting at a Rest site would trigger (Regal Pillow, Dream Catcher, etc.)": "「休憩する」は、休憩所で休憩した時に発動するすべての効果（高貴な枕、ドリームキャッチャーなど）を発動させる",
+    "The big tool can only click on a cell that has not yet been clicked and reveals the {n1} neighbors.": "大占いは、まだめくっていないマスにしか使えず、周囲{n1}マスもまとめて明らかにする。",
+    "The following items are guaranteed to be in the minigame:": "ミニゲームには以下のアイテムが必ず含まれる：",
+    "The specific potion is named in the option text.": "対象のポーション名は選択肢のテキストに表示される。",
+    "The specific potion to be lost is shown in the option text.": "失うポーションは選択肢のテキストに表示される。",
+    "Then chooses randomly from all moves.": "その後はすべての行動からランダムに選ぶ。",
+    "Then chooses randomly from {m1}, {m2}, {m3}.": "その後は{m1}、{m2}、{m3}からランダムに選ぶ。",
+    "Then chooses randomly from {m1}, {m2}.": "その後は{m1}、{m2}からランダムに選ぶ。",
+    "Then cycles {m1} → {m2} → {m3} → {m4} → {m5}.": "その後は{m1} → {m2} → {m3} → {m4} → {m5}を繰り返す。",
+    "Then cycles {m1} → {m2} → {m3} → {m4}.": "その後は{m1} → {m2} → {m3} → {m4}を繰り返す。",
+    "Then cycles {m1} → {m2} → {m3}.": "その後は{m1} → {m2} → {m3}を繰り返す。",
+    "Then cycles {m1} → {m2}.": "その後は{m1} → {m2}を繰り返す。",
+    "There are {n1} possible doll choices, and you will shown a number of random dolls based on your choice.": "選択肢は{n1}つあり、選んだ選択肢に応じた数のランダムな人形が提示される。",
+    "Throwing a Foul Potion triggers a fight. Reward: {n1} Gold, all {n2} relics, a Cheap Knockoff Merchant's Rug, and a card reward.": "悪臭ポーションを投げつけると戦闘になる。報酬：{n1}ゴールド、レリック{n2}個すべて、商人の敷物？（安物の偽物）、カード報酬。",
+    "Total HP to reach Pollinous Core: {n1}.": "花粉の核に到達するまでに失うHPの合計：{n1}。",
+    "Trade one of your [gold]Relics[/gold] for a random [gold]Relic[/gold].": "自分の[gold]レリック[/gold]1個を、ランダムな[gold]レリック[/gold]と交換する。",
+    "Up to {n1} potions from your belt are offered. The rarity of the potion determines the rarity of the card reward.": "所持しているポーションから最大{n1}個が提示される。ポーションのレアリティによってカード報酬のレアリティが決まる。",
+    "Uses {m1} once, then restarts Phase {n1}.": "{m1}を1回使い、その後フェーズ{n1}に戻る。",
+    "Uses {m1}, then cycles {m2} → {m3}.": "{m1}を使い、その後は{m2} → {m3}を繰り返す。",
+    "Violence: Hit {n1} times ({n2})": "暴力：{n1}回攻撃（{n2}）",
+    "Weak Tackle": "弱いタックル",
+    "Weights:": "重み：",
+    "When allies ≤ {n1}: Chooses randomly from {m1}, {m2}.": "味方が{n1}体以下の時：{m1}、{m2}からランダムに選ぶ。",
+    "When allies ≥ {n1}: Always uses {m1}.": "味方が{n1}体以上の時：常に{m1}を使う。",
+    "When killed, summons {n1} Sneaky Gremlin and {n2} Fat Gremlin (they start stunned).": "倒された時、スニーキーグレムリン{n1}体と太っちょグレムリン{n2}体を召喚する（スタン状態で出現）。",
+    "When killed: Revives after {n1} turn with {n2} HP and continues from next move.": "倒された時：{n1}ターン後にHP{n2}で復活し、次の行動から再開する。",
+    "When killed: Revives next turn in Stage {n1}.": "倒された時：次のターンに第{n1}段階で復活する。",
+    "Whenever you are attacked,  deal {n1} damage back": "アタックされるたび、反撃して{n1}ダメージを与える。",
+    "While Amalgam alive: Always uses {m1}.": "アマルガムの生存中：常に{m1}を使う。",
+    "While Burrowed: Always uses {m1}.": "潜伏中：常に{m1}を使う。",
+    "While Turret Operator alive: Always uses {m1}.": "タレットオペレーターの生存中：常に{m1}を使う。",
+    "Wisdom: Draw {n1} cards": "知恵：カードを{n1}枚引く",
+    "[Merchant] Guilty": "［商人］有罪",
+    "[Merchant] Innocent": "［商人］無罪",
+    "[Noble] Guilty": "［貴族］有罪",
+    "[Noble] Innocent": "［貴族］無罪",
+    "[Nondescript] Guilty": "［特徴のない女性］有罪",
+    "[Nondescript] Innocent": "［特徴のない女性］無罪",
+    "[gold]Upgrade[/gold] [blue]{n1}[/blue] random cards.": "ランダムなカードを[blue]{n1}[/blue]枚[gold]アップグレード[/gold]。",
+    "a Torch Head Amalgam in play": "トーチヘッド・アマルガムが場にいる",
+    "{m1} {p1} gain increases by {n1} each use.": "{m1}で得る{p1}は、使用するたびに{n1}増加する。",
+    "{n1} Big Gold/{n2}g ({n3})": "大きなゴールド{n1}個／{n2}G（{n3}）",
+    "{n1} Common Card ({n2})": "コモンカード{n1}枚（{n2}）",
+    "{n1} Common Potions ({n2})": "コモンのポーション{n1}個（{n2}）",
+    "{n1} Dazed to Discard": "めまいを{n1}枚捨て札に",
+    "{n1} Doubt curse ({n2})": "疑念（呪い）{n1}枚（{n2}）",
+    "{n1} Rare Card ({n2})": "レアカード{n1}枚（{n2}）",
+    "{n1} Rare Potion ({n2})": "レアのポーション{n1}個（{n2}）",
+    "{n1} Relic ({n2})": "レリック{n1}個（{n2}）",
+    "{n1} Rock + {n2} random from Egg or Nectar": "岩{n1}体＋卵／みつからランダムに{n2}体",
+    "{n1} Rock + {n2} unique from Egg / Silk / Nectar": "岩{n1}体＋卵／糸／みつから重複なしで{n2}体",
+    "{n1} Slithering Strangler + one of: Snapping Jaxfruit / random Medium Slime / {n2} random Small Slimes": "絞蛇{n1}体＋次のいずれか：暴れジャックフルーツ／ランダムなスライム (中)／ランダムなスライム (小){n2}体",
+    "{n1} Small Gold/{n2}g ({n3})": "小さなゴールド{n1}個／{n2}G（{n3}）",
+    "{n1} Small Twig Slime + {n2} Small Leaf Slime + {n3} random Medium Slime": "細枝スライム (小){n1}体＋リーフスライム (小){n2}体＋ランダムなスライム (中){n3}体",
+    "{n1} Uncommon Card ({n2})": "アンコモンカード{n1}枚（{n2}）",
+    "{n1} enemies": "敵{n1}体",
+    "{n1} of the {n2} cells are populated with items.": "{n2}マスのうち{n1}マスにアイテムが配置される。",
+    "{n1} of {n2} knockoff relics randomly offered for {n3} Gold each.": "{n2}種類の偽レリックからランダムに{n1}個が、それぞれ{n3}ゴールドで売られる。",
+    "{n1} unique Raiders from pool": "レイダーの中から重複なしで{n1}体",
+    "{n1}-turn cooldown.": "クールダウン{n1}ターン。",
+    "{n1}nd choice: {p1} {n2} or {p2}": "{n1}回目の選択：{p1}{n2}または{p2}",
+    "{n1}rd Choice: {p1} {n2} or {p2}": "{n1}回目の選択：{p1}{n2}または{p2}",
+    "{n1}st choice: {p1} {n2} or {p2}": "{n1}回目の選択：{p1}{n2}または{p2}",
+    "{n1}st starts randomly, each subsequent starts at the next point in the cycle.": "{n1}体目はランダムな行動から開始し、以降はサイクルの次の行動から開始する。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts randomly.": "{n1}体目は{m1}、{n2}体目は{m2}、{n3}体目は{m3}から開始し、{n4}体目はランダムな行動から開始する。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}, {n3}rd starts {m3}, {n4}th starts {m4}.": "{n1}体目は{m1}、{n2}体目は{m2}、{n3}体目は{m3}、{n4}体目は{m4}から開始する。",
+    "{n1}st starts {m1}, {n2}nd starts {m2}.": "{n1}体目は{m1}、{n2}体目は{m2}から開始する。",
+    "{n1}st/{n2}nd/{n3}rd evenly distributed between {m1}, {m2}, {m3}. {n4}th starts {m4}.": "{n1}/{n2}/{n3}体目の最初の行動は、{m1}、{m2}、{m3}に均等に割り振られる。{n4}体目は{m4}から開始する。",
+    "{p1} (immediately gives {n1} Intangible)": "{p1}（即座に霊体{n1}を得る）",
+    "{p1} and {p2} {n1}": "{p1}と{p2}{n1}",
+    "{p1} {n1} and {p2}": "{p1}{n1}と{p2}",
+    "{p1} {n1} and {p2} {n2}": "{p1}{n1}と{p2}{n2}",
+    "{p1} {n1} on Fabricator": "ファブリケーターに{p1}{n1}",
+    "~{n1}% chance.": "確率約{n1}%。",
+    "~{n1}% chance. Free (no gold cost). Only appears after first grab.": "確率約{n1}%。無料（ゴールド不要）。最初に取った後にのみ出現する。",
+    "~{n1}% chance. Only appears if not at full HP.": "確率約{n1}%。HPが満タンでない場合にのみ出現する。",
+    "~{n1}% chance. Only appears if you have open potion slots.": "確率約{n1}%。ポーションスロットに空きがある場合にのみ出現する。",
+    "🤝 Gains a set amount of Strength on hit instead of per-player.": "🤝 攻撃を命中させた時に得る筋力は、プレイヤー数に関係なく一定。"
+  }
+}

@@ -33,8 +33,9 @@ function setPlayerCount(count) {
 // grows a query string. `enemies` belongs to one encounter page rather than the
 // visit (routeFromURL reads it, it's dropped on leaving the page), but it
 // counts as a settings link all the same. `asc` (the run's Ascension, 0–10) has
-// no control on the page: links from the in-game panel set it.
-const URL_SETTING_KEYS = ['players', 'act', 'asc', 'dread', 'boss', 'enemies', 'moves'];
+// no control on the page: links from the in-game panel set it. `lang` is read
+// before the data loads (initialLanguage) and, like the rest, isn't saved.
+const URL_SETTING_KEYS = ['players', 'act', 'asc', 'dread', 'boss', 'enemies', 'moves', 'lang'];
 let urlSettingsActive = false;
 
 // Runs once at load, after the saved Dread choices so the link's values win,
@@ -85,6 +86,7 @@ function settingsQuery() {
   if (openPanelInfo && openPanelInfo.moves && openPanelInfo.moves.length) {
     q += `&moves=${openPanelInfo.moves.join(',')}`;
   }
+  if (siteLang !== 'eng') q += `&lang=${siteLang}`;
   return q;
 }
 
@@ -124,6 +126,107 @@ function rerenderOpenPanel() {
   }
 }
 
+// ── Language ──
+// The language is ?lang= (this visit only), else the one picked last, else the
+// first of the browser's languages the site has (English when none). The page
+// itself (index.html and the snapshots) is English; the scripts redraw it in the
+// language once the data is in.
+const LANG_STORAGE_KEY = 'spirecodex.lang';
+let siteIsBeta = false;          // data.js sets it from site-config.json / the path
+const langFileCache = {};        // url -> text, so switching back costs nothing
+
+function knownLang(code) {
+  return LANGS.some(l => l.code === code) ? code : null;
+}
+
+// A browser language tag ("zh-TW", "es-MX") -> a site language: the longest leading part of the tag that is a
+// language's HTML lang or one of its browser tags ("es-*": that language with any other region), else none
+function browserLang(tag) {
+  const parts = (tag || '').toLowerCase().split('-');
+  for (let n = parts.length; n > 0; n--) {
+    const prefix = parts.slice(0, n).join('-');
+    const exact = LANGS.find(l => l.html.toLowerCase() === prefix || (l.browser || []).includes(prefix));
+    if (exact) return exact.code;
+    const region = n > 1 && LANGS.find(l => (l.browser || []).includes(`${parts[0]}-*`));
+    if (region) return region.code;
+  }
+  return null;
+}
+
+function initialLanguage() {
+  const fromUrl = knownLang(new URLSearchParams(window.location.search).get('lang'));
+  if (fromUrl) return fromUrl;
+  try {
+    const saved = knownLang(localStorage.getItem(LANG_STORAGE_KEY));
+    if (saved) return saved;
+  } catch (e) { /* storage blocked */ }
+  for (const tag of navigator.languages || [navigator.language]) {
+    const code = browserLang(tag);
+    if (code) return code;
+  }
+  return 'eng';
+}
+
+// Sets the language's tables and redraws the page's own text (not the grid or panel: callers redraw those)
+function applyLanguage(lang, files) {
+  setLanguage(lang, files);
+  document.documentElement.lang = currentLangInfo().html;
+  for (const s of chromeStrings()) {
+    for (const el of document.querySelectorAll(s.sel)) {
+      if (s.attr === 'textContent') el.textContent = s.text;
+      else if (s.attr === 'innerHTML') el.innerHTML = s.text;
+      else el.setAttribute(s.attr, s.text);
+    }
+  }
+  showDataVersion();
+  renderLanguagePicker();
+}
+
+function showDataVersion() {
+  const el = document.getElementById('game-version');
+  if (el) el.textContent = siteIsBeta ? t('version_beta', { version: siteConfig.betaVersion }) : t('version_live', { version: siteConfig.gameVersion });
+}
+
+function showVersionBanner() {
+  const banner = document.getElementById('version-banner');
+  const content = buildVersionBanner(siteConfig, siteIsBeta);  // shared with build_snapshots.mjs
+  if (banner && content) {
+    banner.className = content.className;
+    banner.innerHTML = content.html;
+  }
+}
+
+function renderLanguagePicker() {
+  const el = document.getElementById('lang-select');
+  if (!el) return;
+  el.setAttribute('aria-label', t('language'));
+  el.innerHTML = LANGS.map(l => `<option value="${l.code}"${l.code === siteLang ? ' selected' : ''}>${l.name}</option>`).join('');
+  const code = document.getElementById('lang-code');   // the phone layout's button face
+  if (code) code.textContent = currentLangInfo().short || currentLangInfo().html;
+}
+
+async function selectLanguage(code) {
+  const lang = knownLang(code) || 'eng';
+  try { localStorage.setItem(LANG_STORAGE_KEY, lang); } catch (e) { /* storage blocked */ }
+  const fetchText = url => langFileCache[url] !== undefined ? Promise.resolve(langFileCache[url])
+    : fetch(url).then(r => r.ok ? r.text() : '').catch(() => '').then(text => (langFileCache[url] = text));
+  const [game, site] = await Promise.all(languageFiles(lang).map(fetchText));
+  applyLanguage(lang, { game: game || '', site: site || '' });
+  showVersionBanner();
+  const actBar = document.querySelector('.act-bar');
+  if (actBar) actBar.innerHTML = buildActBarHtml(currentAct);
+  const tabs = document.getElementById('category-tabs');
+  if (tabs) {
+    tabs.innerHTML = categoryTabsHtml(currentAct);
+    tabs.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === currentCat));
+  }
+  render();
+  rerenderOpenPanel();
+  const input = document.getElementById('search-input');
+  if (input && input.value.trim()) onSearch(input.value);
+  syncSettingsUrl();
+}
+
 // ── Dread toggle ──
 // Only shown when the loaded data has Dread values (beta branches carrying a
 // Dread-mode patch); the choice persists across visits.
@@ -154,7 +257,7 @@ function renderBossPicker() {
   if (!el) return;
   const show = dreadMode && zoneDominionBosses(currentAct).length > 1;
   el.hidden = !show;
-  el.innerHTML = show ? `<span class="player-count-label">Boss:</span>${bossPickerButtons(currentAct)}` : '';
+  el.innerHTML = show ? `<span class="player-count-label">${t('boss_label')}</span>${bossPickerButtons(currentAct)}` : '';
 }
 
 function selectDreadBoss(zone, key) {
@@ -315,27 +418,90 @@ function navigateToPanel(state, url, opts) {
   if (opts.replace) {
     history.replaceState(state, '', url);
   } else {
+    // The panel's entry and the one under it don't restore scroll: closing goes
+    // back to the entry under it, and the page should stay where it was scrolled
+    // to with the panel open, not jump to where the panel was opened. (The mode
+    // belongs to the current entry and is copied to the one pushed.)
+    history.scrollRestoration = 'manual';
     history.pushState(state, '', url);
     panelPushedState = true;
   }
+}
+
+// Shows or hides the panel inside a view transition: the panel slides in or
+// out (css/detail-panel.css, view-transition-name detail-panel). The change
+// must happen inside the transition's callback: one made before it is already
+// in the "before" snapshot, so nothing animates. A transition skipped by a
+// newer one still runs its update.
+//
+// Where the side panel narrows the page (css/detail-panel.css, body.panel-open
+// padding; keep the range in sync), what the reflow moves glides to its new
+// place instead of jumping: each element gets its own transition name for the
+// transition's length. Boxes the size of their content move (and resize, cards
+// in a narrower grid). Full-width boxes would squeeze if scaled; they get a
+// transition class (css/detail-panel.css) that keeps their snapshot's size:
+//   row        centered text with nothing behind it: stays centered as it moves
+//   row-start  a background or a line across the page: stays put on the left
+//              and is clipped from the right (its centered text is named apart:
+//              the banner's and footer's text are blocks for that)
+// Centered text that wraps onto another number of lines can't glide: it gets
+// "reflow" too, and swaps (the old fades out, then the new in) rather than
+// showing both layouts at once. Only boxes that stay one box: an inline element
+// that wraps onto two lines aborts the transition (the footer's feedback link
+// is one short line). Nothing in the panel: it slides as one.
+const PANEL_SHIFTING = [
+  ['header .search-bar, .lang-picker, .act-card, .cat-tab, .player-count-bar > *, .enemy-card, .footer-feedback a', ''],
+  ['header h1, .banner-full, #section-label, .footer-credit, .footer-early', 'row'],
+  ['#version-banner, header, #category-tabs, .cat-group-label, .search-zone-label, .site-footer, .footer-feedback', 'row-start'],
+];
+let panelTransitionGen = 0;
+
+function panelTransition(update) {
+  if (!document.startViewTransition) { update(); return; }
+  const gen = ++panelTransitionGen;
+  const named = [], rows = [];
+  if (window.matchMedia('(min-width: 1100px) and (max-width: 2040px)').matches) {
+    for (const [sel, cls] of PANEL_SHIFTING) {
+      for (const el of document.querySelectorAll(sel)) {
+        if (el.closest('#detail-panel')) continue;
+        el.style.viewTransitionName = `shift-${named.length}`;
+        if (cls) el.style.viewTransitionClass = cls;
+        if (cls === 'row') rows.push([el, el.offsetHeight]);
+        named.push(el);
+      }
+    }
+  }
+  const t = document.startViewTransition(() => {
+    update();
+    for (const [el, height] of rows) if (el.offsetHeight !== height) el.style.viewTransitionClass = 'row reflow';
+  });
+  t.ready.catch(() => { /* skipped */ });
+  // (a newer transition has named the same elements: leave its names)
+  t.finished.finally(() => {
+    if (gen === panelTransitionGen) named.forEach(el => { el.style.viewTransitionName = ''; el.style.viewTransitionClass = ''; });
+  });
+}
+
+// Whether the panel is shown or on its way in: the classes change only when the
+// transition runs its update, a frame later, and closing calls closeDetail
+// twice (the button, then the popstate its history.back() fires)
+let panelShown = false;
+
+function setPanelShown(shown) {
+  document.getElementById('detail-panel').classList.toggle('open', shown);
+  document.getElementById('backdrop').classList.toggle('open', shown);
+  document.body.classList.toggle('panel-open', shown);
 }
 
 // Shared tail of every open*: reveal the panel (with view transition) and
 // update the URL/history. `wasOpen` makes panel→panel navigation replace the
 // history entry instead of stacking one.
 function presentPanel(state, url, opts, wasOpen) {
-  document.getElementById('detail-panel').classList.add('open');
-  document.getElementById('backdrop').classList.add('open');
   // Only opening needs the transition. Re-rendering an open panel (picker taps,
   // setting toggles) would start one per tap, and each new one aborts the last
-  // (an uncaught AbortError) while the running one can swallow the next tap.
-  if (document.body.classList.contains('panel-open')) {
-    // already open
-  } else if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.add('panel-open'));
-  } else {
-    document.body.classList.add('panel-open');
-  }
+  // while the running one can swallow the next tap.
+  if (panelShown) setPanelShown(true);
+  else { panelShown = true; panelTransition(() => setPanelShown(true)); }
   navigateToPanel(state, url, { ...opts, replace: wasOpen });
 }
 
@@ -356,7 +522,7 @@ function openEncounter(encounterKey, act, cat, opts) {
   const moves = moveMarksFor(opts && opts.moves, enc ? listed : [encounterKey]);
   openPanelInfo = { type: 'encounter', key: encounterKey, act: act || currentAct, cat: cat || currentCat, enemies, moves };
 
-  document.getElementById('detail-name').innerHTML = (enc ? enc.name : encounterKey) + renderBetaBadge('encounter', encounterKey);
+  document.getElementById('detail-name').innerHTML = encounterTitle(enc, encounterKey) + renderBetaBadge('encounter', encounterKey);
   document.getElementById('detail-body').innerHTML = buildEncounterPanelBody(enc, encounterKey, enemies, moves);
 
   presentPanel(
@@ -380,8 +546,7 @@ function openEnemy(enemyKey, opts) {
   const wasOpen = openPanelInfo !== null;
   const moves = moveMarksFor(opts && opts.moves, [enemyKey]);
   openPanelInfo = { type: 'enemy', key: enemyKey, ...enemyScalingContext(enemyKey, currentAct), moves };
-  const displayName = enemyDatabase[enemyKey] ? enemyDatabase[enemyKey].name : enemyKey;
-  document.getElementById('detail-name').innerHTML = displayName + renderBetaBadge('monster', enemyKey);
+  document.getElementById('detail-name').innerHTML = enemyName(enemyKey) + renderBetaBadge('monster', enemyKey);
   document.getElementById('detail-body').innerHTML = buildEnemyPanelBody(enemyKey, moves);
 
   presentPanel(
@@ -402,7 +567,7 @@ function openEvent(eventKey, opts) {
   }
   if (!ev) return;
 
-  document.getElementById('detail-name').innerHTML = ev.name + renderBetaBadge('event', ev.key);
+  document.getElementById('detail-name').innerHTML = eventName(ev) + renderBetaBadge('event', ev.key);
   document.getElementById('detail-body').innerHTML = buildEventPanelBody(ev, eventChoices[eventKey] || []);
 
   presentPanel(
@@ -420,17 +585,13 @@ function isMobilePanel() {
 
 let panelPushedState = false;
 
-function closeDetail(fromPopstate) {
+// instant: no slide (the swipe has already moved the panel off screen)
+function closeDetail(fromPopstate, instant) {
   openPanelInfo = null;
-  const panel = document.getElementById('detail-panel');
-  if (!panel.classList.contains('open')) return;
-  panel.classList.remove('open');
-  document.getElementById('backdrop').classList.remove('open');
-  if (document.startViewTransition) {
-    document.startViewTransition(() => document.body.classList.remove('panel-open'));
-  } else {
-    document.body.classList.remove('panel-open');
-  }
+  if (!panelShown) return;
+  panelShown = false;
+  if (instant) setPanelShown(false);
+  else panelTransition(() => setPanelShown(false));
   if (!fromPopstate) {
     if (panelPushedState) {
       history.back();
@@ -484,8 +645,8 @@ window.addEventListener('popstate', e => {
     if (swiping && dx > 80) {
       panel.style.transform = 'translateX(100%)';
       panel.addEventListener('transitionend', () => {
+        closeDetail(false, true);   // hidden first, so clearing the transform doesn't show it again
         panel.style.transform = '';
-        closeDetail();
       }, { once: true });
     } else {
       panel.style.transform = '';
