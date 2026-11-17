@@ -29,7 +29,7 @@ export function mergeWork(lang, work, o = {}) {
     ? { translator: o.translator || work?.translator || '' }
     : { engine: o.engine || work?.engine || '', model: o.model || work?.model || '' };
   if (by === 'human' && !who.translator) throw new Error('--human needs --translator=<who>');
-  if (by === 'engine' && !who.engine) throw new Error('name the engine: --engine=<name> (and --model=), or the work file\'s "engine"');
+  if (by === 'engine' && !who.engine && (work || o.recordExisting)) throw new Error('name the engine: --engine=<name> (and --model=), or the work file\'s "engine"');
   let ctx = null, pages = null;
   // The game names an item uses; `page` from the work item, else where the template shows now
   const terms = (english, id, page) => {
