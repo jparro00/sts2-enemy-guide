@@ -97,12 +97,12 @@ Lessons from the first full run (15 languages, 2026-11-16):
 - `node tools/l10n/check.mjs formatter` after formatter or game changes (needs the .NET 9 SDK and the game)
 - `node build_snapshots.mjs` (the deploy's own checks: version stamps, unextracted keys)
 
-## The mod (Abyssal repo, SpireCodexBridge)
+## The mod (SpireCodexBridge repo, `sts2-mods\SpireCodexBridge`)
 
 The mod carries the site's data and scripts and runs them with Jint. Its language list is
 `CodexEngine.OtherLanguages` (must match LANGS; the build checks). Build it **only** through its pipeline:
 
-    powershell -ExecutionPolicy Bypass -File C:\Users\jparr\Documents\claude\Abyssal\tools\build-bridge\build-bridge.ps1 -Live <sts2 ref> -Beta <sts2 ref>
+    powershell -ExecutionPolicy Bypass -File C:\Users\jparr\Documents\claude\sts2-mods\SpireCodexBridge\tools\build-bridge\build-bridge.ps1 -Live <sts2 ref> -Beta <sts2 ref>
 
 It builds from committed refs and renders every page in every language on the site and in the mod, live and beta,
 and fails on any difference (it caught Thai marks splitting off their letters, where Jint and Node iterate strings
