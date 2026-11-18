@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Начинает бой с [blue]{n1}[/blue] Ерзунами (не оглушенными), который дает обычную награду за бой. Событие заканчивается после боя.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Начинает бой с [blue]{n1}[/blue] Ерзунами (не оглушенными), который дает обычную награду за бой. Событие заканчивается после боя.",
+    "back": "Starts a fight with [blue]{n1}[/blue] Yerzuny ('Fidgeters/Wrigglers') (not stunned), which gives the usual reward for the fight. The event ends after the fight.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Крадет карты ({n1}) и получает эффект {p1}",
    "by": "engine",

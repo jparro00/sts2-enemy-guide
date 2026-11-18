@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Rozpoczyna walkę z [blue]{n1}[/blue] Pasożytami (nieogłuszonymi), która daje zwykłe nagrody za walkę. Wydarzenie kończy się po walce.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Rozpoczyna walkę z [blue]{n1}[/blue] Pasożytami (nieogłuszonymi), która daje zwykłe nagrody za walkę. Wydarzenie kończy się po walce.",
+    "back": "Starts a fight with [blue]{n1}[/blue] Parasites (not stunned), which gives the usual combat rewards. The event ends after the fight.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Kradnie kartę ×{n1} i zyskuje {p1}",
    "by": "engine",

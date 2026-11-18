@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "[blue]{n1}[/blue] Kımıldak (sersemlemiş olmayan) ile normal savaş ödülleri veren bir savaş başlatır. Etkinlik savaştan sonra sona erer.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "[blue]{n1}[/blue] Kımıldak (sersemlemiş olmayan) ile normal savaş ödülleri veren bir savaş başlatır. Etkinlik savaştan sonra sona erer.",
+    "back": "Starts a fight that gives normal combat rewards with [blue]{n1}[/blue] Kımıldak ('Wriggler') (not dazed/stunned). The event ends after the fight.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "{n1} kart çalar ve {p1} elde eder",
    "by": "engine",

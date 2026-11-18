@@ -604,6 +604,7 @@
     "Smother": "Boğma",
     "Spicy Snappy/Upgrade ({n1})": "Acılı Isırgan Ot/Geliştir ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Ganimet Haritası, sonraki sahnedeki tüm yolların sahne sandığı noktasında birleşmesini sağlar; bu sandık normal ödüllere ek olarak {n1} Altın içerir.",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "[blue]{n1}[/blue] Kımıldak (sersemlemiş olmayan) ile normal savaş ödülleri veren bir savaş başlatır. Etkinlik savaştan sonra sona erer.",
     "Steal {n1} card and gain {p1}": "{n1} kart çalar ve {p1} elde eder",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "Çalınan kart çekme veya atık destesinden alınır. Öncelik sırası: {n1}. işlenmemiş az yaygın {n2}. işlenmemiş yaygın/nadir/etkinlik {n3}. işlenmemiş temel/görev {n4}. işlenmiş veya kadim {n5}. lanet veya diğer her şey.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Şişko Gremlin çağrıldığında çalınan altını o taşır.",

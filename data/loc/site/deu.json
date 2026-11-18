@@ -604,6 +604,7 @@
     "Smother": "Ersticken",
     "Spicy Snappy/Upgrade ({n1})": "Deftiger Schnappi/Verbessern ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Die Schatzkarte lässt im nächsten Akt alle Pfade am Schatzraum des Akts zusammenlaufen, der zusätzlich zu den normalen Belohnungen {n1} Gold enthält.",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "Startet einen Kampf gegen [blue]{n1}[/blue] Schlängler (nicht betäubt), der normale Kampfbelohnungen gibt. Das Ereignis endet nach dem Kampf.",
     "Steal {n1} card and gain {p1}": "Stiehlt {n1} Karte und erhält {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "Die gestohlene Karte wird aus dem Nachzieh- oder Abwurfstapel genommen. Prioritäten: {n1}. nicht durchdrungene ungewöhnliche Karten {n2}. nicht durchdrungene gewöhnliche/seltene/Ereignis-Karten {n3}. nicht durchdrungene Basis-/Auftragskarten {n4}. durchdrungene oder Ahnen-Karten {n5}. Flüche oder alles andere.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Gestohlenes Gold trägt der Fette Gremlin, sobald er beschworen ist.",

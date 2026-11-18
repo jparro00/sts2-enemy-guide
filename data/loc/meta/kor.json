@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "꿈틀벌레 [blue]{n1}[/blue]마리(기절하지 않은 상태)와 전투를 시작하며, 일반 전투 보상을 줍니다. 전투 후 이벤트가 종료됩니다.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "꿈틀벌레 [blue]{n1}[/blue]마리(기절하지 않은 상태)와 전투를 시작하며, 일반 전투 보상을 줍니다. 전투 후 이벤트가 종료됩니다.",
+    "back": "Starts a combat with [blue]{n1}[/blue] Wriggle-bugs (in a not-stunned state), and gives normal combat rewards. After the combat, the event ends.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "카드 {n1}장을 훔치고 {p1} 획득",
    "by": "engine",

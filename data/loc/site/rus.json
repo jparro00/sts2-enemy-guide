@@ -604,6 +604,7 @@
     "Smother": "Удушение",
     "Spicy Snappy/Upgrade ({n1})": "Острый окунь/улучшение ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Из-за «Карты сокровищ» все пути следующего акта сойдутся к комнате с сокровищем, где помимо обычных наград будет {n1} золота.",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "Начинает бой с [blue]{n1}[/blue] Ерзунами (не оглушенными), который дает обычную награду за бой. Событие заканчивается после боя.",
     "Steal {n1} card and gain {p1}": "Крадет карты ({n1}) и получает эффект {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "Карта крадется из стопки добора или сброса. Приоритеты: {n1}. необычная без чар «Знаковая» {n2}. обычная/редкая/карта события без чар «Знаковая» {n3}. начальная/карта задания без чар «Знаковая» {n4}. с чарами «Знаковая» или древняя {n5}. проклятие или что-то еще.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Украденное золото переходит к Толстому гремлину, когда тот призван.",

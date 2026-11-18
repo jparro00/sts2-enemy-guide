@@ -604,6 +604,7 @@
     "Smother": "Asfixiar",
     "Spicy Snappy/Upgrade ({n1})": "Picante crujiente/Mejora ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Mapa del tesoro hace que todos los caminos del siguiente acto converjan en la sala de tesoro del acto, que contendrá {n1} de oro además de las recompensas normales.",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "Inicia un combate contra [blue]{n1}[/blue] Sanguilarvas (no aturdidas) que otorga las recompensas de combate normales. El evento termina tras el combate.",
     "Steal {n1} card and gain {p1}": "Te roba {n1} carta y obtiene {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "La carta que te roba se toma del mazo de robo o de la pila de descarte. Prioridades: {n1}. infrecuente sin Impregnación {n2}. común/rara/de evento sin Impregnación {n3}. básica/de misión sin Impregnación {n4}. con Impregnación o ancestral {n5}. maldición o cualquier otra.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Una vez invocado, Gremlin ávaro se queda con el oro robado.",

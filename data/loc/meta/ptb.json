@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Inicia um combate contra [blue]{n1}[/blue] Parasitários (não atordoados) que concede as recompensas normais de combate. O evento termina após o combate.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Inicia um combate contra [blue]{n1}[/blue] Parasitários (não atordoados) que concede as recompensas normais de combate. O evento termina após o combate.",
+    "back": "Starts a combat against [blue]{n1}[/blue] Parasitários ('Parasitics') (not stunned) that grants the normal combat rewards. The event ends after the combat.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Rouba {n1} carta e recebe {p1}",
    "by": "engine",

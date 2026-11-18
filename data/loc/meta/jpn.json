@@ -5551,6 +5551,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "リグラー[blue]{n1}[/blue]体（スタン状態ではない）との戦闘になり、通常の戦闘報酬を得られる。戦闘後、イベントは終了する。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "リグラー[blue]{n1}[/blue]体（スタン状態ではない）との戦闘になり、通常の戦闘報酬を得られる。戦闘後、イベントは終了する。",
+    "back": "It becomes a battle with [blue]{n1}[/blue] Riglers ('Wriggler', katakana) (not in a stunned state), and you get the normal combat rewards. After the battle, the event ends.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "カードを{n1}枚盗み、{p1}を得る",
    "by": "engine",

@@ -8,7 +8,7 @@ colorful_philosophers,Green,Obtain [blue]3[/blue] Silent cards.,,,INITIAL.SILENT
 colorful_philosophers,Blue,Obtain [blue]3[/blue] Defect cards.,,,INITIAL.DEFECT,Cards=3
 colorful_philosophers,Orange,Obtain [blue]3[/blue] Regent cards.,,,INITIAL.REGENT,Cards=3
 colorful_philosophers,Pink,Obtain [blue]3[/blue] Necrobinder cards.,,,INITIAL.NECROBINDER,Cards=3
-dense_vegetation,Rest,Heal [green]30%[/green] Max HP. Fight some [red]enemies[/red].,,,INITIAL.REST,
+dense_vegetation,Rest,Heal [green]30%[/green] Max HP. Fight some [red]enemies[/red].,Starts a fight with [blue]4[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.,,INITIAL.REST,
 dense_vegetation,Trudge On,Gain [blue]61-100[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP.,,,INITIAL.TRUDGE_ON,Gold=61-100;HpLoss=8
 jungle_maze_adventure,Join Forces,Gain [blue]35-65[/blue] [gold]Gold[/gold].,,,INITIAL.JOIN_FORCES,JoinForcesGold=35-65
 jungle_maze_adventure,Solo Quest,Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.,,,INITIAL.SOLO_QUEST,SoloGold=135-165;SoloHp=18

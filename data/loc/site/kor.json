@@ -604,6 +604,7 @@
     "Smother": "질식시키기",
     "Spicy Snappy/Upgrade ({n1})": "매콤 톡톡/강화 ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "보물 지도가 있으면 다음 막의 모든 경로가 막의 보물 방으로 모이며, 그곳에서 일반 보상에 더해 골드를 {n1} 얻습니다.",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "꿈틀벌레 [blue]{n1}[/blue]마리(기절하지 않은 상태)와 전투를 시작하며, 일반 전투 보상을 줍니다. 전투 후 이벤트가 종료됩니다.",
     "Steal {n1} card and gain {p1}": "카드 {n1}장을 훔치고 {p1} 획득",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "훔칠 카드는 뽑을 카드 더미나 버린 카드 더미에서 가져옵니다. 우선순위: {n1}. 주입되지 않은 고급 {n2}. 주입되지 않은 일반/희귀/이벤트 {n3}. 주입되지 않은 기본/퀘스트 {n4}. 주입되었거나 고대의 존재 {n5}. 저주 또는 그 외.",
     "Stolen gold is held by Fat Gremlin once summoned.": "뚱뚱한 그렘린이 소환되면 훔친 골드는 뚱뚱한 그렘린이 가지고 있습니다.",

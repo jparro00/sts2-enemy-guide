@@ -604,6 +604,7 @@
     "Smother": "悶壓",
     "Spicy Snappy/Upgrade ({n1})": "香辣脆脆／升級（{n1}）",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "藏寶圖會使下一幕的所有路徑匯聚到該幕的寶箱節點，寶箱中除正常獎勵外還有 {n1} 枚金幣。",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "與 [blue]{n1}[/blue] 隻蠕動蟲（未被擊暈）展開戰鬥，給予正常的戰鬥獎勵。戰鬥結束後，事件結束。",
     "Steal {n1} card and gain {p1}": "偷走 {n1} 張牌並獲得{p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic/quest {n4}. imbued or ancient {n5}. curse or anything else.": "遭竊的牌取自抽牌堆或棄牌堆。優先順序：{n1}. 未灌注的罕見牌；{n2}. 未灌注的普通／稀有／事件牌；{n3}. 未灌注的基本／任務牌；{n4}. 已灌注或遠古牌；{n5}. 詛咒牌或其他任何牌。",
     "Stolen gold is held by Fat Gremlin once summoned.": "胖地精被召喚後，遭竊的金幣由它持有。",
