@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "Vivaneau épicé/Amélioration ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Carte au trésor fait converger tous les chemins de l'acte suivant vers le coffre de l'acte, qui contiendra {n1} Pièces d'or en plus des récompenses normales.",
     "Start each combat with {n1} {p1} and {n2} {p2}": "Démarrez chaque combat avec {n1} {p1} et {n2} {p2}",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "Déclenche un combat contre [blue]{n1}[/blue] Larves (non étourdies) qui donne les récompenses de combat normales. L'événement se termine après le combat.",
     "Steal {n1} card and gain {p1}": "Vole {n1} carte et gagne {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "La carte volée est prise dans la Pioche ou la Défausse. Priorités : {n1}. inhabituelle sans Imprégnation {n2}. commune/rare/événement sans Imprégnation {n3}. basique sans Imprégnation {n4}. avec Imprégnation ou ancienne {n5}. malédiction ou autre. Les cartes Quête ne sont jamais volées.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Une fois invoqué, le Gros diablotin garde les Pièces d'or volées.",

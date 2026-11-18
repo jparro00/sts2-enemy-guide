@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "Tenacita picante/Mejorar ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "El Mapa del tesoro hace que todos los caminos del siguiente acto converjan en la Sala del tesoro del acto, que contendrá {n1} de Oro además de las recompensas normales.",
     "Start each combat with {n1} {p1} and {n2} {p2}": "Comienza cada combate con {n1} de {p1} y {n2} de {p2}",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "Inicia un combate contra [blue]{n1}[/blue] Alimañas retorcidas (no aturdidas) que da las recompensas de combate normales. El evento termina después del combate.",
     "Steal {n1} card and gain {p1}": "Te roba {n1} carta y gana {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "La carta que te roba se toma de la Pila de robo o de la Pila de descarte. Prioridades: {n1}. poco común sin Infusión {n2}. común/rara/de evento sin Infusión {n3}. básica sin Infusión {n4}. con Infusión o antigua {n5}. maldición o cualquier otra. Nunca te roba cartas de Misión.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Una vez invocado, el Gremlin regordete se queda con el oro robado.",

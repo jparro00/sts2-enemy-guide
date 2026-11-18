@@ -6513,6 +6513,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Startet einen Kampf gegen [blue]{n1}[/blue] Schlängler (nicht betäubt), der normale Kampfbelohnungen gibt. Das Ereignis endet nach dem Kampf.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Startet einen Kampf gegen [blue]{n1}[/blue] Schlängler (nicht betäubt), der normale Kampfbelohnungen gibt. Das Ereignis endet nach dem Kampf.",
+    "back": "Starts a fight against [blue]{n1}[/blue] Schlängler ('Slitherers/Wrigglers') (not stunned), which gives normal combat rewards. The event ends after the fight.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Stiehlt {n1} Karte und erhält {p1}",
    "by": "engine",

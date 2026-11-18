@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "เผ็ดกรอบทรงเครื่อง/พัฒนา ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "แผนที่ลายแทงขุมทรัพย์จะทำให้ทุกเส้นทางในองก์ถัดไปมาบรรจบกันที่ช่องหีบสมบัติขององก์ ซึ่งจะมี {n1} ทอง เพิ่มจากรางวัลปกติ",
     "Start each combat with {n1} {p1} and {n2} {p2}": "เริ่มต้นทุกการต่อสู้ด้วย {n1} {p1} และ {n2} {p2}",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "เริ่มการต่อสู้กับ Wriggler [blue]{n1}[/blue] ตัว (ไม่ติดสตัน) ซึ่งให้รางวัลการต่อสู้ตามปกติ เหตุการณ์จะจบลงหลังการต่อสู้",
     "Steal {n1} card and gain {p1}": "ขโมยการ์ด {n1} ใบ และได้รับ {p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "การ์ดที่ถูกขโมยจะมาจากกองจั่วหรือกองทิ้ง ลำดับความสำคัญ: {n1}. การ์ดไม่ธรรมดาที่ไม่มีมนตร์อัดฉีด {n2}. การ์ดธรรมดา/หายาก/เหตุการณ์ที่ไม่มีมนตร์อัดฉีด {n3}. การ์ดพื้นฐานที่ไม่มีมนตร์อัดฉีด {n4}. การ์ดที่มีมนตร์อัดฉีดหรือการ์ดเทพโบราณ {n5}. คำสาปหรืออื่นๆ การ์ดภารกิจจะไม่ถูกขโมย",
     "Stolen gold is held by Fat Gremlin once summoned.": "เมื่อ Fat Gremlin ถูกอัญเชิญ ทองที่ถูกขโมยจะอยู่กับมัน",

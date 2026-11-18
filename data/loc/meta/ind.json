@@ -6513,6 +6513,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Memulai pertarungan melawan [blue]{n1}[/blue] Penggeliat (tidak Linglung) yang memberi hadiah perlawanan normal. Event berakhir setelah pertarungan.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Memulai pertarungan melawan [blue]{n1}[/blue] Penggeliat (tidak Linglung) yang memberi hadiah perlawanan normal. Event berakhir setelah pertarungan.",
+    "back": "Starts a fight against [blue]{n1}[/blue] Penggeliat ('Wrigglers') (not Dazed [Linglung, capitalized as a status]) which gives normal encounter rewards. The event ends after the fight.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Mencuri {n1} kartu dan mendapat {p1}",
    "by": "engine",

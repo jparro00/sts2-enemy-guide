@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "スパイシー・スナッピー／アップグレード（{n1}）",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "戦利品の地図を持っていると、次の層のすべてのルートが層の宝箱マスに合流し、そこでは通常の報酬に加えて{n1}ゴールドを得られる。",
     "Start each combat with {n1} {p1} and {n2} {p2}": "{p1}{n1}と{p2}{n2}を受けた状態で戦闘を開始する",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "リグラー[blue]{n1}[/blue]体（スタン状態ではない）との戦闘になり、通常の戦闘報酬を得られる。戦闘後、イベントは終了する。",
     "Steal {n1} card and gain {p1}": "カードを{n1}枚盗み、{p1}を得る",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "盗まれるカードは山札か捨て札から選ばれる。優先順位：{n1}.刻印なしのアンコモン、{n2}.刻印なしのコモン／レア／イベント、{n3}.刻印なしのベーシック、{n4}.刻印ありまたはエンシェント、{n5}.呪いまたはその他。クエストカードが盗まれることはない。",
     "Stolen gold is held by Fat Gremlin once summoned.": "太っちょグレムリンの召喚後は、盗まれたゴールドを太っちょグレムリンが持つ。",

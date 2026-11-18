@@ -6513,6 +6513,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "與 [blue]{n1}[/blue] 隻蠕動蟲（未被擊暈）展開戰鬥，給予正常的戰鬥獎勵。戰鬥結束後，事件結束。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "與 [blue]{n1}[/blue] 隻蠕動蟲（未被擊暈）展開戰鬥，給予正常的戰鬥獎勵。戰鬥結束後，事件結束。",
+    "back": "Start a battle with [blue]{n1}[/blue] Wriggling Worms (not stunned), giving normal combat rewards. After the battle ends, the event ends.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "偷走 {n1} 張牌並獲得{p1}",
    "by": "engine",

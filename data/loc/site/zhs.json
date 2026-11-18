@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "香辣薄脆/升级（{n1}）",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "藏宝图会使下一阶段的所有路径汇聚到该阶段的宝箱节点，宝箱中除常规奖励外还有{n1}金币。",
     "Start each combat with {n1} {p1} and {n2} {p2}": "每场战斗开始时拥有{n1}层{p1}和{n2}层{p2}",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "与[blue]{n1}[/blue]只扭动虫（未被击晕）进行一场战斗，给予正常的战斗奖励。战斗结束后，事件结束。",
     "Steal {n1} card and gain {p1}": "偷走{n1}张牌并获得{p1}",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "被偷的牌取自抽牌堆或弃牌堆。优先级：{n1}.未注能的罕见牌；{n2}.未注能的普通/稀有/事件牌；{n3}.未注能的基础牌；{n4}.已注能或先古牌；{n5}.诅咒牌或其他任何牌。任务牌永远不会被偷。",
     "Stolen gold is held by Fat Gremlin once summoned.": "胖地精被召唤后，被偷走的金币由它持有。",

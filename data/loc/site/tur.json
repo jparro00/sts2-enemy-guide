@@ -642,6 +642,7 @@
     "Spicy Snappy/Upgrade ({n1})": "Acılı Isırgan Ot/Geliştir ({n1})",
     "Spoils Map will make all paths in the next act converge on the act chest node, which will contain {n1} Gold in addition to the normal rewards.": "Ganimet Haritası, sonraki sahnedeki tüm yolların sahne sandığı noktasında birleşmesini sağlar; bu sandık normal ödüllere ek olarak {n1} Altın içerir.",
     "Start each combat with {n1} {p1} and {n2} {p2}": "Her savaşa {n1} {p1} ve {n2} {p2} ile başla",
+    "Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": "[blue]{n1}[/blue] Kımıldak (sersemlemiş olmayan) ile normal savaş ödülleri veren bir savaş başlatır. Etkinlik savaştan sonra sona erer.",
     "Steal {n1} card and gain {p1}": "{n1} kart çalar ve {p1} elde eder",
     "Stolen card is taken from draw or discard pile. Priorities: {n1}. non-imbued uncommon {n2}. non-imbued common/rare/event {n3}. non-imbued basic {n4}. imbued or ancient {n5}. curse or anything else. Quest cards are never stolen.": "Çalınan kart çekme veya atık destesinden alınır. Öncelik sırası: {n1}. işlenmemiş az yaygın {n2}. işlenmemiş yaygın/nadir/etkinlik {n3}. işlenmemiş temel {n4}. işlenmiş veya kadim {n5}. lanet veya diğer her şey. Görev kartları asla çalınmaz.",
     "Stolen gold is held by Fat Gremlin once summoned.": "Şişko Gremlin çağrıldığında çalınan altını o taşır.",

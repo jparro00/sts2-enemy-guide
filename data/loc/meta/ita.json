@@ -6513,6 +6513,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Starts a fight with [blue]{n1}[/blue] Wrigglers (not stunned) that gives normal combat rewards. The event ends after the fight.": {
+   "text": "Avvia un combattimento contro [blue]{n1}[/blue] Larve (non stordite) che dà le normali ricompense del combattimento. L'evento termina dopo il combattimento.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-18",
+   "page": "event dense_vegetation",
+   "review": {
+    "text": "Avvia un combattimento contro [blue]{n1}[/blue] Larve (non stordite) che dà le normali ricompense del combattimento. L'evento termina dopo il combattimento.",
+    "back": "Starts a combat against [blue]{n1}[/blue] Larvae (not stunned) which gives the normal combat rewards. The event ends after the combat.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-18"
+   }
+  },
   "text:Steal {n1} card and gain {p1}": {
    "text": "Ruba {n1} carta e ottiene {p1}",
    "by": "engine",
