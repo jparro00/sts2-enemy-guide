@@ -6126,16 +6126,19 @@
     "at": "2026-11-16"
    }
   },
-  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
-   "text": "Bilgiyi Paylaş kartları, normal karşılaşma nadirlik olasılıklarıyla karakterinin kart havuzundan gelir (nadir kart telafi sayacına uyar). Kartlar asla geliştirilmiş olarak sunulmaz.",
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (without the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "Bilgiyi Paylaş kartları, normal karşılaşma nadirlik olasılıklarıyla karakterinin kart havuzundan gelir (nadir kart telafi sayacını kullanmaz). Kartlar asla geliştirilmiş olarak sunulmaz.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-22",
    "page": "event brain_leech",
+   "terms": {
+    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Bilgiyi Paylaş"
+   },
    "review": {
-    "text": "Bilgiyi Paylaş kartları, normal karşılaşma nadirlik olasılıklarıyla karakterinin kart havuzundan gelir (nadir kart telafi sayacına uyar). Kartlar asla geliştirilmiş olarak sunulmaz.",
-    "back": "Share Knowledge cards come from your character's card pool with the normal encounter rarity odds (follows the rare card pity counter). Cards are never offered upgraded.",
+    "text": "Bilgiyi Paylaş kartları, normal karşılaşma nadirlik olasılıklarıyla karakterinin kart havuzundan gelir (nadir kart telafi sayacını kullanmaz). Kartlar asla geliştirilmiş olarak sunulmaz.",
+    "back": "Share Knowledge cards come from your character's card pool with normal encounter rarity probabilities (it does not use the rare-card compensation counter). The cards are never offered upgraded.",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -6146,10 +6149,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
-   },
-   "terms": {
-    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Bilgiyi Paylaş"
+    "at": "2026-11-22"
    }
   },
   "text:Shuffle {n1} Beckon into discard": {
@@ -7587,6 +7587,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Weighted by rarity, not plain random: each card's rarity is rolled with regular encounter odds (without the rare pity timer), then a random card of that rarity is picked. From Ascension {n1} the Rare chance is halved.": {
+   "text": "Düz rastgele değil, nadirliğe göre ağırlıklı: her kartın nadirliği normal karşılaşma nadirlik olasılıklarıyla belirlenir (nadir kart telafi sayacı kullanılmaz), ardından o nadirlikte rastgele bir kart seçilir. Yükseliş {n1} ve üzerinde Nadir kart olasılığı yarıya iner.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Düz rastgele değil, nadirliğe göre ağırlıklı: her kartın nadirliği normal karşılaşma nadirlik olasılıklarıyla belirlenir (nadir kart telafi sayacı kullanılmaz), ardından o nadirlikte rastgele bir kart seçilir. Yükseliş {n1} ve üzerinde Nadir kart olasılığı yarıya iner.",
+    "back": "Not plain random, weighted by rarity: each card's rarity is determined with normal encounter rarity probabilities (the rare-card compensation counter is not used), then a random card of that rarity is chosen. At Ascension {n1} and above, the Rare card probability drops to half.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
   "text:Weights:": {
    "text": "Ağırlıklar:",
    "by": "engine",
@@ -8001,6 +8024,52 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.": {
+   "text": "[blue]%{n1}[/blue] Yaygın, [blue]%{n2}[/blue] Az Yaygın, [blue]%{n3}[/blue] Nadir.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]%{n1}[/blue] Yaygın, [blue]%{n2}[/blue] Az Yaygın, [blue]%{n3}[/blue] Nadir.",
+    "back": "[blue]%{n1}[/blue] Common, [blue]%{n2}[/blue] Uncommon, [blue]%{n3}[/blue] Rare.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).": {
+   "text": "[blue]%{n1}[/blue] Az Yaygın, [blue]%{n2}[/blue] Nadir (hiçbir karakterin Yaygın Güç kartı yoktur).",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]%{n1}[/blue] Az Yaygın, [blue]%{n2}[/blue] Nadir (hiçbir karakterin Yaygın Güç kartı yoktur).",
+    "back": "[blue]%{n1}[/blue] Uncommon, [blue]%{n2}[/blue] Rare (no character has a Common Power card).",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
    }
   },
   "text:[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": {

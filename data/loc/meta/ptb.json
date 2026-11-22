@@ -6126,16 +6126,19 @@
     "at": "2026-11-16"
    }
   },
-  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
-   "text": "As cartas de Compartilhar Conhecimento vêm do conjunto de cartas do seu personagem, com as chances de raridade de um encontro normal (respeita o aumento progressivo de chance de cartas raras). As cartas nunca são oferecidas aprimoradas.",
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (without the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "As cartas de Compartilhar Conhecimento vêm do conjunto de cartas do seu personagem, com as chances de raridade de um encontro normal (sem o aumento progressivo de chance de cartas raras). As cartas nunca são oferecidas aprimoradas.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-22",
    "page": "event brain_leech",
+   "terms": {
+    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Compartilhar Conhecimento"
+   },
    "review": {
-    "text": "As cartas de Compartilhar Conhecimento vêm do conjunto de cartas do seu personagem, com as chances de raridade de um encontro normal (respeita o aumento progressivo de chance de cartas raras). As cartas nunca são oferecidas aprimoradas.",
-    "back": "The Share Knowledge cards come from your character's card pool, with the rarity chances of a normal encounter (respects the progressive increase in rare card chance). The cards are never offered upgraded.",
+    "text": "As cartas de Compartilhar Conhecimento vêm do conjunto de cartas do seu personagem, com as chances de raridade de um encontro normal (sem o aumento progressivo de chance de cartas raras). As cartas nunca são oferecidas aprimoradas.",
+    "back": "The Share Knowledge cards come from your character's card set, with the rarity chances of a normal encounter (without the progressive increase in the chance of rare cards). The cards are never offered upgraded.",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -6146,10 +6149,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
-   },
-   "terms": {
-    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Compartilhar Conhecimento"
+    "at": "2026-11-22"
    }
   },
   "text:Shuffle {n1} Beckon into discard": {
@@ -7587,6 +7587,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Weighted by rarity, not plain random: each card's rarity is rolled with regular encounter odds (without the rare pity timer), then a random card of that rarity is picked. From Ascension {n1} the Rare chance is halved.": {
+   "text": "Ponderado pela raridade, não simplesmente aleatório: a raridade de cada carta é sorteada com as chances de raridade de um encontro normal (sem o aumento progressivo de chance de cartas raras) e, em seguida, uma carta aleatória dessa raridade é escolhida. A partir da Ascensão {n1}, a chance de cartas Raras cai pela metade.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Ponderado pela raridade, não simplesmente aleatório: a raridade de cada carta é sorteada com as chances de raridade de um encontro normal (sem o aumento progressivo de chance de cartas raras) e, em seguida, uma carta aleatória dessa raridade é escolhida. A partir da Ascensão {n1}, a chance de cartas Raras cai pela metade.",
+    "back": "Weighted by rarity, not simply random: each card's rarity is drawn with the rarity chances of a normal encounter (without the progressive increase in the chance of rare cards) and then a random card of that rarity is chosen. Starting from Ascension {n1}, the chance of Rare cards drops by half.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
   "text:Weights:": {
    "text": "Pesos:",
    "by": "engine",
@@ -8001,6 +8024,52 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.": {
+   "text": "[blue]{n1}%[/blue] Comum, [blue]{n2}%[/blue] Incomum, [blue]{n3}%[/blue] Rara.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]{n1}%[/blue] Comum, [blue]{n2}%[/blue] Incomum, [blue]{n3}%[/blue] Rara.",
+    "back": "[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).": {
+   "text": "[blue]{n1}%[/blue] Incomum, [blue]{n2}%[/blue] Rara (nenhum personagem tem um Poder Comum).",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]{n1}%[/blue] Incomum, [blue]{n2}%[/blue] Rara (nenhum personagem tem um Poder Comum).",
+    "back": "[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
    }
   },
   "text:[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": {

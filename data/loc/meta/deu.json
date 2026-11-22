@@ -6126,16 +6126,19 @@
     "at": "2026-11-16"
    }
   },
-  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
-   "text": "Die Karten von „Wissen teilen“ stammen aus dem Kartenpool deines Charakters, mit den normalen Seltenheitschancen von Begegnungen (berücksichtigt den Pity-Timer für seltene Karten). Die Karten werden nie verbessert angeboten.",
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (without the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "Die Karten von „Wissen teilen“ stammen aus dem Kartenpool deines Charakters, mit den normalen Seltenheitschancen von Begegnungen (ohne den Pity-Timer für seltene Karten). Die Karten werden nie verbessert angeboten.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-22",
    "page": "event brain_leech",
+   "terms": {
+    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Wissen teilen"
+   },
    "review": {
-    "text": "Die Karten von „Wissen teilen“ stammen aus dem Kartenpool deines Charakters, mit den normalen Seltenheitschancen von Begegnungen (berücksichtigt den Pity-Timer für seltene Karten). Die Karten werden nie verbessert angeboten.",
-    "back": "The cards from \"Share Knowledge\" [Wissen teilen] come from your character's card pool, with the normal rarity chances of encounters (takes the pity timer for rare cards into account). The cards are never offered upgraded.",
+    "text": "Die Karten von „Wissen teilen“ stammen aus dem Kartenpool deines Charakters, mit den normalen Seltenheitschancen von Begegnungen (ohne den Pity-Timer für seltene Karten). Die Karten werden nie verbessert angeboten.",
+    "back": "The cards from 'Share Knowledge' come from your character's card pool, with the normal rarity chances of encounters (without the pity timer for rare cards). The cards are never offered upgraded.",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -6146,10 +6149,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
-   },
-   "terms": {
-    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Wissen teilen"
+    "at": "2026-11-22"
    }
   },
   "text:Shuffle {n1} Beckon into discard": {
@@ -7587,6 +7587,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Weighted by rarity, not plain random: each card's rarity is rolled with regular encounter odds (without the rare pity timer), then a random card of that rarity is picked. From Ascension {n1} the Rare chance is halved.": {
+   "text": "Nach Seltenheit gewichtet, nicht einfach zufällig: Die Seltenheit jeder Karte wird mit den normalen Seltenheitschancen von Begegnungen ausgewürfelt (ohne den Pity-Timer für seltene Karten), danach wird eine zufällige Karte dieser Seltenheit gewählt. Ab Aufstieg {n1} ist die Chance auf seltene Karten halbiert.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Nach Seltenheit gewichtet, nicht einfach zufällig: Die Seltenheit jeder Karte wird mit den normalen Seltenheitschancen von Begegnungen ausgewürfelt (ohne den Pity-Timer für seltene Karten), danach wird eine zufällige Karte dieser Seltenheit gewählt. Ab Aufstieg {n1} ist die Chance auf seltene Karten halbiert.",
+    "back": "Weighted by rarity, not simply random: each card's rarity is rolled with the normal rarity chances of encounters (without the pity timer for rare cards), after which a random card of that rarity is chosen. From Ascension {n1} on, the chance of rare cards is halved.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
   "text:Weights:": {
    "text": "Gewichtung:",
    "by": "engine",
@@ -8001,6 +8024,52 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.": {
+   "text": "[blue]{n1}%[/blue] Gewöhnlich, [blue]{n2}%[/blue] Ungewöhnlich, [blue]{n3}%[/blue] Selten.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]{n1}%[/blue] Gewöhnlich, [blue]{n2}%[/blue] Ungewöhnlich, [blue]{n3}%[/blue] Selten.",
+    "back": "[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).": {
+   "text": "[blue]{n1}%[/blue] Ungewöhnlich, [blue]{n2}%[/blue] Selten (kein Charakter hat eine gewöhnliche Macht).",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "[blue]{n1}%[/blue] Ungewöhnlich, [blue]{n2}%[/blue] Selten (kein Charakter hat eine gewöhnliche Macht).",
+    "back": "[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a common Power).",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
    }
   },
   "text:[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": {

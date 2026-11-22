@@ -6126,16 +6126,19 @@
     "at": "2026-11-16"
    }
   },
-  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
-   "text": "Карты варианта «Поделиться знаниями» берутся из набора карт вашего персонажа с обычными шансами редкости, как после боя (с учетом счетчика гарантии редкой карты). Улучшенные карты не предлагаются никогда.",
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (without the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "Карты варианта «Поделиться знаниями» берутся из набора карт вашего персонажа с обычными шансами редкости, как после боя (без учета счетчика гарантии редкой карты). Улучшенные карты не предлагаются никогда.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-22",
    "page": "event brain_leech",
+   "terms": {
+    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Поделиться знаниями"
+   },
    "review": {
-    "text": "Карты варианта «Поделиться знаниями» берутся из набора карт вашего персонажа с обычными шансами редкости, как после боя (с учетом счетчика гарантии редкой карты). Улучшенные карты не предлагаются никогда.",
-    "back": "The cards of the option \"Share knowledge\" are taken from your character's card set/pool with the normal rarity chances, as after combat (taking into account the rare-card guarantee counter). Upgraded cards are never offered.",
+    "text": "Карты варианта «Поделиться знаниями» берутся из набора карт вашего персонажа с обычными шансами редкости, как после боя (без учета счетчика гарантии редкой карты). Улучшенные карты не предлагаются никогда.",
+    "back": "The cards of the 'Share Knowledge' option are taken from your character's card set with the usual rarity chances, as after a combat (without counting the rare-card guarantee counter). Upgraded cards are never offered.",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -6146,10 +6149,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
-   },
-   "terms": {
-    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "Поделиться знаниями"
+    "at": "2026-11-22"
    }
   },
   "text:Shuffle {n1} Beckon into discard": {
@@ -7587,6 +7587,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Weighted by rarity, not plain random: each card's rarity is rolled with regular encounter odds (without the rare pity timer), then a random card of that rarity is picked. From Ascension {n1} the Rare chance is halved.": {
+   "text": "Не просто случайно, а с весами по редкости: редкость каждой карты определяется с обычными шансами редкости, как после боя (без учета счетчика гарантии редкой карты), затем выбирается случайная карта этой редкости. Начиная с Возвышения {n1}, шанс на редкую карту снижается вдвое.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Не просто случайно, а с весами по редкости: редкость каждой карты определяется с обычными шансами редкости, как после боя (без учета счетчика гарантии редкой карты), затем выбирается случайная карта этой редкости. Начиная с Возвышения {n1}, шанс на редкую карту снижается вдвое.",
+    "back": "Not simply random, but with weights by rarity: each card's rarity is determined with the usual rarity chances, as after a combat (without counting the rare-card guarantee counter), then a random card of that rarity is chosen. Starting from Elevation (Ascension) {n1}, the chance of a rare card is reduced by half.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
   "text:Weights:": {
    "text": "Веса:",
    "by": "engine",
@@ -8001,6 +8024,52 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.": {
+   "text": "Обычная — [blue]{n1}%[/blue], необычная — [blue]{n2}%[/blue], редкая — [blue]{n3}%[/blue].",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Обычная — [blue]{n1}%[/blue], необычная — [blue]{n2}%[/blue], редкая — [blue]{n3}%[/blue].",
+    "back": "Common — [blue]{n1}%[/blue], uncommon — [blue]{n2}%[/blue], rare — [blue]{n3}%[/blue].",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).": {
+   "text": "Необычная — [blue]{n1}%[/blue], редкая — [blue]{n2}%[/blue] (обычных Талантов нет ни у одного персонажа).",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "Необычная — [blue]{n1}%[/blue], редкая — [blue]{n2}%[/blue] (обычных Талантов нет ни у одного персонажа).",
+    "back": "Uncommon — [blue]{n1}%[/blue], rare — [blue]{n2}%[/blue] (no character has common Talents ('Talent' used as the card type, i.e. Power)).",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
    }
   },
   "text:[gold]Wuppy[/gold] accompanies you and absorbs ALL attack damage in combat. Its HP carries between combats.": {
