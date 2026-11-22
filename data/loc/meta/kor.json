@@ -5187,16 +5187,19 @@
     "at": "2026-11-16"
    }
   },
-  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (respects the rare pity timer). Cards will never be offered upgraded.": {
-   "text": "'지식을 공유한다'의 카드는 일반 전투의 희귀도 확률에 따라 캐릭터의 카드 풀에서 나옵니다(희귀 카드 확률 보정 적용). 카드는 강화된 상태로 제시되지 않습니다.",
+  "text:Share Knowledge cards come from your character's card pool using regular encounter rarity odds (without the rare pity timer). Cards will never be offered upgraded.": {
+   "text": "'지식을 공유한다'의 카드는 일반 전투의 희귀도 확률에 따라 캐릭터의 카드 풀에서 나옵니다(희귀 카드 확률 보정 미적용). 카드는 강화된 상태로 제시되지 않습니다.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-22",
    "page": "event brain_leech",
+   "terms": {
+    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "지식을 공유한다"
+   },
    "review": {
-    "text": "'지식을 공유한다'의 카드는 일반 전투의 희귀도 확률에 따라 캐릭터의 카드 풀에서 나옵니다(희귀 카드 확률 보정 적용). 카드는 강화된 상태로 제시되지 않습니다.",
-    "back": "The cards in 'Share knowledge' (지식을 공유한다) come from the character's card pool using normal-combat rarity odds (with the rare-card odds offset applied). The cards are not offered upgraded.",
+    "text": "'지식을 공유한다'의 카드는 일반 전투의 희귀도 확률에 따라 캐릭터의 카드 풀에서 나옵니다(희귀 카드 확률 보정 미적용). 카드는 강화된 상태로 제시되지 않습니다.",
+    "back": "The cards of 'I share knowledge' (Share Knowledge) come out of the character's card pool according to the rarity probabilities of a normal combat (rare-card probability correction not applied). The cards are not presented in an upgraded state.",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -5207,10 +5210,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
-   },
-   "terms": {
-    "events:BRAIN_LEECH.pages.INITIAL.options.SHARE_KNOWLEDGE.title": "지식을 공유한다"
+    "at": "2026-11-22"
    }
   },
   "text:Shuffle {n1} Beckon into discard": {
@@ -6643,6 +6643,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Weighted by rarity, not plain random: each card's rarity is rolled with regular encounter odds (without the rare pity timer), then a random card of that rarity is picked. From Ascension {n1} the Rare chance is halved.": {
+   "text": "단순 무작위가 아닌 희귀도 가중치 방식: 각 카드의 희귀도는 일반 전투의 희귀도 확률로 결정되며(희귀 카드 확률 보정 미적용), 그 후 해당 희귀도의 카드 중 무작위로 1장이 선택됩니다. 승천 {n1}부터는 희귀 카드 확률이 절반으로 줄어듭니다.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "단순 무작위가 아닌 희귀도 가중치 방식: 각 카드의 희귀도는 일반 전투의 희귀도 확률로 결정되며(희귀 카드 확률 보정 미적용), 그 후 해당 희귀도의 카드 중 무작위로 1장이 선택됩니다. 승천 {n1}부터는 희귀 카드 확률이 절반으로 줄어듭니다.",
+    "back": "A rarity-weighted method, not simple random: each card's rarity is decided by the rarity probabilities of a normal combat (rare-card probability correction not applied), and after that 1 card is selected at random from among the cards of that rarity. From Ascension {n1}, the rare-card probability is reduced by half.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
   "text:Weights:": {
    "text": "가중치:",
    "by": "engine",
@@ -7054,6 +7077,52 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Common, [blue]{n2}%[/blue] Uncommon, [blue]{n3}%[/blue] Rare.": {
+   "text": "일반 [blue]{n1}%[/blue], 고급 [blue]{n2}%[/blue], 희귀 [blue]{n3}%[/blue].",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "일반 [blue]{n1}%[/blue], 고급 [blue]{n2}%[/blue], 희귀 [blue]{n3}%[/blue].",
+    "back": "Common [blue]{n1}%[/blue], Uncommon (lit. 'high-grade') [blue]{n2}%[/blue], Rare [blue]{n3}%[/blue].",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
+   }
+  },
+  "text:[blue]{n1}%[/blue] Uncommon, [blue]{n2}%[/blue] Rare (no character has a Common Power).": {
+   "text": "고급 [blue]{n1}%[/blue], 희귀 [blue]{n2}%[/blue](일반 파워 카드를 가진 캐릭터는 없음).",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-22",
+   "page": "event infested_automaton",
+   "review": {
+    "text": "고급 [blue]{n1}%[/blue], 희귀 [blue]{n2}%[/blue](일반 파워 카드를 가진 캐릭터는 없음).",
+    "back": "Uncommon (lit. 'high-grade') [blue]{n1}%[/blue], Rare [blue]{n2}%[/blue] (there is no character that has a Common Power card).",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-22"
    }
   },
   "text:[gold]Upgrade[/gold] [blue]{n1}[/blue] random cards.": {

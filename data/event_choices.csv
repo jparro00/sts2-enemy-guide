@@ -67,8 +67,8 @@ colossal_flower,Extract Nectar,Gain [gold]Gold[/gold] based on depth.,Repeatable
 colossal_flower,Reach Deeper,Enter deeper. Lose HP.,Repeatable up to 3 times. Damage escalates: 5/6/7. The 3rd selection grants Pollinous Core.,pollinous_core,INITIAL.REACH_DEEPER_1,
 field_of_man_sized_holes,Enter Your Hole,[gold]Enchant[/gold] a card with [purple]Perfect Fit[/purple].,,perfect_fit,INITIAL.ENTER_YOUR_HOLE,Enchantment=@enchantments:PERFECT_FIT.title
 field_of_man_sized_holes,Resist,Remove [blue]2[/blue] cards from your [gold]Deck[/gold]. Add [red]Normality[/red] to your [gold]Deck[/gold].,,normality,INITIAL.RESIST,Cards=2;ResistCurse=@cards:NORMALITY.title
-infested_automaton,Study,Obtain a random [gold]Power[/gold].,,,INITIAL.STUDY,
-infested_automaton,Touch the Core,Obtain a random [gold]0 cost card[/gold].,,,INITIAL.TOUCH_CORE,
+infested_automaton,Study,Obtain a random [gold]Power[/gold].,"[blue]97%[/blue] Uncommon, [blue]3%[/blue] Rare (no character has a Common Power).",,INITIAL.STUDY,
+infested_automaton,Touch the Core,Obtain a random [gold]0 cost card[/gold].,"[blue]60%[/blue] Common, [blue]37%[/blue] Uncommon, [blue]3%[/blue] Rare.",,INITIAL.TOUCH_CORE,
 lost_wisp,Capture the Wisp,Add [red]Decay[/red] to your [gold]Deck[/gold]. Obtain the [gold]Lost Wisp[/gold].,,"decay,lost_wisp",INITIAL.CLAIM,Curse=@cards:DECAY.title;Relic=@relics:LOST_WISP.title
 lost_wisp,Search the Nearby Area,Gain [blue]45-75[/blue] [gold]Gold[/gold].,,,INITIAL.SEARCH,Gold=45-75
 spirit_grafter,Let It In,Heal [green]25[/green] HP. Add [gold]Metamorphosis[/gold] to your [gold]Deck[/gold].,,metamorphosis,INITIAL.LET_IT_IN,LetItInHealAmount=25
