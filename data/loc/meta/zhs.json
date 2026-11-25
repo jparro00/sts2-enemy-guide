@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "调整：抑制现在会移除一张牌的所有升级，而不只是一级。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "抑制"
+   },
+   "review": {
+    "text": "调整：抑制现在会移除一张牌的所有升级，而不只是一级。",
+    "back": "Adjusted: Suppress (抑制) now removes all of a card's upgrades, rather than only one level.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "调整：生命值改为固定值，{n1} → {n2}。",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "调整：难以杀灭现在限制的是生命减少，而非受到的伤害，因此对格挡造成的伤害不受限制。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "难以杀灭",
+    "static_hover_tips:BLOCK.title": "格挡"
+   },
+   "review": {
+    "text": "调整：难以杀灭现在限制的是生命减少，而非受到的伤害，因此对格挡造成的伤害不受限制。",
+    "back": "Adjusted: Hard to Kill (难以杀灭) now limits HP reduction, rather than damage taken, so damage dealt to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

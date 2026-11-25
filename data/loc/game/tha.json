@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "tha",
   "text": {
     "acts": {
@@ -250,6 +250,7 @@
       "DOORS_OF_LIGHT_AND_DARK.pages.INITIAL.description": "อยู่ดีๆ ก็มีประตูปรากฏขึ้น ทั้งๆ ที่ก่อนหน้านี้ไม่เคยมีอยู่...\n\nคุณเข้าไปแล้วพบว่ามีประตูที่ส่องแสงเป็นประกายอยู่ 2 บาน และ[gold]ทวารบาลผู้แต่งกายดี 1 นาย[/gold]\n“ในที่สุดก็มีแขก! ได้โปรด ขอร้องล่ะ! เลือกประตูสักบาน บานไหนก็ได้!”\n\n[blue]นี่เรายังอยู่ในสไปร์หรือเปล่า? ที่นี่สะอาดขนาดนี้ได้อย่างไร?[/blue]",
       "DOORS_OF_LIGHT_AND_DARK.pages.INITIAL.options.DARK.description": "กำจัดการ์ด [blue]1[/blue]ใบใน[gold]กองการ์ด[/gold]",
       "DOORS_OF_LIGHT_AND_DARK.pages.INITIAL.options.DARK.title": "ประตูแห่งความมืด",
+      "DOORS_OF_LIGHT_AND_DARK.pages.INITIAL.options.LIGHT.description": "[gold]พัฒนา[/gold]การ์ด 1 ใบ",
       "DOORS_OF_LIGHT_AND_DARK.pages.INITIAL.options.LIGHT.title": "ประตูแห่งแสง",
       "DOORS_OF_LIGHT_AND_DARK.title": "ประตูแห่งแสงและความมืด",
       "DROWNING_BEACON.pages.INITIAL.description": "ขณะกำลังข้ามภูมิทัศน์แห่งความฝันที่เต็มไปด้วยก้อนหินและน้ำนิ่ง คุณบังเอิญเห็น[sine]ประภาคารที่กำลังจะจม[/sine] ซึ่งกำลังส่อง[purple]ปฏิประภา[/purple]อยู่ (ส่องความมืดออกมาแทนแสง)\n\nคุณสามารถตัก[aqua][sine]น้ำเรืองแสงชวนขนลุก[/sine][/aqua]ที่ท่วมขังอยู่บริเวณนี้ หรือปีนซากสิ่งก่อสร้างนั้นเพื่อเอา[gold]เลนส์[/gold]",
@@ -507,7 +508,7 @@
       "WELCOME_TO_WONGOS.pages.INITIAL.options.LEAVE.title": "จากไป",
       "WELCOME_TO_WONGOS.pages.INITIAL.options.MYSTERY_BOX.description": "จ่าย [red]{MysteryBoxCost}[/red] [gold]ทอง[/gold] ได้รับ[gold]เครื่องราง[/gold] [blue]{MysteryBoxRelicCount}[/blue] ชิ้นแบบสุ่ม หลังจาก [blue]{MysteryBoxCombatCount}[/blue] การต่อสู้",
       "WELCOME_TO_WONGOS.pages.INITIAL.options.MYSTERY_BOX.title": "กล่องสุ่มของวองโก้",
-      "WELCOME_TO_WONGOS.title": "ยินดีต้องรับสู่ร้านของวองโก้",
+      "WELCOME_TO_WONGOS.title": "ยินดีต้อนรับสู่ร้านของวองโก้",
       "WELLSPRING.pages.INITIAL.description": "คุณไล่ตาม[jitter]เสียงทุ้มต่ำ[/jitter]จนถึงต้นตอ และพบว่าตัวเองกำลังหลงใหลในบ่อน้ำพุแสนสงบ น้ำสี[sine][aqua]เขียวมรกต[/aqua][/sine]ที่มี[sine][gold]อนุภาคเรืองแสง[/gold][/sine]เต็มไปหมด\n\nรู้สึกน่าเข้าไปมาก คงไม่มีอะไรแย่หรอกมั้ง?",
       "WELLSPRING.pages.INITIAL.options.BATHE.description": "กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold] เพิ่ม[red]มีความผิด[/red] [blue]{BatheCurses}[/blue] ใบเข้า[gold]กองการ์ด[/gold]",
       "WELLSPRING.pages.INITIAL.options.BATHE.title": "อาบน้ำ",
@@ -531,6 +532,7 @@
       "ZEN_WEAVER.pages.INITIAL.description": "คุณเดินผ่านใยแมงมุมและ[jitter][red]เสียขวัญ[/red][/jitter]!\nแต่แล้วก็มี[sine][blue]คลื่นแห่งความสงบ[/blue][/sine]ซัดใส่คุณ...\n\n[sine]“ใจเย็นๆ ฉันอยากให้คุณเลิกทำลายใยของฉัน”[/sine]\n\nทำไมคุณถึงสงบใจลงได้เร็วนัก?\nแมงมุม[orange]เล็กจิ๋ว[/orange]โรยตัวลงมาพบคุณ ดูเหมือนว่ามันอยากจะถ่ายทอดวิชาให้โดยแลกกับ[gold]ทอง[/gold]",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.description": "จ่าย [red]{ArachnidAcupunctureCost}[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]2[/blue] ใบจาก[gold]กองการ์ด[/gold]",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.title": "แมงมุมฝังเข็ม",
+      "ZEN_WEAVER.pages.INITIAL.options.BREATHING_TECHNIQUES.description": "จ่าย [red]{BreathingTechniquesCost}[/red] [gold]ทอง[/gold] เพิ่ม[gold]รู้แจ้งเห็นจริง[/gold] 1 ใบเข้า[gold]กองการ์ด[/gold]",
       "ZEN_WEAVER.pages.INITIAL.options.BREATHING_TECHNIQUES.title": "ฝึกกำหนดลมหายใจ",
       "ZEN_WEAVER.pages.INITIAL.options.EMOTIONAL_AWARENESS.description": "จ่าย [red]{EmotionalAwarenessCost}[/red] [gold]ทอง[/gold] กำจัดการ์ด [blue]1[/blue] ใบจาก[gold]กองการ์ด[/gold]",
       "ZEN_WEAVER.pages.INITIAL.options.EMOTIONAL_AWARENESS.title": "รู้เท่าทันอารมณ์",
@@ -553,8 +555,12 @@
       "BYRDONIS.moves.SWOOP.title": "โฉบ",
       "BYRDONIS.name": "ณกยักษ์",
       "CORPSE_SLUG.name": "ทากศพ",
+      "HAUNTED_SHIP.name": "เรือผีสิง",
       "INFESTED_PRISM.moves.WHIRLWIND.title": "พายุลมกรด",
+      "KNOWLEDGE_DEMON.moves.KNOWLEDGE_OVERWHELMING.title": "ความรู้ท่วมหัว",
+      "KNOWLEDGE_DEMON.name": "อสูรความรู้",
       "LAGAVULIN_MATRIARCH.name": "นางพญาลากาวูลิน",
+      "PHROG_PARASITE.name": "ปรสิตกป",
       "PUNCH_CONSTRUCT.moves.READY.title": "เตรียมพร้อม",
       "PUNCH_CONSTRUCT.moves.STRONG_PUNCH.title": "หมัดหนัก",
       "PUNCH_CONSTRUCT.name": "จักรกลชกต่อย",
@@ -584,7 +590,6 @@
       "CRAB_RAGE_POWER.description": "เมื่อพันธมิตรตาย สิ่งมีชีวิตนี้ได้รับ [blue]5[/blue] [gold]ความแข็งแรง[/gold]และ [blue]99[/blue] [gold]บล็อก[/gold]",
       "CURIOUS_POWER.description": "การ์ดพลังมีค่าร่ายลดลง [blue]1[/blue] {energyPrefix:energyIcons(1)}",
       "CURL_UP_POWER.description": "เมื่อได้รับความเสียหาย ขดตัวและได้รับบล็อก (1 ครั้งต่อการต่อสู้)",
-      "DAMPEN_POWER.description": "ขณะที่ Magi Knight ยังมีชีวิต การ์ดทั้งหมดของคุณจะ[gold]ถูกลดระดับ[/gold]",
       "DEXTERITY_POWER.description": "ความชำนาญทำให้ได้รับ[gold]บล็อก[/gold]จากการ์ดมากขึ้น",
       "DEXTERITY_POWER.title": "ความชำนาญ",
       "DISINTEGRATION_POWER.description": "ตอนจบเทิร์น ได้รับความเสียหาย [blue]{Amount}[/blue]",
@@ -596,10 +601,10 @@
       "GALVANIC_POWER.description": "การ์ดพลังถูกกัดเซาะด้วย[gold]กัดกร่อน[/gold]",
       "GALVANIC_POWER.title": "กัดกร่อน",
       "HARDENED_SHELL_POWER.description": "สิ่งมีชีวิตนี้ไม่สามารถเสียเกิน [blue]20[/blue] HP ในแต่ละเทิร์น",
-      "HARD_TO_KILL_POWER.description": "ลดความเสียหายทั้งหมดที่ได้รับและการเสีย HP โดย[gold]Exoskeleton[/gold] เหลือ [blue]9[/blue]",
       "HATCH_POWER.description": "ฟักไข่หลังผ่านไป X เทิร์น",
       "HATCH_POWER.title": "ฟักไข่",
       "HAUNT_POWER.description": "ทุกครั้งที่คุณเล่น[gold]วิญญาณ[/gold] ศัตรู 1 ตัวแบบสุ่มเสีย [blue]3[/blue] HP",
+      "HAUNT_POWER.title": "หลอกหลอน",
       "HEX_POWER.description": "ขณะที่ Spectral Knight ยังมีชีวิต การ์ดทั้งหมดของคุณมี[gold]กึ่งสลาย[/gold]",
       "HIGH_VOLTAGE_POWER.description": "ตอนจบเทิร์นของสิ่งมีชีวิตนี้ มันได้รับ [blue]2[/blue] [gold]ความแข็งแรง[/gold]",
       "ILLUSION_POWER.description": "เมื่อมันตาย จะฟื้นคืนชีพแบบ HP เต็มในเทิร์นถัดไป",
@@ -719,7 +724,7 @@
       "SWORD_OF_STONE.title": "ดาบศิลา",
       "TEA_OF_DISCOURTESY.description": "ตอนเริ่มต้นการต่อสู้ถัดไป สับ[gold]ความมึนงง[/gold] [blue]{DazedCount}[/blue] ใบเข้า[gold]กองจั่ว[/gold]",
       "THE_BOOT.description": "ทุกครั้งที่คุณสร้างความเสียหายแบบไม่ถูกบล็อก ถ้าความเสียหายจากการโจมตีไม่เกิน [blue]{DamageThreshold}[/blue] ให้เปลี่ยนเป็น [blue]{DamageMinimum}[/blue] แทน",
-      "THE_BOOT.title": "รองเท้าบูท"
+      "THE_BOOT.title": "รองเท้าบูต"
     },
     "settings_ui": {
       "LANGUAGE": "ภาษา"

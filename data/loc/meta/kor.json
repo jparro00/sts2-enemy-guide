@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "변경: 위축이 이제 카드의 강화를 하나만이 아니라 모두 제거합니다.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "위축"
+   },
+   "review": {
+    "text": "변경: 위축이 이제 카드의 강화를 하나만이 아니라 모두 제거합니다.",
+    "back": "Change: Shrink/Atrophy (\"위축\") now removes all of a card's upgrades, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "변경: 체력이 고정값이 됩니다. {n1} → {n2}.",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "변경: 질긴 생존력이 이제 받는 피해가 아니라 체력 손실을 제한하므로, 방어도에 입는 피해는 제한되지 않습니다.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "질긴 생존력",
+    "static_hover_tips:BLOCK.title": "방어도"
+   },
+   "review": {
+    "text": "변경: 질긴 생존력이 이제 받는 피해가 아니라 체력 손실을 제한하므로, 방어도에 입는 피해는 제한되지 않습니다.",
+    "back": "Change: Tenacious Survival (\"질긴 생존력\") now limits HP loss, not damage taken, so damage taken on Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

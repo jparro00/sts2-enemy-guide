@@ -2126,6 +2126,29 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "เปลี่ยนแปลง: Dampen ตอนนี้ลบการพัฒนาทั้งหมดของการ์ด ไม่ใช่แค่ระดับเดียว",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "review": {
+    "text": "เปลี่ยนแปลง: Dampen ตอนนี้ลบการพัฒนาทั้งหมดของการ์ด ไม่ใช่แค่ระดับเดียว",
+    "back": "Changed: Dampen now removes all of a card's upgrades (\"improvements\"), not just one level.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "เปลี่ยนแปลง: HP เป็นค่าคงที่แล้ว {n1} → {n2}",
    "by": "engine",
@@ -2147,6 +2170,32 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "เปลี่ยนแปลง: Hard to Kill ตอนนี้จำกัด HP ที่เสียไป ไม่ใช่ความเสียหายที่ได้รับ ดังนั้นความเสียหายต่อบล็อกจะไม่ถูกจำกัด",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "static_hover_tips:BLOCK.title": "บล็อก"
+   },
+   "review": {
+    "text": "เปลี่ยนแปลง: Hard to Kill ตอนนี้จำกัด HP ที่เสียไป ไม่ใช่ความเสียหายที่ได้รับ ดังนั้นความเสียหายต่อบล็อกจะไม่ถูกจำกัด",
+    "back": "Changed: Hard to Kill now limits HP lost, not damage received, so damage to Block will not be limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {
@@ -5822,22 +5871,22 @@
    }
   },
   "text:Relics are from STS{n1}: Darkstone Periapt, Dream Catcher, Hand Drill, Maw Bank, The Boot.": {
-   "text": "เครื่องรางจาก STS{n1}: สร้อยศิลาแห่งความมืด, ตาข่ายดักฝันร้าย, สว่านมือ, กระปุกออมสินรูปมอว์, รองเท้าบูท",
+   "text": "เครื่องรางจาก STS{n1}: สร้อยศิลาแห่งความมืด, ตาข่ายดักฝันร้าย, สว่านมือ, กระปุกออมสินรูปมอว์, รองเท้าบูต",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "page": "event trash_heap",
    "terms": {
     "relics:DARKSTONE_PERIAPT.title": "สร้อยศิลาแห่งความมืด",
     "relics:DREAM_CATCHER.title": "ตาข่ายดักฝันร้าย",
     "relics:HAND_DRILL.title": "สว่านมือ",
     "relics:MAW_BANK.title": "กระปุกออมสินรูปมอว์",
-    "relics:THE_BOOT.title": "รองเท้าบูท"
+    "relics:THE_BOOT.title": "รองเท้าบูต"
    },
    "review": {
-    "text": "เครื่องรางจาก STS{n1}: สร้อยศิลาแห่งความมืด, ตาข่ายดักฝันร้าย, สว่านมือ, กระปุกออมสินรูปมอว์, รองเท้าบูท",
-    "back": "Relics from STS{n1}: Darkstone necklace (lit. 'necklace of the stone of darkness'), Nightmare catcher net (lit. 'net that catches nightmares'), Hand Drill, Maw-shaped piggy bank (lit. 'piggy bank in the shape of a Maw'), Boots",
+    "text": "เครื่องรางจาก STS{n1}: สร้อยศิลาแห่งความมืด, ตาข่ายดักฝันร้าย, สว่านมือ, กระปุกออมสินรูปมอว์, รองเท้าบูต",
+    "back": "Relics from STS{n1}: Necklace of the Stone of Darkness, Nightmare-Catching Net, Hand Drill, Maw-Shaped Piggy Bank, Boots",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -5848,7 +5897,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
+    "at": "2026-11-25"
    }
   },
   "text:Renamed moves: Targeting Reticle → Calculating": {

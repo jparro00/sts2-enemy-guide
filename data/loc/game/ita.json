@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "ita",
   "text": {
     "acts": {
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Curiosità",
       "CURL_UP_POWER.description": "Quando subisce danno, si arrotola e ottiene Blocco. (Una volta per combattimento)",
       "CURL_UP_POWER.title": "Raggomitolamento",
-      "DAMPEN_POWER.description": "Finché Magicavaliere è vivo, TUTTE le tue carte vengono [gold]depotenziate[/gold].",
+      "DAMPEN_POWER.description": "Finché Magicavaliere è vivo, TUTTE le tue carte vengono completamente [gold]depotenziate[/gold].",
       "DAMPEN_POWER.title": "Smorzamento",
       "DEXTERITY_POWER.description": "La Destrezza aumenta il [gold]Blocco[/gold] ottenuto dalle carte.",
       "DEXTERITY_POWER.title": "Destrezza",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanizzante",
       "HARDENED_SHELL_POWER.description": "Questa creatura non può perdere più di [blue]20[/blue] PV in ogni turno.",
       "HARDENED_SHELL_POWER.title": "Guscio rinforzato",
-      "HARD_TO_KILL_POWER.description": "Riduci tutto il danno subito e i PV persi da [gold]Esoscheletro[/gold] a [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Riduci tutti i PV persi da [gold]Esoscheletro[/gold] a [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Pellaccia",
       "HATCH_POWER.description": "Si schiude dopo X turni.",
       "HATCH_POWER.title": "Schiusa",

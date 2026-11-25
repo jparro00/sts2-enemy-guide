@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "fra",
   "text": {
     "acts": {
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Curiosité",
       "CURL_UP_POWER.description": "Lorsqu'il subit des dégâts, se roule en boule et gagne de l'Armure. (Une fois par combat)",
       "CURL_UP_POWER.title": "En boule",
-      "DAMPEN_POWER.description": "Tant que le Chevalier-mage est en vie, TOUTES vos cartes perdent leur [gold]Amélioration[/gold].",
+      "DAMPEN_POWER.description": "Tant que le Chevalier-mage est en vie, TOUTES vos cartes perdent toutes leurs [gold]Améliorations[/gold].",
       "DAMPEN_POWER.title": "Atténuation",
       "DEXTERITY_POWER.description": "La Dextérité augmente l'[gold]Armure[/gold] conférée par vos cartes.",
       "DEXTERITY_POWER.title": "Dextérité",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanisé",
       "HARDENED_SHELL_POWER.description": "Cette créature ne peut pas perdre plus de [blue]20[/blue] PV en un tour.",
       "HARDENED_SHELL_POWER.title": "Carapace endurcie",
-      "HARD_TO_KILL_POWER.description": "Tous les dégâts subis ou PV perdus par [gold]Exosquelette[/gold] sont réduits à [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Tous les PV perdus par [gold]Exosquelette[/gold] sont réduits à [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Dur à cuire",
       "HATCH_POWER.description": "Éclot au bout de X tours.",
       "HATCH_POWER.title": "Éclosion",

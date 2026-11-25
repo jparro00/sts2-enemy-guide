@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "rus",
   "text": {
     "acts": {
@@ -512,7 +512,7 @@
       "STONE_OF_ALL_TIME.pages.INITIAL.description": "Перед вами заброшенный двор, посреди которого стоит огромный булыжник.\n\nНа табличке написано:\n[gold][b]«Вечный камень»[/b][/gold].\n\nСудя по всему, [blue]камень[/blue] был здесь всегда, а двор построили вокруг него.",
       "STONE_OF_ALL_TIME.pages.INITIAL.options.LIFT.description": "[red]{DrinkRandomPotion}[/red] покинет вас, но вы повысите макс. ОЗ на [blue]{DrinkMaxHpGain}[/blue].",
       "STONE_OF_ALL_TIME.pages.INITIAL.options.LIFT.title": "Выпить зелье и поднять камень",
-      "STONE_OF_ALL_TIME.pages.INITIAL.options.PUSH.description": "Потерять [red]{PushHpLoss}[/red] ОЗ и наложить на «Атаку» [gold]чары[/gold] [purple]«Бодрость»[/purple] [blue]{PushVigorousAmount}{PushVigorousAmount:plural(ru):раз|раза|раз}[/blue].",
+      "STONE_OF_ALL_TIME.pages.INITIAL.options.PUSH.description": "Потерять [red]{PushHpLoss}[/red] ОЗ и наложить на «Атаку» [gold]чары[/gold] [purple]«Бодрость»[/purple] [blue]{PushVigorousAmount} {PushVigorousAmount:plural(ru):раз|раза|раз}[/blue].",
       "STONE_OF_ALL_TIME.pages.INITIAL.options.PUSH.title": "Толкнуть камень",
       "STONE_OF_ALL_TIME.title": "Вечный камень",
       "SUNKEN_STATUE.pages.INITIAL.description": "Вы замечаете в пруду статую, по пояс погруженную в воду. Ее ладони покоятся на рукоятке [blue]каменного меча[/blue].\n\nНа дне пруда что-то [gold][sine]блещет[/sine][/gold].\nМожет, это чье-то подношение?\n\nДеньги бы вам сейчас не помешали…",
@@ -623,7 +623,7 @@
       "WELCOME_TO_WONGOS.pages.INITIAL.options.FEATURED_ITEM.title": "Акция от «Вонго»",
       "WELCOME_TO_WONGOS.pages.INITIAL.options.LEAVE.description": "[red]Ухудшить[/red] случайную карту.",
       "WELCOME_TO_WONGOS.pages.INITIAL.options.LEAVE.title": "Уйти",
-      "WELCOME_TO_WONGOS.pages.INITIAL.options.MYSTERY_BOX.description": "Заплатить [red]{MysteryBoxCost}[/red] [gold]золота[/gold] и получить [blue]{MysteryBoxRelicCount}[/blue] random [gold]{MysteryBoxRelicCount:plural(ru):реликвию|реликвии|реликвий}[/gold] после [blue]{MysteryBoxCombatCount}[/blue] боев.",
+      "WELCOME_TO_WONGOS.pages.INITIAL.options.MYSTERY_BOX.description": "Заплатить [red]{MysteryBoxCost}[/red] [gold]золота[/gold] и получить [blue]{MysteryBoxRelicCount}[/blue] [gold]{MysteryBoxRelicCount:plural(ru):случайную реликвию|случайные реликвии|случайных реликвий}[/gold] после [blue]{MysteryBoxCombatCount}[/blue] боев.",
       "WELCOME_TO_WONGOS.pages.INITIAL.options.MYSTERY_BOX.title": "Сюрприз от «Вонго»",
       "WELCOME_TO_WONGOS.title": "Добро пожаловать в «Вонго»",
       "WELLSPRING.pages.INITIAL.description": "Вы слышите [jitter]тихое журчание[/jitter] неподалеку и обнаруживаете водоем [sine][aqua]изумрудного цвета[/aqua][/sine], в котором плавают [sine][gold]крохотные светлячки[/gold][/sine].\n\nКакая прелестная картина! На вид совершенно ничего опасного!",
@@ -657,6 +657,7 @@
       "ZEN_WEAVER.pages.INITIAL.description": "Вы попадаетесь в липкую паутину, вас охватывает [jitter][red]ПАНИКА[/red][/jitter]!\nВнезапно ваш разум застилает [sine][blue]волна спокойствия[/blue][/sine].\n\n[sine]«Не надо нервничать. И паутину мою рвать тоже не надо!»[/sine]\n\nКак вам удалось так быстро успокоиться?\nОткуда-то сверху опускается [orange]паук[/orange]. Он готов поделиться с вами знаниями в обмен на [gold]золото[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.description": "Заплатить [red]{ArachnidAcupunctureCost}[/red] [gold]золота[/gold] и удалить [blue]2[/blue] карты из [gold]колоды[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.title": "Паучье иглоукалывание",
+      "ZEN_WEAVER.pages.INITIAL.options.BREATHING_TECHNIQUES.description": "Заплатить [red]{BreathingTechniquesCost}[/red] [gold]золота[/gold] и добавить карту [gold]«Просветление»[/gold] в [gold]колоду[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.BREATHING_TECHNIQUES.title": "Техника дыхания",
       "ZEN_WEAVER.pages.INITIAL.options.EMOTIONAL_AWARENESS.description": "Заплатить [red]{EmotionalAwarenessCost}[/red] [gold]золота[/gold] и удалить [blue]1[/blue] карту из [gold]колоды[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.EMOTIONAL_AWARENESS.title": "Самопознание",
@@ -1084,7 +1085,7 @@
       "CURIOUS_POWER.title": "Любопытство",
       "CURL_UP_POWER.description": "Сворачивается и получает [gold]защиту[/gold] (один раз за бой), когда получает урон.",
       "CURL_UP_POWER.title": "Клубок",
-      "DAMPEN_POWER.description": "ВСЕ ваши карты [gold]ухудшаются[/gold], пока Маг-рыцарь жив.",
+      "DAMPEN_POWER.description": "ВСЕ ваши карты [gold]ухудшаются[/gold] до минимума, пока Маг-рыцарь жив.",
       "DAMPEN_POWER.title": "Подавление",
       "DEXTERITY_POWER.description": "Ловкость повышает [gold]защиту[/gold], полученную от карт.",
       "DEXTERITY_POWER.title": "Ловкость",

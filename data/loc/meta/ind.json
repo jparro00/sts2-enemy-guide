@@ -1163,11 +1163,11 @@
    }
   },
   "text:Beautiful Bracelet, Blessed Antler, Brilliant Scarf, Delicate Frond, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring": {
-   "text": "Gelang Indah, Tanduk Suci, Syal Memukau, Pakis Rapuh, Diadem Berlian, Mantel Bulu, Glitter, Kotak Perhiasan, Cincin Signet",
+   "text": "Gelang Indah, Tanduk Suci, Syal Memukau, Pakis Rapuh, Diadem Berlian, Mantel Bulu, Glitter, Kotak Perhiasan, Cincin Meterai",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "page": "event thermae_nonupeipe",
    "terms": {
     "relics:BEAUTIFUL_BRACELET.title": "Gelang Indah",
@@ -1176,13 +1176,13 @@
     "relics:DELICATE_FROND.title": "Pakis Rapuh",
     "relics:DIAMOND_DIADEM.title": "Diadem Berlian",
     "relics:JEWELRY_BOX.title": "Kotak Perhiasan",
-    "relics:SIGNET_RING.title": "Cincin Signet",
+    "relics:SIGNET_RING.title": "Cincin Meterai",
     "relics:FUR_COAT.title": "Mantel Bulu",
     "relics:GLITTER.title": "Glitter"
    },
    "review": {
-    "text": "Gelang Indah, Tanduk Suci, Syal Memukau, Pakis Rapuh, Diadem Berlian, Mantel Bulu, Glitter, Kotak Perhiasan, Cincin Signet",
-    "back": "Beautiful Bracelet, Holy Horn, Enchanting/Dazzling Scarf, Fragile Fern, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet Ring",
+    "text": "Gelang Indah, Tanduk Suci, Syal Memukau, Pakis Rapuh, Diadem Berlian, Mantel Bulu, Glitter, Kotak Perhiasan, Cincin Meterai",
+    "back": "Beautiful Bracelet, Holy Horn, Captivating Scarf, Fragile Fern, Diamond Diadem, Fur Coat, Glitter, Jewelry Box, Signet (Seal) Ring",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -1193,7 +1193,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
+    "at": "2026-11-25"
    }
   },
   "text:Before your first draw each combat, choose {n1}: {p1} {n2} or {p2}": {
@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "Diubah: Redam kini menghapus semua peningkatan sebuah kartu, bukan hanya satu.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "Redam"
+   },
+   "review": {
+    "text": "Diubah: Redam kini menghapus semua peningkatan sebuah kartu, bukan hanya satu.",
+    "back": "Changed: Dampen (\"Redam\") now removes all of a card's upgrades, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "Diubah: HP kini bernilai tetap, {n1} → {n2}.",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "Diubah: Sulit Dibunuh kini membatasi pengurangan HP, bukan kerusakan yang diterima, jadi kerusakan pada Blok tidak dibatasi.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "Sulit Dibunuh",
+    "static_hover_tips:BLOCK.title": "Blok"
+   },
+   "review": {
+    "text": "Diubah: Sulit Dibunuh kini membatasi pengurangan HP, bukan kerusakan yang diterima, jadi kerusakan pada Blok tidak dibatasi.",
+    "back": "Changed: Hard to Kill (\"Sulit Dibunuh\") now limits HP reduction, not the damage received, so damage to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

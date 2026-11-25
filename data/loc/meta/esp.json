@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "Cambio: Humedad ahora elimina todas las mejoras de una carta, no solo una.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "Humedad"
+   },
+   "review": {
+    "text": "Cambio: Humedad ahora elimina todas las mejoras de una carta, no solo una.",
+    "back": "Change: Dampness/Humidity (Humedad) now removes all upgrades of a card, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "Cambio: los PV ahora son un valor fijo, {n1} → {n2}.",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "Cambio: Duro de matar ahora limita los PV perdidos, no el daño recibido, así que el daño al Bloqueo no se limita.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "Duro de matar",
+    "static_hover_tips:BLOCK.title": "Bloqueo"
+   },
+   "review": {
+    "text": "Cambio: Duro de matar ahora limita los PV perdidos, no el daño recibido, así que el daño al Bloqueo no se limita.",
+    "back": "Change: Hard to Kill (Duro de matar) now limits HP lost, not damage received, so damage to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {
@@ -7110,20 +7163,20 @@
    }
   },
   "text:The displayed relic is {n1} random pick from Obsidian Vice, Thumbscrew and Tormentous Collar.": {
-   "text": "La reliquia exhibida es {n1} elegida al azar entre Vicio de obsidiana, Aplastapulgares y Collar de tormento.",
+   "text": "La reliquia exhibida es {n1} elegida al azar entre Vicio de obsidiana, Aplastapulgares y Collar tormentoso.",
    "by": "engine",
    "engine": "claude-code",
    "model": "claude-opus-5-5",
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "page": "event museum_of_torture",
    "terms": {
-    "relics:TORMENTOUS_COLLAR.title": "Collar de tormento",
+    "relics:TORMENTOUS_COLLAR.title": "Collar tormentoso",
     "relics:OBSIDIAN_VICE.title": "Vicio de obsidiana",
     "relics:THUMBSCREW.title": "Aplastapulgares"
    },
    "review": {
-    "text": "La reliquia exhibida es {n1} elegida al azar entre Vicio de obsidiana, Aplastapulgares y Collar de tormento.",
-    "back": "The displayed relic is {n1} chosen at random from Obsidian Vice, Thumbscrew and Torment Collar.",
+    "text": "La reliquia exhibida es {n1} elegida al azar entre Vicio de obsidiana, Aplastapulgares y Collar tormentoso.",
+    "back": "The displayed relic is {n1} chosen at random from among Obsidian Vice (Vicio de obsidiana), Thumb-crusher (Aplastapulgares) and Stormy Necklace (Collar tormentoso).",
     "verdict": "ok",
     "backBy": {
      "engine": "claude-code",
@@ -7134,7 +7187,7 @@
      "engine": "claude-code",
      "model": "claude-opus-5-5"
     },
-    "at": "2026-11-16"
+    "at": "2026-11-25"
    }
   },
   "text:The following items are guaranteed to be in the minigame:": {

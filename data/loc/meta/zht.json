@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "調整：鈍化現在會移除一張牌的所有升級，而不只是一級。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "鈍化"
+   },
+   "review": {
+    "text": "調整：鈍化現在會移除一張牌的所有升級，而不只是一級。",
+    "back": "Adjusted: Dulled/Blunted (鈍化) now removes all of a card's upgrades, rather than only one level.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "調整：生命改為固定值，{n1} → {n2}。",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "調整：難以殺死現在限制的是失去的生命，而非受到的傷害，因此對格擋造成的傷害不受限制。",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "難以殺死",
+    "static_hover_tips:BLOCK.title": "格擋"
+   },
+   "review": {
+    "text": "調整：難以殺死現在限制的是失去的生命，而非受到的傷害，因此對格擋造成的傷害不受限制。",
+    "back": "Adjusted: Hard to Kill (難以殺死) now limits the HP lost, rather than damage taken, so damage dealt to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

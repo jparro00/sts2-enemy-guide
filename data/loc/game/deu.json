@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "deu",
   "text": {
     "acts": {
@@ -481,7 +481,7 @@
       "SELF_HELP_BOOK.pages.INITIAL.options.READ_THE_BACK.description": "Wähle einen Angriff, den du mit [purple]{Enchantment1}[/purple] [blue]{Enchantment1Amount}[/blue] [gold]verzauberst[/gold].",
       "SELF_HELP_BOOK.pages.INITIAL.options.READ_THE_BACK.title": "Klappentext lesen",
       "SELF_HELP_BOOK.title": "Selbsthilfebuch",
-      "SHRINE_OF_THE_WARLORD.pages.INITIAL.description": "Ein in den Boden eingelassener Durchgang bringt dich zu einem unterirdischen Schrein für eine [orange]riesige chimärische Bestie[/orange]. Sein massiver Rahmen thront über [blue]3[/blue] [gold]verschiedenen Artefakten[/gold].\n\nAuf dem Boden davor ist eine Plakette, worauf steht:\n„WERDE MÄCHTIG.“\n- Tanx",
+      "SHRINE_OF_THE_WARLORD.pages.INITIAL.description": "Ein in den Boden eingelassener Durchgang bringt dich zu einem unterirdischen Schrein für eine [orange]riesige chimärische Bestie[/orange]. Ihr massives Bildnis thront über [blue]3[/blue] [gold]verschiedenen Artefakten[/gold].\n\nAuf dem Boden davor ist eine Plakette, worauf steht:\n„WERDE MÄCHTIG.“\n- Tanx",
       "SHRINE_OF_THE_WARLORD.pages.INITIAL.options.TAKE_SHIELD.description": "Nimm [gold]{ShieldTitle}[/gold] in dein [gold]Deck[/gold].",
       "SHRINE_OF_THE_WARLORD.pages.INITIAL.options.TAKE_SHIELD.title": "Den Schild nehmen",
       "SHRINE_OF_THE_WARLORD.pages.INITIAL.options.TAKE_WEAPON.description": "Nimm [gold]{WeaponTitle}[/gold] in dein [gold]Deck[/gold].",
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Neugierig",
       "CURL_UP_POWER.description": "Rollt sich ein, wenn er Schaden bekommt und erhält Block. (Einmal pro Kampf)",
       "CURL_UP_POWER.title": "Zusammenrollen",
-      "DAMPEN_POWER.description": "Solange der Magus-Ritter am Leben ist, sind ALLE deine Karten [gold]Verschlechtert[/gold].",
+      "DAMPEN_POWER.description": "Solange der Magus-Ritter am Leben ist, sind ALLE deine Karten völlig [gold]Verschlechtert[/gold].",
       "DAMPEN_POWER.title": "Dämpfen",
       "DEXTERITY_POWER.description": "Geschicklichkeit verbessert den [gold]Block[/gold], den du von Karten erhältst.",
       "DEXTERITY_POWER.title": "Geschicklichkeit",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanisch",
       "HARDENED_SHELL_POWER.description": "Diese Kreatur kann in jedem Zug höchstens [blue]20[/blue] TP verlieren.",
       "HARDENED_SHELL_POWER.title": "Gehärtete Schale",
-      "HARD_TO_KILL_POWER.description": "Reduziere jeden genommenen Schaden und TP-Verlust von [gold]Exoskeleton[/gold] auf [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Reduziere jeden TP-Verlust von [gold]Exoskeleton[/gold] auf [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Schwer zu töten",
       "HATCH_POWER.description": "Schlüpft nach X Zügen.",
       "HATCH_POWER.title": "Schlüpfen",

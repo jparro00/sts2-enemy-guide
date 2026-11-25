@@ -2146,6 +2146,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "Zmiana: Zgaszenie usuwa teraz wszystkie ulepszenia karty, a nie tylko jedno.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "Zgaszenie"
+   },
+   "review": {
+    "text": "Zmiana: Zgaszenie usuwa teraz wszystkie ulepszenia karty, a nie tylko jedno.",
+    "back": "Change: Extinguishing (\"Zgaszenie\") now removes all of a card's upgrades, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "Zmiana: PŻ mają teraz stałą wartość, {n1} → {n2}.",
    "by": "engine",
@@ -2167,6 +2193,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "Zmiana: Wytrzyma (prawie) wszystko ogranicza teraz utratę PŻ, a nie otrzymywane obrażenia, więc obrażenia zadane Blokowi nie są ograniczane.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "Wytrzyma (prawie) wszystko",
+    "static_hover_tips:BLOCK.title": "Blok"
+   },
+   "review": {
+    "text": "Zmiana: Wytrzyma (prawie) wszystko ogranicza teraz utratę PŻ, a nie otrzymywane obrażenia, więc obrażenia zadane Blokowi nie są ograniczane.",
+    "back": "Change: Will Endure (Almost) Anything (\"Wytrzyma (prawie) wszystko\") now limits HP loss, not the damage received, so damage dealt to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

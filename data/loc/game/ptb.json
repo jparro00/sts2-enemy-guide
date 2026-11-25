@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "ptb",
   "text": {
     "acts": {
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Curiosidade",
       "CURL_UP_POWER.description": "Quando sofre dano, se enrola e recebe Proteção. (Uma vez por combate)",
       "CURL_UP_POWER.title": "Enrolar-se",
-      "DAMPEN_POWER.description": "Enquanto Cavaleiro Mago estiver vivo, TODAS as suas cartas perdem [gold]Aprimoramentos[/gold].",
+      "DAMPEN_POWER.description": "Enquanto Cavaleiro Mago estiver vivo, TODAS as suas cartas perdem todos os [gold]Aprimoramentos[/gold].",
       "DAMPEN_POWER.title": "Reprimir",
       "DEXTERITY_POWER.description": "Destreza aumenta a [gold]Proteção[/gold] recebida por cartas.",
       "DEXTERITY_POWER.title": "Destreza",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanização",
       "HARDENED_SHELL_POWER.description": "Esta criatura não pode perder mais de [blue]20[/blue] PV a cada turno.",
       "HARDENED_SHELL_POWER.title": "Carapaça Endurecida",
-      "HARD_TO_KILL_POWER.description": "[gold]Exoesqueleto[/gold] reduz todo o dano sofrido e PV perdidos para [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Reduz todos os PV perdidos pelo [gold]Exoesqueleto[/gold] para [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Duro de Matar",
       "HATCH_POWER.description": "Eclode após X turnos.",
       "HATCH_POWER.title": "Eclodir",

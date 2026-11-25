@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "zhs",
   "text": {
     "acts": {
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "流电",
       "HARDENED_SHELL_POWER.description": "这个生物每回合失去的生命值不会超过[blue]20[/blue]点。",
       "HARDENED_SHELL_POWER.title": "硬化外壳",
-      "HARD_TO_KILL_POWER.description": "[gold]外骨骼虫[/gold]受到的所有伤害和生命减少效果不会超过[blue]9[/blue]点。",
+      "HARD_TO_KILL_POWER.description": "[gold]外骨骼虫[/gold]受到的所有生命减少效果不会超过[blue]9[/blue]点。",
       "HARD_TO_KILL_POWER.title": "难以杀灭",
       "HATCH_POWER.description": "X回合后孵化。",
       "HATCH_POWER.title": "孵化",

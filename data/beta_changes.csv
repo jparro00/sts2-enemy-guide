@@ -1,4 +1,6 @@
 Type,Name,Change,Patch
+monster,exoskeleton,"Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.",0.114.0
+monster,magi-knight,"Changed: Dampen now removes all of a card's upgrades, not just one.",0.114.0
 monster,axebot,"Changed: HP is now a fixed value, 70-78 (76-86) → 70 (80).",0.113.0
 monster,infested-prism,Changed: Radiate removed; pattern is now Jab → Jab → Whirlwind → Pulsate. Pulsate applies 1 Vulnerable instead of gaining 20 (22) Block.,0.113.0
 monster,tunneler,Buffed: Below renamed From Below; damage 23 (26) → 24 (28).,0.113.0

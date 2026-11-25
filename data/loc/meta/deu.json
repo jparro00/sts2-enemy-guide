@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "Geändert: Dämpfen entfernt jetzt alle Verbesserungen einer Karte, nicht nur eine.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "Dämpfen"
+   },
+   "review": {
+    "text": "Geändert: Dämpfen entfernt jetzt alle Verbesserungen einer Karte, nicht nur eine.",
+    "back": "Changed: Dampen (Dämpfen) now removes all upgrades of a card, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "Geändert: TP sind jetzt ein fester Wert, {n1} → {n2}.",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "Geändert: Schwer zu töten begrenzt jetzt den TP-Verlust statt des erlittenen Schadens, daher wird Schaden am Block nicht begrenzt.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "Schwer zu töten",
+    "static_hover_tips:BLOCK.title": "Block"
+   },
+   "review": {
+    "text": "Geändert: Schwer zu töten begrenzt jetzt den TP-Verlust statt des erlittenen Schadens, daher wird Schaden am Block nicht begrenzt.",
+    "back": "Changed: Hard to Kill (Schwer zu töten) now limits HP loss instead of damage taken, so damage to Block is not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {

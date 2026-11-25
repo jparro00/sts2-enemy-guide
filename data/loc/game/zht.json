@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "zht",
   "text": {
     "acts": {
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "好奇",
       "CURL_UP_POWER.description": "受到傷害時會蜷縮並獲得格擋。（每場戰鬥限一次）",
       "CURL_UP_POWER.title": "蜷縮",
-      "DAMPEN_POWER.description": "魔導騎士存活時，你的所有卡牌都會被[gold]降級[/gold]。",
+      "DAMPEN_POWER.description": "魔導騎士存活時，你的所有卡牌都會被完全[gold]降級[/gold]。",
       "DAMPEN_POWER.title": "鈍化",
       "DEXTERITY_POWER.description": "敏捷會提高你從卡牌獲得的[gold]格擋[/gold]。",
       "DEXTERITY_POWER.title": "敏捷",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "流電",
       "HARDENED_SHELL_POWER.description": "此生物每回合最多只能失去 [blue]20[/blue] 點生命。",
       "HARDENED_SHELL_POWER.title": "硬殼",
-      "HARD_TO_KILL_POWER.description": "[gold]外骨骼蟲[/gold]每次受到的傷害或生命損失都不會超過 [blue]9[/blue]。",
+      "HARD_TO_KILL_POWER.description": "將[gold]外骨骼蟲[/gold]每次失去的生命減少至 [blue]9[/blue] 點。",
       "HARD_TO_KILL_POWER.title": "難以殺死",
       "HATCH_POWER.description": "X 回合後孵化。",
       "HATCH_POWER.title": "孵化",

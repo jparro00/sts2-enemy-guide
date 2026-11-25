@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "tur",
   "text": {
     "acts": {
@@ -995,7 +995,7 @@
       "THE_LOST.moves.EYE_LASERS.title": "Göz Lazerleri",
       "THE_LOST.name": "Kayıp Olan",
       "THE_OBSCURA.moves.HARDENING_STRIKE.title": "Sertleştiren Saldırı",
-      "THE_OBSCURA.moves.ILLUSION.title": "İlüzyon",
+      "THE_OBSCURA.moves.ILLUSION.title": "İllüzyon",
       "THE_OBSCURA.moves.PIERCING_GAZE.title": "Delici Bakış",
       "THE_OBSCURA.moves.SAIL.title": "Süzülüş",
       "THE_OBSCURA.name": "Belirsiz",
@@ -1084,7 +1084,6 @@
       "CURIOUS_POWER.title": "Meraklı",
       "CURL_UP_POWER.description": "Hasar aldığında içe kapanıp blok elde eder. (Her savaşta bir kereliğine)",
       "CURL_UP_POWER.title": "İçe Kapan",
-      "DAMPEN_POWER.description": "Büyücü Şövalye hayattayken TÜM kartlarının [gold]Geliştirmesi Azalır[/gold].",
       "DAMPEN_POWER.title": "Güçsüz Kıl",
       "DEXTERITY_POWER.description": "Beceriklilik, kartlardan elde edilen [gold]Blok[/gold]'u artırır.",
       "DEXTERITY_POWER.title": "Beceriklilik",
@@ -1104,7 +1103,6 @@
       "GALVANIC_POWER.title": "Uyarıcı",
       "HARDENED_SHELL_POWER.description": "Bu yaratık, her turda en fazla [blue]20[/blue] CP kaybedebilir.",
       "HARDENED_SHELL_POWER.title": "Sert Kabuk",
-      "HARD_TO_KILL_POWER.description": "[gold]Zırhkabuk[/gold] tarafından alınan tüm hasar ve CP kaybını [blue]9[/blue]’a düşür.",
       "HARD_TO_KILL_POWER.title": "Öldürmesi Zor",
       "HATCH_POWER.description": "X tur sonra yumurtadan çıkar.",
       "HATCH_POWER.title": "Yumurtadan Çık",
@@ -1115,7 +1113,7 @@
       "HIGH_VOLTAGE_POWER.description": "Bu yaratık, turunun sonunda [blue]2[/blue] [gold]Kuvvet[/gold] elde eder.",
       "HIGH_VOLTAGE_POWER.title": "Yüksek Voltaj",
       "ILLUSION_POWER.description": "Öldüğünde bir sonraki tur maksimum CP ile yeniden dirilir.",
-      "ILLUSION_POWER.title": "İlüzyon",
+      "ILLUSION_POWER.title": "İllüzyon",
       "IMBALANCED_POWER.description": "Eğer bu yaratığın saldırıları bir oyuncu tarafından tamamen engellenirse, yaratık [gold]Sersemler[/gold].",
       "IMBALANCED_POWER.title": "Dengesiz",
       "IMPROVEMENT_POWER.description": "Savaşın sonunda rastgele bir kartı [gold]Geliştir[/gold].",

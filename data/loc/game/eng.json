@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "eng",
   "text": {
     "acts": {
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Curious",
       "CURL_UP_POWER.description": "When damaged, rolls up and gains block. (Once per combat)",
       "CURL_UP_POWER.title": "Curl Up",
-      "DAMPEN_POWER.description": "While Magi Knight is alive, ALL your cards are [gold]Downgraded[/gold].",
+      "DAMPEN_POWER.description": "While Magi Knight is alive, ALL your cards are fully [gold]Downgraded[/gold].",
       "DAMPEN_POWER.title": "Dampen",
       "DEXTERITY_POWER.description": "Dexterity improves [gold]Block[/gold] gained from cards.",
       "DEXTERITY_POWER.title": "Dexterity",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanic",
       "HARDENED_SHELL_POWER.description": "This creature cannot lose more than [blue]20[/blue] HP each turn.",
       "HARDENED_SHELL_POWER.title": "Hardened Shell",
-      "HARD_TO_KILL_POWER.description": "Reduce all damage taken and HP lost by [gold]Exoskeleton[/gold] to [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Reduce all HP lost by [gold]Exoskeleton[/gold] to [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Hard to Kill",
       "HATCH_POWER.description": "Hatches after X turns.",
       "HATCH_POWER.title": "Hatch",

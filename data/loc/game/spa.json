@@ -1,5 +1,5 @@
 {
-  "game": "0.113.1",
+  "game": "0.114.0",
   "lang": "spa",
   "text": {
     "acts": {
@@ -29,7 +29,7 @@
       "BYRDONIS_EGG.title": "Huevo de Japarónix",
       "BYRD_SWOOP.description": "Inflige {Damage:diff()} de daño.",
       "BYRD_SWOOP.title": "Zarpazo de jáparo",
-      "CALTROPS.description": "Cuando te ataquen, inflige {ThornsPower:diff()} de daño al atacante.",
+      "CALTROPS.description": "Siempre que te ataquen, inflige {ThornsPower:diff()} de daño al atacante.",
       "CALTROPS.title": "Abrojos",
       "CLASH.description": "Solo se puede jugar si todas las cartas de tu [gold]Mano[/gold] son Ataques.\nInflige {Damage:diff()} daño.",
       "CLASH.title": "Choque",
@@ -653,7 +653,7 @@
       "WUPPY_IN_TROUBLE.pages.INITIAL.options.HELP_IMMEDIATELY.title": "Ir al rescate de inmediato",
       "WUPPY_IN_TROUBLE.pages.INITIAL.options.IGNORE.description": "Consigue una poción aleatoria.",
       "WUPPY_IN_TROUBLE.pages.INITIAL.options.IGNORE.title": "Pasar del tema",
-      "WUPPY_IN_TROUBLE.title": "¡Wuppy está en peligro!",
+      "WUPPY_IN_TROUBLE.title": "¡Wuppy en peligro!",
       "ZEN_WEAVER.pages.INITIAL.description": "Estás explorando un túnel cuando de repente se te pega una telaraña a la cara y te entra el [jitter][red]PÁNICO[/red][/jitter].\nPero entonces, una [sine][blue]sensación de calma[/blue][/sine] te invade...\n\n[sine]—Oye, cálmate, que me estás destrozando la telaraña.[/sine]\n\n¿Cómo te has calmado tan rápido?\nUna [orange]pequeña arañita[/orange] desciende por la tela para situarse frente a ti. Parece dispuesta a enseñarte ciertas técnicas a cambio de [gold]oro[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.description": "Paga [red]{ArachnidAcupunctureCost}[/red] de [gold]Oro[/gold]. Elimina [blue]2[/blue] cartas de tu [gold]Mazo[/gold].",
       "ZEN_WEAVER.pages.INITIAL.options.ARACHNID_ACUPUNCTURE.title": "Acupuntura arácnida",
@@ -1085,7 +1085,7 @@
       "CURIOUS_POWER.title": "Curiosidad",
       "CURL_UP_POWER.description": "Cuando recibe daño, se enrosca y gana Bloqueo (una vez por combate).",
       "CURL_UP_POWER.title": "Enroscarse",
-      "DAMPEN_POWER.description": "Mientras el Caballero magi esté vivo, elimina las [gold]Mejoras[/gold] de TODAS tus cartas.",
+      "DAMPEN_POWER.description": "Mientras el Caballero magi esté vivo, elimina por completo las [gold]Mejoras[/gold] de TODAS tus cartas.",
       "DAMPEN_POWER.title": "Desmotivación",
       "DEXTERITY_POWER.description": "La Destreza aumenta el [gold]Bloqueo[/gold] obtenido mediante cartas.",
       "DEXTERITY_POWER.title": "Destreza",
@@ -1105,7 +1105,7 @@
       "GALVANIC_POWER.title": "Galvanismo",
       "HARDENED_SHELL_POWER.description": "Esta criatura no puede perder más de [blue]20[/blue] PV por turno.",
       "HARDENED_SHELL_POWER.title": "Endurecimiento",
-      "HARD_TO_KILL_POWER.description": "Reduce todo el daño recibido y los PV perdidos por [gold]Placóptero[/gold] a [blue]9[/blue].",
+      "HARD_TO_KILL_POWER.description": "Reduce todos los PV perdidos por [gold]Placóptero[/gold] a [blue]9[/blue].",
       "HARD_TO_KILL_POWER.title": "Duro de roer",
       "HATCH_POWER.description": "Eclosiona tras X turnos.",
       "HATCH_POWER.title": "Eclosión",

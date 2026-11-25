@@ -2149,6 +2149,32 @@
     "at": "2026-11-16"
    }
   },
+  "text:Changed: Dampen now removes all of a card's upgrades, not just one.": {
+   "text": "Modifié : Atténuation retire désormais toutes les Améliorations d'une carte, pas seulement une.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter knights",
+   "terms": {
+    "powers:DAMPEN_POWER.title": "Atténuation"
+   },
+   "review": {
+    "text": "Modifié : Atténuation retire désormais toutes les Améliorations d'une carte, pas seulement une.",
+    "back": "Changed: Attenuation (Atténuation) now removes all of a card's Upgrades, not just one.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
+   }
+  },
   "text:Changed: HP is now a fixed value, {n1} → {n2}.": {
    "text": "Modifié : les PV sont désormais une valeur fixe, {n1} → {n2}.",
    "by": "engine",
@@ -2170,6 +2196,33 @@
      "model": "claude-opus-5-5"
     },
     "at": "2026-11-16"
+   }
+  },
+  "text:Changed: Hard to Kill now caps HP lost, not damage taken, so damage to Block isn't capped.": {
+   "text": "Modifié : Dur à cuire limite désormais les PV perdus, et non les dégâts subis : les dégâts infligés à l'Armure ne sont donc pas limités.",
+   "by": "engine",
+   "engine": "claude-code",
+   "model": "claude-opus-5-5",
+   "at": "2026-11-25",
+   "page": "encounter exoskeletons-easy",
+   "terms": {
+    "powers:HARD_TO_KILL_POWER.title": "Dur à cuire",
+    "static_hover_tips:BLOCK.title": "Armure"
+   },
+   "review": {
+    "text": "Modifié : Dur à cuire limite désormais les PV perdus, et non les dégâts subis : les dégâts infligés à l'Armure ne sont donc pas limités.",
+    "back": "Changed: Tough Customer (Dur à cuire, lit. 'hard to cook') now limits HP lost, and not damage taken: damage dealt to Armor is therefore not limited.",
+    "verdict": "ok",
+    "backBy": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5",
+     "translator": ""
+    },
+    "judge": {
+     "engine": "claude-code",
+     "model": "claude-opus-5-5"
+    },
+    "at": "2026-11-25"
    }
   },
   "text:Changed: Light Door upgrades {n1} card of your choice instead of {n2} random cards.": {
